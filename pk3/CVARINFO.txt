@@ -1,54 +1,19 @@
-server noarchive int YD_WeaknessSetting = 1;//0 no weakness, 1 sounds only, 2 weakness enabled
-server noarchive bool YD_NoCTFMorph = false;
-server noarchive bool YD_LMSLoadouts = false;
-server noarchive bool YD_NoPitProtect = true;
-server noarchive bool YD_NoHealingScale = false;
-server noarchive bool YD_Drops_Exodia = true;
-server noarchive bool YD_NoLMSWeapons = true;//mm8bdm_sv_nolmsweapons, but can't edit without using ConsoleCommand
+user bool ccbm_allyhealthbar = true;
+user bool ccbm_mapmarker = true;
 
-server noarchive bool YD_TestHavocDamageBonus = false;//65
-//server noarchive bool YD_DisableChargeCarry = false;//66
+//LMSGAS
 
-server noarchive int CBM_LMS_TestHPSpawn = 2;
-//- 0: No HP pickups
-//- 1: Only big and mega HP pickups
-//- 2: All HP pickups
-server noarchive bool CBM_LMS_TestHPRespawn = true;
-//- false: HP does not respawn
-//- true: HP does respawn
+//Should the copywep display be on?
+server bool SV_COPYDISPLAY = true;
 
-//user noarchive bool CBM_OldStaminaBar = false;
+//Decides how much life the flagbearer loses for each time the flag has been picked up without being returned.
+server int SV_FLAGHOTPOTATO = 100;
 
+//My brother in christ, sv_respawndelaytime
 
-server noarchive int CBM_LMSGas_Time = 180;//Set to 0 to disable LMSGas
-server noarchive int CBM_LMSGas_Speed = 25;
-server noarchive int CBM_LMSGas_Damage = 22;
-server noarchive int CBM_LMSGas_Size = 500;
-server noarchive bool CBM_LMSGas_SpawnStyle = true;
+//Jupiter
+User Bool gd_hjupiter = FALSE;
 
-user noarchive bool CBM_NoGravitySpawnHop = false;//Several folks liked this 'feature'
-user noarchive bool CBM_AutoAltHud = false;
-user noarchive bool CBM_OldGalaxyHud = false;
-user noarchive float CBM_GasRadarFade = 1.0;
-
-user noarchive bool CBM_Null_Menu = false;
-user noarchive int CBM_CH_Menu = 0;
-
-user int LO_range = -1;
-user int LO_rapid = -1;
-user int LO_close = -1;
-user int LO_power = -1;
-user int LO_guard = -1;
-
-//CBM_TEST
-
-//Copy of core variables
-user noarchive int mm8bdm_cbmtest_weaponno = -66;
-user noarchive int mm8bdm_cbmtest_itemno = -66;
-user noarchive int mm8bdm_cbmtest_botweaponno = -66;
-user noarchive int mm8bdm_cbmtest_arenano = -66;
-user noarchive int mm8bdm_cbmtest_botaino = -66;
-user noarchive int mm8bdm_cbmtest_virusno = -66;
-//Custom ones
-user noarchive int mm8bdm_cbmtest_runeno;
-user noarchive int mm8bdm_cbmtest_tuneno;
+//Mugshot Frames
+//user bool GD_NoMugshotFrames = true;
+//what the glipglop conejo

@@ -1,33 +1,49 @@
-
 {
-name = "\c[CBM0C]Maestro"
+name = "\cfFuseman"
 accuracy=6 intellect=6 evade=6 anticipation=6 reactiontime=6 perception=6
-class = "Maestro"
+class = "Fuseman"
 script = "humanbot"
-revealed = false
-}
-{
-name = "\c[CBM0R]Dr. Light"
-accuracy=6 intellect=6 evade=6 anticipation=6 reactiontime=6 perception=6
-class = "DrLight"
-script = "humanbot"
-}
-{
-name = "\c[CBM0D]Rock"
-accuracy=6 intellect=6 evade=6 anticipation=6 reactiontime=6 perception=6
-class = "Rock"
-script = "humanbot"
-revealed = false
-//chatlump = "chats/BOTROCK.txt"
-//chatfrequency = 99
 }
 
 {
-name = "\ckBBA\cj-\chMegaman"
-accuracy=1 intellect=4 evade=4 anticipation=4 reactiontime=4 perception=4
-skin = "Megaman-BBA"
-class = "BBAMegaman"
+name = "\chBlastman"
+accuracy=6 intellect=6 evade=6 anticipation=6 reactiontime=6 perception=6
+class = "Blastman"
 script = "humanbot"
-chatlump = "chats/BOTBBA.txt"
-chatfrequency = 50
+}
+
+{
+name = "\cdAcidman"
+accuracy=6 intellect=6 evade=6 anticipation=6 reactiontime=6 perception=6
+class = "Acidman"
+script = "humanbot"
+}
+
+{
+name = "\ckYellow Devil"
+accuracy=6 intellect=6 evade=6 anticipation=6 reactiontime=6 perception=6
+class = "YellowDevil"
+script = "humanbot"
+}
+
+
+{
+name = "\cnTundraman"
+accuracy=1 intellect=3 evade=0 anticipation=1 reactiontime=2 perception=1
+class = "Tundraman"
+script = "humanbot"
+}
+
+{
+name = "\crTorchman"
+accuracy=1 intellect=3 evade=0 anticipation=1 reactiontime=2 perception=1
+class = "Torchman"
+script = "humanbot"
+}
+
+{
+name = "\caBounceman"
+accuracy=1 intellect=3 evade=0 anticipation=1 reactiontime=2 perception=1
+class = "Bounceman"
+script = "humanbot"
 }

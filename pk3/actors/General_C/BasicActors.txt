@@ -226,7 +226,7 @@ TNT1 A 0 //A_LOG("ScaleX AND Dam Calc")
 TNT1 A 0 //A_LOGINT(ScaleX)
 TNT1 A 0 //A_LOG("Total")
 TNT1 A 0 //A_LOGINT(Mass*(Meleerange*0.01)*ScaleX)
-TNT1 A 0 A_Explode(Mass*(Meleerange*0.1)*ScaleX+1,15,0,0,15)
+TNT1 A 0 A_Explode(Mass*(Meleerange*0.01)*ScaleX+1,15,0,0,15)
 TNT1 A 3
 stop
 }

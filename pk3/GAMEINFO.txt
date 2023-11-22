@@ -1,4 +1,5 @@
-startuptitle = "MM8BDM Class Based Modification (CBM)"
-startupcolors = "B8F818", "007800"
-
-//startupsong = ""
+// Gondola Game Info
+StartupColors = "f1ebff","741b47"
+StartupTitle = "MM8BDM CBM : Competitive Gondola Patch"
+StartupSong = "GONDT"
+StartupType = "hexen"

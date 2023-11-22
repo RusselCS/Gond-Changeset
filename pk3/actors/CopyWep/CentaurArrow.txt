@@ -59,7 +59,7 @@ Obituary "$OB_CENTAURARROW"
 +RIPPER
 +FORCEXYBILLBOARD
 +BRIGHT
-damage (120)
+damage (12)
 Radius 6
 Height 7
 speed 20

@@ -54,7 +54,7 @@ damagetype "RainbowGalaxy"
 Obituary "$OB_RAINBOWGALAXY"
 +FORCEXYBILLBOARD
 +BRIGHT
-Damage (130)
+Damage (13)
 radius 10
 height 10
 Speed 13
@@ -69,11 +69,11 @@ goto Spawn+1
 }
 
 actor RainbowGalaxyPew1 : RainbowGalaxyPew{Translation"192:192=205:205","198:198=206:206" Speed 15}
-actor RainbowGalaxyPew2 : RainbowGalaxyPew{Translation"192:192=103:103","198:198=116:116" Damage (140) Speed 12}
-actor RainbowGalaxyPew3 : RainbowGalaxyPew{Translation"192:192=106:106","198:198=111:111" Damage (150) Radius 11 Height 11 Speed 14 Scale 1.5}
-actor RainbowGalaxyPew4 : RainbowGalaxyPew{Translation"192:192=248:248","198:198=230:230" Damage (150) Speed 11}
+actor RainbowGalaxyPew2 : RainbowGalaxyPew{Translation"192:192=103:103","198:198=116:116" Damage (14) Speed 12}
+actor RainbowGalaxyPew3 : RainbowGalaxyPew{Translation"192:192=106:106","198:198=111:111" Damage (15) Radius 11 Height 11 Speed 14 Scale 1.5}
+actor RainbowGalaxyPew4 : RainbowGalaxyPew{Translation"192:192=248:248","198:198=230:230" Damage (15) Speed 11}
 actor RainbowGalaxyPew5 : RainbowGalaxyPew{Translation"192:192=225:225","198:198=227:227" Radius 12 Height 12 Scale 1.5}
-actor RainbowGalaxyPew6 : RainbowGalaxyPew{Translation"192:192=38:38","198:198=40:40" Damage (160)}
+actor RainbowGalaxyPew6 : RainbowGalaxyPew{Translation"192:192=38:38","198:198=40:40" Damage (16)}
 actor RainbowGalaxyPew7 : RainbowGalaxyPew{Translation"192:192=57:57","198:198=60:60" Speed 14}
 
 actor RainbowGalaxyPewFX : BasicClientSide

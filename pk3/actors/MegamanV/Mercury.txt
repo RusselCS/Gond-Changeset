@@ -1,35 +1,29 @@
-actor Mercury : ClassBase
-{
-Player.ScoreIcon "C_0VB0X"
-player.displayname "Mercury"
-player.soundclass "mercuryc"
+//====================================
+// Formatted and Cleaned by Ru5tK1ng
+//------------------------------------
+//====================================
 
-player.maxhealth 850
-health 850
-player.jumpz 10
-player.forwardmove 0.88, 0.88
-player.sidemove 0.87, 0.87
-
-player.startitem "GrabBusterBoss"
-player.startitem "SeizeAllTheAmmo", 8
-player.startitem "MercuryBlobFormAmmo", 140
-player.startitem "MercuryBlobItem"
-player.startitem "Merc_BlobOff_F"
-player.startitem "IsACommie"
-player.startitem "CanSnatch_F"
-
-player.startitem "BlackHoleWeakness2", 1
-
-player.startitem "FireStormWeakness", 1
-player.startitem "AtomicFireWeakness", 1
-player.startitem "PharaohShotWeakness", 1
-player.startitem "StarCrashWeakness", 1
-player.startitem "FlameBlastWeakness", 1
-player.startitem "ScorchWheelWeakness", 1
-player.startitem "MagmaBazookaWeakness", 1
-player.startitem "SolarBlazeWeakness", 1
-player.startitem "BlackHoleWeakness", 1
-
+  Actor Mercury : ClassBase
+  {
+    Player.StartItem "IFMM0V", 1
+    Player.ScoreIcon "C_0VB0X"
+	Player.DisplayName "Mercury"
+	Player.SoundClass "mercuryc"
+	Player.StartItem "LightHealthBar"
+	Player.StartItem "GrabBusterBoss"
+	Player.StartItem "MercuryClassAmmo", 24
+	Player.StartItem "MercuryBlobFormAmmo", 40
+	Player.StartItem "Merc_BlobOff_F"
+	//Player.StartItem "IsACommie"
+	//Player.StartItem "CanSnatch_F"
+	player.maxhealth 85
+	health 85
+	player.jumpz 10
+	Player.ForwardMove 0.9, 0.9
+	Player.SideMove 0.88, 0.88
+	Player.StartItem "BlackHoleWeakness2", 1
+	Player.StartItem "BlackHoleBombWeakness", 1
+	Player.StartItem "BlackHoleWeakness", 1
 States
 {
 Spawn:
@@ -63,7 +57,7 @@ MERC V 0 A_JumpIfInventory("VivifyDelay5",1,"MissileBlob2")
 MERC V 8
 goto Spawn
 MissileBlob2:
-MERC QQOO 1 A_JumpIfInventory("Mercury_Slammed_F",1,"MissileBlob3")
+MERC QQOO 1 //A_JumpIfInventory("Mercury_Slammed_F",1,"MissileBlob3")
 goto MissileBlob2+1
 //MERC RRRRSSSSTTTTSSSS 1
 MissileBlob3:

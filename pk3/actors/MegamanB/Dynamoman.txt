@@ -1,20 +1,20 @@
-actor Dynamoman : ClassBase
+actor Dynamoman : ClassBase //85
 {
+Player.StartItem "IFMMAB", 1
 Player.ScoreIcon "C_0BA0X"
 player.displayname "Dynamoman"
-player.soundclass "dynamomanc"
+player.soundclass "dynamomanC"
+player.startitem "LightningBoltBoss"
+player.startitem "DynamoElectricity", 80
+player.startitem "DynamoHealAmmo", 25
+player.startitem "DynamoStaminaFlag", 500
+//player.startitem "DynamoRecharger"
 
-player.maxhealth 850
-health 850
+player.maxhealth 85
+health 85
 player.jumpz 10
 player.forwardmove 0.85, 0.85
 player.sidemove 0.83, 0.83
-
-player.startitem "LightningBoltBoss"
-player.startitem "TeslaCoilAmmo", 180
-player.startitem "DynamoHealAmmo", 25
-player.startitem "DynamoStaminaFlag", 500
-player.startitem "DynamoRecharger"
 
 player.startitem "CopyVisionWeakness2", 1
 
@@ -26,9 +26,8 @@ player.startitem "CrystalEyeWeakness", 1
 player.startitem "CentaurFlashWeakness", 1
 player.startitem "CopyVisionWeakness", 1
 player.startitem "JewelSatelliteWeakness", 1
-player.startitem "ReboundStrikerWeakness", 1
-player.startitem "SparkChaserWeakness", 1
 player.startitem "MirrorBusterWeakness", 1
+player.startitem "SparkChaserWeakness", 1
 
 States
 {

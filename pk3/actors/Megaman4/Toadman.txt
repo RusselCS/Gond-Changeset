@@ -1,11 +1,12 @@
 actor Toadman : ClassBase
 {
+Player.StartItem "IFMM04", 1
 Player.ScoreIcon "C_04B0X"
 player.displayname "Toadman"
 player.soundclass "toadmanc"
 
-player.maxhealth 1550
-health 1550
+player.maxhealth 155
+health 155
 player.jumpz 15
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78

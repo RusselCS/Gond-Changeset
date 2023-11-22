@@ -190,7 +190,7 @@ damagetype "FakeRepeater"
 Obituary "$OB_FAKEREPEATER"
 +FORCEXYBILLBOARD
 +BRIGHT
-Damage (130)
+Damage (13)
 radius 6
 height 7
 Speed 90
@@ -221,7 +221,7 @@ loop
 
 actor FakeRepeaterShot2 : FakeRepeaterShot
 {
-Damage (90)
+Damage (9)
 speed 5
 States
 {

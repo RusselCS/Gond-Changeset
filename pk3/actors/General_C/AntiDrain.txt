@@ -22,11 +22,11 @@ damagefactor "Normal", 0.0
 
 //Objects that need DONTDRAIN for Plantman and friends
 
-actor OilCanister_Drain : OilCanister replaces OilCanister{+DONTDRAIN Health 1000}
+actor OilCanister_Drain : OilCanister replaces OilCanister{+DONTDRAIN Health 100}
 
 actor LeafShieldGuard_Drain : LeafShieldGuard replaces LeafShieldGuard{+DONTDRAIN}//Might not be needed
 
-actor ConcreteBlock_Drain : ConcreteBlock replaces ConcreteBlock{+DONTDRAIN Health 500}
+actor ConcreteBlock_Drain : ConcreteBlock replaces ConcreteBlock{+DONTDRAIN Health 50}
 
 actor BlackHolePart_Drain : BlackHolePart replaces BlackHolePart{+DONTDRAIN +NOTARGETSWITCH}
 

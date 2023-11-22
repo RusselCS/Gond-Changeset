@@ -1,11 +1,12 @@
 actor Venus : ClassBase
 {
+Player.StartItem "IFMM0V", 1
 Player.ScoreIcon "C_0VC0X"
 player.displayname "Venus"
 player.soundclass "venusc"
 
-player.maxhealth 1000
-health 1000
+player.maxhealth 100
+health 100
 player.jumpz 10
 player.forwardmove 0.78, 0.78
 player.sidemove 0.90, 0.90

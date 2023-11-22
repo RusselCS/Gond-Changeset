@@ -1,20 +1,24 @@
-actor MegaWaterS : ClassBase
+actor MegaWaterS : ClassBase //90
 {
+Player.StartItem "IFMMWT", 1
 Player.ScoreIcon "C_WTB0X"
 player.displayname "MegaWaterS"
 player.soundclass "megawatersc"
-
-player.maxhealth 1000
-health 1000
-player.jumpz 10
-player.forwardmove 0.8, 0.8
-player.sidemove 0.78, 0.78
-
 player.startitem "SandySandBoss"
+player.startitem "SandySanderBoss"
 player.startitem "KappaMikeyAmmo", 21
 player.startitem "KappaBarrierAmmo", 4
 player.startitem "MWS_ShieldItem"
 
+player.maxhealth 90
+health 90
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
+
+player.weaponslot 1, "SandySandBoss"
+player.weaponslot 2, "SandySanderBoss"
 //player.startitem "BusterRodGWeakness", 1
 //player.startitem "MegaWaterSWeakness", 1
 //player.startitem "HyperStormHWeakness", 1
@@ -25,12 +29,10 @@ Spawn:
 MWSZ A 0
 MWSZ B 1
 MWSZ A 1
-MWSZ A 210
-//MWSZ ST 6
-MWSZ UV 6
-wait
+MWSZ A 1 A_JumpIf(z-floorz>0,"MWSJumping")
+Goto Spawn+2
 See:
-MWSZ BCDE 5
+MWSZ BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0,"MWSJumping")
 Goto Spawn
 Missile:
 MWSZ F 0 A_JumpIfInventory("VivifyDelay6",1,"Missile3")
@@ -44,6 +46,11 @@ goto Spawn
 Missile3:
 MWSZ WXWXWXWX 2
 goto Spawn
+
+MWSJumping:
+MWSZ I 1 A_JumpIf(z-floorz<=0, "Spawn")
+wait
+
 ClassPain:
 MWSZ H 0
 goto PainContinue

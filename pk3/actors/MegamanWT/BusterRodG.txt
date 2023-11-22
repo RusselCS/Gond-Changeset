@@ -1,11 +1,12 @@
 actor BusterRodG : ClassBase
 {
+Player.StartItem "IFMMWT", 1
 Player.ScoreIcon "C_WTA0X"
 player.displayname "BusterRodG"
 player.soundclass "busterrodgc"
 
-player.maxhealth 850
-health 850
+player.maxhealth 85
+health 85
 player.jumpz 13
 player.forwardmove 1.0, 1.0
 player.sidemove 0.98, 0.98
@@ -14,7 +15,7 @@ player.startitem "MonkeyKingBoss"
 player.startitem "MonkeyMagicAmmo", 35
 player.startitem "BRG_CloneItem"
 player.startitem "CanWallJump"
-player.startitem "CanWallJumpStack", 4
+player.startitem "CanWallJumpStack", 99
 
 //player.startitem "BusterRodGWeakness", 1
 //player.startitem "MegaWaterSWeakness", 1

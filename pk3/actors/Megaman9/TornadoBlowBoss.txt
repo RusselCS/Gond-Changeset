@@ -1,13 +1,13 @@
 actor TornadoBlowBoss : BaseMM8BDMWep_CBM
 {
-tag "$TAGC_9B"
+Tag "$TAGC_9B"
 dropitem "TornadoBlowWepCDropped"
 Weapon.AmmoUse 7
 Weapon.AmmoGive 56
 Obituary "$OB_TORNADOMAIN"
 Inventory.Pickupmessage "You got the power of the winds!"
-weapon.ammotype "GoneWithTheWindAmmo"//RashidoooooAmmo
-weapon.ammotype2 "DoTheTwistAmmo"
+weapon.ammotype "TornadoBlowBossAmmo"
+weapon.ammotype2 "TornadoHoverAmmo"
 States
 {
 Spawn:
@@ -18,18 +18,18 @@ TORG A 0 ACS_ExecuteAlways(998,0,DYE_TORNADOMAN)
 TORG A 0 A_GunFlash
 goto Ready1
 Ready1:
-TORG A 0 A_JumpIfInventory("GoneWithTheWindAmmo",7,"Ready2")
+TORG A 0 A_JumpIfInventory("TornadoBlowBossAmmo",7,"Ready2")
 TORG A 3 A_WeaponReady(WRF_NOPRIMARY)
-TORG A 0 A_GiveInventory("GoneWithTheWindAmmo",1)
+TORG A 0 A_GiveInventory("TornadoBlowBossAmmo",1)
 TORG A 0 A_JumpIfInventory("TornadoHoverActive",1,2)
-TORG A 0 A_GiveInventory("DoTheTwistAmmo",1)
+TORG A 0 A_GiveInventory("TornadoHoverAmmo",1)
 TORG A 0
 loop
 Ready2:
 TORG A 3 A_WeaponReady
-TORG A 0 A_GiveInventory("GoneWithTheWindAmmo",1)
+TORG A 0 A_GiveInventory("TornadoBlowBossAmmo",1)
 TORG A 0 A_JumpIfInventory("TornadoHoverActive",1,2)
-TORG A 0 A_GiveInventory("DoTheTwistAmmo",1)
+TORG A 0 A_GiveInventory("TornadoHoverAmmo",1)
 TORG A 0
 loop
 
@@ -38,17 +38,21 @@ TORG A 0 A_GiveInventory("ClashFlag1")
 TORG A 0 A_GiveInventory("ClashFlag2")
 TORG A 0 A_GiveInventory("ClashFlag3")
 TORG A 0 A_GiveInventory("ClashFlag4")
-TORG AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
 TORG A 1 A_Lower
 Loop
 Select:
-TORG AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 TORG A 1 A_Raise
 Loop
 
 Fire:
 TORG B 0 A_JumpIfInventory("IsBot",1,"BotFire")
-TORG BC 2
+TORG B 2 Offset(-2,30)
+TORG C 1 Offset(-6,26)
+TORG A 0 A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 A_GiveInventory("TornadoHoverAmmo",1)
+TORG C 1 Offset(-6,26)
 goto FireCheck
 
 BotFire:
@@ -56,99 +60,172 @@ TORG B 0 A_Jump(198,1)
 goto AltFire+1
 TORG B 0 A_Jump(32,1)
 goto Fire+1
-TORG B 0 A_GiveInventory("GoneWithTheWindAmmo",28)
+TORG B 0 A_GiveInventory("TornadoBlowBossAmmo",28)
 goto Fire+1
 
 NoAmmoM:
-TORG CB 2
+TORG C 2 Offset(-3,29)
+TORG B 1 Offset(-1,31)
+TORG A 0 A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 A_GiveInventory("TornadoHoverAmmo",1)
+TORG B 1 Offset(-1,31)
 Goto Ready1
 
 FireCheck:
 TORG D 0 A_JumpIfNoAmmo("NoAmmoM")
+//TORG A 0 A_JumpIfInventory("TornadoHoverActive",1,3)
 TORG D 0 A_PlaySoundEx("weapon/tornadoshoot","Weapon")
 TORG D 0 A_GiveInventory("TornadomanMain_CI",1)
 TORG D 1
 goto EndFire
 
 EndFire:
-TORG E 1 A_JumpIfInventory("PowerRage_ST",1,2)
-TORG DE 1
-TORG D 1 A_JumpIfInventory("PowerRage_ST",1,2)
-TORG ED 1
-TORG E 1 A_JumpIfInventory("PowerRage_ST",1,2)
-TORG DE 1
+TORG E 0 A_JumpIfInventory("PowerRage_ST",1,5)
+TORG A 0 A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 A_GiveInventory("TornadoHoverAmmo",1)
+TORG EDE 1 Offset(-10,22)
+TORG A 0 //A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 //A_GiveInventory("TornadoHoverAmmo",1)
+TORG DED 1 Offset(-10,22)
+TORG A 0 A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 A_GiveInventory("TornadoHoverAmmo",1)
+TORG EDE 1 Offset(-10,22)
+TORG A 0 //A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 //A_GiveInventory("TornadoHoverAmmo",1)
 TORG F 0 A_Refire("FireCheck")
-TORG CB 2
+TORG C 2 Offset(-3,29)
+TORG B 1 Offset(-1,31)
 Goto Ready1
 
 AltFire:
-TORG G 0 A_GiveInventory("WeaponCharge",1)
-TORG F 3
-TORG G 0 A_GiveInventory("GoneWithTheWindAmmo",1)
-TORG GHI 2
-TORG J 0 A_PlaySoundEx("weapon/tornadoblow","Weapon")
+TORG G 0 Offset(5,30)A_GiveInventory("WeaponCharge",1)
+TORG A 2 Offset(15,15)
+TORG G 0 Offset(10,33)
+TORG F 1 Offset(12,28)
+TORG A 0 A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 A_GiveInventory("TornadoHoverAmmo",1)
+TORG J 0 A_GiveInventory("TornadoBlowBossAmmo",1)
+TORG G 1 Offset(14,28)
+TORG H 1 Offset(16,27)
+TORG H 1
+TORG J 0 A_PlaySoundEx("weapon/tornadoblowboss","Weapon")
 goto AltFire1
 AltFire1:
 TORG J 0 A_SpawnItemEx("TornadoDamagerC",0,0,0,0,0,0,0,1)
 TORG J 0 A_GiveInventory("TornadoBlowThrust_P",1)
-TORG J 3 A_GiveInventory("GoneWithTheWindAmmo",1)
+TORG A 0 //A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 //A_GiveInventory("TornadoHoverAmmo",1)
+TORG I 1 A_GiveInventory("TornadoBlowBossAmmo",1)
+TORG IJ 1
 TORG K 0 A_SpawnItemEx("TornadoDamagerC",0,0,0,0,0,0,0,1)
 TORG K 0 A_GiveInventory("TornadoBlowThrust_P",1)
-TORG K 3
+TORG A 0 A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 A_GiveInventory("TornadoHoverAmmo",1)
+TORG IJI 1
 TORG J 0 A_SpawnItemEx("TornadoDamagerC",0,0,0,0,0,0,0,1)
 TORG J 0 A_GiveInventory("TornadoBlowThrust_P",1)
-TORG J 3 A_GiveInventory("GoneWithTheWindAmmo",1)
+TORG A 0 //A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 //A_GiveInventory("TornadoHoverAmmo",1)
+TORG J 1 A_GiveInventory("TornadoBlowBossAmmo",1)
+TORG IJ 1
+TORG A 0 A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 A_GiveInventory("TornadoHoverAmmo",1)
 TORG K 0 A_SpawnItemEx("TornadoDamagerC",0,0,0,0,0,0,0,1)
 TORG K 0 A_GiveInventory("TornadoBlowThrust_P",1)
-TORG K 3
+TORG IJI 1
 TORG K 0 A_Refire("AltFireH1")
 goto AltFireEnd1
 
 AltFireH1:
 TORG J 0 //A_SpawnItemEx("TornadoDamagerC2",0,0,0,0,0,0,0,1)
 TORG J 0 A_GiveInventory("TornadoBlowThrust_P2",1)
-TORG J 3 A_GiveInventory("GoneWithTheWindAmmo",1)
+TORG A 0 A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 A_GiveInventory("TornadoHoverAmmo",1)
+TORG I 1 A_GiveInventory("TornadoBlowBossAmmo",1)
+TNT1 A 0 A_PlaySoundEx("weapon/tornadoblowhold","SoundSlot7")
+TORG JI 1
 TORG K 0 A_Refire("AltFireH2")
 goto AltFireEnd2
 AltFireH2:
 TORG K 0 A_SpawnItemEx("TornadoDamagerC2",0,0,0,0,0,0,0,1)
 TORG K 0 A_GiveInventory("TornadoBlowThrust_P2",1)
-TORG K 3
+TORG I 0 A_GiveInventory("TornadoBlowBossAmmo",1)
+TORG A 0 A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 A_GiveInventory("TornadoHoverAmmo",1)
+TORG J 1 A_PlaySoundEx("weapon/tornadoblowhold","SoundSlot7")
+TORG I 1
+TORG J 1 A_PlaySoundEx("weapon/tornadoblowhold","SoundSlot7")
 TORG K 0 A_Refire("AltFireH1")
 goto AltFireEnd1
 
 AltFireEnd1:
 TORG J 0 A_GiveInventory("TornadoBlowThrust_P2",1)
-TORG J 3 A_GiveInventory("GoneWithTheWindAmmo",1)
+TORG A 0 //A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 //A_GiveInventory("TornadoHoverAmmo",1)
+TORG I 1 A_GiveInventory("TornadoBlowBossAmmo",1)
+TORG J 0 A_PlaySoundEx("weapon/tornadoblowend","Weapon")
+TORG JI 1
+TORG A 0 A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 A_GiveInventory("TornadoHoverAmmo",1)
+TORG I 0 A_GiveInventory("TornadoBlowBossAmmo",1)
 TORG K 0 A_GiveInventory("TornadoBlowThrust_P2",1)
-TORG K 3
+TORG J 1
+TORG I 1 
+TORG J 1 Offset(20,27)
+TORG A 0 //A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 //A_GiveInventory("TornadoHoverAmmo",1)
+TORG I 0 A_GiveInventory("TornadoBlowBossAmmo",1)
 goto AltFireEnd
 AltFireEnd2:
 TORG K 0 A_GiveInventory("TornadoBlowThrust_P2",1)
-TORG K 3 A_GiveInventory("GoneWithTheWindAmmo",1)
+TORG J 0 A_PlaySoundEx("weapon/tornadoblowend","Weapon")
+TORG A 0 //A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 //A_GiveInventory("TornadoHoverAmmo",1)
+TORG J 1 A_GiveInventory("TornadoBlowBossAmmo",1)
+TORG IJ 1
+TORG A 0 A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 A_GiveInventory("TornadoHoverAmmo",1)
+TORG A 0 A_GiveInventory("TornadoBlowBossAmmo",1)
 TORG J 0 A_GiveInventory("TornadoBlowThrust_P2",1)
-TORG J 3
+TORG I 1 
+TORG J 1 
+TORG I 1 Offset(20,27)
+TORG A 0 //A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 ///A_GiveInventory("TornadoHoverAmmo",1)
+TORG A 0 A_GiveInventory("TornadoBlowBossAmmo",1)
 goto AltFireEnd
 
 AltFireEnd:
 TORG I 0 A_TakeInventory("WeaponCharge",999)
 TORG I 0 A_TakeInventory("CutterFlag",999)
-TORG I 0 A_GiveInventory("TornadoM_StaminaFlag",random(42,53))
-TORG I 3 A_GiveInventory("GoneWithTheWindAmmo",1)
-TORG I 3 A_GiveInventory("TornadoM_StaminaFlag",random(42,53))
-
-TORG I 0 A_GiveInventory("GoneWithTheWindAmmo",1)
-TORG IHG 2 A_GiveInventory("TornadoM_StaminaFlag",random(42,53))
-
-TORG L 0 A_GiveInventory("TornadoM_StaminaFlag",500)
-TORG L 3 A_GiveInventory("GoneWithTheWindAmmo",1)
+TORG I 0 A_GiveInventory("StaminaFlag",random(42,53))
+TORG I 1 Offset(24,28) 
+TORG I 1 Offset(28,29) A_GiveInventory("StaminaFlag",random(42,53))
+TORG I 1 A_GiveInventory("StaminaFlag",random(42,53))
+TORG I 0 A_GiveInventory("TornadoBlowBossAmmo",1)
+TORG A 0 A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 A_GiveInventory("TornadoHoverAmmo",1)
+TORG I 1 Offset(32,30)
+TORG H 1 A_GiveInventory("StaminaFlag",random(42,53))
+TORG H 1 Offset(36,39)
+TORG I 0 A_GiveInventory("TornadoBlowBossAmmo",1)
+TORG A 0 //A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 //A_GiveInventory("TornadoHoverAmmo",1)
+TORG G 1 A_GiveInventory("StaminaFlag",random(42,53))
+TORG G 1 Offset(56,52)
+TORG L 0 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+TORG L 0 Offset(2,45)A_GiveInventory("StaminaFlag",500)
+TORG L 1 A_GiveInventory("TornadoBlowBossAmmo",1)
+TORG A 0 A_JumpIfInventory("TornadoHoverActive",1,2)
+TORG A 0 A_GiveInventory("TornadoHoverAmmo",1)
+TORG A 2 Offset(1,34)
 Goto Ready1
 
 Flash:
 TNT1 A 1 A_JumpIfInventory("IsDead",1,"NoFlash")
 TNT1 A 0 A_JumpIfInventory("TornadoHoverActive",1,1)
 loop
-TNT1 A 0 A_JumpIfInventory("DoTheTwistAmmo",1,2)
+TNT1 A 0 A_JumpIfInventory("TornadoHoverAmmo",1,2)
 TNT1 A 0 A_TakeInventory("TornadoHoverActive",9)
 loop
 TNT1 A 0 A_GiveInventory("TornadoHoverFlash_P",1)
@@ -156,24 +233,18 @@ loop
 }
 }
 
-actor GoneWithTheWindAmmo : Ammo
+actor TornadoBlowBossAmmo : Ammo
 {
 inventory.amount 1
 inventory.maxamount 56
 +INVENTORY.IGNORESKILL
 }
 
-actor DoTheTwistAmmo : Ammo
+actor TornadoHoverAmmo : Ammo
 {
 inventory.amount 1
 inventory.maxamount 56
 +INVENTORY.IGNORESKILL
-}
-
-actor TornadoM_StaminaFlag : Inventory
-{
-inventory.amount 1
-inventory.maxamount 500
 }
 
 actor TornadoShotFlag1 : OnceC {}
@@ -226,7 +297,7 @@ Pickup:
 //TNT1 A 0 A_JumpIf(momz<0,"Hover")
 TNT1 A 0 A_JumpIfInventory("TornadoHoverDelay",1,3)
 TNT1 A 0 A_GiveInventory("TornadoHoverDelay",1)
-TNT1 A 0 A_TakeInventory("DoTheTwistAmmo",1,1)
+TNT1 A 0 A_TakeInventory("TornadoHoverAmmo",1)
 TNT1 A 0 A_JumpIfInventory("TornadoHoverActive",1,"P_Hover")
 stop
 P_Hover:
@@ -242,7 +313,7 @@ P_HoverX:
 TNT1 A 0 A_JumpIfInventory("TornadoHoverSnd",1,3)
 TNT1 A 0 A_GiveInventory("TornadoHoverSnd")
 TNT1 A 0 A_PlaySoundEx("classes/TornadoFly","Body")
-TNT1 A 0 ThrustThingZ(0,3,1,0)
+TNT1 A 0 A_ChangeVelocity(momx,momy,-0.5,CVF_REPLACE)
 TNT1 A 0 //A_ScaleVelocity(1.03)
 TNT1 A 0 A_GiveInventory("TornadoHoverSpeed2",1)
 goto End
@@ -253,23 +324,26 @@ stop
 }
 
 
-actor TornadoHoverToggle : BasicClassItem
+actor TornadoHoverToggle : CustomInventory
 {
+inventory.amount 1
+inventory.maxamount 1
 inventory.icon "TORNAHOV"
 inventory.pickupmessage "\cdGreen eyes are the new blue."
-Tag "Tornado Hover Toggle"
+scale 2.0
++INVBAR
 states
 {
 Spawn:
 TORG Z 1
 wait
 Use:
-TNT1 A 0 A_PlaySoundEx("item/ItemUseMM9","SoundSlot7")
+TNT1 A 0 A_PlaySoundEx("item/ItemUseMM9","SoundSlot6")
 TNT1 A 0 A_JumpIfInventory("TornadoHoverActive",1,"UseTake")
-TNT1 A 0 A_JumpIfInventory("DoTheTwistAmmo",4,"Use2")
+TNT1 A 0 A_JumpIfInventory("TornadoHoverAmmo",4,"Use2")
 fail
 Use2:
-TNT1 A 0 A_TakeInventory("DoTheTwistAmmo",1)
+TNT1 A 0 A_TakeInventory("TornadoHoverAmmo",1)
 TNT1 A 0 A_GiveInventory("TornadoHoverActive",1)
 fail
 UseTake:
@@ -288,21 +362,23 @@ DamageType "TornadoM_Shot"
 Obituary "$OB_TORNADOMAIN"
 +RIPPER
 +SKYEXPLODE
-+EXPLODEONWATER
 +DONTREFLECT
 +NOTARGETSWITCH
-damage (60)
+damage (5)//12
 Radius 9
 Height 9
-speed 40
+speed 56
 scale 2.5
 States
 {
 Spawn:
 TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+TNT1 A 0
 TNT1 A 0 A_Jump(256,1,2,3,4)
 TORG RSTU 2
-goto Spawn+2
+goto Spawnloop+2
 
 Death:
 TNT1 A 0 A_JumpIfInTargetInventory("ClashLaunched1",1,1)
@@ -608,7 +684,6 @@ CeilingFire:
 TNT1 A 0 A_SpawnItemEX("CeilingTornadoBlow",0,0,0,0,0,0,0,1)
 goto XDeath
 
-Crash:
 XDeath:
 TNT1 AAAAAAAAAA 0 A_SpawnItemEx("TornadoBlowThrustFX1",random(2,12),0,random(-8,8),random(0,1),0,random(-1,1),random(0,359),1)
 TNT1 A 1
@@ -635,11 +710,33 @@ actor TornadoShotXR : TornadoShotX{Translation"192:192=171:171","198:198=41:41"}
 actor TornadoShotXO : TornadoShotX{Translation"192:192=104:104","198:198=128:128"}
 actor TornadoShotXP : TornadoShotX{Translation"192:192=229:229","198:198=232:232"}
 
+actor TornadoShotXFast : TornadoShotX
+{
+Speed 79
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+TNT1 A 0
+//TORG RRSSTTUU 1 A_SpawnItemEx("BubProjFX",0,0,0,random(-1,-4),random(2,-2),random(2,-2),0,1)
+TORG RRSSTTUU 1 A_SpawnItemEx("TornadoBlowThrustFX1",random(2,12),0,random(-8,8),random(0,1),0,random(-1,1),random(0,359),1)
+goto Spawnloop+2
+}
+}
+
+actor TornadoShotXFastB : TornadoShotXFast{Translation"192:192=205:205","198:198=74:74"}
+actor TornadoShotXFastR : TornadoShotXFast{Translation"192:192=171:171","198:198=41:41"}
+actor TornadoShotXFastO : TornadoShotXFast{Translation"192:192=104:104","198:198=128:128"}
+actor TornadoShotXFastP : TornadoShotXFast{Translation"192:192=229:229","198:198=232:232"}
+
 actor TornadoBlowThrustTeam : CustomInventory
 {
 States
 {
 Pickup2:
+TNT1 A 0
 TNT1 A 0 A_JumpIf(z-floorz<5,"No")
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==0,"No")
 TNT1 A 0 ThrustThingZ(0,9,0,1)
@@ -649,6 +746,7 @@ TNT1 A 0
 stop
 }
 }
+
 
 actor TornadoBlowThrustTeam_B : TornadoBlowThrustTeam
 {
@@ -696,6 +794,7 @@ Pickup:
 TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustHelper",0,0,0,0,0,0,0,1)
 TNT1 A 0 A_GiveInventory("TornadomanOther_CI",1)
 TNT1 A 0 A_JumpIf(z-floorz<5,"No")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==0,"No")
 TNT1 A 0 ThrustThingZ(0,9,0,1)
 stop
 No:
@@ -708,17 +807,19 @@ actor TornadoBlowThrust_P2 : TornadoBlowThrust_P
 States
 {
 Pickup:
-TNT1 A 0 A_JumpIfInventory("TornadoM_StaminaFlag",1,"Success")
+TNT1 A 0 A_JumpIfInventory("StaminaFlag",1,"Success")
 goto No
 Success:
-TNT1 A 0 A_TakeInventory("TornadoM_StaminaFlag",1)
+TNT1 A 0 A_TakeInventory("StaminaFlag",1)
 TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustHelper",0,0,0,0,0,0,0,1)
 TNT1 A 0 A_GiveInventory("TornadomanOther_CI",1)
 TNT1 A 0 A_JumpIf(z-floorz<5,"No")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==0,"No")
 TNT1 A 0 ThrustThingZ(0,3,0,1)
 stop
 }
 }
+
 
 actor TornadoBlowThrustHelper : BasicHelper
 {
@@ -734,13 +835,13 @@ stop
 
 actor TornadoDamagerC : BasicExplosion
 {
-damagetype "TornadoM_Blow"
+damagetype "TornadoM_Blow"//uppies
 Obituary "$OB_TORNADOBLOW"
 States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_Explode(50,96,0,0,97)
+TNT1 A 1 A_Explode(6,100,0,0,101)
 stop
 }
 }
@@ -753,7 +854,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_Explode(20,96,0,0,97)
+TNT1 A 1 A_Explode(2,100,0,0,101)
 stop
 }
 }
@@ -814,6 +915,137 @@ stop
 }
 
 
+ACTOR TornadoManLmaoEffect
+{
+  +CLIENTSIDEONLY
+  +NOINTERACTION 
+  Renderstyle "translucent"
+  alpha 0.3
+  Scale 2.5
+  States
+  {  
+  Spawn:  
+    M9TW A 2  
+    M9TW A 2 
+    TNT1 A 0 A_FadeIn(0.35)
+	TNT1 A 0 A_SetScale(2.0) 
+    M9TW B 2 
+    M9TW B 2 
+    TNT1 A 0 A_FadeOut(0.20)
+	TNT1 A 0 A_SetScale(1.5) 
+    M9TW A 2  
+    M9TW A 2  
+    TNT1 A 0 A_FadeOut(0.20)
+	TNT1 A 0 A_SetScale(1.0)
+    M9TW B 2  
+    M9TW B 2 
+    TNT1 A 0 A_FadeOut(0.20) 
+	TNT1 A 0 A_SetScale(0.5)
+    M9TW A 2 
+    M9TW A 2 
+	Stop
+  }
+} 
+ 
+ACTOR TornadoManLmaoEffectUp
+{
+  +CLIENTSIDEONLY
+  +NOINTERACTION 
+  Renderstyle "translucent"
+  alpha 0.3
+  Scale 2.5
+  States
+  {  
+  Spawn:  
+    M9TW C 2  
+    M9TW C 2 
+    TNT1 A 0 A_FadeIn(0.35)
+	TNT1 A 0 A_SetScale(2.0) 
+    M9TW D 2 
+    M9TW D 2 
+    TNT1 A 0 A_FadeOut(0.20)
+	TNT1 A 0 A_SetScale(1.5) 
+    M9TW C 2  
+    M9TW C 2  
+    TNT1 A 0 A_FadeOut(0.20)
+	TNT1 A 0 A_SetScale(1.0)
+    M9TW D 2  
+    M9TW D 2 
+    TNT1 A 0 A_FadeOut(0.20) 
+	TNT1 A 0 A_SetScale(0.5)
+    M9TW C 2 
+    M9TW C 2 
+	Stop
+  }
+} 
+ 
+ACTOR TornadoManLmaoEffectDown
+{
+  +CLIENTSIDEONLY
+  +NOINTERACTION 
+  Renderstyle "translucent"
+  alpha 0.3
+  Scale 2.5
+  States
+  {  
+  Spawn:  
+    M9TW E 2  
+    M9TW E 2 
+    TNT1 A 0 A_FadeIn(0.35)
+	TNT1 A 0 A_SetScale(2.0) 
+    M9TW F 2 
+    M9TW F 2 
+    TNT1 A 0 A_FadeOut(0.20)
+	TNT1 A 0 A_SetScale(1.5) 
+    M9TW E 2  
+    M9TW E 2  
+    TNT1 A 0 A_FadeOut(0.20)
+	TNT1 A 0 A_SetScale(1.0)
+    M9TW F 2  
+    M9TW F 2 
+    TNT1 A 0 A_FadeOut(0.20) 
+	TNT1 A 0 A_SetScale(0.5)
+    M9TW E 2 
+    M9TW E 2 
+	Stop
+  }
+} 
+ 
+ACTOR TornadoManLmaoEffectSpammer
+{
+  +CLIENTSIDEONLY
+  +NOINTERACTION 
+  States
+  {
+  Spawn:
+    TNT1 AAA 1 A_SpawnItemEx("TornadoManLmaoEffect",0,0,0,0,0,0,0,1)
+	Stop
+  }
+}
+
+ACTOR TornadoManLmaoEffectSpammerUp
+{
+  +CLIENTSIDEONLY
+  +NOINTERACTION 
+  States
+  {
+  Spawn:
+    TNT1 AAA 1 A_SpawnItemEx("TornadoManLmaoEffectUp",0,0,0,0,0,0,0,1)
+	Stop
+  }
+}
+
+ACTOR TornadoManLmaoEffectSpammerDown
+{
+  +CLIENTSIDEONLY
+  +NOINTERACTION 
+  States
+  {
+  Spawn:
+    TNT1 AAA 1 A_SpawnItemEx("TornadoManLmaoEffectDown",0,0,0,0,0,0,0,1)
+	Stop
+  }
+}
 
 actor FloorTornadoBlow
 {
@@ -829,31 +1061,50 @@ Scale 2.5
 States
 {
 Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
 X_9B B 0
 X_9B B 0 ThrustThingZ(0,5,0,0)
-X_9B B 0 A_Explode(30,96,0,0,97)
-X_9B BC 2
+X_9B B 0 A_Explode(3,90,0,0,91)
+X_9B B 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+X_9B C 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
 X_9B B 0 ThrustThingZ(0,10,0,1)
-X_9B B 0 A_Explode(30,96,0,0,97)
-X_9B DE 2
+X_9B B 0 A_Explode(3,90,0,0,91)
+X_9B D 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+X_9B E 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
 X_9B B 0 ThrustThingZ(0,10,0,1)
-X_9B B 0 A_Explode(30,96,0,0,97)
-X_9B BC 2
+X_9B B 0 A_Explode(3,90,0,0,91)
+X_9B B 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,140),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,140),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+X_9B C 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,140),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
 X_9B B 0 ThrustThingZ(0,15,0,1)
-X_9B B 0 A_Explode(30,96,0,0,97)
-X_9B DE 2
+X_9B B 0 A_Explode(3,90,0,0,91)
+X_9B D 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,140),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,140),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+X_9B E 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,140),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
 X_9B B 0 ThrustThingZ(0,15,0,1)
-X_9B B 0 A_Explode(30,96,0,0,97)
+X_9B B 0 A_Explode(3,90,0,0,91)
 Spawn2:
-X_9B BC 2
-X_9B B 0 A_Explode(60+user_P,96,0,0,97)
-X_9B DE 2
-X_9B B 0 A_SetUserVar("user_P",user_P+10)
-X_9B B 0 A_Explode(60+user_P,96,0,0,97)
-X_9B BC 2
-X_9B B 0 A_Explode(60+user_P,96,0,0,97)
-X_9B DE 2
-X_9B B 0 A_Explode(60+user_P,96,0,0,97)
+X_9B B 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+X_9B C 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+X_9B B 0 A_Explode(6+user_P,90,0,0,91)
+X_9B D 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+X_9B E 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+X_9B B 0 A_SetUserVar("user_P",user_P+1)
+X_9B B 0 A_Explode(6+user_P,90,0,0,91)
+X_9B B 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+X_9B C 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+X_9B B 0 A_Explode(6+user_P,90,0,0,91)
+X_9B D 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+X_9B E 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerUp",Random(-70,70),Random(-70,70),Random(0,210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+X_9B B 0 A_Explode(6+user_P,90,0,0,91)
 loop
 }
 }
@@ -878,51 +1129,98 @@ Scale 2.5
 States
 {
 Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
 TORG V 0
 TORG V 0 ThrustThingZ(0,-5,0,0)
-TORG V 0 A_Explode(60,96,0,0,97)
-TORG VW 2
-TORG X 0 ThrustThingZ(0,-10,0,1)
-TORG XY 2
+TORG V 0 A_Explode(6,90,0,0,91)
+TORG V 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY) 
+TORG W 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG X 0 ThrustThingZ(0,-10,0,1) 
+TORG X 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG Y 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
 TORG V 0 ThrustThingZ(0,-10,0,1)
-TORG V 0 A_Explode(60,96,0,0,97)
-TORG VW 2
+TORG V 0 A_Explode(6,90,0,0,91)
+TORG V 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-140),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-140),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY) 
+TORG W 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-140),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
 TORG X 0 ThrustThingZ(0,-15,0,1)
-TORG XY 2
+TORG X 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-140),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-140),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG Y 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-140),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
 TORG V 0 ThrustThingZ(0,-15,0,1)
-TORG V 0 A_Explode(60,96,0,0,97)
+TORG V 0 A_Explode(6,90,0,0,91)
 Spawn2:
-TORG VWXY 2
-TORG V 0 A_SetUserVar("user_P",user_P+10)
-TORG V 0 A_Explode(60+user_P,96,0,0,97)
-TORG VWXY 2
-TORG V 0 A_Explode(60+user_P,96,0,0,97)
+TORG V 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY) 
+TORG W 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY) 
+TORG X 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY) 
+TORG Y 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG V 0 A_SetUserVar("user_P",user_P+1)
+TORG V 0 A_Explode(6+user_P,90,0,0,91)
+TORG V 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY) 
+TORG W 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY) 
+TORG X 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY) 
+TORG Y 2 A_SpawnItemEx("TornadoManLmaoEffectSpammerDown",Random(-70,70),Random(-70,70),Random(0,-210),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG V 0 A_Explode(6+user_P,90,0,0,91)
 loop
 }
 }
 
-actor BeingTornadoM_Slammed : Powerup
-{
-Powerup.Duration 35
-}
 actor TornadoM_SlamProtect : PowerProtection
 {
 Powerup.Duration 4
 DamageFactor "TornadoM_Slam", 0.0
 }
 
+// [BG] Quick rundown on these things
+// Meleerange --> Base damage regardless of height
+// Args[0]	  --> Height damage divided by 8 so the max dmg output is around 38~40
+
+// [NF] seethe
+
+actor BeingTornadoM_Slammed : Powerup
+{
+Powerup.Duration 35
+}
+
 actor G_TornadoSlamCollide : BasicCollideSlam
 {
 damagetype "TornadoM_Dunked"
 Obituary "$OB_TORNADOSMASH"
-Meleerange 15
+Mass 1
+Meleerange 17
+
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Explode(Meleerange+Args[0]/8,15,0,0,15)
+TNT1 A 3
+stop
+}
 }
 
 actor G_TornadoSlamCollideX : BasicCollideSlam
 {
 damagetype "TornadoM_Dunked"
 Obituary "$OB_TORNADOSMASHX"
-Meleerange 15
+Mass 1
+Meleerange 13
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Explode(Meleerange+Args[0]/8,15,0,0,15)
+TNT1 A 3
+stop
+}
 }
 
 actor TornadoM_WallProtect : PowerProtection
@@ -944,55 +1242,62 @@ Scale 2.5
 States
 {
 Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
 TORG N 0 A_ChangeVelocity(2,0,0,1)//ThrustThing(angle*256/360,2,1,0)
-TORG N 0 A_Explode(40,96,0,0,97)
+TORG N 0 A_Explode(4,80,0,0,81)
 TORG N 0 ACS_ExecuteAlways(347,0,160,160,18)//196,196,64)
-TORG N 2
-TORG O 0 A_Explode(40,96,0,0,97)
+TORG N 2 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(-70,70),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG O 0 A_Explode(4,80,0,0,81)
 TORG O 0 ACS_ExecuteAlways(347,0,160,160,18)
-TORG O 2
-TORG P 0 A_Explode(40,96,0,0,97)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(-70,70),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG O 2 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(-70,70),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG P 0 A_Explode(4,80,0,0,81)
 TORG P 0 ACS_ExecuteAlways(347,0,160,160,18)
 TORG P 0 A_ChangeVelocity(4,0,0,1)
-TORG P 2
-TORG Q 0 A_Explode(40,96,0,0,97)
+TORG P 2 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(-70,70),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG Q 0 A_Explode(4,80,0,0,81)
 TORG Q 0 ACS_ExecuteAlways(347,0,160,160,18)
-TORG Q 2 
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(0,140),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG Q 2 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(0,140),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY) 
 TORG N 0 A_ChangeVelocity(4,0,0,1)
-TORG N 0 A_Explode(40,96,0,0,97)
+TORG N 0 A_Explode(4,80,0,0,81)
 TORG N 0 ACS_ExecuteAlways(347,0,160,160,18)
-TORG N 2
-TORG O 0 A_Explode(40,96,0,0,97)
+TORG N 2 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(0,140),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG O 0 A_Explode(4,80,0,0,81)
 TORG O 0 ACS_ExecuteAlways(347,0,160,160,18)
-TORG O 2
-TORG P 0 A_Explode(40,96,0,0,97)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(0,140),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG O 2 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(0,140),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG P 0 A_Explode(4,80,0,0,81)
 TORG P 0 ACS_ExecuteAlways(347,0,160,160,18)
 TORG P 0 A_ChangeVelocity(6,0,0,1)
-TORG P 2
-TORG Q 0 A_Explode(40,96,0,0,97)
+TORG P 2 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(0,210),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG Q 0 A_Explode(4,80,0,0,81)
 TORG Q 0 ACS_ExecuteAlways(347,0,160,160,18)
-TORG Q 2
-TORG N 0 A_Explode(40,96,0,0,97)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(0,210),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG Q 2 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(0,210),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG N 0 A_Explode(4,80,0,0,81)
 TORG N 0 ACS_ExecuteAlways(347,0,160,160,18)
 TORG N 0 A_ChangeVelocity(6,0,0,1)
 Spawn2:
-TORG N 2
-TORG O 0 A_Explode(40,96,0,0,97)
+TORG N 2 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(0,210),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG O 0 A_Explode(4,80,0,0,81)
 TORG O 0 ACS_ExecuteAlways(347,0,160,160,18)
-TORG O 2
-TORG P 0 A_Explode(40,96,0,0,97)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(0,210),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG O 2 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(0,210),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG P 0 A_Explode(4,80,0,0,81)
 TORG P 0 ACS_ExecuteAlways(347,0,160,160,18)
-TORG P 2
-TORG Q 0 A_Explode(40,96,0,0,97)
+TORG P 2 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(0,210),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG Q 0 A_Explode(4,80,0,0,81)
 TORG Q 0 ACS_ExecuteAlways(347,0,160,160,18)
-TORG Q 2
-TORG N 0 A_Explode(40,96,0,0,97)
+TNT1 A 0 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(0,210),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG Q 2 A_SpawnItemEx("TornadoManLmaoEffectSpammer",Random(0,210),Random(-70,70),Random(-70,70),-momx/2,-momy/2,-momz/2,0,1|SXF_ABSOLUTEVELOCITY)
+TORG N 0 A_Explode(4,80,0,0,81)
 TORG N 0 ACS_ExecuteAlways(347,0,160,160,18)
 loop
 }
-}
-
-
+} 
 
 actor TornadoLeapCrush
 {
@@ -1003,9 +1308,9 @@ Obituary "$OB_TORNADOSTOMP"
 +DONTREFLECT
 +THRUGHOST
 renderstyle none
-damage (250)//400
+damage (25)//40
 Radius 26//32
-Height 4//25
+Height 5//25
 States
 {
 Spawn:
@@ -1021,7 +1326,7 @@ TNT1 A 0
 stop
 XDeath:
 TNT1 A 0 //A_GiveToTarget("TornadoStompBounce",1)
-TNT1 A 1 //A_SpawnItemEx("BasicBoom6FX_Y3",0,0,0,0,0,0,0,1+32)
+TN_B FGHIJKLMNOPQRS 2
 stop
 }
 }
@@ -1037,7 +1342,7 @@ actor TornadoM_Leap_Pickup : CustomInventory
 States
 {
 Pickup:
-TNT1 A 0 A_PlaySoundEx("weapon/ToadCrush","SoundSlot7")
+TNT1 A 0 A_PlaySoundEx("weapon/ToadCrush","Voice")
 goto PickupT
 PickupT:
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,"PickupT2")
@@ -1050,6 +1355,37 @@ TNT1 A 0 ThrustThingZ(0,72,0,0)
 stop
 }
 }
+
+actor TornadoSlowGFX
+{
++NOGRAVITY
++THRUACTORS
++CLIENTSIDEONLY
++FORCEXYBILLBOARD
++MISSILE
+Damage(0)
+Height 2
+Radius 2
+Scale 0.75
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,1,3,5,7)
+goto Spawn2
+Spawn2:
+X_9B B 2 A_Fadeout(0.085)
+X_9B C 0 ThrustThingZ(0,random(1,3),0,1)
+X_9B C 2 A_Fadeout(0.085)
+X_9B D 0 ThrustThingZ(0,random(1,3),0,1)
+X_9B D 2 A_Fadeout(0.085)
+X_9B E 0 ThrustThingZ(0,random(1,3),0,1)
+X_9B E 2 A_Fadeout(0.085)
+X_9B B 0 ThrustThingZ(0,random(1,3),0,1)
+loop
+}
+}
+
 
 
 actor TornadomanMain_CI : TeamColor_CI
@@ -1070,6 +1406,28 @@ TNT1 A 0 A_FireCustomMissile("TornadoShotXO",0,1,8,0)
 goto Done
 FireP:
 TNT1 A 0 A_FireCustomMissile("TornadoShotXP",0,1,8,0)
+goto Done
+}
+}
+
+actor TornadomanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("TornadoShotXFast",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("TornadoShotXFastB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("TornadoShotXFastR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("TornadoShotXFastO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("TornadoShotXFastP",0,1,8,0)
 goto Done
 }
 }

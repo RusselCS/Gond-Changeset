@@ -1,19 +1,19 @@
-actor Stoneman : ClassBase
+actor Stoneman : ClassBase //155
 {
+Player.StartItem "IFMM05", 1
 Player.ScoreIcon "C_05C0X"
-player.displayname "Stoneman"
+player.displayname "stoneman"
 player.soundclass "stonemanc"
+player.startitem "StonemanSpawnStart_P"
+player.startitem "PowerStoneBoss"
+player.startitem "CantStopTheRockAmmo", 3
+player.startitem "SemiStunArmor"
 
-player.maxhealth 1550
-health 1550
+player.maxhealth 155
+health 155
 player.jumpz 10
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78
-
-player.startitem "PowerStoneBoss"
-player.startitem "CantStopTheRockAmmo", 3
-player.startitem "StonemanSpawnStart_P"
-player.startitem "SemiStunArmor"
 
 player.startitem "NapalmBombWeakness2", 1
 
@@ -26,7 +26,6 @@ player.startitem "FlashBombWeakness", 1
 player.startitem "RemoteMineWeakness", 1
 player.startitem "LaserTridentWeakness", 1
 player.startitem "CommandoBombWeakness", 1
-player.startitem "PhotonMissileWeakness", 1
 player.startitem "BalladeCrackerWeakness", 1
 
 States
@@ -52,7 +51,7 @@ Missile:
 STOM F 0 A_JumpIfInventory("StoneCoreFlag",1,"SpawnCoreB")
 STOM F 0 A_JumpIfInventory("StoneBossLeap",1,"MissileL")
 STOM F 0 A_JumpIfInventory("StoneBossCharge",1,"MissileC")
-STOM FFFFF 1 A_JumpIfInventory("StoneBossCharge",1,"MissileC")
+STOM FFFFFF 1 A_JumpIfInventory("StoneBossCharge",1,"MissileC")
 STOM G 4
 goto Spawn+3
 MissileC:
@@ -69,6 +68,10 @@ goto Spawn+3
 MissileL2:
 STOM FG 5
 goto Spawn+3
+CustomState1:
+STOM I 5
+goto Missile
+
 
 SpawnCoreB:
 STOM R 0
@@ -87,6 +90,7 @@ Goto SpawnCoreB
 CoreNoB:
 STOM RRRRRSSSSS 1 A_JumpIfInventory("StoneCoreBuddha",1,"CoreRebuild")
 loop
+
 CoreRebuild:
 STOM MLK 3
 goto Spawn
@@ -104,27 +108,11 @@ goto DeathContinue
 STOM R 0
 goto DeathContinue
 
-
-TimeStopped_Fun:
-"----" H 0 A_JumpIfInventory("StoneCoreFlag",1,"Pain_TimeStop_Core")
-Goto Super::TimeStopped_Fun
-TimeStopped_Pain:
-"----" H 0 A_JumpIfInventory("StoneCoreFlag",1,"Pain_TimeStop_Core")
-Goto Super::TimeStopped_Pain
-Pain_TimeStop_Core:
+TimeStopped:
+STOM H 0 A_JumpIfInventory("StoneCoreFlag",1,"TimeStoppedCore")
+Goto "Super::TimeStopped"
+TimeStoppedCore:
 STOM R 0
-goto TimeStopped_Echo
-
-Pain.Drowning:Pain.Slime:Pain.Fire:Pain.Falling:Pain.Ice:
-"----" H 0
-"----" H 0 A_JumpIfInventory("BeatCallCheck",1,"BeatAssist")
-Pain.Spiney:
-"----" H 0 A_JumpIfInventory("ShieldHits",1,"Pain1")
-Pain.Crush:Pain.Beam:Pain.PressBall:Pain.BurnWave:
-"----" H 0 A_JumpIfInventory("StoneCoreFlag",1,"Pain1")
-"----" H 0 A_JumpIf(Health <= 1,"Pain1")
-"----" H 0 A_JumpIfInventory("NoFallingRespawn_F",1,"Pain1")
-"----" H 0 A_GiveInventory("CBM_ArtiTeleport_P",1)
-Goto Pain+1
+Goto "Super::TimeStoppedX"
 }
 }

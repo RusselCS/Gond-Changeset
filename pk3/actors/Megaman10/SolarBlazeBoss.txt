@@ -1,1226 +1,1277 @@
-Actor SolarBlazeBoss : BaseMM8BDMWep_CBM 
-{
-tag "$TAGC_10H"
-dropitem "SolarBlazeWepCDropped"
-Weapon.AmmoUse 22
-Weapon.AmmoGive 0
-Obituary "$OB_SOLARBLAZERARE"
-Inventory.Pickupmessage "If only I could be so grossly incandescent!"
-weapon.ammotype "SolarInfernoAmmo"
-weapon.ammotype2 "SunAmmo"
-States
-{
-Spawn:
-C_10 H 1
-loop
+//Base Weapon for Solarman.
+//#include "actors/Wep/Megaman10/SolarBlazeBloatCode.dec"
 
-Ready:
-SOLX A 0 ACS_ExecuteAlways(998,0,DYE_SOLARMAN)
-SOLX A 1
-SOLX A 0 A_Gunflash("Flash.Start",1)
-goto Ready1
+actor SolarBlazeBoss : BaseMM8BDMWep_CBM 
+{
+	Tag "SolarBlaze Boss"
+	dropitem "SolarBlazeWepCDropped"
+	Obituary "%o's eyes were burned from %k's Solar Blaze."
+	Inventory.Pickupmessage "Power up! Pharaoh Shot! Or is it?"
+	Weapon.AmmoType "SolarInfernoAmmo"
+	inventory.icon "SOLICON1"
+	Weapon.SlotNumber 0
+	States
+	{
+	
+		Spawn:
+		C_10 G 1 //Placeholder spawn image since weapon drop sprites aren't that important.
+		loop
+		
+		Ready:
+		SUNH A 0 ACS_ExecuteAlways(998,0,198) //Color ACS used for Solar.
+		SUNH A 0 A_JumpIfInventory("Once",1,"Ready1") //Desync checker.
+		SUNH A 0 A_GiveInventory("Once",1)
+		Goto ReadySpawn
+		
+		ReadySpawn:
+		SUNH A 5 //Desync fix for holding mainfire after spawning.
+		SUNH A 0 A_GiveInventory("SolarmanHelper_CI",1)
+		goto Ready1
+		
+		Ready1:
+		SUNH A 0 A_GiveInventory("SolarMainSwag",1)
+		SUNH A 0 A_JumpIfInventory("SolarInfernoAmmo",100,"Ready2")
+		SUNH A 0 A_JumpIfInventory("IsBot",1,"Reload")
+		SUNH A 1 A_WeaponReady(WRF_NOSECONDARY|WRF_ALLOWRELOAD)
+		loop
+		
+		Ready2:
+		SUNH A 0 A_GiveInventory("SolarMainSwag",1)
+		SUNH A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+		loop
+		
+		Deselect:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+		SUNH A 1 A_Lower
+		Loop
+		
+		Select:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+		SUNH A 1 A_Raise
+		Loop
+		
+		Fire:
+		SUNH A 1 A_JumpIfInventory("SolarReloadinFlag",1,"ReloadEndCancel")
+		SUNH A 0 A_ClearRefire
+		SUNH A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+		//SUNH A 1 //Offset(0,32)
+		SUNH E 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(0,64)
+		//SUNH A 1 //Offset(0,96)
+		SUNH E 1 //Offset(0,128)
+		SUNH F 1  A_JumpIfInventory("PowerRage_ST",1,1)
+		//SUNH E 1 //Offset(-90,79)
+		SUNH F 1 //Offset(-60,65)
+		//SUNH E 1 //Offset(-30,51)
+		//SUNH B 0
+		SUNH E 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(-10,44)
+		SUNH A 1 //Offset(20,36)
+		SUNH A 0 A_PlaySoundEx("weapon/sunparry","weapon")
+		SUNH A 0 A_GiveInventory("SolarmanMainInv_CI")//A_GiveInventory("SolarmanMain_CI") //Summons the main sun to split into the 5 projectiles.)
+		goto FireHold
+		
+		Altfire:
+		SUNH A 1 A_JumpIfInventory("SolarReloadinFlag",1,"ReloadEndCancel")
+		SUNH A 0 A_JumpIfInventory("SolarInfernoAmmo",400,1)
+		goto Ready1
+		SUNH A 0 A_PlaySoundEx("weapon/sunparry","Body")
+		SUNH A 0 A_GiveInventory("ShieldCheck",1)
+		SUNH A 0 A_SpawnItemEx("SolarHeadFX",0,0,28,0,0,0,0,1,0)
+		SUNH A 0 A_TakeInventory("SolarInfernoAmmo",999)
+		goto AltThrowUp
 
-Ready1:
-SOLX A 0 A_JumpIfInventory("SolarHoldCoolDown",1,"Ready2a")
-SOLX A 0 A_JumpIfInventory("SolarInfernoAmmo",22,"Ready3")
-SOLX A 2 A_WeaponReady(4)
-SOLX A 0 A_GiveInventory("SolarInfernoAmmo",2)
-goto Ready1+1
-Ready2a:
-SOLX A 0 A_JumpIfInventory("SolarInfernoAmmo",22,"Ready2b")
-SOLX A 2 A_WeaponReady(12)
-SOLX A 0 A_GiveInventory("SolarInfernoAmmo",2)
-SOLX A 0 A_JumpIfInventory("SolarHoldCoolDown",1,"Ready2a")
-Goto Ready1
-Ready2b:
-SOLX A 2 A_WeaponReady(8)
-SOLX A 0 A_GiveInventory("SolarInfernoAmmo",2)
-SOLX A 0 A_JumpIfInventory("SolarHoldCoolDown",1,"Ready2b")
-Goto Ready3
-Ready3:
-SOLX A 2 A_WeaponReady
-SOLX A 0 A_GiveInventory("SolarInfernoAmmo",2)
-Loop
+		//AltThrowUpSound:
+		//X_2E D 0 A_PlaySound("weapon/solarcharger")
+		AltThrowUp:
+		SUNH A 0 A_JumpIfInventory("SolarInfernoAmmoExtra",35,"AltThrowUp2Sound")
+		goto AltThrowUpMore
+		AltThrowUpMore:
+		//SUNH A 0 A_SpawnItemEx("SolarAimerFX1",0,0,32,cos(pitch)*15,0,sin(-pitch)*20,0,0,0,0)
+		SUNH A 0 A_SpawnItemEx("SolarHeadExplosion",32,0,0,momx,momy,momz)
+		SUNH A 1 A_GiveInventory("SolarInfernoAmmoExtra",2)
+		SUNH A 0 A_Refire("AltThrowUp")
+		goto AltGo
+		AltThrowUp2Sound:
+		X_2E D 0 A_PlaySound("weapon/solarcharger")
+		AltThrowUp2:
+		SUNH A 0 A_JumpIfInventory("SolarInfernoAmmoExtra",70,"AltThrowUp3Sound")
+		goto AltThrowUpMore2
+		AltThrowUpMore2:
+		//SUNH A 0 A_SpawnItemEx("SolarAimerFX1",0,0,32,cos(pitch)*30,0,sin(-pitch)*20,0,0,0,0)
+		SUNH A 0 A_SpawnItemEx("SolarHeadExplosion",32,0,0,momx,momy,momz)
+		SUNH A 1 A_GiveInventory("SolarInfernoAmmoExtra",2)
+		SUNH A 0 A_Refire("AltThrowUp2")
+		goto AltGo
+		AltThrowUp3Sound:
+		X_2E D 0 A_PlaySound("weapon/solarcharger")
+		AltThrowUp3:
+		SUNH A 0 A_JumpIfInventory("SolarInfernoAmmoExtra",105,"AltThrowUp4Sound")
+		goto AltThrowUpMore3
+		AltThrowUpMore3:
+		//SUNH A 0 A_SpawnItemEx("SolarAimerFX1",0,0,32,cos(pitch)*45,0,sin(-pitch)*20,0,0,0,0)
+		SUNH A 0 A_SpawnItemEx("SolarHeadExplosion",32,0,0,momx,momy,momz)
+		SUNH A 1 A_GiveInventory("SolarInfernoAmmoExtra",2)
+		SUNH A 0 A_Refire("AltThrowUp3")
+		goto AltGo
+		AltThrowUp4Sound:
+		X_2E D 0 A_PlaySound("weapon/solarcharger")
+		AltThrowUp4:
+		SUNH A 0 A_JumpIfInventory("SolarInfernoAmmoExtra",140,"AltThrowDown")
+		goto AltThrowUpMore4
+		AltThrowUpMore4:
+		//SUNH A 0 A_SpawnItemEx("SolarAimerFX1",0,0,32,cos(pitch)*60,0,sin(-pitch)*20,0,0,0,0)
+		SUNH A 0 A_SpawnItemEx("SolarHeadExplosion",32,0,0,momx,momy,momz)
+		SUNH A 1 A_GiveInventory("SolarInfernoAmmoExtra",2)
+		SUNH A 0 A_Refire("AltThrowUp4")
+		goto AltGo
+		//AltThrowDownSound:
+		//X_2E D 0 A_PlaySound("weapon/solarcharger")
+		AltThrowDown:
+		SUNH A 0 A_JumpIfInventory("SolarInfernoAmmoExtra",105,"AltThrowDownMore")
+		goto AltThrowDown2Sound
+		AltThrowDownMore:
+		//SUNH A 0 A_SpawnItemEx("SolarAimerFX1",0,0,32,cos(pitch)*60,0,sin(-pitch)*20,0,0,0,0)
+		SUNH A 0 A_SpawnItemEx("SolarHeadExplosion",32,0,0,momx,momy,momz)
+		SUNH A 1 A_TakeInventory("SolarInfernoAmmoExtra",2)
+		SUNH A 0 A_Refire("AltThrowDown")
+		goto AltGo
+		AltThrowDown2Sound:
+		X_2E D 0 A_PlaySound("weapon/solarcharger")
+		AltThrowDown2:
+		SUNH A 0 A_JumpIfInventory("SolarInfernoAmmoExtra",70,"AltThrowDownMore2")
+		goto AltThrowDown3Sound
+		AltThrowDownMore2:
+		//SUNH A 0 A_SpawnItemEx("SolarAimerFX1",0,0,32,cos(pitch)*45,0,sin(-pitch)*20,0,0,0,0)
+		SUNH A 0 A_SpawnItemEx("SolarHeadExplosion",32,0,0,momx,momy,momz)
+		SUNH A 1 A_TakeInventory("SolarInfernoAmmoExtra",2)
+		SUNH A 0 A_Refire("AltThrowDown2")
+		goto AltGo
+		AltThrowDown3Sound:
+		X_2E D 0 A_PlaySound("weapon/solarcharger")
+		AltThrowDown3:
+		SUNH A 0 A_JumpIfInventory("SolarInfernoAmmoExtra",35,"AltThrowDownMore3")
+		goto AltThrowDown4Sound
+		AltThrowDownMore3:
+		//SUNH A 0 A_SpawnItemEx("SolarAimerFX1",0,0,32,cos(pitch)*30,0,sin(-pitch)*20,0,0,0,0)
+		SUNH A 0 A_SpawnItemEx("SolarHeadExplosion",32,0,0,momx,momy,momz)
+		SUNH A 1 A_TakeInventory("SolarInfernoAmmoExtra",2)
+		SUNH A 0 A_Refire("AltThrowDown3")
+		goto AltGo
+		AltThrowDown4Sound:
+		X_2E D 0 A_PlaySound("weapon/solarcharger")
+		AltThrowDown4:
+		SUNH A 0 A_JumpIfInventory("SolarInfernoAmmoExtra",1,"AltThrowDownMore4")
+		goto AltThrowUp
+		AltThrowDownMore4:
+		//SUNH A 0 A_SpawnItemEx("SolarAimerFX1",0,0,32,cos(pitch)*15,0,sin(-pitch)*20,0,0,0,0)
+		SUNH A 0 A_SpawnItemEx("SolarHeadExplosion",32,0,0,momx,momy,momz)
+		SUNH A 1 A_TakeInventory("SolarInfernoAmmoExtra",2)
+		SUNH A 0 A_Refire("AltThrowDown4")
+		goto AltGo
+		AltGo:
+		SUNH A 0 A_TakeInventory("ShieldCheck",999)
+		SUNH A 0 A_JumpIfInventory("SolarInfernoAmmoExtra",105,"SolarShot4")
+		SUNH A 0 A_JumpIfInventory("SolarInfernoAmmoExtra",70,"SolarShot3")
+		SUNH A 0 A_JumpIfInventory("SolarInfernoAmmoExtra",35,"SolarShot2")
+		goto SolarShot1
+		SolarShot4:
+		SUNH A 1 Offset(0,40)A_TakeInventory("SolarInfernoAmmoExtra",999)
+		SUNH A 1 Offset(0,48)
+		SUNH A 1 Offset(0,56)
+		SUNH A 1 Offset(0,64)
+		SUNH A 0 A_PlaySoundEx("weapon/sunparry","weapon")
+		SUNH A 14 Offset(0,72) A_GiveInventory("SolarmanAltChuck4_CI")
+		SUNH A 1 Offset(0,64)
+		SUNH A 1 Offset(0,56)
+		SUNH A 1 Offset(0,48)
+		SUNH A 1 Offset(0,40)
+		SUNH A 1 A_WeaponReady(WRF_NOFIRE)
+		goto Ready1
+		SolarShot3:
+		SUNH A 1 Offset(0,40)A_TakeInventory("SolarInfernoAmmoExtra",999)
+		SUNH A 1 Offset(0,48)
+		SUNH A 1 Offset(0,56)
+		SUNH A 1 Offset(0,64)
+		SUNH A 0 A_PlaySoundEx("weapon/sunparry","weapon")
+		SUNH A 14 Offset(0,72) A_GiveInventory("SolarmanAltChuck3_CI")
+		SUNH A 1 Offset(0,64)
+		SUNH A 1 Offset(0,56)
+		SUNH A 1 Offset(0,48)
+		SUNH A 1 Offset(0,40)
+		SUNH A 1 A_WeaponReady(WRF_NOFIRE)
+		goto Ready1
+		SolarShot2:
+		SUNH A 1 Offset(0,40)A_TakeInventory("SolarInfernoAmmoExtra",999)
+		SUNH A 1 Offset(0,48)
+		SUNH A 1 Offset(0,56)
+		SUNH A 1 Offset(0,64)
+		SUNH A 0 A_PlaySoundEx("weapon/sunparry","weapon")
+		SUNH A 14 Offset(0,72) A_GiveInventory("SolarmanAltChuck2_CI")
+		SUNH A 1 Offset(0,64)
+		SUNH A 1 Offset(0,56)
+		SUNH A 1 Offset(0,48)
+		SUNH A 1 Offset(0,40)
+		SUNH A 1 A_WeaponReady(WRF_NOFIRE)
+		goto Ready1
+		SolarShot1:
+		SUNH A 1 Offset(0,40)A_TakeInventory("SolarInfernoAmmoExtra",999)
+		SUNH A 1 Offset(0,48)
+		SUNH A 1 Offset(0,56)
+		SUNH A 1 Offset(0,64)
+		SUNH A 0 A_PlaySoundEx("weapon/sunparry","weapon")
+		SUNH A 14 Offset(0,72) A_GiveInventory("SolarmanAltChuck_CI")
+		SUNH A 1 Offset(0,64)
+		SUNH A 1 Offset(0,56)
+		SUNH A 1 Offset(0,48)
+		SUNH A 1 Offset(0,40)
+		SUNH A 1 A_WeaponReady(WRF_NOFIRE)
+		goto Ready1
+		
+		Fire3:
+		SUNH E 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(0,32)
+		SUNH E 1 //Offset(0,64)
+		SUNH F 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(0,96)
+		SUNH F 1 //Offset(0,128)
+		SUNH F 1 Offset(4,32) A_JumpIfInventory("PowerRage_ST",1,1)
+		SUNH F 1 Offset(-4,32)//Offset(-90,79)
+		SUNH F 1 Offset(4,32) A_JumpIfInventory("PowerRage_ST",1,1)//Offset(-60,65)
+		SUNH F 1 Offset(-4,32)//Offset(-30,51)
+		SUNH F 0
+		SUNH E 1 //Offset(-10,44)
+		SUNH A 1 //Offset(20,36)
+		SUNH A 0 A_PlaySoundEx("weapon/solarblaze","weapon")
+		//SUNH A 0 A_GiveInventory("")//A_GiveInventory("SolarmanMain_CI") //Summons the main sun to split into the 5 projectiles.
+		SUNH B 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(50,29)
+		SUNH B 1 //Offset(83,23)
+		SUNH C 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(116,18)
+		SUNH C 1 //Offset(152,14)
+		SUNH D 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(188,11)
+		SUNH D 1 
+		goto FireHold2
+		
+		FireSunThrow:
+		SUNH E 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(0,32)
+		SUNH E 1 //Offset(0,64)
+		SUNH F 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(0,96)
+		SUNH F 1 //Offset(0,128)
+		SUNH F 1 Offset(4,32) A_JumpIfInventory("PowerRage_ST",1,1)
+		SUNH F 1 Offset(-4,32)//Offset(-90,79)
+		SUNH F 1 Offset(4,32) A_JumpIfInventory("PowerRage_ST",1,1)//Offset(-60,65)
+		SUNH F 1 Offset(-4,32)//Offset(-30,51)
+		SUNH F 0
+		SUNH E 1 //Offset(-10,44)
+		SUNH A 1 //Offset(20,36)
+		SUNH A 0 A_PlaySoundEx("weapon/solarblaze","weapon")
+		//SUNH A 0 A_GiveInventory("")//A_GiveInventory("SolarmanMain_CI") //Summons the main sun to split into the 5 projectiles.
+		SUNH B 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(50,29)
+		SUNH B 1 //Offset(83,23)
+		SUNH C 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(116,18)
+		SUNH C 1 //Offset(152,14)
+		SUNH D 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(188,11)
+		SUNH D 1 
+		goto FireHold2
 
-Deselect:
-SOLX AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-SOLX A 1 A_Lower
-Loop
-Select:
-SOLX AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-SOLX A 1 A_Raise
-Loop
+		
+		FireHold:
+		SUNH D 1 Bright
+		TNT1 A 0 A_JumpIfInventory("SunHasEnded",1,"FireEnd")
+		TNT1 A 0 A_Refire("FireHold")
+		goto FireEnd
+		
+		FireHold2:
+		SUNH DCD 1
+		TNT1 A 0 A_Refire("Fire3")
+		goto FireEnd
+		
+        FireEnd:
+        SUNH A 0 A_TakeInventory("SolarMainSwag",999)
+        SUNH A 0 A_GiveInventory("SolarChecker")
+        SUNH D 1 //Offset(18,88)
+        SUNH D 1 //Offset(12,68)
+        SUNH C 1 //Offset(7,52)
+        SUNH C 1 //Offset(3,40)
+        SUNH BBAAA 1 A_WeaponReady(WRF_NOFIRE)
+        goto Ready1
+		
+		FireEndAlt:
+		SUNH A 0 
+		SUNH A 0 A_GiveInventory("SolarChecker")
+		SUNH F 1 //Offset(18,88)
+		SUNH F 1 //Offset(12,68)
+		SUNH E 1 //Offset(7,52)
+		SUNH E 1 //Offset(3,40)
+		SUNH AAAAA 1 A_WeaponReady(WRF_NOFIRE)
+		goto Ready1
+		
+		FireEndWave:
+		SUNH A 0 A_GiveInventory("SolarCheckerWave")
+		SUNH D 1 //Offset(18,88)
+		SUNH D 1 //Offset(12,68)
+		SUNH C 1 //Offset(7,52)
+		SUNH C 1 //Offset(3,40)
+		SUNH BBAAA 1 A_WeaponReady(WRF_NOFIRE)
+		goto Ready1
+		
+		FireEnd2:
+		SUNH D 1 //Offset(18,88)
+		SUNH D 1 //Offset(12,68)
+		SUNH C 1 //Offset(7,52)
+		SUNH C 1 //Offset(3,40)
+		SUNH BBAAA 1 A_WeaponReady(WRF_NOFIRE)
+		goto Ready1
 
-Fire:
-SOLX B 1 Offset(16,18)
-SOLX B 1 Offset(54,-20)
-SOLX B 1 Offset(102,-52)
-TNT1 A 4 Offset(42,1)
-SOLX C 1 Offset(42,1)
-SOLX C 8 Offset(-15,52)A_GiveInventory("SolarM_MainfireCheck_P") 
-SOLX A 2 Offset(-4,42)
-Goto Ready1
+		Reload:
+		SUNH A 1 A_JumpIfInventory("SolarReloadinFlag",1,"ReloadEndCancel")
+		SUNH A 0 A_JumpIfInventory("SolarInfernoAmmo",400,"ReloadDeny")
+		//SUNH A 0 ACS_ExecuteWithResult(512,1)
+		SUNH A 0 A_GiveInventory("SolarReloadinFlag",1)
+		SUNH QR 1
+		SUNH R 0 A_PlaySoundEx("weapon/solarammobuild","Body")
+		SUNH SSRR 1 ACS_ExecuteWithResult(512,1)
+		SUNH SSRR 1 ACS_ExecuteWithResult(512,1)
+		SUNH A 0 A_JumpIfInventory("IsBot",1,"Reload2")
+		SUNH R 0 A_WeaponReady(WRF_ALLOWRELOAD|WRF_NOSWITCH)
+		goto Reload2
+		
+		ReloadDeny:
+		SUNH A 0
+		goto Ready1
+		
+		Reload2:
+		SUNH A 0 ACS_ExecuteWithResult(512,1)
+		SUNH SS 1 A_GiveInventory("SolarInfernoAmmo",3)
+		SUNH HH 0 A_SpawnItemEx("BassChargeFX",32,0,random(0,48),velx,vely,velz+12,random(0,360),SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEMOMENTUM)
+		SUNH H 0 A_JumpIfInventory("SolarInfernoAmmo",400,"ReloadEnd")
+		SUNH A 0 //A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R") == 0, "ReloadEndCancel")
+		SUNH A 0 A_JumpIfInventory("IsBot",1,"Reload3")
+		SUNH A 0 A_WeaponReady(WRF_ALLOWRELOAD|WRF_NOSWITCH)
+		goto Reload3
+		
+		Reload3:
+		SUNH A 0 ACS_ExecuteWithResult(512,1)
+		SUNH RR 1 A_GiveInventory("SolarInfernoAmmo",3)
+		SUNH HHHH 0 A_SpawnItemEx("BassChargeFX",32,0,random(0,48),velx,vely,velz+12,random(0,360),SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEMOMENTUM)
+		SUNH H 0 A_JumpIfInventory("SolarInfernoAmmo",400,"ReloadEnd")
+		SUNH A 0 //A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R") == 0, "ReloadEndCancel")
+		SUNH A 0 A_JumpIfInventory("IsBot",1,"Reload2")
+		SUNH A 0 A_WeaponReady(WRF_ALLOWRELOAD|WRF_NOSWITCH)
+		goto Reload2
+		
+		ReloadEndCancel:
+		SUNH A 0 A_TakeInventory("SolarReloadinFlag",999)
+		SUNH A 0 A_PlaySoundEx("weapon/sunparry","Body")
+		SUNH SRTA 2
+		SUNH AAAA 1
+		goto Ready1		
 
-AltFire:
-SOLX A 0 A_GiveInventory("VivifyDelay4",1)
-SOLX A 0 A_GiveInventory("SolarHoldFlag",1)
-SOLX A 0 A_GiveInventory("PowerSolarM_HeadTiltSlow")//SetPlayerProperty(0,1,0)
-SOLX A 0 A_ReFire(1)
-SOLX AA 1 Offset(0,45)A_SetArg(1,args[1]-7)
-SOLX AA 1 Offset(0,60)A_SetArg(1,args[1]-7)
-SOLX A 0 A_GiveInventory("VivifyFlag1",1)
-SOLX A 0 A_ReFire(1)
-SOLX AA 1 Offset(0,77)A_SetArg(1,args[1]-7)
-SOLX A 0 A_ReFire(1)
-SOLX AA 1 Offset(0,96)A_SetArg(1,args[1]-7)
-TNT1 A 0 A_ReFire(1)
-TNT1 A 1 A_GiveInventory("SolarM_HeadAdjust_P")
-TNT1 A 0 A_ReFire(1)
-TNT1 A 1 A_GiveInventory("SolarM_HeadAdjust_P")
-TNT1 A 0 A_ReFire(1)
-TNT1 A 1 A_GiveInventory("SolarM_HeadAdjust_P")
-TNT1 A 0 A_ReFire(1)
-TNT1 A 1 A_GiveInventory("SolarM_HeadAdjust_P")
-TNT1 A 0 A_ReFire(1)
-TNT1 A 1 A_GiveInventory("SolarM_HeadAdjust_P")
-TNT1 A 0 A_ReFire(1)
-TNT1 A 1 A_GiveInventory("SolarM_HeadAdjust_P")
-TNT1 A 0 A_ReFire(1)
-TNT1 A 1 A_GiveInventory("SolarM_HeadAdjust_P")
-TNT1 A 0 A_ReFire(1)
-AltFire2:
-TNT1 A 1 A_GiveInventory("SolarM_HeadAdjust_P")
-TNT1 A 0 A_JumpIfInventory("SolarHoldFlag",140,"AltEnding")
-TNT1 A 0 A_ReFire("AltFire2")
-AltEnding:
-TNT1 A 1 A_TakeInventory("PowerSolarM_HeadTiltSlow")//SetPlayerProperty(0,0,0)
-TNT1 A 0 A_TakeInventory("VivifyFlag1")
-SOLX AA 1 Offset(0,89)A_GiveINventory("SolarM_HeadArgReset_P")
-SOLX AA 1 Offset(0,68)A_GiveINventory("SolarM_HeadArgReset_P")
-SOLX AA 1 Offset(0,51)A_GiveINventory("SolarM_HeadArgReset_P")
-SOLX AA 1 Offset(0,39)A_GiveINventory("SolarM_HeadArgReset_P")
-SOLX A 0 A_SetArg(2,0)
-SOLX A 0 A_SetArg(3,0)
-SOLX A 0 A_GiveInventory("SolarHoldCoolDown",35+CallACS("cbm_countinv_acs",107,0))
-SOLX A 0 A_TakeInventory("SolarHoldFlag")
-Goto Ready1
-
-Flash.Start:
-TNT1 A 1 A_PlaySoundEx("wep/SolarM_Charge","Body")
-TNT1 A 1 A_SpawnItemEx("SolarM_HeadSunFXA",0,0,40,momx,momy,momz,0,41)
-TNT1 A 1 A_SpawnItemEx("SolarM_HeadSunFXB",0,0,50,momx,momy,momz,0,41)
-TNT1 A 1 A_SpawnItemEx("SolarM_HeadSunFXB",0,0,58,momx,momy,momz,0,41)
-TNT1 A 1 A_SpawnItemEx("SolarM_HeadSunFXB",0,0,64,momx,momy,momz,0,41)
-TNT1 A 0 A_GunFlash("Flash",1)
-stop
-Flash:
-TNT1 A 0 A_JumpIfInventory("IsDead",1,2)//NoFlash
-TNT1 A 1 A_GiveInventory("SolarM_FlashState_P")
-loop
-TNT1 A 0 A_GiveInventory("SolarM_FlashStateEnd_P")
-stop
-}
-}
-
-
-Actor SolarInfernoAmmo : Ammo
-{
-inventory.amount 1
-inventory.maxamount 112
-+INVENTORY.IGNORESKILL
-}
-Actor SunAmmo : Ammo
-{
-inventory.amount 1
-inventory.maxamount 800
-+INVENTORY.IGNORESKILL
-}
-
-Actor PowerSolarM_HeadTiltSlow : PowerSpeed
-{
-powerup.duration 210//156
-Speed 0.225
-+POWERSPEED.NOTRAIL
-}
-
-Actor SolarM_AmmoDrainDelay : Inventory
-{
-inventory.maxamount 175
-}
-Actor SolarHoldFlag : Inventory
-{
-inventory.maxamount 140
-}
-Actor SolarHoldCoolDown : Inventory
-{
-inventory.maxamount 140
-}
-
-Actor PowerSolarAbsorbGrace : PowerFrightener
-{
-powerup.duration 6
-}
-
-Actor SolarM_BlazeWaveProtect : PowerProtection
-{
-Powerup.Duration 8
-DamageFactor "SolarM_BlazeWave", 0.0
-}
-Actor SolarM_HeadProtect : PowerProtection
-{
-Powerup.Duration 4
-DamageFactor "SolarM_Head", 0.0
-}
-
-Actor SolarM_MainfireCheck_P : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 A_JumpifInventory("SunAmmo",750,"Fire4")
-TNT1 A 0 A_JumpifInventory("SunAmmo",400,"Fire3")
-TNT1 A 0 A_JumpifInventory("SunAmmo",1,"Fire2")
-goto Fire1
-Fire1:
-TNT1 A 0 A_PlaySoundEx("wep/SolarM_Shot1","Weapon")
-TNT1 A 0 A_GiveInventory("SolarManMain1_CI") 
-stop
-Fire2:
-TNT1 A 0 A_PlaySoundEx("wep/SolarM_Shot2","Weapon")
-TNT1 A 0 A_GiveInventory("SolarManMain2_CI")
-stop
-Fire3:
-TNT1 A 0 A_PlaySoundEx("wep/SolarM_Shot3","Weapon")
-TNT1 A 0 A_GiveInventory("SolarManMain3_CI")
-stop
-Fire4:
-TNT1 A 0 A_PlaySoundEx("wep/SolarM_Shot3","Weapon")//weapon/solarshoot
-TNT1 A 0 A_GiveInventory("SolarManMain4_CI")
-stop
-}
-}
-
-Actor SolarM_FlashState_P : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 A_JumpIfInventory("WeaponCharge",5,2)
-TNT1 A 0 A_GiveInventory("WeaponCharge",1)
-goto Pick0
-TNT1 A 0 A_TakeInventory("WeaponCharge")
-goto Pick0
-
-Pick0:
-TNT1 A 0 A_JumpIfInventory("SunAmmo",750,"Pick4")
-TNT1 A 0 A_JumpIfInventory("SunAmmo",400,"Pick3")
-TNT1 A 0 A_JumpIfInventory("SunAmmo",1,"Pick2")
-goto Pick1
-
-Pick1:
-TNT1 A 0 A_JumpIfInventory("WeaponCharge",3,2)
-TNT1 A 0 A_GiveInventory("SolarM_HeadSun_P1a")
-stop
-TNT1 A 0 A_GiveInventory("SolarM_HeadSun_P1b")
-stop
-Pick2:
-TNT1 A 0 A_JumpIfInventory("WeaponCharge",3,2)
-TNT1 A 0 A_GiveInventory("SolarM_HeadSun_P2a")
-stop
-TNT1 A 0 A_GiveInventory("SolarM_HeadSun_P2b")
-stop
-Pick3:
-TNT1 A 0 A_JumpIfInventory("WeaponCharge",3,2)
-TNT1 A 0 A_GiveInventory("SolarM_HeadSun_P3a")
-stop
-TNT1 A 0 A_GiveInventory("SolarM_HeadSun_P3b")
-stop
-Pick4:
-//TNT1 A 0 ACS_ExecuteAlways(247,0,1,328,0)
-TNT1 A 0 A_JumpIfInventory("WeaponCharge",3,2)
-TNT1 A 0 A_GiveInventory("SolarM_HeadSun_P4a")
-stop
-TNT1 A 0 A_GiveInventory("SolarM_HeadSun_P4b")
-//TNT1 A 0 ACS_NamedExecuteAlways("cbm_GalaxyBHB_ACS",0,1,1,328)//move this to the sun?
-stop
-}
-}
-
-Actor SolarM_FlashStateEnd_P : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 A_JumpifInventory("SunAmmo",750,"Drop4")
-TNT1 A 0 A_JumpifInventory("SunAmmo",400,"Drop3")
-TNT1 A 0 A_JumpifInventory("SunAmmo",1,"Drop2")
-Drop1:
-TNT1 A 0 A_SpawnItemEx("SolarManBlazeCollapse1",args[1]*-1,args[2],args[1]+68+args[3],momx,momy,momz,0,41)
-stop
-Drop2:
-TNT1 A 0 A_SpawnItemEx("SolarManBlazeCollapse2",args[1]*-1,args[2],args[1]+68+args[3],momx,momy,momz,0,41)
-stop
-Drop3:
-TNT1 A 0 A_SpawnItemEx("SolarManBlazeCollapse3",args[1]*-1,args[2],args[1]+68+args[3],momx,momy,momz,0,41)
-stop
-Drop4:
-TNT1 A 0 A_SpawnItemEx("SolarManBlazeCollapse4",args[1]*-1,args[2],args[1]+68+args[3],momx,momy,momz,0,41)
-stop
-}
-}
-
-
-Actor SolarM_HeadAdjust_P : CustomInventory
-{
-States
-{
-Pickup://THERE IS NO WAY TO ESCAPE THIS
-TNT1 A 0 A_GiveInventory("SolarInfernoAmmo",1)
-TNT1 A 0 A_GiveInventory("SolarHoldFlag",1)
-
-stop
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==21,"UpL")
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==19,"UpR")
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==17,"Up")
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==13,"DownL")
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==11,"DownR")
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==9,"Down")
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==5,"Left")
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==3,"Right")
-Stop
-UpL:
-TNT1 A 0 A_GiveInventory("SolarM_HeadZAdd_P")
-TNT1 A 0 A_GiveInventory("SolarM_HeadXSub_P")
-Stop
-UpR:
-TNT1 A 0 A_GiveInventory("SolarM_HeadZAdd_P")
-TNT1 A 0 A_GiveInventory("SolarM_HeadXAdd_P")
-Stop
-Up :
-TNT1 A 0 A_GiveInventory("SolarM_HeadZAdd_P")	
-Stop
-DownL:
-TNT1 A 0 A_GiveInventory("SolarM_HeadZSub_P")
-TNT1 A 0 A_GiveInventory("SolarM_HeadXSub_P")
-Stop
-DownR:
-TNT1 A 0 A_GiveInventory("SolarM_HeadZSub_P")
-TNT1 A 0 A_GiveInventory("SolarM_HeadXAdd_P")
-stop
-Down:
-TNT1 A 0 A_GiveInventory("SolarM_HeadZSub_P")
-Stop
-Left:
-TNT1 A 0 A_GiveInventory("SolarM_HeadXSub_P")
-Stop
-Right:
-TNT1 A 0 A_GiveInventory("SolarM_HeadXAdd_P")
-Stop
-}
-}
-
-Actor SolarM_HeadBase_P : CustomInventory
-{
-States
-{
-No:
-TNT1 A 0 
-Stop
-}
-}
-Actor SolarM_HeadXAdd_P : SolarM_HeadBase_P
-{
-States
-{
-Pickup:
-TNT1 A 0 A_JumpIf(Args[2]>=50,"no")
-TNT1 A 0 A_SetArg(2,args[2]+5)
-Stop
-}
-}
-
-Actor SolarM_HeadXSub_P : SolarM_HeadBase_P
-{
-States
-{
-Pickup:
-TNT1 A 0 A_JumpIf(Args[2]<=-50,"no")
-TNT1 A 0 A_SetArg(2,args[2]-5)
-Stop
-}
-}
-
-Actor SolarM_HeadZAdd_P : SolarM_HeadBase_P
-{
-States
-{
-Pickup:
-TNT1 A 0 A_JumpIf(Args[3]>=40,"no")
-TNT1 A 0 A_SetArg(3,args[3]+5)
-Stop
-}
-}
-
-Actor SolarM_HeadZSub_P : SolarM_HeadBase_P
-{
-States
-{
-Pickup:
-TNT1 A 0 A_JumpIf(Args[3]<=-10,"no")
-TNT1 A 0 A_SetArg(3,args[3]-5)
-Stop
-}
-}
-
-Actor SolarM_HeadArgReset_P : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 A_SetArg(1,args[1]+7)
-TNT1 A 0 A_SetArg(2,args[2]/2)
-TNT1 A 0 A_SetArg(3,args[3]/2)
-Stop
-}
+		ReloadEnd:
+		SUNH A 0 A_TakeInventory("SolarReloadinFlag",999)
+		SUNH A 0 A_PlaySoundEx("weapon/solarammofull","Body")
+		SUNH SRTA 2
+		SUNH AAAA 1
+		goto Ready1
+	}
 }
 
-Actor SolarManBlaze1
+actor SolarBlazerBoss : SolarBlazeBoss 
 {
-Translation "250:250=213:213","204:204=217:217"
-PROJECTILE
-Obituary "$OB_SOLARBLAZE"
-DamageType "SolarM_Blaze"
--NOGRAVITY
-+SKYEXPLODE
-+EXPLODEONWATER
-+FORCEXYBILLBOARD
-+BRIGHT
-+THRUSPECIES
-Species "SolarHead"
-damage (60)
-Radius 7
-Height 14
-speed 40
+	Tag "SolarLauncher Boss"
+	dropitem "SolarBlazeWepCDropped"
+	Obituary "%o's eyes were burned from %k's Solar Blaze."
+	Inventory.Pickupmessage "GOTTA BLAST"
+	Weapon.AmmoType "SolarInfernoAmmo"
+	inventory.icon "SOLICON2"
+	Weapon.SlotNumber 1
+	States
+	{
+	
+		Spawn:
+		C_10 G 1 //Placeholder spawn image since weapon drop sprites aren't that important.
+		loop
+		
+		Ready:
+		SUNH E 0 ACS_ExecuteAlways(998,0,198) //Color ACS used for Solar.
+		SUNH E 0 A_JumpIfInventory("Once",1,"Ready1") //Desync checker.
+		SUNH E 0 A_GiveInventory("Once",1)
+		Goto ReadySpawn
+		
+		ReadySpawn:
+		SUNH B 5 //Desync fix for holding mainfire after spawning.
+		SUNH B 0 A_GiveInventory("SolarmanHelper_CI",1)
+		goto Ready1
+		
+		Ready1:
+		SUNH B 0 A_GiveInventory("SolarMainSwag",1)
+		SUNH B 1 A_WeaponReady(WRF_NOSECONDARY|WRF_ALLOWRELOAD)
+		SUNH B 0 A_JumpIfInventory("SolarInfernoAmmo",100,"Ready2")
+		loop
+		
+		Ready2:
+		SUNH B 0 A_GiveInventory("SolarMainSwag",1)
+		SUNH B 1 A_WeaponReady(WRF_ALLOWRELOAD)
+		loop
+		
+		Deselect:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+		SUNH B 1 A_Lower
+		Loop
+		
+		Select:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+		SUNH B 1 A_Raise
+		Loop
+		
+		Fire:
+		SUNH B 1 A_JumpIfInventory("SolarReloadinFlag",1,"ReloadEndCancel")
+		SUNH E 0 A_JumpIfInventory("SolarInfernoAmmo",100,1)
+		goto Fire2Cuck
+		SUNH B 1 Offset(0,40)
+		SUNH B 1 Offset(0,48)
+		SUNH B 1 Offset(0,56)
+		SUNH B 1 Offset(0,64)
+		SUNH B 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,"Fire2Air")
+		Fire2Ground:
+		SUNH B 0 A_PlaySoundEx("weapon/sunparry","weapon")
+		SUNH B 14 Offset(0,72) A_GiveInventory("SolarmanRealAlt_CI")
+		goto Fire2End
+		Fire2Air:
+		SUNH B 0 A_PlaySoundEx("weapon/sunparry","weapon")
+		SUNH B 14 Offset(0,72) A_GiveInventory("SolarmanRealAltAir_CI")
+		goto Fire2End
+		Fire2End:
+		SUNH B 1 Offset(0,64)
+		SUNH B 1 Offset(0,56)
+		SUNH B 1 Offset(0,48)
+		SUNH B 1 Offset(0,40)
+		SUNH B 1 A_WeaponReady(WRF_NOFIRE)
+		goto Ready1
+		Fire2Cuck:
+		SUNH B 1 Offset(0,40)
+		SUNH B 1 Offset(0,48)
+		SUNH B 1 Offset(0,56)
+		SUNH B 1 Offset(0,64)
+		SUNH B 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,"Fire2CuckAir")
+		Fire2CuckGround:
+		SUNH B 0 A_PlaySoundEx("weapon/sunparry","weapon")
+		SUNH B 14 Offset(0,72) A_GiveInventory("SolarmanFakeAlt_CI")
+		goto Fire2End
+		Fire2CuckAir:
+		SUNH B 0 A_PlaySoundEx("weapon/sunparry","weapon")
+		SUNH B 14 Offset(0,72) A_GiveInventory("SolarmanFakeAltAir_CI")
+		goto Fire2End
+		
+		Altfire:
+		SUNH B 1 A_JumpIfInventory("SolarReloadinFlag",1,"ReloadEndCancel")
+		SUNH B 0 A_JumpIfInventory("SolarInfernoAmmo",400,1)
+		goto Ready1
+		SUNH B 0 
+		SUNH B 0 A_PlaySoundEx("weapon/sunparry","Body")
+		SUNH B 0 A_GiveInventory("ShieldCheck",1)
+		SUNH B 0 A_SpawnItemEx("SolarHeadFX",0,0,28,0,0,0,0,1,0)
+		SUNH B 0 A_TakeInventory("SolarInfernoAmmo",999)
+		goto AltThrowUp
+
+		//AltThrowUpSound:
+		//X_2B D 0 A_PlaySound("weapon/solarcharger")
+		AltThrowUp:
+		SUNH B 0 A_JumpIfInventory("SolarInfernoAmmoExtra",35,"AltThrowUp2Sound")
+		goto AltThrowUpMore
+		AltThrowUpMore:
+		//SUNH B 0 A_SpawnItemEx("SolarAimerFX1",0,0,32,cos(pitch)*15,0,sin(-pitch)*20,0,0,0,0)
+		SUNH B 0 A_SpawnItemEx("SolarHeadExplosion",32,0,0,momx,momy,momz)
+		SUNH B 1 A_GiveInventory("SolarInfernoAmmoExtra",2)
+		SUNH B 0 A_Refire("AltThrowUp")
+		goto AltGo
+		AltThrowUp2Sound:
+		X_2E D 0 A_PlaySound("weapon/solarcharger")
+		AltThrowUp2:
+		SUNH B 0 A_JumpIfInventory("SolarInfernoAmmoExtra",70,"AltThrowUp3Sound")
+		goto AltThrowUpMore2
+		AltThrowUpMore2:
+		//SUNH B 0 A_SpawnItemEx("SolarAimerFX1",0,0,32,cos(pitch)*30,0,sin(-pitch)*20,0,0,0,0)
+		SUNH B 0 A_SpawnItemEx("SolarHeadExplosion",32,0,0,momx,momy,momz)
+		SUNH B 1 A_GiveInventory("SolarInfernoAmmoExtra",2)
+		SUNH B 0 A_Refire("AltThrowUp2")
+		goto AltGo
+		AltThrowUp3Sound:
+		X_2E D 0 A_PlaySound("weapon/solarcharger")
+		AltThrowUp3:
+		SUNH B 0 A_JumpIfInventory("SolarInfernoAmmoExtra",105,"AltThrowUp4Sound")
+		goto AltThrowUpMore3
+		AltThrowUpMore3:
+		//SUNH B 0 A_SpawnItemEx("SolarAimerFX1",0,0,32,cos(pitch)*45,0,sin(-pitch)*20,0,0,0,0)
+		SUNH B 0 A_SpawnItemEx("SolarHeadExplosion",32,0,0,momx,momy,momz)
+		SUNH B 1 A_GiveInventory("SolarInfernoAmmoExtra",2)
+		SUNH B 0 A_Refire("AltThrowUp3")
+		goto AltGo
+		AltThrowUp4Sound:
+		X_2E D 0 A_PlaySound("weapon/solarcharger")
+		AltThrowUp4:
+		SUNH B 0 A_JumpIfInventory("SolarInfernoAmmoExtra",140,"AltThrowDown")
+		goto AltThrowUpMore4
+		AltThrowUpMore4:
+		//SUNH B 0 A_SpawnItemEx("SolarAimerFX1",0,0,32,cos(pitch)*60,0,sin(-pitch)*20,0,0,0,0)
+		SUNH B 0 A_SpawnItemEx("SolarHeadExplosion",32,0,0,momx,momy,momz)
+		SUNH B 1 A_GiveInventory("SolarInfernoAmmoExtra",2)
+		SUNH B 0 A_Refire("AltThrowUp4")
+		goto AltGo
+		//AltThrowDownSound:
+		//X_2E D 0 A_PlaySound("weapon/solarcharger")
+		AltThrowDown:
+		SUNH B 0 A_JumpIfInventory("SolarInfernoAmmoExtra",105,"AltThrowDownMore")
+		goto AltThrowDown2Sound
+		AltThrowDownMore:
+		//SUNH B 0 A_SpawnItemEx("SolarAimerFX1",0,0,32,cos(pitch)*60,0,sin(-pitch)*20,0,0,0,0)
+		SUNH B 0 A_SpawnItemEx("SolarHeadExplosion",32,0,0,momx,momy,momz)
+		SUNH B 1 A_TakeInventory("SolarInfernoAmmoExtra",2)
+		SUNH B 0 A_Refire("AltThrowDown")
+		goto AltGo
+		AltThrowDown2Sound:
+		X_2E D 0 A_PlaySound("weapon/solarcharger")
+		AltThrowDown2:
+		SUNH B 0 A_JumpIfInventory("SolarInfernoAmmoExtra",70,"AltThrowDownMore2")
+		goto AltThrowDown3Sound
+		AltThrowDownMore2:
+		//SUNH B 0 A_SpawnItemEx("SolarAimerFX1",0,0,32,cos(pitch)*45,0,sin(-pitch)*20,0,0,0,0)
+		SUNH B 0 A_SpawnItemEx("SolarHeadExplosion",32,0,0,momx,momy,momz)
+		SUNH B 1 A_TakeInventory("SolarInfernoAmmoExtra",2)
+		SUNH B 0 A_Refire("AltThrowDown2")
+		goto AltGo
+		AltThrowDown3Sound:
+		X_2E D 0 A_PlaySound("weapon/solarcharger")
+		AltThrowDown3:
+		SUNH B 0 A_JumpIfInventory("SolarInfernoAmmoExtra",35,"AltThrowDownMore3")
+		goto AltThrowDown4Sound
+		AltThrowDownMore3:
+		//SUNH B 0 A_SpawnItemEx("SolarAimerFX1",0,0,32,cos(pitch)*30,0,sin(-pitch)*20,0,0,0,0)
+		SUNH B 0 A_SpawnItemEx("SolarHeadExplosion",32,0,0,momx,momy,momz)
+		SUNH B 1 A_TakeInventory("SolarInfernoAmmoExtra",2)
+		SUNH B 0 A_Refire("AltThrowDown3")
+		goto AltGo
+		AltThrowDown4Sound:
+		X_2E D 0 A_PlaySound("weapon/solarcharger")
+		AltThrowDown4:
+		SUNH B 0 A_JumpIfInventory("SolarInfernoAmmoExtra",1,"AltThrowDownMore4")
+		goto AltThrowUp
+		AltThrowDownMore4:
+		//SUNH B 0 A_SpawnItemEx("SolarAimerFX1",0,0,32,cos(pitch)*15,0,sin(-pitch)*20,0,0,0,0)
+		SUNH B 0 A_SpawnItemEx("SolarHeadExplosion",32,0,0,momx,momy,momz)
+		SUNH B 1 A_TakeInventory("SolarInfernoAmmoExtra",2)
+		SUNH B 0 A_Refire("AltThrowDown4")
+		goto AltGo
+		AltGo:
+		SUNH B 0 A_TakeInventory("ShieldCheck",999)
+		SUNH B 0 A_JumpIfInventory("SolarInfernoAmmoExtra",105,"SolarShot4")
+		SUNH B 0 A_JumpIfInventory("SolarInfernoAmmoExtra",70,"SolarShot3")
+		SUNH B 0 A_JumpIfInventory("SolarInfernoAmmoExtra",35,"SolarShot2")
+		goto SolarShot1
+		SolarShot4:
+		SUNH B 1 Offset(0,40)A_TakeInventory("SolarInfernoAmmoExtra",999)
+		SUNH B 1 Offset(0,48)
+		SUNH B 1 Offset(0,56)
+		SUNH B 1 Offset(0,64)
+		SUNH B 0 A_PlaySoundEx("weapon/sunparry","weapon")
+		SUNH B 14 Offset(0,72) A_GiveInventory("SolarmanAltChuck4_CI")
+		SUNH B 1 Offset(0,64)
+		SUNH B 1 Offset(0,56)
+		SUNH B 1 Offset(0,48)
+		SUNH B 1 Offset(0,40)
+		SUNH B 1 A_WeaponReady(WRF_NOFIRE)
+		goto Ready1
+		SolarShot3:
+		SUNH B 1 Offset(0,40)A_TakeInventory("SolarInfernoAmmoExtra",999)
+		SUNH B 1 Offset(0,48)
+		SUNH B 1 Offset(0,56)
+		SUNH B 1 Offset(0,64)
+		SUNH B 0 A_PlaySoundEx("weapon/sunparry","weapon")
+		SUNH B 14 Offset(0,72) A_GiveInventory("SolarmanAltChuck3_CI")
+		SUNH B 1 Offset(0,64)
+		SUNH B 1 Offset(0,56)
+		SUNH B 1 Offset(0,48)
+		SUNH B 1 Offset(0,40)
+		SUNH B 1 A_WeaponReady(WRF_NOFIRE)
+		goto Ready1
+		SolarShot2:
+		SUNH B 1 Offset(0,40)A_TakeInventory("SolarInfernoAmmoExtra",999)
+		SUNH B 1 Offset(0,48)
+		SUNH B 1 Offset(0,56)
+		SUNH B 1 Offset(0,64)
+		SUNH B 0 A_PlaySoundEx("weapon/sunparry","weapon")
+		SUNH B 14 Offset(0,72) A_GiveInventory("SolarmanAltChuck2_CI")
+		SUNH B 1 Offset(0,64)
+		SUNH B 1 Offset(0,56)
+		SUNH B 1 Offset(0,48)
+		SUNH B 1 Offset(0,40)
+		SUNH B 1 A_WeaponReady(WRF_NOFIRE)
+		goto Ready1
+		SolarShot1:
+		SUNH B 1 Offset(0,40)A_TakeInventory("SolarInfernoAmmoExtra",999)
+		SUNH B 1 Offset(0,48)
+		SUNH B 1 Offset(0,56)
+		SUNH B 1 Offset(0,64)
+		SUNH B 0 A_PlaySoundEx("weapon/sunparry","weapon")
+		SUNH B 14 Offset(0,72) A_GiveInventory("SolarmanAltChuck_CI")
+		SUNH B 1 Offset(0,64)
+		SUNH B 1 Offset(0,56)
+		SUNH B 1 Offset(0,48)
+		SUNH B 1 Offset(0,40)
+		SUNH B 1 A_WeaponReady(WRF_NOFIRE)
+		goto Ready1
+		
+		Fire3:
+		SUNH E 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(0,32)
+		SUNH E 1 //Offset(0,64)
+		SUNH F 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(0,96)
+		SUNH F 1 //Offset(0,128)
+		SUNH F 1 Offset(4,32) A_JumpIfInventory("PowerRage_ST",1,1)
+		SUNH F 1 Offset(-4,32)//Offset(-90,79)
+		SUNH F 1 Offset(4,32) A_JumpIfInventory("PowerRage_ST",1,1)//Offset(-60,65)
+		SUNH F 1 Offset(-4,32)//Offset(-30,51)
+		SUNH F 0
+		SUNH E 1 //Offset(-10,44)
+		SUNH A 1 //Offset(20,36)
+		SUNH A 0 A_PlaySoundEx("weapon/solarblaze","weapon")
+		//SUNH A 0 A_GiveInventory("")//A_GiveInventory("SolarmanMain_CI") //Summons the main sun to split into the 5 projectiles.
+		SUNH B 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(50,29)
+		SUNH B 1 //Offset(83,23)
+		SUNH C 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(116,18)
+		SUNH C 1 //Offset(152,14)
+		SUNH D 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(188,11)
+		SUNH D 1 
+		goto FireHold2
+		
+		FireSunThrow:
+		SUNH E 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(0,32)
+		SUNH E 1 //Offset(0,64)
+		SUNH F 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(0,96)
+		SUNH F 1 //Offset(0,128)
+		SUNH F 1 Offset(4,32) A_JumpIfInventory("PowerRage_ST",1,1)
+		SUNH F 1 Offset(-4,32)//Offset(-90,79)
+		SUNH F 1 Offset(4,32) A_JumpIfInventory("PowerRage_ST",1,1)//Offset(-60,65)
+		SUNH F 1 Offset(-4,32)//Offset(-30,51)
+		SUNH F 0
+		SUNH E 1 //Offset(-10,44)
+		SUNH A 1 //Offset(20,36)
+		SUNH A 0 A_PlaySoundEx("weapon/solarblaze","weapon")
+		//SUNH A 0 A_GiveInventory("")//A_GiveInventory("SolarmanMain_CI") //Summons the main sun to split into the 5 projectiles.
+		SUNH B 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(50,29)
+		SUNH B 1 //Offset(83,23)
+		SUNH C 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(116,18)
+		SUNH C 1 //Offset(152,14)
+		SUNH D 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(188,11)
+		SUNH D 1 
+		goto FireHold2
+
+		
+		FireHold:
+		SUNH D 1 Bright
+		TNT1 A 0 A_JumpIfInventory("SunHasEnded",1,"FireEnd")
+		TNT1 A 0 A_Refire("FireHold")
+		goto FireEnd
+		
+		FireHold2:
+		SUNH DCD 1
+		TNT1 A 0 A_Refire("Fire3")
+		goto FireEnd
+		
+		FireEnd:
+		SUNH A 0 
+		SUNH A 0 A_GiveInventory("SolarChecker")
+		SUNH D 1 //Offset(18,88)
+		SUNH D 1 //Offset(12,68)
+		SUNH C 1 //Offset(7,52)
+		SUNH C 1 //Offset(3,40)
+		SUNH BBAAA 1 A_WeaponReady(WRF_NOFIRE)
+		goto Ready1
+		
+		FireEndAlt:
+		SUNH A 0 
+		SUNH A 0 A_GiveInventory("SolarChecker")
+		SUNH F 1 //Offset(18,88)
+		SUNH F 1 //Offset(12,68)
+		SUNH E 1 //Offset(7,52)
+		SUNH E 1 //Offset(3,40)
+		SUNH AAAAA 1 A_WeaponReady(WRF_NOFIRE)
+		goto Ready1
+		
+		FireEndWave:
+		SUNH A 0 A_GiveInventory("SolarCheckerWave")
+		SUNH D 1 //Offset(18,88)
+		SUNH D 1 //Offset(12,68)
+		SUNH C 1 //Offset(7,52)
+		SUNH C 1 //Offset(3,40)
+		SUNH BBAAA 1 A_WeaponReady(WRF_NOFIRE)
+		goto Ready1
+		
+		FireEnd2:
+		SUNH D 1 //Offset(18,88)
+		SUNH D 1 //Offset(12,68)
+		SUNH C 1 //Offset(7,52)
+		SUNH C 1 //Offset(3,40)
+		SUNH BBAAA 1 A_WeaponReady(WRF_NOFIRE)
+		goto Ready1
+		
+		Reload:
+		SUNH B 1 A_JumpIfInventory("SolarReloadinFlag",1,"ReloadEndCancel")
+		SUNH A 0 A_JumpIfInventory("SolarInfernoAmmo",400,"ReloadDeny")
+		SUNH A 0 //ACS_ExecuteAlways(512,0,1)
+		SUNH A 0 A_GiveInventory("SolarReloadinFlag",1)
+		SUNH QR 1
+		SUNH R 0 A_PlaySoundEx("weapon/solarammobuild","Body")
+		SUNH SSRR 1 ACS_ExecuteWithResult(512,1)
+		SUNH SSRR 1 ACS_ExecuteWithResult(512,1)
+		SUNH R 0 A_WeaponReady(WRF_ALLOWRELOAD|WRF_NOSWITCH)
+		goto Reload2
+		
+		ReloadDeny:
+		SUNH B 0
+		goto Ready1
+		
+		Reload2:
+		SUNH A 0 ACS_ExecuteWithResult(512,1)
+		SUNH SS 1 A_GiveInventory("SolarInfernoAmmo",3)
+		SUNH HH 0 A_SpawnItemEx("BassChargeFX",32,0,random(0,48),velx,vely,velz+12,random(0,360),SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEMOMENTUM)
+		SUNH H 0 A_JumpIfInventory("SolarInfernoAmmo",400,"ReloadEnd")
+		SUNH A 0 //A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R") == 0, "ReloadEndCancel")
+		SUNH A 0 A_WeaponReady(WRF_ALLOWRELOAD|WRF_NOSWITCH)
+		goto Reload3
+		
+		Reload3:
+		SUNH A 0 ACS_ExecuteWithResult(512,1)
+		SUNH RR 1 A_GiveInventory("SolarInfernoAmmo",3)
+		SUNH HHHH 0 A_SpawnItemEx("BassChargeFX",32,0,random(0,48),velx,vely,velz+12,random(0,360),SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEMOMENTUM)
+		SUNH H 0 A_JumpIfInventory("SolarInfernoAmmo",400,"ReloadEnd")
+		SUNH A 0 //A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R") == 0, "ReloadEndCancel")
+		SUNH A 0 A_WeaponReady(WRF_ALLOWRELOAD|WRF_NOSWITCH)
+		goto Reload2
+		
+		ReloadEndCancel:
+		SUNH A 0 A_TakeInventory("SolarReloadinFlag",999)
+		SUNH A 0 A_PlaySoundEx("weapon/sunparry","Body")
+		SUNH SRTA 2
+		SUNH BBBB 1
+		goto Ready1		
+
+		ReloadEnd:
+		SUNH A 0 A_TakeInventory("SolarReloadinFlag",999)
+		SUNH A 0 A_PlaySoundEx("weapon/solarammofull","Body")
+		SUNH SRTA 2
+		SUNH BBBB 1
+		goto Ready1
+	}
+}
+
+actor SolarAltHelper : BasicHelper
+{
 scale 2.5
-
-Accuracy 10
-DeathSound "wep/SolarM_Split1"
-States
-{
-Spawn:
-SOBL A 0
-SOBL A 0 ThrustThingZ(0,2,0,1)
-SOBL AB 3
-Goto Spawn+2
-Death:
-TNT1 A 0 A_Stop
-TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
-TNT1 A 0 A_SpawnItemEx("CBM_OilPitIgnite")
-TNT1 A 0 A_SetArg(2,(z-floorz <= Accuracy)*(Accuracy-(z-floorz))+Accuracy-(ceilingz-z <= Height)*(Accuracy*3/2)-(ceilingz-z <= Height)*(Height-(ceilingz-z)))
-TNT1 A 0 A_SpawnItemEx("SolarBlazeDeathFX",0,0,Args[2],0,0,0,0,1+16384)
-TNT1 A 0 A_Jump(256,"DeathSpawn")
-DeathSpawn:
-TNT1 A 0 A_SpawnItemEx("SolarManWave1b",0,0,Args[2],28,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave1a",0,0,Args[2],28,0,0,45,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave1b",0,0,Args[2],28,0,0,90,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave1a",0,0,Args[2],28,0,0,135,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave1b",0,0,Args[2],28,0,0,180,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave1a",0,0,Args[2],28,0,0,225,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave1b",0,0,Args[2],28,0,0,270,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave1a",0,0,Args[2],28,0,0,315,1)
-stop
-}
-}
-
-Actor SolarManBlaze1B : SolarManBlaze1{Translation "250:250=196:196","204:204=205:205"}
-Actor SolarManBlaze1R : SolarManBlaze1{Translation "250:250=170:170","204:204=171:171"}
-Actor SolarManBlaze1O : SolarManBlaze1{Translation "250:250=138:138","204:204=104:104"}
-Actor SolarManBlaze1P : SolarManBlaze1{Translation "250:250=214:214","204:204=229:229"}
-
-Actor SolarManBlaze2 : SolarManBlaze1
-{
-damage (80)
-Radius 13
-Height 26
-
-Accuracy 15
-DeathSound "wep/SolarM_Split2"
-States
-{
-Spawn:
-SOBL C 0
-SOBL C 0 ThrustThingZ(0,2,0,1)
-SOBL CD 3
-Goto Spawn+2
-DeathSpawn:
-TNT1 A 0 A_SpawnItemEx("SolarManWave2b",0,0,Args[2],28,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave2a",0,0,Args[2],28,0,0,45,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave2b",0,0,Args[2],28,0,0,90,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave2a",0,0,Args[2],28,0,0,135,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave2b",0,0,Args[2],28,0,0,180,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave2a",0,0,Args[2],28,0,0,225,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave2b",0,0,Args[2],28,0,0,270,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave2a",0,0,Args[2],28,0,0,315,1)
-stop
-}
-}
-
-
-Actor SolarManBlaze2B : SolarManBlaze2{Translation "250:250=196:196","204:204=205:205"}
-Actor SolarManBlaze2R : SolarManBlaze2{Translation "250:250=170:170","204:204=171:171"}
-Actor SolarManBlaze2O : SolarManBlaze2{Translation "250:250=138:138","204:204=104:104"}
-Actor SolarManBlaze2P : SolarManBlaze2{Translation "250:250=214:214","204:204=229:229"}
-
-Actor SolarManBlaze3 : SolarManBlaze1
-{
-damage (100)
-Radius 16
-Height 32
-
-Accuracy 20
-DeathSound "wep/SolarM_Split3"
-States
-{
-Spawn:
-SOBL E 0
-SOBL E 0 ThrustThingZ(0,2,0,1)
-SOBL EF 3
-Goto Spawn+2
-DeathSpawn:
-TNT1 A 0 A_SpawnItemEx("SolarManWave3b",0,0,Args[2],28,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave3a",0,0,Args[2],28,0,0,45,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave3b",0,0,Args[2],28,0,0,90,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave3a",0,0,Args[2],28,0,0,135,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave3b",0,0,Args[2],28,0,0,180,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave3a",0,0,Args[2],28,0,0,225,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave3b",0,0,Args[2],28,0,0,270,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave3a",0,0,Args[2],28,0,0,315,1)
-stop
-}
-}
-
-Actor SolarManBlaze3B : SolarManBlaze3{Translation "250:250=196:196","204:204=205:205"}
-Actor SolarManBlaze3R : SolarManBlaze3{Translation "250:250=170:170","204:204=171:171"}
-Actor SolarManBlaze3O : SolarManBlaze3{Translation "250:250=138:138","204:204=104:104"}
-Actor SolarManBlaze3P : SolarManBlaze3{Translation "250:250=214:214","204:204=229:229"}
-
-Actor SolarManBlaze4 : SolarManBlaze1
-{
-damage (120)
-Radius 19
-Height 38
-Scale 3.5
-
-Accuracy 28
-DeathSound "wep/SolarM_Split3"//weapon/solarblaze
-States
-{
-Spawn:
-SOBL E 0
-SOBL E 0 ThrustThingZ(0,2,0,1)
-SOBL EF 3
-Goto Spawn+2
-DeathSpawn:
-TNT1 A 0 A_SpawnItemEx("SolarManWave4b",0,0,Args[2],28,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave4a",0,0,Args[2],28,0,0,45,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave4b",0,0,Args[2],28,0,0,90,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave4a",0,0,Args[2],28,0,0,135,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave4b",0,0,Args[2],28,0,0,180,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave4a",0,0,Args[2],28,0,0,225,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave4b",0,0,Args[2],28,0,0,270,1)
-TNT1 A 0 A_SpawnItemEx("SolarManWave4a",0,0,Args[2],28,0,0,315,1)
-stop
-}
-}
-
-Actor SolarManBlaze4B : SolarManBlaze4{Translation "250:250=196:196","204:204=205:205"}
-Actor SolarManBlaze4R : SolarManBlaze4{Translation "250:250=170:170","204:204=171:171"}
-Actor SolarManBlaze4O : SolarManBlaze4{Translation "250:250=138:138","204:204=104:104"}
-Actor SolarManBlaze4P : SolarManBlaze4{Translation "250:250=214:214","204:204=229:229"}
-
-Actor SolarBlazeDeathFX : BasicClientSide
-{
-+BRIGHT
-States
-{
-Spawn:
-XMFX S 0
-XMFX S 2
-VMFX IJD 2
-stop
-}
-}
-
-Actor SolarManWave1a
-{
-PROJECTILE
-Obituary "$OB_SOLARBLAZE"
-DamageType "SolarM_BlazeWave"
-+RIPPER
-+BRIGHT
-damage (0)
-Radius 4
-Height 4
-speed 28
-scale 2.5
-States
-{
-Spawn:
-SOBL G 0
-SOBL GGHH 1 A_Explode(60,12,0,0,12)
-Loop
-}
-}
-
-Actor SolarManWave2a : SolarManWave1a 
-{
-Radius 5
-Height 5
-States
-{
-Spawn:
-SOBL J 0
-SOBL JJKK 1 A_Explode(80,16,0,0,16)
-Loop
-}
-}
-
-Actor SolarManWave3a : SolarManWave1a 
-{
-Radius 6
-Height 6
-States
-{
-Spawn:
-SOBL L 0
-SOBL LLMM 1 A_Explode(100,20,0,0,20)
-Loop
-}
-}
-
-Actor SolarManWave4a : SolarManWave3a 
-{
-Radius 7
-Height 7
-Scale 3.5
-States
-{
-Spawn:
-SOBL L 0
-SOBL LLMM 1 A_Explode(120,24,0,0,24)
-Loop
-}
-}
-
-Actor SolarManWave1b : SolarManWave1a
-{
-States
-{
-Spawn:
-SOBL G 0
-SOBL GGHHG 1 A_Explode(60,12,0,0,12)
-SOBL G 0 A_Fadeout(0.25)
-SOBL G 1 A_Explode(60,12,0,0,12)
-SOBL G 0 A_Fadeout(0.25)
-SOBL H 1 A_Explode(60,12,0,0,12)
-SOBL H 0 A_Fadeout(0.25)
-SOBL H 1 A_Explode(60,12,0,0,12)
-Stop
-}
-}
-
-Actor SolarManWave2b : SolarManWave1b 
-{
-States
-{
-Spawn:
-SOBL J 0
-SOBL JJKKJ 1 A_Explode(80,16,0,0,16)
-SOBL J 0 A_Fadeout(0.25)
-SOBL J 1 A_Explode(80,16,0,0,16)
-SOBL J 0 A_Fadeout(0.25)
-SOBL K 1 A_Explode(80,16,0,0,16)
-SOBL K 0 A_Fadeout(0.25)
-SOBL K 1 A_Explode(80,16,0,0,16)
-Stop
-}
-}
-
-Actor SolarManWave3b : SolarManWave1b 
-{
-States
-{
-Spawn:
-SOBL L 0
-SOBL LLMML 1 A_Explode(100,20,0,0,20)
-SOBL L 0 A_Fadeout(0.25)
-SOBL L 1 A_Explode(100,20,0,0,20)
-SOBL M 0 A_Fadeout(0.25)
-SOBL M 1 A_Explode(100,20,0,0,20)
-SOBL M 0 A_Fadeout(0.25)
-SOBL M 1 A_Explode(100,20,0,0,20)
-Stop
-}
-}
-
-Actor SolarManWave4b : SolarManWave1b 
-{
-Scale 3.5
-States
-{
-Spawn:
-SOBL L 0
-SOBL LLMML 1 A_Explode(120,24,0,0,24)
-SOBL L 0 A_Fadeout(0.25)
-SOBL L 1 A_Explode(120,24,0,0,24)
-SOBL M 0 A_Fadeout(0.25)
-SOBL M 1 A_Explode(120,24,0,0,24)
-SOBL M 0 A_Fadeout(0.25)
-SOBL M 1 A_Explode(120,24,0,0,24)
-Stop
-}
-}
-
-Actor SolarM_HeadSun_P1a : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 A_SpawnItemEx("SolarM_HeadSunFXA",args[1]*-1,args[2],args[1]+68+args[3],momx,momy,momz,0,41)
-goto TheSun1
-TheSun1:
-TNT1 A 0 A_SpawnItemEx("SolarM_SunHeadBoom1",args[1]*-1,args[2],args[1]+68+args[3]+10,momx,momy,momz,0,40)
-TNT1 A 0 A_SpawnItemEx("SolarM_SunCounter1",args[1]*-1,args[2],args[1]+68+args[3],momx,momy,momz,0,40)
-goto P_Ammo
-TheSun2:
-TNT1 A 0 A_SpawnItemEx("SolarM_SunHeadBoom2",args[1]*-1,args[2],args[1]+68+args[3]+16,momx,momy,momz,0,40)
-TNT1 A 0 A_SpawnItemEx("SolarM_SunCounter2",args[1]*-1,args[2],args[1]+68+args[3],momx,momy,momz,0,40)
-goto P_Ammo
-TheSun3:
-TNT1 A 0 A_SpawnItemEx("SolarM_SunHeadBoom3",args[1]*-1,args[2],args[1]+68+args[3]+21,momx,momy,momz,0,40)
-TNT1 A 0 A_SpawnItemEx("SolarM_SunCounter3",args[1]*-1,args[2],args[1]+68+args[3],momx,momy,momz,0,40)
-goto P_Ammo
-TheSun4:
-TNT1 A 0 A_SpawnItemEx("SolarM_SunHeadBoom4",args[1]*-1,args[2],args[1]+68+args[3]+26,momx,momy,momz,0,40)
-TNT1 A 0 A_SpawnItemEx("SolarM_SunCounter4",args[1]*-1,args[2],args[1]+68+args[3],momx,momy,momz,0,40)
-goto P_Ammo
-P_Ammo:
-TNT1 A 0 A_TakeInventory("SolarHoldCoolDown",1+CallACS("cbm_CheckForRage",0)*1)
-TNT1 A 0 A_JumpIfInventory("SolarM_AmmoDrainDelay",175,3)
-TNT1 A 0 A_GiveInventory("SolarM_AmmoDrainDelay",1)
-TNT1 A 0
-stop
-TNT1 A 0 A_JumpIfInventory("SolarHoldFlag",1,2)
-TNT1 A 0 A_TakeInventory("SunAmmo",2-CallACS("cbm_CheckForRage",0)*1,1)
-TNT1 A 0
-stop
-}
-}
-
-Actor SolarM_HeadSun_P1b : SolarM_HeadSun_P1a
-{
-States
-{
-Pickup:
-TNT1 A 0 A_SpawnItemEx("SolarM_HeadSunFXB",args[1]*-1,args[2],args[1]+68+args[3],momx,momy,momz,0,41)
-goto TheSun1
-}
-}
-
-Actor SolarM_HeadSun_P2a : SolarM_HeadSun_P1a
-{
-States
-{
-Pickup:
-TNT1 A 0 A_SpawnItemEx("SolarM_HeadSunFXC",args[1]*-1,args[2],args[1]+68+args[3],momx,momy,momz,0,41)
-goto TheSun2
-}
-}
-
-Actor SolarM_HeadSun_P2b : SolarM_HeadSun_P1a
-{
-States
-{
-Pickup:
-TNT1 A 0 A_SpawnItemEx("SolarM_HeadSunFXD",args[1]*-1,args[2],args[1]+68+args[3],momx,momy,momz,0,41)
-goto TheSun2
-}
-}
-
-Actor SolarM_HeadSun_P3a : SolarM_HeadSun_P1a
-{
-States
-{
-Pickup:
-TNT1 A 0 A_SpawnItemEx("SolarM_HeadSunFXE",args[1]*-1,args[2],args[1]+68+args[3],momx,momy,momz,0,41)
-goto TheSun3
-}
-}
-
-Actor SolarM_HeadSun_P3b : SolarM_HeadSun_P1a
-{
-States
-{
-Pickup:
-TNT1 A 0 A_SpawnItemEx("SolarM_HeadSunFXF",args[1]*-1,args[2],args[1]+68+args[3],momx,momy,momz,0,41)
-goto TheSun3
-}
-}
-
-Actor SolarM_HeadSun_P4a : SolarM_HeadSun_P1a
-{
-States
-{
-Pickup:
-TNT1 A 0 A_SpawnItemEx("SolarM_HeadSunFXE2",args[1]*-1,args[2],args[1]+68+args[3],momx,momy,momz,0,41)
-goto TheSun4
-}
-}
-
-Actor SolarM_HeadSun_P4b : SolarM_HeadSun_P1a
-{
-States
-{
-Pickup:
-TNT1 A 0 A_SpawnItemEx("SolarM_HeadSunFXF2",args[1]*-1,args[2],args[1]+68+args[3],momx,momy,momz,0,41)
-goto TheSun4
-}
-}
-
-Actor SolarM_HeadSunFXA 
-{
-+MISSILE
-+NOBLOCKMAP
-+NOGRAVITY
-+FORCEXYBILLBOARD 
-+BRIGHT
-+THRUACTORS
-+DONTBLAST
-+DONTSPLASH
-+THRUACTORS
-+NOINTERACTION
-+NOTIMEFREEZE
-+CLIENTSIDEONLY
-RenderStyle "Translucent"
-ALpha 1.0
-Damage (0)
-Speed 0
-Radius 3
-Height 3
-Scale 2.5
-States
-{
-Spawn:
-SOBL A 0
-SpawnC:
-"####" "#" 0 A_JumpIfInTargetInventory("VivifyFlag1",1,2)
-"####" "#" 1
-stop
-"####" "#" 1 A_SetTranslucent(0.75,0)
-stop
-Death:
-TNT1 A 0 
-Stop
-}
-}
-
-
-Actor SolarM_HeadSunFXB : SolarM_HeadSunFXA
-{
-States
-{
-Spawn:
-SOBL B 0
-goto SpawnC
-}
-}
-
-Actor SolarM_HeadSunFXC : SolarM_HeadSunFXA
-{
-States
-{
-Spawn:
-SOBL C 0
-goto SpawnC
-}
-}
-
-Actor SolarM_HeadSunFXD : SolarM_HeadSunFXA
-{
-States
-{
-Spawn:
-SOBL D 0
-goto SpawnC
-}
-}
-
-Actor SolarM_HeadSunFXE : SolarM_HeadSunFXA
-{
-States
-{
-Spawn:
-SOBL E 0
-goto SpawnC
-}
-}
-
-Actor SolarM_HeadSunFXF : SolarM_HeadSunFXA
-{
-States
-{
-Spawn:
-SOBL F 0
-goto SpawnC
-}
-}
-
-Actor SolarM_HeadSunFXE2 : SolarM_HeadSunFXA
-{
-Scale 3.5
-States
-{
-Spawn:
-SOBL E 0
-SOBL E 0 A_SpawnItemEx("SolarM_SunGlareFX1",0,0,30,0,0,0,0,1)
-goto SpawnC
-}
-}
-
-Actor SolarM_HeadSunFXF2 : SolarM_HeadSunFXA
-{
-Scale 3.5
-States
-{
-Spawn:
-SOBL F 0
-SOBL F 0 A_SpawnItemEx("SolarM_SunGlareFX2",0,0,30,0,0,0,0,1)
-goto SpawnC
-}
-}
-
-
-Actor SolarM_SunGlareFX1 : BasicClientSide
-{
-+FORCEXYBILLBOARD
-+BRIGHT
-renderstyle translucent
-alpha 0.7
-scale 2.6
-States
-{
-Spawn:
-TNT1 A 0
-X_4A F 1 
-stop
-}
-}
-
-Actor SolarM_SunGlareFX2 : SolarM_SunGlareFX1
-{
-alpha 0.6
-scale 2.4
-}
-
-Actor SolarM_SunGlareFX3 : BasicClientSide
-{
-+FORCEXYBILLBOARD
-+BRIGHT
-renderstyle translucent
-alpha 0.4
-scale 1.0
-States
-{
-Spawn:
-TNT1 A 0
-X_4A F 1 
-X_4A F 1 A_SetScale(1.3)
-X_4A F 1 A_SetScale(1.6)
-X_4A F 1 A_SetScale(1.9)
-X_4A F 1 A_SetScale(2.1)
-X_4A F 1 A_SetScale(2.3)
-stop
-}
-}
-
-
-Actor SolarM_HeadSunCounter_P : CustomInventory
-{
-states
-{
-Pickup:
-TNT1 A 0 A_PlaySoundEx("wep/SolarM_Charge","Body")
-TNT1 A 0 A_TakeInventory("SolarM_AmmoDrainDelay",999)
-TNT1 A 0 A_GiveInventory("PowerSolarAbsorbGrace",1)
-stop
-}
-}
-
-Actor SolarM_SunCounter1
-{
--SOLID
-+MISSILE
-+DONTSPLASH
-+DONTBLAST
-+DONTDRAIN
-+DONTREFLECT
-+DONTRIP
-+NOBLOOD
 +NOCLIP
-//+NORADIUSDMG
-//+SHOOTABLE
-+NOTIMEFREEZE
-+NOGRAVITY
-+NOTAUTOAIMED
-//+NODAMAGE
+States
+{
+Spawn:
+TNT1 A 0
+Spawn2:
+TNT1 A 1 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 0 A_TakeFromTarget("SolarInfernoHoldAmmo",1)
+TNT1 A 0 A_JumpIfInTargetInventory("SolarInfernoHoldAmmo",1,"Spawn2")
+goto Death
 
-+DONTDRAIN
-//+SHOOTABLE
-+QUICKTORETALIATE
--NORADIUSDMG
-+SERVERSIDEONLY
-Species "SolarHead"
-DamageFactor "SolarM_Head",0.0
-painchance 256
-health 100000
-stamina 1//For divide by 10 hp for fishing
-RenderStyle None
-Damage (0)
-//Tweaked/Actual/Original
-Height 20//20//14
-Radius 10//10//7
-speed 0
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor SolarSpawnHelper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInTargetInventory("SolarMainSwag",1,"SpawnWait")
+TNT1 A 0 A_JumpIfInTargetInventory("SolarInfernoAmmo",400,"SpawnWait")
+TNT1 A 0 A_JumpIfInventory("WeaponCharge",1,"Give")
+TNT1 A 1 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"SpawnR")
+TNT1 A 0 A_GiveInventory("WeaponCharge",2)
+loop
+SpawnR:
+TNT1 A 0 A_GiveInventory("WeaponCharge",2)
+Goto Spawn+1
+
+SpawnWait:
+TNT1 A 0 A_TakeInventory("WeaponCharge",999)
+TNT1 A 1 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("SolarInfernoAmmo",400,"SpawnWait")
+Goto Spawn+1
+
+Give:
+TNT1 A 0 A_TakeInventory("WeaponCharge",35)
+TNT1 A 1 A_GiveToTarget("SolarInfernoAmmo",6)
+Goto Spawn+1
+
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor SolarInfernoHelper : BasicHelper
+{
+Translation "192:192=213:213", "198:198=217:217", "194:194=248:248", "195:195=222:222"
 scale 2.5
+renderstyle normal
+//+FORCEXYBILLBOARD
++NOCLIP
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_RearrangePointers(0,0,2)
-TNT1 A 0 A_ChangeFlag("SHOOTABLE",1)
-TNT1 AA 1
+TNT1 A 0 A_FaceTarget
+TNT1 A 0 A_PlaySoundEx("wep/SolarM_Charge","Body")
+Check:
+"----" "#" 1 A_Warp(AAPTR_TRACER,0,0,80,180,WARPF_NoCheckPosition)
+Check2:
+TNT1 A 1 A_JumpIfInTargetInventory("SolarInfernoAmmo",1,"MiniStart")
+goto Check
+
+MiniStart: 
+TNT1 A 0 A_PlaySoundEx("wep/SolarM_Charge","Body")
+Mini:
+GSOL AAA 1 Bright A_Warp(AAPTR_TRACER,0,0,80,180,WARPF_NoCheckPosition)
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"DieSml")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+GSOL BB 1 Bright A_Warp(AAPTR_TRACER,0,0,80,180,WARPF_NoCheckPosition)
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"DieSml")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+//TNT1 A 0 A_JumpIfInTargetInventory("SolarInfernoAmmo",400,"Maxi")
+TNT1 A 0 A_JumpIfInTargetInventory("SolarInfernoAmmo",100,"Med")
+TNT1 A 0 A_JumpIfInTargetInventory("SolarInfernoAmmo",1,"Mini")
+GSOL B 1
+goto Check
+
+Med:
+GSOL CCC 1 Bright A_Warp(AAPTR_TRACER,0,0,90,180,WARPF_NoCheckPosition)
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"DieMed")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+GSOL DD 1 Bright A_Warp(AAPTR_TRACER,0,0,90,180,WARPF_NoCheckPosition)
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"DieMed")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("SolarInfernoAmmo",400,"Maxi")
+TNT1 A 0 A_JumpIfInTargetInventory("SolarInfernoAmmo",100,"Med")
+TNT1 A 0 A_JumpIfInTargetInventory("SolarInfernoAmmo",1,"Mini")
+GSOL D 1
+goto Check
+
+Maxi:
+GSOL EEE 1 Bright A_Warp(AAPTR_TRACER,0,0,100,180,WARPF_NoCheckPosition)
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"DieBig")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+GSOL FF 1 Bright A_Warp(AAPTR_TRACER,0,0,100,180,WARPF_NoCheckPosition)
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"DieBig")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("SolarInfernoAmmo",400,"Maxi")
+TNT1 A 0 A_JumpIfInTargetInventory("SolarInfernoAmmo",100,"Med")
+TNT1 A 0 A_JumpIfInTargetInventory("SolarInfernoAmmo",1,"Mini")
+GSOL F 1
+goto Check
+
+DieBig:
+TNT1 A 0 A_SpawnItemEx("BigSolarDroplet",0,0,0,momx,momy,momz,0,1)
 stop
-Pain:
-TNT1 A 0 A_ChangeFlag("NOPAIN",1)//NODAMAGE
-TNT1 A 0 A_JumpIfInventory("PowerSolarAbsorbGrace",1,"Death",8)
-TNT1 A 1//Delay to gather who hit
-TNT1 A 0 ACS_NamedExecuteWithResult("cbm_GiveIfPlayerHitMe",107,(100000-Health)*Stamina)
+
+DieMed:
+TNT1 A 0 A_SpawnItemEx("MedSolarDroplet",0,0,0,momx,momy,momz,0,1)
 stop
+
+DieSml:
+TNT1 A 0 A_SpawnItemEx("SmlSolarDroplet",0,0,0,momx,momy,momz,0,1)
+stop
+
 Death:
-TNT1 A 1
+TNT1 A 0
 stop
 }
 }
 
-Actor SolarM_SunCounter2 : SolarM_SunCounter1
-{
-Height 32//35//26
-Radius 16//17//13
-}
+actor SolarInfernoHelperB : SolarInfernoHelper{translation "192:192=205:205","198:198=74:74","194:194=205:205","195:195=74:74"}
+actor SolarInfernoHelperR : SolarInfernoHelper{translation "192:192=171:171","198:198=41:41","194:194=171:171","195:195=41:41"}
+actor SolarInfernoHelperO : SolarInfernoHelper{translation "192:192=104:104","198:198=128:128","194:194=104:104","195:195=128:128"}
+actor SolarInfernoHelperP : SolarInfernoHelper{translation "192:192=229:229","198:198=232:232","194:194=229:229","195:195=232:232"}
 
-Actor SolarM_SunCounter3 : SolarM_SunCounter1
+actor SolarmanMainInv_CI : CustomInventory
 {
-Height 42//50//32
-Radius 21//25//16
-}
-
-Actor SolarM_SunCounter4 : SolarM_SunCounter1
-{
-Height 52//70//38
-Radius 26//35//19
-
 States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("SolarInfernoAmmo",100,1)
+goto Pickup3
+TNT1 A 0 A_TakeInventory("SolarInfernoAmmo",100)
+TNT1 A 0 A_GiveInventory("SolarmanMain2_CI")
+stop
+Pickup3:
+
+TNT1 A 0 A_GiveInventory("SolarmanMain3_CI")
+stop
+}
+}
+
+//Inventory item.
+
+actor SolarInfernoItem : CustomInventory //Item to return missing suns.
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "SOLSUNS"
+scale 2.0
+inventory.pickupmessage "Just, uh, give me a moment to charge here... any moment now, I'll show you my true power...."
++INVBAR
+states
 {
 Spawn:
+EVAL Z 1
+loop
+
+Use:
+TNT1 A 0 A_PlaySoundEx("weapon/BoobeamBeep","SoundSlot6")
+TNT1 A 0 A_GiveInventory("SolarInfernoDetonator")
+fail
+
+No:
 TNT1 A 0
-TNT1 A 0 ACS_NamedExecuteAlways("cbm_SolarSunMassPull",0,1+CallACS("cbm_CheckForRage",2),328)
-//TNT1 A 0 ACS_NamedExecuteAlways("cbm_SolarGravitationalPull",0,1,1,328)
-//TNT1 A 0 ACS_NamedExecuteAlways("cbm_GalaxyBHB_ACS",0,1,1,328)
-goto Super::Spawn
+fail
 }
 }
 
-Actor SolarM_SunHeadBoom1 : BasicExplosion
-{
-Damagetype "SolarM_Head"
-Obituary "$OB_SOLARHEAD1"
-+NOTIMEFREEZE
-//+SERVERSIDEONLY
-RenderStyle None
-Mass 0
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 A 1 A_Explode(50+Mass*20,12+Mass*4,0,0,12+Mass*4)
-stop
-}
-}
+//Teamcolor inventory items.
 
-Actor SolarM_SunHeadBoom2 : SolarM_SunHeadBoom1
-{
-Obituary "$OB_SOLARHEAD2"
-Mass 1
-}
-
-Actor SolarM_SunHeadBoom3 : SolarM_SunHeadBoom1
-{
-Obituary "$OB_SOLARHEAD3"
-Mass 2
-}
-
-Actor SolarM_SunHeadBoom4 : SolarM_SunHeadBoom1
-{
-Obituary "$OB_SOLARHEAD4"
-Mass 3
-}
-
-Actor SolarManBlazeCollapse1 : SolarManBlaze1
-{
-Obituary "$OB_SOLARHEAD1"
-States
-{
-Death:
-TNT1 A 0 A_Stop
-TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
-TNT1 A 0 A_SpawnItemEx("CBM_OilPitIgnite")
-TNT1 A 0 A_Explode(60,64,0,0,14)//160//24 128//
-//SOBL NONONONONOPPQQ 2
-SOBL NOPQ 2
-stop
-}
-}
-Actor SolarManBlazeCollapse2 : SolarManBlaze2
-{
-Obituary "$OB_SOLARHEAD2"
-States
-{
-Death:
-TNT1 A 0 A_Stop
-TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
-TNT1 A 0 A_SpawnItemEx("CBM_OilPitIgnite")
-TNT1 A 0 A_Explode(90,96,0,0,26)
-//SOBL RSRSRSRSRSTTUU 2
-SOBL RSTU 2
-stop
-}
-}
-Actor SolarManBlazeCollapse3 : SolarManBlaze3
-{
-Obituary "$OB_SOLARHEAD3"
-States
-{
-Death:
-TNT1 A 0 A_Stop
-TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
-TNT1 A 0 A_SpawnItemEx("CBM_OilPitIgnite")
-TNT1 A 0 A_Explode(120,128,0,0,32)
-//SOBL VWVWVWVWVWXXYY 2
-SOBL VWXY 2
-stop
-}
-}
-Actor SolarManBlazeCollapse4 : SolarManBlaze4
-{
-Obituary "$OB_SOLARHEAD4"
-States
-{
-Death:
-TNT1 A 0 A_Stop
-TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
-TNT1 A 0 A_SpawnItemEx("CBM_OilPitIgnite")
-TNT1 A 0 A_Explode(150,160,0,0,38)//188
-TNT1 A 0 A_SetScale(2.5)
-//SOBL "Z[Z[Z[Z[Z[\\]]" 2
-SOBL "Z[\]" 2
-stop
-}
-}
-
-
-Actor SolarManMain1_CI : TeamColor_CI
+actor SolarmanMain_CI : TeamColor_CI
 {
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze1",0,1,0,8)
+TNT1 A 0 A_FireCustomMissile("SolarFlare",0,1,0,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze1B",0,1,0,8)
+TNT1 A 0 A_FireCustomMissile("SolarFlareB",0,1,0,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze1R",0,1,0,8)
+TNT1 A 0 A_FireCustomMissile("SolarFlareR",0,1,0,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze1O",0,1,0,8)
+TNT1 A 0 A_FireCustomMissile("SolarFlareO",0,1,0,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze1P",0,1,0,8)
+TNT1 A 0 A_FireCustomMissile("SolarFlareP",0,1,0,0)
 goto Done
 }
 }
 
-Actor SolarManMain2_CI : TeamColor_CI
+
+actor SolarmanMain2_CI : TeamColor_CI
 {
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze2",0,1,0,8)
+TNT1 A 0 A_FireCustomMissile("SolarFlare2",0,1,0,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze2B",0,1,0,8)
+TNT1 A 0 A_FireCustomMissile("SolarFlare2B",0,1,0,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze2R",0,1,0,8)
+TNT1 A 0 A_FireCustomMissile("SolarFlare2R",0,1,0,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze2O",0,1,0,8)
+TNT1 A 0 A_FireCustomMissile("SolarFlare2O",0,1,0,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze2P",0,1,0,8)
+TNT1 A 0 A_FireCustomMissile("SolarFlare2P",0,1,0,0)
 goto Done
 }
 }
 
-Actor SolarManMain3_CI : TeamColor_CI
+actor SolarmanMain3_CI : TeamColor_CI
 {
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze3",0,1,0,8)
+TNT1 A 0 A_FireCustomMissile("SolarFlare3",0,1,0,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze3B",0,1,0,8)
+TNT1 A 0 A_FireCustomMissile("SolarFlare3B",0,1,0,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze3R",0,1,0,8)
+TNT1 A 0 A_FireCustomMissile("SolarFlare3R",0,1,0,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze3O",0,1,0,8)
+TNT1 A 0 A_FireCustomMissile("SolarFlare3O",0,1,0,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze3P",0,1,0,8)
+TNT1 A 0 A_FireCustomMissile("SolarFlare3P",0,1,0,0)
 goto Done
 }
 }
 
-Actor SolarManMain4_CI : TeamColor_CI
+actor SolarmanAlt_CI : TeamColor_CI
 {
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze4",0,1,0,8)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAlt",0,0,24)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAlt2",0,0,24)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAlt3",0,0,24)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAlt4",0,0,24)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze4B",0,1,0,8)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAltB",0,0,24)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAlt2B",0,0,24)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAlt3B",0,0,24)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAlt4B",0,0,24)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze4R",0,1,0,8)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAltR",0,0,24)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAlt2R",0,0,24)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAlt3R",0,0,24)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAlt4R",0,0,24)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze4O",0,1,0,8)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAltO",0,0,24)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAlt2O",0,0,24)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAlt3O",0,0,24)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAlt4O",0,0,24)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("SolarManBlaze4P",0,1,0,8)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAltP",0,0,24)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAlt2P",0,0,24)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAlt3P",0,0,24)
+TNT1 A 0 A_SpawnItemEX("SolarFlareAlt4P",0,0,24)
+goto Done
+}
+}
+
+actor SolarmanHelper_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_SpawnItemEx("SolarInfernoHelper")
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEx("SolarInfernoHelperB")
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEx("SolarInfernoHelperR")
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEx("SolarInfernoHelperO")
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEx("SolarInfernoHelperP")
+goto Done
+}
+}
+
+actor SolarmanAltChuck_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortar",0,0,32,cos(pitch)*15,0,sin(-pitch)*15)
+goto Done
+FireB:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortarB",0,0,32,cos(pitch)*15,0,sin(-pitch)*15)
+goto Done
+FireR:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortarR",0,0,32,cos(pitch)*15,0,sin(-pitch)*15)
+goto Done
+FireO:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortarO",0,0,32,cos(pitch)*15,0,sin(-pitch)*15)
+goto Done
+FireP:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortarP",0,0,32,cos(pitch)*15,0,sin(-pitch)*15)
+goto Done
+}
+}
+
+actor SolarmanAltChuck2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortar",0,0,32,cos(pitch)*30,0,sin(-pitch)*30)
+goto Done
+FireB:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortarB",0,0,32,cos(pitch)*30,0,sin(-pitch)*30)
+goto Done
+FireR:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortarR",0,0,32,cos(pitch)*30,0,sin(-pitch)*30)
+goto Done
+FireO:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortarO",0,0,32,cos(pitch)*30,0,sin(-pitch)*30)
+goto Done
+FireP:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortarP",0,0,32,cos(pitch)*30,0,sin(-pitch)*30)
+goto Done
+}
+}
+
+actor SolarmanAltChuck3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortar",0,0,32,cos(pitch)*45,0,sin(-pitch)*45)
+goto Done
+FireB:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortarB",0,0,32,cos(pitch)*45,0,sin(-pitch)*45)
+goto Done
+FireR:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortarR",0,0,32,cos(pitch)*45,0,sin(-pitch)*45)
+goto Done
+FireO:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortarO",0,0,32,cos(pitch)*45,0,sin(-pitch)*45)
+goto Done
+FireP:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortarP",0,0,32,cos(pitch)*45,0,sin(-pitch)*45)
+goto Done
+}
+}
+
+actor SolarmanAltChuck4_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortar",0,0,32,cos(pitch)*60,0,sin(-pitch)*60)
+goto Done
+FireB:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortarB",0,0,32,cos(pitch)*60,0,sin(-pitch)*60)
+goto Done
+FireR:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortarR",0,0,32,cos(pitch)*60,0,sin(-pitch)*60)
+goto Done
+FireO:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortarO",0,0,32,cos(pitch)*60,0,sin(-pitch)*60)
+goto Done
+FireP:
+TNT1 A 0 A_PlaySoundEx("weapon/sunshoot","Weapon")
+TNT1 A 0 A_SpawnItemEx("SolarMortarP",0,0,32,cos(pitch)*60,0,sin(-pitch)*60)
+goto Done
+}
+}
+
+actor SolarmanRealAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_TakeInventory("SolarInfernoAmmo",100)
+TNT1 A 0 A_FireCustomMissile("SolarGrenadeLob",0,1,0,32)
+goto Done
+FireB:
+TNT1 A 0 A_TakeInventory("SolarInfernoAmmo",100)
+TNT1 A 0 A_FireCustomMissile("SolarGrenadeLobB",0,1,0,32)
+goto Done
+FireR:
+TNT1 A 0 A_TakeInventory("SolarInfernoAmmo",100)
+TNT1 A 0 A_FireCustomMissile("SolarGrenadeLobR",0,1,0,32)
+goto Done
+FireO:
+TNT1 A 0 A_TakeInventory("SolarInfernoAmmo",100)
+TNT1 A 0 A_FireCustomMissile("SolarGrenadeLobO",0,1,0,32)
+goto Done
+FireP:
+TNT1 A 0 A_TakeInventory("SolarInfernoAmmo",100)
+TNT1 A 0 A_FireCustomMissile("SolarGrenadeLobP",0,1,0,32)
+goto Done
+}
+}
+
+actor SolarmanRealAltAir_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_TakeInventory("SolarInfernoAmmo",100)
+TNT1 A 0 A_FireCustomMissile("SolarGrenadeLobAir",0,1,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_TakeInventory("SolarInfernoAmmo",100)
+TNT1 A 0 A_FireCustomMissile("SolarGrenadeLobAirB",0,1,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_TakeInventory("SolarInfernoAmmo",100)
+TNT1 A 0 A_FireCustomMissile("SolarGrenadeLobAirR",0,1,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_TakeInventory("SolarInfernoAmmo",100)
+TNT1 A 0 A_FireCustomMissile("SolarGrenadeLobAirO",0,1,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_TakeInventory("SolarInfernoAmmo",100)
+TNT1 A 0 A_FireCustomMissile("SolarGrenadeLobAirP",0,1,0,0)
+goto Done
+}
+}
+
+actor SolarmanFakeAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("SolarSmallGrenadeLob",0,1,0,32)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("SolarSmallGrenadeLobB",0,1,0,32)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("SolarSmallGrenadeLobR",0,1,0,32)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("SolarSmallGrenadeLobO",0,1,0,32)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("SolarSmallGrenadeLobP",0,1,0,32)
+goto Done
+}
+}
+
+actor SolarmanFakeAltAir_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("SolarSmallGrenadeLobAir",0,1,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("SolarSmallGrenadeLobAirB",0,1,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("SolarSmallGrenadeLobAirR",0,1,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("SolarSmallGrenadeLobAirO",0,1,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("SolarSmallGrenadeLobAirP",0,1,0,0)
 goto Done
 }
 }

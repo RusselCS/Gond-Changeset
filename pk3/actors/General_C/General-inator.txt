@@ -388,8 +388,9 @@ loop
 
 */
 
-actor Beef_CBMModderSupport_H : BasicHelper
-{//I'm sorry modders, but x10 was going to happen
+// Gondola needs to remove this actor because they're no longer x10
+/*actor Beef_CBMModderSupport_H : BasicHelper
+{//I'm sorry modders, but x10 was NOT going to happen PACKWATCHHHHHHHHHHHHHHHHHH
 States
 {
 Spawn:
@@ -397,5 +398,5 @@ TNT1 A 0
 TNT1 A 10
 stop
 }
-}
+}*/
 

@@ -1,11 +1,12 @@
 actor Commandoman : ClassBase
 {
+Player.StartItem "IFMM10", 1
 Player.ScoreIcon "C_10C0X"
 player.displayname "Commandoman"
 player.soundclass "commandomanc"
 
-player.maxhealth 1550
-health 1550
+player.maxhealth 135
+health 135
 player.jumpz 10
 player.forwardmove 0.6, 0.6
 player.sidemove 0.58, 0.58
@@ -48,9 +49,11 @@ loop
 Leap2:
 CMDM S 8
 goto Spawn
+
 ClassPain:
 CMDM H 0
 goto PainContinue
+
 ClassDeath:
 CMDM H 0
 goto DeathContinue

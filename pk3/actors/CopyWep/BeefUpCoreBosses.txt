@@ -6,103 +6,103 @@
 ////
 ////////Only basic "HP" changes for now, damage might be impossible for some of the bosses.
 
-actor Beef_Megaman?Boss1 : Megaman?Boss1 replaces Megaman?Boss1{damagefactor "Normal", 0.11}//250
-actor Beef_Megaman?Boss2 : Megaman?Boss2 replaces Megaman?Boss2{damagefactor "Normal", 0.11}
-actor Beef_Megaman?Boss3 : Megaman?Boss3 replaces Megaman?Boss3{damagefactor "Normal", 0.11}
+actor Beef_Megaman?Boss1 : Megaman?Boss1 replaces Megaman?Boss1{}//250
+actor Beef_Megaman?Boss2 : Megaman?Boss2 replaces Megaman?Boss2{}
+actor Beef_Megaman?Boss3 : Megaman?Boss3 replaces Megaman?Boss3{}
 
 //actor Beef_DevilEye : DevilEye replaces DevilEye{Health 30000}
 //actor Beef_DevilDamage : DevilDamage replaces DevilDamage{Health 2500}
 //actor Beef_DevilEye2 : DevilEye2 replaces DevilEye2{Health 5000}
 
-actor Beef_GutsDozerHitbox : GutsDozerHitbox replaces GutsDozerHitbox{Health 1001 damagefactor "Normal", 0.2}
-actor Beef_DozerBossGutsRockProjectile : DozerBossGutsRockProjectile replaces DozerBossGutsRockProjectile{Damage 50}//DamageType "SuperArm"
-actor Beef_DozerMetool2 : DozerMetool2 replaces DozerMetool2{Health 20}
+actor Beef_GutsDozerHitbox : GutsDozerHitbox replaces GutsDozerHitbox{}
+actor Beef_DozerBossGutsRockProjectile : DozerBossGutsRockProjectile replaces DozerBossGutsRockProjectile{}//DamageType "SuperArm"
+actor Beef_DozerMetool2 : DozerMetool2 replaces DozerMetool2{}
 
-actor Beef_DocRobotNeedle : DocRobotNeedle replaces DocRobotNeedle{damagefactor "Normal", 0.11}//Health 1000
-actor Beef_DocRobotGemini : DocRobotGemini replaces DocRobotGemini{damagefactor "Normal", 0.11}
-actor Beef_DocRobotSpark : DocRobotSpark replaces DocRobotSpark{damagefactor "Normal", 0.11}
-actor Beef_DocRobotShadow : DocRobotShadow replaces DocRobotShadow{damagefactor "Normal", 0.11}
+actor Beef_DocRobotNeedle : DocRobotNeedle replaces DocRobotNeedle{}//Health 1000
+actor Beef_DocRobotGemini : DocRobotGemini replaces DocRobotGemini{}
+actor Beef_DocRobotSpark : DocRobotSpark replaces DocRobotSpark{}
+actor Beef_DocRobotShadow : DocRobotShadow replaces DocRobotShadow{}
 
-actor Beef_MetCatcherBody : MetCatcherBody replaces MetCatcherBody{damagefactor "Normal", 0.11}//Health 1000
-actor Beef_MetDaddy : MetDaddy replaces MetDaddy{damagefactor "Normal", 0.11}//Health 1000
-actor Beef_MetCatcherMet : MetCatcherMet replaces MetCatcherMet{Health 20}
-actor Beef_ChaseMet : ChaseMet replaces ChaseMet{Health 20}
+actor Beef_MetCatcherBody : MetCatcherBody replaces MetCatcherBody{}//Health 1000
+actor Beef_MetDaddy : MetDaddy replaces MetDaddy{}//Health 1000
+actor Beef_MetCatcherMet : MetCatcherMet replaces MetCatcherMet{}
+actor Beef_ChaseMet : ChaseMet replaces ChaseMet{}
 
-actor Beef_Darkman4Boss : Darkman4Boss replaces Darkman4Boss{damagefactor "Normal", 0.11}//Health 1000
-actor Beef_Darkman3Boss : Darkman3Boss replaces Darkman3Boss{damagefactor "Normal", 0.11}
-actor Beef_Darkman2Boss : Darkman2Boss replaces Darkman2Boss{damagefactor "Normal", 0.11}
-actor Beef_Darkman1Boss : Darkman1Boss replaces Darkman1Boss{damagefactor "Normal", 0.11}
+actor Beef_Darkman4Boss : Darkman4Boss replaces Darkman4Boss{}//Health 1000
+actor Beef_Darkman3Boss : Darkman3Boss replaces Darkman3Boss{}
+actor Beef_Darkman2Boss : Darkman2Boss replaces Darkman2Boss{}
+actor Beef_Darkman1Boss : Darkman1Boss replaces Darkman1Boss{}
 
-actor Beef_GammaHitbox : GammaHitbox replaces GammaHitbox{damagefactor "Normal", 0.11}//Health 1000
-actor Beef_GammaPowerMuscler : GammaPowerMuscler replaces GammaPowerMuscler{Health 5500}
-actor Beef_GammaJoe : GammaJoe replaces GammaJoe{Health 950}
-actor Beef_GammaMet : GammaMet replaces GammaMet{Health 20}
+actor Beef_GammaHitbox : GammaHitbox replaces GammaHitbox{}//Health 1000
+actor Beef_GammaPowerMuscler : GammaPowerMuscler replaces GammaPowerMuscler{}
+actor Beef_GammaJoe : GammaJoe replaces GammaJoe{}
+actor Beef_GammaMet : GammaMet replaces GammaMet{}
 //actor Beef_WilyDamage : WilyDamage replaces WilyDamage{Health 2500}
-actor Beef_GammaProtomanAlly : GammaProtomanAlly replaces GammaProtomanAlly{States{Wire:PROM Q 0 A_SpawnItemEx("GoldenNapalmBombWepC",0,0,32,17,0,3,-3.5)goto Super::Wire}}
-actor Beef_GammaFinalHitbox : GammaFinalHitbox replaces GammaFinalHitbox{damagefactor "Golden_NapalmBomb", 1.0}//Health 1
+actor Beef_GammaProtomanAlly : GammaProtomanAlly replaces GammaProtomanAlly{}
+actor Beef_GammaFinalHitbox : GammaFinalHitbox replaces GammaFinalHitbox{}//Health 1
 
-actor Beef_BassBoss1 : BassBoss1 replaces BassBoss1{damagefactor 0.11}//750
-actor Beef_BassBoss2 : BassBoss2 replaces BassBoss2{damagefactor 0.15}//1000
+actor Beef_BassBoss1 : BassBoss1 replaces BassBoss1{}//750
+actor Beef_BassBoss2 : BassBoss2 replaces BassBoss2{}//1000
 //actor Beef_CapsuleDamage : CapsuleDamage replaces CapsuleDamage{}//1000
 
-actor Beef_DuoBoss : DuoBoss replaces DuoBoss{damagefactor 0.11}//1500
+actor Beef_DuoBoss : DuoBoss replaces DuoBoss{}//1500
 //actor Beef_EvilRobotBoss : EvilRobotBoss replaces EvilRobotBoss{}//9000
 
-actor Beef_ProtomanBoss : ProtomanBoss replaces ProtomanBoss{Health 10000}
+actor Beef_ProtomanBoss : ProtomanBoss replaces ProtomanBoss{}
 
-actor Beef_SharkMissileBay : SharkMissileBay replaces SharkMissileBay{damagefactor "Normal", 0.11}//500
-actor Beef_SharkMissile : SharkMissile replaces SharkMissile{Health 20}
-actor Beef_SharkJoe : SharkJoe replaces SharkJoe{Health 3600}
-actor Beef_SharkJoe2 : SharkJoe2 replaces SharkJoe2{Health 3600}
-actor Beef_SharkTorpedo : SharkTorpedo replaces SharkTorpedo{Health 50}
-actor Beef_SharkTorpedoDispenser : SharkTorpedoDispenser replaces SharkTorpedoDispenser{damagefactor "Normal", 0.11}//500
-actor Beef_SharkDragonHead : SharkDragonHead replaces SharkDragonHead{damagefactor "Normal", 0.11}//1000
-actor Beef_SharkDragonBodyFeet : SharkDragonBodyFeet replaces SharkDragonBodyFeet{damagefactor "Normal", 0.11}
-actor Beef_SharkDragonSegment : SharkDragonSegment replaces SharkDragonSegment{damagefactor "Normal", 0.11}
-actor Beef_SharkDragonBackFeet : SharkDragonBackFeet replaces SharkDragonBackFeet{damagefactor "Normal", 0.11}
-actor Beef_SharkMouth : SharkMouth replaces SharkMouth{damagefactor "Normal", 0.11}//1000
+actor Beef_SharkMissileBay : SharkMissileBay replaces SharkMissileBay{}//500
+actor Beef_SharkMissile : SharkMissile replaces SharkMissile{}
+actor Beef_SharkJoe : SharkJoe replaces SharkJoe{}
+actor Beef_SharkJoe2 : SharkJoe2 replaces SharkJoe2{}
+actor Beef_SharkTorpedo : SharkTorpedo replaces SharkTorpedo{}
+actor Beef_SharkTorpedoDispenser : SharkTorpedoDispenser replaces SharkTorpedoDispenser{}//500
+actor Beef_SharkDragonHead : SharkDragonHead replaces SharkDragonHead{}//1000
+actor Beef_SharkDragonBodyFeet : SharkDragonBodyFeet replaces SharkDragonBodyFeet{}
+actor Beef_SharkDragonSegment : SharkDragonSegment replaces SharkDragonSegment{}
+actor Beef_SharkDragonBackFeet : SharkDragonBackFeet replaces SharkDragonBackFeet{}
+actor Beef_SharkMouth : SharkMouth replaces SharkMouth{}//1000
 
-actor Beef_FakemanBoss : FakemanBoss replaces FakemanBoss{damagefactor 0.14}//1000
-actor Beef_FakemanPoliceCarTarget : FakemanPoliceCarTarget replaces FakemanPoliceCarTarget{Health 1000}
-actor Beef_FakePoliceMotorcycle : FakePoliceMotorcycle replaces FakePoliceMotorcycle{Health 600}
-actor Beef_FakePoliceCopter : FakePoliceCopter replaces FakePoliceCopter{Health 450}
+actor Beef_FakemanBoss : FakemanBoss replaces FakemanBoss{}//1000
+actor Beef_FakemanPoliceCarTarget : FakemanPoliceCarTarget replaces FakemanPoliceCarTarget{}
+actor Beef_FakePoliceMotorcycle : FakePoliceMotorcycle replaces FakePoliceMotorcycle{}
+actor Beef_FakePoliceCopter : FakePoliceCopter replaces FakePoliceCopter{}
 
-actor Beef_WeaponArchiveBoss : WeaponArchiveBoss replaces WeaponArchiveBoss{damagefactor "Normal", 0.11}//1000
+actor Beef_WeaponArchiveBoss : WeaponArchiveBoss replaces WeaponArchiveBoss{}//1000
 
-actor Beef_WilyGolemCore : WilyGolemCore replaces WilyGolemCore{damagefactor "Normal", 0.11}//1000
-actor Beef_WilyGolemHeadHitbox : WilyGolemHeadHitbox replaces WilyGolemHeadHitbox{damagefactor "Normal", 0.11}//1000
+actor Beef_WilyGolemCore : WilyGolemCore replaces WilyGolemCore{}//1000
+actor Beef_WilyGolemHeadHitbox : WilyGolemHeadHitbox replaces WilyGolemHeadHitbox{}//1000
 
-actor Beef_TerraBoss : TerraBoss replaces TerraBoss{damagefactor "Normal", 0.11}//1000
+actor Beef_TerraBoss : TerraBoss replaces TerraBoss{}//1000
 
-actor Beef_SunstarBoss_Awoken : SunstarBoss_Awoken replaces SunstarBoss_Awoken{damagefactor "Normal", 0.11}//2000
-actor Beef_SunstarBoss : SunstarBoss replaces SunstarBoss{damagefactor "Normal", 0.11}//4000
+actor Beef_SunstarBoss_Awoken : SunstarBoss_Awoken replaces SunstarBoss_Awoken{}//2000
+actor Beef_SunstarBoss : SunstarBoss replaces SunstarBoss{}//4000
 
-actor Beef_BusterRodGBoss : BusterRodGBoss replaces BusterRodGBoss{damagefactor "Normal", 0.11}//1000
-actor Beef_MegaWaterSBoss : MegaWaterSBoss replaces MegaWaterSBoss{damagefactor "Normal", 0.11}//1000
+actor Beef_BusterRodGBoss : BusterRodGBoss replaces BusterRodGBoss{}//1000
+actor Beef_MegaWaterSBoss : MegaWaterSBoss replaces MegaWaterSBoss{}//1000
 actor Beef_M445 : M445 replaces M445{Health 300}
-actor Beef_HyperStormHBoss : HyperStormHBoss replaces HyperStormHBoss{damagefactor "Normal", 0.11}//2000
-actor Beef_HyperStormMetool : HyperStormMetool replaces HyperStormMetool{Health 20}
-actor Beef_GenesisBusterRodG : GenesisBusterRodG replaces GenesisBusterRodG{damagefactor "Normal", 0.11}//1000
-actor Beef_GenesisMegaWaterS : GenesisMegaWaterS replaces GenesisMegaWaterS{damagefactor "Normal", 0.11}//1000
-actor Beef_GenesisHyperStormH : GenesisHyperStormH replaces GenesisHyperStormH{damagefactor "Normal", 0.11}//2000
+actor Beef_HyperStormHBoss : HyperStormHBoss replaces HyperStormHBoss{}//2000
+actor Beef_HyperStormMetool : HyperStormMetool replaces HyperStormMetool{}
+actor Beef_GenesisBusterRodG : GenesisBusterRodG replaces GenesisBusterRodG{}//1000
+actor Beef_GenesisMegaWaterS : GenesisMegaWaterS replaces GenesisMegaWaterS{}//1000
+actor Beef_GenesisHyperStormH : GenesisHyperStormH replaces GenesisHyperStormH{}//2000
 
-actor Beef_EnkerBoss : EnkerBoss replaces EnkerBoss{damagefactor "Normal", 0.075}//1000
-actor Beef_PunkBoss : PunkBoss replaces PunkBoss{damagefactor "Normal", 0.065}//1000
-actor Beef_BalladeBoss : BalladeBoss replaces BalladeBoss{damagefactor "Normal", 0.06}//1000
+actor Beef_EnkerBoss : EnkerBoss replaces EnkerBoss{}//1000
+actor Beef_PunkBoss : PunkBoss replaces PunkBoss{}//1000
+actor Beef_BalladeBoss : BalladeBoss replaces BalladeBoss{}//1000
 
-actor Beef_RaDevilShotSpecial : RaDevilShotSpecial replaces RaDevilShotSpecial{damagefactor "Normal", 0.11}//400
-actor Beef_RaDevilFriendSpecial : RaDevilFriendSpecial replaces RaDevilFriendSpecial{damagefactor "Normal", 0.11}//100
-actor Beef_RaDevilThunderSpecial : RaDevilThunderSpecial replaces RaDevilThunderSpecial{damagefactor "Normal", 0.11}//400
-actor Beef_RaDevilEye : RaDevilEye replaces RaDevilEye{damagefactor "Normal", 0.11}//1000
-actor Beef_RaThorBoss : RaThorBoss replaces RaThorBoss{damagefactor "Normal", 0.11}//1000
+actor Beef_RaDevilShotSpecial : RaDevilShotSpecial replaces RaDevilShotSpecial{}//400
+actor Beef_RaDevilFriendSpecial : RaDevilFriendSpecial replaces RaDevilFriendSpecial{}//100
+actor Beef_RaDevilThunderSpecial : RaDevilThunderSpecial replaces RaDevilThunderSpecial{}//400
+actor Beef_RaDevilEye : RaDevilEye replaces RaDevilEye{}//1000
+actor Beef_RaThorBoss : RaThorBoss replaces RaThorBoss{}//1000
 
-actor Beef_KingBoss : KingBoss replaces KingBoss{damagefactor "Normal", 0.11}//1000
-actor Beef_KingBoss2 : KingBoss2 replaces KingBoss2{damagefactor "Normal", 0.11}//1000
+actor Beef_KingBoss : KingBoss replaces KingBoss{}//1000
+actor Beef_KingBoss2 : KingBoss2 replaces KingBoss2{}//1000
 
-actor Beef_QuintBoss : QuintBoss replaces QuintBoss{damagefactor "Normal", 0.11}//1000
-actor Beef_QuintBoss2 : QuintBoss2 replaces QuintBoss2{damagefactor "Normal", 0.11}//500
-actor Beef_QuintCrusherRock : QuintCrusherRock replaces QuintCrusherRock{Health 280}
-actor Beef_MMXRoadAttacker : MMXRoadAttacker replaces MMXRoadAttacker{Health 400}
+actor Beef_QuintBoss : QuintBoss replaces QuintBoss{}//1000
+actor Beef_QuintBoss2 : QuintBoss2 replaces QuintBoss2{}//500
+actor Beef_QuintCrusherRock : QuintCrusherRock replaces QuintCrusherRock{}
+actor Beef_MMXRoadAttacker : MMXRoadAttacker replaces MMXRoadAttacker{}
 
 
 

@@ -99,7 +99,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_Explode(110,256,0,0,32)
+TNT1 A 0 A_Explode(11,256,0,0,32)
 TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("GravityManHoldFX",random(192,256),0,random(128,256),0,0,-40,random(0,359),129)
 TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("GravityManHoldFX",random(128,192),0,random(128,256),0,0,-40,random(0,359),129)
 TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("GravityManHoldFX",random(64,128),0,random(128,256),0,0,-40,random(0,359),129)

@@ -81,7 +81,7 @@ Obituary "$OB_TOPTWIST"
 +CANBOUNCEWATER
 bouncefactor 0.001
 reactiontime 50
-Damage (190)
+Damage (19)
 Height 16
 Radius 16
 Speed 25
@@ -114,7 +114,7 @@ damagetype "TopTwist"
 Obituary "$OB_TOPTWIST"
 -NOGRAVITY
 reactiontime 120
-Damage (190)
+Damage (19)
 Radius 16
 Height 16
 Speed 0

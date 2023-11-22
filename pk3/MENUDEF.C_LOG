@@ -1,1390 +1,1089 @@
-OptionValue CL_Null
-{
-0,""
-}
 
-OptionValue CL_MenuMouse
-{
-	0, "\crOff"//No
-	//1, "Yes"
-	2, "\cdOn"//Touchscreen-like
-}
-
+OptionValue CL_Null {0,""}
 OptionMenu "CBM_ChangelogMenu"
 {
-	Title "Version 9_F Changelog"
-
-StaticText ""
-StaticText"$MNU_CHELP_MOUSEMENU"
-Option "",	"m_use_mouse", "CL_MenuMouse", "use_mouse"
-
-StaticText ""
-	StaticText"$MNU_CHELP_EQUALLINE"
+	Title "GondolaPatch 2.6 Hotfix Changelog"
+	StaticText "===============================================================",1
 	StaticText ""
-
-Option "", "CBM_Null_Menu", "CL__ModdingNotes"
-Option "", "CBM_Null_Menu", "CL_ModdingNotes1"
-Option "", "CBM_Null_Menu", "CL_ModdingNotes1a"
-Option "", "CBM_Null_Menu", "CL_ModdingNotes2"
-Option "", "CBM_Null_Menu", "CL_ModdingNotes2a"
-Option "", "CBM_Null_Menu", "CL_ModdingNotes3"
-Option "", "CBM_Null_Menu", "CL_ModdingNotes3a"
-Option "", "CBM_Null_Menu", "CL_ModdingNotes4"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__General"
-Option "", "CBM_Null_Menu", "CL_General1"
-Option "", "CBM_Null_Menu", "CL_General2"
-Option "", "CBM_Null_Menu", "CL_General3"
-Option "", "CBM_Null_Menu", "CL_General4"
-Option "", "CBM_Null_Menu", "CL_General5"
-Option "", "CBM_Null_Menu", "CL_General6"
-Option "", "CBM_Null_Menu", "CL_General6a"
-Option "", "CBM_Null_Menu", "CL_General7"
-Option "", "CBM_Null_Menu", "CL_General8"
-Option "", "CBM_Null_Menu", "CL_General9"
-Option "", "CBM_Null_Menu", "CL_General10"
-Option "", "CBM_Null_Menu", "CL_General11"
-Option "", "CBM_Null_Menu", "CL_General12"
-Option "", "CBM_Null_Menu", "CL_General13"
-Option "", "CBM_Null_Menu", "CL_General14"
-Option "", "CBM_Null_Menu", "CL_General15"
-Option "", "CBM_Null_Menu", "CL_General16"
-Option "", "CBM_Null_Menu", "CL_General17"
-Option "", "CBM_Null_Menu", "CL_General18"
-Option "", "CBM_Null_Menu", "CL_General19"
-Option "", "CBM_Null_Menu", "CL_General20"
-Option "", "CBM_Null_Menu", "CL_General21"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Copy_Classes"
-Option "", "CBM_Null_Menu", "CL_Copy_Classes1"
-Option "", "CBM_Null_Menu", "CL_Copy_Classes2"
-Option "", "CBM_Null_Menu", "CL_Copy_Classes3"
-Option "", "CBM_Null_Menu", "CL_Copy_Classes4"
-Option "", "CBM_Null_Menu", "CL_Copy_Classes5"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Megaman"
-Option "", "CBM_Null_Menu", "CL_Megaman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Rock"
-Option "", "CBM_Null_Menu", "CL_Rock1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Roll"
-Option "", "CBM_Null_Menu", "CL_Roll1"
-Option "", "CBM_Null_Menu", "CL_Roll2"
-Option "", "CBM_Null_Menu", "CL_Roll3"
-Option "", "CBM_Null_Menu", "CL_Roll4"
-Option "", "CBM_Null_Menu", "CL_Roll5"
-Option "", "CBM_Null_Menu", "CL_Roll6"
-Option "", "CBM_Null_Menu", "CL_Roll7"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Auto"
-Option "", "CBM_Null_Menu", "CL_Auto1"
-Option "", "CBM_Null_Menu", "CL_Auto2"
-Option "", "CBM_Null_Menu", "CL_Auto3"
-Option "", "CBM_Null_Menu", "CL_Auto4"
-Option "", "CBM_Null_Menu", "CL_Auto5"
-Option "", "CBM_Null_Menu", "CL_Auto6"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__DrLight"
-Option "", "CBM_Null_Menu", "CL_DrLight1"
-Option "", "CBM_Null_Menu", "CL_DrLight2"
-Option "", "CBM_Null_Menu", "CL_DrLight3"
-Option "", "CBM_Null_Menu", "CL_DrLight4"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__DrWily"
-Option "", "CBM_Null_Menu", "CL_DrWily1"
-Option "", "CBM_Null_Menu", "CL_DrWily2"
-Option "", "CBM_Null_Menu", "CL_DrWily3"
-Option "", "CBM_Null_Menu", "CL_DrWily4"
-Option "", "CBM_Null_Menu", "CL_DrWily5"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Cutman"
-Option "", "CBM_Null_Menu", "CL_Cutman1"
-Option "", "CBM_Null_Menu", "CL_Cutman2"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Gutsman"
-Option "", "CBM_Null_Menu", "CL_Gutsman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Iceman"
-Option "", "CBM_Null_Menu", "CL_Iceman1"
-Option "", "CBM_Null_Menu", "CL_Iceman2"
-Option "", "CBM_Null_Menu", "CL_Iceman3"
-Option "", "CBM_Null_Menu", "CL_Iceman4"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Oilman"
-Option "", "CBM_Null_Menu", "CL_Oilman1"
-Option "", "CBM_Null_Menu", "CL_Oilman2"
-Option "", "CBM_Null_Menu", "CL_Oilman3"
-Option "", "CBM_Null_Menu", "CL_Oilman4"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Airman"
-Option "", "CBM_Null_Menu", "CL_Airman1"
-Option "", "CBM_Null_Menu", "CL_Airman2"
-Option "", "CBM_Null_Menu", "CL_Airman3"
-Option "", "CBM_Null_Menu", "CL_Airman4"
-Option "", "CBM_Null_Menu", "CL_Airman5"
-Option "", "CBM_Null_Menu", "CL_Airman6"
-Option "", "CBM_Null_Menu", "CL_Airman7"
-Option "", "CBM_Null_Menu", "CL_Airman8"
-Option "", "CBM_Null_Menu", "CL_Airman9"
-Option "", "CBM_Null_Menu", "CL_Airman10"
-Option "", "CBM_Null_Menu", "CL_Airman11"
-Option "", "CBM_Null_Menu", "CL_Airman12"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Quickman"
-Option "", "CBM_Null_Menu", "CL_Quickman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Heatman"
-Option "", "CBM_Null_Menu", "CL_Heatman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Alien"
-Option "", "CBM_Null_Menu", "CL_Alien1"
-Option "", "CBM_Null_Menu", "CL_Alien2"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Geminiman"
-Option "", "CBM_Null_Menu", "CL_Geminiman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Sparkman"
-Option "", "CBM_Null_Menu", "CL_Sparkman1"
-Option "", "CBM_Null_Menu", "CL_Sparkman2"
-Option "", "CBM_Null_Menu", "CL_Sparkman3"
-Option "", "CBM_Null_Menu", "CL_Sparkman4"
-Option "", "CBM_Null_Menu", "CL_Sparkman5"
-Option "", "CBM_Null_Menu", "CL_Sparkman6"
-Option "", "CBM_Null_Menu", "CL_Sparkman7"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Shadowman"
-Option "", "CBM_Null_Menu", "CL_Shadowman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__DocRobot"
-Option "", "CBM_Null_Menu", "CL_DocRobot1"
-Option "", "CBM_Null_Menu", "CL_DocRobot2"
-Option "", "CBM_Null_Menu", "CL_DocRobot3"
-Option "", "CBM_Null_Menu", "CL_DocRobot4"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Brightman"
-Option "", "CBM_Null_Menu", "CL_Brightman1"
-Option "", "CBM_Null_Menu", "CL_Brightman2"
-Option "", "CBM_Null_Menu", "CL_Brightman3"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Pharaohman"
-Option "", "CBM_Null_Menu", "CL_Pharaohman1"
-Option "", "CBM_Null_Menu", "CL_Pharaohman2"
-Option "", "CBM_Null_Menu", "CL_Pharaohman3"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Ringman"
-Option "", "CBM_Null_Menu", "CL_Ringman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Dustman"
-Option "", "CBM_Null_Menu", "CL_Dustman1"
-Option "", "CBM_Null_Menu", "CL_Dustman2"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Diveman"
-Option "", "CBM_Null_Menu", "CL_Diveman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Skullman"
-Option "", "CBM_Null_Menu", "CL_Skullman1"
-Option "", "CBM_Null_Menu", "CL_Skullman2"
-Option "", "CBM_Null_Menu", "CL_Skullman3"
-Option "", "CBM_Null_Menu", "CL_Skullman4"
-Option "", "CBM_Null_Menu", "CL_Skullman5"
-Option "", "CBM_Null_Menu", "CL_Skullman6"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Gravityman"
-Option "", "CBM_Null_Menu", "CL_Gravityman1"
-Option "", "CBM_Null_Menu", "CL_Gravityman2"
-Option "", "CBM_Null_Menu", "CL_Gravityman3"
-Option "", "CBM_Null_Menu", "CL_Gravityman4"
-Option "", "CBM_Null_Menu", "CL_Gravityman5"
-Option "", "CBM_Null_Menu", "CL_Gravityman6"
-Option "", "CBM_Null_Menu", "CL_Gravityman7"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Waveman"
-Option "", "CBM_Null_Menu", "CL_Waveman1"
-Option "", "CBM_Null_Menu", "CL_Waveman1a"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Stoneman"
-Option "", "CBM_Null_Menu", "CL_Stoneman1"
-Option "", "CBM_Null_Menu", "CL_Stoneman2"
-Option "", "CBM_Null_Menu", "CL_Stoneman3"
-Option "", "CBM_Null_Menu", "CL_Stoneman4"
-Option "", "CBM_Null_Menu", "CL_Stoneman5"
-Option "", "CBM_Null_Menu", "CL_Stoneman6"
-Option "", "CBM_Null_Menu", "CL_Stoneman7"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Gyroman"
-Option "", "CBM_Null_Menu", "CL_Gyroman1"
-Option "", "CBM_Null_Menu", "CL_Gyroman2"
-Option "", "CBM_Null_Menu", "CL_Gyroman3"
-Option "", "CBM_Null_Menu", "CL_Gyroman4"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Darkman3"
-Option "", "CBM_Null_Menu", "CL_Darkman31"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Flameman"
-Option "", "CBM_Null_Menu", "CL_Flameman1"
-Option "", "CBM_Null_Menu", "CL_Flameman2"
-Option "", "CBM_Null_Menu", "CL_Flameman3"
-Option "", "CBM_Null_Menu", "CL_Flameman4"
-Option "", "CBM_Null_Menu", "CL_Flameman5"
-Option "", "CBM_Null_Menu", "CL_Flameman6"
-Option "", "CBM_Null_Menu", "CL_Flameman7"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Plantman"
-Option "", "CBM_Null_Menu", "CL_Plantman1"
-Option "", "CBM_Null_Menu", "CL_Plantman2"
-Option "", "CBM_Null_Menu", "CL_Plantman3"
-Option "", "CBM_Null_Menu", "CL_Plantman4"
-Option "", "CBM_Null_Menu", "CL_Plantman5"
-Option "", "CBM_Null_Menu", "CL_Plantman6"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Freezeman"
-Option "", "CBM_Null_Menu", "CL_Freezeman1"
-Option "", "CBM_Null_Menu", "CL_Freezeman2"
-Option "", "CBM_Null_Menu", "CL_Freezeman3"
-Option "", "CBM_Null_Menu", "CL_Freezeman4"
-Option "", "CBM_Null_Menu", "CL_Freezeman5"
-Option "", "CBM_Null_Menu", "CL_Freezeman6"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Junkman"
-Option "", "CBM_Null_Menu", "CL_Junkman1"
-Option "", "CBM_Null_Menu", "CL_Junkman2"
-Option "", "CBM_Null_Menu", "CL_Junkman3"
-Option "", "CBM_Null_Menu", "CL_Junkman4"
-Option "", "CBM_Null_Menu", "CL_Junkman5"
-Option "", "CBM_Null_Menu", "CL_Junkman6"
-Option "", "CBM_Null_Menu", "CL_Junkman7"
-Option "", "CBM_Null_Menu", "CL_Junkman8"
-Option "", "CBM_Null_Menu", "CL_Junkman9"
-Option "", "CBM_Null_Menu", "CL_Junkman10"
-Option "", "CBM_Null_Menu", "CL_Junkman11"
-Option "", "CBM_Null_Menu", "CL_Junkman12"
-Option "", "CBM_Null_Menu", "CL_Junkman13"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Burstman"
-Option "", "CBM_Null_Menu", "CL_Burstman1"
-Option "", "CBM_Null_Menu", "CL_Burstman2"
-Option "", "CBM_Null_Menu", "CL_Burstman3"
-Option "", "CBM_Null_Menu", "CL_Burstman4"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Cloudman"
-Option "", "CBM_Null_Menu", "CL_Cloudman1"
-Option "", "CBM_Null_Menu", "CL_Cloudman2"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Slashman"
-Option "", "CBM_Null_Menu", "CL_Slashman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Shademan"
-Option "", "CBM_Null_Menu", "CL_Shademan1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Tenguman"
-Option "", "CBM_Null_Menu", "CL_Tenguman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Astroman"
-Option "", "CBM_Null_Menu", "CL_Astroman1"
-Option "", "CBM_Null_Menu", "CL_Astroman2"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Swordman"
-Option "", "CBM_Null_Menu", "CL_Swordman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Clownman"
-Option "", "CBM_Null_Menu", "CL_Clownman1"
-Option "", "CBM_Null_Menu", "CL_Clownman2"
-Option "", "CBM_Null_Menu", "CL_Clownman3"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Aquaman"
-Option "", "CBM_Null_Menu", "CL_Aquaman1"
-Option "", "CBM_Null_Menu", "CL_Aquaman2"
-Option "", "CBM_Null_Menu", "CL_Aquaman3"
-Option "", "CBM_Null_Menu", "CL_Aquaman4"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__OriginalDuo"
-Option "", "CBM_Null_Menu", "CL_OriginalDuo1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__EvilRobot"
-Option "", "CBM_Null_Menu", "CL_EvilRobot1"
-Option "", "CBM_Null_Menu", "CL_EvilRobot2"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Dynamoman"
-Option "", "CBM_Null_Menu", "CL_Dynamoman1"
-Option "", "CBM_Null_Menu", "CL_Dynamoman2"
-Option "", "CBM_Null_Menu", "CL_Dynamoman3"
-Option "", "CBM_Null_Menu", "CL_Dynamoman4"
-Option "", "CBM_Null_Menu", "CL_Dynamoman5"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Groundman"
-Option "", "CBM_Null_Menu", "CL_Groundman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Pirateman"
-Option "", "CBM_Null_Menu", "CL_Pirateman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Magicman"
-Option "", "CBM_Null_Menu", "CL_Magicman1"
-Option "", "CBM_Null_Menu", "CL_Magicman2"
-Option "", "CBM_Null_Menu", "CL_Magicman3"
-Option "", "CBM_Null_Menu", "CL_Magicman4"
-Option "", "CBM_Null_Menu", "CL_Magicman5"
-Option "", "CBM_Null_Menu", "CL_Magicman6"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Concreteman"
-Option "", "CBM_Null_Menu", "CL_Concreteman1"
-Option "", "CBM_Null_Menu", "CL_Concreteman2"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Tornadoman"
-Option "", "CBM_Null_Menu", "CL_Tornadoman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Jewelman"
-Option "", "CBM_Null_Menu", "CL_Jewelman1"
-Option "", "CBM_Null_Menu", "CL_Jewelman2"
-Option "", "CBM_Null_Menu", "CL_Jewelman3"
-Option "", "CBM_Null_Menu", "CL_Jewelman4"
-Option "", "CBM_Null_Menu", "CL_Jewelman5"
-Option "", "CBM_Null_Menu", "CL_Jewelman6"
-Option "", "CBM_Null_Menu", "CL_Jewelman7"
-Option "", "CBM_Null_Menu", "CL_Jewelman8"
-Option "", "CBM_Null_Menu", "CL_Jewelman9"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Hornetman"
-Option "", "CBM_Null_Menu", "CL_Hornetman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Magmaman"
-Option "", "CBM_Null_Menu", "CL_Magmaman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Fakeman"
-Option "", "CBM_Null_Menu", "CL_Fakeman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Blademan"
-Option "", "CBM_Null_Menu", "CL_Blademan1"
-Option "", "CBM_Null_Menu", "CL_Blademan2"
-Option "", "CBM_Null_Menu", "CL_Blademan3"
-Option "", "CBM_Null_Menu", "CL_Blademan4"
-Option "", "CBM_Null_Menu", "CL_Blademan5"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Pumpman"
-Option "", "CBM_Null_Menu", "CL_Pumpman1"
-Option "", "CBM_Null_Menu", "CL_Pumpman2"
-Option "", "CBM_Null_Menu", "CL_Pumpman3"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Commandoman"
-Option "", "CBM_Null_Menu", "CL_Commandoman1"
-Option "", "CBM_Null_Menu", "CL_Commandoman2"
-Option "", "CBM_Null_Menu", "CL_Commandoman3"
-Option "", "CBM_Null_Menu", "CL_Commandoman4"
-Option "", "CBM_Null_Menu", "CL_Commandoman5"
-Option "", "CBM_Null_Menu", "CL_Commandoman6"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Chillman"
-Option "", "CBM_Null_Menu", "CL_Chillman1"
-Option "", "CBM_Null_Menu", "CL_Chillman2"
-Option "", "CBM_Null_Menu", "CL_Chillman3"
-Option "", "CBM_Null_Menu", "CL_Chillman4"
-Option "", "CBM_Null_Menu", "CL_Chillman5"
-Option "", "CBM_Null_Menu", "CL_Chillman6"
-Option "", "CBM_Null_Menu", "CL_Chillman7"
-Option "", "CBM_Null_Menu", "CL_Chillman8"
-Option "", "CBM_Null_Menu", "CL_Chillman9"
-Option "", "CBM_Null_Menu", "CL_Chillman10"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__SolarmanNEW"
-Option "", "CBM_Null_Menu", "CL_Solarman1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__TerraNEW"
-Option "", "CBM_Null_Menu", "CL_Terra1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Mercury"
-Option "", "CBM_Null_Menu", "CL_Mercury1"
-Option "", "CBM_Null_Menu", "CL_Mercury2"
-Option "", "CBM_Null_Menu", "CL_Mercury3"
-Option "", "CBM_Null_Menu", "CL_Mercury4"
-Option "", "CBM_Null_Menu", "CL_Mercury5"
-Option "", "CBM_Null_Menu", "CL_Mercury6"
-Option "", "CBM_Null_Menu", "CL_Mercury7"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Mars"
-Option "", "CBM_Null_Menu", "CL_Mars1"
-Option "", "CBM_Null_Menu", "CL_Mars2"
-Option "", "CBM_Null_Menu", "CL_Mars3"
-Option "", "CBM_Null_Menu", "CL_Mars4"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Jupiter"
-Option "", "CBM_Null_Menu", "CL_Jupiter1"
-Option "", "CBM_Null_Menu", "CL_Jupiter2"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Uranus"
-Option "", "CBM_Null_Menu", "CL_Uranus1"
-Option "", "CBM_Null_Menu", "CL_Uranus2"
-Option "", "CBM_Null_Menu", "CL_Uranus3"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Pluto"
-Option "", "CBM_Null_Menu", "CL_Pluto1"
-Option "", "CBM_Null_Menu", "CL_Pluto2"
-Option "", "CBM_Null_Menu", "CL_Pluto3"
-Option "", "CBM_Null_Menu", "CL_Pluto4"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Neptune"
-Option "", "CBM_Null_Menu", "CL_Neptune1"
-Option "", "CBM_Null_Menu", "CL_Neptune2"
-Option "", "CBM_Null_Menu", "CL_Neptune3"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Enker"
-Option "", "CBM_Null_Menu", "CL_Enker1"
-Option "", "CBM_Null_Menu", "CL_Enker2"
-Option "", "CBM_Null_Menu", "CL_Enker3"
-Option "", "CBM_Null_Menu", "CL_Enker4"
-Option "", "CBM_Null_Menu", "CL_Enker5"
-Option "", "CBM_Null_Menu", "CL_Enker6"
-Option "", "CBM_Null_Menu", "CL_Enker7"
-Option "", "CBM_Null_Menu", "CL_Enker8"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__Ballade"
-Option "", "CBM_Null_Menu", "CL_Ballade1"
-Option "", "CBM_Null_Menu", "CL_Ballade2"
-Option "", "CBM_Null_Menu", "CL_Ballade3"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__RaThor"
-Option "", "CBM_Null_Menu", "CL_RaThor1"
-StaticText""
-Option "", "CBM_Null_Menu", "CL__BBAMegaman"
-Option "", "CBM_Null_Menu", "CL_BBAMegaman1"
-Option "", "CBM_Null_Menu", "CL_BBAMegaman2"
-Option "", "CBM_Null_Menu", "CL_BBAMegaman3"
-Option "", "CBM_Null_Menu", "CL_BBAMegaman4"
-Option "", "CBM_Null_Menu", "CL_BBAMegaman5"
-
-	StaticText ""
-	StaticText"$MNU_CHELP_EQUALLINE"
+	//Option "", "CBM_Null_Menu", "ChangeLogIndex_0"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_1"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_2"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_3"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_4"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_5"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_6"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_7"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_8"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_9"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_10"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_11"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_12"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_13"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_14"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_15"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_16"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_17"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_18"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_19"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_20"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_21"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_22"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_23"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_24"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_25"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_26"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_27"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_28"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_29"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_30"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_31"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_32"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_33"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_34"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_35"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_36"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_37"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_38"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_39"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_40"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_41"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_42"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_43"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_44"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_45"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_46"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_47"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_48"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_49"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_50"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_51"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_52"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_53"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_54"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_55"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_56"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_57"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_58"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_59"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_60"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_61"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_62"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_63"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_64"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_65"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_66"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_67"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_68"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_69"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_70"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_71"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_72"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_73"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_74"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_75"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_76"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_77"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_78"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_79"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_80"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_81"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_82"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_83"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_84"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_85"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_86"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_87"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_88"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_89"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_90"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_91"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_92"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_93"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_94"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_95"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_96"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_97"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_98"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_99"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_100"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_101"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_102"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_103"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_104"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_105"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_106"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_107"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_108"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_109"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_110"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_111"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_112"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_113"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_114"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_115"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_116"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_117"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_118"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_119"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_120"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_121"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_122"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_123"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_124"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_125"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_126"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_127"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_128"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_129"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_130"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_131"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_132"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_133"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_134"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_135"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_136"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_137"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_138"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_139"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_140"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_141"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_142"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_143"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_144"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_145"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_146"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_147"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_148"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_149"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_150"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_151"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_152"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_153"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_154"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_155"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_156"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_157"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_158"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_159"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_160"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_161"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_162"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_163"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_164"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_165"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_166"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_167"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_168"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_169"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_170"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_171"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_172"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_173"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_174"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_175"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_176"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_177"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_178"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_179"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_180"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_181"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_182"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_183"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_184"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_185"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_186"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_187"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_188"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_189"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_190"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_191"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_192"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_193"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_194"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_195"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_196"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_197"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_198"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_199"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_200"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_201"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_202"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_203"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_204"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_205"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_206"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_207"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_208"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_209"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_210"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_211"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_212"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_213"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_214"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_215"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_216"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_217"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_218"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_219"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_220"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_221"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_222"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_223"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_224"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_225"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_226"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_227"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_228"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_229"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_EX1" //This is how I'm fixing these mistakes from now on. Eat my shorts.
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_230"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_231"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_232"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_233"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_234"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_235"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_236"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_237"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_238"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_239"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_240"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_241"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_242"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_243"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_244"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_245"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_246"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_247"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_248"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_249"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_250"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_251"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_252"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_253"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_254"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_255"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_256"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_257"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_258"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_259"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_260"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_261"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_EX2"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_262"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_263"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_264"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_265"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_266"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_267"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_268"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_269"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_270"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_271"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_272"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_273"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_274"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_275"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_276"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_277"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_278"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_279"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_280"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_281"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_282"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_283"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_284"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_285"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_286"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_287"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_288"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_289"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_290"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_291"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_292"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_293"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_294"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_295"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_296"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_297"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_298"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_299"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_300"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_301"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_EX3"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_302"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_303"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_304"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_305"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_306"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_307"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_308"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_309"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_310"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_311"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_312"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_313"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_314"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_315"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_316"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_317"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_318"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_319"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_320"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_321"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_322"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_323"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_324"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_325"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_326"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_327"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_328"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_329"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_330"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_331"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_332"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_333"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_334"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_335"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_336"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_337"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_338"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_339"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_340"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_341"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_342"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_343"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_344"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_345"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_346"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_347"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_348"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_349"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_350"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_351"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_352"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_353"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_354"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_355"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_356"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_357"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_358"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_359"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_360"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_361"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_362"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_363"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_364"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_365"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_366"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_367"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_368"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_369"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_370"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_371"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_372"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_373"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_374"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_375"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_376"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_377"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_378"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_379"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_380"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_381"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_382"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_383"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_384"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_385"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_386"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_387"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_388"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_389"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_390"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_391"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_392"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_393"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_394"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_395"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_396"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_397"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_398"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_399"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_400"
+	/*Option "", "CBM_Null_Menu", "ChangeLogIndex_401"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_402"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_403"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_404"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_405"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_406"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_407"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_408"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_409"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_410"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_411"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_412"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_413"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_414"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_415"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_416"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_417"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_418"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_419"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_420"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_421"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_422"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_423"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_424"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_425"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_426"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_427"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_428"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_429"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_430"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_431"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_432"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_433"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_434"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_435"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_436"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_437"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_438"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_439"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_440"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_441"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_442"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_443"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_444"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_445"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_446"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_447"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_448"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_449"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_450"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_451"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_452"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_453"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_454"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_455"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_456"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_457"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_458"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_459"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_460"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_461"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_462"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_463"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_464"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_465"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_466"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_467"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_468"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_469"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_470"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_471"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_472"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_473"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_474"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_475"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_476"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_477"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_478"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_479"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_480"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_481"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_482"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_483"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_484"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_485"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_486"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_487"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_488"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_489"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_490"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_491"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_492"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_493"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_494"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_495"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_496"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_497"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_498"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_499"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_500"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_501"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_502"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_503"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_504"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_505"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_506"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_507"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_508"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_509"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_510"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_511"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_512"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_513"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_514"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_515"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_516"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_517"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_518"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_519"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_520"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_521"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_522"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_523"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_524"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_525"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_526"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_527"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_528"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_529"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_530"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_531"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_532"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_533"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_534"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_535"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_536"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_537"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_538"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_539"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_540"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_541"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_542"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_543"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_544"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_545"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_546"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_547"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_548"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_549"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_550"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_551"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_552"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_553"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_554"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_555"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_556"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_557"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_558"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_559"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_560"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_561"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_562"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_563"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_564"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_565"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_566"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_567"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_568"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_569"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_570"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_571"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_572"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_573"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_574"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_575"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_576"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_577"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_578"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_579"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_580"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_581"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_582"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_583"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_584"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_585"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_586"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_587"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_588"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_589"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_590"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_591"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_592"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_593"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_594"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_595"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_596"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_597"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_598"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_599"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_600"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_601"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_602"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_603"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_604"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_605"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_606"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_607"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_608"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_609"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_610"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_611"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_612"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_613"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_614"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_615"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_616"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_617"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_618"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_619"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_620"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_621"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_622"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_623"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_624"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_625"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_626"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_627"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_628"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_629"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_630"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_631"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_632"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_633"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_634"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_635"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_636"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_637"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_638"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_639"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_640"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_641"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_642"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_643"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_644"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_645"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_646"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_647"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_648"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_649"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_650"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_651"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_652"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_653"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_654"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_655"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_656"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_657"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_658"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_659"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_660"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_661"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_662"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_663"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_664"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_665"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_666"*/
+	StaticText""
+	StaticText""
+	StaticText "===============================================================",1
 	Option "", "CBM_Null_Menu", "CL_Null"
 }
 
-/*
-OptionValue CL_
-{
-0,""
-}
-*/
-
-//Nothing longer than 40 characters per line
-//---------------------------------------
-
-OptionValue CL__HotfixNote
-{0,"-Hotfix specific changes are \cdgreen\c--"}
-
-OptionValue CL__ModdingNotes
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Modding Notes"}
-OptionValue CL_ModdingNotes1
-{0,"\c[Crayon208]-Modders should check the internal"}
-OptionValue CL_ModdingNotes1a
-{0,"\c[Crayon208]  changelog for additional changes"}
-OptionValue CL_ModdingNotes2
-{0,"\c[Crayon208]-Added several MusashiAA sound requests"}
-OptionValue CL_ModdingNotes2a
-{0,"\c[Crayon208]  and creations from the deep past"}
-OptionValue CL_ModdingNotes3
-{0,"\c[Crayon208]-Added various eye candy sprites,"}
-OptionValue CL_ModdingNotes3a
-{0,"\c[Crayon208]  such as skin idles and small particles"}
-OptionValue CL_ModdingNotes4
-{0,"\c[Crayon208]-Experimental \c[Crayon103]CBM_TEST \c[Crayon208]map edit added"}
-
-OptionValue CL__General
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]General"}
-OptionValue CL_General1
-{0,"\c[Crayon208]-Every class has x10 health (115 -> 1150)"}
-OptionValue CL_General2
-{0,"\c[Crayon208]-All attacks now do x10 damage"}
-OptionValue CL_General3
-{0,"\c[Crayon88]--Except attacks like Dynamo Tagger"}
-OptionValue CL_General4
-{0,"\c[Crayon208]-Most stage hazards do x10 damage"}
-OptionValue CL_General5
-{0,"\c[Crayon88]--Death hazards are not x10 stronger"}
-OptionValue CL_General6
-{0,"\c[Crayon208]-Players are now sent to a spawn point"}
-OptionValue CL_General6a
-{0,"\c[Crayon208]  when damaged by death hazards (Pits/Spikes)"}
-OptionValue CL_General7
-{0,"\c[Crayon88]--No Pit Protection default False->True"}
-OptionValue CL_General8
-{0,"\c[Crayon208]-Weapons/Health/Ammo now spawn in T/LMS"}
-OptionValue CL_General9
-{0,"\c[Crayon88]--Set modifier to 'buckshot' to disable"}
-OptionValue CL_General10
-{0,"\c[Crayon208]-LMS Gas by CutmanMike ported in"}
-OptionValue CL_General11
-{0,"\c[Crayon88]--Can be adjusted via cvars CBM_LMSGas_*"}
-OptionValue CL_General12
-{0,"\c[Crayon208]-Healing ally classes now heal everyone"}
-OptionValue CL_General13
-{0,"\c[Crayon88]--These classes now slowly regen heal ammo"}
-OptionValue CL_General14
-{0,"\c[Crayon208]-Added missing class TextColors"}
-OptionValue CL_General15
-{0,"\c[Crayon88]--Added every palette color as 'Crayon'"}
-OptionValue CL_General16
-{0,"\c[Crayon88]---Examples, \c[Crayon71]Crayon71\c[Crayon88], \c[Crayon250]Crayon250"}
-OptionValue CL_General17
-{0,"\c[Crayon208]-Added server cvar 'YD_Drops_Exodia'"}
-OptionValue CL_General18
-{0,"\c[Crayon88]--If off, EvilRobot doesn't drop parts"}
-OptionValue CL_General19
-{0,"\c[Crayon208]-Added server cvar 'YD_TestHavocDamageBonus'"}
-OptionValue CL_General20
-{0,"\c[Crayon88]--If on, non-copywep classes do 1.35x damage"}
-OptionValue CL_General21
-{0,"\c[Crayon208]-Weakness sounds now match pain sounds"}
-
-OptionValue CL__Copy_Classes
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Copy Classes"}
-OptionValue CL_Copy_Classes1
-{0,"\c[Crayon208]-Fixed SkullBarrier with DocRobot's health"}
-OptionValue CL_Copy_Classes2
-{0,"\c[Crayon208]-Fixed spread CopyVision doing extra damage"}
-OptionValue CL_Copy_Classes3
-{0,"\c[Crayon208]-Damage reduction 90%/91%/92% -> 90%"}
-OptionValue CL_Copy_Classes4
-{0,"\c[Crayon208]-Most CBM Copy weapons gained 1.35x damage"}
-OptionValue CL_Copy_Classes5
-{0,"\c[Crayon88]--This is due to core damage increases"}
-
-OptionValue CL_Megaman1
-{0,"\c[Crayon208]-Fixed crashes involving adaptors"}
-
-OptionValue CL_Rock1
-{0,"\c[Crayon208]-Dropped ball teamcolors fixed"}
-
-OptionValue CL_Roll1
-{0,"\c[Crayon208]-Updated hud/skin by hansungkee added"}
-OptionValue CL_Roll2
-{0,"\c[Crayon88]--Default skin MM8 Roll -> Classic Roll"}
-OptionValue CL_Roll3
-{0,"\c[Crayon88]---Mobile Roll removed, MM11 Roll added"}
-OptionValue CL_Roll4
-{0,"\c[Crayon208]-Refire delay for first swing 25->24"}
-OptionValue CL_Roll5
-{0,"\c[Crayon208]-Dash ammo now regens during mainfire"}
-OptionValue CL_Roll6
-{0,"\c[Crayon88]--Regen rate is doubled when idle"}
-OptionValue CL_Roll7
-{0,"\c[Crayon208]-Dashing movement lockout removed"}
-
-OptionValue CL_Auto1
-{0,"\c[Crayon208]-Health 1150->1000"}
-OptionValue CL_Auto2
-{0,"\c[Crayon208]-Met hat cost, 100 screws->50% heal ammo"}
-OptionValue CL_Auto3
-{0,"\c[Crayon208]-Fixed faster ammo regen via swapping"}
-OptionValue CL_Auto4
-{0,"\c[Crayon208]-E-Tank Lite now heals over time"}
-OptionValue CL_Auto5
-{0,"\c[Crayon88]--Changed to a green version"}
-OptionValue CL_Auto6
-{0,"\c[Crayon208]-ExitUnit item removed"}
-
-OptionValue CL_DrLight1
-{0,"\c[Crayon208]-Shoryuken thrust, single->constant"}
-OptionValue CL_DrLight2
-{0,"\c[Crayon88]--Damager is no longer velocity based"}
-OptionValue CL_DrLight3
-{0,"\c[Crayon88]---Moved closer to user and is visible"}
-OptionValue CL_DrLight4
-{0,"\c[Crayon208]-Item mainfire speed multiplier 0.4->0.6"}
-
-OptionValue CL_DrWily1
-{0,"\c[Crayon208]-Tweaked Foot/Capsule skin with colors"}
-OptionValue CL_DrWily2
-{0,"\c[Crayon208]-Sprite for strong Suit mainfire by Pegg"}
-OptionValue CL_DrWily3
-{0,"\c[Crayon88]--Other shots tweaked by Celebi to match"}
-OptionValue CL_DrWily4
-{0,"\c[Crayon208]-Frying pan can now block shots"}
-OptionValue CL_DrWily5
-{0,"\c[Crayon88]--Added FastProjectile to fix aiming"}
-
-OptionValue CL_Cutman1
-{0,"\c[Crayon208]-Can extend cutter distance via mainfire"}
-OptionValue CL_Cutman2
-{0,"\c[Crayon208]-Cutter damager spawn reverted"}
-
-OptionValue CL_Gutsman1
-{0,"\c[Crayon208]-Placed rock health 750->850"}
-
-OptionValue CL_Iceman1
-{0,"\c[Crayon208]-IceSlasher damage 100->80, speed 22->36"}
-OptionValue CL_Iceman2
-{0,"\c[Crayon208]-Altfire cost 100%->25%, cloud removed"}
-OptionValue CL_Iceman3
-{0,"\c[Crayon88]--Laser damage removed, speed 50->200"}
-OptionValue CL_Iceman4
-{0,"\c[Crayon208]-Statue explosions leave lingering slow"}
-
-OptionValue CL_Oilman1
-{0,"\c[Crayon208]-Mainfire revert to a shotgun charge"}
-OptionValue CL_Oilman2
-{0,"\c[Crayon88]--Blobs fired during charge 1/3/5->1/2/3"}
-OptionValue CL_Oilman3
-{0,"\c[Crayon208]-Oil Slider high damage 120->100"}
-OptionValue CL_Oilman4
-{0,"\c[Crayon208]-Big alt blobs now boost once when sliding"}
-
-OptionValue CL_Airman1
-{0,"\c[Crayon208]-Jump height 10->12.5"}
-OptionValue CL_Airman2
-{0,"\c[Crayon208]-Can now double jump"}
-OptionValue CL_Airman3
-{0,"\c[Crayon208]-Item added that toggles Air Control"}
-OptionValue CL_Airman4
-{0,"\c[Crayon88]--When on, increased speed in the air"}
-OptionValue CL_Airman5
-{0,"\c[Crayon208]-Mainfire shot radius 6->7, height 7->8"}
-OptionValue CL_Airman6
-{0,"\c[Crayon88]--Damage 150->120"}
-OptionValue CL_Airman7
-{0,"\c[Crayon88]--Forward thrust on spawn 0->8"}
-OptionValue CL_Airman8
-{0,"\c[Crayon88]--Upwards thrust when going up 2->3"}
-OptionValue CL_Airman9
-{0,"\c[Crayon208]-Altfire spread straightened/compressed"}
-OptionValue CL_Airman10
-{0,"\c[Crayon88]--Radius 6->8, height 7->10"}
-OptionValue CL_Airman11
-{0,"\c[Crayon88]--Spawn damage 50->90, travelling unchanged"}
-OptionValue CL_Airman12
-{0,"\c[Crayon88]---Reduced damage from multi-hits"}
-
-OptionValue CL_Quickman1
-{0,"\c[Crayon208]-Walljumps 6->4"}
-
-OptionValue CL_Heatman1
-{0,"\c[Crayon208]-Removed jump changes during dash"}
-
-OptionValue CL_Alien1
-{0,"\c[Crayon208]-Pit hover drain rate 20->10"}
-OptionValue CL_Alien2
-{0,"\c[Crayon88]--Now regens 1 hover stamina midair"}
-
-OptionValue CL_Geminiman1
-{0,"\c[Crayon208]-Allies no longer damage clone"}
-
-OptionValue CL_Sparkman1
-{0,"\c[Crayon208]-Hud redone by Pegg and Lamp"}
-OptionValue CL_Sparkman2
-{0,"\c[Crayon208]-Mainfire direct hit damage 350->250"}
-OptionValue CL_Sparkman3
-{0,"\c[Crayon88]--Non-direct hit explosion removed"}
-OptionValue CL_Sparkman4
-{0,"\c[Crayon88]--Alt after 25% charge does old alt"}
-OptionValue CL_Sparkman5
-{0,"\c[Crayon88]---Total shots 8->16, aimable shots 1->3"}
-OptionValue CL_Sparkman6
-{0,"\c[Crayon88]---Damage 120->60, Radius/Height 6->9"}
-OptionValue CL_Sparkman7
-{0,"\c[Crayon208]-New altfire, lobs a lingering stun zone"}
-
-OptionValue CL_Shadowman1
-{0,"\c[Crayon208]-Walljumps 3->6"}
-
-OptionValue CL_DocRobot1
-{0,"\c[Crayon208]-Adjusted stats to better match classes"}
-OptionValue CL_DocRobot2
-{0,"\c[Crayon88]--Bad stats were buffed up"}
-OptionValue CL_DocRobot3
-{0,"\c[Crayon88]---Example, ThunderBolt speed 75->100%"}
-OptionValue CL_DocRobot4
-{0,"\c[Crayon208]-Default jump/speed is no longer boosted"}
-
-OptionValue CL_Brightman1
-{0,"\c[Crayon208]-Walljumps 2->0"}
-OptionValue CL_Brightman2
-{0,"\c[Crayon208]-Double item issue fixed"}
-OptionValue CL_Brightman3
-{0,"\c[Crayon208]-Bulb blind now uses core blind style"}
-
-OptionValue CL_Pharaohman1
-{0,"\c[Crayon208]-Cleaned up weapon, delays are similar"}
-OptionValue CL_Pharaohman2
-{0,"\c[Crayon208]-Mid charge shot end delay 18->16"}
-OptionValue CL_Pharaohman3
-{0,"\c[Crayon208]-Altfire tweaked to be more responsive"}
-
-OptionValue CL_Ringman1
-{0,"\c[Crayon208]-Bonus sound when a ring gleams"}
-
-OptionValue CL_Dustman1
-{0,"\c[Crayon208]-Suction sound changed"}
-OptionValue CL_Dustman2
-{0,"\c[Crayon208]-Scrap grabber is now visible to user"}
-
-OptionValue CL_Diveman1
-{0,"\c[Crayon208]-Tackle end delay 12->21"}
-
-OptionValue CL_Skullman1
-{0,"\c[Crayon208]-Altfire max ammo 56->112"}
-OptionValue CL_Skullman2
-{0,"\c[Crayon88]--Any ammo mentions are after 2x ammo"}
-OptionValue CL_Skullman3
-{0,"\c[Crayon88]--Normal regen 4->3 every 4 tics"}
-OptionValue CL_Skullman4
-{0,"\c[Crayon88]--Regen during rage 4->5 every 2 tics"}
-OptionValue CL_Skullman5
-{0,"\c[Crayon88]--Regen when firing 6->4 per shot"}
-OptionValue CL_Skullman6
-{0,"\c[Crayon208]-Now gets 6 shield ammo per rage shot"}
-
-OptionValue CL_Gravityman1
-{0,"\c[Crayon208]-Alt ammo now regens during mainfire"}
-OptionValue CL_Gravityman2
-{0,"\c[Crayon208]-All flings have semi-hitstun"}
-OptionValue CL_Gravityman3
-{0,"\c[Crayon208]-Added a charge attack to altfire"}
-OptionValue CL_Gravityman4
-{0,"\c[Crayon88]--Summons a Gravity Well at a pinpoint"}
-OptionValue CL_Gravityman5
-{0,"\c[Crayon208]-G-Well snaps to the nearest floor/ceiling"}
-OptionValue CL_Gravityman6
-{0,"\c[Crayon88]--Floor flings up, ceiling flings down"}
-OptionValue CL_Gravityman7
-{0,"\c[Crayon88]--Fling delayed based on distance to user"}
-
-OptionValue CL_Waveman1
-{0,"\c[Crayon208]-Added slow pull in to hookshot when"}
-OptionValue CL_Waveman1a
-{0,"\c[Crayon208]  holding jump near the end hook"}
-
-OptionValue CL_Stoneman1
-{0,"\c[Crayon208]-Rocks 2->3, reduced damage on multi hits"}
-OptionValue CL_Stoneman2
-{0,"\c[Crayon88]--Stones travel straight, stop, then spin"}
-OptionValue CL_Stoneman3
-{0,"\c[Crayon88]---Spinning curve adjusted due to above"}
-OptionValue CL_Stoneman4
-{0,"\c[Crayon208]-Duration to fully charge leap 180->112"}
-OptionValue CL_Stoneman5
-{0,"\c[Crayon208]-Weak land self freeze duration 21->15"}
-OptionValue CL_Stoneman6
-{0,"\c[Crayon208]-Shock land damage 150->200, size 200->250"}
-OptionValue CL_Stoneman7
-{0,"\c[Crayon208]-Time needed to revive 9->10 seconds"}
-
-OptionValue CL_Gyroman1
-{0,"\c[Crayon208]-Flight management cleaned up"}
-OptionValue CL_Gyroman2
-{0,"\c[Crayon208]-Mainfire total delay 25->24"}
-OptionValue CL_Gyroman3
-{0,"\c[Crayon208]-Ammo drain rate for holding altfire 6->8"}
-OptionValue CL_Gyroman4
-{0,"\c[Crayon88]--Removed midair ammo drain after flying"}
-
-OptionValue CL_Darkman31
-{0,"\c[Crayon208]-Reworked by Sir An0n"}
-
-OptionValue CL_Flameman1
-{0,"\c[Crayon208]-Ammo regen delay after firing 0->8"}
-OptionValue CL_Flameman2
-{0,"\c[Crayon208]-Mainfire ammo use 0->4, regen 1->2"}
-OptionValue CL_Flameman3
-{0,"\c[Crayon88]--Floor shots split into 2 pillars forward"}
-OptionValue CL_Flameman4
-{0,"\c[Crayon88]--Wall flame damage 140->170"}
-OptionValue CL_Flameman5
-{0,"\c[Crayon208]-Altfire now has its own ammo"}
-OptionValue CL_Flameman6
-{0,"\c[Crayon88]--Intial spawn angle flipped"}
-OptionValue CL_Flameman7
-{0,"\c[Crayon88]--Spawning trail is now visible"}
-
-OptionValue CL_Plantman1
-{0,"\c[Crayon208]-Hud/animations tweaked"}
-OptionValue CL_Plantman2
-{0,"\c[Crayon208]-Passive health regen removed"}
-OptionValue CL_Plantman3
-{0,"\c[Crayon88]--Buster healing works in all gamemodes"}
-OptionValue CL_Plantman4
-{0,"\c[Crayon88]--Barrier healing allies removed"}
-OptionValue CL_Plantman5
-{0,"\c[Crayon208]-New item that creates a healing field"}
-OptionValue CL_Plantman6
-{0,"\c[Crayon88]--Uses screws and slowly generates ammo"}
-
-OptionValue CL_Freezeman1
-{0,"\c[Crayon208]-Mainfire ammo cost 2->4"}
-OptionValue CL_Freezeman2
-{0,"\c[Crayon208]-Main shot damage 190->130"}
-OptionValue CL_Freezeman3
-{0,"\c[Crayon88]--Bits on wall hit 6->8, pattern tweaked"}
-OptionValue CL_Freezeman4
-{0,"\c[Crayon88]--Spawns 3 more icicles on floor/ceiling"}
-OptionValue CL_Freezeman5
-{0,"\c[Crayon88]---Mainfire ceiling ice doesn't split"}
-OptionValue CL_Freezeman6
-{0,"\c[Crayon208]-Icicle priming delay, 8->10 tics"}
-
-OptionValue CL_Junkman1
-{0,"\c[Crayon208]-Health 1250->1350"}
-OptionValue CL_Junkman2
-{0,"\c[Crayon208]-Fixed infinite JunkLeak"}
-OptionValue CL_Junkman3
-{0,"\c[Crayon208]-JunkCube touched up, health 2000->2500"}
-OptionValue CL_Junkman4
-{0,"\c[Crayon88]--Cube punch range check 100->150"}
-OptionValue CL_Junkman5
-{0,"\c[Crayon88]--Everyone near a cube gets junk ammo"}
-OptionValue CL_Junkman6
-{0,"\c[Crayon208]-Pushed cube damage 210->140"}
-OptionValue CL_Junkman7
-{0,"\c[Crayon88]--Is no longer invulnerable"}
-OptionValue CL_Junkman8
-{0,"\c[Crayon88]--Can be pushed multiple times"}
-OptionValue CL_Junkman9
-{0,"\c[Crayon88]---First push speed 26->8, second push 26"}
-OptionValue CL_Junkman10
-{0,"\c[Crayon208]-Junk punch damage 300->250"}
-OptionValue CL_Junkman11
-{0,"\c[Crayon88]--Punch shot damage 200->150, speed 42->50"}
-OptionValue CL_Junkman12
-{0,"\c[Crayon88]---Ammo use 70->80, ammo needed 35->40"}
-OptionValue CL_Junkman13
-{0,"\c[Crayon208]-JunkShield damage 70/60/50->50/40/30"}
-
-OptionValue CL_Burstman1
-{0,"\c[Crayon208]-Item can cycle back to 1 stock"}
-OptionValue CL_Burstman2
-{0,"\c[Crayon208]-Mainfire doesn't reset current stock"}
-OptionValue CL_Burstman3
-{0,"\c[Crayon88]--Added no ammo attack"}
-OptionValue CL_Burstman4
-{0,"\c[Crayon208]-Altfire bubble flight bombs removed"}
-
-OptionValue CL_Cloudman1
-{0,"\c[Crayon208]-Hud and several sprites updated"}
-OptionValue CL_Cloudman2
-{0,"\c[Crayon208]-Recharge damager spawn height 276->416"}
-
-OptionValue CL_Slashman1
-{0,"\c[Crayon208]-Walljumps 5->6"}
-
-OptionValue CL_Shademan1
-{0,"\c[Crayon208]-Weapon tweaked for altfire start"}
-
-OptionValue CL_Tenguman1
-{0,"\c[Crayon208]-Hover changed back to item toggle"}
-
-OptionValue CL_Astroman1
-{0,"\c[Crayon208]-Pit hover drain rate 20->10"}
-OptionValue CL_Astroman2
-{0,"\c[Crayon88]--Now regens 1 hover stamina midair"}
-
-OptionValue CL_Swordman1
-{0,"\c[Crayon208]-Adjusted how flames bounce off surfaces"}
-
-OptionValue CL_Clownman1
-{0,"\c[Crayon208]-ThunderClaw speed 26->33"}
-OptionValue CL_Clownman2
-{0,"\c[Crayon88]--Duration lowered to match old distance"}
-OptionValue CL_Clownman3
-{0,"\c[Crayon208]-Claw return speed 33->43"}
-
-OptionValue CL_Aquaman1
-{0,"\c[Crayon208]-Recharge refire delay 10->4"}
-OptionValue CL_Aquaman2
-{0,"\c[Crayon208]-Mainfire balloon ammo cost 1->2"}
-OptionValue CL_Aquaman3
-{0,"\c[Crayon88]--Shot speed 15/25/35/45/55->15/25/32/39/46"}
-OptionValue CL_Aquaman4
-{0,"\c[Crayon208]-Water Tower now blocks shots"}
-
-OptionValue CL_OriginalDuo1
-{0,"\c[Crayon208]-Altfire punch adjusted to GutPunch style"}
-
-OptionValue CL_EvilRobot1
-{0,"\c[Crayon208]-Players drop a bonus part on death"}
-OptionValue CL_EvilRobot2
-{0,"\c[Crayon208]-Evil Beam damage 90->66"}
-
-OptionValue CL_Dynamoman1
-{0,"\c[Crayon208]-Adjusted weapon/ACS for server intensity"}
-OptionValue CL_Dynamoman2
-{0,"\c[Crayon208]-Scanner can now stack infinitely"}
-OptionValue CL_Dynamoman3
-{0,"\c[Crayon88]--First 4 still adds 150 damage"}
-OptionValue CL_Dynamoman4
-{0,"\c[Crayon88]---Further scans add 50 damage"}
-OptionValue CL_Dynamoman5
-{0,"\c[Crayon208]-Dynamo Disk radius/height 14/10->12/8"}
-
-OptionValue CL_Groundman1
-{0,"\c[Crayon208]-Tank mode now uses Mars' method"}
-
-OptionValue CL_Pirateman1
-{0,"\c[Crayon208]-Stealing adds damage to placed/pushed mines"}
-
-OptionValue CL_Magicman1
-{0,"\c[Crayon208]-Hud updated by Pegg"}
-OptionValue CL_Magicman2
-{0,"\c[Crayon208]-Mainfire refire delay removed"}
-OptionValue CL_Magicman3
-{0,"\c[Crayon88]--Card damage 120->90"}
-OptionValue CL_Magicman4
-{0,"\c[Crayon88]--Fake cards removed from mainfire"}
-OptionValue CL_Magicman5
-{0,"\c[Crayon208]-Altfire changed to a magical shot"}
-OptionValue CL_Magicman6
-{0,"\c[Crayon88]--Costs no ammo but has limited range"}
-
-OptionValue CL_Concreteman1
-{0,"\c[Crayon208]-Updated skin frames by FTX added"}
-OptionValue CL_Concreteman2
-{0,"\c[Crayon208]-Due to above, hud/skin flips removed"}
-
-OptionValue CL_Tornadoman1
-{0,"\c[Crayon208]-Altfire team lift now checks for jump"}
-
-OptionValue CL_Jewelman1
-{0,"\c[Crayon208]-Ruby kaboom damage 50->20/40/60/80"}
-OptionValue CL_Jewelman2
-{0,"\c[Crayon88]--Boom size 48/64/120/180->64/96/128/160"}
-OptionValue CL_Jewelman3
-{0,"\c[Crayon208]-Sapphire mines with Ruby damage 50->0"}
-OptionValue CL_Jewelman4
-{0,"\c[Crayon88]--Mine duration 40/80/120/170->20/50/80/110"}
-OptionValue CL_Jewelman5
-{0,"\c[Crayon88]--Fall style, 1.3 ScaleVelocity->0.5 gravity"}
-OptionValue CL_Jewelman6
-{0,"\c[Crayon88]---Starting fall speed 0.5->5"}
-OptionValue CL_Jewelman7
-{0,"\c[Crayon88]---Now stops on floors, except if explosion"}
-OptionValue CL_Jewelman8
-{0,"\c[Crayon208]-Topaz speed bonus 30->83% for stack"}
-OptionValue CL_Jewelman9
-{0,"\c[Crayon208]-Item can now jump to the next color set"}
-
-OptionValue CL_Hornetman1
-{0,"\c[Crayon208]-Hover changed back to item toggle"}
-
-OptionValue CL_Magmaman1
-{0,"\c[Crayon208]-Rapid fire issue fixed"}
-
-OptionValue CL_Fakeman1
-{0,"\c[Crayon208]-Confiscating adds damage to baton"}
-
-OptionValue CL_Blademan1
-{0,"\c[Crayon208]-Horizontal wall shot angle 7/14->5/10"}
-OptionValue CL_Blademan2
-{0,"\c[Crayon88]--Vertical wall shot pitch 5/10->2.5/5"}
-OptionValue CL_Blademan3
-{0,"\c[Crayon208]-Initial altfire ammo cost 5->7"}
-OptionValue CL_Blademan4
-{0,"\c[Crayon208]-First cling delay before actions 4->8 tics"}
-OptionValue CL_Blademan5
-{0,"\c[Crayon88]--Repeated cling delay 2->8 tics"}
-
-OptionValue CL_Pumpman1
-{0,"\c[Crayon208]-Allies no longer damage bubbles"}
-OptionValue CL_Pumpman2
-{0,"\c[Crayon88]--Bubble health 450->300"}
-OptionValue CL_Pumpman3
-{0,"\c[Crayon208]-Fixed Slugger Bubble split not working"}
-
-OptionValue CL_Commandoman1
-{0,"\c[Crayon208]-CommandoBomb behaves like core weapon"}
-OptionValue CL_Commandoman2
-{0,"\c[Crayon88]--Except splitting on direct hits"}
-OptionValue CL_Commandoman3
-{0,"\c[Crayon208]-Explosive wave damage now matches core"}
-OptionValue CL_Commandoman4
-{0,"\c[Crayon208]-Mine toss speed 20->35"}
-OptionValue CL_Commandoman5
-{0,"\c[Crayon208]-Stomp refire delay 30->43, end delay 15->23"}
-OptionValue CL_Commandoman6
-{0,"\c[Crayon88]--Wave pattern is now 5 waves forward"}
-
-OptionValue CL_Chillman1
-{0,"\c[Crayon208]-Walljumps 6->3"}
-OptionValue CL_Chillman2
-{0,"\c[Crayon208]-Health lost on shield break 50->0"}
-OptionValue CL_Chillman3
-{0,"\c[Crayon88]--Shield regen lost on hit 60->all"}
-OptionValue CL_Chillman4
-{0,"\c[Crayon88]--Time to regen shield 5->6 seconds"}
-OptionValue CL_Chillman5
-{0,"\c[Crayon208]-Slide ammo 336->168, ammo regen 6->4"}
-OptionValue CL_Chillman6
-{0,"\c[Crayon88]--Still needs 168 ammo to use slide"}
-OptionValue CL_Chillman7
-{0,"\c[Crayon208]-Mainfire generates 7 slide ammo"}
-OptionValue CL_Chillman8
-{0,"\c[Crayon208]-Slide speed loss without shield removed"}
-OptionValue CL_Chillman9
-{0,"\c[Crayon88]--Ammo drain when not moving/airborn 1->0"}
-OptionValue CL_Chillman10
-{0,"\c[Crayon208]-Item mainfire spread narrowed"}
-
-OptionValue CL__SolarmanNEW
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Solarman \c[CBM10H]**NEW**"}
-OptionValue CL_Solarman1
-{0,"\c[Crayon208]-Made by Muzaru"}
-
-OptionValue CL__TerraNEW
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Terra \c[CBMVA]**NEW**"}
-OptionValue CL_Terra1
-{0,"\c[Crayon208]-Made by Pegg"}
-
-OptionValue CL_Mercury1
-{0,"\c[Crayon208]-Stealing adds damage to snatch damager"}
-OptionValue CL_Mercury2
-{0,"\c[Crayon88]--Chance of communism snatch 0%->1/8192"}
-OptionValue CL_Mercury3
-{0,"\c[Crayon88]---Still becomes 1/256 after 91 stacks"}
-OptionValue CL_Mercury4
-{0,"\c[Crayon208]-Ammo return is similar to core GrabBuster"}
-OptionValue CL_Mercury5
-{0,"\c[Crayon208]-Blob splash explosion damage 200->180"}
-OptionValue CL_Mercury6
-{0,"\c[Crayon88]--Weak splash 100->90"}
-OptionValue CL_Mercury7
-{0,"\c[Crayon208]-Tackle blobs don't damage for 8 tics"}
-
-OptionValue CL_Mars1
-{0,"\c[Crayon208]-Vulcan firing end delay 2->10"}
-OptionValue CL_Mars2
-{0,"\c[Crayon208]-Vulcan shot damage falloff removed"}
-OptionValue CL_Mars3
-{0,"\c[Crayon88]--Duration of shot, infinite->5 tics"}
-OptionValue CL_Mars4
-{0,"\c[Crayon208]-Tank mode backwards thrust 100%->35%"}
-
-OptionValue CL_Jupiter1
-{0,"\c[Crayon208]-Basic mainfire duration 32->16 tics"}
-OptionValue CL_Jupiter2
-{0,"\c[Crayon208]-Altfire knockback power 25->20"}
-
-OptionValue CL_Uranus1
-{0,"\c[Crayon208]-SpawningMisfire correctly added"}
-OptionValue CL_Uranus2
-{0,"\c[Crayon208]-DeepDigger alt attack is more focused"}
-OptionValue CL_Uranus3
-{0,"\c[Crayon88]--4 bits forward in a light spread"}
-
-OptionValue CL_Pluto1
-{0,"\c[Crayon208]-Speed 0.8/0.78->0.9/0.88"}
-OptionValue CL_Pluto2
-{0,"\c[Crayon88]--Max speed bonus from moving 103%->81%"}
-OptionValue CL_Pluto3
-{0,"\c[Crayon208]-Walljumps 6->4"}
-OptionValue CL_Pluto4
-{0,"\c[Crayon208]-Low ammo swipe set explosion size 0->24"}
-
-OptionValue CL_Neptune1
-{0,"\c[Crayon208]-SaltWater split style now matches core"}
-OptionValue CL_Neptune2
-{0,"\c[Crayon88]--Except SaltWater splits on direct hit"}
-OptionValue CL_Neptune3
-{0,"\c[Crayon208]-Leaping off foes now refunds 2 ammo"}
-
-OptionValue CL_Enker1
-{0,"\c[Crayon208]-Item added, performs a directional dash"}
-OptionValue CL_Enker2
-{0,"\c[Crayon88]--Can be used anytime while on the ground"}
-OptionValue CL_Enker3
-{0,"\c[Crayon208]-Hud animations adjusted, left hand removed"}
-OptionValue CL_Enker4
-{0,"\c[Crayon208]-THRUGHOST removed from both shots"}
-OptionValue CL_Enker5
-{0,"\c[Crayon208]-Small shot speed 40->50"}
-OptionValue CL_Enker6
-{0,"\c[Crayon208]-Minimum ammo gain during altfire 3->1"}
-OptionValue CL_Enker7
-{0,"\c[Crayon88]--Death hazard ammo gain is 1 if teleported"}
-OptionValue CL_Enker8
-{0,"\c[Crayon208]-Spear swipe explosion size 80->100"}
-
-OptionValue CL_Ballade1
-{0,"\c[Crayon208]-Main shot speed 20 to 65->20/35/50/65"}
-OptionValue CL_Ballade2
-{0,"\c[Crayon88]--Speed is based on focus charge per bar"}
-OptionValue CL_Ballade3
-{0,"\c[Crayon208]-Failsafe added for losing mines somehow"}
-
-OptionValue CL_RaThor1
-{0,"\c[Crayon208]-Players drop a bonus part on death"}
-
-OptionValue CL_BBAMegaman1
-{0,"\c[Crayon208]-Mugshot added"}
-OptionValue CL_BBAMegaman2
-{0,"\c[Crayon208]-Weapons work better with FastWeapons"}
-OptionValue CL_BBAMegaman3
-{0,"\c[Crayon208]-Heavy Cannon explosion damage 360->240"}
-OptionValue CL_BBAMegaman4
-{0,"\c[Crayon208]-Energy Lancer damage 60->80"}
-OptionValue CL_BBAMegaman5
-{0,"\c[Crayon208]-BFG90XX tracer money gain 17->1"}
-
-
-///////////////////
-//Ready to go names
-///////////////////
-OptionValue CL__Megaman
-{0,"\ch[\ck-\ch]\c[Crayon161]Megaman"}
-OptionValue CL__Protoman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Protoman"}
-OptionValue CL__Bass
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Bass"}
-OptionValue CL__Duo
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Duo"}
-OptionValue CL__Maestro
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Maestro"}
-OptionValue CL__Rock
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Rock"}
-OptionValue CL__Roll
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Roll"}
-OptionValue CL__Auto
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Auto"}
-OptionValue CL__DrLight
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Dr. Light"}
-OptionValue CL__DrWily
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Dr. Wily"}
-OptionValue CL__SniperJoe
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Sniper Joe"}
-
-OptionValue CL__Cutman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Cutman"}
-OptionValue CL__Gutsman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Gutsman"}
-OptionValue CL__Iceman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Iceman"}
-OptionValue CL__Bombman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Bombman"}
-OptionValue CL__Fireman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Fireman"}
-OptionValue CL__Elecman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Elecman"}
-OptionValue CL__Timeman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Timeman"}
-OptionValue CL__Oilman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Oilman"}
-
-OptionValue CL__Metalman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Metalman"}
-OptionValue CL__Airman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Airman"}
-OptionValue CL__Bubbleman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Bubbleman"}
-OptionValue CL__Quickman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Quickman"}
-OptionValue CL__Crashman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Crashman"}
-OptionValue CL__Flashman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Flashman"}
-OptionValue CL__Heatman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Heatman"}
-OptionValue CL__Woodman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Woodman"}
-OptionValue CL__Alien
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Alien"}
-
-OptionValue CL__Needleman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Needleman"}
-OptionValue CL__Magnetman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Magnetman"}
-OptionValue CL__Geminiman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Geminiman"}
-OptionValue CL__Hardman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Hardman"}
-OptionValue CL__Topman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Topman"}
-OptionValue CL__Snakeman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Snakeman"}
-OptionValue CL__Sparkman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Sparkman"}
-OptionValue CL__Shadowman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Shadowman"}
-OptionValue CL__DocRobot
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]DocRobot"}
-
-OptionValue CL__Brightman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Brightman"}
-OptionValue CL__Toadman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Toadman"}
-OptionValue CL__Drillman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Drillman"}
-OptionValue CL__Pharaohman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Pharaohman"}
-OptionValue CL__Ringman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Ringman"}
-OptionValue CL__Dustman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Dustman"}
-OptionValue CL__Diveman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Diveman"}
-OptionValue CL__Skullman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Skullman"}
-
-OptionValue CL__Gravityman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Gravityman"}
-OptionValue CL__Waveman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Waveman"}
-OptionValue CL__Stoneman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Stoneman"}
-OptionValue CL__Gyroman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Gyroman"}
-OptionValue CL__Starman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Starman"}
-OptionValue CL__Chargeman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Chargeman"}
-OptionValue CL__Napalmman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Napalmman"}
-OptionValue CL__Crystalman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Crystalman"}
-OptionValue CL__Darkman1
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Darkman1"}
-OptionValue CL__Darkman2
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Darkman2"}
-OptionValue CL__Darkman3
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Darkman3"}
-OptionValue CL__Darkman4
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Darkman4"}
-
-OptionValue CL__Blizzardman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Blizzardman"}
-OptionValue CL__Centaurman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Centaurman"}
-OptionValue CL__Flameman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Flameman"}
-OptionValue CL__Knightman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Knightman"}
-OptionValue CL__Plantman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Plantman"}
-OptionValue CL__Tomahawkman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Tomahawkman"}
-OptionValue CL__Windman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Windman"}
-OptionValue CL__Yamatoman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Yamatoman"}
-
-OptionValue CL__Freezeman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Freezeman"}
-OptionValue CL__Junkman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Junkman"}
-OptionValue CL__Burstman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Burstman"}
-OptionValue CL__Cloudman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Cloudman"}
-OptionValue CL__Springman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Springman"}
-OptionValue CL__Slashman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Slashman"}
-OptionValue CL__Shademan
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Shademan"}
-OptionValue CL__Turboman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Turboman"}
-
-OptionValue CL__Tenguman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Tenguman"}
-OptionValue CL__Astroman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Astroman"}
-OptionValue CL__Swordman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Swordman"}
-OptionValue CL__Clownman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Clownman"}
-OptionValue CL__Searchman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Searchman"}
-OptionValue CL__Frostman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Frostman"}
-OptionValue CL__Grenademan
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Grenademan"}
-OptionValue CL__Aquaman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Aquaman"}
-OptionValue CL__OriginalDuo
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Original Duo"}
-OptionValue CL__EvilRobot
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Evil Robot"}
-
-OptionValue CL__Dynamoman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Dynamoman"}
-OptionValue CL__Coldman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Coldman"}
-OptionValue CL__Groundman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Groundman"}
-OptionValue CL__Pirateman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Pirateman"}
-OptionValue CL__Burnerman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Burnerman"}
-OptionValue CL__Magicman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Magicman"}
-OptionValue CL__King
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]King"}
-
-OptionValue CL__Concreteman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Concreteman"}
-OptionValue CL__Tornadoman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Tornadoman"}
-OptionValue CL__Splashwoman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Splashwoman"}
-OptionValue CL__Plugman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Plugman"}
-OptionValue CL__Jewelman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Jewelman"}
-OptionValue CL__Hornetman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Hornetman"}
-OptionValue CL__Magmaman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Magmaman"}
-OptionValue CL__Galaxyman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Galaxyman"}
-OptionValue CL__Fakeman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Fakeman"}
-
-OptionValue CL__Blademan
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Blademan"}
-OptionValue CL__Pumpman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Pumpman"}
-OptionValue CL__Commandoman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Commandoman"}
-OptionValue CL__Chillman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Chillman"}
-OptionValue CL__Sheepman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Sheepman"}
-OptionValue CL__Strikeman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Strikeman"}
-OptionValue CL__Nitroman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Nitroman"}
-OptionValue CL__Solarman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Solarman"}
-
-OptionValue CL__Terra
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Terra"}
-OptionValue CL__Mercury
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Mercury"}
-OptionValue CL__Venus
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Venus"}
-OptionValue CL__Mars
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Mars"}
-OptionValue CL__Jupiter
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Jupiter"}
-OptionValue CL__Saturn
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Saturn"}
-OptionValue CL__Uranus
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Uranus"}
-OptionValue CL__Pluto
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Pluto"}
-OptionValue CL__Neptune
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Neptune"}
-OptionValue CL__Sunstar
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Sunstar"}
-
-OptionValue CL__BusterRodG
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Buster Rod G"}
-OptionValue CL__MegaWaterS
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Mega Water S"}
-OptionValue CL__HyperStormH
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Hyper Storm H"}
-
-OptionValue CL__Enker
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Enker"}
-OptionValue CL__Punk
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Punk"}
-OptionValue CL__Ballade
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Ballade"}
-OptionValue CL__Quint
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Quint"}
-OptionValue CL__RaThor
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Ra Thor"}
-OptionValue CL__BBAMegaman
-{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]BBA Megaman"}
+OptionValue ChangeLogIndex_1 {0,"\cf============\c[GibusGold]Gondola Patch 2.6.1 Hotfix\cf============"}
+OptionValue ChangeLogIndex_2 {0,"(open file for older patchnotes)"}
+OptionValue ChangeLogIndex_3 {0,""}
+OptionValue ChangeLogIndex_4 {0,"\cf==Copyweapons"}
+OptionValue ChangeLogIndex_5 {0,"-Atomic Fire copywep damage 10/34/54"}
+OptionValue ChangeLogIndex_6 {0,"> 12/33/25 (ripper)"}
+OptionValue ChangeLogIndex_7 {0,"-Flame Blast copywep damage 32 > 20"}
+OptionValue ChangeLogIndex_8 {0,"-Fixed Duo Fist not having copynerf, damage reduced"}
+OptionValue ChangeLogIndex_9 {0," 25/35/70 > 16/22/45"}
+OptionValue ChangeLogIndex_10 {0,"-Fixed Nova Beam lagging out servers"}
+OptionValue ChangeLogIndex_11 {0,""}
+OptionValue ChangeLogIndex_12 {0,"\cf==Megaman"}
+OptionValue ChangeLogIndex_13 {0,"-Optimized charging code to make tapfiring/charging"}
+OptionValue ChangeLogIndex_14 {0,"more convenient"}
+OptionValue ChangeLogIndex_15 {0,""}
+OptionValue ChangeLogIndex_16 {0,"\cf==Duo"}
+OptionValue ChangeLogIndex_17 {0,"-Duo Slam now takes one stock of ammo, does shoulder"}
+OptionValue ChangeLogIndex_18 {0,"bash if ammo is insufficient"}
+OptionValue ChangeLogIndex_19 {0,"-APU version of Duo Slam now leaves lingering knockup"}
+OptionValue ChangeLogIndex_20 {0,"field on impact, henceforth named Justice Flash"}
+OptionValue ChangeLogIndex_21 {0,"-New sounds for meteor and slam added, made by"}
+OptionValue ChangeLogIndex_22 {0,"MusashiAA"}
+OptionValue ChangeLogIndex_23 {0,""}
+OptionValue ChangeLogIndex_24 {0,"\cf==Rock"}
+OptionValue ChangeLogIndex_25 {0,"-Removed kick cancelling ball drop animation"}
+OptionValue ChangeLogIndex_26 {0,"-Fixed all balls not having PP, now set to 34%"}//pp. like peepee. haha. im going insane
+OptionValue ChangeLogIndex_27 {0,"--All balls bouncecounts standardized, 5/9"}
+OptionValue ChangeLogIndex_28 {0,"(uncharged/charged)"}
+OptionValue ChangeLogIndex_29 {0,"*This excludes function on surface contact balls"}
+OptionValue ChangeLogIndex_30 {0,"(Guts Ball and Bomb Ball)"}
+OptionValue ChangeLogIndex_31 {0,"-Cut Ball ripper 4/6 > 6/9"}
+OptionValue ChangeLogIndex_32 {0,"-Powerprotect on other balls 0.1 > 0.5"}
+OptionValue ChangeLogIndex_33 {0,"-Bomb Ball direct damage no longer affected by"}
+OptionValue ChangeLogIndex_34 {0,"powerprotect"}
+OptionValue ChangeLogIndex_35 {0,"--Bomb Ball explosion damage 16/20 > 14/18"}
+OptionValue ChangeLogIndex_36 {0,"-Time Ball powerprotect factor 100% (bugged) > 67%"}
+OptionValue ChangeLogIndex_37 {0,""}////////////////////////////////////////////HEY GIBUS IN THE FUTURE! THIS IS YOUR CURRENT PROGRESS!
+//HEY THANKS PAST GIBUS I APPRECIATE THE HEADS UP
+OptionValue ChangeLogIndex_38 {0,"\cf==Sniper Joe"}
+OptionValue ChangeLogIndex_39 {0,"-Machine Gun projectile speed 51 > 58"}
+OptionValue ChangeLogIndex_40 {0,"--Machine Gun projectile spread (-2,2) > (-3,3)"}
+OptionValue ChangeLogIndex_41 {0,""}
+OptionValue ChangeLogIndex_42 {0,"\cf==Gutsman"}
+OptionValue ChangeLogIndex_43 {0,"-Removed ammo gain while holding Guts Block"}
+OptionValue ChangeLogIndex_44 {0,""}
+OptionValue ChangeLogIndex_45 {0,"\cf==Iceman"}
+OptionValue ChangeLogIndex_46 {0,"-Fixed Ice Cube health being x10'd, (HP 500 > 50)"}
+OptionValue ChangeLogIndex_47 {0,"-Reload Ice Lance now has wind FX, provided by Fr3ak"}
+OptionValue ChangeLogIndex_48 {0,"-Fixed weapon tag"}
+OptionValue ChangeLogIndex_49 {0,""}
+OptionValue ChangeLogIndex_50 {0,"\cf==Fireman"}
+OptionValue ChangeLogIndex_51 {0,"-Fire Wave now blocks shots, has 4 tics less lifetime"}
+OptionValue ChangeLogIndex_52 {0,"before despawning"}
+OptionValue ChangeLogIndex_53 {0,""}
+OptionValue ChangeLogIndex_54 {0,"\cf==Bombman"}
+OptionValue ChangeLogIndex_55 {0,"-Cluster Bomb cluster spread speed 12 > 8"}
+OptionValue ChangeLogIndex_56 {0,"--Cluster Bomb cluster explosion radius 50 > 80,"}
+OptionValue ChangeLogIndex_57 {0,"maxdmgradius 81 > 40"}
+OptionValue ChangeLogIndex_58 {0,"-Surface Detonation Hyper Bomb damage 25 > 24"}
+OptionValue ChangeLogIndex_59 {0,""}
+OptionValue ChangeLogIndex_60 {0,"\cf==Timeman"}
+OptionValue ChangeLogIndex_61 {0,"-Removed immunity to Time-related attacks"}
+OptionValue ChangeLogIndex_62 {0,"-Added unused Time Slow activation skinsprites"}
+OptionValue ChangeLogIndex_63 {0,""}
+OptionValue ChangeLogIndex_64 {0,"\cf==Metalman"}
+OptionValue ChangeLogIndex_65 {0,"-Refined hover code, no longer jitters when"}
+OptionValue ChangeLogIndex_66 {0,"holding mainfire"}
+OptionValue ChangeLogIndex_67 {0,""}
+OptionValue ChangeLogIndex_68 {0,"\cf==Airman"}
+OptionValue ChangeLogIndex_69 {0,"-New Air Shooter/Air Wall player/surface"}
+OptionValue ChangeLogIndex_70 {0,"impact SFX added, provided by MusashiAA"}
+OptionValue ChangeLogIndex_71 {0,""}
+OptionValue ChangeLogIndex_72 {0,"\cf==Bubbleman"}
+OptionValue ChangeLogIndex_73 {0,"-Fixed being able to swim forever by spamming"}
+OptionValue ChangeLogIndex_74 {0,"Bubble Flood"}
+OptionValue ChangeLogIndex_75 {0,""}
+OptionValue ChangeLogIndex_76 {0,"\cf==Quickman"}
+OptionValue ChangeLogIndex_77 {0,"-Both versions of Quick Boomerang now properly"}
+OptionValue ChangeLogIndex_78 {0,"move backwards"}
+OptionValue ChangeLogIndex_79 {0,""}
+OptionValue ChangeLogIndex_80 {0,"\cf==Needleman"}
+OptionValue ChangeLogIndex_81 {0,"-Needle Cannon accurate shot timing made consistent,"}
+OptionValue ChangeLogIndex_82 {0,"now always fires two accurate needles every 16 tics"}
+OptionValue ChangeLogIndex_83 {0,""}
+OptionValue ChangeLogIndex_84 {0,"\cf==Shadowman"}
+OptionValue ChangeLogIndex_85 {0,"-Landing SFX removed"}
+OptionValue ChangeLogIndex_86 {0,""}
+OptionValue ChangeLogIndex_87 {0,"\cf==Pharaohman"}
+OptionValue ChangeLogIndex_88 {0,"-Pharaoh Shot explosion fulldmgmaxradius 16 > 32"}
+OptionValue ChangeLogIndex_89 {0,"--Pharaoh Shot firing sounds imported from CBM"}
+OptionValue ChangeLogIndex_90 {0,"--New sound for Pharaoh Shot explosion added,"}
+OptionValue ChangeLogIndex_91 {0,"made by MusashiAA"}
+OptionValue ChangeLogIndex_92 {0,"--Updated FX for Pharaoh Shot midcharge"}
+OptionValue ChangeLogIndex_93 {0,""}
+OptionValue ChangeLogIndex_94 {0,"\cf==Drillman"}
+OptionValue ChangeLogIndex_95 {0,"-Updated HUD, made by Lamp"}
+OptionValue ChangeLogIndex_96 {0,"-Added smoke particles to Drill Bomb as it travels"}
+OptionValue ChangeLogIndex_97 {0,""}
+OptionValue ChangeLogIndex_98 {0,"\cf==Diveman"}
+OptionValue ChangeLogIndex_99 {0,"-Dive Missile now goes towards where user is"}
+OptionValue ChangeLogIndex_100 {0,"looking instead of where cursor is"}
+OptionValue ChangeLogIndex_101 {0,"--Dive Missile horizontal spread halved (-20,20)"}
+OptionValue ChangeLogIndex_102 {0,"> (-10,10), vertical spread doubled (-4,4) > (-8,8)"}
+OptionValue ChangeLogIndex_103 {0,"-DiveTackleAmmo max capacity reduced 400 > 345"}
+OptionValue ChangeLogIndex_104 {0,"-DiveTackleAmmo passive gain reduced 4 every 2 tics"}
+OptionValue ChangeLogIndex_105 {0,"> 3 every 2 tics"}
+OptionValue ChangeLogIndex_106 {0,"-Dive Tackle verticality nerf undone, now has an"}
+OptionValue ChangeLogIndex_107 {0,"overall 25% thrust reduction on all axes"}
+OptionValue ChangeLogIndex_108 {0,"(26 thrust > 20 thrust)"}
+OptionValue ChangeLogIndex_109 {0,"--Dive Tackle cooldown reduced 2 seconds>1.5 seconds"}
+OptionValue ChangeLogIndex_110 {0,"(70 tics > 57 tics)"}
+OptionValue ChangeLogIndex_111 {0,"--Ammo requirement for Dive Tackle 140 > 115"}
+OptionValue ChangeLogIndex_112 {0,"-Ammo consumed on using Dive Mines 120 > 100"}
+OptionValue ChangeLogIndex_113 {0,"-Fixed minor horizontal bar bug"}
+OptionValue ChangeLogIndex_114 {0,""}
+OptionValue ChangeLogIndex_115 {0,"\cf==Skullman"}
+OptionValue ChangeLogIndex_116 {0,"-Fixed being able to activate parry..."}
+OptionValue ChangeLogIndex_117 {0,"\c[b7]...from the grave! Nyeh heh heh!"}
+OptionValue ChangeLogIndex_118 {0,""}
+OptionValue ChangeLogIndex_119 {0,"\cf==Gravityman"}
+OptionValue ChangeLogIndex_120 {0,"-Gravity Orb no longer lifts allies"}
+OptionValue ChangeLogIndex_121 {0,""}
+OptionValue ChangeLogIndex_122 {0,"\cf==Napalmman"}
+OptionValue ChangeLogIndex_123 {0,"-Napalm Bomb projectile speed 20/30/40 > 25/35/45"}
+OptionValue ChangeLogIndex_124 {0,"-Endlag on Napalm Missile reduced by 4 tics"}
+OptionValue ChangeLogIndex_125 {0,"-Napalm Bomb jumping/firing skinsprites"}
+OptionValue ChangeLogIndex_126 {0,"ported from V-Classes"}
+OptionValue ChangeLogIndex_127 {0,"-Updated Napalm HUD, provided by HeelNavi"}
+OptionValue ChangeLogIndex_128 {0,""}
+OptionValue ChangeLogIndex_129 {0,"\cf==Crystalman"}
+OptionValue ChangeLogIndex_130 {0,"-Crystal Eye now has a unique bouncing sound,"}
+OptionValue ChangeLogIndex_131 {0,"provided by MusashiAA"}
+OptionValue ChangeLogIndex_132 {0,""}
+OptionValue ChangeLogIndex_133 {0,"\cf==Knightman"}
+OptionValue ChangeLogIndex_134 {0,"-Knight Crush speed 50 > 45"}
+OptionValue ChangeLogIndex_135 {0,"--Returning Knight Crush damage 9 > 18"}
+OptionValue ChangeLogIndex_136 {0,"-Super Knight Crush reworked: henceforth"}
+OptionValue ChangeLogIndex_137 {0,"referred to as Castle Crush"}
+OptionValue ChangeLogIndex_138 {0,"--Now acts similarly to copywep Knight Crush"}
+OptionValue ChangeLogIndex_139 {0,"in that its a ripper boomerang"}
+OptionValue ChangeLogIndex_140 {0,"--Damage 27 > 24 (base) + 4 (ripper)"}
+OptionValue ChangeLogIndex_141 {0,"--Stuns enemies for 15 tics on direct and applies"}
+OptionValue ChangeLogIndex_142 {0,"50% hitstun, only stuns on base damage"}
+OptionValue ChangeLogIndex_143 {0,"-Spinning Mace obit updated to be more culturally"}
+OptionValue ChangeLogIndex_144 {0,"appropriate"}
+OptionValue ChangeLogIndex_145 {0,"-Edited secret obit"}
+OptionValue ChangeLogIndex_146 {0,""}
+OptionValue ChangeLogIndex_147 {0,"\cf==Tomahawkman"}
+OptionValue ChangeLogIndex_148 {0,"-Updated Silver Tomahawk death sprites, provided"}
+OptionValue ChangeLogIndex_149 {0,"by HeelNavi"}
+OptionValue ChangeLogIndex_150 {0,"\c[gibusgold]*hey a-chan FUCK YOU"}
+OptionValue ChangeLogIndex_151 {0,"-Edited secret obit"}
+OptionValue ChangeLogIndex_152 {0,"-New Silver Tomahawk player/surface impact SFX"}
+OptionValue ChangeLogIndex_153 {0,"added, provided by Fr3ak"}
+OptionValue ChangeLogIndex_154 {0,""}
+OptionValue ChangeLogIndex_155 {0,"\cf==Windman"}
+OptionValue ChangeLogIndex_156 {0,"-New Wind Gyro firing SFX, provided by MusashiAA"}
+OptionValue ChangeLogIndex_157 {0,"-Wind Storm speed when on the ground 20 > 30"}
+OptionValue ChangeLogIndex_158 {0,"--Wind Storm pull strength 16 > 24"}
+OptionValue ChangeLogIndex_159 {0,"--Wind Storm stepheight 15 > 24"}
+OptionValue ChangeLogIndex_160 {0,"--Added Wind Storm particles when grounded"}
+OptionValue ChangeLogIndex_161 {0,""}
+OptionValue ChangeLogIndex_162 {0,"\cf==Junkman"}
+OptionValue ChangeLogIndex_163 {0,"-Fixed Junk Cube health being x10'd, (HP 2000 > 200)"}
+OptionValue ChangeLogIndex_164 {0,""}
+OptionValue ChangeLogIndex_165 {0,"\cf==Burstman"}
+OptionValue ChangeLogIndex_166 {0,"-Danger Wrap projectile speed 20/25/35 > 25/30/35"}
+OptionValue ChangeLogIndex_167 {0,""}
+OptionValue ChangeLogIndex_168 {0,"\cf==Cloudman"}
+OptionValue ChangeLogIndex_169 {0,"-Added unused obituaries for Thunder Charge"}
+OptionValue ChangeLogIndex_170 {0,"and Thunder Spark"}
+OptionValue ChangeLogIndex_171 {0,""}
+OptionValue ChangeLogIndex_172 {0,"\cf==Springman"}
+OptionValue ChangeLogIndex_173 {0,"-Now generates ammo at a halved rate while Spring"}
+OptionValue ChangeLogIndex_174 {0,"Punch is out"}
+OptionValue ChangeLogIndex_175 {0,"--Ammo regen matches idle regen if Super "}
+OptionValue ChangeLogIndex_176 {0,"Spring Punch is used"}
+OptionValue ChangeLogIndex_177 {0,""}
+OptionValue ChangeLogIndex_178 {0,"\cf==Turboman"}
+OptionValue ChangeLogIndex_179 {0,"-Fixed horizontal bar bug"}
+OptionValue ChangeLogIndex_180 {0,""}
+OptionValue ChangeLogIndex_181 {0,"\cf==Tenguman"}
+OptionValue ChangeLogIndex_182 {0,"-Ported optimized hover method from Primo Patch"}
+OptionValue ChangeLogIndex_183 {0,""}
+//strap in, codereaders.
+OptionValue ChangeLogIndex_184 {0,"\cf==Swordman"}
+OptionValue ChangeLogIndex_185 {0,"-Ammo regen reduced by 40%"}//WHAAAAT NOOOOOOOOOOO WHAT ARE YA DOING
+OptionValue ChangeLogIndex_186 {0,"-Flame Sword no longer generates ammo when swinging"}//MY FURSONA NO PLEASE DONT NERF SWORD
+OptionValue ChangeLogIndex_187 {0,"--Increased delay between Flame Sword swings by 4 tics"}//WAAAAHHHHH WAAHHHHHH STOP NERFING HIMMMMM
+OptionValue ChangeLogIndex_188 {0,"--Flame Sword particles now have +BRIGHT"}//IM GONNA BLOW MY BRAINS OUT WHY IS HE NOT A TOP 10 CLASS ANYMORE
+OptionValue ChangeLogIndex_189 {0,"-Searing Lunge reworked: Now has set distances for"}//thats it. ya little SHIT. im gonna KILL YOU. 
+OptionValue ChangeLogIndex_190 {0,"all levels and drains ammo"}//sword is my baby. and now yar nerfin' him!
+OptionValue ChangeLogIndex_191 {0,"--Landing from Searing Lunge now drops Statue Smash,"}//MY CLASS IS RUIIIIINEEEEEED NOOOOOOOOOOOOOOOOOOOOOOOOO
+OptionValue ChangeLogIndex_192 {0,"an explosive statue that stuns enemies for half a"}//my pronouns are sword/man. and yars will be was/were!
+OptionValue ChangeLogIndex_193 {0,"second on hit"}//HE NEEDS AT LEAST MORE THAN .8 TO BE VIABLE!
+OptionValue ChangeLogIndex_194 {0,"--Statue Smash takes away 7 ammo on spawn and "}//AUGH WHY DO I KEEP MISSING MY SHOTS THIS CLASS SUCKS NOW
+OptionValue ChangeLogIndex_195 {0,"leaves the user immobile while forming"}//its over... i have no value anymore.......
+//sorry.
+OptionValue ChangeLogIndex_196 {0,""}
+OptionValue ChangeLogIndex_197 {0,"\cf==Searchman"}
+OptionValue ChangeLogIndex_198 {0,"-Homing Sniper speed 28/32 > 32/35"}
+OptionValue ChangeLogIndex_199 {0,"-Firing Homing Sniper now has 20 tics of endlag"}
+OptionValue ChangeLogIndex_200 {0,"--Endlag gets reduced by 5 tics per missile fired"}
+OptionValue ChangeLogIndex_201 {0,"in a volley"}
+OptionValue ChangeLogIndex_202 {0,"--Endlag can be cancelled into Search Disc or "}
+OptionValue ChangeLogIndex_203 {0,"Deadly Storm 5 tics into endlag"}
+OptionValue ChangeLogIndex_204 {0,"--Ammo consumption when firing removed"}
+OptionValue ChangeLogIndex_205 {0,"-Deadly Storm speed reduction while firing removed"}
+OptionValue ChangeLogIndex_206 {0,"--Optimized Deadly Storm hovering code"}
+OptionValue ChangeLogIndex_207 {0,"-Updated skinsprites"}
+OptionValue ChangeLogIndex_208 {0,"-New Homing Sniper/Deadly Storm sprites and firing"}
+OptionValue ChangeLogIndex_209 {0,"-New Empowered Search Disc sprites ported"}
+OptionValue ChangeLogIndex_210 {0,"from V-Classes"}
+OptionValue ChangeLogIndex_211 {0,""}
+OptionValue ChangeLogIndex_212 {0,"\cf==Aquaman"} 
+OptionValue ChangeLogIndex_213 {0,"-Water Balloon direct damage 4 > 2"}
+OptionValue ChangeLogIndex_214 {0,"--Water Balloon explosion damage 10 > 9"}
+OptionValue ChangeLogIndex_215 {0,"--Water Balloon explosive fulldmgmaxradius 0 > 24"}
+OptionValue ChangeLogIndex_216 {0,""}
+OptionValue ChangeLogIndex_217 {0,"\cf==OriginalDuo"}
+OptionValue ChangeLogIndex_218 {0,"-Fixed SBAR not indicating when"}
+OptionValue ChangeLogIndex_219 {0,"Giga Tackle is available"}
+OptionValue ChangeLogIndex_220 {0,"-Fixed Original Duo Meteor not having"}
+OptionValue ChangeLogIndex_221 {0,"knockback on direct"}
+OptionValue ChangeLogIndex_222 {0,"-New sounds for meteor added, made by MusashiAA"}
+OptionValue ChangeLogIndex_223 {0,""}
+OptionValue ChangeLogIndex_224 {0,"\cf==EvilRobot"}
+OptionValue ChangeLogIndex_225 {0,"-Giga Astro Crush powerprotect 75% > 33%"}
+OptionValue ChangeLogIndex_226 {0,""}
+OptionValue ChangeLogIndex_227 {0,"\cf==Groundman"}
+OptionValue ChangeLogIndex_228 {0,"-Health 115 > 125"}
+OptionValue ChangeLogIndex_229 {0,"-Speed 0.64/0.62 > 0.6/0.58"}
+OptionValue ChangeLogIndex_EX1 {0,"-Firing Spread Drill now halves "}
+OptionValue ChangeLogIndex_230 {0,"Tank Mode ammo regen (15 > 7)"}
+OptionValue ChangeLogIndex_231 {0,"-Tank Mode ammo 400 > 500, still spawns with half ammo"}
+OptionValue ChangeLogIndex_232 {0,"--Ammo Requirement to activate Tank Mode 400 > 500"}
+OptionValue ChangeLogIndex_233 {0,"-Digging ammo consumption per tic 6 > 8"}
+OptionValue ChangeLogIndex_234 {0,"--Ammo Consumption on floor dig up early 100 > 150"}
+OptionValue ChangeLogIndex_235 {0,"--Exiting digging mode explosion"}
+OptionValue ChangeLogIndex_236 {0,"fulldmgmaxradius 86 > 48"}
+OptionValue ChangeLogIndex_237 {0,"--Now has slows to 20% movespeed for 5 tics after"}
+OptionValue ChangeLogIndex_238 {0,"exiting floor or ceiling"}
+OptionValue ChangeLogIndex_239 {0,"-Giga Drill Firing cost 15 > 25"}
+OptionValue ChangeLogIndex_240 {0,""}
+OptionValue ChangeLogIndex_241 {0,"\cf==Magicman"}
+OptionValue ChangeLogIndex_242 {0,"-Fixed bots crashing online"}
+OptionValue ChangeLogIndex_243 {0,""}
+OptionValue ChangeLogIndex_244 {0,"\cf==Tornadoman"}
+OptionValue ChangeLogIndex_245 {0,"-Ported optimized hover method from Primo Patch"}
+OptionValue ChangeLogIndex_246 {0,""}
+OptionValue ChangeLogIndex_247 {0,"==Plugman"}
+OptionValue ChangeLogIndex_248 {0,"-Fixed armor nullifying altfire health drain"}
+OptionValue ChangeLogIndex_249 {0,""}
+OptionValue ChangeLogIndex_250 {0,"\cf==Hornetman"}
+OptionValue ChangeLogIndex_251 {0,"-Honeycomb Crash endlag reduced by 5 tics"}
+OptionValue ChangeLogIndex_252 {0,"-Ported optimized hover method from Primo Patch"}
+OptionValue ChangeLogIndex_253 {0,""}
+OptionValue ChangeLogIndex_254 {0,"\cf==Galaxyman"}
+OptionValue ChangeLogIndex_255 {0,"-Black Hole Bomb no longer affects"}
+OptionValue ChangeLogIndex_256 {0,"Drillman and Groundman while they are in dig mode"}
+OptionValue ChangeLogIndex_257 {0,""}
+OptionValue ChangeLogIndex_258 {0,"\cf==Pumpman"}
+OptionValue ChangeLogIndex_259 {0,"-Pump Stream projectile height/radius 16/16 > 8/8"}
+OptionValue ChangeLogIndex_260 {0,"-Fixed skinsprite issues with Pump Slugger"}
+OptionValue ChangeLogIndex_261 {0,""}
+OptionValue ChangeLogIndex_EX2 {0,"\cf==Sheepman"}
+OptionValue ChangeLogIndex_262 {0,"-Fixed Thunder Rain pain animation"}
+OptionValue ChangeLogIndex_263 {0,""}
+OptionValue ChangeLogIndex_264 {0,"\cf==Strikeman"}
+OptionValue ChangeLogIndex_265 {0,"-Rebound Bouncer melee damager is now"}
+OptionValue ChangeLogIndex_266 {0,"16 units in front of him"}
+OptionValue ChangeLogIndex_267 {0,"--Rebound Bouncer melee damager powerprotect "}
+OptionValue ChangeLogIndex_268 {0,"duration 6 tics > 12 tics"}
+OptionValue ChangeLogIndex_269 {0,"--Rebound Bouncer powerprotect factor 0.15 > 0.0"}
+OptionValue ChangeLogIndex_270 {0,""}
+OptionValue ChangeLogIndex_271 {0,"\cf==Terra"}
+OptionValue ChangeLogIndex_272 {0,"-Spark Chaser pre-release speed 12 > 14"}
+OptionValue ChangeLogIndex_273 {0,"--Spark Chaser post-release speed 90 > 66"}
+OptionValue ChangeLogIndex_274 {0,"--Spark Chaser post-release damage 5 ripper > 3 ripper"}
+OptionValue ChangeLogIndex_275 {0,"-Spark Suppressor damage pre-release 7 (bugged) > 3"}
+OptionValue ChangeLogIndex_276 {0,"--Spark Suppressor damage post release"}
+OptionValue ChangeLogIndex_277 {0,"2 ripper > 6 ripper"}
+OptionValue ChangeLogIndex_278 {0,"--Spark Suppressor powerprotect 75% reduction"}
+OptionValue ChangeLogIndex_279 {0,"every 5 tics > 100% reduction every 3 tics"}
+OptionValue ChangeLogIndex_280 {0,"-Updated damage taken during camera indicator"}
+OptionValue ChangeLogIndex_281 {0,""}
+OptionValue ChangeLogIndex_282 {0,"\cf==Mercury"}
+OptionValue ChangeLogIndex_283 {0,"-MercuryClassAmmo max capacity 32 > 56"}
+OptionValue ChangeLogIndex_284 {0,"--MercuryClassAmmo starting capacity 12 > 24"}
+OptionValue ChangeLogIndex_285 {0,"-Grab Buster ammo replenishment on hit 2 > 4"}//hey past gibus im p sure "replenlishmetn" isnt a real word
+OptionValue ChangeLogIndex_286 {0,"-Mercury Goo use/diminish ratio 4/3 > 7/6"}
+OptionValue ChangeLogIndex_287 {0,"-Goo Dash use/diminish ratio 8/7 > 14/12"}
+OptionValue ChangeLogIndex_288 {0,""}
+OptionValue ChangeLogIndex_289 {0,"\cf==Mars"}
+OptionValue ChangeLogIndex_290 {0,"-Health reduced 135 > 125"}
+OptionValue ChangeLogIndex_291 {0,"-Ammo consumption on Photon Missile 56 > 84"}
+OptionValue ChangeLogIndex_292 {0,"(max ammo capacity 6 missiles > 4 missiles)"}
+OptionValue ChangeLogIndex_293 {0,"-Added FX to Photon Missile travel"}
+OptionValue ChangeLogIndex_294 {0,""}
+OptionValue ChangeLogIndex_295 {0,"\cf==Jupiter"}
+OptionValue ChangeLogIndex_296 {0,"-Updated HUD offsets on Electric Spark, added"}
+OptionValue ChangeLogIndex_297 {0,"HUD muzzle flash on Electric Shock"}
+OptionValue ChangeLogIndex_298 {0,"-Adjusted Electric Spark obituary"}
+OptionValue ChangeLogIndex_299 {0,"-Ported optimized hover method from Primo Patch"}
+OptionValue ChangeLogIndex_300 {0,""}
+OptionValue ChangeLogIndex_301 {0,"\cf==Saturn"}
+OptionValue ChangeLogIndex_EX3 {0,"-Fixed horizontal bar bug"}
+OptionValue ChangeLogIndex_302 {0,""}
+OptionValue ChangeLogIndex_303 {0,"\cf==Pluto"}
+OptionValue ChangeLogIndex_304 {0,"-Speed Scalar reverted to CCBM values"}
+OptionValue ChangeLogIndex_305 {0,"-Ammo gain reverted to CCBM values"}
+OptionValue ChangeLogIndex_306 {0,"-Speed checks and ammo loss now scales with"}
+OptionValue ChangeLogIndex_307 {0,"current speed"}
+OptionValue ChangeLogIndex_308 {0,"-Breakspark now grants 5% speed boost"}
+OptionValue ChangeLogIndex_309 {0,"-Breakspark now starts at 75%"}
+OptionValue ChangeLogIndex_310 {0,"-Break Dash duration is halved without Breakspark"}
+OptionValue ChangeLogIndex_311 {0,"-Running animation speed now scales with momentum"}
+OptionValue ChangeLogIndex_312 {0,"-Meow sound slightly edited by Aure"}
+OptionValue ChangeLogIndex_313 {0,"\c[gibusgold]*so i thought if someone was gonna"}
+OptionValue ChangeLogIndex_314 {0,"\c[gibusgold]read pluto changes theyd press up at"}
+OptionValue ChangeLogIndex_315 {0,"\c[gibusgold]the start and scroll up to get here"}
+OptionValue ChangeLogIndex_316 {0,"\c[gibusgold]i hate pluto players so they need to wait lol"}
+OptionValue ChangeLogIndex_317 {0,""}
+OptionValue ChangeLogIndex_318 {0,""}
+OptionValue ChangeLogIndex_319 {0,""}
+OptionValue ChangeLogIndex_320 {0,""}
+OptionValue ChangeLogIndex_321 {0,""}
+OptionValue ChangeLogIndex_322 {0,""}
+OptionValue ChangeLogIndex_323 {0,""}
+OptionValue ChangeLogIndex_324 {0,""}
+OptionValue ChangeLogIndex_325 {0,""}
+OptionValue ChangeLogIndex_326 {0,""}
+OptionValue ChangeLogIndex_327 {0,""}
+OptionValue ChangeLogIndex_328 {0,""}
+OptionValue ChangeLogIndex_329 {0,""}
+OptionValue ChangeLogIndex_330 {0,""}
+OptionValue ChangeLogIndex_331 {0,""}
+OptionValue ChangeLogIndex_332 {0,""}
+OptionValue ChangeLogIndex_333 {0,""}
+OptionValue ChangeLogIndex_334 {0,""}
+OptionValue ChangeLogIndex_335 {0,""}
+OptionValue ChangeLogIndex_336 {0,""}
+OptionValue ChangeLogIndex_337 {0,""}
+OptionValue ChangeLogIndex_338 {0,""}
+OptionValue ChangeLogIndex_339 {0,""}
+OptionValue ChangeLogIndex_340 {0,"\cf==Sunstar"}
+OptionValue ChangeLogIndex_341 {0,"-Ported HUD discoloration fix from Lamp"}
+OptionValue ChangeLogIndex_342 {0,""}
+OptionValue ChangeLogIndex_343 {0,"\cf==Blastman"}
+OptionValue ChangeLogIndex_344 {0,"-Fixed jump frames glitching"}
+OptionValue ChangeLogIndex_345 {0,""}
+OptionValue ChangeLogIndex_346 {0,"\cf==Acidman"}
+OptionValue ChangeLogIndex_347 {0,"-Fixed permanent 5% damage vulnerability after"}
+OptionValue ChangeLogIndex_348 {0,"using Acid Barrier"}
+OptionValue ChangeLogIndex_349 {0,""}
+OptionValue ChangeLogIndex_350 {0,"\cf==Tundraman"}
+OptionValue ChangeLogIndex_351 {0,"-Triple Lutz melee damager powerprotect duration"}
+OptionValue ChangeLogIndex_352 {0,"8 tics > 12 tics"}
+OptionValue ChangeLogIndex_353 {0,"-Tundra Storm radius 150 > 100,"}
+OptionValue ChangeLogIndex_354 {0,"sprite scale adjusted to represent new hitbox"}
+OptionValue ChangeLogIndex_355 {0,"-Fixed SBAR desyncs"}
+OptionValue ChangeLogIndex_356 {0,"-Fixed minor horizontal bar bug"}
+OptionValue ChangeLogIndex_357 {0,""}
+OptionValue ChangeLogIndex_358 {0,"\cf==Torchman"}
+OptionValue ChangeLogIndex_359 {0,"-Removed 10% increase in speed on Power Gear"}
+OptionValue ChangeLogIndex_360 {0,"-Power Gear meter now drains 50% faster when in Power"}
+OptionValue ChangeLogIndex_361 {0,"Gear, drains 67% slower when not in Power Gear"}
+OptionValue ChangeLogIndex_362 {0,""}
+OptionValue ChangeLogIndex_363 {0,"\cf==Bounceman"}
+OptionValue ChangeLogIndex_364 {0,"-Rubber Latch projectile speed 70 > 60"}
+OptionValue ChangeLogIndex_365 {0,"--Returning Rubber Latch explosion radius 50 > 28"}
+OptionValue ChangeLogIndex_366 {0,"--Pull strength on returning Rubber Latch halved"}
+OptionValue ChangeLogIndex_367 {0,"if not the initial target"}
+OptionValue ChangeLogIndex_368 {0,"--Fixed item being able to cancel Rubber Latch endlag"}
+OptionValue ChangeLogIndex_369 {0,"--Fixed Returning Rubber Latch cable visual glitch"}
+OptionValue ChangeLogIndex_370 {0,""}
+OptionValue ChangeLogIndex_371 {0,"\cf==HyperstormH"}
+OptionValue ChangeLogIndex_372 {0,"-Suction kills are now part of a balanced breakfast"}
+OptionValue ChangeLogIndex_373 {0,""}
+OptionValue ChangeLogIndex_374 {0,"\cf==Ballade"}
+OptionValue ChangeLogIndex_375 {0,"-Fixed Ballade Cracker offsets"}
+OptionValue ChangeLogIndex_376 {0,"-Ballade Cracker now resembles MM4GB mini-cracker"}
+OptionValue ChangeLogIndex_377 {0,"when fired with minimum speed"}
+OptionValue ChangeLogIndex_378 {0,""}
+OptionValue ChangeLogIndex_379 {0,"\cf==Quint"}
+OptionValue ChangeLogIndex_380 {0,"-Sakugarne melee damager powerprotect duration"}
+OptionValue ChangeLogIndex_381 {0,"8/9 tics > 12/13 tics"}
+OptionValue ChangeLogIndex_382 {0,"-Updated Quint Buster projectile sprites to resemble"}
+OptionValue ChangeLogIndex_383 {0,"Mega Buster's Game Boy projectile sprites"}
+OptionValue ChangeLogIndex_384 {0,"-Fixed Shockwave being able to deal up to 50 dmg"}
+OptionValue ChangeLogIndex_385 {0,""}
+OptionValue ChangeLogIndex_386 {0,""}
+OptionValue ChangeLogIndex_387 {0,""}
+OptionValue ChangeLogIndex_388 {0,""}
+OptionValue ChangeLogIndex_389 {0,"\cfi dont have much i wanna say. outside of thanks ofc."}
+OptionValue ChangeLogIndex_390 {0,"\cfseeing gondola blow up has been one of"}
+OptionValue ChangeLogIndex_391 {0,"\cfthe biggest highlights of my life."}
+OptionValue ChangeLogIndex_392 {0,""}
+OptionValue ChangeLogIndex_393 {0,"\cfwasnt easy esp when people i was friends"}
+OptionValue ChangeLogIndex_394 {0,"\cfwith back in 2019 slowly left the game cuz of"}
+OptionValue ChangeLogIndex_395 {0,"\cfdisapproval of how i run things or burnout."}
+OptionValue ChangeLogIndex_396 {0,"\cfbut we here. and we run shit now."}
+OptionValue ChangeLogIndex_397 {0,""}
+OptionValue ChangeLogIndex_398 {0,"\cfpretty good for a \c[q6]'pussy bitch'\cf, huh?"}//suuuuure spybot aint readin dis but if he does i wanna be around to see it lmao
+OptionValue ChangeLogIndex_399 {0,"\c[gibusgold]-Pr. Gibus, 7/17/2023"}
+OptionValue ChangeLogIndex_400 {0,""}

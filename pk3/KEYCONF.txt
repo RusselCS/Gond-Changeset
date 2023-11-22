@@ -3,6 +3,9 @@ addplayerclass MegamanC nomenu
 addplayerclass Protoman nomenu
 addplayerclass Bass nomenu
 addplayerclass Duo nomenu
+//addplayerclass Protoman nomenu
+//addplayerclass Bass nomenu
+//addplayerclass Duo nomenu
 addplayerclass Maestro nomenu
 addplayerclass RockClass nomenu
 addplayerclass RollClass nomenu
@@ -19,6 +22,7 @@ addplayerclass Fireman nomenu
 addplayerclass Elecman nomenu
 addplayerclass Timeman nomenu
 addplayerclass Oilman nomenu
+addplayerclass YellowDevil nomenu //yet.
 
 addplayerclass Metalman nomenu
 addplayerclass Airman nomenu
@@ -38,7 +42,6 @@ addplayerclass Alien nomenu
 //addplayerclass FlashmanRNC nomenu
 //addplayerclass HeatmanRNC nomenu
 //addplayerclass WoodmanRNC nomenu
-//addplayerclass AlienRNC nomenu
 
 addplayerclass Needleman nomenu
 addplayerclass Magnetman nomenu
@@ -49,6 +52,7 @@ addplayerclass Snakeman nomenu
 addplayerclass Sparkman nomenu
 addplayerclass Shadowman nomenu
 addplayerclass DocRobot nomenu
+//addplayerclass Breakman nomenu not yet :^)
 
 addplayerclass Brightman nomenu
 addplayerclass Toadman nomenu
@@ -59,13 +63,13 @@ addplayerclass Dustman nomenu
 addplayerclass Diveman nomenu
 addplayerclass Skullman nomenu
 
-addplayerclass Gravityman nomenu//Where is the logic?
-addplayerclass Waveman nomenu//Wave pun
+addplayerclass Gravityman nomenu
+addplayerclass Waveman nomenu
 addplayerclass Stoneman nomenu
-addplayerclass Gyroman nomenu//huzzah
+addplayerclass Gyroman nomenu
 addplayerclass Starman nomenu
-addplayerclass Chargeman nomenu//I choo choo choose you to be my class!
-addplayerclass Napalmman nomenu//huzzah
+addplayerclass Chargeman nomenu
+addplayerclass Napalmman nomenu
 addplayerclass Crystalman nomenu
 addplayerclass Darkman1 nomenu
 addplayerclass Darkman2 nomenu
@@ -123,8 +127,8 @@ addplayerclass Blademan nomenu
 addplayerclass Pumpman nomenu
 addplayerclass Commandoman nomenu
 addplayerclass Chillman nomenu
-//addplayerclass Sheepman nomenu
-//addplayerclass Strikeman nomenu
+addplayerclass Sheepman nomenu
+addplayerclass Strikeman nomenu
 addplayerclass Nitroman nomenu
 addplayerclass Solarman nomenu
 
@@ -133,11 +137,20 @@ addplayerclass Mercury nomenu
 addplayerclass Venus nomenu
 addplayerclass Mars nomenu
 addplayerclass Jupiter nomenu
-//addplayerclass Saturn nomenu
+addplayerclass Saturn nomenu
 addplayerclass Uranus nomenu
 addplayerclass Pluto nomenu
 addplayerclass Neptune nomenu
-//addplayerclass Sunstar nomenu
+addplayerclass Sunstar nomenu
+
+//addplayerclass Blockman nomenu
+addplayerclass Fuseman nomenu
+addplayerclass Blastman nomenu
+addplayerclass Acidman nomenu
+addplayerclass Tundraman nomenu
+addplayerclass Torchman nomenu
+//addplayerclass Impactman nomenu
+addplayerclass Bounceman nomenu
 
 addplayerclass BusterRodG nomenu
 addplayerclass MegaWaterS nomenu
@@ -151,26 +164,34 @@ addplayerclass RaThor nomenu
 
 addplayerclass BBAMegaman nomenu
 
-//////
-//addplayerclass HelperClass nomenu
-//////
 
 //Tricking the Menu
 alias !cbm_justjoin "closemenu;join"
 
 //Class Information ALIAS
-alias classhelp "pukename CBM_ClassHelp_NET"
+alias classhelp "menuconsole;menu_CH_NumHelp;puke 22693"//452
 alias cbm_SetCHelpNum "pukename cbm_SetCH_MenuNum"
 
-alias menuclasshelp "menuconsole;classhelp"
+alias menuclasshelp "menuconsole;classhelp"//452
 alias menu_CH_NumHelp "cbm_SetCHelpNum"
-alias menu_CBM_ResetDim "dimamount -1"
+
 
 //alias !EXAMPLE "closemenu;pukename EXAMPLE 0"
+
 
 alias +rapidattackc "+user1; +altattack"
 alias -rapidattackc "-user1; -altattack"
 
-addkeysection "Classes Extra Controls" MM8BDMSpecials
-addmenukey "Turbo Attack" +rapidattackc
+addmenukey "Reload/Extra Attack" +reload
 
+addkeysection "Strafe Run 50 (SR50)" SR50
+addmenukey "Strafe Left" +left2
+addmenukey "Strafe Right" +right2
+addmenukey "ACTIVATE SR50" +sr
+
+alias +left2 "+left; +moveleft"
+alias -sr "turnspeeds 0; -strafe"
+alias +sr "turnspeeds 65536; +strafe"
+alias +right2 "+right; +moveright"
+alias -right2 "-right; -moveright"
+alias -left2 "-left; -moveleft"

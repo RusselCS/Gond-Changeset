@@ -234,79 +234,125 @@ script 987 (int force, int angle, int sound)
 script 983 ENTER
 {
 Delay(2);
- 
-    int botX, botY, botoldX, botoldY, botIdleTimer, xdist, ydist, distance;
-    bool teams = ACS_ExecuteWithResult(975, 1);
-   
-    bool isCampaign = (GetUserCvar(0, "mm8bdm_chapter"));
- 
-    if(PlayerIsBot(PlayerNumber())){
-   
-        if(GetLevelInfo(LEVELINFO_LEVELNUM)>94){GiveInventory("BotDifficulty",1);} // If > MM9 increase the difficulty
-       
-        botoldX = GetActorX(ActivatorTID());
-        botoldY = GetActorY(ActivatorTID());
-       
-        while(timestop==-1 && GetActorProperty(ActivatorTID(), APROP_HEALTH)>0){
-           
-            if(GetGameModeState()==GAMESTATE_INRESULTSEQUENCE){terminate;}
-           
-            // Give the bot the special "stair checker" actor
-            GiveInventory("CreateBotBuddy",1);
-            Delay(8);
-           
-            if(CheckInventory("NoBotFix") ||
-            !isCampaign ||
-            (teams && GetPlayerInfo(0, PLAYERINFO_TEAM) == GetPlayerInfo(ActivatorTID()-1000, PLAYERINFO_TEAM))){continue;}
-           
-            botX = GetActorX(ActivatorTID());
-            botY = GetActorY(ActivatorTID());
-           
-            xdist = botX - botoldX >> 16;
-            ydist = botY - botoldY >> 16;
-            distance = sqrt8( xdist*xdist + ydist*ydist );
-           
-            //log(i:distance);
-           
-            if(distance < 48)
-            {
-                //Log(s:"\cibot is loafing around!");
-                botIdleTimer++;
-            }
-            else
-            {
-                //Log(s:"\cdbot on the move");
-                botoldX = botX;
-                botoldY = botY;
-                botIdleTimer = 0;
-            }
-           
-            if(botIdleTimer> 7){
-           
-				int bothp = GetActorProperty(ActivatorTID(), APROP_HEALTH);
-                //Log(s:"\cgbot is probably stuck!");
-				
-                if(bothp>0)
-				{
-				SetActorState(0, "See");
-				ThrustThing(random(0,256), 10, 0, ActivatorTID());
+
+	if(PlayerIsBot(PlayerNumber())){
+	
+		for(int i = 1; i<PlayerCount(); i++){
+		if(!PlayerIsBot(i)){GiveInventory("NoBotFix",1);break;}
+		}
+	
+		if(GetLevelInfo(LEVELINFO_LEVELNUM)>94){GiveInventory("BotDifficulty",1);} // If > MM9 increase the difficulty
+		while(timestop==-1 && GetActorProperty(ActivatorTID(), APROP_HEALTH)>0){
+		// Give the bot the special "stair checker" actor
+		GiveInventory("CreateBotBuddy",1);
+		int botX = GetActorX(ActivatorTID());
+		int botY = GetActorY(ActivatorTID());
+		//int botZ = GetActorZ(ActivatorTID());
+		int botKicker;
+		Delay(8);
+		// Kick them up the butt for not moving
+		if(CheckInventory("NoBotFix")==0){
+			if(GetGameModeState()==GAMESTATE_INRESULTSEQUENCE){terminate;}
+			if(botX == GetActorX(ActivatorTID()) && botY == GetActorY(ActivatorTID())){
+			botKicker++;
+				if(botKicker>20){
+				//PrintBold(s:"MOVE, LAZY BOLTS!");
+				Thing_Stop(ActivatorTID());
+				ThrustThing(random(0,256),10,0,0);
+				botKicker = 0;
 				}
-				
-				
-                if(CheckSight(1000, ActivatorTID(), 0)
-                && bothp>1
-                && GetActorProperty(1000, APROP_HEALTH)>0
-                ){
-                    //Log(s:"line of sight between ", i:1000, s:" and ", i:ActivatorTID());
-                    //Log(s:"\cvforcing bot to fight player");
-                    SpawnProjectile(ActivatorTID(), "PlayerBotKicker", 0, 0, 0, 0, 0);
-                }
-            }
-           
-        }
-    }
+			}
+			else
+			{
+			botKicker = 0;
+			}
+			}
+		}
+	}
 }
 
+
+
+// Health checker for hit-based shields.
+// hits - the number of hits the shield can tank for the player
+// customProtect (true or false) - whether the shield uses the generic protection or its own
+script 982 (int hits, int customProtect)
+{
+	if(hits == 0)
+	{
+		hits = 1;
+	}
+	else if(hits > 999)
+	{
+		//Log(s:"\cgSCRIPT 982: SPECIFIED HITS VALUE TOO HIGH. TERMINATING.");
+		terminate;
+	}
+	
+	int health = GetActorProperty(0, APROP_HEALTH);
+	int maxHealth = GetActorProperty(0, APROP_SPAWNHEALTH);
+	int healCurrent = health;
+	bool loanHP = false;
+	
+	if(maxHealth == 0)
+	{
+		maxHealth = 100;
+	}
+	
+	TakeInventory("ShieldHits", 999);
+	GiveInventory("ShieldHits", hits);
+	
+	SetPlayerProperty(0, 1, PROP_BUDDHA);
+	
+	if(health < 2)
+	{
+		healCurrent = 2;
+		loanHP = true;
+		SetActorProperty(0, APROP_HEALTH, 2);
+	}
+	
+	while(CheckInventory("ShieldHits")>0 && CheckInventory("StopHitShield")==0)
+	{
+		Delay(1);
+		if(GetActorProperty(0, APROP_HEALTH) > health)
+		{
+			health = GetActorProperty(0, APROP_HEALTH);
+			healCurrent = GetActorProperty(0, APROP_HEALTH);
+		}
+		
+		if(healCurrent > GetActorProperty(0, APROP_HEALTH))
+		{
+			TakeInventory("ShieldHits", 1);
+			
+			if(CheckInventory("ShieldHits")>0)
+			{
+				SetActorProperty(0, APROP_HEALTH, healCurrent);
+			}
+			else
+			{
+				SetActorProperty(0, APROP_HEALTH, health);
+			}
+			
+			if(!customProtect)
+			{
+				GiveInventory("HitShieldProtection", 1);
+			}
+		}
+	}
+	
+	if(loanHP && GetActorProperty(0, APROP_HEALTH) < maxHealth)
+	{
+		SetActorProperty(0, APROP_HEALTH, GetActorProperty(0, APROP_HEALTH)-1);
+	}
+	
+	if(CheckInventory("ShieldCheck")==0 && CheckInventory("BasicArmor")==0 && !customProtect)
+	{
+		GiveInventory("HitShieldProtection", 1);
+	}
+	
+	SetPlayerProperty(0, 0, PROP_BUDDHA);
+}
+
+// Script that is executed everytime a weapon's NoAmmo state is called.
 // Script that is executed everytime a weapon's NoAmmo state is called.
 script 979 (void)
 {
@@ -319,13 +365,19 @@ if(CheckInventory("NoAmmoSoundCooldown")==0){
 If(PlayerIsBot(PlayerNumber()))
 	{
 	/*
-	if(CheckInventory("TimeStopperWep")>0)
+	if(CheckInventory("TimeStopperWepC")>0)
 		{
-		TakeInventory("TimeStopperWep",1);
+		TakeInventory("TimeStopperWepC",1);
 		GiveInventory("MegaBuster",1);
 		SetWeapon("MegaBuster");
 		}
 	*/
+	if(CheckInventory("SkullBarrierWepC")>0)//$CBM
+		{
+		TakeInventory("SkullBarrierWepC",1);//$CBM
+		//GiveInventory("MegaBuster",1);//$CBM
+		//SetWeapon("MegaBuster");//$CBM
+		}
 	SetPlayerProperty(0,1,4);
 	ACS_Execute(992, 0, 255);
 	Delay(15);
@@ -379,6 +431,36 @@ while(CheckInventory("BeatSupportActivated")!=0)
 		Delay(5);
 		}
 	Delay(1);
+	}
+}
+
+// [Mess] Scripts to determine pitch or Angle of player on a projectile
+
+Script 259 (int PitchAngle)//$CBM
+{
+int TargetPlayer=ACS_ExecuteWithResult(257);
+int PlayerPitch = GetActorPitch(TargetPlayer);
+int PlayerAngle = GetActorAngle(TargetPlayer);
+
+Switch(PitchAngle)
+	{
+	Case 0:
+	SetActorPitch(0, PlayerPitch);
+	break;
+	Case 1:
+	SetActorPitch(0, PlayerPitch);
+	SetActorAngle(0, PlayerAngle);
+	break;
+	Case 2:
+	SetActorAngle(0, PlayerAngle);
+	break;
+
+	Case 3://$CBM
+	SetResultValue(PlayerPitch);
+	break;
+	Case 4://$CBM
+	SetResultValue(PlayerAngle >> 8);
+	break;
 	}
 }
 
@@ -561,128 +643,141 @@ FadeTo(150,150,150,0.0,0.0);
 }
 
 // Thunder Claw peg script
-Script 248 (int timeout, int noLimit)//$CBM Adds noLimit toggle
+Script 248 (int timeout)
 {
-	int TargetTID = ACS_ExecuteWithResult(257,0);
-
-	If(CheckActorInventory(TargetTID,"RushJetCounter") >= 5 ||
-       CheckActorInventory(TargetTID, "ThunderClawSwingWait") > 0 ||
-       TargetTID == 0) {
-		terminate;
+int hooktid = ActivatorTID();
+if(hooktid==0 || ThingCount(0,hooktid)>1)
+	{
+	int HookNewTID=random(4800, 4950); 
+	if(ThingCount(0,HookNewTID)==0)
+		{
+		Thing_ChangeTID(0,HookNewTID);
+		}
+	Delay(1);
+	restart;
 	}
 
-	GiveActorInventory(TargetTID, "ThunderClawSwingWait", 1);
+int hookx = GetActorX(ActivatorTID());
+int hooky = GetActorY(ActivatorTID());
+int hookz = GetActorZ(ActivatorTID());
+int playerx;
+int playery;
+int thrust;
+int zthrust;
+int ThrustTimeOut=0;
 
-	int hookx = GetActorX(0);
-	int hooky = GetActorY(0);
-	int hookz = GetActorZ(0);
-	int playerx = GetActorX(TargetTID);
-	int playery = GetActorY(TargetTID);
-	int thrust;
-	int zthrust;
-	int ThrustTimeOut=0;
+if(timeout > 0){ThrustTimeOut = timeout;}
+SetActivatortoTarget(0);
+If(CheckInventory("RushJetCounter") >= 5){terminate;}
+If(CheckInventory("YoGeekyAmmo") < 75 && CheckInventory("ThunderClawBoss") == 1){terminate;}
+SetActorState(hooktid,"TargetClear",1);
+If(ActivatorTID()==hooktid){terminate;}
+playerx=GetActorX(ActivatorTID());
+playery=GetActorY(ActivatorTID());
+//SetPlayerProperty(0,1,0);//$CBM
+TakeInventory("JumpCancler",1);
 
-	if(timeout > 0){ThrustTimeOut = timeout;}
+TakeInventory("ClownShockUpPeg2",1);
+GiveInventory("ClownShockUpPeg",1);
 
-	TakeActorInventory(TargetTID,"JumpCancler",1);
-	TakeActorInventory(TargetTID,"ClownShockUpPeg2",1);//$CBM
-	GiveActorInventory(TargetTID,"ClownShockUpPeg",1);//$CBM
-
-	If(GetActorZ(TargetTID) - GetActorFloorZ(TargetTID)<8)
-		{
-		ThrustThingZ(TargetTID,35,0,0);
-		Delay(2);//5
-		}
-	While(GetActorZ(TargetTID) >= (hookz-64.0) && ThrustTimeOut < 105)
-		{//Push down if above hook
-		ThrustThingZ(TargetTID,8,1,1);
-		ThrustThing(VectorAngle(hookx - playerx, hooky - playery)>>8,1,1,TargetTID);
-		playerx=GetActorX(TargetTID);
-		playery=GetActorY(TargetTID);
-		ThrustTimeOut++;
-		Delay(1);
-		}
-
-	thrust = xyDistance(0, TargetTID)/10;
-	zthrust = zDistance(0, TargetTID)/13;
-	if(thrust < 10 && !noLimit){thrust=10;}//$CBM Adds noLimit toggle
-	if(thrust > 50 && !noLimit){thrust=50;}//$CBM Adds noLimit toggle
-	
-	//Log(s:"ThrustTimeOut = ",i:ThrustTimeOut,s:" thrust = ",i:thrust,s:" zthrust = ",i:zthrust);
-
-	ThrustThing(VectorAngle(hookx - playerx, hooky - playery)>>8,thrust,1,TargetTID);
-	ThrustThingZ(TargetTID,0,0,0);
-	ThrustThingZ(TargetTID,zthrust,0,1);
+If(GetActorZ(ActivatorTID()) - GetActorFloorZ(ActivatorTID())<8)
+	{
+	ThrustThingZ(0,35,0,0);
 	Delay(5);
-	ThrustThingZ(TargetTID,10,0,1);
-	TakeActorInventory(TargetTID, "WireFlag",1);
-	Delay(2);
-	ThrustThingZ(TargetTID,14,0,1);
-	Delay(2);
-	ThrustThingZ(TargetTID,18,0,1);
-	Delay(2);
-	ThrustThingZ(TargetTID,20,0,1);
-	Delay(2);
-	ThrustThingZ(TargetTID,22,0,1);
+	}
+While(GetActorZ(ActivatorTID()) >= (hookz-64.0) && ThrustTimeOut < 105) // If Player is above the hook, force them below it
+	{
+	ThrustThingZ(0,8,1,1);
+	ThrustThing(VectorAngle(hookx - playerx, hooky - playery)>>8,1,1,0);
+	playerx=GetActorX(ActivatorTID());
+	playery=GetActorY(ActivatorTID());
+	ThrustTimeOut++;
+	Delay(1);
+	}
+thrust=xyDistance(hooktid, ActivatorTID())/10;
+zthrust=zDistance(hooktid, ActivatorTID())/13;
+if(thrust < 10){thrust=10;}
+if(thrust > 50){thrust=50;}
+ThrustThing(VectorAngle(hookx - playerx, hooky - playery)>>8,thrust,1,0);
+ThrustThingZ(0,0,0,0);
+ThrustThingZ(0,zthrust,0,1);
+Delay(5);
+ThrustThingZ(0,10,0,1);
+TakeInventory("WireFlag", 1);
+Delay(2);
+ThrustThingZ(0,14,0,1);
+Delay(2);
+ThrustThingZ(0,18,0,1);
+Delay(2);
+ThrustThingZ(0,20,0,1);
+Delay(2);
+ThrustThingZ(0,22,0,1);
+//SetPlayerProperty(0,0,0);//$CBM
 
-	TakeActorInventory(TargetTID,"ClownShockUpPeg",1);//$CBM
-	GiveActorInventory(TargetTID,"ClownShockUpPeg2",1);//$CBM
+TakeInventory("ClownShockUpPeg",1);
+GiveInventory("ClownShockUpPeg2",1);
 }
 
 // [Mike] Gravity altering script for certain maps with water (horrible method)
 //
 script 204 (int grav)
 {
-if(PlayerNumber() ==-1){terminate;}
-If(Timer() < 5){Delay(2);}
-int gravity = PlayerGravity[PlayerNumber()];//$CBM
-Switch(grav)
+	if(PlayerNumber() ==-1){terminate;}
+	If(Timer() < 5){Delay(2);}
+	int gravity = PlayerGravity[PlayerNumber()];//$CBM
+	Switch(grav)
 	{
-/*
-	Case 0:
-	SetActorProperty(0, APROP_Gravity, PlayerGravity[PlayerNumber()]);
-	break;
-	Case 1:
-	SetActorProperty(0, APROP_Gravity, FixedDiv(PlayerGravity[PlayerNumber()],3.2));
-	break;
-	}
-*/
+//*
+	//Case 0:
+	//SetActorProperty(0, APROP_Gravity, PlayerGravity[PlayerNumber()]);
+	//break;
+	//Case 1:
+	//SetActorProperty(0, APROP_Gravity, FixedDiv(PlayerGravity[PlayerNumber()],3.2));
+	//break;
+	//
+//*
 //$CBM
-	case -2: //Gravity Slam End
-		if(CheckInventory("HasFeetInWater")||CheckInventory("IsUnderBubbleWater")){
+		case -2: //Gravity Slam End
+		if(CheckInventory("HasFeetInWater")||CheckInventory("IsUnderBubbleWater"))
+		{
 			gravity = FixedDiv(gravity,3.2);
 		}
 		break;
-	case -1: //Gravity Slam
-		if(CheckInventory("HasFeetInWater")||CheckInventory("IsUnderBubbleWater")){
+		case -1: //Gravity Slam
+		if(CheckInventory("HasFeetInWater")||CheckInventory("IsUnderBubbleWater"))
+		{
 			gravity = FixedDiv(gravity,3.2);
 		}
 		gravity *= 20;
 		break;
-	Case 0: //Exiting water
-		if(CheckInventory("IsUnderBubbleWater")){
+		Case 0: //Exiting water
+		if(CheckInventory("IsUnderBubbleWater"))
+		{
 			gravity = FixedDiv(gravity,3.2);
 		}
 		break;
-	Case 1: //Entering water
+		Case 1: //Entering water
 		gravity = FixedDiv(gravity,3.2);
 		break;
-	Case 2: //Exit Bubble water
-		if(CheckInventory("HasFeetInWater")){
+		Case 2: //Exit Bubble water
+		if(CheckInventory("HasFeetInWater"))
+		{
 			gravity = FixedDiv(gravity,3.2);
 		}
 		break;
-	Case 3: //Enter Bubble water
-		if(CheckInventory("HasFeetInWater")){
+		Case 3: //Enter Bubble water
+		if(CheckInventory("HasFeetInWater"))
+		{
 			gravity = FixedDiv(gravity,3.2);
 		}
-		else{
+		else
+		{
 			gravity = FixedDiv(gravity,3.2);
 		}
 		break;
 	}
 
-SetActorProperty(0, APROP_Gravity, gravity);
+	SetActorProperty(0, APROP_Gravity, gravity);
 //$CBM
 }
 
@@ -1408,73 +1503,107 @@ script "core_rushmarineflight" (void)
 //It was used for the hookshot weapon for WitchHunter
 // By IjonTichy, modified by Ivan, modified for this mod by Celebi
 
-Script "core_hookshot" (int PlayerID, int Vel, int Moving)
+Script "core_hookshotold" (int PlayerID, int Vel, int Moving)
 {
-    int myx, myy, myz;
-    int px, py, pz;
-    int vx, vy, vz, magnitude, nx, ny, nz;
-    myx = GetActorX(0);
-    myy = GetActorY(0);
-    myz = GetActorZ(0);
-    
-    px = GetActorX(PlayerID);
-    py = GetActorY(PlayerID);
-    pz = GetActorZ(PlayerID);
+	int myx, myy, myz;
+	int vx, vy, vz, magnitude, nx, ny, nz;
+	int Letgo = false;
+	//int HookID = PlayerID+1700;
+	myx = GetActorX(0);
+	myy = GetActorY(0);
+	myz = GetActorZ(0);
 
-    GiveActorInventory(PlayerID,"WireAdaptorDelay",1);
-    
-    while(true)
-    {
-        if(Moving > 0){//If the hook is set to move, the positions need to be updated.
-            myx = GetActorX(0);
-            myy = GetActorY(0);
-            myz = GetActorZ(0);
-        }
-        
-        px = GetActorX(PlayerID);
-        py = GetActorY(PlayerID);
-        pz = GetActorZ(PlayerID) + 32.0;
-        
-        vx = myx - px;
-        vy = myy - py;
-        vz = myz - pz;
-        
+	//SetActivator(PlayerID);
+	GiveActorInventory(PlayerID,"WireAdaptorDelay",1);
+	//SetActorProperty(PlayerID, APROP_Gravity, 0.44);
+	
+	while(!Letgo)
+	{
+		if(Moving > 0){//If the hook is set to move, the positions need to be updated.
+			myx = GetActorX(0);
+			myy = GetActorY(0);
+			myz = GetActorZ(0);
+		}
+		vx = myx - GetActorX(PlayerID);
+		vy = myy - GetActorY(PlayerID);
+		vz = myz - GetActorZ(PlayerID);
+		
 
         magnitude = magnitudeThree(vx >> 16, vy >> 16, vz >> 16);
 
-        if(magnitude != 0)
-        {
+        if(magnitude != 0) {
             nx = vx / magnitude; ny = vy / magnitude; nz = vz / magnitude;
+            //ACS_NamedExecuteAlways("core_drawhookshot", 0, HookID, PlayerID, 18);
         }
         else {
             nx = 0; ny = 0; nz = 0;
         }
-        
-        SetActorVelocity(PlayerID, nx*Vel, ny*Vel, nz*Vel, false, true);
+		if(xyDistance(PlayerID, 0)>1500){Letgo = true;}
+		Thing_Stop(0);
+		SetActorVelocity(PlayerID, nx*Vel, ny*Vel, nz*Vel, true, true);
 
-        Delay(1);
-        
-        if(magnitude <= Vel)
-        {
-            break;
-        }
-        
-        if(CheckActorInventory(PlayerID,"WireAdaptorDelay") < 1 || CheckActorInventory(PlayerID,"IsDead"))
-        {
-            break;
-        }
-		
-		if(abs(px - GetActorX(PlayerID)) < 2.0 && abs(py - GetActorY(PlayerID)) < 2.0 && abs(pz - GetActorZ(PlayerID) - 32.0) < 2.0)
-		{
-            break;
-		}
-		
-    }
-    
-    Thing_Remove(0);//Remove Hook
-    Delay(1);
-    GiveActorInventory(PlayerID, "WireHookShotEnd",1);
+		Delay(1);
+        if(CheckActorInventory(PlayerID,"WireAdaptorDelay") < 1 || CheckActorInventory(PlayerID,"IsDead")) {Letgo = True;}
+	}
+	//SetActorVelocity(0, GetActorVelX(PlayerID) / 2, GetActorVelY(PlayerID) / 2, GetActorVelZ(PlayerID) / 2, 0, true);
+	Thing_Remove(0);//Remove Hook
+	Delay(1);
+	GiveActorInventory(PlayerID,"WireHookShotEndC",1);//$CBM
 }
+
+//This spawns the sprite
+Script "core_drawhookshotold" (int playerTid, int density) CLIENTSIDE
+{
+    int plX; int plY;  int plZ;
+    int grX; int grY;  int grZ;
+    int vX;  int vY;   int vZ;
+    int nX;  int nY;   int nZ;
+    int bX;  int bY;   int bZ;
+    int magnitude;
+    int pointCount;
+    int pointOffset;
+	
+	while(ClassifyActor(0) && GetActorProperty(playerTid, APROP_HEALTH)>0){
+
+    plX = GetActorX(playerTid); grX = GetActorX(0);
+    plY = GetActorY(playerTid); grY  = GetActorY(0);
+    plZ = GetActorZ(playerTid)+(28 << 16); grZ  = GetActorZ(0);
+//+28 to the spawn height of the ^player so the chain doesn't spawn from their feet.
+    vX = grX - plX;   vY = grY - plY;   vZ = grZ - plZ;
+
+    magnitude = magnitudeThree(vX >> 16, vY >> 16, vZ >> 16);
+
+    pointCount  = magnitude / density;
+    pointOffset = magnitude - (pointCount * density);
+
+	str SpawnName = "WireAdaptorHookFX";
+	
+	if(grX == 0 && grY == 0 && grZ == 0){terminate;} 
+
+    if (magnitude != 0)
+    {
+        nX = vX / magnitude; nY = vY / magnitude; nZ = vZ / magnitude;
+
+        int i; int j;
+        for (i = 0; i < pointCount; i++)
+        {
+            j = (i * density) + pointOffset;
+
+            bX = (nX * j) + plX;
+            bY = (nY * j) + plY;
+            bZ = (nZ * j) + plZ;// +(16 << 16);
+
+			if(i>0){
+			Spawn(SpawnName, bX, bY, bZ);
+			}
+		
+        }
+    }				
+	Delay(1);
+			
+	}
+}
+
 
 // Disable monster blocking on lines specifically to prevent bot swarming.
 Script "core_clearbotline" (int line)

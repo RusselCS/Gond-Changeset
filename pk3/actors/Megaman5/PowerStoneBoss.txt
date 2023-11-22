@@ -20,42 +20,67 @@ POWB E 2 offset(0,48)
 goto Ready2
 Ready2:
 POWB E 0 A_JumpIfInventory("StoneBossLeap2",1,"ReadyAir")
-POWB E 1 A_WeaponReady
+POWB E 1 A_WeaponReady(WRF_ALLOWRELOAD)
 goto Ready2+1
 ReadyAir:
-POWB E 1 A_WeaponReady(8)
+POWB E 1 A_WeaponReady(8|WRF_ALLOWRELOAD)
 goto Ready2
 Deselect:
-POWB EEEEEEEEEEEEEEEEEEEEEE 0 A_Lower
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
 POWB E 1 A_Lower
 Loop
 Select:
-POWB EEEEEEEEEEEEEEEEEEEEEE 0 A_Raise
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 POWB E 1 A_Raise
 Loop
 Fire:
-POWB E 0 A_JumpIfInventory("StoneBossLeap",1,"FireLeap")
-POWB E 2 offset(0,28)A_PlaySoundEx("weapon/powerstone","Weapon")
+POWB H 0 A_JumpIfInventory("StoneBossLeap",1,"FireLeap")
+POWB H 0 A_PlaySoundEx("weapon/deepdiggerdig", "weapon")
+POWB H 0 A_PlaySoundEx("weapon/StoneBreak","Body",0,0)
+POWB HIJ 2
+POWB J 0 A_Refire(1)
+goto FireEnd
+POWB J 0 A_GiveInventory("WeaponChargeStone",1)
+POWB J 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOBOB)
+POWB J 1 offset(0,48)A_GiveInventory("StonemanMain_CI",1)
+POWB J 0 A_GiveInventory("StoneManMainCheck",1)
+POWB J 0 A_WeaponReady(WRF_NOPRIMARY|WRF_NOBOB)
+POWB J 0 offset(0,48)A_WeaponReady(WRF_NOPRIMARY|WRF_NOBOB)
+goto FireHold
+
+FireHold:
+ODUH B 0 ACS_NamedExecute("BULL_SetState",0,1)
+POWB J 0 A_GiveInventory("WeaponChargeStone",1)
+POWB J 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOBOB)
+POWB J 0 A_JumpIfInventory("WeaponChargeStone",175,"FireEnd")
+POWB J 0 A_Refire("FireHold")
+goto FireEnd
+
+FireEnd:
+POWB G 0 A_TakeInventory("StoneManMainCheck",999)
+POWB G 0 A_TakeInventory("WeaponChargeStone",999)
+POWB E 0 A_PlaySoundEx("weapon/powerstone","Weapon")
+POWB E 2 offset(0,28) A_GiveInventory("StoneM_FirePitchCheck_P",1)
 POWB F 2 offset(0,42)
-POWB F 2 offset(0,34)
-POWB G 3 offset(0,48)A_GiveInventory("StoneM_FirePitchCheck_P")
-POWB G 2 offset(0,34)
-POWB G 2 offset(0,48)
-POWB F 2 offset(0,26)
-POWB F 2 offset(0,40)
-POWB E 2 offset(0,20)
-POWB E 2 offset(0,22)
-POWB E 2 offset(0,24)
-POWB E 2 offset(0,26)
-POWB E 2 offset(0,28)
-POWB E 2 offset(0,30)
+POWB F 2 offset(0,34)//A_LogInt(Pitch)
+POWB G 3 offset(0,48)
+POWB G 3 offset(0,34)
+POWB G 3 offset(0,48)
+POWB F 3 offset(0,26)
+POWB F 3 offset(0,40)
+POWB E 3 offset(0,20)
+POWB E 3 offset(0,22)
+POWB E 3 offset(0,24)
+POWB E 3 offset(0,26)
+POWB E 3 offset(0,28)
+POWB E 4 offset(0,30)
 Goto Ready2
 
 FireLeap:
 POWB E 0 A_GiveInventory("StoneBossLeap2",1)
 POWB E 0 A_GiveInventory("LadderEnable",1)
-POWB E 0 A_TakeInventory("StoneBossLeap")
-POWB E 0 A_TakeInventory("StoneBossCharge")
+POWB E 0 A_TakeInventory("StoneBossLeap",9999)
+POWB E 0 A_TakeInventory("StoneBossCharge",9999)
 POWB E 0 A_TakeInventory("NoJumpCancel",9)
 POWB E 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)//1.0 speed and jump
 POWB E 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
@@ -63,111 +88,119 @@ POWB E 0 A_GunFlash
 goto Fire+1
 
 Flash:
+TNT1 A 0 A_JumpIf(z-floorz==0,7)
+TNT1 A 0 A_JumpIf(momz==0,3)
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-TNT1 A 0 A_JumpIf(z-floorz==0,6)
-TNT1 A 0 A_JumpIf(momz==0,2)
 TNT1 A 1 A_GiveInventory("StonemanHealthCheck",1)
 loop
 TNT1 A 1 A_GiveInventory("StonemanHealthCheck",1)
 TNT1 A 0 A_JumpIf(z-floorz==0,2)
 TNT1 A 0 A_JumpIf(momz==0,1)
-loop
+goto Flash+2
 TNT1 A 0 A_TakeInventory("StoneBossLeap2",9)
 TNT1 A 1 A_GiveInventory("StonemanHealthCheck",1)
-loop
+goto Flash+2
 
 Altfire:
 POWB E 0 A_JumpIfInventory("StoneBossCharge",1,"AltfireStomp")
-POWB H 2 offset(0,23)A_GiveInventory("StoneBossCharge",1)
-POWB I 2 offset(0,16)A_GiveInventory("StoneBossCharge",1)
-AltCharge:
-POWB J 0 A_JumpIfInventory("StoneBossCharge",7,"AltCharge1")
-POWB J 2 offset(0,10)A_GiveInventory("StoneBossCharge",1)
-POWB J 0 A_Refire("AltCharge")
+POWB E 0 A_JumpIfInventory("WeaponChargeStone",1,"AltRock")
+POWB E 0 A_GiveInventory("StoneBossCharge",1)
+POWB HI 2
+StoneCharge:
+POWB J 0 A_JumpIfInventory("StoneBossCharge",15,"StoneCharge2")//A_PlaySoundEx("weapon/HeatShield","Weapon")
+POWB J 2
+POWB J 0 A_GiveInventory("StoneBossCharge",1)
+POWB J 0 A_Refire("StoneCharge")
 goto StoneJump
-AltCharge1:
-POWB J 0 A_JumpIfInventory("StoneBossCharge",13,"AltCharge2")
-POWB J 2 offset(0,15)A_GiveInventory("StoneBossCharge",1)
-POWB J 0 A_Refire("AltCharge1")
+StoneCharge2:
+POWB J 0 A_JumpIfInventory("StoneBossCharge",30,"StoneCharge3")
+POWB J 2 offset(0,35)
+POWB J 0 A_GiveInventory("StoneBossCharge",1)
+POWB J 0 A_Refire("StoneCharge2")
 goto StoneJump
-AltCharge2:
-POWB J 0 A_JumpIfInventory("StoneBossCharge",19,"AltCharge3")
-POWB J 2 offset(0,20)A_GiveInventory("StoneBossCharge",1)
-POWB J 0 A_Refire("AltCharge2")
+StoneCharge3:
+POWB J 0 A_JumpIfInventory("StoneBossCharge",45,"StoneCharge4")
+POWB J 2 offset(0,38)
+POWB J 0 A_GiveInventory("StoneBossCharge",1)
+POWB J 0 A_Refire("StoneCharge3")
 goto StoneJump
-AltCharge3:
-POWB J 0 A_JumpIfInventory("StoneBossCharge",25,"AltCharge4")
-POWB J 2 offset(0,25)A_GiveInventory("StoneBossCharge",1)
-POWB J 0 A_Refire("AltCharge3")
+StoneCharge4:
+POWB J 0 A_JumpIfInventory("StoneBossCharge",60,"StoneCharge5")
+POWB J 2 offset(0,41)
+POWB J 0 A_GiveInventory("StoneBossCharge",1)
+POWB J 0 A_Refire("StoneCharge4")
 goto StoneJump
-AltCharge4:
-POWB J 0 A_JumpIfInventory("StoneBossCharge",31,"AltCharge5")
-POWB J 2 offset(0,29)A_GiveInventory("StoneBossCharge",1)
-POWB J 0 A_Refire("AltCharge4")
+StoneCharge5:
+POWB J 0 A_JumpIfInventory("StoneBossCharge",75,"StoneCharge6")
+POWB J 2 offset(0,44)
+POWB J 0 A_GiveInventory("StoneBossCharge",1)
+POWB J 0 A_Refire("StoneCharge5")
 goto StoneJump
-AltCharge5:
-POWB J 0 A_JumpIfInventory("StoneBossCharge",36,"AltCharge6")
-POWB J 2 offset(0,33)A_GiveInventory("StoneBossCharge",1)
-POWB J 0 A_Refire("AltCharge5")
+StoneCharge6:
+POWB J 0 A_JumpIfInventory("StoneBossCharge",90,"StoneCharge7")
+POWB J 2 offset(0,47)
+POWB J 0 A_GiveInventory("StoneBossCharge",1)
+POWB J 0 A_Refire("StoneCharge6")
 goto StoneJump
-AltCharge6:
-POWB J 0 A_JumpIfInventory("StoneBossCharge",41,"AltCharge7")
-POWB J 2 offset(0,37)A_GiveInventory("StoneBossCharge",1)
-POWB J 0 A_Refire("AltCharge6")
-goto StoneJump
-AltCharge7:
-POWB J 0 A_JumpIfInventory("StoneBossCharge",46,"AltCharge8")
-POWB J 2 offset(0,40)A_GiveInventory("StoneBossCharge",1)
-POWB J 0 A_Refire("AltCharge7")
-goto StoneJump
-AltCharge8:
-POWB J 0 A_JumpIfInventory("StoneBossCharge",51,"AltCharge9")
-POWB J 2 offset(0,43)A_GiveInventory("StoneBossCharge",1)
-POWB J 0 A_Refire("AltCharge8")
-goto StoneJump
-AltCharge9:
-POWB J 0 A_JumpIfInventory("StoneBossCharge",56,"AltFullCharge")
-POWB J 2 offset(0,46)A_GiveInventory("StoneBossCharge",1)
-POWB J 0 A_Refire("AltCharge9")
-goto StoneJump
-
-AltFullCharge:
-POWB J 1 offset(0,49)A_JumpIfInventory("PowerRage_ST",1,2)
+StoneCharge7:
+POWB J 2 offset(0,50)A_RailWait
 POWB J 0 A_Refire(1)
 goto StoneJump
-POWB J 1 offset(0,49)
-POWB J 0 A_Refire(1)
-goto StoneJump
-POWB J 1 offset(0,46)A_JumpIfInventory("PowerRage_ST",1,2)
-POWB J 0 A_Refire(1)
-goto StoneJump
-POWB J 1 offset(0,46)
-POWB J 0 A_Refire("AltFullCharge")
+POWB J 2 offset(0,47)A_RailWait
+POWB J 0 A_Refire("StoneCharge7")
 goto StoneJump
 StoneJump:
-POWB I 1 offset(0,30)A_GiveInventory("StoneM_AltLeapStart_P")
-goto AltfireRise
+POWB J 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,2,1)//2.0 speed
+POWB J 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)//No jump
+POWB J 0 A_Recoil(-10)//A_Recoil(-25)
+POWB J 0 A_GiveInventory("StoneBossLeap",1)
+POWB J 0 A_GiveInventory("NoJumpCancel",1)
+POWB J 0 A_GiveInventory("LadderDisable",1)
+POWB J 0 offset(0,30) A_SpawnItemEx("StoneCrushHead",0,0,56,0,0,20)
 
+POWB J 0 A_JumpIfInventory("StoneBossCharge",90,"AltfireJump6")
+POWB J 0 A_JumpIfInventory("StoneBossCharge",75,"AltfireJump5")
+POWB J 0 A_JumpIfInventory("StoneBossCharge",60,"AltfireJump4")
+POWB J 0 A_JumpIfInventory("StoneBossCharge",45,"AltfireJump3")
+POWB J 0 A_JumpIfInventory("StoneBossCharge",30,"AltfireJump2")
+POWB J 0 A_JumpIfInventory("StoneBossCharge",15,"AltfireJump")
+POWB I 1 ThrustThingZ(0,60,0,0)
+goto AltfireRise
 AltfireJumpLeap:
-POWB I 0 offset(0,30)A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,2)
+TNT1 A 0 A_PlaySoundEX("weapon/StoneQuakeWeak","Weapon")
+POWB I 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,"AltfireJump4")
+goto AltfireJump2
+AltfireJumpLeap2:
+TNT1 A 0 A_PlaySoundEX("weapon/StoneQuakeWeak","Weapon")
+POWB I 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,"AltfireJump6")
+goto AltfireJump4
+AltfireJump:
+POWB I 1 ThrustThingZ(0,72,0,0)
+goto AltfireRise
+AltfireJump2:
 POWB I 1 ThrustThingZ(0,84,0,0)
 goto AltfireRise
+AltfireJump3:
+POWB I 1 ThrustThingZ(0,96,0,0)
+goto AltfireRise
+AltfireJump4:
 POWB I 1 ThrustThingZ(0,108,0,0)
 goto AltfireRise
-AltfireJumpLeap2:
-POWB I 0 offset(0,30)A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,2)
-POWB I 1 ThrustThingZ(0,108,0,0)
+AltfireJump5:
+POWB I 1 ThrustThingZ(0,120,0,0)
 goto AltfireRise
+AltfireJump6:
 POWB I 1 ThrustThingZ(0,132,0,0)
 goto AltfireRise
-
 AltfireRise:
-POWB I 0 A_TakeInventory("ToadLeapFlagX",999)
-POWB I 1 offset(0,30)ThrustThingZ(0,4,1,1)
+POWB G 0 A_TakeInventory("ToadLeapFlagX",999)
+POWB I 1 ThrustThingZ(0,4,1,1)
 POWB I 0 A_SpawnItemEx("StoneCrushHead",0,0,56,0,0,20)
-POWB H 1 offset(0,13)ThrustThingZ(0,4,1,1)
+POWB H 1 ThrustThingZ(0,4,1,1)
 POWB H 0 A_SpawnItemEx("StoneCrushHead",0,0,56,0,0,20)
-POWB H 1 offset(0,13)ThrustThingZ(0,4,1,1)
+POWB H 1 ThrustThingZ(0,4,1,1)
+POWB H 0 A_SpawnItemEx("StoneCrushHead",0,0,56,0,0,20)
+
 Fallcheck:
 POWB F 0 ThrustThingZ(0,1,1,1)
 POWB F 0 A_SpawnItemEx("StoneCrushHead",0,0,56,0,0,20)
@@ -187,14 +220,7 @@ POWB G 1 A_WeaponReady(2)
 loop
 
 AltfireStomp:
-POWB G 1 offset(0,40)ThrustThingZ(0,40,1,1)
-POWB G 0 A_SpawnItemEx("StoneCrush",0,0,-10,0,0,-10)
-POWB G 0 A_GiveInventory("StoneBossLeap",2)
-POWB G 0 A_JumpIf(z-floorz==0, "Shockland")
-POWB G 0 A_JumpIfInventory("ToadLeapFlagX",1,"AltfireJumpLeap2")
-POWB G 0 A_Refire(1)
-goto Fall
-POWB G 1 offset(0,43)ThrustThingZ(0,40,1,1)
+POWB G 1 ThrustThingZ(0,40,1,1)
 POWB G 0 A_SpawnItemEx("StoneCrush",0,0,-10,0,0,-10)
 POWB G 0 A_GiveInventory("StoneBossLeap",2)
 POWB G 0 A_JumpIf(z-floorz==0, "Shockland")
@@ -205,31 +231,47 @@ goto Fall
 Shockland:
 POWB G 0 A_GiveInventory("LadderEnable",1)
 POWB G 0 A_TakeInventory("NoJumpCancel",9)
-POWB G 0 A_TakeInventory("StoneBossCharge")
+POWB G 0 A_PlaySoundEX("misc/hugequake","Weapon")
 POWB G 0 A_GiveInventory("StonemanAlt_CI",1)
 POWB F 0 A_GiveInventory("StoneQuakePickup",1)
 POWB F 0 A_Stop
-POWB F 1 offset(0,36)SetPlayerProperty(0,1,0)
-POWB F 1 A_Stop
-POWB H 2 offset(0,32)
-POWB I 2 offset(0,53)
-POWB J 2 offset(0,74)
-TNT1 A 7 offset(0,95)A_JumpIfInventory("StoneM_LandedDelay",1,1)
-Goto ShocklandEnd
-ShocklandX:
-TNT1 A 13 offset(0,95)
-goto ShocklandEnd
-ShocklandEnd:
-POWB E 0 SetPlayerProperty(0,0,0)
+POWB F 1 SetPlayerProperty(0,1,0)
+POWB F 0 A_Stop
+ST5H JKLM 2 A_TakeInventory("StoneBossCharge",9999)
+TNT1 A 8
+POWB F 0 SetPlayerProperty(0,0,0)
 POWB E 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)//1.0 speed and jump
 POWB E 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
-POWB E 2 offset(0,77)
-POWB E 2 offset(0,67)
-POWB E 2 offset(0,58)
-POWB E 2 offset(0,50)
-POWB E 2 offset(0,43)
-POWB E 2 offset(0,37)
+ST5H MLKJ 2
+POWB E 7
+NoAmmo:
+POWB E 0
 Goto Ready2
+
+AltRock:
+POWB G 0 A_TakeInventory("StoneManMainCheck",999)
+POWB G 0 A_TakeInventory("WeaponChargeStone",999)
+POWB E 0 A_PlaySoundEx("weapon/powerstone","Weapon")
+POWB E 2 offset(0,28) A_GiveInventory("StonemanMain1_CI",1)
+POWB F 2 offset(0,42)
+POWB F 2 offset(0,34)//A_LogInt(Pitch)
+POWB G 3 offset(0,48) 
+POWB G 3 offset(0,34)
+POWB G 3 offset(0,48)
+POWB F 3 offset(0,26)
+POWB F 3 offset(0,40)
+POWB E 3 offset(0,35)
+POWB E 3 offset(0,30)
+Goto Ready2
+
+Reload:
+TNT1 A 0 A_JumpIfInventory("StoneCoreFakeDelay2",1,"Ready2")
+goto Reload2
+Reload2:
+//TNT1 A 1 ACS_NamedExecuteAlways("StoneFakeHealthHalf",0)
+TNT1 A 0 ThrustThingZ(0,4,0,1)
+TNT1 A 10 A_GiveInventory("StoneDestroyedFakeFX_P",1)
+goto Ready2
 }
 }
 
@@ -243,7 +285,13 @@ inventory.maxamount 3
 actor StoneBossCharge : Inventory
 {
 inventory.amount 1
-inventory.maxamount 56
+inventory.maxamount 90
+}
+
+actor WeaponChargeStone : Inventory
+{
+inventory.amount 1
+inventory.maxamount 175
 }
 
 actor StoneBossLeap : Inventory
@@ -254,44 +302,323 @@ inventory.maxamount 999
 
 actor StoneBossLeap2 : OnceC {}
 
-actor StoneM_LandedDelay : Powerup
+actor StoneManMainCheck : Inventory
 {
-Powerup.Duration 10
+inventory.amount 1
+inventory.maxamount 1
 }
 
-actor StoneM_FirePitchCheck_P : CustomInventory
+actor StoneM_RockProtect : PowerProtection
 {
+Powerup.Duration 3
+DamageFactor "StoneM_Rock", 1.0//lol
+}
+
+actor PowerStoneManHaver
+{
+	Translation "192:192=215:215", "198:198=216:216"
+	PROJECTILE
+	+NOGRAVITY
+	+DONTBLAST
+	+DONTREFLECT
+	+NOTARGETSWITCH
+	+NOINTERACTION
+	+NOCLIP
+	damagetype "StoneM_Rock"
+	Obituary "$OB_POWERSTONE"
+	species "PowerStoneHaver"
+	Radius 15
+	Height 12
+	scale 2.5
+	damage (0)
+	speed 45
+	var int user_angle;
+	reactiontime 1
+	States
+	{
+		Spawn:
+		POWB U 0
+		POWB U 0 A_RearrangePointers(0,0,2)
+		Spawn2:
+		POWB U 1 A_Warp(AAPTR_TARGET, 10, 0, 32, user_angle, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB U 0 A_SetUserVar("user_angle", user_angle + 12)
+		POWB U 0 A_Stop
+		POWB U 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		POWB U 1 A_Warp(AAPTR_TARGET, 20, 0, 32, user_angle, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB U 0 A_SetUserVar("user_angle", user_angle + 12)
+		POWB U 0 A_Stop
+		POWB U 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		POWB V 1 A_Warp(AAPTR_TARGET, 30, 0, 32, user_angle, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB V 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB V 0 A_Stop
+		POWB V 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		POWB V 1 A_Warp(AAPTR_TARGET, 40, 0, 32, user_angle, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB V 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB V 0 A_Stop
+		POWB V 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		POWB W 1 A_Warp(AAPTR_TARGET, 50, 0, 32, user_angle, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB W 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB W 0 A_Stop
+		POWB W 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		POWB W 1 A_Warp(AAPTR_TARGET, 60, 0, 32, user_angle, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB W 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB W 0 A_Stop
+		POWB W 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		Spawn3:
+		POWB X 1 A_Warp(AAPTR_TARGET, 72, 0, 32, user_angle, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_JumpIfInTargetInventory("StoneManMainCheck",1,1)
+		goto DeathRelease
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+		loop
+		
+		DeathRelease:
+		POWB X 1 A_Warp(AAPTR_TARGET, 60, 0, 32, user_angle, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 1 A_Warp(AAPTR_TARGET, 50, 0, 32, user_angle, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 1 A_Warp(AAPTR_TARGET, 40, 0, 32, user_angle, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 1 A_Warp(AAPTR_TARGET, 30, 0, 32, user_angle, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 1 A_Warp(AAPTR_TARGET, 20, 0, 32, user_angle, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 1 A_Warp(AAPTR_TARGET, 10, 0, 32, user_angle, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		goto Death
+		
+		Death:
+		TNT1 A 0
+		stop
+	}
+}
+
+actor PowerStoneManHaver2
+{
+	Translation "192:192=215:215", "198:198=216:216"
+	PROJECTILE
+	+NOGRAVITY
+	+DONTBLAST
+	+DONTREFLECT
+	+NOTARGETSWITCH
+	+NOINTERACTION
+	+NOCLIP
+	damagetype "StoneM_Rock"
+	Obituary "$OB_POWERSTONE"
+	species "PowerStoneHaver"
+	Radius 15
+	Height 12
+	scale 2.5
+	damage (0)
+	speed 45
+	var int user_angle;
+	reactiontime 1
+	States
+	{
+		Spawn:
+		POWB U 0
+		POWB U 0 A_RearrangePointers(0,0,2)
+		Spawn2:
+		POWB U 1 A_Warp(AAPTR_TARGET, 10, 0, 32, user_angle+120, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB U 0 A_SetUserVar("user_angle", user_angle + 12)
+		POWB U 0 A_Stop
+		POWB U 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		POWB U 1 A_Warp(AAPTR_TARGET, 20, 0, 32, user_angle+120, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB U 0 A_SetUserVar("user_angle", user_angle + 12)
+		POWB U 0 A_Stop
+		POWB U 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		POWB V 1 A_Warp(AAPTR_TARGET, 30, 0, 32, user_angle+120, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB V 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB V 0 A_Stop
+		POWB V 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		POWB V 1 A_Warp(AAPTR_TARGET, 40, 0, 32, user_angle+120, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB V 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB V 0 A_Stop
+		POWB V 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		POWB W 1 A_Warp(AAPTR_TARGET, 50, 0, 32, user_angle+120, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB W 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB W 0 A_Stop
+		POWB W 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		POWB W 1 A_Warp(AAPTR_TARGET, 60, 0, 32, user_angle+120, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB W 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB W 0 A_Stop
+		POWB W 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		Spawn3:
+		POWB X 1 A_Warp(AAPTR_TARGET, 72, 0, 32, user_angle+120, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_JumpIfInTargetInventory("StoneManMainCheck",1,1)
+		goto DeathRelease
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+		loop
+		
+		DeathRelease:
+		POWB X 1 A_Warp(AAPTR_TARGET, 60, 0, 32, user_angle+120, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 1 A_Warp(AAPTR_TARGET, 50, 0, 32, user_angle+120, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 1 A_Warp(AAPTR_TARGET, 40, 0, 32, user_angle+120, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 1 A_Warp(AAPTR_TARGET, 30, 0, 32, user_angle+120, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 1 A_Warp(AAPTR_TARGET, 20, 0, 32, user_angle+120, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 1 A_Warp(AAPTR_TARGET, 10, 0, 32, user_angle+120, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		goto Death
+		
+		Death:
+		TNT1 A 0
+		stop
+	}
+}
+
+actor PowerStoneManHaver3
+{
+	Translation "192:192=215:215", "198:198=216:216"
+	PROJECTILE
+	+NOGRAVITY
+	+DONTBLAST
+	+DONTREFLECT
+	+NOTARGETSWITCH
+	+NOINTERACTION
+	+NOCLIP
+	damagetype "StoneM_Rock"
+	Obituary "$OB_POWERSTONE"
+	species "PowerStoneHaver"
+	Radius 15
+	Height 12
+	scale 2.5
+	damage (0)
+	speed 45
+	var int user_angle;
+	reactiontime 1
+	States
+	{
+		Spawn:
+		POWB U 0
+		POWB U 0 A_RearrangePointers(0,0,2)
+		Spawn2:
+		POWB U 1 A_Warp(AAPTR_TARGET, 10, 0, 32, user_angle+240, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB U 0 A_SetUserVar("user_angle", user_angle + 12)
+		POWB U 0 A_Stop
+		POWB U 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		POWB U 1 A_Warp(AAPTR_TARGET, 20, 0, 32, user_angle+240, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB U 0 A_SetUserVar("user_angle", user_angle + 12)
+		POWB U 0 A_Stop
+		POWB U 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		POWB V 1 A_Warp(AAPTR_TARGET, 30, 0, 32, user_angle+240, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB V 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB V 0 A_Stop
+		POWB V 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		POWB V 1 A_Warp(AAPTR_TARGET, 40, 0, 32, user_angle+240, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB V 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB V 0 A_Stop
+		POWB V 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		POWB W 1 A_Warp(AAPTR_TARGET, 50, 0, 32, user_angle+240, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB W 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB W 0 A_Stop
+		POWB W 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		POWB W 1 A_Warp(AAPTR_TARGET, 60, 0, 32, user_angle+240, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB W 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB W 0 A_Stop
+		POWB W 0 A_SpawnItemEx("WeakPStoneExplosion",0,0,-24)
+		Spawn3:
+		POWB X 1 A_Warp(AAPTR_TARGET, 72, 0, 32, user_angle+240, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_JumpIfInTargetInventory("StoneManMainCheck",1,1)
+		goto DeathRelease
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+		loop
+		
+		DeathRelease:
+		POWB X 1 A_Warp(AAPTR_TARGET, 60, 0, 32, user_angle+240, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 1 A_Warp(AAPTR_TARGET, 50, 0, 32, user_angle+240, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 1 A_Warp(AAPTR_TARGET, 40, 0, 32, user_angle+240, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 1 A_Warp(AAPTR_TARGET, 30, 0, 32, user_angle+240, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 1 A_Warp(AAPTR_TARGET, 20, 0, 32, user_angle+240, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		POWB X 1 A_Warp(AAPTR_TARGET, 10, 0, 32, user_angle+240, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		POWB X 0 A_SetUserVar("user_angle", user_angle + 12)		
+		POWB X 0 A_SpawnItemEx("GoodPStoneExplosion",0,0,-24)
+		goto Death
+		
+		Death:
+		TNT1 A 0
+		stop
+	}
+}
+
+actor PowerStoneManHaverB : PowerStoneManHaver{translation "192:192=205:205", "198:198=74:74"}
+actor PowerStoneManHaverR : PowerStoneManHaver{translation "192:192=171:171", "198:198=41:41"}
+actor PowerStoneManHaverO : PowerStoneManHaver{translation "192:192=104:104", "198:198=128:128"}
+actor PowerStoneManHaverP : PowerStoneManHaver{translation "192:192=229:229", "198:198=232:232"}
+
+actor PowerStoneManHaver2B : PowerStoneManHaver2{translation "192:192=205:205", "198:198=74:74"}
+actor PowerStoneManHaver2R : PowerStoneManHaver2{translation "192:192=171:171", "198:198=41:41"}
+actor PowerStoneManHaver2O : PowerStoneManHaver2{translation "192:192=104:104", "198:198=128:128"}
+actor PowerStoneManHaver2P : PowerStoneManHaver2{translation "192:192=229:229", "198:198=232:232"}
+
+actor PowerStoneManHaver3B : PowerStoneManHaver3{translation "192:192=205:205", "198:198=74:74"}
+actor PowerStoneManHaver3R : PowerStoneManHaver3{translation "192:192=171:171", "198:198=41:41"}
+actor PowerStoneManHaver3O : PowerStoneManHaver3{translation "192:192=104:104", "198:198=128:128"}
+actor PowerStoneManHaver3P : PowerStoneManHaver3{translation "192:192=229:229", "198:198=232:232"}
+
+actor WeakPStoneExplosion : BasicExplosion
+{
+Obituary "$OB_POWERSTONE"
+damagetype "StoneSpiralP"
 States
 {
-Pickup:
-TNT1 A 0 A_JumpIf(pitch<340 && pitch>=270, "FireUp")
-TNT1 A 0 A_JumpIf(pitch>20 && pitch<=90, "FireDown")
-TNT1 A 0 A_GiveInventory("StonemanMain1_CI")
-stop
-FireUp:
-TNT1 A 0 A_GiveInventory("StonemanMain3_CI")
-stop
-FireDown:
-TNT1 A 0 A_GiveInventory("StonemanMain2_CI")
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Explode(2,24,0,0,24)
+TNT1 A 2
 stop
 }
 }
 
-actor StoneM_AltLeapStart_P : CustomInventory
+actor GoodPStoneExplosion : BasicExplosion
 {
+Obituary "$OB_POWERSTONE"
+damagetype "StoneSpiralP"
 States
 {
-Pickup:
-TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,2,1)//2.0 speed
-TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)//No jump
-TNT1 A 0 A_Recoil(-10)//A_Recoil(-25)
-TNT1 A 0 A_GiveInventory("StoneBossLeap",1)
-TNT1 A 0 A_GiveInventory("NoJumpCancel",1)
-TNT1 A 0 A_GiveInventory("LadderDisable",1)
-TNT1 A 0 A_SpawnItemEx("StoneCrushHead",0,0,56,0,0,20)
-TNT1 A 0 ThrustThingZ(0,60+CallACS("cbm_countinv_acs",52,0)*15/11,0,0)
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Explode(4,24,0,0,24)
+TNT1 A 2
 stop
 }
+}
+
+actor StoneSpiralProtect : PowerProtection
+{
+Powerup.duration 7
+DamageFactor "StoneSpiralP", 0
 }
 
 actor StoneM_PowerStoneStart_H : BasicHelper
@@ -302,9 +629,9 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_SpawnItemEx("PowerStoneMan",46,0,0,1,0,0,0,1+32)
-TNT1 A 0 A_SpawnItemEx("PowerStoneMan",46,0,0,1,0,0,120,1+32)
-TNT1 A 0 A_SpawnItemEx("PowerStoneMan",46,0,0,1,0,0,240,1+32)
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,pitch,0,1+32)
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,pitch,120,1+32)
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,pitch,240,1+32)
 //TNT1 A 0 A_SpawnItemEx("PowerStoneMan",46,0,0,0,0,0,0+28,1)//v9e
 //TNT1 A 0 A_SpawnItemEx("PowerStoneMan",46,0,0,0,0,0,180+28,1)
 //TNT1 A 0 A_SpawnItemEx("PowerStoneMan",54,0,0,0,0,0,0,1)//Oldest?
@@ -317,47 +644,80 @@ actor StoneM_PowerStoneStart_HR : StoneM_PowerStoneStart_H{Translation "192:192=
 actor StoneM_PowerStoneStart_HO : StoneM_PowerStoneStart_H{Translation "192:192=104:104","198:198=128:128"}
 actor StoneM_PowerStoneStart_HP : StoneM_PowerStoneStart_H{Translation "192:192=229:229","198:198=232:232"}
 
-actor StoneM_PowerStoneStart_H2 : StoneM_PowerStoneStart_H{Speed 1}
-actor StoneM_PowerStoneStart_H2B : StoneM_PowerStoneStart_HB{Speed 1}
-actor StoneM_PowerStoneStart_H2R : StoneM_PowerStoneStart_HR{Speed 1}
-actor StoneM_PowerStoneStart_H2O : StoneM_PowerStoneStart_HO{Speed 1}
-actor StoneM_PowerStoneStart_H2P : StoneM_PowerStoneStart_HP{Speed 1}
-
-actor StoneM_RockProtect : PowerProtection
+actor StoneM_PowerStoneStart_H2 : StoneM_PowerStoneStart_H
 {
-Powerup.Duration 3
-DamageFactor "StoneM_Rock", 0.281
+Speed 1
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,10,0,1+32)
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,10,120,1+32)
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,10,240,1+32)
+stop
+}
 }
 
-actor PowerStoneMan
+actor StoneM_PowerStoneStart_H2B : StoneM_PowerStoneStart_H2{Translation "192:192=205:205","198:198=74:74"}
+actor StoneM_PowerStoneStart_H2R : StoneM_PowerStoneStart_H2{Translation "192:192=171:171","198:198=41:41"}
+actor StoneM_PowerStoneStart_H2O : StoneM_PowerStoneStart_H2{Translation "192:192=104:104","198:198=128:128"}
+actor StoneM_PowerStoneStart_H2P : StoneM_PowerStoneStart_H2{Translation "192:192=229:229","198:198=232:232"}
+
+actor StoneM_PowerStoneStart_H3 : StoneM_PowerStoneStart_H
 {
+Speed 1
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,-10,0,1+32)
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,-10,120,1+32)
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,-10,240,1+32)
+stop
+}
+}
+
+actor StoneM_PowerStoneStart_H3B : StoneM_PowerStoneStart_H3{Translation "192:192=205:205","198:198=74:74"}
+actor StoneM_PowerStoneStart_H3R : StoneM_PowerStoneStart_H3{Translation "192:192=171:171","198:198=41:41"}
+actor StoneM_PowerStoneStart_H3O : StoneM_PowerStoneStart_H3{Translation "192:192=104:104","198:198=128:128"}
+actor StoneM_PowerStoneStart_H3P : StoneM_PowerStoneStart_H3{Translation "192:192=229:229","198:198=232:232"}
+
+actor PowerStoneManX
+{
+Translation "192:192=215:215","198:198=216:216"
 var int user_speed;
+var int user_damage;
 var int user_maxturn;
 var int user_turndivisor;
 var int user_turn_add;
 //var int user_warpZ;
 PROJECTILE
-damagetype "StoneM_Rock"
+damagetype "StoneM_Toss"
 Obituary "$OB_POWERSTONE"
 +FORCEXYBILLBOARD
-Radius 38
++THRUACTORS
+Radius 24
 Height 10
-damage (250)
-speed 10
+damage (15+user_damage)
+speed 1
 scale 2.5
 States
 {
 Spawn:
 X_5C Q 0
-X_5C Q 0 A_SetUserVar("user_speed",38)//30
+X_5C Q 0 A_SetUserVar("user_speed",55)//30
 X_5C Q 0 A_SetUserVar("user_maxturn",1000)//1500
 X_5C Q 0 A_SetUserVar("user_turndivisor",96)//40
 X_5C Q 0 A_SetUserVar("user_turn_add",4)//14
+POWB U 1
 Spawn2:
-X_5C Q 0 A_ChangeVelocity(30,0,momz,3)
-X_5C QRS 2
-X_5C T 1 A_Stop
-POWB V 3 A_Setangle(angle-80)//A_SetRenderStyle(1.0,STYLE_Stencil)
+POWB U 0 A_ChangeFlag("THRUACTORS",0)
+POWB U 0 A_ScaleVelocity(55)
+POWB UVW 2 A_SetUserVar("user_damage",user_damage+2)
+POWB X 1 A_Stop
+TNT1 A 0 A_SetUserVar("user_damage",user_damage+2)
+POWB X 3 A_Setangle(angle-80)
+TNT1 A 0 A_SetUserVar("user_damage",user_damage+2)
 X_5C T 0
 goto Spawn3+1
 /*
@@ -388,53 +748,60 @@ X_5C T 0 A_JumpIf(user_turndivisor*100/user_maxturn>92,"Spawn4")
 X_5C T 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turn_add)
 loop
 Spawn4:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 X_5C T 1
 wait
 //XDeath:
 //Crash:
 Death:
-TNT1 A 0 A_SpawnItemEX("PowerStonemanFX",16,0,0,frandom(4,8),0,frandom(1,5),random(-20,20),1)
-TNT1 A 0 A_SpawnItemEX("PowerStonemanFX",16,0,0,frandom(4,8),0,frandom(1,5),random(-20,20)+120,1)
-TNT1 A 0 A_SpawnItemEX("PowerStonemanFX",16,0,0,frandom(4,8),0,frandom(1,5),random(-20,20)+240,1)
+TNT1 AA 0 A_SpawnItemEx("PowerStoneRedirectorFX",random(-8,8),random(-8,8),random(0,8),6,frandom(-8,8),frandom(8,8),random(0,360),1)
+TNT1 AA 0 A_SpawnItemEx("PowerStoneRedirectorFX2",random(-8,8),random(-8,8),random(0,8),6,frandom(-8,8),frandom(8,8),random(0,360),1)
+TNT1 A 35 A_PlaySoundEx("weapon/StoneBreak","Body",0,0)
 
 TNT1 A 1
 stop
 }
 }
 
-//actor PowerStoneMan2 : PowerStoneMan{MeleeRange 180}
+actor PowerStoneManXB : PowerStoneManX{Translation "192:192=205:205","198:198=74:74"}
+actor PowerStoneManXR : PowerStoneManX{Translation "192:192=171:171","198:198=41:41"}
+actor PowerStoneManXO : PowerStoneManX{Translation "192:192=104:104","198:198=128:128"}
+actor PowerStoneManXP : PowerStoneManX{Translation "192:192=229:229","198:198=232:232"}
 
-actor PowerStoneManFX
+actor PowerStoneRedirectorFX
 {
 +MISSILE
-+NOBLOCKMAP
-+DOOMBOUNCE
-+DONTSPLASH
-//+THRUACTORS
+-NOGRAVITY
++THRUACTORS
 +CLIENTSIDEONLY
-bouncecount 3
-Reactiontime 5
-Damage (0)
-Radius 8
-Height 8
++DOOMBOUNCE
+wallbouncefactor 0.1
+bouncefactor 0.5
+bouncecount 2
+damage 0
+radius 6
+height 6
 scale 2.5
-States
+states
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_Jump(256,"FX1","FX2","FX3")
-FX1:
-POWB A 2
-TNT1 A 1 A_CountDown
-loop
-FX2:
-POWB B 2
-TNT1 A 1 A_CountDown
-loop
-FX3:
-POWB C 2
-TNT1 A 1 A_CountDown
-loop
+TNT1 A 0 ThrustThingZ(0,8,0,1)
+POWB UUUUUUUUUUUUUUUUUU 1
+stop
+}
+}
+
+actor PowerStoneRedirectorFX2 : PowerStoneRedirectorFX
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ThrustThingZ(0,8,0,1)
+POWB VVVVVVVVVVVVVVVVVV 1
+stop
 }
 }
 
@@ -448,7 +815,7 @@ Obituary "$OB_STONECRUSH"
 +THRUGHOST
 +HITTRACER
 renderstyle none
-damage (150)
+damage (25)
 Radius 24
 Height 2
 States
@@ -492,17 +859,14 @@ actor PainStoneCrushSlamHit : BasicExplosion//StoneCrush
 var int user_GravStack;
 Obituary "$OB_STONECRUSHB"
 damagetype "StoneM_Dunked"
+damage (0)
 Renderstyle None
 Mass 250
 states
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 ACS_ExecuteAlways(C_GRAVITY_SLAM,0,CallACS("cbm_GetPointerTID_147",8))
-goto CollideWait
-CollideWait:
-TNT1 A 1 A_JumpIfInventory("CollideFlag",1,"CollideCheck")
-loop
+stop
 
 CollideCheck:
 TNT1 A 0 A_SetScale(user_GravStack)
@@ -512,12 +876,12 @@ TNT1 A 2
 stop
 Collide:
 TNT1 A 0 A_Warp(8,0,0,28)
-TNT1 A 2 A_SpawnItemEX("StoneCrushSlamCollide",0,0,0,0,0,0,0,16384)
+//TNT1 A 2 A_SpawnItemEX("StoneCrushSlamCollide",0,0,0,0,0,0,0,16384)
 TNT1 A 2
 stop
 CollideX:
 TNT1 A 0 A_Warp(8,0,0,28)
-TNT1 A 2 A_SpawnItemEX("StoneCrushSlamCollideX",0,0,0,0,0,0,0,16384)
+//TNT1 A 2 A_SpawnItemEX("StoneCrushSlamCollideX",0,0,0,0,0,0,0,16384)
 TNT1 A 2
 stop
 }
@@ -544,11 +908,11 @@ TNT1 A 0 A_JumpIfInventory("ToadLeapStack",8,"Pickup2")
 TNT1 A 0 A_GiveInventory("ToadLeapStack",1)
 goto Pickup1
 Pickup1:
-TNT1 A 0 A_PlaySoundEx("weapon/ToadCrush","Body")
+TNT1 A 0 A_PlaySoundEX("weapon/StoneQuakeWeak","Weapon")
 goto PickupT
 Pickup2:
-TNT1 A 0 A_PlaySoundEx("weapon/ToadCrushUp","Body")
-TNT1 A 0 A_GiveInventory("CBM_HealThing10_P",1)
+TNT1 A 0 A_PlaySoundEX("weapon/StoneQuakeWeak","Weapon")
+TNT1 A 0 A_GiveInventory("Health",10)
 goto PickupT
 PickupT:
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,"PickupT2")
@@ -572,7 +936,7 @@ Obituary "$OB_STONEHEAD"
 +DONTREFLECT
 +THRUGHOST
 renderstyle none
-damage (150)
+damage (15)
 Radius 16
 Height 2
 States
@@ -589,72 +953,58 @@ actor StoneQuakePickup : CustomInventory
 States
 {
 Pickup:
-TNT1 A 0 A_JumpIfInventory("StoneBossLeap",30,"P_Stun")
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("StoneBossCharge",45,"P_Stun")
 goto P_NoStun
 P_NoStun:
-TNT1 A 0 A_SpawnItemEx("Stoneman_QuakeFX_H")
-TNT1 A 0 A_PlaySoundEX("weapon/StoneQuakeWeak","Weapon")
-TNT1 A 0 ACS_NamedExecuteAlways("cbm_FloorQuakeDamage",0,200,15,1052)
+TNT1 A 0 A_SpawnItemEx("StoneQuakeDamage2",0,0,0,0,0,0,0,1)
 goto P_End
 P_Stun:
-TNT1 A 0 A_GiveInventory("StoneM_LandedDelay",1)
-TNT1 A 0 A_SpawnItemEx("Stoneman_QuakeFX_H2")
-TNT1 A 0 A_PlaySoundEX("misc/hugequake","Weapon")
-TNT1 A 0 A_Quake(7,20,0,300,0)
-TNT1 A 0 ACS_NamedExecuteAlways("cbm_FloorQuakeDamage",0,250,20,52)
+TNT1 A 0 A_Quake(7, 20, 0, 300, 0)
+POWB G 0 A_PlaySoundEX("weapon/heavystoneland","Body")
+TNT1 A 0 A_SpawnItemEx("StoneQuakeDamage",0,0,0,0,0,0,0,1)
 goto P_End
 P_End:
-TNT1 A 0 A_TakeInventory("StoneBossLeap")
+TNT1 A 0 A_TakeInventory("StoneBossLeap",9999)
 stop
 }
 }
 
-actor Stoneman_QuakeFX_H : Hardman_QuakeFX_H1
-{
-Mass 1
-Scale 20
-}
-actor Stoneman_QuakeFX_H2 : Hardman_QuakeFX_H1
-{
-Mass 2
-Scale 25
-}
 
-actor Stoneman_FloorQuakeSpawn : BasicExplosion
+actor StoneQuakeDamage
 {
-Obituary "$OB_STONECRUSH"
-damagetype "StoneM_Shock"
++NOGRAVITY
++DONTBLAST
+//+MISSILE
++SKYEXPLODE
++NOINTERACTION
 +NOCLIP
-Renderstyle None
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 A 0 A_SetScale(angle*256/360)
-TNT1 A 0 Thing_Move(0,1000+momz*8,1)
-TNT1 A 4 A_SpawnItemEx("Stoneman_FloorQuakeBoom",0,0,28,0,0,0,0,16384)
-stop
-}
-}
-actor Stoneman2_FloorQuakeSpawn : Stoneman_FloorQuakeSpawn
-{
-damagetype "StoneM_Quake"
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 A 0 A_SetScale(angle*256/360)
-TNT1 A 0 Thing_Move(0,1000+momz*8,1)
-TNT1 A 4 A_SpawnItemEx("Stoneman2_FloorQuakeBoom",0,0,28,0,0,0,0,16384)
-stop
-}
-}
-actor Stoneman_FloorQuakeBoom : Hardman_FloorQuakeBoom
-{
++RIPPER
++THRUACTORS
++THRUGHOST
+height 2
+radius 200
+damage (15)
 Obituary "$OB_STONECRUSH"
 damagetype "StoneM_Shock"
+-SOLID
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEX("UranusDeepDiggerSlamFX",random(0,25)*8,0,0,frandom(0,2),0,frandom(1,4),random(0,30)*12,1)
+TNT1 A 0
+TNT1 A 0 A_ChangeFlag("NOCLIP",0)
+TNT1 A 0 A_ChangeFlag("NOINTERACTION",0)
+TNT1 A 0 A_ChangeFlag("THRUACTORS",0)
+TNT1 A 0 A_ChangeFlag("MISSILE",1)
+TNT1 A 1
+stop
 }
-actor Stoneman2_FloorQuakeBoom : Stoneman_FloorQuakeBoom
+}
+
+
+actor StoneQuakeDamage2 : StoneQuakeDamage
 {
 damagetype "StoneM_Quake"
 }
@@ -670,7 +1020,7 @@ Obituary "$OB_STONEHAND"
 +FLOORHUGGER
 +NOINTERACTION
 ReactionTime 20
-damage (100)
+damage (10)
 radius 16
 height 32
 speed 15
@@ -678,6 +1028,9 @@ scale 2.5
 States
 {
 Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
 TNT1 A 2
 TNT1 A 0 A_Stop
 POWB TSRQPONK 2 ACS_ExecuteAlways(259,0,2)
@@ -703,32 +1056,89 @@ actor StoneHandBossR : StoneHandBoss{translation "192:192=171:171", "198:198=41:
 actor StoneHandBossO : StoneHandBoss{translation "192:192=104:104", "198:198=128:128"}
 actor StoneHandBossP : StoneHandBoss{translation "192:192=229:229", "198:198=232:232"}
 
-
-
-
-actor StonemanMain1_CI : TeamColor_CI
+actor StonemanMain_CI : TeamColor_CI
 {
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H",0,0,0,0)
+TNT1 A 0 A_SpawnItemEX("PowerStonemanHaver",0,0,24)
+TNT1 A 0 A_SpawnItemEX("PowerStonemanHaver2",0,0,24)
+TNT1 A 0 A_SpawnItemEX("PowerStonemanHaver3",0,0,24)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_HB",0,0,0,0)
+TNT1 A 0 A_SpawnItemEX("PowerStonemanHaverB",0,0,24)
+TNT1 A 0 A_SpawnItemEX("PowerStonemanHaver2B",0,0,24)
+TNT1 A 0 A_SpawnItemEX("PowerStonemanHaver3B",0,0,24)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_HR",0,0,0,0)
+TNT1 A 0 A_SpawnItemEX("PowerStonemanHaverR",0,0,24)
+TNT1 A 0 A_SpawnItemEX("PowerStonemanHaver2R",0,0,24)
+TNT1 A 0 A_SpawnItemEX("PowerStonemanHaver3R",0,0,24)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_HO",0,0,0,0)
+TNT1 A 0 A_SpawnItemEX("PowerStonemanHaverO",0,0,24)
+TNT1 A 0 A_SpawnItemEX("PowerStonemanHaver2O",0,0,24)
+TNT1 A 0 A_SpawnItemEX("PowerStonemanHaver3O",0,0,24)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_HP",0,0,0,0)
+TNT1 A 0 A_SpawnItemEX("PowerStonemanHaverP",0,0,24)
+TNT1 A 0 A_SpawnItemEX("PowerStonemanHaver2P",0,0,24)
+TNT1 A 0 A_SpawnItemEX("PowerStonemanHaver3P",0,0,24)
 goto Done
 }
 }
 
+actor StoneM_FirePitchCheck_P : CustomInventory
+{
+States
+{
+Pickup:
+//TNT1 A 0 A_JumpIf(pitch<359 && pitch>=200, "FireUp")
+//TNT1 A 0 A_JumpIf(pitch>1 && pitch<=70, "FireDown")
+TNT1 A 0 A_GiveInventory("StonemanMain2_CI")
+stop
+FireUp:
+TNT1 A 0 A_GiveInventory("StonemanMain3_CI")
+stop
+FireDown:
+TNT1 A 0 A_GiveInventory("StonemanMain4_CI")
+stop
+}
+}
+
 actor StonemanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PowerStoneManX",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManX",120,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManX",240,0,0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXB",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXB",120,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXB",240,0,0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXR",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXR",120,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXR",240,0,0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXO",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXO",120,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXO",240,0,0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXP",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXP",120,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXP",240,0,0,0,0,0)
+goto Done
+}
+}
+
+actor StonemanMain3_CI : TeamColor_CI
 {
 states
 {
@@ -750,24 +1160,24 @@ goto Done
 }
 }
 
-actor StonemanMain3_CI : TeamColor_CI
+actor StonemanMain4_CI : TeamColor_CI
 {
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H2",0,0,0,8)
+TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H3",0,0,0,8)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H2B",0,0,0,8)
+TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H3B",0,0,0,8)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H2R",0,0,0,8)
+TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H3R",0,0,0,8)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H2O",0,0,0,8)
+TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H3O",0,0,0,8)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H2P",0,0,0,8)
+TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H3P",0,0,0,8)
 goto Done
 }
 }
@@ -808,6 +1218,7 @@ stop
 }
 }
 
+
 actor PowerStoneCoreBoss : BaseMM8BDMWep_CBM
 {
 tag "$TAGC_5C2"
@@ -826,17 +1237,24 @@ Ready:
 POWB Y 0 ACS_ExecuteAlways(998,0,DYE_STONEMAN,1)
 POWB Y 0 A_GunFlash
 POWB Y 0 A_TakeInventory("StoneCoreBounceFlag",99)
+POWB Y 0 A_TakeInventory("StoneManMainCheck",999)
+POWB Y 0 A_TakeInventory("WeaponChargeStone",999)
 POWB Y 1
-POWB Y 1 A_JumpIfInventory("StoneCoreBounceFlag",8,"ReadyX")
-wait
+Ready2:
+POWB Y 1 A_Recoil(-0.25)
+POWB Y 0 A_JumpIfInventory("StoneCoreBounceFlag",8,"ReadyX")
+loop
 ReadyX:
-POWB YZ 5
+POWB YYYYYZZZZZ 1
 loop
 Flash:
-TNT1 AA 7 A_GiveInventory("StoneCoreFlagX",1)
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("StoneCoreFlagX_P",1)
 TNT1 A 7 A_GiveInventory("StoneCoreFlag_P",1)
-TNT1 AA 7 A_GiveInventory("StoneCoreFlagX",1)
-TNT1 A 0 A_JumpIfInventory("StoneCoreFlag",0,1)
+TNT1 A 3 A_GiveInventory("StoneCoreFlagX_P",1)
+TNT1 A 4 A_SpawnItemEx("StoneTimeSlowFX",0,0,8,0,0,0,0,1)
+TNT1 AAA 7 A_GiveInventory("StoneCoreFlagX_P",1)
+TNT1 A 0 A_JumpIfInventory("StoneCoreFlag",10,1)
 loop
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
 TNT1 A 5 A_GiveInventory("StoneRebornFX_P",1)
@@ -854,12 +1272,12 @@ inventory.maxamount 3
 actor StoneCoreFlag : Inventory
 {
 inventory.amount 1
-inventory.maxamount 9
+inventory.maxamount 10
 }
 actor StoneCoreFlagX : Inventory
 {
 inventory.amount 1
-inventory.maxamount 40
+inventory.maxamount 45
 }
 actor StoneCoreBuddha : OnceC {}
 
@@ -876,7 +1294,7 @@ powerup.duration 15
 
 actor StonemanGutsGWeakness : PowerProtection
 {
-Powerup.duration -10
+Powerup.duration -9
 DamageFactor "Melee", 2.0
 }
 
@@ -885,6 +1303,8 @@ actor StonemanSpawnStart_P : CustomInventory
 States
 {
 Pickup:
+TNT1 A 0 //A_GiveInventory("BuckshotCheckPickup")
+TNT1 A 0 A_GiveInventory("BuckshotCheckPickup")
 TNT1 A 0 SetPlayerProperty(0,1,16)
 TNT1 A 0 A_GiveInventory("StoneCoreBuddha",1)
 stop
@@ -893,15 +1313,51 @@ stop
 
 actor StoneCoreFlag_P : CustomInventory
 {
-States
+states
 {
 Pickup:
+TNT1 A 0 //A_JumpIfInventory("IsLMSFlag",1,"Pickup2")
+TNT1 A 0 A_JumpIfInventory("IsBuckShotFlag",1,"Pickup2")
+goto Pickup1
+Pickup1:
+TNT1 A 0 A_GiveInventory("StoneCoreFlag",2)
+stop
+Pickup2:
 TNT1 A 0 A_GiveInventory("StoneCoreFlag",1)
-TNT1 A 0 A_GiveInventory("StoneCoreFlagX",1)
-TNT1 A 0 A_SpawnItemEx("StoneTimeSlowFX",0,0,8,0,0,0,0,1)
 stop
 }
 }
+
+actor StoneCoreFlagX_P : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 //A_JumpIfInventory("IsLMSFlag",1,"Pickup2")
+TNT1 A 0 A_JumpIfInventory("IsBuckShotFlag",1,"Pickup2")
+goto Pickup1
+Pickup1:
+TNT1 A 0 A_GiveInventory("StoneCoreFlagX",2)
+stop
+Pickup2:
+TNT1 A 0 A_GiveInventory("StoneCoreFlagX",1)
+stop
+}
+}
+
+actor StoneNothing
+{
++NOINTERACTION
+-SOLID
+states
+{
+Spawn:
+TNT1 A 1
+stop
+}
+}
+
+actor StonemanDeathCounter : Once {inventory.maxamount 5}
 
 actor StoneDestroyedFX_P : CustomInventory
 {
@@ -911,7 +1367,6 @@ Pickup:
 TNT1 A 0 A_ChangeFlag("NOTELEPORT",1)
 TNT1 A 0 A_ChangeFlag("PICKUP",0)
 TNT1 A 0 A_ChangeFlag("SOLID",0)
-TNT1 A 0 A_ChangeFlag("THRUSPECIES",1)
 TNT1 A 0 A_TakeInventory("UnSolid",99)
 TNT1 A 0 A_SpawnItemEx("StoneDestroyedFX",0,0,0,0,0,0,0,1)
 
@@ -926,19 +1381,23 @@ TNT1 A 0 A_GiveInventory("StonemanGutsGWeakness",1)
 TNT1 A 0 A_GiveInventory("SelfStoppedTF",1)
 TNT1 A 0 A_GiveInventory("StunArmor",1)
 TNT1 A 0 A_GiveInventory("StoneCoreFlag",1)
+TNT1 A 0 A_GiveInventory("BuckshotCheckPickup",1)
 
 //TNT1 A 0 ACS_ExecuteAlways(C_JAX_SPECTRUM_SET1,0,2,3)//user_wepaimlimit
-TNT1 A 0 A_SetUserVar("user_wepaimlimit",0)//Bounce tracking on Stoneman playerclass
+TNT1 A 0 A_SetUserVar("user_wepaimlimit",0)
 
-TNT1 A 0 HealThing(30000,ACS_ExecuteWithResult(CBM_FetchMyHealth,1)*0.355)//Heal back to 550
+//TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,7,55)//Set Hp to 55
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_StonemanACS",0,55,15)
+TNT1 A 0 A_GiveInventory("StonemanDeathCounter",1)
+
 
 TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)//No jump
 
 TNT1 A 0 A_TakeInventory("StoneCoreBuddha",9)
-TNT1 A 0 A_TakeInventory("StoneBossLeap")
+TNT1 A 0 A_TakeInventory("StoneBossLeap",99999)
 TNT1 A 0 A_TakeInventory("StoneBossLeap2",9)
 TNT1 A 0 A_TakeInventory("StoneBossCharge",99999)
-TNT1 A 0 A_TakeInventory("StoneCoreFlagX")
+TNT1 A 0 A_TakeInventory("StoneCoreFlagX",99999)
 
 TNT1 A 0 A_TakeInventory("PowerStoneBoss",1)
 stop
@@ -952,17 +1411,17 @@ states
 Pickup:
 TNT1 A 0 A_ChangeFlag("NOTELEPORT",0)
 TNT1 A 0 A_ChangeFlag("PICKUP",1)
-TNT1 A 0 A_ChangeFlag("THRUSPECIES",0)
 TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
 TNT1 A 0 A_SpawnItemEx("StoneRebornFX",0,0,0,0,0,0,0,1)
 
-TNT1 A 0 HealThing(30000,ACS_ExecuteWithResult(CBM_FetchMyHealth,1)*0.549)//Heal back to 850
+//TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,7,85)//Set Hp to 85
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_StonemanACS",0,85,25)
+//TNT1 A 0 A_GiveInventory("StonemanDeathCounter",1)
 
-TNT1 A 0 SetPlayerProperty(0,1,16)//Buddha on
-TNT1 A 0 A_GiveInventory("StoneCoreBuddha",1)
+TNT1 A 0 A_GiveInventory("StonemanSpawnStart_P",1)//Buddha on
 TNT1 A 0 A_GiveInventory("PowerStoneBoss",1)
 
-TNT1 A 0 A_TakeInventory("StoneCoreFlag")
+TNT1 A 0 A_TakeInventory("StoneCoreFlag",99)
 TNT1 A 0 A_GiveInventory("LadderEnable",1)
 TNT1 A 0 A_TakeInventory("StonemanInvulnerability",1)
 TNT1 A 0 A_TakeInventory("StunArmor",1)
@@ -986,7 +1445,7 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 A_PlaySoundEx("weapon/StoneCore","Weapon",0,0)
 TNT1 A 0 A_PlaySoundEx("weapon/StoneBreak","Body",0,0)
-TNT1 AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StonemanBrickBreakFX",random(0,16),0,random(0,75),random(0,8),0,random(0,2),random(0,359),1)
+TNT1 AAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StonemanBrickBreakFX",random(0,16),0,random(0,75),random(0,8),0,random(0,2),random(0,360),1)
 TNT1 A 1
 stop
 }
@@ -994,16 +1453,14 @@ stop
 
 actor StoneRebornFX : BasicHelper
 {
-ReactionTime 19
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_PlaySoundEx("weapon/StoneBreak","Body",0,0)
-TNT1 A 0 A_Warp(2)
-TNT1 A 0 A_SpawnItemEx("StonemanBrickRezFX",100,0,0,0,0,0,random(0,359),1)
-TNT1 A 1 A_CountDown
-goto Spawn+2
+TNT1 AAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("StonemanBrickRezFX",100,0,0,0,0,0,random(0,360),1)
+TNT1 A 1
+stop
 }
 }
 
@@ -1023,7 +1480,6 @@ stop
 actor StonemanBrickRezFX
 {
 PROJECTILE
-//+CLIENTSIDEONLY
 +NOINTERACTION
 +THRUACTORS
 Damage (0)
@@ -1053,7 +1509,6 @@ stop
 actor StonemanBrickBreakFX
 {
 PROJECTILE
-//+CLIENTSIDEONLY
 -NOGRAVITY
 +DOOMBOUNCE
 +DONTSPLASH
@@ -1074,6 +1529,259 @@ POWB BBDBBDBBDBBDBBDBBDBBDBBDBBDBBD 1
 stop
 FX3:
 POWB CCDCCDCCDCCDCCDCCDCCDCCDCCDCCD 1
+stop
+}
+}
+
+actor PowerStoneManSpawner : PowerStoneSpawner
+{
+Translation "192:192=215:215", "198:198=216:216"
+Speed 1
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("PowerStoneMan",46,0,0,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("PowerStoneMan",46,0,0,0,0,0,120,1)
+TNT1 A 0 A_SpawnItemEx("PowerStoneMan",46,0,0,0,0,0,-120,1)
+stop
+}
+}
+
+actor PowerStoneManSpawnerB : PowerStoneManSpawner{translation "192:192=205:205", "198:198=74:74"}
+actor PowerStoneManSpawnerR : PowerStoneManSpawner{translation "192:192=171:171", "198:198=41:41"}
+actor PowerStoneManSpawnerO : PowerStoneManSpawner{translation "192:192=104:104", "198:198=128:128"}
+actor PowerStoneManSpawnerP : PowerStoneManSpawner{translation "192:192=229:229", "198:198=232:232"}
+
+actor PowerStoneMan
+{
+PROJECTILE
+Radius 24
+Height 10
+damage (20)
+damagetype "StoneM_Rock"
+Obituary "$OB_POWERSTONE"
+speed 0
+//var int user_startwepangle;
+var int user_speed;
+var int user_num;
+var int user_time;
+var int user_time_add;
+scale 2.5
+States
+{
+Spawn:
+X_5C A 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+TNT1 A 0 A_SetUserVar("user_speed",33.75)
+TNT1 A 0 A_SetUserVar("user_num",1500)
+TNT1 A 0 A_SetUserVar("user_time",30)
+TNT1 A 0 A_SetUserVar("user_time_add",10)
+Spawn2:
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+X_5C A 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+X_5C A 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+X_5C B 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+X_5C B 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+X_5C C 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+X_5C C 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+Spawn3:
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+X_5C D 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+loop
+Death:
+TNT1 A 1 A_PlaySoundEx("weapon/StoneBreak","Body",0,0)
+X_5C EFGH 2
+stop
+}
+}
+
+actor StonemanMain1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PowerStoneManSpawner",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PowerStoneManSpawnerB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PowerStoneManSpawnerR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PowerStoneManSpawnerO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PowerStoneManSpawnerP",0,0,0,0)
+goto Done
+}
+}
+
+actor PowerStoneFakeCoreBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_5C3"
+dropitem "PowerStoneWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 3
+Obituary "$OB_POWERSTONE"
+weapon.ammotype "TheRockWasStoppedAmmo"
++WEAPON.CHEATNOTWEAPON
+States
+{
+Spawn:
+C_05 C 1
+stop
+Ready:
+POWB Y 0 ACS_ExecuteAlways(998,0,DYE_STONEMAN,1)
+POWB Y 0 A_GunFlash
+POWB Y 0 A_TakeInventory("StoneCoreBounceFlag",99)
+POWB Y 1
+Ready2:
+POWB Y 0 A_Recoil(-0.25)
+POWB Y 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+POWB Y 0 A_JumpIfInventory("StoneCoreBounceFlag",8,"ReadyX")
+loop
+ReadyX:
+POWB YYYYYZZZZZ 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+loop
+Reload:
+TNT1 A 0 A_JumpIfInventory("StoneCoreFakeDelay",1,"ReloadFail")
+goto Reload2
+ReloadFail:
+TNT1 A 0 A_JumpIfInventory("StoneCoreBounceFlag",8,"ReadyX")
+goto Ready2
+Reload2:
+TNT1 A 0 //A_ChangeVelocity(momx*0.3,momy*0.3,momz*0.3,2)
+TNT1 A 10 A_GiveInventory("StoneRebornFakeFX_P",1)
+goto ReadyX
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 3 A_GiveInventory("StoneCoreFlagXF",3)
+TNT1 A 3 A_GiveInventory("StoneCoreFlagXF",3)
+TNT1 A 1 A_JumpIfInventory("PowerStoneBoss",1,"NoFlash")
+TNT1 A 3 A_GiveInventory("StoneCoreFlagXF",3)
+TNT1 A 3 A_GiveInventory("StoneCoreFlagXF",3)
+TNT1 A 1 A_SpawnItemEx("StoneTimeSlowFX",0,0,8,0,0,0,0,1)
+TNT1 A 3 A_GiveInventory("StoneCoreFlagXF",3)
+TNT1 A 3 A_GiveInventory("StoneCoreFlagXF",3)
+TNT1 A 1 A_JumpIfInventory("PowerStoneBoss",1,"NoFlash")
+TNT1 A 3 A_GiveInventory("StoneCoreFlagXF",3)
+TNT1 A 3 A_GiveInventory("StoneCoreFlagXF",3)
+TNT1 A 1 A_JumpIfInventory("PowerStoneBoss",1,"NoFlash")
+TNT1 A 3 A_GiveInventory("StoneCoreFlagXF",4)
+TNT1 A 3 A_GiveInventory("StoneCoreFlagXF",4)
+TNT1 A 1 A_JumpIfInventory("PowerStoneBoss",1,"NoFlash")
+loop
+}
+}
+
+actor StoneCoreFlagXF : Inventory
+{
+inventory.amount 1
+inventory.maxamount 60
+}
+
+actor StoneStoredHealth : Ammo
+{
+inventory.amount 1
+inventory.maxamount 999
+}
+
+actor StoneCoreFakeDelay : Powerup
+{
+powerup.duration 60
+}
+
+actor StoneCoreFakeDelay2 : Powerup
+{
+powerup.duration 140
+}
+
+actor StoneDestroyedFakeFX_P : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_ChangeFlag("PICKUP",0)
+TNT1 A 0 A_ChangeFlag("SOLID",0)
+TNT1 A 0 A_TakeInventory("UnSolid",99)
+TNT1 A 0 A_SpawnItemEx("StoneDestroyedFX",0,0,0,0,0,0,0,1)
+
+TNT1 A 0 //A_Stop
+TNT1 A 0 ThrustThing(angle*256/360,18,1,0)
+TNT1 A 0 ThrustThingZ(0,4,0,1)
+
+TNT1 A 0 A_GiveInventory("PowerStoneFakeCoreBoss",1)
+TNT1 A 0 A_GiveInventory("StoneCoreFakeDelay",1)
+TNT1 A 0 SetPlayerProperty(0,0,16)//Buddha off
+TNT1 A 0 A_GiveInventory("StonemanInvulnerability",1)
+TNT1 A 0 A_GiveInventory("StonemanGutsGWeakness",1)
+TNT1 A 0 A_GiveInventory("StunArmor",1)
+TNT1 A 0 A_GiveInventory("StoneCoreFlag",1)
+TNT1 A 0 A_GiveInventory("BuckshotCheckPickup",1)
+
+TNT1 A 0 A_SetUserVar("user_wepaimlimit",0)
+TNT1 A 0 A_GiveInventory("StoneCoreFakeDelay",1)
+
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,0,1)
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)//No jump
+
+TNT1 A 0 A_TakeInventory("StoneCoreBounceFlag",99)
+TNT1 A 0 A_TakeInventory("StoneCoreBuddha",9)
+TNT1 A 0 A_TakeInventory("StoneBossLeap",99999)
+TNT1 A 0 A_TakeInventory("StoneBossLeap2",9)
+TNT1 A 0 A_TakeInventory("StoneBossCharge",99999)
+TNT1 A 0 A_TakeInventory("StoneCoreFlagX",99999)
+
+TNT1 A 0 A_TakeInventory("PowerStoneBoss",1)
+stop
+}
+}
+
+actor StoneRebornFakeFX_P : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_ChangeFlag("PICKUP",1)
+TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
+TNT1 A 0 A_SpawnItemEx("StoneRebornFX",0,0,0,0,0,0,0,1)
+
+//TNT1 A 0 ACS_NamedExecuteAlways("StoneFakeHealthRestore",0)
+
+TNT1 A 0 A_GiveInventory("StonemanSpawnStart_P",1)//Buddha on
+TNT1 A 0 A_GiveInventory("PowerStoneBoss",1)
+
+TNT1 A 0 A_TakeInventory("StoneCoreFlagXF",99)
+TNT1 A 0 A_TakeInventory("StoneCoreFlag",99)
+TNT1 A 0 A_GiveInventory("StoneCoreBounceFlag",99)
+TNT1 A 0 A_GiveInventory("LadderEnable",1)
+TNT1 A 0 A_TakeInventory("StonemanInvulnerability",1)
+TNT1 A 0 A_TakeInventory("StunArmor",1)
+TNT1 A 0 A_TakeInventory("StonemanGutsGWeakness",1)
+TNT1 A 0 A_GiveInventory("SelfStoppedUnfreeze",1)
+TNT1 A 0 A_GiveInventory("TimeStoppedUnfreeze",1)
+TNT1 A 0 A_GiveInventory("StoneCoreFakeDelay2",1)
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)//1.0 speed and jump
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
+TNT1 A 0 SetPlayerProperty(0,0,0)
+
+TNT1 A 0 A_TakeInventory("PowerStoneFakeCoreBoss",1)
 stop
 }
 }

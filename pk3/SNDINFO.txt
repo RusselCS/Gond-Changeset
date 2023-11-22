@@ -1,703 +1,608 @@
+StartupTick             bdoor
+$volume StartupTick 0.22
+$random menu/quitCBM { misc/HonkHonk64 misc/AladdinHonk misc/KnuxOhNo classes/Stolen1 DyHead/YayoiPunch weapon/PanHit1 weapon/PanHit2 weapon/bebeskids weapon/protomanshow}
 
-item/ItemUseMM9 9STORSND $limit item/ItemUseMM9 0
-item/ItemUseAA ITEMONAA $limit item/ItemUseAA 0
+///// MM0 /////
 
-//PAIN is Megaman
-//OUCH is Enemy/Boss
-//HURT is weakness based on PAIN
-//WEAK is weakness based on OUCH
+//Megaman
+weapon/XStart X1FIRE
+weapon/XCont X2FIRE
 
-misc/M1_PAIN M1_PAIN $limit misc/M1_PAIN 0
-misc/M1_HURT M1_HURT $limit misc/M1_HURT 0
+//Proto
+weapon/protoshieldpickup SHIELDP
+weapon/reversepcharge PROTCHRE
+weapon/protomanshow PMANSHOW
 
-misc/M2_PAIN MEGAPAIN $limit misc/M2_PAIN 0//in core
-misc/M2_OUCH mm2pain $limit misc/M2_OUCH 0//in core
-misc/M2_HURT M2_HURT $limit misc/M2_HURT 0
-misc/M2_WEAK M2_WEAK $limit misc/M2_WEAK 0
+//Bass
+weapon/NewBassBuster CCBMBUST
+weapon/NewBassChargeBuster CCBMCHRG
 
-misc/M3_OUCH MM3PAIN $limit misc/M3_OUCH 0//in core
-misc/M3_WEAK M3_WEAK $limit misc/M3_WEAK 0
+//Duo (ok technically he's in mm8 but shut up)
+weapon/DuoMeteorBounce DUOBOUNC
+weapon/DuoMeteorCharge DUOCHARG
+weapon/DuoMeteorLaunch DUOLAUNC
+weapon/DuoMeteorCancel DUOMCANC
+weapon/DuoMeteorImpact DUOIMPCT
+weapon/DuoGSlamExplode DUOEXPLD
+weapon/DuoJusticeFlash S_MV_J5
 
-misc/M4_OUCH MM4PAIN $limit misc/M4_OUCH 0//in core
-misc/M4_WEAK M4_WEAK $limit misc/M4_WEAK 0//MM5 & MM6 use MM4
+//Maestro
+weapon/MaestroFuzz FLTELE
+weapon/lflcharge MMBNCHRG
+weapon/lflready MMBNREDY
+weapon/maestroshield MAESHIEL
 
-misc/MV_PAIN MV_PAIN $limit misc/MV_PAIN 0
-misc/MV_OUCH MV_OUCH $limit misc/MV_OUCH 0
-misc/MV_WEAK MV_WEAK $limit misc/MV_WEAK 0
+///// MM1 /////
 
-misc/M1_DIED M1_DIED $limit misc/M1_DIED 0//MM2 is the same
-misc/M3_DIED MEGADEAT $limit misc/M3_DIED 0//MM3+ uses this
-misc/MV_DIED MV_DIED $limit misc/MV_DIED 0
+//Cut
+weapon/CutterExtend S_M1_A4
 
-misc/teleport55 DSTELEP5
-misc/teleport66 DSTELEP6
+//Elec
+weapon/thunderhandup ELECSTRT
+weapon/thunderbeamdie	ELEKILL
 
-TestBlastSnd MV_OUCH
+//Fire
+weapon/burnbabyburn FIRERING
+weapon/firemanshot2 FIRESHT2
+weapon/firewavemelt MELTCRPR
 
-CBM/NONE SND_NULL $limit CBM/NONE 0
+//Ice
+weapon/icemansnow POCKICE
+weapon/icemandetonate ICEDETN
+$volume weapon/Ice_Cloud 0.6
 
-//MM0
-wep/shieldtink REFLECT $limit wep/shieldtink 0
-weapon/jetfly	JETFLY
-weapon/ccharge	cbusch
-weapon/cfire2	cbusfir2
-weapon/enemyweapon	S_M6SHOT
-weapon/RollSwing ENKSWING $limit weapon/RollSwing 0
-weapon/RollSwing2 ROLLSWNG $limit weapon/RollSwing2 0
-$random weapon/RollSwingX { weapon/RollSwing weapon/RollSwing2} $limit weapon/RollSwingX 0
-weapon/RollHeal	ROLLGIFT
-class/RollIsDown DOWNROLL $limit class/RollIsDown 0
-weapon/RockBuster ROCKPEW
-weapon/rbuster ROCKPEW
-weapon/RockThumbsUp THUMBSUP $limit weapon/RockThumbsUp 0
-weapon/RockBall ROCKKICK
-weapon/BassCombine COMBINE $limit weapon/BassCombine 0//TREBFUSE//in core
+//Bomb
+weapon/tubthumpin BOMBTHUD
+weapon/minitubthumpin BOMBBOUN
+weapon/bomb_split S_M1_D6
 
-weapon/AutoReload1 armret $limit weapon/AutoReload1 0//fakerel2
-weapon/AutoReload2 S_M9_I1 $limit weapon/AutoReload2 0
-weapon/AutoReload3 S_M9_I2 $limit weapon/AutoReload3 0
-weapon/AutoFirework S_AUTO_1 $limit weapon/AutoFirework 0
-weapon/AutoCreate S_AUTO_2 $limit weapon/AutoCreate 0
-weapon/AutoTada S_AUTO_3 $limit weapon/AutoTada 0
-weapon/AutoSwap S_AUTO_4 $limit weapon/AutoSwap 0
-
-item/ScorePickup S_M1JOE
-item/ScoreUse S_M1JOE2 $limit item/ScoreUse 0
-weapon/JoeDrop S_M1JOE3
-
-Ryu_L/exmove S_RYU_S3 //$volume Ryu_L/exmove 0.7
-Ryu_L/letsgo S_RYU_S8 //$volume Ryu_L/letsgo 0.5
-Ryu_L/superact S_RYU_S7 //$volume Ryu_L/superact 0.7
-
-Ryu_L/hadoken S_RYU_V0
-Ryu_L/shoryuken S_RYU_V5
-Ryu_L/tatsumaki S_RYU_V7
-Ryu_L/poundcake S_RYU_V8
-Ryu_L/defeated S_RYU_V9 $limit Ryu_L/defeated 0
-
-Ryu_L/shakunetsu S_RYU_V2
-Ryu_L/shintatsu S_RYU_V6
-
-Ryu_L/shinhado S_RYU_V3
-Ryu_L/shinshor1 S_RYU_V1
-Ryu_L/shinshor2 S_RYU_V4
-Ryu_L/shinhit S_RYU_S4
-Ryu_L/shinhit2 S_RYU_S5
-
-Ryu_L/knockout S_RYU_S9
-
-BBA_Snd/punch BBAPUN
-BBA_Snd/punch0 BBAPUN0 $limit BBA_Snd/punch0 0
-BBA_Snd/punch1 BBAPUN1 $limit BBA_Snd/punch1 0
-$random BBA_Snd/punch { BBA_Snd/punch0 BBA_Snd/punch1} $limit BBA_Snd/punch 0
-BBA_Snd/throwpunch BBAPUN2
-BBA_Snd/shot BBABULL
-BBA_Snd/shotgun BBASHOT
-BBA_Snd/shotgun_r ELESHOSP//BBASHOTR//in core
-BBA_Snd/ssg BBASSG
-BBA_Snd/ssg_r1 BBASSGR1
-BBA_Snd/ssg_r2 BBASSGR2
-BBA_Snd/ssg_r3 BBASSGR3
-BBA_Snd/rocketfire BBAROCF
-BBA_Snd/rocket BBAROCK $volume BBA_Snd/rocket 0.90
-BBA_Snd/plasma BBAPLAS
-BBA_Snd/bfgcharge BHOLEXP//BBABFG1//in core
-BBA_Snd/bfgfire BBABFG2
-BBA_Snd/bfg BBABFGH
-BBA_Snd/weapon BBASHOP2
-BBA_Snd/ammo BBASHOP1
-BBA_Snd/cut BBACUT
+//Oil
+weapon/oilcharge BALMIN
+weapon/oilcharge2 BALMIN2
 
 
-//MM1
-weapon/CutMelee CUTSLICE
-weapon/FastCutter CUTFAST $limit weapon/FastCutter 0
-$limit weapon/rollingcutter 0
-weapon/CutterCatch BOOMERNG
-weapon/cutsong	WHY
-weapon/GutMelee GPAWNCH
-weapon/GutThrow GUT_TOSS $limit weapon/GutThrow 0
-weapon/GutRock GUTSROCK $limit weapon/GutRock 0
-weapon/ElecTeleport ELECZAP2
-//weapon/ElecStorm ELE
-//weapon/lightningfall	ELE//wilybeam //wilybeam for old elec
-weapon/BombThrow BOMBTHRO
-weapon/BombmanBoom BOMBEXPL
-weapon/FireManShot FIRESHOT
-weapon/FireManWave FIRESTOR $limit weapon/FireManWave 0
-weapon/IceManShot ICESHOT
-weapon/Ice_Cloud ICESHOTA
-weapon/IceManLaser ICESHOTL
-weapon/IceManBit ICESHOTB
-weapon/IceManBreak ICESHOTC
-weapon/IceManFog ICESHOTK
-weapon/slow	timesloC
-weapon/timeshot timearr
-weapon/OilShotX	flmoil//oilblob
-//weapon/OilSlider	OilSlid
-weapon/OilJump OILJUMP $limit weapon/OilJump 0 $volume weapon/OilJump 0.95
-weapon/OilSnap OILSNAP $limit weapon/OilSnap 0
+///// MM2 /////
 
-wep/YD_Toss S_M1_Y1 $limit wep/YD_Toss 0
-wep/YD_Sploosh S_M1_Y2 $limit wep/YD_Sploosh 0
-wep/YD_Punch S_M1_Y3 $limit wep/YD_Punch 0
+//Flash
+weapon/flashstunboom FLASBOOM
+weapon/flashstunstart FLSWNDUP
+
+//Metal
+weapon/MetalMelee CHNBLADE
+
+//Air
+weapon/airshotdeath AIRWHF
+$volume weapon/airshotdeath 0.25
+weapon/airshotimpact AIRHIT
+
+//Bubble
+weapon/bubblemanlead BUBBLBOS
+
+//Wood
+$volume weapon/WoodTower 0.4
 
 
-//MM2
-weapon/MetalMelee BUZSLICE
-weapon/MetalMelee2 BUZSLICR
-weapon/MetalJump BUZZJUMP
-weapon/directcrash CRASHX $limit weapon/directcrash 0
-weapon/directcrash2 CRASHB3 $limit weapon/directcrash2 0
-weapon/directclash CRASHB1 $limit weapon/directclash 0
-weapon/directclash2 CRASHB2 $limit weapon/directclash2 0
-weapon/HeatShield HEATSHLD $limit weapon/HeatShield 0
-weapon/HeatShield3 HEATSHL3 $limit weapon/HeatShield3 0
-weapon/heattackle HEATACKL
-weapon/AirWall CYCLONE
-weapon/leafcounter LEAFPARR $limit weapon/leafcounter 0
-weapon/WoodLeap WOODFIRE
-weapon/WoodSlam WOODHIT
-weapon/WoodTower WOODHIT2
-weapon/WoodPound WOODHIT3
-weapon/wilyshot2 WILYSHO2
-weapon/wilyshot3 WILYSHO3
-weapon/wilyshot4 WILYSHO4
-weapon/PanWall WILYSHO5 $limit weapon/PanWall 0
-weapon/PanHit1 WILYSHO6 $limit weapon/PanHit1 0
-weapon/PanHit2 WILYSHO7 $limit weapon/PanHit2 0
-classes/FloodIn SURF1
-classes/FloodOut SURF2
-weapon/BubbleBounce BUBLBOUN
-class/QuickRun QUICKRUN
-weapon/AlienFire METSHOT
-weapon/BoobeamPew ROCKPEW
-weapon/BoobeamBeep BBERECT
-weapon/BoobeamFlash BBFLASH
+///// MM3 /////
 
-wep/BB_BarrierActive BBFLASH//BOOBBACT
-wep/BB_BarrierSplit BUBLBOUN//BOOBBSPL
+//Shadow
+weapon/shadowmanslide SHASLIDE
 
-//MM3
-class/NeedleRevup REVVING $limit class/NeedleRevup 0
-class/NeedleRevupQ S_M3_A4 $limit class/NeedleRevupQ 0
-class/NeedleRevved REVREADY
-weapon/NeedleDakka NEDLSHOT $limit weapon/NeedleDakka 0
-weapon/NeedleWham NEDLHMMR $limit weapon/NeedleWham 0
-weapon/MagPush MAGNETSM
-weapon/MagPush2 MAGWAVE
-class/GeminiDouble DOUBLE
-weapon/hardquakeland	QUAKE
-weapon/HardGlitch FATLAND
-weapon/HardFistFire HARDSHOT $limit weapon/HardFistFire 0
-weapon/TopManShot TOPSHOT
-weapon/TopTwist TOPTWIRL $limit weapon/TopTwist 0
-weapon/Snakecommand S_M3_F1 $limit weapon/Snakecommand 0
-weapon/sparkalt	sprksprd
-weapon/ShockLob S_M3_G1 $limit weapon/ShockLob 0
-weapon/Shad_Kunai SHADOWKU
-weapon/Shad_Poof S_M3_H2
+//Gemini
+weapon/geminibuster GEMNSHOT
 
-Wep/DocScanCheck S_M3_I1 $limit weapon/DocScanCheck 0
-Wep/DocScanHit S_M3_I3 $limit weapon/DocScanHit 0
+//Hard
+weapon/hknuckle HARDSHOT
+weapon/hknuckletravel HKTRAVEL $volume weapon/hknuckletravel 0.5
+weapon/hknucklehit HARHIT
+weapon/bebeskids BEBE
 
-//MM4
-weapon/MM4Charge charge4l
-weapon/ToadCrushUp S_M4TOA5 $limit weapon/ToadCrushUp 0
-weapon/ToadCrush S_M4TOA4 $limit weapon/ToadCrush 0
-class/ToadDance S_M4TOA3
-weapon/BigRain S_M4TOA2
-class/ToadCroak S_M4TOA1 $limit class/ToadCroak 0
-weapon/ShortRain S_M4TOAD $limit weapon/ShortRain 0
-classes/drilling drillin
-classes/drillout drillout
-classes/drillexplode DRILLBOM $limit classes/drillexplode 0
-classes/Float PHACURSE
-weapon/Phar_Charge S_M4_D1 $limit weapon/Phar_Charge 0
-weapon/Phar_ChargeLoop S_M4_D2 $limit weapon/Phar_ChargeLoop 0
+//Top
+$volume weapon/TopTwist 0.7
+
+//Snake
+weapon/snakeshot SNAKSHOT
+$volume weapon/Snakecommand 0.8
+
+//Spark
+weapon/sparkrecharger SPALT
+weapon/brightspark BRIGSPAK
+weapon/sparkreset SPARKRES
+weapon/SparkShocker S_M9_D1
+$volume weapon/SparkShocker 0.5
+
+//Magnet
+weapon/magnettrack MAGTRACK $limit weapon/magnettrack 99
+weapon/magnetmine MAGMINES
+weapon/magnetminefly MAGMINE $limit weapon/magnetminefly 99 $volume weapon/magnetminefly 0.3
+weapon/MagFlyMad MGFLYMAD
+weapon/magnetbeep MAGBEEP
+
+//Doc
+weapon/DocWoodStartup DOCWSTRT $volume weapon/DocWoodStartup 0.5
+weapon/DocBubbleStartup DOCBSTRT $volume weapon/DocBubbleStartup 0.5
+weapon/DocAirStartup DOCASTRT $volume weapon/DocAirStartup 0.5
+weapon/DocQuickStartup DOCQSTRT $volume weapon/DocQuickStartup 0.5
+weapon/DocHeatShot DOCSHEAT
+weapon/DocHeatPillar DOCHEATP $volume weapon/DocHeatPillar 0.2
+weapon/DocCrashShot DOCSCRSH
+weapon/DocMetalCharge DOCSMETL
+weapon/DocMetalShot DOCCMETL
+
+//Break?
+weapon/BionicArm1 BCARM1
+weapon/BionicArm2 BCARM2
+weapon/BionicRifle BCFIRE
+classes/WaveDies BCDEAD
+$volume weapon/BionicArm1 0.3
+$volume weapon/BionicArm2 0.3
+$volume weapon/BionicRifle 0.3
+$volume weapon/WaveDies 0.3
+weapon/breaksnipershoot BRAILSHO
+weapon/breaksniperhit BRAILHIT
+weapon/breaksnipercharged BRAILCHG
+weapon/breaksniperready BRSNIRDY
+$volume weapon/breaksniperready 0.5
+weapon/breakescape BREKESCP
+
+
+///// MM4 /////
+
+//Dust
+weapon/bigdustbreak DUSTBRK2 
+weapon/DustVacuum1 DUSTVAC1 $limit weapon/DustVacuum1 0
+weapon/DustVacuum2 DUSTVAC2 $limit weapon/DustVacuum2 0
+weapon/DustVacuum3 DUSTVAC3 $limit weapon/DustVacuum3 0
+
+//Toad
+$volume weapon/ShortRain 0.8
+$volume weapon/BigRain 0.4
+
+//Pharaoh
+weapon/pharaohpunchswing PHAPPUN
+weapon/pharaohpunchhit PHAPHIT
+weapon/pharaohpunchko PHAPKO
+weapon/pharaoh5 phshot5
 weapon/Phar_Fire1 S_M4_D3 $limit weapon/Phar_Fire1 0
 weapon/Phar_Fire2 S_M4_D4 $limit weapon/Phar_Fire2 0
 weapon/Phar_Fire3 S_M4_D5 $limit weapon/Phar_Fire3 0
-weapon/RingChime RNGCHIME
-weapon/Shoomp DUSTSHOT
-weapon/dustbit DUSTBIT
-weapon/DustSuction HSHLOOP $limit weapon/DustSuction 0
-weapon/DustVacuum1 DUSTVAC1 $limit weapon/DustVacuum1 0
-weapon/DustVacuum2 DUSTVAC2 $limit weapon/DustVacuum2 0
-weapon/divesonar DIVESONA
-wep_L/DiveSonar DIVESONA $limit wep_L/DiveSonar 0
-classes/SkullShieldBuzz SKULBAR4
-weapon/skullbust SKULSHOT
+weapon/PharaohShotExplode PHASHEXP
 
-classes/skullabs	KGAXE//skullabs
+//Skull
+weapon/SkullParryShot SKUPRSHT $volume weapon/SkullParryShot 0.75
+$volume classes/SkullShieldBuzz 0.6
 
-//MM5
-weapon/upsidedown graswi $limit weapon/upsidedown 0
-weapon/gravitysphere WILYBLAS $limit weapon/gravitysphere 0//in core
-wep_L/GSphereTravel S_M5_A3 $limit wep_L/GSphereTravel 0
-wep_L/GravityHoldUp S_M5_A2 $limit wep_L/GravityHoldUp 0
-weapon/WaveSummon WAVEUP $limit weapon/WaveSummon 0
-weapon/WaveSummonGo WAVEGO $limit weapon/WaveSummonGo 0
-weapon/StoneQuakeWeak S_M5_C1 $limit weapon/StoneQuakeWeak 0
-weapon/StoneBounce S_M5STO1 $limit weapon/StoneBounce 0
-weapon/StoneBreak S_M5STO2 $limit weapon/StoneBreak 0
-weapon/StoneCore S_M5STO3 $limit weapon/StoneCore 0
-classes/Hind GYCHOPPA
-weapon/GyroM_Attack GYROAT
-weapon/StarMain STARSHO2
-weapon/StarDakka STARSHOT
+//Ring
+weapon/ringcageshatter RINGSHAT
+weapon/ringcagefire RINGWHOP
+
+
+///// MM5 /////
+
+//Stone
+weapon/heavystoneland STNBOOM
+
+//Gyro
+weapon/gyrosplit GYRSPLIT
+weapon/gyroattacksee GYROAT
+$volume weapon/gyroattacksee 0.5
+
+//Napalm
+weapon/napalmtread NAPTREAD
+weapon/napalmmissilefly NAPFLY
+weapon/napalmmissilehit NAPMISL
+
+//Dark1
+$volume weapon/darktread 0.8
+
+//Dark2
+weapon/darkcharge1 DARCHA1
+weapon/darkcharge2 DARCHA2
+weapon/darkcharge3 DARCHA3
+weapon/darkblast2 DARBLA2
+weapon/darkblast2explode DARBLA2X
+weapon/darkblast3 DARBLA3
+weapon/darkblast3loop DARBLA3P
+weapon/darkblast3explode DARBLA3E
+weapon/darkblast3stop DSNONE
+
+//Dark3
+weapon/DM3Ping DM3Ping
+
+//Charge
 weapon/Train CHUGGA $limit weapon/Train 0
 weapon/chugga	CHUG
-weapon/TrainRide CH_HOPIN $limit weapon/TrainRide 0
-weapon/crystalshot CRYSSHOT
-weapon/crystalbit CRYSBIT
-wep_L/crystalbit CRYSBIT $limit wep_L/crystalbit 0
-wep/CrysCharge1 S_M5_H3 $limit wep/CrysCharge1 0
-wep/CrysCharge2 S_M5_H4 $limit wep/CrysCharge2 0
-wep/CrysCharge3 S_M5_H5 $limit wep/CrysCharge3 0
-wep/CrysCharge4 S_M5_H6 $limit wep/CrysCharge4 0
+$volume weapon/Train 1
+$volume weapon/chugga 1
+weapon/tankengine TANKENGN
 
-$limit weapon/waterwave 0
-$limit weapon/napalm 0
+//Crystal
+weapon/crystalbigbounce CRYSBIG
 
-weapon/Dark1Shot DAR1SHOT
-weapon/darktread DARKSTEP
-weapon/shieldhum DARKSIDE
-weapon/Dark3Shot DAR3SHOT
-weapon/Dark3Rail DAR3SHO2 $limit weapon/Dark3Rail 0
 
-//MM6
-weapon/6buster S_M6SHOT $limit weapon/6buster 0
+///// MM6 /////
 
-weapon/KnightShot KNIGSHOT
-weapon/KnightReturn KNIRETRN
-class/windstart WINDSTAR
-class/windloop WINDLOOP
-weapon/portout teleout2 $volume weapon/portout 0.90
-weapon/portin uncloak $volume weapon/portin 0.70
-weapon/centaurstomp CENTS
-weapon/CentShot S_M6SHOT $limit weapon/CentShot 0
-weapon/BlizzBoss msfrz//BLIZBOSS//in core
-weapon/BlizzBowl BLIZBOWL
-weapon/BlizzStrike BLIZSTRI
-weapon/FlameBall	BOFLAME//FLAMEBO//in core
-weapon/FlameWave	FLAMEWA
+//Plant
+weapon/PlantBusterShot PLANBUST $volume weapon/PlantBusterShot 0.5
+weapon/plantbuster PLNTBUST
 
-//MM7
-classes/burstpop pbub//BUBLPOP//in core
-weapon/BurstBubAppear BUBLPOOF
-weapon/BurstExplode WRAPEXPL $limit weapon/BurstExplode 0
-weapon/springpunch coilf1
-weapon/SpringBounce2 coil2  $limit weapon/SpringBounce2 0
-weapon/SpringDed COILDED
-classes/CarHonk HONKHONK//in core
-classes/CarCharge CARREADY//in core
-classes/CarGoGo CARGO//in core
-weapon/WheelGoGoGo WHEELGO
-weapon/freezefloor imacc//FLORFREZ
-$volume weapon/freezefloor 0.5 $limit weapon/freezefloor 0
-weapon/shadewing habataki
-weapon/shadedive SHDEDIVE//wind
-weapon/shadesuck SHDEESUC $limit weapon/shadesuck 0
-weapon/NoiseC1 S_M7NC1
-weapon/NoiseC2 S_M7NC2
-weapon/CloudAlt CLOUDALT
-weapon/TSTRIKE TSTRIKE
-weapon/CloudSplit wilybeam
-item/JunkArmor JUNKARMR
-item/JunkArmorTrash JNK_MAKE
-weapon/JunkBreaker JUNBREAK
-item/JunkPick JUNKCOL
+//Flame
+$volume weapon/FlameWave 0.5
+
+//Centaur
+weapon/centaurarrowshot CENTAROW $volume weapon/centaurarrowshot 0.5
+
+//Knight
+weapon/knightcrushspin KNGTSPIN
+weapon/knightcrushhit KNGTHIT
+$volume weapon/KnightReturn 0.7
+
+//Wind
+weapon/windvacuum WINDVAC
+weapon/windstormboss WSTRMBOS
+weapon/windgyroboss WGYROBOS
+
+//Tomahawk
+weapon/tomahawkboss TOMAHAWB
+$volume weapon/tomahawkboss 0.5
+weapon/tomahawkfeathers TOMAFEAT
+$volume weapon/tomahawkfeathers 0.5
+weapon/tomahawkslice TOMSLC
+weapon/tomahawkfall TOMFAL
+
+//Yamato
+weapon/yamatocharge YAMABNZ1
+weapon/yamatovault YAMABNZ2
+
+
+///// MM7 /////
+
+//Freeze
+$volume weapon/freezefloor 0.4
+
+//Junk
+weapon/JunkSlider JNKSLIDE
 weapon/JunkM_ShieldLoop JNKSHLDL
-weapon/SlashDClaw DASHCLAW
-weapon/SlashGoop SLASGOOP
-weapon/SlashGoop2 SLASGOP2
-weapon/SlashDash DRKLEAP
 
-//MM8
-weapon/DuoShotCharge DUOFISTC
-weapon/DuoShot1 DUOFIST1
-weapon/DuoShot2 DUOFIST2
-weapon/DuoShot3 DUOFIST3
+//Shademan
+weapon/noisecrushtravel NOSCRUSH
+weapon/noisecrushimpact NOSCRASH
 
+//Turbo
+weapon/wheelbreak TURBBRK
+$volume weapon/wheelbreak 0.7
+weapon/wheeltrail TURBTRAI
+$volume weapon/wheeltrail 0.15
+weapon/turbomanthrow TURBTHRO
+$volume weapon/wheelgogogo 0.4
+
+//Cloud
+walk/cloudmanwalk CLODWALK
+
+
+///// MM8 /////
+
+//Clown
+weapon/thunderclawhit CLAWBAP
+weapon/NewClownClaw THUNCLA2
+weapon/NewClownShock NCLOSHO
+weapon/NewClownGrab CLOWNGRB
+weapon/NewClownRelease CLOWNRLS
+weapon/NewClownSwing CLOWNSWN
+weapon/NewClownShockSwing NCLOSWI
+
+//Astro
+weapon/astroshot ASTSHOT
+weapon/astroclonemeteor ASTCHAR
+weapon/astroclonethrow ASTTEL
+weapon/astroclonefire ASTFIRE
+
+//Frost
+weapon/FrostCharge FROSCHRG $limit weapon/FrostFull 0
+weapon/FrostFull FROSFULL $limit weapon/FrostFull 0
+
+//Sword
+weapon/swordtorsopain TORSPAIN
+weapon/NewFlameSword S_M8_C1
+
+//Tengu
 weapon/TenguTHold S_M8_A0 $limit weapon/TenguTHold 0
-weapon/TenguM_Dash S_M8_A1 $limit weapon/TenguM_Dash 0
-weapon/AstroACrush ASTCRSH2//S_M8_B0//in core
-weapon/AstroACrush2 S_M8_B6
-weapon/AstroACrush3 S_M8_B7
-$random weapon/AstroM_ACrush { weapon/AstroACrush weapon/AstroACrush2weapon/AstroACrush3 } $limit weapon/AstroM_ACrush 0
-classes/astrowalk ASTRSTEP
-weapon/ClownBall CLOWNBAL
-class/SearchBush SEARBUSH
-weapon/SearchCross SEARCROS $limit weapon/SearchCross 0
-wep_L/SearchMissile S_M8_E3 $limit wep_L/SearchMissile 0
-wep_L/SearchDiscBounce S_M8_E4 $limit wep_L/SearchDiscBounce 0
-weapon/WaterCannonFire AQUAFIR2
-weapon/WaterCannonGo AQUABEAM
-weapon/AquaCharge AQUACHRG
-weapon/AquaCharge2 AQUACHR2
-weapon/GrenadeShot GRENSHOT
-weapon/GrenadeGood GRENTAUD $limit weapon/GrenadeGood 0
 
-weapon/TrioRage EVILRAGE $limit weapon/TrioRage 0 $volume weapon/TrioRage 0.80
-weapon/TrioExodia ERPOSSES
-weapon/TrioCharge0 EVILCHR0
-weapon/TrioCharge1 EVILCHR1
-weapon/TrioCharge2 EVILCHR2
-weapon/TrioCharge3 EVILCHR3
-weapon/TrioCharge4 EVILCHR4
+//Search
+weapon/searchdash SRCHDASH
+weapon/searchdstorm SRCHDEST
+weapon/searchshot SRCHHOM
+$volume class/SearchBush 0.7
+weapon/SearchDiscBounceMini SRCHMINI
 
-weapon/TrioSplash splash $limit weapon/TrioSplash 0 $volume weapon/TrioSplash 0.70
-weapon/TrioMagnet MAGNET $limit weapon/TrioMagnet 0 $volume weapon/TrioMagnet 0.70
+//Aqua
+$volume weapon/AquaCharge 0.6
+$volume weapon/AquaCharge2 0.6
 
-//MM9
-weapon/shoulderbash S_M9CON0 $volume weapon/shoulderbash 0.7
-weapon/shoulderhit S_M9CON1
-weapon/concreteraise S_M9CON2
-weapon/buttleap S_M9CON3
-weapon/buttstomp S_M9CON4
-weapon/concreteblockw S_M9CON5
-weapon/concreteblocks S_M9CON6
-weapon/conc_chargestart S_M9CON7
-weapon/conc_chargeloop S_M9CON8
-weapon/conc_throw S_M9CON9
-weapon/concretecoin S_M9CON_
-
-weapon/tornadoshoot windstar
-classes/TornadoFly windloop $limit classes/TornadoFly 0
-
-weapon/SplashSing S_M9_C0 $limit weapon/SplashSing 0
-weapon/SplashSing1A S_M9_C1A $limit weapon/SplashSing1A 0
-weapon/SplashSing1B S_M9_C1B $limit weapon/SplashSing1B 0
-weapon/SplashSing1C S_M9_C1C $limit weapon/SplashSing1C 0
-weapon/SplashSing1Q S_M9_C1Q $limit weapon/SplashSing1Q 0
-weapon/SplashSing2 S_M9_C2 $limit weapon/SplashSing2 0
-weapon/SplashSing2C S_M9_C2C $limit weapon/SplashSing2C 0
-weapon/SplashSing2Q S_M9_C2Q $limit weapon/SplashSing2Q 0
-weapon/SplashSing3 S_M9_C3 $limit weapon/SplashSing3 0
-weapon/SplashSing3C S_M9_C3C $limit weapon/SplashSing3C 0
-weapon/SplashSing3Q S_M9_C3Q $limit weapon/SplashSing3Q 0
-
-weapon/PlugShock S_M9_D1 $limit weapon/PlugShock 0//CLOWNBAL
-
-weapon/jewelshot JEWEFIR $limit weapon/jewelshot 0//core added
-weapon/jewelexplode S_M9_E2 $limit weapon/jewelexplode 0
-weapon/jewelexplodebit S_M9_E3 $limit weapon/jewelexplodebit 0
-weapon/jewelrub	BALMIN
-weapon/jewelbounce	CRYSBIT
-
-weapon/hornetchaser HORNCHAS
-weapon/hornetcommand S_M9_F0
-weapon/hornetfly S_M9_F1
-weapon/hornetcomb S_M9_F2
-
-weapon/magmabazooka MGMBAZO
-weapon/magmacharge MGMMAT
-weapon/MagmaMode MAGFLML//MAGERUPT//in core
-weapon/magmaalert ALARML
-
-weapon/blackholebombC	BHBFLY
-weapon/blackholebombdetonateC	BHBBOOM
-weapon/RamFlight UFORAM $volume weapon/RamFlight 0.70
-weapon/BlackHoleBombPoof BHBPOOF
-classes/GalaxyTeleport TELEPORT
-
-weapon/fakeshot1 fakeshot $limit weapon/fakeshot1 0
-weapon/fakereloadshort fakerel2 $limit weapon/fakereloadshort 0
-weapon/fakereload3 S_M9_I1 $limit weapon/fakereload3 0
-weapon/fakereload4 S_M9_I2 $limit weapon/fakereload4 0
-weapon/fakeempty bdoor $limit weapon/fakeempty 0
-weapon/fakewhack1 S_M9_I3 $limit weapon/fakewhack1 0
-weapon/fakewhack2 S_M9_I4 $limit weapon/fakewhack2 0
-weapon/fakewhack3 S_M9_I5 $limit weapon/fakewhack3 0
-weapon/fakewhistle S_M9_I6 $limit weapon/fakewhistle 0
-classes/CopSeize S_M9_I7 $limit classes/CopSeize 0
-weapon/fakedash S_M9_I8 $limit weapon/fakedash 0
+//Space Boys
+weapon/evilfisttravel EVILTRAV
+weapon/gigafisttravel GIGATRAV
+weapon/fistringtravel FISTWAVE
+weapon/fistimpact	  FISTHIT $volume weapon/fistimpact 0.5
 
 
-//MM10
-classes/bladeshoot tripb $limit classes/bladeshoot 0//core
-classes/bladeshoot2 S_M10A2 $limit classes/bladeshoot2 0
-classes/bladecling S_M10A3 $limit classes/bladecling 0
-classes/bladeleap S_M10A4 $limit classes/bladeleap 0
+///// MMB /////
+
+//Cold
+$volume weapon/ColdField 0.5
+$volume weapon/ColdFrozen 0.5
+weapon/coldshatter COLBREAK
+
+//Dynamo
+weapon/lightningold LITBOLD
+$volume classes/DynamoTag 0.8
+
+//Pirate
+weapon/piratereloadstart PIRRELD1
+weapon/piratereload PIRRELD2
+weapon/pirateexplode S_MB_D4
+
+//Burner
+weapon/waveburneruw wavebund
+walk/baveburner BAVEBURN
+
+//Ground
+weapon/groundtread GROUSTEP
+weapon/GroundTransform GROUTRAS
+
+
+///// MM9 /////
+
+//Hornetman
+Bee/Homing S_M9_F3  
+Bee/Charge BEECHRG
+$volume Bee/Homing 1          
+$limit Bee/Homing 1 500       //anti earrape stuffs
+$rolloff Bee/Homing 300 1200 
+
+//Tornado
+weapon/tornadoblowboss TORN1
+weapon/tornadoblowhold TORBHOLD
+weapon/tornadoblowend TORBEND
+$volume weapon/tornadoblow 0.7
+
+//Jewel
+$volume weapon/jewelexplode 0.6
+$volume weapon/jewelexplodebit 0.6
+
+//Plug
+weapon/plugcharge1 PLUGCHR1
+weapon/plugcharge2 PLUGCHR2
+weapon/plugcharge3 PLUGCHR3
+Plugman/fullpotato PLUFPTT
+
+///// MM10 /////
+
+//Copywep
+weapon/wheelcutter wheelsta
+weapon/wheelshot wheelsho
+
+//Pump
+weapon/pumprefill STRKCHRG
+
+//Blade
 classes/bladeslice S_M10A5 $limit classes/bladeslice 0
+$volume classes/bladeleap 0.7
 
-wep/PumpShieldSpawn WATRSHSP//core
-wep/PumpShieldBurst WATRBURS//core
-$limit wep/PumpShieldBurst 0
-wep/PumpSlugger S_M10B1 $limit wep/PumpSlugger 0
-wep/PumpShieldPop S_M10B2
-wep/PumpShieldBlock S_M10B3
-wep/PumpShieldSize S_M10B4
+//Nitro
+weapon/wheelshotbounce S_M10GX
+weapon/wheelshotthrow S_M10GW
+classes/gasgasgas BIKEOVRD
 
-wep/Comm_GRDBRAKE S_M10C1 $limit wep/Comm_GRDBRAKE 0
-wep_V/CommandoWave COMEXP $volume wep_V/CommandoWave 0.33 $limit wep_V/CommandoWave 12
+//Chill
+weapon/chillshot CHILSHOT
+weapon/chillspike CHILSPIK $limit weapon/chillspike 0
+weapon/chillbreak CHILBRAK $limit weapon/chillbreak 0
+weapon/CSlide1 CHILLSL1
+weapon/CSlide2 CHILLSL2
+$volume weapon/CSlide1 0.5
+$volume weapon/CSlide2 0.5
 
-weapon/ChillSalvo S_M10D1
-weapon/ChillTrail S_M10D2 $limit weapon/ChillTrail 0//in core
-weapon/ChillTrailEnd S_M10D3 $limit weapon/ChillTrailEnd 0//in core
-weapon/ChillSkate S_M10D4 $limit weapon/ChillSkate 0
-weapon/ChillIceForm S_M10D5 $limit weapon/ChillIceForm 0
-weapon/ChillIceBrk S_M10D6 $limit weapon/ChillIceBrk 0
+//Strike
+weapon/reboundweak SRKTHROW
+weapon/reboundgrab DSBW43
+weapon/reboundstartup DSBW46
+weapon/reboundbunt DSBW53
+weapon/reboundbounce SRKBOUNC
+weapon/reboundcheer SRKCHEER
+weapon/reboundprojectile REBN
 
-classes/bikestart S_M10G1
-classes/bikebrake S_M10G2
-weapon/wheelshort S_M10G3
+//Sheep
+weapon/woolshock RAINLTNG
+weapon/woolrise THNDWOL
+weapon/woolfire THDWOLE
 
-wep/SolarM_Shot1 S_M10H1
-wep/SolarM_Split1 S_M10H2
-wep/SolarM_Shot2 S_M10H3
-wep/SolarM_Split2 S_M10H4
-wep/SolarM_Shot3 ECLIPDBL//in core
-wep/SolarM_Split3 SGOSEXP//in core
-wep/SolarM_Charge SGOSWRAP//in core
-wep/SolarM_Shot4 S_M10H8
-
-
-//MMB
-weapon/DynamoCharge DYNCHRG
-weapon/DynamoOrbs DYNORB
-classes/DynamoTag DYNTAG1 $limit classes/DynamoTag 0
-weapon/ColdField COLDFILD $limit weapon/ColdField 0
-weapon/ColdFrozen S_M3PING $limit weapon/ColdFrozen 0
-weapon/GroundBigDrill GRBGDRIL
-weapon/GroundDig GRODIG
-weapon/WaterSpray S_MB_D1
-weapon/PirateBubble S_MB_D2
-weapon/PirateRBomb1 S_MB_D3
-weapon/PirateRBomb S_MB_D4
-classes/Stolen1 S_MB_DL1 $limit classes/Stolen1 0
-classes/Stolen2 S_MB_DL2 $limit classes/Stolen2 0
-classes/Stolen3 S_MB_DL3 $limit classes/Stolen3 0
-classes/Stolen4 S_MB_DL4 $limit classes/Stolen4 0
-classes/Stolen5 S_MB_DL5 $limit classes/Stolen5 0
-weapon/BurnerBoom BURNFOOM
-weapon/BurnerRise BURNRISE
-weapon/BurnerDive BURNDOWN
-weapon/BurnerWave S_MB_G4 $limit weapon/BurnerWave 0//Core WaveBurner but with some starting silence trimmed
-weapon/MagicShot MAGISHOT
-weapon/MagicBirds PIGEONS
-weapon/MagicM_Orb S_MB_H3 $limit weapon/MagicM_Orb 0
-
-weapon/TheKingAxeV KGAXE_V $limit weapon/TheKingAxeV 0
-weapon/TheKingAxeH KGAXE_H $limit weapon/TheKingAxeH 0
-weapon/TheKingShield KGSHIELD $limit weapon/TheKingShield 0
-
-weapon/TheKingSpin kgswin $limit weapon/TheKingSpin 0
-//Edited from DBZ2 Keishin Frieza
-
-//MMV
-weapon/TerraChaser SCHAS
-weapon/TerraChaser2 SCHASC
-weapon/TerraOrbiterCast S_MV_A1
-weapon/TerraOrbiter S_MV_A2
-weapon/TerraStun TERRASTN $limit weapon/TerraStun 0
-weapon/TerraQuickDash S_MV_A3
+//Solar
+weapon/solarcharger SOLMORT
+weapon/solarammobuild SOLAMMO
+weapon/solarammofull SOLFULL
+wep/SolarM_Charge SGOSWRAP
+weapon/sunparry SOLBLZ
+weapon/solarblazex SOLBLAX
+$volume weapon/solarblazex 1
+weapon/solarwave SOLWAVE
+$volume weapon/solarwave 0.6
+weapon/solarwavex  SOLWAVX
+$volume weapon/solarwavex 0.75
 
 
-wep_L/MercGrabBuster S_MV_B1 $limit wep_L/MercGrabBuster 0
-classes/MercPick S_MV_B2 $limit classes/MercPick 0
-wep_L/MercShinySwipe S_MV_B7 $limit wep_L/MercShinySwipe 0
+///// MMV /////
 
-W_Venus/BubbleBomb S_MV_C1 $limit W_Venus/BubbleBomb 0
-W_Venus/BubbBoom S_MV_C2
-W_Venus/BubbPop S_MV_C3 $limit W_Venus/BubbPop 0
-W_Venus/JumpBoost S_MV_C4 $limit W_Venus/JumpBoost 0
-W_Venus/Fire1 dwrap $limit W_Venus/Fire1 0
-W_Venus/BubbGet S_MB_D2 $limit W_Venus/BubbGet 0
-W_Venus/GB_Boom MMVBALD $limit W_Venus/GB_Boom 0
+//Copywep
+weapon/MMVShot2 MMVSSND2
+weapon/bubblebomb BBBMSND
+weapon/MMVExplode BBOMEXP
+weapon/grabbuster GRABBUS
+$volume weapon/grabbuster 0.7
 
-weapon/marsmissiletravel S_MV_D1
-weapon/marsvulcan S_MV_D2 
-weapon/marsmissile S_MV_D3
-weapon/marstank S_MV_D4
-weapon/marsmortarfly S_MV_D5 $limit weapon/marsmortarfly 0
-weapon/marsmortarboom S_MV_D6 $limit weapon/marsmortarboom 0
-weapon/PhotonMissile S_MV_DZ $limit weapon/PhotonMissile 0
+//Terra
+weapon/sparkchaser SPRKCHSR
+weapon/sparkchaser2 SPRKCHS2
+$random weapon/sparkchasertravel  { TERCHSR1 TERCHSR2 TERCHSR3 }
+TERCHSR1 TERCHSR1
+TERCHSR2 TERCHSR2
+TERCHSR3 TERCHSR3
+weapon/terrateleport TERRWARP
+weapon/terramelee TERRKNEE
+weapon/terrameleeko TERRKNED
+weapon/sparkchaseractivate TERRACTI
+weapon/sparkchaserhit TERRACTX
 
-weapon/jupitershot1 S_MV_E1
-weapon/jupitershot2 S_MV_E2
-weapon/jupiterboost S_MV_E3
-weapon/jupiterlaser S_MV_E4
-weapon/jupiterhover JETFLY
+//Venus
+weapon/bubblebomb BUBBO
+$volume W_Venus/BubbPop 0.5
+$volume W_Venus/GB_Boom 0.4
+$volume W_Venus/JumpBoost 0.4
 
-weapon/electricshockZ ECLIPTRS $limit weapon/electricshockZ 0//in core
+//Mars
+weapon/marstread MARSSTEP
 
-weapon/uranuswall quake
-weapon/uranusrun ydstomp
-weapon/uranusworkup S_MV_G1
-weapon/uranuspickup S_MV_G2
-weapon/uranusexplode S_MV_G3
-classes/uranusmirrorm S_MV_G7 $limit classes/uranusmirrorm 0
-classes/uranusmirrorf S_MV_G8 $limit classes/uranusmirrorf 0
-classes/uranusmirroro S_MV_G9 $limit classes/uranusmirroro 0
+//Jupiter
+$volume weapon/jupiterlaser 0.9
 
-weapon/deepdiggeruse S_MV_GY $limit weapon/deepdiggeruse 0
+//Saturn
+weapon/quazarblast QUAZAR
+weapon/saturnthrow SATURNTR
+weapon/saturnquake SATURNRT
+weapon/blackhole	BLCKHOL
+$volume weapon/blackhole 0.5
+weapon/saturnnothing XDXDXDXD
+weapon/saturnfire SATFIREX
+//lmao
+weapon/saturnglitch SATFUK
+weapon/saturndeath SATFUCK
+
+//Uranus
+weapon/uranusstab URASTAB
+
+//Pluto
+pluto/meowcope MEOWPLUT $volume pluto/meowcope 0.75
+pluto/copeinducer NECOPLUT
+
+//Sunstar
+weapon/sunstaroverheat S_MV_J1
+weapon/sunstarcooldown S_MV_J2
+weapon/sunstardyson S_MV_J3
+weapon/sunstarscorch S_MV_J4
+weapon/sunstardysonsee S_MV_J5
+$volume weapon/sunstardysonsee 0.4
+S_MV_J6 S_MV_J6
+S_MV_J7 S_MV_J7
+S_MV_J8 S_MV_J8
+$random weapon/sunstarvent { S_MV_J6 S_MV_J7 S_MV_J8 }
+S_MV_J9 S_MV_J9
+S_MV_JA S_MV_JA
+$random weapon/sunstarvent2 { S_MV_J9 S_MV_JA }
+weapon/sunstarextra S_MV_JB
 
 
-weapon/plutobreakdash BDASDASH $limit weapon/plutobreakdash 0//core
-weapon/plutoultraspeed S_MV_H2 $limit weapon/plutoultraspeed 0
+///// MM11 /////
 
-W_Neptune/Stomp S_MV_I1 $limit W_Neptune/Stomp 0
-W_Neptune/Hop S_MV_I2 $limit W_Neptune/Hop 0
-W_Neptune/SaltWater S_MV_IZ
-W_Neptune/IsWet WTRSLIDX
-W_Neptune/SaltUp S_MV_I3 $limit W_Neptune/SaltUp 0
-W_Neptune/SaltDown S_MV_I4 $limit W_Neptune/SaltDown 0
+//Copywep
+weapon/scrambleshot SCTHSHOT
+weapon/scrambletravel SCTHTRAV
+weapon/scrambleboom SCTHBOOM
 
-weapon/MMV_Charge S_MV_MC $limit weapon/MMV_Charge 0
+//Fuse
+fuseman/melee PMELEE
+fuseman/nope PULSNOP
+fuseman/hvoltage VTKER
+fuseman/hvend PULSEND
+fuseman/telestart FTELEST
+fuseman/teleport FTELEPT
+fuseman/voltage FVOLT
+weapon/fusedashdown FUSEDOWN
+$volume fuseman/melee 0.5
+$volume fuseman/nope 0.5
+$volume fuseman/hvoltage 0.5
+$volume fuseman/hvend 0.5
+$volume fuseman/telestart 0.5
+$volume fuseman/teleport 0.5
+$volume fuseman/voltage 0.5
+$volume weapon/fusedashdown 0.5
 
-//MMWT
-classes/BRGClone BUNSHIN
-weapon/BRGSpin MEATSPIN $limit weapon/BRGSpin 0
-weapon/BRGStaff BRGSTAF2
-weapon/HSHPew pew $limit weapon/HSHPew 0
-weapon/HSHSuckBlow HSHLOOP $limit weapon/HSHSuckBlow 0
-weapon/HSHRunning MADWALK $limit weapon/HSHRunning 0
-classes/ShieldPop SHLDPOP
-classes/MWS_Shield SHLDMAKE
-weapon/MWS_WaterSlide WTRSLIDX
-weapon/WaveSummon2 WAVEUP2 $limit weapon/WaveSummon2 0
-weapon/WaveSummonGo2 WAVEGO2 $limit weapon/WaveSummonGo2 0
+//Bounce
+weapon/bounceshot BBALSHOT
+weapon/bounceexplode BBALEXPL
+weapon/bouncebounce BBALBNCE
 
-//MMK
-weapon/GameBoyFire MMVSHOT
-weapon/GameBoyFire2 MMVSHOT2
-weapon/GameBoyPunkRam PUNKRAM
-weapon/GameBoyBallade MMVBALD $limit weapon/GameBoyBallade 0
-weapon/GameBoyMMXDash MMXDASH
+//Torch
+weapon/torchfireball HOTDOKEN
+weapon/torchexfireball EX_FBALL
+weapon/torchkick TATSU
+weapon/torchexkick EX_TATSU
+weapon/torchkickland BURNLAND
+weapon/torchroundhouse TORCH_HK
+weapon/torchsuper SATSUI
+weapon/torchwave TORCHWAV
+weapon/ragingtorch S_MV_J6
+weapon/ragingtorchflame BAVEBUR2
+weapon/ragingtorchreal SUPADRIL
+weapon/torchpunch TORCHHIT
+weapon/torchpunchweak TORCHHIW
+body/torchextinguish TRCHEXTN
 
+//Acid
+weapon/acidfire ACIDFIRE
+weapon/acidbarrier ACIDBARI
+weapon/acidmelt ACIDBURN
+weapon/acidboost ACIDBOOS
+
+//Blast
+weapon/blastfire BLASFIRE
+weapon/blastmainfire BLASFIR2
+weapon/blastalarm BLASBEEP
+weapon/blasthit BLASTICK
+weapon/blastfiren BLASFIR3
+weapon/blastpuff BLASPUFF
+gear/blastman BLASGEAR //Pitch shifted DARKSTEP
+weapon/chainblastfour CBLAS4
+weapon/chainblastgear CBLASG
+weapon/chainblastbomb CBLASB
+weapon/blastwalljump BLASOOGA
+
+//Tundra
+weapon/TundraManSpear TUNDSPEA
+weapon/TundraManDash TUNDDASH
+weapon/TundraManStylishLand TUNDLAND
+weapon/TundraManSpear TUNDSPEA
+weapon/TundraManBreak TUNDBREA
+weapon/TundraManStorm TUNDSTRM
+
+
+///// MMWT /////
+
+$volume weapon/BRGStaff 0.8
+
+om/nom HSHMUNCH
+
+
+///// MMK /////
+
+//Punk
+weapon/punkbash PUNKBASH
+
+//Ra Thor
 weapon/RaThorPew THORSND0 $limit weapon/RaThorPew 0
 weapon/RaThorPewX THORSND1 $limit weapon/RaThorPewX 0
 weapon/RaThorPewZ THORSND2 $limit weapon/RaThorPewZ 0
-
 weapon/RaThorSwayin THORSND3 $limit weapon/RaThorSwayin 0
 weapon/RaThorSparky THORSND4 $limit weapon/RaThorSparky 0
-
+weapon/RaThorGrabZ THORSNDZ $limit weapon/RaThorGrabZ 0
 weapon/RaThorThrow THORSND5 $limit weapon/RaThorThrow 0
 weapon/RaThorSlam THORSND6 $limit weapon/RaThorSlam 0
 item/RaThorSoul THORSND7 $limit item/RaThorSoul 0
 item/RaThorUse THORSND8 $limit item/RaThorUse 0//ASTPLT1
-
 weapon/RaThorSinistarX ERPOSSES $limit weapon/RaThorSinistarX 0
 weapon/RaThorSinistar RTHRTAUS $limit weapon/RaThorSinistar 0
-
-
-//???
-misc/SearchSecret SMSECRET
-
-//Core Limit Sounds
-wep_L/OilShot oilblob $limit wep_L/OilShot 0
-wep_L/OilSlider OilSlid $limit wep_L/OilSlider 0
-
-wep_L/GravityHold GRAVH $limit wep_L/GravityHold 0
-
-wep_L/commandoshot COMSHO $limit wep_L/commandoshot 0
-wep_L/commandoswitch COMSW $limit wep_L/commandoswitch 0
-wep_L/commandoexplosion COMEXP $limit wep_L/commandoexplosion 0
-
-misc_L/mm3explosion MM3EXPL $limit misc_L/mm3explosion 0
-
-//Sounds within Zandronum
-
-intermission/tick SND_NULL
-intermission/cooptotal SND_NULL
-intermission/nextstage SND_NULL
-intermission/paststats SND_NULL
-intermission/pastcoopstats SND_NULL
-intermission/pastdmstats SND_NULL
-
-$random menu/chatCBM { misc/core_chat }//Default
-$random misc/chat2 { UT/TemChat1 UT/TemChat2 UT/TemChat3 UT/TemChat4 UT/TemChat5 UT/TemChat6}//Doom 1 chat
-$alias misc/chat misc/SRB2_chat//Doom 2 chat
-
-$random menu/quitCBM { misc/HonkHonk64 misc/AladdinHonk misc/KnuxOhNo classes/Stolen1 DyHead/YayoiPunch weapon/PanHit1 weapon/PanHit2}
-
-misc/freeze icedth1//msfrz
-misc/icebreak icebrk1a//ACENTF
-$limit weapons/railgf 0
-$limit misc/freeze 0
-$limit misc/icebreak 0
-
-CBM/freeze icedth1 $limit CBM/freeze 0
-CBM/icebreak icebrk1a $limit CBM/icebreak 0
-
-misc/HonkHonk64 DS_HONK2 $limit misc/HonkHonk64 0
-misc/AladdinHonk DS_HONK5 $limit misc/AladdinHonk 0
-misc/KnuxOhNo DS_OHNO8 $limit misc/KnuxOhNo 0
-
-//Nintendo Entertainment System (NES) sounds
-
-//Duck Hunt
-DuckHunt/Flap D_DUKH19 $limit DuckHunt/Flap 0
-
-//Gauntlet 2 NES
-GNT/FailUse DG_NOPOT $limit GNT/FailUse 0
-GNT/Treasure DG_TRESR $limit GNT/Treasure 0
-
-//Kirby's Adventure
-KirbyNES/NoPower D_KA_S03 $limit KirbyNES/NoPower 0
-KirbyNES/FoeGrab D_KA_S0F $limit KirbyNES/FoeGrab 0
-KirbyNES/Beam D_KA_S1D $limit KirbyNES/Beam 0
-KirbyNES/GetPower D_KA_S29 $limit KirbyNES/GetPower 0
-KirbyNES/IcePain D_KA_S49 $limit KirbyNES/IcePain 0
-
-//Mike Tysons Punch-Out
-PunchOut/MacUpper D_MTPO28 $limit PunchOut/MacUpper 0
-
-//Super Mario Bros. 3
-SMB3/Skid D_SMB366 $limit SMB3/Skid 0
-
-//Genesis
-
-//BattleToads
-B_Toad/Swipe D_BTOAD0 $limit B_Toad/Swipe 0
-//Beavis and Butt-head
-BaBH/Fart D_BABH12 $limit BaBH/Fart 0
-
-//Columns 3 - Revenge of Columns
-Columns_3/S_0E DSCL3_0E $limit Columns_3/S_0E 0
-Columns_3/S_0F DSCL3_0F $limit Columns_3/S_0F 0
-
-//Desert Demolition
 DesDemo/CoyoteLeap DS_DD_81 $limit DesDemo/CoyoteLeap 0
 
-//Dynamite Headdy
-DyHead/YayoiPunch DS_DH_6C $limit DyHead/YayoiPunch 0
-//Golden Axe 2
-G_Axe2/S_09 DSGA2_09 $limit G_Axe2/S_09 0
-//Sonic 3 & Knuckles
-S3_K/Spikes DSS3K_37 $limit S3_K/Spikes 0
-S3_K/MetalSpark DSS3K_5C $limit S3_K/MetalSpark 0
-S3_K/Beep DSS3K_89 $limit S3_K/Beep 0
 
-//Streets of Rage 1/2/3
-SoRage1/Punch DSSOR107 $limit SoRage1/Punch 0
-SoRage2/Punch DSSOR200 $limit SoRage2/Punch 0
-SoRage3/Punch DSSOR347 $limit SoRage3/Punch 0
-$random SoRage123/Punch { SoRage1/Punch SoRage2/Punch SoRage3/Punch}
+///// Other /////
 
-
-//Other
-
-misc/SRB2_chat SRB2CHAT
-
-misc/core_chat DSRADIO
-
-//Undertale
-UT/TemChat1 DS_UT_CF $limit UT/TemChat1 0
-UT/TemChat2 DS_UT_D0 $limit UT/TemChat2 0
-UT/TemChat3 DS_UT_D1 $limit UT/TemChat3 0
-UT/TemChat4 DS_UT_D2 $limit UT/TemChat4 0
-UT/TemChat5 DS_UT_D3 $limit UT/TemChat5 0
-UT/TemChat6 DS_UT_D4 $limit UT/TemChat6 0
-
-
-//Dead sounds (if heard, update to correct SNDINFO!)
-
-weapon/commandobomb DS_OHNO8//Core CommandoBomb sounds
-weapon/commandoredirect DS_OHNO8
-weapon/commandowave DS_OHNO8
-
-
-
+//BumoBumo
+weapon/bumobrr BUMOCHRG

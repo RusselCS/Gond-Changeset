@@ -1,18 +1,23 @@
-actor HyperStormH : ClassBase
+actor HyperStormH : ClassBase //200
 {
+Player.StartItem "IFMMWT", 1
 Player.ScoreIcon "C_WTC0X"
 player.displayname "HyperStormH"
 player.soundclass "hyperstormhc"
 
-player.maxhealth 2000
-health 2000
+player.maxhealth 200
+health 200
 player.jumpz 10
-player.forwardmove 0.6, 0.6
-player.sidemove 0.58, 0.58
-
+player.forwardmove 0.5, 0.5
+player.sidemove 0.48, 0.48
 player.startitem "PigsyBoss"
 player.startitem "PiggyBoss"
 player.startitem "SemiStunArmor"
+//Height 84
+//Radius 48
+//Player.ViewHeight 56
+//projectilepassheight 100
+//projectilepassradius
 
 player.weaponslot 1, "PigsyBoss"
 player.weaponslot 2, "PiggyBoss"
@@ -27,9 +32,10 @@ Spawn:
 HSHZ A 0
 HSHZ B 1
 HSHZ A 1 A_JumpIfInventory("HSHDashFlagX",1,"ARunX")
+HSHZ A 1 A_JumpIf(z-floorz>0,"HSHJumping")
 Goto Spawn+2
 See:
-HSHZ BCDE 5
+HSHZ BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0,"HSHJumping")
 Goto Spawn
 
 Missile:
@@ -73,11 +79,36 @@ ARunF:
 HSHZ E 2 A_TakeInventory("HSHDashFlag",5)
 Goto Spawn
 
+HSHJumpLand:
+HSHZ A 0 A_GiveInventory("HSHLand_CI",1)
+goto Spawn
+
+HSHJumping:
+HSHZ I 1 A_JumpIf(z-floorz<=0, "HSHJumpLand")
+wait
+
 ClassPain:
 HSHZ H 0
 goto PainContinue
 ClassDeath:
 HSHZ H 0
 goto DeathContinue
+
+}
+}
+
+actor BassDashDustLarger : BassDashDust
+{
+Scale 2.5
+}
+
+actor HSHLand_CI : TeamColor_CI
+{
+States
+{
+FireX: FireB: FireR: FireO: FireP:
+TNT1 A 0 A_SpawnItemEx("BassDashDustLarger")
+//TNT1 A 0 A_Quake(2,9,0,8,"")
+goto Done
 }
 }

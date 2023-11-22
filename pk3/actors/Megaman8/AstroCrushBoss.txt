@@ -1,122 +1,192 @@
 actor AstroCrushBoss : BaseMM8BDMWep_CBM
 {
-tag "$TAGC_8B"
+Tag "$TAGC_8B2"
 dropitem "CopyVisionWepCDropped"
-Weapon.AmmoUse 28
-Weapon.AmmoGive 28
-Weapon.AmmoUse2 56
-Weapon.AmmoGive2 0
 Obituary "$OB_ASTROCRUSH"
 Inventory.Pickupmessage "AAAAAAASTRO CRUSH"
-weapon.ammotype "OvercomingShynessAmmo"
-weapon.ammotype2 "TellahRecallsMeteoAmmo"
+weapon.ammotype "CopyAmmoC"
+weapon.ammotype2 "AstroAmmoC"
+//inventory.icon "ASTCLONE"
 States
 {
 Spawn:
 C_08 B 1
 loop
+
 Ready:
-AHUG A 0 ACS_ExecuteAlways(998,0,DYE_ASTROMAN)
-AHUG A 0 A_GunFlash
-AHUG A 0 A_JumpIfInventory("TellahRecallsMeteoAmmo",56,"Ready2")
-//AHUG A 0 A_SetTranslucent(1.0,0)
-AHUG A 4 A_WeaponReady(WRF_NOSECONDARY)
-AHUG A 0 A_GiveInventory("OvercomingShynessAmmo",1)
-AHUG A 0 A_GiveInventory("TellahRecallsMeteoAmmo",1)
+	8_AS A 0 ACS_ExecuteAlways(998,0,DYE_ASTROMAN)
+	8_AS A 0 A_GunFlash
+	8_AS A 0 //A_GiveInventory("CopyAmmoC",2)
+	8_AS A 0 A_GiveInventory("AstroAmmoC",1)
+	8_AS A 0 A_JumpIfInventory("CopyAmmoC",42,"Ready2")
+	8_AS A 4 A_WeaponReady(WRF_NOSECONDARY|WRF_ALLOWRELOAD)
 Goto Ready+2
+
 Ready2:
-//AHUG A 0 A_SetTranslucent(1.0,0)
-AHUG A 4 A_WeaponReady
-AHUG A 0 A_GiveInventory("OvercomingShynessAmmo",1)
-loop
-Deselect:
-AHUG AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-AHUG A 1 A_Lower
-Loop
-Select:
-AHUG AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-AHUG A 1 A_Raise
-Loop
-Fire:
-AHUG A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
-AHUG A 0 A_JumpIfInventory("OvercomingShynessAmmo",28,"Fire2")
-AHUG B 0 A_GiveInventory("OvercomingShynessAmmo",2)
-AHUG B 0 A_GiveInventory("TellahRecallsMeteoAmmo",2)
-AHUG B 2 A_GiveInventory("AstroMain_CI",1)
-AHUG B 2 A_GiveInventory("CBM_TargetMarker",1)
-AHUG CC 4
-AHUG A 0
-goto Ready+2
-Fire2:
-AHUG B 0 A_GiveInventory("TellahRecallsMeteoAmmo",2)
-AHUG B 0 A_GiveInventory("AstroMain_CI",1)
-AHUG B 2 A_GiveInventory("AstroMain2_CI",1)
-AHUG B 2 A_GiveInventory("CBM_TargetMarker",1)
-AHUG CC 4
-AHUG A 0
-goto Ready+2
-Altfire:
-AHUG B 0 A_JumpIfNoAmmo("NoAmmo")
-Meteors:
-AHUG B 0 A_TakeInventory("TellahRecallsMeteoAmmo",56,1)
-AHUG B 0 A_GiveInventory("SelfStoppedTF",1)
-AHUG B 0 A_GiveInventory("VivifyFlag1",1)
-AHUG BCDEF 3
-TNT1 A 0 A_GiveInventory("AstroAlt_CI",1)
-TNT1 A 30
-AHUG F 0 A_GiveInventory("SelfStoppedUnfreeze",1)
-AHUG F 0 A_TakeInventory("VivifyFlag1")
-AHUG FEDC 3
-AHUG B 2
-AHUG A 2 Offset(-40,62)
-AHUG A 2 Offset(-20,47)
-AHUG A 2 Offset(-10,39)
+	8_AS A 4 A_WeaponReady(WRF_ALLOWRELOAD)
 Goto Ready+2
+
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+8_AS A 1 A_Lower
+Loop
+
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+8_AS A 1 A_Raise
+Loop
+
+Fire:
+	8_AS A 0 A_PlaySoundEx("weapon/astroshot","Weapon")
+	8_AS B 0 A_GiveInventory("AstroAmmoC",1)
+	8_AS B 0 //A_GiveInventory("CopyAmmoC",2)
+	8_AS B 0 A_GiveInventory("AstroMain_CI",1)
+	8_AS A 1 Offset(0,46)A_JumpIfInventory("PowerRage_ST",1,1)
+	8_AS D 1
+	8_AS H 1 A_JumpIfInventory("PowerRage_ST",1,1)
+	8_AS E 1
+	8_AS B 0 //A_GiveInventory("CopyAmmoC",2)
+	//8_AS B 2// A_GiveInventory("TargetMarkerX",1)
+	8_AS H 2
+	8_AS B 0 A_GiveInventory("AstroAmmoC",1)
+	8_AS F 2 A_JumpIfInventory("PowerRage_ST",1,2)
+	8_AS B 0 //A_GiveInventory("CopyAmmoC",2)
+	8_AS H 2
+	8_AS G 2 A_JumpIfInventory("PowerRage_ST",1,1)
+	8_AS B 0 //A_GiveInventory("CopyAmmoC",2)
+	8_AS A 1 A_WeaponReady(14)
+	//8_AS CC 4
+	8_AS A 0
+goto Ready+2
+
+Altfire:
+	8_AS A 0 A_JumpIfInventory("CopyAmmoC",42,"Fire2")
+	goto Ready+2
+	Fire2:
+	8_AS A 0 A_GiveInventory("AstroAltFlag",1)
+	8_AS A 0 A_TakeInventory("CopyAmmoC",42)
+	8_AS I 2 Offset(0,46) A_GiveInventory("AstroMain2_CI",1)
+	TNT1 A 0 A_PlaySound("weapon/astroclonethrow")
+	TNT1 A 0 A_ChangeVelocity(-Cos(pitch)*12, 0, sin(pitch)*12,1)
+	8_AS J 2 //A_GiveInventory("CBM_TargetMarker",1)
+	8_AS KLM 4
+	8_AS A 0 A_TakeInventory("AstroAltFlag",999)
+	8_AS B 4 A_WeaponReady
+	8_AS A 4
+goto Ready+2
+
 NoAmmo:
-AHUG A 0
+8_AS A 4
 Goto Ready+2
 
 Flash:
-TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-TNT1 A 1 A_GiveInventory("AstroM_FlashState_P")
-loop
+	TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+	FUSH A 0 A_GiveInventory("CopyAmmoC_RC",1)
+	TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,"NoFlight")
+	TNT1 A 0 A_JumpIfInventory("SelfStoppedTFFlag",1,"YesFlightX")//StayLocked
+	TNT1 A 0 A_JumpIfInventory("AstroFlight",1,"Flight")
+goto NoFlight
+YesFlightX:
+	TNT1 A 0 A_Stop
+	goto YesFlight
+	Flight:
+	TNT1 A 0 A_JumpIf(z-floorz>=180, "NoFlight")
+	TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(107,0)==1, "MaybeFlight")
+	YesFlight:
+	TNT1 A 1 SetPlayerProperty(0, 1, 3)
+	TNT1 A 0 A_JumpIfInventory("StaminaFlag",500,"Flash")
+	TNT1 A 0 A_JumpIf(z-floorz==0, "Recharge")
+	goto Flash
+	MaybeFlight:
+	TNT1 A 0 A_TakeInventory("StaminaFlag",20)
+	TNT1 A 0 A_JumpIfInventory("StaminaFlag",1,"YesFlight")
+	goto NoFlight
+	NoFlight:
+	TNT1 A 1 SetPlayerProperty(0, 0, 3)
+	TNT1 A 0 A_JumpIfInventory("StaminaFlag",500,"Flash")
+	TNT1 A 0 A_JumpIf(z-floorz==0, "Recharge")
+	Goto Flash
+	Recharge:
+	TNT1 A 0 A_GiveInventory("StaminaFlag",4)
+Goto Flash
+
+Reload:
+8_AS B 0 A_JumpIfInventory("AstroAmmoC",56,"Meteors")
+goto NoAmmo
+Meteors:
+8_AS B 0
+8_AS B 0 ACS_NamedExecute("BULL_SetState",0,1)
+8_AS B 0 A_TakeInventory("AstroAmmoC",56)
+8_AS B 0 A_GiveInventory("SelfStoppedTF",1)
+8_AS B 0 A_GiveInventory("AstroAltFlag",1)
+//8_AS BCDEF 3
+//8_AS B 0 A_PlaySoundEx("weapon/astroclonemeteor","Weapon")
+8_AS H 1 Offset(0, 38)
+8_AS C 1 Offset(0, 48)
+//8_AS C 1 Offset(-1, 48)//3
+8_AS C 1 Offset(1, 48)
+//8_AS C 1 Offset(-2, 48)
+8_AS C 1 Offset(2, 48)//3
+//8_AS C 1 Offset(-3, 48)
+8_AS C 1 Offset(3, 48)
+//8_AS C 1 Offset(-4, 48)//3
+8_AS C 1 Offset(4, 48)
+8_AS N 1 A_WeaponReady(14)
+8_AS P 1 //3
+//8_AS Q 1
+8_AS R 1
+//8_AS S 1 //3
+TNT1 A 0 A_GiveInventory("AstroAlt_CI",1)
+//8_AS O 30
+TNT1 A 30 Offset(0,120)
+8_AS B 0 A_GiveInventory("SelfStoppedUnfreeze",1)
+8_AS B 0 A_TakeInventory("AstroAltFlag",99)
+//8_AS AA 3
+8_AS A 2 Offset(0,90)
+8_AS A 2 Offset(0,60)
+8_AS A 16 A_WeaponReady(14)
+Goto Ready+2
+
 }
 }
 
-actor OvercomingShynessAmmo : Ammo
+actor CopyAmmoC : Ammo
 {
-inventory.amount 1
-inventory.maxamount 28
+inventory.amount 0
+inventory.maxamount 84
 +INVENTORY.IGNORESKILL
 }
 
-actor TellahRecallsMeteoAmmo : Ammo
+actor AstroAmmoC : Ammo
 {
 inventory.amount 1
 inventory.maxamount 56
 +INVENTORY.IGNORESKILL
 }
 
-actor AstroM_StaminaFlag : Inventory
+actor AltfireAmmoDelay : Powerup
 {
-inventory.amount 1
-inventory.maxamount 500
+powerup.duration 4
 }
 
 actor AstroFlight : OnceC{}
+actor AstroAltFlag : OnceC{}
 
-actor AstroFlightItem : BasicClassItem
+actor AstroFlightItem : CustomInventory
 {
+inventory.amount 1
+inventory.maxamount 1
 inventory.pickupmessage "Oh, how did you find me? I feel so embarrassed!"
 inventory.icon "AstIcon"
-Tag "Astro Hover Toggle"
+scale 2.0
++INVBAR
 states
 {
 Spawn:
-AHUG Z 1
+ASTI X 1
 loop
 Use:
-TNT1 A 0 A_PlaySoundEx("item/ItemUseMM9","SoundSlot7")
+TNT1 A 0 A_PlaySoundEx("item/ItemUseMM9","SoundSlot6")
 TNT1 A 0 A_JumpIfInventory("AstroFlight",1,"Take")
 TNT1 A 0 A_GiveInventory("AstroFlight",1)
 fail
@@ -126,47 +196,20 @@ fail
 }
 }
 
-actor AstroM_FlashState_P : CustomInventory
+actor CopyAmmoC_RC : CustomInventory
 {
 States
 {
 Pickup:
-TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,"NoFlight")
-TNT1 A 0 A_JumpIfInventory("SelfStoppedTFFlag",1,"YesFlightStop")//StayLocked
-TNT1 A 0 A_JumpIfInventory("AstroFlight",1,"FlightCheck")
-goto NoFlight
-YesFlightStop://Astro using Altfire
-TNT1 A 0 A_Stop
-goto MaybeFlightYes
-FlightCheck:
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(107,0)==1,"MaybeFlight")
-TNT1 A 0 A_JumpIf(z-floorz>=160,"NoFlight")
-YesFlight:
-TNT1 A 1 SetPlayerProperty(0,1,3)
-goto RechargeCheck
-
-MaybeFlight:
-TNT1 A 0 A_JumpIf(z-floorz>=160,4)
-TNT1 A 0 A_GiveInventory("PowerStaminaFlagDeplete")
-TNT1 A 0 A_TakeInventory("AstroM_StaminaFlag",10)//20
-TNT1 A 0 A_JumpIfInventory("AstroM_StaminaFlag",1,"MaybeFlightYes")
-TNT1 A 1 SetPlayerProperty(0,0,3)
+TNT1 A 0 A_JumpIfInventory("AltfireAmmoDelay",1,"No")
+TNT1 A 0 A_JumpIfInventory("AstroAltFlag",1,"No")
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"Pickup2")
+TNT1 A 0 A_GiveInventory("AltfireAmmoDelay",1)
+TNT1 A 0 A_GiveInventory("CopyAmmoC",2)
 stop
-MaybeFlightYes:
-TNT1 A 1 SetPlayerProperty(0,1,3)
-stop
-
-NoFlight:
-//TNT1 A 0 A_JumpIfInventory("PlayerPropertyFlight",1,"RechargeCheck")
-TNT1 A 1 SetPlayerProperty(0,0,3)
-goto RechargeCheck
-RechargeCheck:
-TNT1 A 0 A_JumpIfInventory("AstroM_StaminaFlag",0,"No")
-TNT1 A 0 A_JumpIf(z-floorz==0,"Recharge")
-TNT1 A 0 A_GiveInventory("AstroM_StaminaFlag",1)
-stop
-Recharge:
-TNT1 A 0 A_GiveInventory("AstroM_StaminaFlag",4)
+Pickup2:
+TNT1 A 0 A_GiveInventory("AltfireAmmoDelay",1)
+TNT1 A 0 A_GiveInventory("CopyAmmoC",4)
 stop
 No:
 TNT1 A 0
@@ -174,67 +217,74 @@ stop
 }
 }
 
-
 actor CopyVision_Astro
 {
-translation "192:192=229:229", "198:198=128:128", "0:8=128:128", "247:247=128:128"
+translation "192:192=229:229", "198:198=128:128", "247:247=128:128"
 PROJECTILE
-obituary "$OB_COPYVISION"
-DamageType "AstroM_Shot"
+var int user_C;
+var int user_S;
+renderstyle translucent
+painsound "misc/astroplatformappear"
+damagetype "AstroM_Vision"
+scale 2.5
+alpha 0.85
 +DONTBLAST
 +RIPPER
 +NOGRAVITY
++NOEXPLODEFLOOR
++STEPMISSILE
+Radius 16
+Height 48
+//Radius 1
+//Height 1
+speed 40
 +THRUGHOST
++THRUACTORS
 +DONTREFLECT
-+BRIGHT
-/*
+damage(1)
+
 -NOBLOCKMAP
 -SHOOTABLE
-+DONTRIP
-health 99990
+-DONTRIP
++INVULNERABLE
 mass 0x7ffffffff
 painchance 256
-*/
-reactiontime 18
-damage(0)
-Radius 12
-Height 42
-speed 0.01
-scale 2.5
+Species "AstroM_CopyBlocker"
+damagefactor "AstroM_Shot", 0.0
+//reactiontime 12
 States
 {
 Spawn:
 ASTM G 0 
-ASTM G 0 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100,32)
-ASTM G 1 A_PlaySoundEx("weapon/copyvision","weapon")
-TNT1 A 1
-ASTM G 1
-TNT1 A 1
-ASTM G 1
-TNT1 A 1
+ASTM G 0
+TNT1 A 1 //A_PlaySoundEx("weapon/copyvision", "weapon")
+COPZ SRQPO 2 A_ScaleVelocity(.65)
+COPZ N 0 A_ChangeFlag("THRUACTORS",0)
+COPZ N 0 A_ChangeFlag("Shootable",1)
+ASTM G 0 ACS_ExecuteAlways(259,0,1)
+COPZ N 0 A_SetUserVar("user_C",cos(-pitch)*4)
+TNT1 A 0 A_PlaySound("misc/astroplatformappear")
 goto Shoot
 Shooting:
-ASTM G 1 A_JumpIfInTargetInventory("PowerRage_ST",1,4)
-TNT1 A 1
-ASTM G 1
-TNT1 A 1
-ASTM G 1
-TNT1 A 1
+ASTM G 1 A_JumpIfInTargetInventory("PowerRage_ST",1,3)
+COPZ N 1 
+ASTM G 1 
 Shoot:
-ASTM G 1 A_JumpIfInTargetInventory("PowerRage_ST",1,2)
-TNT1 A 1
-ASTM G 1
-TNT1 A 1
-ASTM G 1 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100,32)
-TNT1 A 1
-ASTM G 0 A_PlaySoundEx("weapon/mbuster","Weapon")
-ASTM G 0 A_SpawnItemEx("CopyShotClone",cos(-pitch)*8,0,32+(sin(-pitch)*8),cos(-pitch)*26,0,sin(-pitch)*26,0,1,0)
-ASTM G 0 A_Countdown
-ASTM G 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+COPZ N 1 
+ASTM G 1 
+ASTM G 0 A_PlaySoundEx("weapon/astroclonefire","Weapon")
+ASTM G 0 A_SpawnItemEx("CopyShotClone",user_C+sin(-pitch)*(0),0,32+cos(-pitch)*(4+0),cos(-pitch)*45,0,sin(-pitch)*45,0,1)
+ASTM G 0 A_JumpIfInventory("CutterFlag",18,"Kill")
+ASTM G 0 A_GiveInventory("CutterFlag",1)
+ASTM G 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Kill")
 goto Shooting
 
 Death:
-TNT1 A 6
+Kill:
+COPZ N 0 A_ChangeFlag("Shootable",0)
+COPZ N 0 A_ChangeFlag("Nointeraction",1)
+TNT1 A 0 A_PlaySound("misc/astroplatformappear")
+COPZ OPQRS 2 //A_Stop
 Stop
 }
 }
@@ -255,33 +305,72 @@ goto Shoot
 }
 }
 
-actor CopyVision_AstroB : CopyVision_Astro   { translation "192:192=205:205","198:198=74:74","0:8=74:74","247:247=74:74"}
-actor CopyVision_Astro2B : CopyVision_Astro2 { translation "192:192=205:205","198:198=74:74","0:8=74:74","247:247=74:74"}
-actor CopyVision_AstroR : CopyVision_Astro   { translation "192:192=171:171","198:198=41:41","0:8=41:41","247:247=41:41"}
-actor CopyVision_Astro2R : CopyVision_Astro2 { translation "192:192=171:171","198:198=41:41","0:8=41:41","247:247=41:41"}
-actor CopyVision_AstroO : CopyVision_Astro   { translation "192:192=104:104","198:198=128:128","0:8=128:128","247:247=128:128"}
-actor CopyVision_Astro2O : CopyVision_Astro2 { translation "192:192=104:104","198:198=128:128","0:8=128:128","247:247=128:128"}
-actor CopyVision_AstroP : CopyVision_Astro   { translation "192:192=229:229","198:198=232:232","0:8=232:232","247:247=232:232"}
-actor CopyVision_Astro2P : CopyVision_Astro2 { translation "192:192=229:229","198:198=232:232","0:8=232:232","247:247=232:232"}
+actor CopyVision_AstroB : CopyVision_Astro   { translation "192:192=205:205", "198:198=74:74", "0:0=74:74"}
+actor CopyVision_Astro2B : CopyVision_Astro2 { translation "192:192=205:205", "198:198=74:74", "0:0=74:74"}
+actor CopyVision_AstroR : CopyVision_Astro   { translation "192:192=171:171", "198:198=41:41", "0:0=41:41"}
+actor CopyVision_Astro2R : CopyVision_Astro2 { translation "192:192=171:171", "198:198=41:41", "0:0=41:41"}
+actor CopyVision_AstroO : CopyVision_Astro   { translation "192:192=104:104", "198:198=128:128", "0:0=128:128"}
+actor CopyVision_Astro2O : CopyVision_Astro2 { translation "192:192=104:104", "198:198=128:128", "0:0=128:128"}
+actor CopyVision_AstroP : CopyVision_Astro   { translation "192:192=229:229", "198:198=232:232", "0:0=232:232"}
+actor CopyVision_Astro2P : CopyVision_Astro2 { translation "192:192=229:229", "198:198=232:232", "0:0=232:232"}
 
+actor AstroM_CopyVisionShield
+{
+Height 56
+Radius 24
+-SOLID
++MISSILE
++DONTSPLASH
++DONTBLAST
++DONTDRAIN
++DONTREFLECT
++DONTRIP
++NOBLOOD
++NOCLIP
++NORADIUSDMG
++GHOST
++SHOOTABLE
++NOTIMEFREEZE
++INVULNERABLE
++NOGRAVITY
++NOTARGETSWITCH
++NOTAUTOAIMED
++NODAMAGE
+Species "AstroM_CopyBlocker"
+damagefactor "AstroM_Shot", 0.0
+States
+{
+Spawn:
+TNT1 AA 0
+TNT1 A 1
+stop
+Pain:
+TNT1 A 0 A_PlaySound("misc/astroplatformappear")//A_Pain
+TNT1 A 0 //A_SpawnItemEx("ProtoShieldDeathFX")
+stop
+}
+}
 
 actor CopyShot_Astro
 {
-Translation "198:198=128:128"
+Translation "198:198=130:130","192:192=108:108"
 PROJECTILE
 Obituary "$OB_ASTROSHOT"
+Speed 30
+Damage (15)
 DamageType "AstroM_Shot"
-+FORCEXYBILLBOARD
-+BRIGHT
-Damage (100)
++THRUSPECIES
+Species "AstroM_CopyBlocker"
 radius 5
 height 5
-Speed 26
 scale 2.5
 States
 {
 Spawn:
-AHUG GHI 2 A_SpawnItemEx("CopyShot_AstroFX",0,0,0,0,0,0,0,1)
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+ASTS HIJ 2 A_SpawnItemEx("CopyShot_AstroFX",0,0,0,0,0,0,0,1)
 loop
 Death:
 TNT1 A 0 
@@ -290,10 +379,10 @@ stop
 }
 
 
-actor CopyShot_AstroB : CopyShot_Astro{translation "198:198=74:74"}
-actor CopyShot_AstroR : CopyShot_Astro{translation "198:198=41:41"}
-actor CopyShot_AstroO : CopyShot_Astro{translation "198:198=128:128"}
-actor CopyShot_AstroP : CopyShot_Astro{translation "198:198=232:232"}
+actor CopyShot_AstroB : CopyShot_Astro{translation "192:192=205:205", "198:198=74:74"}
+actor CopyShot_AstroR : CopyShot_Astro{translation "192:192=171:171", "198:198=41:41"}
+actor CopyShot_AstroO : CopyShot_Astro{translation "192:192=104:104", "198:198=128:128"}
+actor CopyShot_AstroP : CopyShot_Astro{translation "192:192=229:229", "198:198=232:232"}
 
 actor CopyShot_AstroFX : BasicClientSide
 {
@@ -310,73 +399,107 @@ stop
 
 actor CopyShotClone : CopyShot_Astro
 {
+Damage (6)
+alpha 0.85
+renderstyle add
 obituary "$OB_COPYVISION"
-DamageType "AstroM_CloneShot"
-Damage (80)
++THRUSPECIES
+Species "AstroM_CopyBlocker"
 States
 {
 Spawn:
 TNT1 A 1
+TNT1 A 0 //A_ChangeFlag("ThruActors",false)
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
 Spawn2:
-AHUG GHI 2 A_SpawnItemEx("CopyShot_AstroFX",0,0,0,0,0,0,0,1)
+ASTS HIJ 2 A_SpawnItemEx("CopyShot_AstroFX2",0,0,0,0,0,0,0,1)
 loop
 }
+}
+
+actor CopyShot_AstroFX2 : CopyShot_AstroFX
+{
+renderstyle add
+alpha 0.85
 }
 
 actor AstroCrushSpawnerB : BasicHelper
 {
-Translation "198:198=128:128"
-ReactionTime 10
+translation "198:198=128:128"
+ReactionTime 30
 States
 {
 Spawn:
-TNT1 A 0
-TNT1 AA 1 A_SpawnItemEx("AstroCrushB",random(300,-300),random(256,-256),320,0,0,random(-20,-22),0,1)
-TNT1 A 1 A_CountDown
-loop
+TNT1 A 20
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",75,0,320,0,0,-30,0,1)
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",75,0,320,0,0,-30,180,1)
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",75,0,320,0,0,-30,-90,1)
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",75,0,320,0,0,-30,90,1)
+
+TNT1 A 5 
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",150,0,320,0,0,-28,-135,1)
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",150,0,320,0,0,-28,135,1)
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",150,0,320,0,0,-28,45,1)
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",150,0,320,0,0,-28,-45,1)
+
+TNT1 A 5 
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",225,0,320,0,0,-24,0,1)
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",225,0,320,0,0,-24,180,1)
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",225,0,320,0,0,-24,-90,1)
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",225,0,320,0,0,-24,90,1)
+
+TNT1 A 5 
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",300,0,320,0,0,-22,-135,1)
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",300,0,320,0,0,-22,135,1)
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",300,0,320,0,0,-22,45,1)
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",300,0,320,0,0,-22,-45,1)
+
+TNT1 A 5 
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",375,0,320,0,0,-20,0,1)
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",375,0,320,0,0,-20,180,1)
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",375,0,320,0,0,-20,-90,1)
+TNT1 A 0 A_SpawnItemEx("AstroCrushB",375,0,320,0,0,-20,90,1)
+stop
 }
 }
 
-actor AstroCrushSpawnerBB : AstroCrushSpawnerB{Translation"198:198=74:74"}
-actor AstroCrushSpawnerBR : AstroCrushSpawnerB{Translation"198:198=41:41"}
-actor AstroCrushSpawnerBO : AstroCrushSpawnerB{Translation"198:198=128:128"}
-actor AstroCrushSpawnerBP : AstroCrushSpawnerB{Translation"198:198=232:232"}
+actor AstroCrushSpawnerBB : AstroCrushSpawnerB{translation "198:198=74:74"}
+actor AstroCrushSpawnerBR : AstroCrushSpawnerB{translation "198:198=41:41"}
+actor AstroCrushSpawnerBO : AstroCrushSpawnerB{translation "198:198=128:128"}
+actor AstroCrushSpawnerBP : AstroCrushSpawnerB{translation "198:198=232:232"}
 
-actor AstroCrushB
+actor AstroCrushB : AstroCrush
 {
-PROJECTILE
-Damagetype "AstroM_Meteor"
-Obituary "$OB_ASTROCRUSH"//Astro Crash
-+RIPPER
-+NOINTERACTION
-+DONTBLAST
 +DONTREFLECT
-+BRIGHT
-Reactiontime 40
-Damage (60)
-Radius 24
-Height 12
-Speed 1
-Scale 2.5
+height 12
+radius 24
+Damage (0)
+Scale 2
+Damagetype "AstroM_Meteor"
+Reactiontime 30
 States
 {
 Spawn:
-TNT1 A 0
-TNT1 A 0
-AHUG NNNOOOPPP 1 A_JumpIf(ceilingz-z>13,"Spawn2")
-AHUG N 0 A_JumpIf(momz==0,"Death")
-AHUG N 0 A_CountDown
+COPZ H 0
+COPZ H 0 A_ChangeVelocity(0,0,momz,CVF_RELATIVE|CVF_REPLACE)
+AHUG NNNOOOPPP 1 A_JumpIf(ceilingz-z>12, "Spawn2")
+COPZ H 0 A_JumpIf(momz==0,"Death")
+COPZ H 0 A_CountDown
 Goto Spawn+2
 Spawn2:
-AHUG N 0 A_ChangeFlag("RIPPER",0)
-AHUG N 0 A_ChangeFlag("NOINTERACTION",0)
-AHUG NOP 3
-AHUG N 0 A_JumpIf(momz==0,"Death")
-AHUG N 0 A_CountDown
+COPZ H 0 A_ChangeFlag("RIPPER", 0)
+COPZ H 0 A_ChangeFlag("NOINTERACTION",0)
+AHUG NOP 3 A_ChangeVelocity(0,0,momz,CVF_RELATIVE|CVF_REPLACE) 
+COPZ H 0 A_JumpIf(momz==0,"Death")
+COPZ H 0 A_CountDown
 Goto Spawn2+2
 Death:
-TNT1 A 0 A_PlaySoundEx("weapon/AstroM_ACrush","Weapon")//weapon/AstroACrush
-TNT1 A 0 A_Explode(320,160,0)//240 128//
+TA_C A 0 A_playSoundEx("weapon/astrocrush","Weapon")
+//needs A_SetScale
+TA_C A 0 A_Stop
+TA_C A 0 A_ChangeFlag(NOGRAVITY,1)
+TA_C A 0 A_Explode(30,160,0)//24 128//
 TNT1 A 0 A_SpawnItemEx("AstroM_CrusherFX",0,0,0,0,0,0,0,1+32)
 TNT1 A 2
 stop
@@ -395,6 +518,7 @@ AHUG QRSTUV 2
 stop
 }
 }
+
 
 actor AstroMain_CI : TeamColor_CI
 {
@@ -437,9 +561,6 @@ goto Done
 FireP:
 TNT1 A 0 A_FireCustomMissile("CopyVision_AstroP",0,1,0,-30)
 goto Done
-Done:
-TNT1 A 0 A_TakeInventory("OvercomingShynessAmmo",6)
-stop
 }
 }
 

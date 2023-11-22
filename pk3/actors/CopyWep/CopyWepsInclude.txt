@@ -34,162 +34,163 @@
 
 actor CopyNerf : PowerDamage
 {
-//damagefactor "Normal", 0.90
-
+//damagefactor "Normal", 0.71
+ 
 Powerup.Duration 0x7FFFFFFC
-//damagefactor "Buster", 0.90
-//damagefactor "ProtoBuster", 0.90 damagefactor "ProtoBuster2", 0.90 damagefactor "ProtoBuster3", 0.90
-//damagefactor "BassBuster", 0.90 damagefactor "TrebleBoost", 0.90
-//damagefactor "SuperAdaptor", 0.90
-//damagefactor "LaserBuster", 0.90 damagefactor "ChargeBuster", 0.90
-//damagefactor "ArrowBuster", 0.90
-//damagefactor "DuoFist1", 0.90 damagefactor "DuoFist2", 0.90 damagefactor "DuoFist3", 0.90
-//damagefactor "MegaArm", 0.90
-
-damagefactor "Beat", 0.90
-damagefactor "EddieBomber", 0.90
-damagefactor "Reggae", 0.90
-damagefactor "Tango", 0.90
-damagefactor "Treble", 0.90
-damagefactor "WireAdaptor", 10.0//0.90
-
-damagefactor "RollSweep", 0.90
-damagefactor "LightRyuShoryu", 0.90
-damagefactor "FragBomber", 0.90
-
-damagefactor "RollingCutter", 0.90
-damagefactor "SuperArm", 0.90
-damagefactor "IceSlasher", 0.90
-damagefactor "HyperBomb", 0.90
-damagefactor "FireStorm", 0.90 damagefactor "FireSpin", 0.90
-damagefactor "ThunderBeam", 0.90
-damagefactor "TimeSlow", 0.90//1.0
-damagefactor "OilSlider", 0.90 damagefactor "OilFlame", 0.90
-
-damagefactor "MetalBlade", 0.90 //damagefactor "Instagib", 0.90
-damagefactor "AirShooter", 0.90
-damagefactor "BubbleLead", 0.90
-damagefactor "QuickBoomerang", 0.90
-damagefactor "CrashBomb", 0.90
-damagefactor "TimeStopper", 1.0 damagefactor "TimeBender", 1.0
-damagefactor "AtomicFire1", 0.90 damagefactor "AtomicFire2", 0.90 damagefactor "AtomicFire3", 0.90
-damagefactor "LeafShield", 0.90
-damagefactor "WaveBuster", 0.90
-damagefactor "BoobeamBarrier", 0.90
-
-damagefactor "NeedleCannon", 0.90
-damagefactor "MagnetMissile", 0.90
-damagefactor "GeminiLaser", 0.90
-damagefactor "HardKnuckle", 0.90
-damagefactor "TopSpin", 0.90 damagefactor "TopTwist", 0.90
-damagefactor "SearchSnake", 0.90
-damagefactor "SparkShock", 0.90
-damagefactor "ShadowBlade", 0.90
-
-damagefactor "FlashStopper", 0.90 damagefactor "FlashBulb", 0.90
-damagefactor "RainFlush", 0.90
-damagefactor "DrillBomb", 0.90
-damagefactor "PharaohShot1", 0.90 damagefactor "PharaohShot2", 0.90 damagefactor "PharaohShot3", 0.90 damagefactor "PharaohHold", 0.90
-damagefactor "RingBoomerang", 0.90
-damagefactor "DustCrusher", 0.90 damagefactor "DustCrusherBit", 0.90
-damagefactor "DiveMissile", 0.90 damagefactor "DiveSonar", 0.90
-damagefactor "SkullBarrier", 0.90 damagefactor "SkullSniper", 0.90
-
-damagefactor "GravityHold", 0.90 damagefactor "GravitySmackDown", 0.90
-damagefactor "WaterWave", 0.90
-damagefactor "PowerStone", 0.90
-damagefactor "GyroAttack", 0.90
-damagefactor "StarCrash", 0.90
-damagefactor "ChargeKick", 0.90
-damagefactor "NapalmBomb", 0.90
-damagefactor "CrystalEye", 0.90 damagefactor "CrystalEyeBit", 0.90
-damagefactor "DarkShield", 0.90
-
-damagefactor "BlizzardAttack", 0.90
-damagefactor "CentaurFlash", 0.90 damagefactor "CentaurArrow", 0.90
-damagefactor "FlameBlast", 0.90
-damagefactor "KnightCrush", 0.90
-damagefactor "PlantBarrier", 0.90 damagefactor "PlantTrapper", 0.90
-damagefactor "SilverTomahawk", 0.90
-damagefactor "WindStorm", 0.90
-damagefactor "YamatoSpear", 0.90
-
-damagefactor "FreezeCracker", 0.90 damagefactor "FreezeCrackerBit", 0.90
-damagefactor "JunkShield", 0.90
-damagefactor "DangerWrap", 0.90
-damagefactor "ThunderBolt", 0.90
-damagefactor "WildCoil", 0.90 damagefactor "WildCoil2", 0.90
-damagefactor "SlashClaw", 0.90
-damagefactor "NoiseCrush1", 0.90 damagefactor "NoiseCrush2", 0.90
-damagefactor "ScorchWheel", 0.90
-
-damagefactor "MegaBall", 0.90
-damagefactor "TornadoHold", 0.90 damagefactor "TornadoHoldPod", 0.90
-damagefactor "AstroCrush", 0.90
-damagefactor "FlameSword", 0.90 damagefactor "FlameSwordSpark", 0.90
-damagefactor "ThunderClaw", 0.90
-damagefactor "HomingSniper", 0.90
-damagefactor "IceWave", 0.90
-damagefactor "FlashBomb", 0.90 damagefactor "FlashBombT", 0.90
-damagefactor "WaterBalloon", 0.90
-
-//damagefactor "TrioTornadoHold", 0.90
-//damagefactor "TrioAstroCrush", 0.90
-//damagefactor "TrioFlameSword", 0.90
-//damagefactor "TrioThunderClaw", 0.90
-//damagefactor "TrioHomingSniper", 0.90
-//damagefactor "TrioIceWave", 0.90
-//damagefactor "TrioFlashBomb", 0.90 damagefactor "TrioFlashBomb2", 0.90
-//damagefactor "TrioWaterBalloon", 0.90
-
-damagefactor "TenguBlade", 0.90
-damagefactor "CopyVision", 0.90
-damagefactor "LightningBolt", 0.90 damagefactor "DynamoTendril", 0.90
-damagefactor "IceWall", 0.90
-damagefactor "SpreadDrill", 0.90 damagefactor "SpreadDrill2", 0.90 damagefactor "SpreadDrill3", 0.90
-damagefactor "RemoteMine", 0.90
-damagefactor "WaveBurner", 0.90 damagefactor "WaveBurnerUW", 0.90
-damagefactor "MagicCard", 0.90
-
-damagefactor "ConcreteShot", 0.90
-damagefactor "TornadoBlow", 0.90
-damagefactor "LaserTrident", 0.90
-damagefactor "PlugBall", 0.90
-damagefactor "JewelSatellite", 0.90
-damagefactor "HornetChaser", 0.90
-damagefactor "MagmaBazooka1", 0.90 damagefactor "MagmaBazooka2", 0.90
-damagefactor "BlackHoleBomb", 0.90
-damagefactor "FakeRepeater", 0.90
-
-damagefactor "TripleBlade", 0.90
-damagefactor "WaterShield", 0.90 damagefactor "WaterShielder", 0.90
-damagefactor "CommandoBomb", 0.90 damagefactor "CommandoBombWave", 0.90
-damagefactor "ChillShot", 0.90 damagefactor "ChillSpike", 0.90
-damagefactor "ThunderWool", 0.90
-damagefactor "ReboundStriker", 0.90
-damagefactor "WheelCutter", 0.90
-damagefactor "SolarBlaze", 0.90
-
-damagefactor "SparkChaser", 0.90
-damagefactor "GrabBuster", 0.90
-damagefactor "BubbleBomb", 0.90 damagefactor "Venus_BoomJump", 1.0
-damagefactor "PhotonMissile", 0.90
-damagefactor "ElectricShock", 0.90
-damagefactor "BlackHole", 0.90
-damagefactor "DeepDigger", 0.90
-damagefactor "BreakDash", 0.90
-damagefactor "SaltWater", 0.90
-
-damagefactor "BusterRodPole", 0.90
-damagefactor "MegaWaterBarrier", 0.90
-damagefactor "HyperStormBlaster", 0.90
-
-damagefactor "MirrorBuster", 0.90 damagefactor "MirrorBuster1", 0.90 damagefactor "MirrorBuster2", 0.90 damagefactor "MirrorBuster3", 0.90
-damagefactor "ScrewCrusher", 0.90
-damagefactor "BalladeCracker", 0.90
-damagefactor "Sakugarne", 0.90
-damagefactor "BlastRune", 0.90 damagefactor "DawnBreaker", 0.90
-
+ 
+damagefactor "LaserBuster", 0.71
+damagefactor "ArrowBuster", 0.71
+ 
+damagefactor "DuoFist1", 0.65//no more justice for you maestro :^)
+damagefactor "DuoFist2", 0.65
+damagefactor "DuoFist3", 0.65
+ 
+damagefactor "Beat", 0.71
+damagefactor "EddieBomber", 0.71
+damagefactor "Reggae", 0.71
+damagefactor "Tango", 0.71
+damagefactor "Treble", 0.71
+damagefactor "WireAdaptor", 0.8
+ 
+damagefactor "RollSweep", 0.71
+//damagefactor "LightRyuShoryu", 0.72
+damagefactor "FragBomber", 0.71
+ 
+damagefactor "RollingCutter", 0.71
+damagefactor "SuperArm", 0.46
+damagefactor "IceSlasher", 0.71
+damagefactor "HyperBomb", 0.41
+damagefactor "FireStorm", 0.51 
+damagefactor "FireSpin", 0.8
+damagefactor "ThunderBeam", 0.71
+damagefactor "TimeSlow", 1.15
+damagefactor "OilSlider", 0.61 
+damagefactor "OilFlame", 0.72
+ 
+damagefactor "MetalBlade", 0.71 
+damagefactor "Instagib", 1.0 //lol
+damagefactor "AirShooter", 0.444
+damagefactor "BubbleLead", 0.41
+damagefactor "QuickBoomerang", 0.41
+damagefactor "CrashBomb", 0.31
+damagefactor "TimeStopper", 1.0 damagefactor "TimeStop", 1.0 //damagefactor "TimeBender", 0.8
+damagefactor "AtomicFire1", 0.75 damagefactor "AtomicFire2", 0.5 damagefactor "AtomicFire3", 0.25
+damagefactor "LeafShield", 0.51
+damagefactor "WaveBuster", 0.72
+damagefactor "BoobeamBarrier", 0.65
+ 
+damagefactor "NeedleCannon", 0.5
+damagefactor "MagnetMissile", 0.31
+damagefactor "GeminiLaser", 0.5
+damagefactor "HardKnuckle", 0.4375
+damagefactor "TopSpin", 0.61
+damagefactor "SearchSnake", 0.47
+damagefactor "SparkShock", 1.0
+damagefactor "ShadowBlade", 0.6
+ 
+damagefactor "FlashStopper", 0.8 damagefactor "FlashBulb", 0.71
+damagefactor "RainFlush", 0.61
+damagefactor "DrillBomb", 0.32
+damagefactor "PharaohShot1", 0.80 damagefactor "PharaohShot2", 0.416 damagefactor "PharaohShot3", 0.467 damagefactor "PharaohHold", 0.71
+damagefactor "RingBoomerang", 0.51
+damagefactor "DustCrusher", 0.55 damagefactor "DustCrusherBit", 0.55
+damagefactor "DiveMissile", 0.31 damagefactor "DiveSonar", 0.72
+damagefactor "SkullBarrier", 0.71 damagefactor "SkullSniper", 0.81
+ 
+damagefactor "GravityHold", 0.55 //damagefactor "GravitySmackDown", 0.72
+damagefactor "WaterWave", 0.71
+damagefactor "PowerStone", 0.42
+damagefactor "GyroAttack", 0.85
+damagefactor "StarCrash", 0.35
+damagefactor "ChargeKick", 0.45
+damagefactor "NapalmBomb", 0.48
+damagefactor "CrystalEye", 0.61 damagefactor "CrystalEyeBit", 0.61
+damagefactor "DarkShield", 0.41
+ 
+damagefactor "BlizzardAttack", 0.65
+damagefactor "CentaurFlash", 0.8 damagefactor "CentaurArrow", 0.71
+damagefactor "FlameBlast", 0.51
+damagefactor "KnightCrush", 0.81
+damagefactor "PlantBarrier", 0.71 damagefactor "PlantTrapper", 0.71
+damagefactor "SilverTomahawk", 0.75
+damagefactor "WindStorm", 0.85
+damagefactor "YamatoSpear", 0.55
+ 
+damagefactor "FreezeCracker", 0.78 damagefactor "FreezeCrackerBit", 0.71
+//damagefactor "JunkShield", 0.51 //see below
+damagefactor "DangerWrap", 0.51
+damagefactor "ThunderBolt", 0.66
+damagefactor "WildCoil", 0.61 damagefactor "WildCoil2", 0.51
+damagefactor "SlashClaw", 0.50
+damagefactor "NoiseCrush1", 0.39 damagefactor "NoiseCrush2", 0.45
+damagefactor "ScorchWheel", 0.42
+ 
+damagefactor "MegaBall", 0.61
+damagefactor "TornadoHold", 0.61 damagefactor "TornadoHoldPod", 0.71
+damagefactor "AstroCrush", 0.15
+damagefactor "FlameSword", 0.51 damagefactor "FlameSwordSpark", 0.8
+damagefactor "ThunderClaw", 0.61 //damagefactor "ThunderClawT", 0.71
+damagefactor "HomingSniper", 0.52
+damagefactor "IceWave", 0.69
+damagefactor "FlashBomb", 0.33 damagefactor "FlashBombT", 0.70
+damagefactor "WaterBalloon", 0.75
+ 
+//damagefactor "TrioTornadoHold", 0.71
+//damagefactor "TrioAstroCrush", 0.71
+//damagefactor "TrioFlameSword", 0.71
+//damagefactor "TrioThunderClaw", 0.71
+//damagefactor "TrioHomingSniper", 0.71
+//damagefactor "TrioIceWave", 0.71
+//damagefactor "TrioFlashBomb", 0.71
+//damagefactor "TrioWaterBalloon", 0.71
+ 
+damagefactor "TenguBlade", 0.68
+damagefactor "CopyVision", 0.61
+damagefactor "LightningBolt", 0.35 damagefactor "DynamoTendril", 0.75
+damagefactor "IceWall", 0.42
+damagefactor "SpreadDrill", 0.71 damagefactor "SpreadDrill2", 0.71 damagefactor "SpreadDrill3", 0.71
+damagefactor "RemoteMine", 0.31
+damagefactor "WaveBurner", 0.35 damagefactor "WaveBurnerUW", 0.55
+damagefactor "MagicCard", 0.65
+ 
+damagefactor "ConcreteShot", 0.66
+damagefactor "TornadoBlow", 0.41
+damagefactor "LaserTrident", 0.39
+damagefactor "PlugBall", 0.5
+damagefactor "JewelSatellite", 0.52
+damagefactor "HornetChaser", 0.45
+damagefactor "MagmaBazooka1", 0.51 damagefactor "MagmaBazooka2", 0.45
+damagefactor "BlackHoleBomb", 0.42
+damagefactor "FakeRepeater", 0.72
+ 
+damagefactor "TripleBlade", 0.71
+damagefactor "WaterShield", 0.61 damagefactor "WaterShielder", 0.61
+damagefactor "CommandoBomb", 0.8 damagefactor "CommandoBombWave", 0.71
+damagefactor "ChillSpike", 0.71
+damagefactor "ThunderWool", 0.71
+damagefactor "ReboundStriker", 0.71
+damagefactor "WheelCutter", 0.71
+damagefactor "SolarBlaze", 0.45
+ 
+damagefactor "SparkChaser", 0.71
+damagefactor "GrabBuster", 0.71
+damagefactor "BubbleBomb", 0.52 //damagefactor "BubbleBombB", 0.71
+damagefactor "PhotonMissile", 0.56 damagefactor "PhotonMissileStart", 0.51
+damagefactor "ElectricShock", 0.71 damagefactor "ElectricShockBeam", 0.71
+damagefactor "BlackHole", 0.8
+damagefactor "DeepDigger", 0.55
+damagefactor "BreakDash", 0.61
+damagefactor "SaltWater", 0.61
+ 
+damagefactor "BusterRodPole", 0.61
+damagefactor "MegaWaterBarrier", 0.55
+damagefactor "HyperStormBlaster", 0.51
+ 
+damagefactor "MirrorBuster", 0.51 damagefactor "MirrorBuster1", 0.51 damagefactor "MirrorBuster2", 0.51 damagefactor "MirrorBuster3", 0.51
+damagefactor "ScrewCrusher", 0.50
+damagefactor "BalladeCracker", 0.55
+damagefactor "Sakugarne", 0.25
+ 
 }
 
 
@@ -208,7 +209,7 @@ TNT1 A 0 A_SpawnItemEx("FragBomberWepCDropped",64,0,0,0,0,0,18*3)
 TNT1 A 0 A_SpawnItemEx("TimeBenderWepCDropped",64,0,0,0,0,0,18*4)
 TNT1 A 0 A_SpawnItemEx("BoobeamBarrierWepCDropped",64,0,0,0,0,0,18*5)
 TNT1 A 0 A_SpawnItemEx("TopTwistWepCDropped",64,0,0,0,0,0,18*6)
-TNT1 A 0 A_SpawnItemEx("DocScannerWepCDropped",64,0,0,0,0,0,18*7)
+//TNT1 A 0 A_SpawnItemEx("DocScannerWepCDropped",64,0,0,0,0,0,18*7)
 TNT1 A 0 A_SpawnItemEx("FlashBulbWepCDropped",64,0,0,0,0,0,18*8)
 TNT1 A 0 A_SpawnItemEx("DiveSonarWepCDropped",64,0,0,0,0,0,18*9)
 TNT1 A 0 A_SpawnItemEx("SkullSniperWepCDropped",64,0,0,0,0,0,18*10)
@@ -232,7 +233,7 @@ TNT1 A 0 A_GiveInventory("FragBomberWepC",1)
 TNT1 A 0 A_GiveInventory("TimeBenderWepC",1)
 TNT1 A 0 A_GiveInventory("BoobeamBarrierWepC",1)
 TNT1 A 0 A_GiveInventory("TopTwistWepC",1)
-TNT1 A 0 A_GiveInventory("DocScannerWepC",1)
+//TNT1 A 0 A_GiveInventory("DocScannerWepC",1)
 TNT1 A 0 A_GiveInventory("FlashBulbWepC",1)
 TNT1 A 0 A_GiveInventory("DiveSonarWepC",1)
 TNT1 A 0 A_GiveInventory("SkullSniperWepC",1)

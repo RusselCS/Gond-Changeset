@@ -62,7 +62,7 @@ Powerup.Duration 20
 actor DocScannerCopy : DocScanner
 {
 damagetype "DocScanner"
-damage (55)
+damage (6)
 States
 {
 DeathScan:

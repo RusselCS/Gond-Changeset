@@ -1,8 +1,3 @@
-// [Celebi] This is a copy of MM8BDM v6a TOOLS
-// Any area with the following line
-//$CBM
-// Means that area is edited for CBM
-
 // Global scripts that are useful for everyone.
 
 #library "tools"
@@ -98,7 +93,7 @@ script 247 (int maxforce, int maxRange, int noFalloff)
 	{
 		userTID = ActivatorTID();
 	}
-	if(CheckActorInventory(userTID,"NoSourcePushFlag"))terminate;//$CBM (Fishy)
+
 	for(int p = 0;p < ServerMax; p++)
 	{
 		if(!PlayerInGame(p))
@@ -348,7 +343,6 @@ if(player>0){tid = player + 999;}
 			if(CheckActorInventory(tid, "PlayerPropertyFlight")==0){
 			//SetActivator(tid);
 			GiveActorInventory(tid, "PlayerPropertyFlightOff",1);//SetPlayerProperty(0, 0, PROP_FLIGHT);
-			GiveActorInventory(tid, "FlightEnable",1);//$CBM
 			}
 			
 		}
@@ -468,13 +462,6 @@ Switch(PitchAngle)
 	break;
 	Case 2:
 	SetActorAngle(0, PlayerAngle);
-	break;
-
-	Case 3://$CBM
-	SetResultValue(PlayerPitch);
-	break;
-	Case 4://$CBM
-	SetResultValue(PlayerAngle >> 8);
 	break;
 	}
 }
@@ -680,24 +667,6 @@ script 982 (int hits, int customProtect)
 	while(CheckInventory("ShieldHits")>0 && CheckInventory("StopHitShield")==0)
 	{
 		Delay(1);
-//$CBM//This is for DocRobot due to his changing spawn health
-		if(GetActorProperty(0, APROP_SPAWNHEALTH) != maxHealth)
-		{
-			maxHealth = GetActorProperty(0, APROP_SPAWNHEALTH);
-			if(GetActorProperty(0, APROP_HEALTH) < 2)
-			{
-				health = 2;
-				healCurrent = 2;
-				loanHP = true;
-				SetActorProperty(0, APROP_HEALTH, 2);
-			}
-			else
-			{
-				health = GetActorProperty(0, APROP_HEALTH);
-				healCurrent = GetActorProperty(0, APROP_HEALTH);
-			}
-		}
-//$CBM
 		if(GetActorProperty(0, APROP_HEALTH) > health)
 		{
 			health = GetActorProperty(0, APROP_HEALTH);
@@ -795,4 +764,39 @@ Script "core_drawhookshot" (int playerTid, int density) CLIENTSIDE
 	Delay(1);
 			
 	}
+}
+
+script "cbm_CheckForRealMovementInput" (void)
+{
+	int Is_Moving = 1;
+	int Move = checkForMovement(GetPlayerInput(-1, INPUT_BUTTONS));
+	if(Move == 1 || Move == 7 || Move == 25 || Move == 31){
+		Is_Moving = -1;
+	}
+	SetResultValue(Is_Moving);
+}
+
+script 850 (void)
+{
+//SetResultValue(checkForJump(GetPlayerInput(-1, INPUT_BUTTONS)));
+SetResultValue(checkForMovement(GetPlayerInput(-1, INPUT_BUTTONS)));
+}
+
+function bool checkForMovement(int buttons) {
+	int result = 1;
+
+	if (buttons & BT_MOVERIGHT){
+		result+=2;
+	}
+	if (buttons & BT_MOVELEFT){
+		result+=4;
+	}
+	if (buttons & BT_BACK){
+		result+=8;
+	}
+	if (buttons & BT_FORWARD){
+		result+=16;
+	}
+
+	return(result);
 }

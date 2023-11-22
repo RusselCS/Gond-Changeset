@@ -55,7 +55,7 @@ translation "192:192=217:217","202:202=217:217","199:199=229:229"
 PROJECTILE
 damagetype "DynamoTendril"
 Obituary "$OB_DYNAMOTENDRIL"
-damage (160)
+damage (16)
 Radius 12
 Height 8
 speed 24
@@ -97,5 +97,5 @@ actor DynamoTendrilZap : DynamoM_DishZap
 {
 damagetype "DynamoTendrilZap"
 Obituary "$OB_DYNAMOTENDRIL"
-damage (120)
+damage (4)
 }

@@ -71,7 +71,7 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_SpawnItemEx("TimeBenderRadiusFX_H")
-TNT1 A 4 A_Explode(77,512,0,0,256)
+TNT1 A 4 A_Explode(8,512,0,0,256)
 stop
 }
 }

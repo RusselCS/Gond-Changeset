@@ -29,6 +29,7 @@ damagefactor "Slime", 1.0
 damagefactor "LightRyu_Stop", 1.0
 damagefactor "FlashM_Stopper", 1.0
 damagefactor "TimeBender", 1.0
+damagefactor "PlugM_Plugged", 1.0
 
 //damagefactor "FlameSwordSpark", 1.0
 }

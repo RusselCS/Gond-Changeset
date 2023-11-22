@@ -1,12 +1,13 @@
 actor CrashbombBoss : BaseMM8BDMWep_CBM
 {
-tag "$TAGC_2E"
+Tag "$TAGC_2E"
 dropitem "CrashBombWepCDropped"
 Weapon.AmmoUse 0
 Weapon.AmmoGive 28
 Obituary "$OB_CRASHBOMB"
 Inventory.Pickupmessage "Power up! Crash Bomb!"
-weapon.ammotype "KurasshuAmmo"
+weapon.ammotype "ClashAmmo"
++WEAPON.NOAUTOAIM
 States
 {
 Spawn:
@@ -14,14 +15,12 @@ C_02 E 1
 loop
 Ready:
 CRAA A 0 ACS_ExecuteAlways(998,0,DYE_CRASHMAN)
-CRAA F 2
-CRAA E 2 A_GunFlash
-CRAA DCB 2
+CRAA FEDCB 2
 goto Ready1
 
 Ready0:
-CRAA A 0 A_JumpIfInventory("KurasshuAmmo",7,"Ready0c")
-CRAA A 0 A_JumpIfInventory("KurasshuAmmo",5,"Ready0b")
+CRAA A 0 A_JumpIfInventory("ClashAmmo",9,"Ready0c")
+CRAA A 0 A_JumpIfInventory("ClashAmmo",9,"Ready0b")
 CRAA A 10 A_WeaponReady(12)
 goto Ready1
 Ready0b:
@@ -32,18 +31,18 @@ CRAA A 10 A_WeaponReady
 goto Ready3
 
 Ready1:
-CRAA A 0 A_JumpIfInventory("KurasshuAmmo",5,"Ready2")
+CRAA A 0 A_JumpIfInventory("ClashAmmo",9,"Ready2")
 CRAA A 2 A_WeaponReady(12)
-CRAA A 0 A_GiveInventory("KurasshuAmmo",1)
+CRAA A 0 A_GiveInventory("ClashAmmo",1)
 loop
 Ready2:
-CRAA A 0 A_JumpIfInventory("KurasshuAmmo",7,"Ready3")
+CRAA A 0 A_JumpIfInventory("ClashAmmo",9,"Ready3")
 CRAA A 2 A_WeaponReady(8)
-CRAA A 0 A_GiveInventory("KurasshuAmmo",1)
+CRAA A 0 A_GiveInventory("ClashAmmo",1)
 loop
 Ready3:
 CRAA A 2 A_WeaponReady
-CRAA A 0 A_GiveInventory("KurasshuAmmo",1)
+CRAA A 0 A_GiveInventory("ClashAmmo",1)
 loop
 
 Deselect:
@@ -51,31 +50,29 @@ CRAA A 0 A_GiveInventory("ClashFlag1")
 CRAA A 0 A_GiveInventory("ClashFlag2")
 CRAA A 0 A_GiveInventory("ClashFlag3")
 CRAA A 0 A_GiveInventory("ClashFlag4")
-CRAA AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
 CRAA A 1 A_Lower
 Loop
 Select:
-CRAA AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 CRAA A 1 A_Raise
 Loop
 
 Fire:
 CRAA A 0 A_JumpIfInventory("IsBot",1,"BotFire")
 CRAA A 0 A_PlaySoundEx("weapon/dustbit","Weapon")
-CRAA H 3 A_GiveInventory("CrashmanMain_CI",1)
-CRAA G 3
-CRAA F 6
-CRAA EDCB 2
-//CRAA FEDCBAA 3
-//CRAA A 2
+CRAA A 0 A_GiveInventory("CrashmanAlt_CI",1)
+CRAA FG 2
+CRAA G 10
+CRAA HIA 2
 Goto Ready0
 
 Altfire:
 CRAA G 0 A_PlaySoundEx("weapon/dustbit","Weapon")
-CRAA H 3 A_GiveInventory("CrashmanAlt_CI",1)
-CRAA G 3
-CRAA F 6
-CRAA EDCB 2
+CRAA A 0 A_GiveInventory("CrashmanMain_CI",1)
+CRAA BC 2
+CRAA C 10
+CRAA DEA 2
 Goto Ready0
 
 BotFire:
@@ -83,37 +80,18 @@ CRAA A 0 A_Jump(32,"BotFire2")
 CRAA A 0 A_Jump(96,"Altfire")
 goto Fire+1
 BotFire2:
-CRAA A 0 A_PlaySoundEx("weapon/BoobeamBeep","SoundSlot7")
+CRAA A 0 A_PlaySoundEx("weapon/BoobeamBeep","SoundSlot6")
 CRAA A 0 A_GiveInventory("ClashFlag1",1)
 CRAA A 0 A_GiveInventory("ClashFlag2",1)
 CRAA A 0 A_GiveInventory("ClashFlag3",1)
 CRAA A 0 A_GiveInventory("ClashFlag4",1)
 CRAA A 0 A_GiveInventory("ClashFlagT",1)
-CRAA A 0 A_GiveInventory("KurasshuAmmo",14)
+CRAA A 0 A_GiveInventory("ClashAmmo",14)
 goto BotFire+1
-
-Flash:
-TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-TNT1 A 1 A_JumpIfInventory("ClashLaunched",1,"Flash.Land")
-loop
-Flash.Land:
-TNT1 A 0 A_JumpIf(z-floorz==0,"Flash.LandEnd")
-TNT1 A 0 A_JumpIf(momz==0,"Flash.LandZ")
-TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-TNT1 A 1
-loop
-Flash.LandZ:
-TNT1 A 1
-TNT1 A 0 A_JumpIf(z-floorz==0,"Flash.LandEnd")
-TNT1 A 0 A_JumpIf(momz==0,"Flash.LandEnd")
-goto Flash.Land+2
-Flash.LandEnd:
-TNT1 A 1 A_TakeInventory("ClashLaunched",9)
-goto Flash
 }
 }
 
-actor KurasshuAmmo : Ammo
+actor ClashAmmo : Ammo
 {
 inventory.amount 1
 inventory.maxamount 28
@@ -128,7 +106,6 @@ actor ClashFlag2 : ClashFlag1{}
 actor ClashFlag3 : ClashFlag1{}
 actor ClashFlag4 : ClashFlag1{}
 actor ClashFlagT : ClashFlag1{}
-actor ClashFlagJ : ClashFlag1{}
 
 actor ClashLaunched : Inventory
 {
@@ -142,24 +119,30 @@ actor ClashLaunched4 : ClashLaunched{}
 
 actor WeaponFired : OnceC{}
 
-actor CrashDetonateItem : BasicClassItem
+actor CrashDetonateItem : CustomInventory
 {
+inventory.amount 1
+inventory.maxamount 1
 inventory.icon "CrasIcon"
+scale 2.0
 inventory.pickupmessage "Hey, hey, step aside, Magnet Man. It's time for Crash Man to finish this job with his Time Bombs."
-Tag "Clash Bomb Detonate"
++INVBAR
 states
 {
 Spawn:
 CRAA X 1
 loop
 Use:
-TNT1 A 0 A_PlaySoundEx("weapon/BoobeamBeep","SoundSlot7")
+TNT1 A 0 A_PlaySoundEx("weapon/BoobeamBeep","SoundSlot6")
 //TNT1 A 0 A_JumpIfInventory("ClashFlagT",1,"No")
 TNT1 A 0 A_GiveInventory("ClashFlag1",1)
 TNT1 A 0 A_GiveInventory("ClashFlag2",1)
 TNT1 A 0 A_GiveInventory("ClashFlag3",1)
 TNT1 A 0 A_GiveInventory("ClashFlag4",1)
 TNT1 A 0 A_GiveInventory("ClashFlagT",1)
+fail
+No:
+TNT1 A 0
 fail
 }
 }
@@ -172,7 +155,7 @@ DamageType "CrashM_Clash"
 Obituary "$OB_CRASHBOMB"
 +DONTREFLECT
 +NOTARGETSWITCH
-damage (20)
+damage (1)
 Radius 6
 Height 6
 speed 60
@@ -180,10 +163,13 @@ scale 2.5
 States
 {
 Spawn:
+TNT1 A 0
+//TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 CDRL C 1
 wait
 
 Death:
+TNT1 A 0 Thing_ChangeTID(0, 0)
 TNT1 A 0 A_JumpIfInTargetInventory("ClashLaunched1",1,1)
 goto Bomb1
 TNT1 A 0 A_JumpIfInTargetInventory("ClashLaunched2",1,1)
@@ -221,8 +207,7 @@ WallCheck:
 CDRL C 0 A_PlaySound("weapon/crashland")
 CDRL C 0 A_JumpIf(z-floorz<5,"Floor")
 CDRL C 0 A_JumpIf(z-ceilingz==0-6,"Ceiling")
-CDRL C 3
-CDRL F 18
+CDRL F 12
 CDRL F 0 A_JumpIfInventory("ClashLaunched4",1,"WallBeep4")
 CDRL F 0 A_JumpIfInventory("ClashLaunched3",1,"WallBeep3")
 CDRL F 0 A_JumpIfInventory("ClashLaunched2",1,"WallBeep2")
@@ -246,8 +231,7 @@ CDRL I 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Detonate")
 loop
 
 Floor:
-CDRL A 3
-CDRL D 18
+CDRL D 12
 CDRL D 0 A_JumpIfInventory("ClashLaunched4",1,"FloorBeep4")
 CDRL D 0 A_JumpIfInventory("ClashLaunched3",1,"FloorBeep3")
 CDRL D 0 A_JumpIfInventory("ClashLaunched2",1,"FloorBeep2")
@@ -271,8 +255,7 @@ CDRL G 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DetonateF")
 loop
 
 Ceiling:
-CDRL B 3
-CDRL E 18
+CDRL E 12
 CDRL E 0 A_JumpIfInventory("ClashLaunched4",1,"CeilingBeep4")
 CDRL E 0 A_JumpIfInventory("ClashLaunched3",1,"CeilingBeep3")
 CDRL E 0 A_JumpIfInventory("ClashLaunched2",1,"CeilingBeep2")
@@ -327,15 +310,13 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 A_PlaySound("weapon/directcrash2")
 TNT1 A 0 A_SpawnItemEx("ClashBomb_MineDirectBoomFX",0,0,0,0,0,0,0,1)
-TNT1 A 4 A_Explode(160,72,0,0,12)
+TNT1 A 4 A_Explode(15,72,0,0,12)
 stop
 }
 }
 
 actor ClashBomb_MineDirectBoomFX : BasicClientSide
 {
-+FORCEXYBILLBOARD
-+BRIGHT
 ReactionTime 4
 States
 {
@@ -364,22 +345,20 @@ goto Spawn
 actor ClashBomb_MineDetonate : ClashBomb_MineDirectBoom
 {
 DamageType "CrashM_Mine"
-Obituary "$OB_CRASHBOMB"
+Obituary "$OB_CLASHBOMB"
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_PlaySound("weapon/directclash")//weapon/directcrash
 TNT1 A 0 A_SpawnItemEx("ClashBomb_MineDetonateFX",0,0,0,0,0,0,0,1)
-TNT1 AAAA 9 A_Explode(180,72,0,0,16)
+TNT1 AAAA 9 A_Explode(20,86,0,0,20)
 stop
 }
 }
 
 actor ClashBomb_MineDetonateFX : BasicClientSide
 {
-+FORCEXYBILLBOARD
-+BRIGHT
 States
 {
 Spawn:
@@ -409,10 +388,11 @@ actor ClashBomb_Timer
 {
 Translation "198:198=227:227","192:192=4:4","202:202=215:215"
 PROJECTILE
-DamageType "CrashM_Clash"
+DamageType "DMGNoHitstunHeal"
 Obituary "$OB_CLASHBOMB"
 +DONTREFLECT
-damage (20)
++HITTRACER
+damage (1)
 Radius 7
 Height 6
 speed 50
@@ -420,8 +400,10 @@ scale 2.5
 States
 {
 Spawn:
+X_2E A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 X_2E A 1
-loop
+wait
 Death:
 X_2E A 0 A_JumpIf(z-floorz<5,"Floor")
 X_2E A 0 A_JumpIf(z-ceilingz==0-6,"Ceiling")
@@ -453,10 +435,28 @@ TNT1 A 3 A_SpawnItemEx("ClashBomb_TimerDelayBoom2",0,0,-16,0,0,0,0,1)
 stop
 
 XDeath:
+TNT1 A 0 Thing_ChangeTID(0,0)
+X_2E B 0 A_PlaySound("weapon/crashland")
+X_2E BBB 1 A_Warp(AAPTR_TRACER,0,0,28,180,0)
+X_2E CCC 1 A_Warp(AAPTR_TRACER,0,0,28,180,0)
+X_2E DDDCCCDDDCCCDDDCCCDDDCCCDDDCCC 1 A_Warp(AAPTR_TRACER,0,0,28,180,0)
+X_2E D 0 A_PlaySound("weapon/BoobeamBeep")
+X_2E DDD 1 A_Warp(AAPTR_TRACER,0,0,28,180,0)
+X_2E C 0 A_PlaySound("weapon/BoobeamBeep")
+X_2E CCC 1 A_Warp(AAPTR_TRACER,0,0,28,180,0)
+X_2E D 0 A_PlaySound("weapon/BoobeamBeep")
+X_2E DDD 1 A_Warp(AAPTR_TRACER,0,0,28,180,0)
+X_2E C 0 A_PlaySound("weapon/BoobeamBeep")
+X_2E CCC 1 A_Warp(AAPTR_TRACER,0,0,28,180,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SDeath")
 TNT1 A 3 A_SpawnItemEx("ClashBomb_TimerDirectBoom",0,0,0,0,0,0,0,1)
+stop
+SDeath:
+TNT1 A 0
 stop
 }
 }
+
 
 actor ClashBomb_TimerB : ClashBomb_Timer{translation "192:192=205:205","198:198=74:74","202:202=205:205"}
 actor ClashBomb_TimerR : ClashBomb_Timer{translation "192:192=54:54","198:198=41:41","202:202=54:54"}
@@ -465,21 +465,21 @@ actor ClashBomb_TimerP : ClashBomb_Timer{translation "192:192=229:229","198:198=
 
 actor ClashBomb_TimerDirectBoom : ClashBomb_MineDirectBoom
 {
+Obituary "$OB_CRASHBOMB"
+//DamageType "Clash"
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_PlaySound("weapon/directcrash2")
 TNT1 A 0 A_SpawnItemEx("ClashBomb_TimerDirectBoomFX",0,0,0,0,0,0,0,1)
-TNT1 A 4 A_Explode(140,72,0,0,12)
+TNT1 A 4 A_Explode(20,72,0,0,72)
 stop
 }
 }
 
 actor ClashBomb_TimerDirectBoomFX : BasicClientSide
 {
-+FORCEXYBILLBOARD
-+BRIGHT
 ReactionTime 4
 States
 {
@@ -504,60 +504,40 @@ goto Spawn
 
 actor ClashBomb_TimerDelayBoom : ClashBomb_MineDirectBoom
 {
+Obituary "$OB_CRASHBOMB"
+//DamageType "Clash"
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_PlaySound("weapon/directclash2")
 TNT1 A 0 A_SpawnItemEx("ClashBomb_TimerDelayBoomFX",0,0,0,0,0,0,0,1)
-TNT1 AAAA 9 A_Explode(160,72,0,0,16)
+TNT1 AAAA 9 A_Explode(16,72,0,0,16)
 stop
 }
 }
 
 actor ClashBomb_TimerDelayBoom2 : ClashBomb_MineDirectBoom
 {
+Obituary "$OB_CRASHBOMB"
+//DamageType "Clash"
 States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_GiveInventory("ClashBomb_TimerDelayBoom2_P",1)
 TNT1 A 0 A_PlaySound("weapon/directcrash",1,0.9)
 TNT1 A 0 A_SpawnItemEx("ClashBomb_TimerDelayBoomFX",0,0,0,0,0,0,0,1)
-TNT1 AAAA 9 A_Explode(140,72,0,0,12)
+TNT1 AAAA 9 A_Explode(14,72,0,0,12)
 stop
 }
 }
-actor ClashBomb_TimerDelayBoom2_P : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 A_JumpIfInTargetInventory("ClashLaunched",3,"No")
-TNT1 A 0 A_JumpIf(!CallACS("cbm_MarsRocketJump",22,100,-48),"Pickup2")
-stop
-Pickup2:
-TNT1 A 0 A_JumpIfInTargetInventory("ClashFlagJ",1,"No")
-TNT1 A 0 A_GiveToTarget("ClashFlagJ",1)
-TNT1 A 0 A_GiveToTarget("ClashLaunched",1)
-stop
-No:
-TNT1 A 0
-stop
-}
-}
-
 
 actor ClashBomb_TimerDelayBoomFX : BasicClientSide
 {
-+FORCEXYBILLBOARD
-+BRIGHT
 States
 {
 Spawn:
-//// KKLMNNOPQQRSTTVWKKLMNNOPQQRSTTVW 1
-CDRL KKLLMNNOOPQQRRSTTUUVKKLLMNNOOPQQRRSTTUUVVWW 1
-//CDRL KLMNOPQRSTUVW 3
+CDRL KLMNOPQRSTUVW 3
 stop
 }
 }
@@ -583,7 +563,7 @@ FireP:
 TNT1 A 0 A_FireCustomMissile("ClashBomb_TimerP",0,1,8,0)
 goto Done
 Done:
-TNT1 A 0 A_TakeInventory("KurasshuAmmo",5,1)
+TNT1 A 0 A_TakeInventory("ClashAmmo",5)
 stop
 }
 }
@@ -593,22 +573,22 @@ actor CrashmanAlt_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("ClashBomb_Mine",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("ClashBomb_Mine",0,1,-8,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("ClashBomb_MineB",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("ClashBomb_MineB",0,1,-8,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("ClashBomb_MineR",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("ClashBomb_MineR",0,1,-8,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("ClashBomb_MineO",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("ClashBomb_MineO",0,1,-8,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("ClashBomb_MineP",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("ClashBomb_MineP",0,1,-8,0)
 goto Done
 Done:
-TNT1 A 0 A_TakeInventory("KurasshuAmmo",7,1)
+TNT1 A 0 A_TakeInventory("ClashAmmo",9)
 stop
 }
 }

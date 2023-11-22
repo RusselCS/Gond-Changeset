@@ -125,15 +125,15 @@ actor JetTriggerEx : OnceC{}
 
 actor JetMegaShot : MegaShotC
 {
-Translation "204:204=210:210"
 Damagetype "MegaM_JetShot"
 Obituary "$OB_JETADAPTOR"
+Translation "204:204=215:215","202:202=4:4","199:199=215:215"
 }
 
-actor JetMegaShotB : JetMegaShot{translation "204:204=205:205"}
-actor JetMegaShotR : JetMegaShot{translation "204:204=171:171"}
-actor JetMegaShotO : JetMegaShot{translation "204:204=104:104"}
-actor JetMegaShotP : JetMegaShot{translation "204:204=229:229"}
+actor JetMegaShotB : JetMegaShot{translation "204:204=205:205","202:202=4:4","199:199=205:205"}
+actor JetMegaShotR : JetMegaShot{translation "204:204=171:171","202:202=4:4","199:199=171:171"}
+actor JetMegaShotO : JetMegaShot{translation "204:204=104:104","202:202=4:4","199:199=104:104"}
+actor JetMegaShotP : JetMegaShot{translation "204:204=229:229","202:202=4:4","199:199=229:229"}
 
 
 actor JetAdaptorWings1

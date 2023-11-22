@@ -150,8 +150,8 @@ wait
 Death:
 TNT1 A 0
 TNT1 A 0 A_SpawnItemEx("Copy_RisingFistHitboxFX",0,0,0,0,0,0,0,1)
-TNT1 A 0 A_Explode(27,56,0,0,28)
-TNT1 A 2 A_Explode(37,56,0,0,57)
+TNT1 A 0 A_Explode(3,56,0,0,28)
+TNT1 A 2 A_Explode(4,56,0,0,57)
 stop
 }
 }

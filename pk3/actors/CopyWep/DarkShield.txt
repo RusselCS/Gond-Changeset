@@ -111,7 +111,7 @@ actor DarkShieldBlocker : Darkman2ShieldBlocker
 Translation "202:202=93:93"
 damagetype "DarkShield"
 Obituary "$OB_DARKSHIELD"
-Accuracy 80
+Accuracy 8
 }
 
 actor DarkShieldSpinner_H : BasicHelper
@@ -132,5 +132,5 @@ actor DarkShieldSpinner : Darkman2ShieldSpinner
 Translation "202:202=93:93"
 damagetype "DarkShield"
 Obituary "$OB_DARKSHIELD"
-damage (80)
+damage (8)
 }

@@ -2,7 +2,7 @@ actor BubbleLeadBoss : BaseMM8BDMWep_CBM
 {
 tag "$TAGC_2C"
 dropitem "BubbleLeadWepCDropped"
-Weapon.AmmoUse 4
+Weapon.AmmoUse 0
 Weapon.AmmoGive 28
 Obituary "$OB_BUBBLELEAD"
 weapon.ammotype "WaddleWaddleAmmo"
@@ -14,6 +14,7 @@ C_02 C 1
 loop
 Ready:
 BUBA A 0 ACS_ExecuteAlways(998,0,DYE_BUBBLEMAN)
+BUBA A 0 ACS_NamedExecuteAlways("ItemReloadACSBubble",0)
 BUBA A 0 A_GunFlash
 goto Ready1
 Ready1:
@@ -26,70 +27,124 @@ BUBA A 3 A_WeaponReady
 BUBA A 0 A_GiveInventory("WaddleWaddleAmmo",1)
 loop
 Deselect:
-BUBA AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
 BUBA A 1 A_Lower
 Loop
 Select:
-BUBA AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 BUBA A 1 A_Raise
 Loop
 Fire:
 BUBA A 0 A_PlaySoundEx("weapon/rbuster","Weapon")
 BUBA A 0 A_GiveInventory("BubblemanMain_CI",1)
-BUBA BCA 4
+/*BUBA B 2
+BUBA C 5
+BUBA BA 1
+//BUBA A 3*/ //12
+BUBA BC 2
+BUBA C 2
+BUBA B 2
+BUBA A 4
 BUBA A 0 A_GiveInventory("WaddleWaddleAmmo",2)
 Goto Ready1
 Altfire:
-BUBA A 0 A_GiveInventory("VivifyDelay6",1)
-BUBA A 0 A_Refire(1)
-BUBA A 0 A_PlaySoundEx("weapon/rbuster","Weapon")
-BUBA P 2 A_GiveInventory("BubblemanAlt_CI",1)
-BUBA QQRST 2
-BUBA T 0 A_Refire("AltAmmoCheck")
-goto AltAmmoCheck+1
-AltAmmoCheck:
-BUBA T 0 A_JumpIfInventory("WaddleWaddleAmmo",4,"Altfire2")
-BUBA A 2 Offset(-44,52)
-goto Ready1
+BUBA A 0 A_JumpIfInventory("WaddleWaddleAmmo",4,"Altfire2")
+goto NoAmmo
 Altfire2:
-BUBA A 0 A_GiveInventory("VivifyDelay6",1)
-BUBA A 0 A_Refire(1)
-BUBA A 0 A_PlaySoundEx("weapon/rbuster","Weapon")
-BUBA S 2 A_GiveInventory("BubblemanAlt_CI",1)
-BUBA QQRST 2
-BUBA T 0 A_Refire("AltAmmoCheck")
-goto AltAmmoCheck+1
+BUBA A 0 A_PlaySoundEx("weapon/bubblemanlead","Weapon")
+BUBA A 0 A_JumpIfInventory("PowerRage_ST",1,"Altfire2_R")
+/*BUBA A 2 offset(-3,35)A_GiveInventory("BubblemanAlt_CI",1)
+BUBA A 2 offset(-8,40)
+BUBA A 1 offset(-13,45)
+BUBA A 1 offset(-18,50)
+BUBA A 1 offset(-13,45)
+BUBA A 2 offset(-8,40)
+BUBA A 2 offset(-3,35)
+//BUBA A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)*/ //13
+BUBA J 1 A_GiveInventory("BubblemanAlt_CI",1)
+BUBA J 1 Offset(0, 48)
+BUBA J 1 Offset(0, 56)
+BUBA K 1 Offset(0, 60)
+BUBA L 2 Offset(0, 62)
+BUBA J 1 Offset(0, 60)
+BUBA J 1 Offset(0, 56)
+BUBA J 1 Offset(0, 48)
+BUBA J 1 Offset(0, 40)
+BUBA J 1 Offset(0, 36)
+BUBA A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+goto Ready1
+Altfire2_R:
+/*BUBA A 2 offset(0,34)A_GiveInventory("BubblemanAlt_CI",1)
+BUBA A 2 offset(0,36)
+BUBA AA 2 offset(0,39)
+BUBA A 2 offset(0,36)
+BUBA A 2 offset(0,32)
+//BUBA A 0*/ //A_Refire //12
+BUBA J 1 A_GiveInventory("BubblemanAlt_CI",1)
+BUBA J 1 Offset(0, 48)A_JumpIfInventory("PowerRage_ST",1,1)
+BUBA J 1 Offset(0, 56)
+BUBA K 1 Offset(0, 60)A_JumpIfInventory("PowerRage_ST",1,1)
+BUBA L 1 Offset(0, 62)
+BUBA L 1 Offset(0, 62)A_JumpIfInventory("PowerRage_ST",1,1)
+BUBA J 1 Offset(0, 60)
+BUBA J 1 Offset(0, 56)A_JumpIfInventory("PowerRage_ST",1,1)
+BUBA J 1 Offset(0, 48)
+BUBA J 1 Offset(0, 40)A_JumpIfInventory("PowerRage_ST",1,1)
+BUBA J 1 Offset(0, 36)
+BUBA A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+BUBA A 0
+goto Ready1
+NoAmmo:
+BUBA A 0
+Goto Ready1
+
+
 Flash:
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
 TNT1 A 0 A_JumpIfInventory("IsTreadingWater",1,"Flash.Swim")
 TNT1 A 1
+TNT1 A 0 A_JumpIf(z-floorz==0,1)
 loop
+TNT1 A 0 A_TakeInventory("BubbleHasSwam",99)
+goto Flash
 Flash.Ammo:
 TNT1 A 0 A_JumpIfInventory("BubbleDabbleAmmo",280,"Flash")
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
 TNT1 A 0 A_JumpIfInventory("IsTreadingWater",1,"Flash.Swim")
 TNT1 A 1 A_GiveInventory("BubbleDabbleAmmo_RC",1)
+TNT1 A 0 A_JumpIf(z-floorz==0,1)
 loop
+TNT1 A 0 A_TakeInventory("BubbleHasSwam",99)
+goto Flash.Ammo
 
+Flash.SwimCheck:
+TNT1 A 0 A_JumpIfInventory("StopTreadingWater",1,"Flash.LandEnd")
+TNT1 A 0 A_JumpIf(z-floorz==0,"Flash.Land")
+TNT1 A 0 A_JumpIfInventory("BubbleDabbleAmmo",1,"Flash.Swim")
+goto Flash.Land
 Flash.Swim:
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("BubbleNeedsToTouchGrass",1)
 TNT1 A 1 A_GiveInventory("BubbleSwimFlash_P",1)
-TNT1 A 0 A_JumpIf(z-floorz==0,"Flash.LandEnd")
-TNT1 A 0 A_JumpIfInventory("BubbleDabbleAmmo",1,"Flash.Swim")
-TNT1 A 0 A_GiveInventory("BubbleSwimFlash_P")
+TNT1 A 0 A_JumpIf(z-floorz==0,"Flash.SwimCheck")
+TNT1 A 0 A_JumpIfInventory("BubbleDabbleAmmo",1,"Flash.SwimCheck")
+TNT1 A 0 SetPlayerProperty(0,0,3)
 goto Flash.Land
 
 Flash.Land:
+TNT1 A 0 A_JumpIfInventory("TreadingFlashDelay",1,"Flash.Swim")
+TNT1 A 0 A_TakeInventory("BubbleHasSwam",1)
 TNT1 A 0 A_JumpIf(z-floorz==0,"Flash.LandEnd")
 TNT1 A 0 A_JumpIf(momz==0,"Flash.LandZ")
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
 TNT1 A 1
-loop
+TNT1 A 0 A_JumpIfInventory("BubbleHasSwam",1,"Flash.Land")
+goto Flash.LandEnd
 Flash.LandZ:
 TNT1 A 1
 TNT1 A 0 A_JumpIf(z-floorz==0,"Flash.LandEnd")
 TNT1 A 0 A_JumpIf(momz==0,"Flash.LandEnd")
-goto Flash.Land+2
+goto Flash.Land+4
 Flash.LandEnd:
 TNT1 A 1 A_GiveInventory("BubbleSwimFlashEnd_P",1)
 goto Flash.Ammo
@@ -111,7 +166,21 @@ inventory.maxamount 280
 +INVENTORY.IGNORESKILL
 }
 
-actor BubbleIsSwimming_F : Inventory{}
+actor StopTreadingWater : OnceC {}
+actor BubbleHasSwam : Powerup
+{
+powerup.duration 20
+}
+
+actor TreadingFlashDelay : Powerup
+{
+powerup.duration 20
+}
+
+actor BubbleNeedsToTouchGrass : Powerup
+{
+powerup.duration 105
+} 
 
 actor BubbleDabbleAmmo_RC : CustomInventory
 {
@@ -119,11 +188,20 @@ States
 {
 Pickup:
 TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("BubbleHasSwam",1,"StopThis")
+TNT1 A 0 A_JumpIfInventory("BubbleNeedsToTouchGrass",1,"StopThis")
+ContinueOn:
 TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
 TNT1 A 0 A_GiveInventory("BubbleDabbleAmmo",1)
 stop
 PickupR:
 TNT1 A 0 A_GiveInventory("BubbleDabbleAmmo",2)
+stop
+StopThis:
+TNT1 A 0 A_JumpIf(Z-FloorZ==0,"OKToRegen")
+stop
+OKToRegen:
+TNT1 A 0 A_TakeInventory("BubbleNeedsToTouchGrass",99)
 stop
 }
 }
@@ -133,33 +211,25 @@ actor BubbleSwimFlash_P : CustomInventory
 States
 {
 Pickup:
+TNT1 A 0 A_GiveInventory("BubbleHasSwam",1)
 TNT1 A 0 A_JumpIfInventory("BubbleDabbleAmmo",1,"SwimCheck")
 TNT1 A 0 SetPlayerProperty(0,0,3)
-TNT1 A 0 A_GiveInventory("VivifyFlag3",1)
-TNT1 A 0 A_TakeInventory("BubbleIsSwimming_F")
 TNT1 A 0 //A_Log("I HAVE NO AMMO")
 stop
 SwimCheck:
-TNT1 A 0 A_JumpIfInventory("HasFeetInWater",1,"Swim")
 TNT1 A 0 A_JumpIfInventory("IsUnderWater",1,"Swim")
-TNT1 A 0 A_JumpIfInventory("PowerBubbleFlood",1,"Swim")//IsUnderBubbleWater
+TNT1 A 0 A_JumpIfInventory("PowerFlood",1,"Swim")
 TNT1 A 0 SetPlayerProperty(0,0,3)
-TNT1 A 0 A_GiveInventory("VivifyFlag3",1)
-TNT1 A 0 A_TakeInventory("BubbleIsSwimming_F")
 TNT1 A 0 //A_Log("NO SWIM")
 stop
 Swim:
-TNT1 A 0 A_GiveInventory("BubbleIsSwimming_F",1)
-TNT1 A 0 A_TakeInventory("VivifyFlag3")
-TNT1 A 0 A_TakeInventory("BubbleDabbleAmmo",1,1)
+TNT1 A 0 A_TakeInventory("BubbleDabbleAmmo",1)
 TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,"SwimNo")
 TNT1 A 0 SetPlayerProperty(0,1,3)
 TNT1 A 0 //A_Log("LETS SWIM")
 stop
 SwimNo:
 TNT1 A 0 SetPlayerProperty(0,0,3)
-TNT1 A 0 A_GiveInventory("VivifyFlag3",1)
-TNT1 A 0 A_TakeInventory("BubbleIsSwimming_F")
 TNT1 A 0 //A_Log("I CANT SWIM")
 stop
 }
@@ -170,9 +240,8 @@ actor BubbleSwimFlashEnd_P : CustomInventory
 States
 {
 Pickup:
-TNT1 A 0 A_GiveInventory("VivifyFlag3",1)
+TNT1 A 0 A_TakeInventory("StopTreadingWater",99)
 TNT1 A 0 A_TakeInventory("IsTreadingWater",99)
-TNT1 A 0 A_TakeInventory("BubbleIsSwimming_F")
 TNT1 A 0 SetPlayerProperty(0,0,3)
 stop
 }
@@ -182,45 +251,46 @@ actor BubbleBounceX
 {
 translation "192:192=4:4","195:195=102:102"
 PROJECTILE
+var int user_P;
 Obituary "$OB_BUBBLELEAD"
 damagetype "BubbleM_Lead"
+scale 2.5
 -NOGRAVITY
-+BOUNCEONFLOORS
-+BOUNCEONCEILINGS
-+USEBOUNCESTATE
++HEXENBOUNCE
+-ALLOWBOUNCEONACTORS
+-BOUNCEONWALLS
 +CANBOUNCEWATER
-+FORCEXYBILLBOARD
-BounceSound "weapon/BubbleBounce"
++STEPMISSILE
 bouncefactor 1.0
 wallbouncefactor 1.0
-BounceCount 25
+Speed 16
+Radius 16
+Height 20
 gravity 1.0
+Damage (20)
 ReactionTime 25//45
-Damage (220)
-Radius 20
-Height 16
-Speed 8
-scale 2.5
 States
 {
 Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
 BUBA E 0
-TNT1 A 0 A_Recoil(-9)
-TNT1 A 1 ThrustThingZ(0,25,0,0)
-SpawnL:
-BUBA E 0 A_CountDown
-BUBA EF 3
-loop
-Bounce.Floor:
-BUBA E 0 ThrustThingZ(0,40,0,0)
-Goto SpawnL
+BUBA E 0 //A_Recoil(-9)
+TNT1 A 1 ThrustThingZ(0,10,0,1)
+BUBA EEEFFF 1 A_JumpIf(z-floorz==0,"Spawn_F")
+Goto SpawnLOOP+3
+Spawn_F:
+BUBA E 0 A_PlaySoundEx("weapon/BubbleBounce","Weapon")
+BUBA E 0 A_ChangeVelocity(16,0,0,CVF_RELATIVE|CVF_REPLACE)
+BUBA E 1 ThrustThingZ(0,30,0,0)
+Goto SpawnLOOP+3
 Death:
 XDeath:
 TNT1 A 1
 stop
 }
 }
-
 
 actor BubbleBounceXB : BubbleBounceX{translation "192:192=205:205","195:195=74:74"}
 actor BubbleBounceXR : BubbleBounceX{translation "192:192=171:171","195:195=41:41"}
@@ -233,7 +303,7 @@ translation "192:192=4:4"
 PROJECTILE
 Obituary "$OB_BUBBLEBUSTER"
 damagetype "BubbleM_Shot"
-Damage (120)
+Damage (12)
 radius 6
 height 6
 Speed 64
@@ -241,9 +311,12 @@ scale 2.5
 States
 {
 Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
 TNT1 A 1
 BUBA D 1 A_SpawnItemEx("BubProjFX",0,0,0,0,0,0,0,1)
-Goto Spawn+1
+Goto SpawnLOOP+1
 Death:
 BUBA D 1
 stop
@@ -296,22 +369,22 @@ actor BubblemanAlt_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("BubbleBounceX",0,0,0,8)
+TNT1 A 0 A_FireCustomMissile("BubbleBounceX",0,0,0,-10)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("BubbleBounceXB",0,0,0,8)
+TNT1 A 0 A_FireCustomMissile("BubbleBounceXB",0,0,0,-10)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("BubbleBounceXR",0,0,0,8)
+TNT1 A 0 A_FireCustomMissile("BubbleBounceXR",0,0,0,-10)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("BubbleBounceXO",0,0,0,8)
+TNT1 A 0 A_FireCustomMissile("BubbleBounceXO",0,0,0,-10)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("BubbleBounceXP",0,0,0,8)
+TNT1 A 0 A_FireCustomMissile("BubbleBounceXP",0,0,0,-10)
 goto Done
 Done:
-TNT1 A 0 A_TakeInventory("WaddleWaddleAmmo",4,1)
+TNT1 A 0 A_TakeInventory("WaddleWaddleAmmo",4)
 stop
 }
 }
@@ -322,32 +395,39 @@ stop
 //X=================X//
 ///////////////////////
 
-actor BubbleFlooder : BasicClassItem
+actor BubbleFlooder : CustomInventory
 {
-inventory.icon "BubIcon"
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "BubIconN"
 inventory.pickupmessage "Welcome to Davy Jones' Locker!"
-Tag "Bubble Flood Trigger"
+scale 2.0
++INVBAR
 states
 {
 Spawn:
 BUBA WXY 3
 loop
-Use:
+Use: 
 TNT1 A 0 A_JumpIfInventory("BubbleFloodBusy",1,"No")
 TNT1 A 0 A_JumpIfInventory("BubbleFloodDeployed",1,"Success2")
-TNT1 A 0 A_JumpIfInventory("HasFeetInWater",1,"No")
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(250)==1,"No")
 TNT1 A 0 A_JumpIfInventory("IsUnderWater",1,"No")
-TNT1 A 0 A_JumpIfInventory("PowerBubbleFlood",1,"No")//IsUnderBubbleWater
+TNT1 A 0 A_JumpIfInventory("PowerFlood",1,"No")
 Success:
-TNT1 A 0 A_GiveInventory("IsTreadingWater",1)
-TNT1 A 0 A_JumpIf(momx*momx+momy*momy+momz*momz < 36,"TooSlow")
-TNT1 A 0 A_SpawnItemEx("BubbleFlood",0,0,56,momx/3,momy/3,momz/12,0,9,0)
+TNT1 A 0 A_GiveInventory("BubbleNeedsToTouchGrass",1)//A_GiveInventory("IsTreadingWater",1)
+TNT1 A 0 A_JumpIf(momx*momx+momy*momy+momz*momz < 14,"TooSlow")
+TNT1 A 0 A_SpawnItemEx("BubbleFlood",0,0,56,momx/2+1,momy/2+1,momz/4,0,9,0)
 fail
 TooSlow:
 TNT1 A 0 A_SpawnItemEx("BubbleFlood",0,0,56,0,0,0,0,1)
 fail
 Success2:
 TNT1 A 0 A_GiveInventory("BubbleFloodUndeploy",1)
+//TNT1 A 0 A_TakeInventory("BubbleFloodDeployed",1)
+fail
+No:
+TNT1 A 0
 fail
 }
 }
@@ -357,10 +437,9 @@ actor BubbleFloodDeployed : Inventory
 inventory.amount 1
 inventory.maxamount 1
 }
-actor BubbleFloodBusy : Inventory
+actor BubbleFloodBusy : Powerup
 {
-inventory.amount 1
-inventory.maxamount 1
+powerup.duration 11
 }
 actor BubbleFloodUndeploy : Inventory
 {
@@ -368,13 +447,21 @@ inventory.amount 1
 inventory.maxamount 1
 }
 
-actor BubbleFlood : BasicHelper
+actor BubbleFlood
 {
+Height 0
+Radius 0
++NOINTERACTION
+-SOLID
++NOGRAVITY
++MISSILE
++DONTBLAST
++THRUACTORS
 States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_PlaySoundEx("classes/FloodIn","Weapon")
+TNT1 A 0 A_PlaySoundEx("classes/FloodIn", "SoundSlot6")
 TNT1 A 0 A_TakeFromTarget("BubbleFloodUndeploy",1)
 TNT1 A 0 A_GiveToTarget("BubbleFloodDeployed",1)
 TNT1 A 0 A_GiveToTarget("BubbleFloodBusy",1)
@@ -383,131 +470,125 @@ TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner1",0,0,0,0,0,0,0,129)//SXF_CLIENTSIDE
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner1",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+//TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner1",0,0,0,0,0,0,0,129)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner1",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
-
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner2",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+//TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner1",0,0,0,0,0,0,0,129)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
 TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner2",0,0,0,0,0,0,0,129)
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner2",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+//TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner2",0,0,0,0,0,0,0,129)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,95)
+//TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner2",0,0,0,0,0,0,0,129)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+
 TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner3",0,0,0,0,0,0,0,129)
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,95)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner3",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+//TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner3",0,0,0,0,0,0,0,129)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,95)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner3",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+//TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner3",0,0,0,0,0,0,0,129)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,95)
 TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner4",0,0,0,0,0,0,0,129)
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,95)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner4",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+//TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner4",0,0,0,0,0,0,0,129)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,95)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner4",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+//TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner4",0,0,0,0,0,0,0,129)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,125)
 TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner5",0,0,0,0,0,0,0,129)
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,125)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner5",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+//TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner5",0,0,0,0,0,0,0,129)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,125)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner5",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+//TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner5",0,0,0,0,0,0,0,129)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,125)
 TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner6",0,0,0,0,0,0,0,129)
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,125)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner6",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+//TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner6",0,0,0,0,0,0,0,129)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,125)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner6",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+//TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner6",0,0,0,0,0,0,0,129)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,140)
 TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner7",0,0,0,0,0,0,0,129)
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,140)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner7",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+//TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner7",0,0,0,0,0,0,0,129)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,140)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner7",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+//TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner7",0,0,0,0,0,0,0,129)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,140)
 TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner8",0,0,0,0,0,0,0,129)
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,140)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner8",0,0,0,0,0,0,0,129)
+//TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner8",0,0,0,0,0,0,0,129)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+
+//TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner8",0,0,0,0,0,0,0,129)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+
+FullDeployedPre:
+TNT1 A 0 ACS_ExecuteAlways(212,0,0)
+TNT1 A 0 A_GiveToTarget("TreadingFlashDelay",1)
+TNT1 A 0 A_GiveToTarget("IsTreadingWater",1)
+TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawnerF1",0,0,0,0,0,0,0,129)
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
-
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,140)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner8",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
-
-TNT1 A 0 A_TakeFromTarget("BubbleFloodBusy",1)
-
+TNT1 A 0 A_JumpIfInTargetInventory("BubbleFloodUndeploy",1,"UnDeploy")
 FullDeployed1:
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,200)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawnerF1",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIfInTargetInventory("BubbleFloodUndeploy",1,"UnDeploy")
-
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,200)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawnerF1",0,0,0,0,0,0,0,129)
-TNT1 A 0 A_JumpIfInTargetInventory("BubbleFloodUndeploy",1,"UnDeploy")
-
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,200)
+TNT1 A 0 ACS_ExecuteAlways(212,0,0)
 TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawnerF1",0,0,0,0,0,0,0,129)
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 TNT1 A 0 A_JumpIfInTargetInventory("BubbleFloodUndeploy",1,"UnDeploy")
-
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,200)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawnerF2",0,0,0,0,0,0,0,129)
+FullDeployed2:
+TNT1 A 0 ACS_ExecuteAlways(212,0,0)
+TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawnerF1",0,0,0,0,0,0,0,129)
+TNT1 A 0 A_TakeFromTarget("BubbleFloodBusy",1)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 TNT1 A 0 A_JumpIfInTargetInventory("BubbleFloodUndeploy",1,"UnDeploy")
-
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,200)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawnerF2",0,0,0,0,0,0,0,129)
+FullDeployed3:
+TNT1 A 0 ACS_ExecuteAlways(212,0,0)
+TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawnerF1",0,0,0,0,0,0,0,129)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 TNT1 A 0 A_JumpIfInTargetInventory("BubbleFloodUndeploy",1,"UnDeploy")
-
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,200)
+FullDeployed4:
+TNT1 A 0 ACS_ExecuteAlways(212,0,0)
 TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawnerF2",0,0,0,0,0,0,0,129)
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 TNT1 A 0 A_JumpIfInTargetInventory("BubbleFloodUndeploy",1,"UnDeploy")
-
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,200)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawnerF3",0,0,0,0,0,0,0,129)
+FullDeployed5:
+TNT1 A 0 ACS_ExecuteAlways(212,0,0)
+TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawnerF2",0,0,0,0,0,0,0,129)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 TNT1 A 0 A_JumpIfInTargetInventory("BubbleFloodUndeploy",1,"UnDeploy")
-
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,200)
-TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawnerF3",0,0,0,0,0,0,0,129)
+FullDeployed6:
+TNT1 A 0 ACS_ExecuteAlways(212,0,0)
+TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawnerF2",0,0,0,0,0,0,0,129)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 TNT1 A 0 A_JumpIfInTargetInventory("BubbleFloodUndeploy",1,"UnDeploy")
-
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,0,200)
+FullDeployed7:
+TNT1 A 0 ACS_ExecuteAlways(212,0,0)
+TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawnerF3",0,0,0,0,0,0,0,129)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("BubbleFloodUndeploy",1,"UnDeploy")
+FullDeployed8:
+TNT1 A 0 ACS_ExecuteAlways(212,0,0)
+TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawnerF3",0,0,0,0,0,0,0,129)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("BubbleFloodUndeploy",1,"UnDeploy")
+FullDeployed9:
+TNT1 A 0 ACS_ExecuteAlways(212,0,0)
 TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawnerF3",0,0,0,0,0,0,0,129)
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 TNT1 A 0 A_JumpIfInTargetInventory("BubbleFloodUndeploy",1,"UnDeploy")
@@ -515,18 +596,19 @@ goto FullDeployed1
 
 UnDeploy:
 TNT1 A 0 A_SpawnItemEx("BubbleFloodOutSound")
+//TNT1 A 0 A_PlaySound("classes/FloodOut", CHAN_WEAPON , 1.0)
 
 TNT1 A 0 A_TakeFromTarget("BubbleFloodDeployed",1)
 TNT1 A 0 A_GiveToTarget("BubbleFloodBusy",1)
 
-TNT1 AAA 1 A_SpawnItemEx("BubbleFloodFXSpawner8",0,0,0,0,0,0,0,129)
-TNT1 AAA 1 A_SpawnItemEx("BubbleFloodFXSpawner7",0,0,0,0,0,0,0,129)
-TNT1 AAA 1 A_SpawnItemEx("BubbleFloodFXSpawner6",0,0,0,0,0,0,0,129)
-TNT1 AAA 1 A_SpawnItemEx("BubbleFloodFXSpawner5",0,0,0,0,0,0,0,129)
-TNT1 AAA 1 A_SpawnItemEx("BubbleFloodFXSpawner4",0,0,0,0,0,0,0,129)
-TNT1 AAA 1 A_SpawnItemEx("BubbleFloodFXSpawner3",0,0,0,0,0,0,0,129)
-TNT1 AAA 1 A_SpawnItemEx("BubbleFloodFXSpawner2",0,0,0,0,0,0,0,129)
-TNT1 AAA 1 A_SpawnItemEx("BubbleFloodFXSpawner1",0,0,0,0,0,0,0,129)
+TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner8",0,0,0,0,0,0,0,129)
+TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner7",0,0,0,0,0,0,0,129)
+TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner6",0,0,0,0,0,0,0,129)
+TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner5",0,0,0,0,0,0,0,129)
+TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner4",0,0,0,0,0,0,0,129)
+TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner3",0,0,0,0,0,0,0,129)
+TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner2",0,0,0,0,0,0,0,129)
+TNT1 A 1 A_SpawnItemEx("BubbleFloodFXSpawner1",0,0,0,0,0,0,0,129)
 
 Death:
 TNT1 A 0 A_TakeFromTarget("BubbleFloodBusy",1)
@@ -534,30 +616,36 @@ stop
 }
 }
 
-actor BubbleFloodOutSound : BasicHelper
+actor BubbleFloodOutSound : BubbleFlood
 {
 states
 {
 Spawn:
 TNT1 A 0
-TNT1 A 2 A_PlaySoundEx("classes/FloodOut","Weapon")
+TNT1 A 0 A_PlaySoundEx("classes/FloodOut", "SoundSlot6")
 stop
 }
 }
 
-actor BubbleFloodFXSpawner : BasicClientSide
+actor BubbleFloodFXSpawner
 {
+Height 0
+Radius 0
+- SOLID
++NOGRAVITY
++NOINTERACTION
++CLIENTSIDEONLY
 //+NONETID
 states
 {
-Spawn5c:
+spawn5c:
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",0,0,165,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",165,0,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",0,165,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",0,0,-165,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",-165,0,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",0,-165,0,0,0,0,0,129)
-Spawn4c:
+spawn4c:
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",105,105,-105,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",105,-105,-105,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",-105,105,-105,0,0,0,0,129)
@@ -566,14 +654,14 @@ TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",105,105,105,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",105,-105,105,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",-105,105,105,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",-105,-105,105,0,0,0,0,129)
-Spawn3c:
+spawn3c:
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",0,0,90,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",90,0,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",0,90,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",0,0,-90,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",-90,0,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",0,-90,0,0,0,0,0,129)
-Spawn2c:
+spawn2c:
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",60,60,-60,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",60,-60,-60,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",-60,60,-60,0,0,0,0,129)
@@ -582,18 +670,18 @@ TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",60,60,60,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",60,-60,60,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",-60,60,60,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX3",-60,-60,60,0,0,0,0,129)
-Spawn1c:
+spawn1c:
 TNT1 A 0
 stop
 
-Spawn5b:
+spawn5b:
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",0,0,165,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",165,0,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",0,165,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",0,0,-165,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",-165,0,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",0,-165,0,0,0,0,0,129)
-Spawn4b:
+spawn4b:
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",105,105,-105,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",105,-105,-105,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",-105,105,-105,0,0,0,0,129)
@@ -602,14 +690,14 @@ TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",105,105,105,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",105,-105,105,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",-105,105,105,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",-105,-105,105,0,0,0,0,129)
-Spawn3b:
+spawn3b:
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",0,0,90,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",90,0,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",0,90,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",0,0,-90,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",-90,0,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",0,-90,0,0,0,0,0,129)
-Spawn2b:
+spawn2b:
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",60,60,-60,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",60,-60,-60,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",-60,60,-60,0,0,0,0,129)
@@ -618,18 +706,18 @@ TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",60,60,60,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",60,-60,60,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",-60,60,60,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX2",-60,-60,60,0,0,0,0,129)
-Spawn1b:
+spawn1b:
 TNT1 A 0
 stop
 
-Spawn5a:
+spawn5a:
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",0,0,165,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",165,0,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",0,165,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",0,0,-165,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",-165,0,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",0,-165,0,0,0,0,0,129)
-Spawn4a:
+spawn4a:
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",105,105,-105,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",105,-105,-105,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",-105,105,-105,0,0,0,0,129)
@@ -638,14 +726,14 @@ TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",105,105,105,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",105,-105,105,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",-105,105,105,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",-105,-105,105,0,0,0,0,129)
-Spawn3a:
+spawn3a:
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",0,0,90,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",90,0,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",0,90,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",0,0,-90,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",-90,0,0,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",0,-90,0,0,0,0,0,129)
-Spawn2a:
+spawn2a:
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",60,60,-60,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",60,-60,-60,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",-60,60,-60,0,0,0,0,129)
@@ -654,7 +742,7 @@ TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",60,60,60,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",60,-60,60,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",-60,60,60,0,0,0,0,129)
 TNT1 A 0 A_SpawnItemEx("BubbleFloodFX1",-60,-60,60,0,0,0,0,129)
-Spawn1a:
+spawn1a:
 TNT1 A 0
 stop
 }
@@ -831,59 +919,66 @@ actor BubbleFloodFXMF : BubbleFloodFXM3{Alpha 0.21}
 actor BubbleFloodFXMG : BubbleFloodFXM1{Alpha 0.24}
 actor BubbleFloodFXMH : BubbleFloodFXM2{Alpha 0.27}
 
-actor InBubbleFlood_P : CustomInventory
+actor BubbleFloodPickup : CustomInventory
 {
 states
 {
 Pickup:
-TNT1 A 0 A_JumpIfInventory("PowerBubbleFlood",1,"Pickup2")
-TNT1 A 0 A_GiveInventory("BubbleFloodEnter_P")
-TNT1 A 0 A_SpawnItemEx("BubbleFloodExitWatcher")
+TNT1 A 0 A_JumpIfInventory("PowerFlood",1,"Pickup2")
+TNT1 A 0 A_GiveInventory("FloodEnter")
+TNT1 A 0 A_SpawnItemEx("FloodExitChecker")
 Pickup2:
-TNT1 A 0 A_GiveInventory("PowerBubbleFlood")
+TNT1 A 0 A_GiveInventory("PowerFlood")
 stop
 }
 }
 
 actor IsUnderBubbleWater : IsUnderWater {}
 
-actor BubbleFloodExitWatcher : BasicHelper
+actor FloodExitChecker
 {
+Height 0
+Radius 0
++NOINTERACTION
+-SOLID
++NOGRAVITY
++MISSILE
 states
 {
 Spawn:
 TNT1 A 0
-Spawn2:
 TNT1 A 1
-TNT1 A 0 A_JumpIfInTargetInventory("PowerBubbleFlood",1,"Spawn2")
-TNT1 A 0 A_GiveToTarget("BubbleFloodExit_P")
+TNT1 A 0 A_JumpIfInTargetInventory("PowerFlood",1,"Spawn")
+TNT1 A 0 A_GiveToTarget("FloodExit")
 stop
 }
 }
 
-actor BubbleFloodEnter_P : CustomInventory
+actor FloodEnter : CustomInventory
 {
 states
 {
 Pickup:
 TNT1 A 0 A_GiveInventory("IsUnderBubbleWater")
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,1,0)
+TNT1 A 0 ACS_ExecuteAlways(212,0,1)
 stop
 }
 }
 
-actor BubbleFloodExit_P : CustomInventory
+actor FloodExit : CustomInventory
 {
 states
 {
 Pickup:
 TNT1 A 0 A_TakeInventory("IsUnderBubbleWater")
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_BubbleFlood",0,2,0)
+TNT1 A 0 ACS_ExecuteAlways(212,0,2)
 stop
 }
 }
 
-actor PowerBubbleFlood : Powerup
+actor PowerFlood : PowerSpeed
 {
 powerup.duration 3
+Speed 0.8
++POWERSPEED.NOTRAIL
 }

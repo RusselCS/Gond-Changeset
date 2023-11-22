@@ -55,7 +55,7 @@ damagetype "SkullSniper"
 Obituary "$OB_SKULLSNIPER"
 +FORCEXYBILLBOARD
 +BRIGHT
-Damage (130)
+Damage (13)
 radius 8
 height 8
 Speed 150

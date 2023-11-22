@@ -130,7 +130,7 @@ DamageType "HyperStormBlaster"
 Obituary "$OB_HYPERSTORMBLASTER"
 +FORCEXYBILLBOARD
 +BRIGHT
-Damage (54)
+Damage (5)
 Radius 8
 Height 8
 speed 45

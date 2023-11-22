@@ -1,14 +1,15 @@
 actor Topman : ClassBase
 {
+Player.StartItem "IFMM03", 1
 Player.ScoreIcon "C_03E0X"
 player.displayname "Topman"
 player.soundclass "topmanc"
 
-player.maxhealth 850
-health 850
+player.maxhealth 85
+health 85
 player.jumpz 10
-player.forwardmove 1.1, 1.1
-player.sidemove 1.08, 1.08
+player.forwardmove 1.0, 1.0
+player.sidemove 0.98, 0.98
 
 player.startitem "TopSpinBoss"
 player.startitem "DiscoTopAmmo", 3

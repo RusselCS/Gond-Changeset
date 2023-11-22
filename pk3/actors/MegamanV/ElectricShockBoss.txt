@@ -18,7 +18,7 @@ C_0V E 1
 loop
 Ready:
 JUPH A 0 ACS_ExecuteAlways(998,0,DYE_JUPITER)
-JUPH A 0 A_GunFlash
+JUPH A 13 A_GunFlash
 goto Ready1
 
 Ready1:
@@ -84,30 +84,54 @@ JUPH D 4 A_WeaponReady(14)
 JUPH D 0 A_Refire("LaserHold")
 goto EndLaser
 LaserHold:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("JupiLags")==1,"HoldYourLagXD")
 JUPH D 0 A_JumpIfInventory("JupiterNeedsToLand",1,"EndLaser")
 JUPH D 0 A_SpawnItemEX("JupiterFXWarper1",0,0,42,0,0,0,0,1)
 JUPH D 0 A_GiveInventory("JupiterBigLaser_P")
-JUPH D 1 A_GiveInventory("JupiterLaser1_CI")
+JUPH E 1 A_GiveInventory("JupiterLaser1_CI")
 JUPH D 0 A_Refire("LaserHold.a")
 goto EndLaser
 LaserHold.a:
 JUPH D 0 A_JumpIfInventory("JupiterNeedsToLand",1,"EndLaser")
 JUPH D 0 A_SpawnItemEX("JupiterFXWarper2",0,0,42,0,0,0,0,1)
 JUPH D 0 A_GiveInventory("JupiterBigLaser_P")
-JUPH D 1 A_GiveInventory("JupiterLaser2_CI")
+JUPH F 1 A_GiveInventory("JupiterLaser2_CI")
 JUPH D 0 A_Refire("LaserHold.b")
 goto EndLaser
 LaserHold.b:
 JUPH D 0 A_JumpIfInventory("JupiterNeedsToLand",1,"EndLaser")
 JUPH D 0 A_SpawnItemEX("JupiterFXWarper3",0,0,42,0,0,0,0,1)
 JUPH D 0 A_GiveInventory("JupiterBigLaser_P")
-JUPH D 1 A_GiveInventory("JupiterLaser3_CI")
+JUPH G 1 A_GiveInventory("JupiterLaser3_CI")
 JUPH D 0 A_Refire("LaserHold")
 goto EndLaser
+
 EndLaser://EFG
 JUPH B 2 Offset(-14,39)
 JUPH A 1 A_WeaponReady(14)
 Goto Ready1
+
+HoldYourLagXD: 
+JUPH D 0 A_JumpIfInventory("JupiterNeedsToLand",1,"EndLaser")
+JUPH D 0 A_SpawnItemEX("JupiterFXWarper1",0,0,42,0,0,0,0,1)
+JUPH D 0 A_GiveInventory("JupiterBigLaser_PLAG")
+JUPH E 1 A_GiveInventory("JupiterLaser1_CI")
+JUPH D 0 A_Refire("LaserHold.aLAG")
+goto EndLaser
+LaserHold.aLAG:
+JUPH D 0 A_JumpIfInventory("JupiterNeedsToLand",1,"EndLaser")
+JUPH D 0 A_SpawnItemEX("JupiterFXWarper2",0,0,42,0,0,0,0,1)
+JUPH D 0 A_GiveInventory("JupiterBigLaser_PLAG")
+JUPH F 1 A_GiveInventory("JupiterLaser2_CI")
+JUPH D 0 A_Refire("LaserHold.bLAG")
+goto EndLaser
+LaserHold.bLAG:
+JUPH D 0 A_JumpIfInventory("JupiterNeedsToLand",1,"EndLaser")
+JUPH D 0 A_SpawnItemEX("JupiterFXWarper3",0,0,42,0,0,0,0,1)
+JUPH D 0 A_GiveInventory("JupiterBigLaser_PLAG")
+JUPH G 1 A_GiveInventory("JupiterLaser3_CI")
+JUPH D 0 A_Refire("LaserHold")
+goto EndLaser
 
 AltFire:
 JUPH A 0 A_JumpIfInventory("JupiterHovering",1,"HoverEnd")
@@ -256,6 +280,21 @@ stop
 }
 }
 
+actor JupiterCharge_WF : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("CutterFlag",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("JupiterCharge",2)
+stop
+}
+}
+
 actor JupiterAmmo_RC : CustomInventory
 {
 States
@@ -285,7 +324,7 @@ TNT1 A 0 A_JumpIf(momz<0,"PickupH")
 TNT1 A 0
 stop
 PickupH:
-TNT1 A 0 ThrustThingZ(0,3,1,0)
+TNT1 A 0 A_ChangeVelocity(momx,momy,-0.5,CVF_REPLACE)
 stop
 }
 }
@@ -395,7 +434,7 @@ stop
 
 actor Jupiter_BeamProtect : PowerProtection
 {
-Powerup.Duration 3
+Powerup.Duration 4
 damagefactor "Jupiter_Beam", 0.0
 }
 
@@ -409,13 +448,13 @@ DamageType "Jupiter_Beam"
 +DONTBLAST
 +DONTREFLECT
 +CLIENTSIDEONLY
-+FORCEXYBILLBOARD
+//+FORCEYBILLBOARD
 +BRIGHT
 +PAINLESS
 damage (0)
 Radius 8
 Height 8
-speed 0//30
+speed 0//34
 scale 1.5
 states
 {
@@ -487,17 +526,17 @@ stop
 actor JupiterBigLaser1Start : JupiterBigLaser1FX
 {
 +INVISIBLE
-Speed 30
+Speed 34
 }
 actor JupiterBigLaser2Start : JupiterBigLaser2FX
 {
 +INVISIBLE
-Speed 30
+Speed 34
 }
 actor JupiterBigLaser3Start : JupiterBigLaser3FX
 {
 +INVISIBLE
-Speed 30
+Speed 34
 }
 
 actor JupiterBigLaser1StartB : JupiterBigLaser1Start{Translation "202:202=205:205","199:199=74:74"}
@@ -588,21 +627,21 @@ actor JupiterBigLaser1Start_T : JupiterBigLaser1FX_T
 +INVISIBLE
 -CLIENTSIDEONLY
 +NONETID
-Speed 30
+Speed 34
 }
 actor JupiterBigLaser2Start_T : JupiterBigLaser2FX_T
 {
 +INVISIBLE
 -CLIENTSIDEONLY
 +NONETID
-Speed 30
+Speed 34
 }
 actor JupiterBigLaser3Start_T : JupiterBigLaser3FX_T
 {
 +INVISIBLE
 -CLIENTSIDEONLY
 +NONETID
-Speed 30
+Speed 34
 }
 
 actor JupiterBigLaser1Start_TB : JupiterBigLaser1Start_T{Translation "202:202=205:205","199:199=74:74"}
@@ -679,7 +718,7 @@ renderstyle none
 damage (0)
 Radius 8
 Height 8
-speed 30
+speed 34
 states
 {
 Spawn:
@@ -688,7 +727,7 @@ TNT1 A 0 A_SetPitch(pitch+1)
 TNT1 A 0 A_JumpIf(pitch>JUPITER_LASERRANGE,"Death")
 TNT1 A 0 A_SpawnItemEx("JupiterBigLaserDamager",0,0,0,momx,momy,momz,0,552)
 TNT1 A 0 A_Stop
-TNT1 A 1 A_Explode(20,28,0,0,28)
+TNT1 A 1 A_Explode(3,18,0,0,20)
 stop
 Death:
 TNT1 A 1
@@ -820,7 +859,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_Explode(90,256,0,0,32)
+TNT1 A 0 A_Explode(9,256,0,0,32)
 TNT1 A 0 A_SpawnItemEx("JupiterShockWaveFX_H",0,0,-20,0,0,0,0,1)
 TNT1 A 3
 stop
@@ -857,7 +896,7 @@ PROJECTILE
 Damage (0)
 Radius 2
 Height 2
-Speed 30
+Speed 34
 Scale 2.0
 States
 {
@@ -874,9 +913,10 @@ Translation "202:202=210:210","199:199=229:229"
 PROJECTILE
 damagetype "Jupiter_Shot"
 Obituary "$OB_JUPITERSHOCK"
-+FORCEXYBILLBOARD
 +BRIGHT
-damage (70)
++FORCEXYBILLBOARD
+reactiontime 10
+damage (7)
 radius 14
 height 14
 speed 40
@@ -884,15 +924,17 @@ scale 2.5
 states
 {
 Spawn:
-Y_VE D 0
-Y_VE DEDE 4
-stop
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SPAWNLOOP:
+Y_VE DE 4 A_CountDown
+loop
 }
 }
 
 actor JupiterSparkSlow : JupiterSpark
 {
-speed 32
+speed 36
 }
 
 actor JupiterSparkB : JupiterSpark{Translation "202:202=205:205","199:199=74:74"}
@@ -900,10 +942,10 @@ actor JupiterSparkR : JupiterSpark{Translation "202:202=171:171","199:199=41:41"
 actor JupiterSparkO : JupiterSpark{Translation "202:202=104:104","199:199=128:128"}
 actor JupiterSparkP : JupiterSpark{Translation "202:202=229:229","199:199=232:232"}
 
-actor JupiterSparkSlowB : JupiterSparkB{speed 32}
-actor JupiterSparkSlowR : JupiterSparkR{speed 32}
-actor JupiterSparkSlowO : JupiterSparkO{speed 32}
-actor JupiterSparkSlowP : JupiterSparkP{speed 32}
+actor JupiterSparkSlowB : JupiterSparkB{speed 36}
+actor JupiterSparkSlowR : JupiterSparkR{speed 36}
+actor JupiterSparkSlowO : JupiterSparkO{speed 36}
+actor JupiterSparkSlowP : JupiterSparkP{speed 36}
 
 actor JupiterMainfire_P : CustomInventory
 {
@@ -1090,5 +1132,41 @@ Done:
 TNT1 A 0 A_TakeInventory("Lit3Ammo",50,1)
 stop
 }
+}
+
+actor JupiterBigLaser_PLAG : CustomInventory
+{
+States
+{
+Pickup: 
+TNT1 A 0
+TNT1 A 0 A_FireBullets(0,0,1,0,"JupiBeamDamagePuffer",0,500)
+TNT1 A 0 A_JumpIfInventory("JupiterLaserSndDelay",1,"No")
+TNT1 A 0 A_PlaySound("weapon/jupiterlaser",1,0.5)
+TNT1 A 0 A_GiveInventory("JupiterLaserSndDelay",1)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+ACTOR JupiBeamDamagePuffer
+{
+  Obituary "$OB_JUPITERBEAM"
+  DamageType "Jupiter_Beam"
+  +NOBLOCKMAP 
+  +BLOODLESSIMPACT  
+  +PUFFGETSOWNER
+  +ALWAYSPUFF
+  +PUFFONACTORS
+  -ALLOWPARTICLES
+  States
+  {
+  Spawn: 
+    TNT1 A 0 
+    TNT1 A 5 A_Explode(3,18,0,0,20)
+    Stop
+  }
 }
 

@@ -205,17 +205,17 @@ stop
 
 actor MagnetMissileSpread : MagnetMissile
 {
-damage (200)//30
+damage (20)//30
 }
 
 actor DiveMissileSpread : DiveMissile
 {
-damage (80)//12
+damage (8)//12
 }
 
 actor HomingSniperSpread : HomingSniper
 {
-damage (120)//18
+damage (12)//18
 }
 
 actor CopyVision_Spread : CopyVision replaces CopyVision
@@ -274,12 +274,12 @@ goto ShootingBuff
 
 actor CopyShotSpread : CopyShot
 {
-Damage (90)//13
+Damage (9)//13
 }
 
 actor HornetChaserSpread : HornetChaser
 {
-damage (140)//20
+damage (14)//20
 }
 
 

@@ -1,17 +1,18 @@
 actor Ringman : ClassBase
 {
+Player.StartItem "IFMM04", 1
 Player.ScoreIcon "C_04E0X"
-player.displayname "Ringman"
+player.displayname "ringman"
 player.soundclass "ringmanc"
 
-player.maxhealth 850
-health 850
-player.jumpz 13
-player.forwardmove 0.8, 0.8
-player.sidemove 0.78, 0.78
-
 player.startitem "RingBoomerangBoss"
-player.startitem "AntiMegaManAmmo", 2
+player.startitem "RingBoomerangClassAmmo", 2
+player.startitem "WhopperRingAmmo", 14
+player.maxhealth 100
+health 100
+player.jumpz 13
+player.ForwardMove 0.8, 0.8
+Player.SideMove 0.78, 0.78
 
 player.startitem "PharaohShotWeakness2", 1
 

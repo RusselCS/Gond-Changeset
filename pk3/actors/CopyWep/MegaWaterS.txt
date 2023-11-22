@@ -209,17 +209,21 @@ actor MWSPushCopy : BasicExplosion//Same as MWSPush on MegaWaterS
 Translation "199:199=204:204","202:202=202:202"
 var int user_P;
 damagetype "MegaWaterBarrier"
-Obituary "$OB_MEGAWATERBARRIER"
+Obituary "$OB_MWSPUSH"
 States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_SetUserVar("user_P",CallACS("cbm_countinv_acs",305,2))//Max 60
-TNT1 AAAAA 0 A_SpawnItemEx("MWS_WaterSplashFX",random(-5,5),random(-5,5),-16,random(-5,5),random(-5,5),random(2,6),0,1)
-TNT1 AAAAA 0 A_SpawnItemEx("MWS_WaterSplashFX",random(-5,5),random(-5,5),0,random(-5,5),random(-5,5),random(2,6),0,1)
-TNT1 AAAAA 0 A_SpawnItemEx("MWS_WaterSplashFX",random(-5,5),random(-5,5),-16,random(-5,5),random(-5,5),random(2,6),0,1)
-TNT1 A 0 A_SpawnItemEx("MWSPushCopyFX_H",28,0,0,0,0,0,0,1)
-TNT1 A 4 A_Explode(user_P/6*25+120,user_P/6*20+199,0)
+TNT1 A 0 A_SetUserVar("user_P",1)
+TNT1 A 0 A_JumpIfInTargetInventory("MWSShieldCharge",user_P,"SpawnAdd")
+TNT1 A 1 A_Explode(user_P/6*2+9,user_P/6*20+199,0)
+stop
+SpawnAdd:
+TNT1 A 0 A_SetUserVar("user_P",user_P+1)
+TNT1 A 0 A_JumpIf(user_P>=300,"SpawnD")
+goto Spawn+2
+SpawnD:
+TNT1 A 1 A_Explode(50,500,0)
 stop
 }
 }

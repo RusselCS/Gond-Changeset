@@ -1,14 +1,15 @@
 actor Starman : ClassBase
 {
+Player.StartItem "IFMM05", 1
 Player.ScoreIcon "C_05E0X"
 player.displayname "Starman"
 player.soundclass "starmanc"
 
-player.maxhealth 1150
-health 1150
+player.maxhealth 115
+health 115
 player.jumpz 12
 player.forwardmove 0.75, 0.75
-player.sidemove 0.72, 0.72
+player.sidemove 0.73, 0.73
 gravity 0.7
 
 player.startitem "StarCrashBoss"

@@ -54,6 +54,8 @@ actor C_PSN6 : PowerUp{Powerup.Duration -6}
 
 //Bonus Damage
 
+//Bonus Damage
+
 actor WilyFireBurn_PSNFlag : OnceC{}
 actor WilyFireBurn_PSN : C_PSN2{}
 actor WilyFireBurn_PSN0 : C_PSN2{}//Online desync
@@ -225,6 +227,23 @@ stop
 }
 }
 
+actor PainGravityM_SlamHit : BasicSlamBase//Gravityman - this is the real one.
+{
+States
+{
+Collide:
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 2 A_SpawnItemEX("GravitySmackDownCollide",0,0,28,0,0,0,0,16384)
+TNT1 A 2
+stop
+CollideX:
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 2 A_SpawnItemEX("GravitySmackDownCollideX",0,0,28,0,0,0,0,16384)
+TNT1 A 2
+stop
+}
+}
+
 actor PainTenguM_SlamHit : BasicSlamBase//Tenguman
 {
 States
@@ -255,6 +274,26 @@ CollideX:
 TNT1 A 0 Thing_Move(0,user_HIT,1)
 TNT1 A 2 A_SpawnItemEX("G_TornadoSlamCollideX",0,0,28,0,0,0,0,16384)
 TNT1 A 2 A_TakeInventory("BeingTornadoM_Slammed",9,0,8)
+stop
+}
+}
+
+actor PainScrewCrusherMHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainScrewCrusherMHit_P",1)
+stop
+}
+}
+actor PainScrewCrusherMHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("PunkMeleeStopPickup",1)
 stop
 }
 }
@@ -291,6 +330,19 @@ actor PainDuo_RamHit : PainBaseFlingHit{Mass 32}
 actor PainDuo_MeteorHit : PainBaseFlingHit{Mass 40}
 actor DeathDuo_RamHit : DeathBaseFlingHit{Mass 36}
 actor DeathDuo_MeteorHit : DeathBaseFlingHit{Mass 44}
+actor PainKnightBonkHit : PainBaseFlingHit{Mass 12}
+actor PainProtoShieldBashHit : PainBaseFlingHit{Mass 28}
+actor PainBassKickHit : PainBaseFlingHit{Mass 32}
+actor PainBassKickHitEx : PainBaseFlingHit{Mass 48}
+actor PainMaestroAquaGuts : PainBaseFlingHit{Mass 6}
+actor PainBounceBopHit : PainBaseFlingHit{Mass 10}
+actor PainBounceBopXHit : PainBaseFlingHit{Mass 20}
+actor PainTerra_MeleeHit : PainBaseFlingHit{Mass 10}
+actor SolarVentHit : PainBaseFlingHit{Mass 16}
+actor PainDarkM_TankHit : PainBaseFlingHit{Mass 5}
+actor PainTorchM_PushHit : PainBaseFlingHit{Mass 48}
+actor DeathBounceM_PushHit : DeathBaseFlingHit{Mass 60}
+actor DeathBounceM_PullHit : DeathBaseFlingHit{Mass -60}
 
 actor DeathLightRyu_ShoryuHit : DeathBaseFlingHit{Mass 15}
 
@@ -298,8 +350,8 @@ actor DeathLightRyu_ShinShoryuHit : DeathBaseFlingHit{Mass 35}
 
 actor PainMagnetM_PushHit : BasicHitBaseF//MagHitKai
 {
-Mass 1
-states
+Mass 20
+States
 {
 Spawn:
 TNT1 A 0
@@ -308,28 +360,32 @@ Spawn2:
 TNT1 A 0
 TNT1 A 0 A_SetUserVar("user_HIT", ACS_ExecuteWithResult(257,0))
 TNT1 A 0 A_TransferPointer(2,0,2,2)
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_JaxFlingAway",0,ACS_ExecuteWithResult(257,0),user_HIT,Mass+2.5*CallACS("cbm_countinv_acs",31,2))
+TNT1 A 0 ACS_NamedExecuteAlways("CBM_JaxFlingAway",0,ACS_ExecuteWithResult(257,0),user_HIT,Mass+0.75*CallACS("cbm_countinv_acs",31,2))
 stop
 }
 }
-actor DeathMagnetM_PushHit : PainMagnetM_PushHit{Mass 5 states{Spawn:goto Spawn2}}
+actor DeathMagnetM_PushHit : PainMagnetM_PushHit{Mass 40 states{Spawn:goto Spawn2}}
 
 actor PainSkullM_BarrierHit : PainBaseFlingHit{Mass 32}
 actor DeathSkullM_BarrierHit : DeathBaseFlingHit{Mass 36}
 
-actor PainDM3_SnipeHit : PainBaseFlingHit{Mass 11}
-actor DeathDM3_SnipeHit : DeathBaseFlingHit{Mass 19}
+//actor PainDM3_SnipeHit : PainBaseFlingHit{Mass 11} anon... no
+//actor DeathDM3_SnipeHit : DeathBaseFlingHit{Mass 19}
 
 actor DeathBlizzardM_BowlHit : DeathBaseFlingHit{Mass 60}
 
 actor PainKnightM_PushHit : PainBaseFlingHit{Mass 8}
 actor DeathKnightM_PushHit : DeathBaseFlingHit{Mass 30}
 
-actor PainWindM_PullHit : PainBaseFlingHit{Mass -16}
+actor PainConcreteShoulderHit : PainBaseFlingHit{Mass 30}
+
+actor PainPharaohPunchHit : PainBaseFlingHit{Mass 20}
+
+actor PainWindM_PullHit : PainBaseFlingHit{Mass -24}
 
 actor PainWindM_PushHit : BasicHitBaseF
 {
-Mass 10
+Mass 1
 states
 {
 Spawn:
@@ -360,6 +416,52 @@ actor DeathJupiter_PushHit : DeathBaseFlingHit{Mass 31}
 
 actor DeathUranus_LiftHit : DeathBaseFlingHit{Mass 40}
 
+actor PainStrikeBallHit : PainBaseFlingHit
+{
+mass 40
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainStrikeBallHit_P",1)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainStrikeBallHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("StrikeHitTarget",1)
+stop
+}
+}
+
+actor PainStrikeBallHit2 : PainBaseFlingHit
+{
+mass 40
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainStrikeBallHit2_P",1)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainStrikeBallHit2_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("ReboundStrikerPower",4)
+stop
+}
+}
+
+actor PainDarkTankHit : PainBaseFlingHit{Mass 5}
+
 actor PainMegaWaterBarrierHit : BasicHitBaseF
 {
 Mass 10
@@ -381,14 +483,51 @@ actor DeathMegaWaterBarrierHit : PainMegaWaterBarrierHit{Mass 14 states{Spawn:go
 actor PainHyperStormBlasterHit : PainBaseFlingHit{Mass 7}
 actor DeathHyperStormBlasterHit : DeathBaseFlingHit{Mass 27}
 
-actor PainEnker_PushHit : PainBaseFlingHit{Mass 22}
+actor PainEnker_PushHit : PainBaseFlingHit{Mass 12}
 actor DeathEnker_PushHit : DeathBaseFlingHit{Mass 44}
 
 actor PainRaThorThrowHit : PainBaseFlingHit{Mass 64}
 
-actor PainYellowDevilPHit : PainBaseFlingHit{Mass 77}
-actor DeathYellowDevilPHit : DeathBaseFlingHit{Mass 81}
+actor PainYellowDevilPHit : PainBaseFlingHit{Mass 20}
+actor DeathYellowDevilPHit : DeathBaseFlingHit{Mass 80}
 
+actor PainBounceM_PullHit : BasicHitBaseF
+{
+Mass -4
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("TempPitProtect_P",1)
+Spawn2:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_HIT", ACS_ExecuteWithResult(257,0))
+TNT1 A 0 A_TransferPointer(2,0,2,2)
+TNT1 A 0 A_SetMass(ACS_NamedExecuteWithResult("CBM_FetchDistance")*-0.035)
+//TNT1 A 0 A_logint(ACS_NamedExecuteWithResult("CBM_FetchDistance")*-0.025)//Simply for testing, delete before going live
+TNT1 A 0 ACS_NamedExecuteAlways("CBM_JaxFlingAway",0,ACS_ExecuteWithResult(257,0),user_HIT,Mass)
+stop//current pull strength is set by mass, which is normally -16 for WindM_Pull
+}
+}
+
+actor PainBounceM_Pull2Hit : BasicHitBaseF
+{
+Mass -2
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("TempPitProtect_P",1)
+Spawn2:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_HIT", ACS_ExecuteWithResult(257,0))
+TNT1 A 0 A_TransferPointer(2,0,2,2)
+TNT1 A 0 A_SetMass(ACS_NamedExecuteWithResult("CBM_FetchDistance")*-0.0175)
+//TNT1 A 0 A_logint(ACS_NamedExecuteWithResult("CBM_FetchDistance")*-0.025)//Simply for testing, delete before going live
+TNT1 A 0 ACS_NamedExecuteAlways("CBM_JaxFlingAway",0,ACS_ExecuteWithResult(257,0),user_HIT,Mass)
+stop//current pull strength is set by mass, which is normally -16 for WindM_Pull
+}
+}
 
 
 
@@ -525,6 +664,27 @@ TNT1 A 0 A_GiveToTarget("BBA_Money",16)
 stop
 }
 }
+
+actor PainDocR_BusterHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainDocR_BusterHit_P",1)
+stop
+}
+}
+actor PainDocR_BusterHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("DocVirusAmmo",10)
+stop
+}
+}
+
 
 actor PainToadM_LeapHit : BasicHitBase
 {
@@ -864,9 +1024,8 @@ actor PainSolarM_HeadHit_P : CustomInventory
 States
 {
 Pickup:
-TNT1 A 0 A_GiveToTarget("SunAmmo",25)
 TNT1 A 0 A_GiveToTarget("SolarInfernoAmmo",11)
-TNT1 A 0 A_TakeFromTarget("SolarM_AmmoDrainDelay")
+//TNT1 A 0 A_TakeFromTarget("SolarM_AmmoDrainDelay")
 stop
 }
 }
@@ -961,7 +1120,27 @@ actor PainHSH_DrainHit_P : CustomInventory
 States
 {
 Pickup:
-TNT1 A 0 A_GiveToTarget("Health",10)
+TNT1 A 0 A_GiveToTarget("Health",1)
+stop
+}
+}
+
+actor KillHSH_DrainHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("KillHSH_DrainHit_P",1)
+stop
+}
+}
+actor KillHSH_DrainHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("Health",2)
 stop
 }
 }

@@ -1,14 +1,12 @@
 actor CentaurFlashBoss : BaseMM8BDMWep_CBM
 {
 tag "$TAGC_6B"
-dropitem "CentaurmanWepDroppedX"
+dropitem "CentaurmanDropX"
 Weapon.AmmoUse 0
-Weapon.AmmoUse2 18
 Weapon.AmmoGive 28
 Obituary "$OB_CENTAURFLASH"
 Inventory.Pickupmessage "You got the Centaur Buster!"
-weapon.ammotype "ClipClopAmmo"
-weapon.ammotype2 "ClipClopAmmo"
+weapon.ammotype "CentaurAmmo"
 States
 {
 Spawn:
@@ -19,141 +17,164 @@ CENB A 0 ACS_ExecuteAlways(998,0,DYE_CENTAURMAN)
 CENB A 0 A_GunFlash
 goto Ready1
 Ready1:
-CENB A 0 A_JumpIfInventory("ClipClopAmmo",18,"Ready2")
-CENB A 4 A_WeaponReady(8)
-CENB A 0 A_JumpIfInventory("WarpGo",1,"Ready1a")
-CENB A 0 A_GiveInventory("ClipClopAmmo",1)
-CENB A 0
+CENB A 0 A_JumpIfInventory("CentaurAmmo",18,"Ready2")
+CENB A 5 A_WeaponReady(WRF_NOSECONDARY)
+CENB A 0 A_GiveInventory("CentaurAmmo",1)
 loop
-Ready1a:
-CENB A 1 A_WeaponReady(8)
-CENB A 0 A_JumpIfInventory("WarpGo",1,"Ready1a")
-CENB A 0 A_GiveInventory("ClipClopAmmo",1)
-goto Ready1
 Ready2:
-CENB A 4 A_WeaponReady
-CENB A 0 A_JumpIfInventory("WarpGo",1,"Ready1a")
-CENB A 0 A_GiveInventory("ClipClopAmmo",1)
-CENB A 0
+CENB A 5 A_WeaponReady
+CENB A 0 A_GiveInventory("CentaurAmmo",1)
 loop
-
 Deselect:
-CENB AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
 CENB A 1 A_Lower
 Loop
 Select:
-CENB AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 CENB A 1 A_Raise
 Loop
-
 Fire:
-CENB A 0 A_JumpIfInventory("IsBot",1,"BotFire")
-CENB A 0 A_PlaySoundEx("weapon/CentShot","Weapon")
-CENB B 2 A_GiveInventory("CentaurmanMain_CI",1)
-CENB B 2 A_GiveInventory("ClipClopAmmo",1)
-CENB C 4
-CENB A 9
+TNT1 A 0 A_JumpIfInventory("IsBot",1,"BotFire")
+CENB B 0 A_GiveInventory("CentaurmanMainPickup_CI",1)
+CENB A 1
+CENB BC 2
+CENB CB 1
+CENB A 10
 goto Ready1
 AltFire:
-CENB A 0 A_JumpIfInventory("WarpGo",1,"NoAmmo")
+CENB A 0 A_JumpIfInventory("WarpGo",1,"Ready1")
+CENB A 0 A_JumpIfInventory("CentaurAmmo",18,"CFlash")
+goto Ready1
+CFlash:
 CENB A 0 A_GiveInventory("VivifyDelay5",1)
 CENB A 0 A_Refire(1)
-CENB A 0 A_PlaySoundEx("weapon/centaurflash","Body")
+CENB A 0 A_PlaySoundEx("weapon/centaurflash","SoundSlot7")
 CENB A 0 A_GiveInventory("Repulsion",1)
-CENB A 0 A_FireCustomMissile("CentaurmanFlashCC",0,0,0,0)
+CENB A 1 A_FireCustomMissile("CentaurFlashCC",0,0,0,0)
 CENB A 0 A_GiveInventory("CentaurmanAlt_CI",1)
-CENB A 5 A_SetBlend(white,0.95,5)
-CENB A 10
+CENB D 1 offset(12,22)
+CENB F 1 offset(24,12)
+CENB D 1 offset(36,2)
+CENB E 1 offset(48,-10)
+CENB E 1 offset(60,-18)
+CENB E 1 offset(72,-34)
+CENB E 1 offset(72,-34)
+CENB E 1 offset(60,-18)
+CENB E 1 offset(48,-10)
+CENB F 1 offset(36,2)
+CENB F 1 offset(24,12)
+CENB F 1 offset(12,22)
+CENB A 1
 Goto Ready1
 NoAmmo:
 CENB A 0
 Goto Ready1
+
 Flash:
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-TNT1 A 0 A_JumpIfInventory("WarpGo",1,"Flash.CentWarp")
+TNT1 A 0 A_JumpIfInventory("WarpGo",1,"Warp")
 TNT1 A 1
 loop
-Flash.CentWarp:
-TNT1 A 0 A_GiveInventory("CentaurWarpStart_P",1)
-TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+Warp:
+TNT1 A 0 A_JumpIfInventory("CentaurAmmo",14,"Warp2")
+TNT1 A 0 A_TakeInventory("WarpGo",1)
+TNT1 A 1
+goto Flash
+Warp2:
+TNT1 A 0 A_PlaySoundEx("weapon/portin","SoundSlot6")
+TNT1 A 0 A_ChangeFlag("CANTSEEK",1)
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"Warp2_R")
 TNT1 A 1 A_SetTranslucent(0.9,0)
+TNT1 A 0 A_TakeInventory("CentaurAmmo",14)
 TNT1 A 1 A_SetTranslucent(0.8,0)
-TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
 TNT1 A 1 A_SetTranslucent(0.7,0)
 TNT1 A 1 A_SetTranslucent(0.6,0)
-TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
 TNT1 A 1 A_SetTranslucent(0.5,0)
 TNT1 A 1 A_SetTranslucent(0.4,0)
-TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
 TNT1 A 1 A_SetTranslucent(0.3,0)
 TNT1 A 1 A_SetTranslucent(0.2,0)
-TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
 TNT1 A 1 A_SetTranslucent(0.1,0)
-TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-TNT1 A 0 A_TakeInventory("UnSolid",99)
-TNT1 A 0 A_ChangeFlag("SOLID",0)
-TNT1 A 0 A_ChangeFlag("THRUSPECIES",1)
+goto Warp3
+Warp2_R:
+TNT1 A 0 A_TakeInventory("CentaurAmmo",14)
+TNT1 A 1 A_SetTranslucent(0.8,0)
+TNT1 A 1 A_SetTranslucent(0.6,0)
+TNT1 A 1 A_SetTranslucent(0.4,0)
+TNT1 A 1 A_SetTranslucent(0.2,0)
+goto Warp3
+Warp3:
 TNT1 A 1 A_SetTranslucent(0.0,0)
 TNT1 A 0 A_Stop
-TNT1 A 1 A_ChangeVelocity(cos(pitch)*500,0,-sin(pitch)*500,3)//A_Recoil(-500)
+//TNT1 A 0 A_ChangeFlag("FLOORHUGGER", 1)
+TNT1 A 0 A_JumpIfInventory("ImpairmentStack",1,"Warp3I")
+TNT1 A 1 A_Recoil(-500)
+//TNT1 A 0 A_ChangeVelocity(momx*0.25,momy*0.25,momz,2)
 TNT1 A 1 A_Stop
-TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-TNT1 A 0 A_ChangeFlag("THRUSPECIES",0)
-TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
-TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+goto WarpEnd
+Warp3I:
+TNT1 A 1 A_Recoil(-500*ACS_NamedExecuteWithResult("ImpairmentACS")/100)
+//TNT1 A 0 A_ChangeVelocity(momx*0.25,momy*0.25,momz,2)
+TNT1 A 1 A_Stop
+goto WarpEnd
+WarpEnd:
+//TNT1 A 0 A_ChangeFlag("FLOORHUGGER", 0)
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"WarpEnd_R")
 TNT1 A 1 A_SetTranslucent(0.1,0)
-TNT1 A 0 A_TakeInventory("WarpGo",1)
-TNT1 A 0 A_PlaySoundEx("weapon/portout","SoundSlot7")
+TNT1 A 0 A_PlaySoundEx("weapon/portout","SoundSlot6")
 TNT1 A 1 A_SetTranslucent(0.2,0)
-TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
 TNT1 A 1 A_SetTranslucent(0.3,0)
 TNT1 A 1 A_SetTranslucent(0.4,0)
-TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
 TNT1 A 1 A_SetTranslucent(0.5,0)
 TNT1 A 1 A_SetTranslucent(0.6,0)
-TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
 TNT1 A 1 A_SetTranslucent(0.7,0)
 TNT1 A 1 A_SetTranslucent(0.8,0)
-TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
 TNT1 A 1 A_SetTranslucent(0.9,0)
-TNT1 A 0 A_GiveInventory("CentaurWarpEnd_P",1)
+goto WarpEnd2
+WarpEnd_R:
+TNT1 A 1 A_SetTranslucent(0.2,0)
+TNT1 A 0 A_PlaySoundEx("weapon/portout","SoundSlot6")
+TNT1 A 1 A_SetTranslucent(0.4,0)
+TNT1 A 1 A_SetTranslucent(0.6,0)
+TNT1 A 1 A_SetTranslucent(0.8,0)
+goto WarpEnd2
+WarpEnd2:
+TNT1 A 0 A_ChangeFlag("CANTSEEK",0)
+TNT1 A 0 A_TakeInventory("WarpGo",1)
 TNT1 A 1 A_SetTranslucent(1.0,0)
 goto Flash
 
 BotFire:
 CENB A 0 A_JumpIfCloser(1000,2)
-CENB A 0 A_JumpIfInventory("ClipClopAmmo",28,"BotFireWarp")
-CENB A 0 A_JumpIfInventory("ClipClopAmmo",18,"BotFireAlt")
-CENB A 0 A_JumpIfInventory("ClipClopAmmo",10,"BotFire2")
+CENB A 0 A_JumpIfInventory("CentaurAmmo",28,"BotFireWarp")
+CENB A 0 A_JumpIfInventory("CentaurAmmo",18,"BotFireAlt")
+CENB A 0 A_JumpIfInventory("CentaurAmmo",10,"BotFire2")
 CENB A 0 A_GiveInventory("BotRetreatFlag",1)
 CENB A 0 A_Jump(128,"BotFireRetreat")
 BotFireWait:
-CENB A 4
-CENB A 0 A_GiveInventory("ClipClopAmmo",random(1,2))
+CENB A 5
+CENB A 0 A_GiveInventory("CentaurAmmo",random(1,2))
 CENB A 0 A_TakeInventory("BotRetreatFlag",999)
 Goto Ready1
 BotFire2:
 TNT1 A 0 A_Jump(128,"BotFireWait")
 goto Fire+1
 BotFireRetreat:
-CENB A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+CENB A 0 A_PlaySoundEx("weapon/centaurarrowshot","Weapon")
 CENB A 0 A_FireCustomMissile("CentaurShot",0,0,8,0)
 CENB BC 4
 CENB A 9
 CENB A 0 A_TakeInventory("BotRetreatFlag",999)
 goto Ready1
 BotFireAlt:
-TNT1 A 0 A_JumpIfCloser(500,1)
+TNT1 A 0 A_JumpIfCloser(500,"CFlash")
 goto Fire+1
-TNT1 A 0 A_TakeInventory("ClipClopAmmo",18)
-goto AltFire
 BotFireWarp:
 TNT1 A 0 A_GiveInventory("WarpGo",1)
 goto Fire+1
 }
 }
 
-actor ClipClopAmmo : Ammo
+actor CentaurAmmo : Ammo
 {
 inventory.amount 1
 inventory.maxamount 28
@@ -162,18 +183,21 @@ inventory.maxamount 28
 
 actor WarpGo : OnceC{}
 
-actor WarpItem : BasicClassItem
+actor WarpItem : CustomInventory
 {
+inventory.amount 1
+inventory.maxamount 1
 inventory.icon "CentIcon"
+scale 2.0
 inventory.pickupmessage "I hope no one realizes I'm really a girl... Oh, Knight Man..."
-Tag "Perform Centuar Warp"
++INVBAR
 states
 {
 Spawn:
-CENB Z 1
+CENI A 1
 loop
 Use:
-TNT1 A 0 A_JumpIfInventory("ClipClopAmmo",14,"Use2")
+TNT1 A 0 A_JumpIfInventory("CentaurAmmo",14,"Use2")
 fail
 Use2:
 TNT1 A 0 A_GiveInventory("WarpGo",1)
@@ -182,104 +206,110 @@ fail
 }
 
 
-actor CentaurWarpStart_P : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 A_PlaySoundEx("weapon/portin","SoundSlot7")
-TNT1 A 0 ACS_NamedExecuteAlways("core_cantseekplayer",0,0,true)
-TNT1 A 0 A_TakeInventory("ClipClopAmmo",14,1)
-stop
-}
-}
-actor CentaurWarpEnd_P : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 ACS_NamedExecuteAlways("core_cantseekplayer",0,0,false)
-TNT1 A 0 A_TakeInventory("WarpGo",1)
-stop
-}
-}
-
 actor CentaurShot
 {
-Translation "204:204=210:210"
+Translation "192:192=4:4","198:198=110:110","204:204=210:210"
 PROJECTILE
 damagetype "CentaurM_Shot"
 Obituary "$OB_CENTAURBUSTER"
 +SKYEXPLODE
-+EXPLODEONWATER
 +FORCEXYBILLBOARD
-+BRIGHT
-Damage (160)
+Damage (16)
 radius 7
 height 7
 Speed 35
-scale 2.5
+scale 3
 States
 {
 Spawn:
-TNT1 A 2
-CENB E 1
-wait
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+XH0N RRSS 1 A_SpawnItemEx("CentaurShotFX",0,0,0,0,0,0,0,1)
+loop
 XDeath:
 Crash:
 TNT1 A 1
 stop
 Death:
-TNT1 A 0 A_SpawnItemEx("CentaurShotBit",0,0,0,28,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("CentaurShotBit",0,0,0,28,0,0,180,1)
-TNT1 A 0 A_SpawnItemEx("CentaurShotBit",0,0,0,28,0,0,-90,1)
-TNT1 A 0 A_SpawnItemEx("CentaurShotBit",0,0,0,28,0,0,-135,1)
-TNT1 A 0 A_SpawnItemEx("CentaurShotBit",0,0,0,28,0,0,90,1)
-TNT1 A 0 A_SpawnItemEx("CentaurShotBit",0,0,0,28,0,0,135,1)
-TNT1 A 0 A_SpawnItemEx("CentaurShotBit",0,0,0,28,0,0,45,1)
-TNT1 A 0 A_SpawnItemEx("CentaurShotBit",0,0,0,28,0,0,-45,1)
-TNT1 A 1
+TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,31.5,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,31.5,0,0,180,1)
+TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,31.5,0,0,-90,1)
+TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,31.5,0,0,-135,1)
+TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,31.5,0,0,90,1)
+TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,31.5,0,0,135,1)
+TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,31.5,0,0,45,1)
+TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,31.5,0,0,-45,1)
+TNT1 A 1 A_SpawnItemEx("HardKnuckleFX",0,0,0,0,0,0)
 stop
 }
 }
 
-actor CentaurShotB : CentaurShot{translation "204:204=205:205"}
-actor CentaurShotR : CentaurShot{translation "204:204=171:171"}
-actor CentaurShotO : CentaurShot{translation "204:204=104:104"}
-actor CentaurShotP : CentaurShot{translation "204:204=229:229"}
-
-actor CentaurShotBit : CentaurShot
+actor CentaurShotFX : BasicClientside
 {
-Damage (100)
-radius 6
-height 6
-Speed 28
+//Translation "192:192=108:108", "198:198=110:110"
+alpha 0.7
+scale 2.5
++NOINTERACTION
++FORCEXYBILLBOARD
 States
 {
 Spawn:
-CENB E 14
-stop
-Death:
 TNT1 A 1
-stop
+Fade:
+XH0N RS 2 A_FadeOut(0.1)
+loop
 }
 }
+
+actor CentaurShotB : CentaurShot{translation "192:192=4:4","198:198=74:74","204:204=205:205"}
+actor CentaurShotR : CentaurShot{translation "192:192=4:4","198:198=41:41","204:204=171:171"}
+actor CentaurShotO : CentaurShot{translation "192:192=4:4","198:198=128:128","204:204=104:104"}
+actor CentaurShotP : CentaurShot{translation "192:192=4:4","198:198=232:232","204:204=229:229"}
 
 actor CentaurShot2 : CentaurShot
 {
+Obituary "$OB_CENTAURBUSTER"
+Translation "204:204=210:210"
+Damage (10)
+radius 6
+height 6
+Speed 35
+//+FORCEXYBILLBOARD
 States
 {
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+CENX E 14
 Death:
 TNT1 A 1
 stop
 }
 }
-actor CentaurShot2B : CentaurShot2{translation "204:204=205:205"}
-actor CentaurShot2R : CentaurShot2{translation "204:204=171:171"}
-actor CentaurShot2O : CentaurShot2{translation "204:204=104:104"}
-actor CentaurShot2P : CentaurShot2{translation "204:204=229:229"}
 
-actor CentaurmanFlash : BasicExplosion
+actor CentaurShot3 : CentaurShot2
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+CENX E 1
+loop
+Death:
+TNT1 A 1 A_SpawnItemEx("HardKnuckleFX",0,0,0,0,0,0)
+stop
+}
+}
+
+actor CentaurShot3B : CentaurShot3{translation "204:204=205:205"}
+actor CentaurShot3R : CentaurShot3{translation "204:204=171:171"}
+actor CentaurShot3O : CentaurShot3{translation "204:204=104:104"}
+actor CentaurShot3P : CentaurShot3{translation "204:204=229:229"}
+
+actor CentaurFlashC : BasicExplosion
 {
 Translation "192:192=4:4"
 Obituary "$OB_CENTAURFLASH"
@@ -288,47 +318,33 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_SpawnItemEx("CentaurmanFlashRingFX",0,0,0,0,0,0,random(0,35),1)
-TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("CentaurmanFlashFX",0,0,28,22,0,random2(256/12),random(0,359),1)
-TNT1 A 2 A_Explode(100,512,0,0,48)
+TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("CentaurFlashCFX",0,0,28,22,0,random2(256/12),random(0,359),1)
+TNT1 A 2 A_Explode(10,512,0,0,48)
 stop
 }
 }
 
-actor CentaurmanFlashB : CentaurmanFlash{translation "192:192=205:205"}
-actor CentaurmanFlashR : CentaurmanFlash{translation "192:192=171:171"}
-actor CentaurmanFlashO : CentaurmanFlash{translation "192:192=104:104"}
-actor CentaurmanFlashP : CentaurmanFlash{translation "192:192=229:229"}
+actor CentaurFlashCB : CentaurFlashC{translation "192:192=205:205"}
+actor CentaurFlashCR : CentaurFlashC{translation "192:192=171:171"}
+actor CentaurFlashCO : CentaurFlashC{translation "192:192=104:104"}
+actor CentaurFlashCP : CentaurFlashC{translation "192:192=229:229"}
 
-actor CentaurmanFlashCC : BasicExplosion
+actor CentaurFlashCC : BasicExplosion
 {
 damagetype "CentaurM_Shock"
+Obituary "$OB_CENTAURFLASHX"
 States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 2 A_Explode(20,256,0,0,256)
+TNT1 A 2 A_Explode(2,256,0,0,256)
 stop
 }
 }
 
-actor CentaurmanFlashRingFX : BasicClientSide
-{
-Reactiontime 10
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 A 0 A_SpawnItemEx("CentaurmanFlashFX",32,0,0,10,0,frandom(-1,1),Reactiontime*36,1)
-TNT1 A 0 A_Countdown
-loop
-}
-}
-
-actor CentaurmanFlashFX : BasicClientSide
+actor CentaurFlashCFX : BasicClientSide
 {
 +FORCEXYBILLBOARD
-+BRIGHT
 States
 {
 Spawn:
@@ -338,16 +354,33 @@ stop
 }
 }
 
-actor CentaurmanWepDroppedX : BasicHelper
+actor CentaurmanDropX : BasicHelper
 {
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_Jump(256,1,2)
-TNT1 A 1 A_SpawnItemEx("CentaurFlashWepCDropped",0,0,0,momx,momy,momz,0,8)
+TNT1 A 1 A_SpawnItemEx("CentaurFlashWepCDropped")
 stop
-TNT1 A 1 A_SpawnItemEx("CentaurArrowWepCDropped",0,0,0,momx,momy,momz,0,8)
+TNT1 A 1 A_SpawnItemEx("CentaurArrowWepCDropped")
+stop
+}
+}
+
+actor CentaurmanMainPickup_CI : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("CentaurAmmo",2,"Pickup2")
+TNT1 A 0 A_GiveInventory("CentaurmanMain2_CI")
+CENB A 0 A_PlaySoundEx("weapon/CentShot","Weapon")
+stop
+Pickup2:
+TNT1 A 0 A_GiveInventory("CentaurmanMain_CI")
+CENB A 0 A_PlaySoundEx("weapon/centaurarrowshot","Weapon")
+CENB B 0 A_TakeInventory("CentaurAmmo",2)
 stop
 }
 }
@@ -357,40 +390,41 @@ actor CentaurmanMain_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("CentaurShot",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("CentaurShot",0,0,8,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("CentaurShotB",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("CentaurShotB",0,0,8,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("CentaurShotR",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("CentaurShotR",0,0,8,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("CentaurShotO",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("CentaurShotO",0,0,8,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("CentaurShotP",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("CentaurShotP",0,0,8,0)
 goto Done
 }
 }
+
 actor CentaurmanMain2_CI : TeamColor_CI
 {
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("CentaurShot2",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("CentaurShot3",0,0,8,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("CentaurShot2B",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("CentaurShot3B",0,0,8,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("CentaurShot2R",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("CentaurShot3R",0,0,8,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("CentaurShot2O",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("CentaurShot3O",0,0,8,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("CentaurShot2P",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("CentaurShot3P",0,0,8,0)
 goto Done
 }
 }
@@ -400,19 +434,22 @@ actor CentaurmanAlt_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("CentaurmanFlash",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("CentaurFlashC",0,0,0,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("CentaurmanFlashB",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("CentaurFlashCB",0,0,0,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("CentaurmanFlashR",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("CentaurFlashCR",0,0,0,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("CentaurmanFlashO",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("CentaurFlashCO",0,0,0,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("CentaurmanFlashP",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("CentaurFlashCP",0,0,0,0)
 goto Done
+Done:
+TNT1 A 0 A_TakeInventory("CentaurAmmo",18)
+stop
 }
 }

@@ -1,26 +1,27 @@
 actor SniperJoe : ClassBase
 {
+Player.StartItem "IFMM00", 1
 Player.ScoreIcon "C_00J0X"
 player.displayname "SniperJoe"
 player.soundclass "sniperjoec"
 
-player.maxhealth 1000
-health 1000
+player.maxhealth 100
+health 100
 player.jumpz 10
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78
 
-player.startitem "SniperJoeBoss"
-player.startitem "AverageJoeAmm", 3
-player.startitem "JoeUpgradeAmmo", 2
-player.startitem "MachineGunJoeBoss"
-player.startitem "ContraJoeAmmo", 56
 player.startitem "CanKillStreak"
 player.startitem "JoeKillStreakItem"
 
+player.startitem "SniperJoeBoss"
+player.startitem "JoeAmmo", 25
+player.startitem "JoeUpgradeAmmo", 105
+player.startitem "MachineGunJoeBoss"
++NOSKIN
+
 player.weaponslot 1, "SniperJoeBoss"
 player.weaponslot 2, "MachineGunJoeBoss"
-+NOSKIN
 States
 {
 Spawn:
@@ -47,6 +48,13 @@ SNIP F 4
 SNIP G 4
 goto Spawn+2
 
+CustomState1:
+SNIP J 4
+Goto CustomState1
+CustomState2:
+SNIP K 8
+Goto Spawn+2
+
 ARunB:
 SNIP B 2
 Goto Missile+4
@@ -60,14 +68,17 @@ ARunE:
 SNIP E 2
 Goto Missile+4
 ARunF:
-SNIP E 2 A_TakeInventory("JoeTruckDashFlag",7)
+SNIP E 2 A_TakeInventory("JoeTruckDashFlag",99)
 Goto Missile+4
 
 ClassPain:
 SNIP H 0
 goto PainContinue
-ClassDeath:
+DeathFix:
 SNIP H 0//JoeSelectTruckFlag
+goto DeathContinue
+ClassDeath:
+SNIP H 0
 goto DeathContinue
 }
 }

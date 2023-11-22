@@ -1,10 +1,10 @@
 actor MagicCardBoss : BaseMM8BDMWep_CBM 
 {
-tag "$TAGC_BF"
+Tag "$TAGC_BF"
 dropitem "MagicCardWepCDropped"
-Weapon.AmmoUse 100
+Weapon.AmmoUse 0
 Weapon.AmmoGive 600
-Obituary "$OB_FAKEMAGICCARD"//$OB_MAGICCARD
+Obituary "$OB_MAGICCARD"
 Inventory.Pickupmessage "Magic... away!"
 weapon.ammotype "SnortSnortAmmo"
 inventory.icon "MAGII"
@@ -12,7 +12,8 @@ States
 {
 Spawn:
 C_0B F 1
-loop//MCAR X 1
+loop
+
 Ready:
 MGCH A 0 ACS_ExecuteAlways(998,0,DYE_MAGICMAN)
 MGCH A 0 //A_GunFlash
@@ -47,20 +48,34 @@ MGCH A 2 Offset(23,43)A_GiveInventory("SnortSnortAmmo",4)
 MGCH A 2 Offset(13,37)A_GiveInventory("SnortSnortAmmo",4)
 MGCH A 2 Offset(7,35)A_GiveInventory("SnortSnortAmmo",4)
 Goto Ready1//24
+
 AltFire:
 MGCH A 1 Offset(-20,29)A_GiveInventory("SnortSnortAmmo",2)
-MGCH A 0 A_PlaySound("weapon/MagicM_Orb",1,0.70)
-MGCH A 0 A_GiveInventory("MagicmanMain2_CI",1)
-MGCH BCAA 2 Offset(-40,13)A_GiveInventory("SnortSnortAmmo",4)
+MGCH A 0 A_PlaySound("weapon/MagicM_Orb",6,0.70)
+MGCH A 0 A_GiveInventory("MagicmanMainCBM_CI",1)
+MGCH BCBA 2 Offset(-40,13)A_GiveInventory("SnortSnortAmmo",4)
 MGCH A 2 Offset(-28,15)A_GiveInventory("SnortSnortAmmo",4)
 MGCH A 2 Offset(-16,18)A_GiveInventory("SnortSnortAmmo",4)
 MGCH A 2 Offset(-9,22)A_GiveInventory("SnortSnortAmmo",4)
 MGCH A 2 Offset(-3,27)A_GiveInventory("SnortSnortAmmo",4)
 Goto Ready1//17
 
+Altfire_R:
+MGCH A 0 A_PlaySoundEx("weapon/magiccard","Weapon")
+TNT1 A 0 A_GiveInventory("MagicmanMain2_CI",1)
+TNT1 A 0 A_GiveInventory("MagicmanMain3_CI",1)
+MGCH BCBAA 1 A_GiveInventory("SnortSnortAmmo",4)
+goto Ready1
+
 Flash.Fire:
-TNT1 A 1
-MGCH JKLMNO 2
+TNT1 A 0 A_GiveInventory("MagicCardCooldown_RC",1)
+MGCH A 0 A_JumpIfInventory("PowerRage_ST",1,"Flash_Mainfire_R")
+MGCH DEFGHIJK 1
+TNT1 A 5
+stop
+Flash_Mainfire_R:
+MGCH DFHK 1
+TNT1 A 3
 stop
 
 BotFire:
@@ -183,6 +198,12 @@ inventory.maxamount 600
 +INVENTORY.IGNORESKILL
 }
 
+actor MagicCardCooldown : Powerup
+{
++INVENTORY.ADDITIVETIME
+Powerup.Duration 11
+}
+
 actor MagicBallEnd : OnceC{}
 actor MagicBallEndFix : OnceC{}
 actor MagicBallCooldown : Powerup
@@ -191,6 +212,23 @@ Powerup.Duration 35
 }
 actor FakeMagicFlag : OnceC{}
 
+actor MagicCardCooldown_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("MagicCardCooldown",1)
+goto PickupR
+PickupR:
+TNT1 A 0 A_GiveInventory("MagicCardCooldown",1)
+TNT1 A 0 A_TakeInventory("SnortSnortAmmo",100)
+stop
+}
+}
+
+
 actor MagicBallThrow_P : CustomInventory
 {
 States
@@ -198,7 +236,7 @@ States
 Pickup:
 TNT1 A 0 A_TakeInventory("MagicBallEndFix",99)
 TNT1 A 0 A_TakeInventory("MagicBallEnd",99)
-TNT1 A 0 A_TakeInventory("SnortSnortAmmo",300,1)
+TNT1 A 0 A_TakeInventory("SnortSnortAmmo",300)
 stop
 }
 }
@@ -236,6 +274,8 @@ States
 {
 Spawn:
 X_BH A 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 X_BH A 0 A_RearrangePointers(0,0,2)
 X_BH AA 1 A_SpawnItemEx("MagicCardDamagerB",0,0,0,momx,momy,momz,0,8+32)
 X_BH BBCCCCCC 1 A_SpawnItemEx("MagicCardDamagerB",0,0,0,momx,momy,momz,0,8+32)
@@ -280,19 +320,118 @@ actor MagicCardBR : MagicCardB{translation "192:192=171:171","198:198=41:41"}
 actor MagicCardBO : MagicCardB{translation "192:192=104:104","198:198=128:128"}
 actor MagicCardBP : MagicCardB{translation "192:192=229:229","198:198=232:232"}
 
-
-actor MagicCardDamagerB
+actor MagicCard2B : MagicCardB
 {
-PROJECTILE
+States
+{
+Spawn:
+X_BH M 0
+X_BH M 0 A_RearrangePointers(0,0,2)
+X_BH AA 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
+X_BH BBCCCCCC 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
+X_BH P 0 A_ScaleVelocity(0.5)
+X_BH DD 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
+X_BH P 0 A_ScaleVelocity(0.5)
+X_BH EE 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
+X_BH Q 0 A_ScaleVelocity(-2.0)
+X_BH FF 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
+goto Spawn2
+Spawn2:
+X_BH N 0
+X_BH N 0 A_FaceTarget
+goto Spawn3
+Spawn3:
+X_BH N 0
+X_BH N 0 A_JumpIfCloser(64,"Death")
+X_BH NN 0 A_SeekerMissile(90,90,2)
+X_BH BB 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
+X_BH N 0 A_JumpIfCloser(64,"Death")
+X_BH CC 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
+X_BH O 0 A_JumpIfCloser(64,"Death")
+X_BH DD 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
+X_BH P 0 A_JumpIfCloser(64,"Death")
+X_BH EE 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
+X_BH Q 0 A_JumpIfCloser(64,"Death")
+X_BH FF 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
+X_BH R 0 A_JumpIfCloser(64,"Death")
+
+X_BH N 0 A_CountDown
+X_BH N 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+}
+}
+
+actor MagicCard2BB : MagicCard2B{translation "192:192=205:205","198:198=74:74"}
+actor MagicCard2BR : MagicCard2B{translation "192:192=171:171","198:198=41:41"}
+actor MagicCard2BO : MagicCard2B{translation "192:192=104:104","198:198=128:128"}
+actor MagicCard2BP : MagicCard2B{translation "192:192=229:229","198:198=232:232"}
+
+actor MagicCardBF : MagicCardB
+{
+translation "192:192=216:216","198:198=3:3"
+States
+{
+Spawn:
+X_BH M 0
+X_BH M 0 A_RearrangePointers(0,0,2)
+X_BH MM 1 A_SpawnItemEx("MagicCardDamagerBF",0,0,0,momx,momy,momz,0,8)
+X_BH NNOOOOOO 1 A_SpawnItemEx("MagicCardDamagerBF",0,0,0,momx,momy,momz,0,8)
+X_BH P 0 A_ScaleVelocity(0.5)
+X_BH PP 1 A_SpawnItemEx("MagicCardDamagerBF",0,0,0,momx,momy,momz,0,8)
+X_BH P 0 A_ScaleVelocity(0.5)
+X_BH QQ 1 A_SpawnItemEx("MagicCardDamagerBF",0,0,0,momx,momy,momz,0,8)
+X_BH Q 0 A_ScaleVelocity(-2.0)
+X_BH RR 1 A_SpawnItemEx("MagicCardDamagerBF",0,0,0,momx,momy,momz,0,8)
+goto Spawn2
+Spawn2:
+X_BH N 0 A_FaceTarget
+goto Spawn3
+Spawn3:
+X_BH N 0
+X_BH N 0 A_JumpIfCloser(64,"Death")
+X_BH NN 0 A_SeekerMissile(90,90,2)
+X_BH NN 1 A_SpawnItemEx("MagicCardDamagerBF",0,0,0,momx,momy,momz,0,8)
+X_BH N 0 A_JumpIfCloser(64,"Death")
+X_BH OO 1 A_SpawnItemEx("MagicCardDamagerBF",0,0,0,momx,momy,momz,0,8)
+X_BH O 0 A_JumpIfCloser(64,"Death")
+X_BH PP 1 A_SpawnItemEx("MagicCardDamagerBF",0,0,0,momx,momy,momz,0,8)
+X_BH P 0 A_JumpIfCloser(64,"Death")
+X_BH QQ 1 A_SpawnItemEx("MagicCardDamagerBF",0,0,0,momx,momy,momz,0,8)
+X_BH Q 0 A_JumpIfCloser(64,"Death")
+X_BH RR 1 A_SpawnItemEx("MagicCardDamagerBF",0,0,0,momx,momy,momz,0,8)
+X_BH R 0 A_JumpIfCloser(64,"Death")
+
+X_BH N 0 A_CountDown
+X_BH N 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+Death:
+X_BH M 0
+Stop
+}
+}
+
+
+actor MagicCardBFB : MagicCardBF{translation "192:192=205:205","198:198=74:74"}
+actor MagicCardBFR : MagicCardBF{translation "192:192=171:171","198:198=41:41"}
+actor MagicCardBFO : MagicCardBF{translation "192:192=104:104","198:198=128:128"}
+actor MagicCardBFP : MagicCardBF{translation "192:192=229:229","198:198=232:232"}
+
+actor MagicCardDamagerB : MagicCardDamager
+{
 Damagetype "MagicM_Card" 
-Obituary "$OB_MAGICCARD"
-+THRUGHOST
-+DONTBLAST
-+DONTSPLASH
-RenderStyle None
-Damage (90)
-radius 16
-height 8
+Damage (6)
+States
+{
+Spawn:
+TNT1 A 1
+stop
+}
+}
+
+actor MagicCardDamager2B : MagicCardDamager
+{
+Damagetype "MagicM_Card2" 
+Damage (6)
 States
 {
 Spawn:
@@ -307,15 +446,29 @@ Powerup.Duration 5
 DamageFactor "MagicM_Card", 0.0
 }
 
+actor MagicM_Card2Protect : PowerProtection
+{
+Powerup.Duration 5
+DamageFactor "MagicM_Card2", 0.0
+}
+
+actor MagicCardDamagerBF : MagicCardDamagerB
+{
+Damagetype "MagicCardBF"
+Obituary "$OB_FAKEMAGICCARD"
+Damage (1)
++PIERCEARMOR
+}
 
 actor MagicM_OrbShot
 {
 Translation "204:204=197:197", "195:195=241:241", "250:250=229:229", "249:249=109:109"
 PROJECTILE
++HEXENBOUNCE
 Damagetype "MagicM_Orb"
 Obituary "$OB_MAGICBALL"
 ReactionTime 7
-Damage (110)
+Damage (9)
 Radius 14
 Height 20
 Speed 40
@@ -324,6 +477,8 @@ states
 {
 Spawn:
 MGB9 Q 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
 MGB9 Q 0
 MGB9 QR 2 A_SpawnItemEx("MagicM_OrbShotFX1",random(-8,2),random(-18,18),random(-18,18),momx*0.25,momy*0.25,momz*0.25,0,9)
 MGB9 Q 0 A_CountDown
@@ -368,14 +523,14 @@ stop
 
 actor MagicBall
 {
+translation "199:199=176:176","202:202=218:218"
 PROJECTILE
-Damagetype "MagicM_Ball"
+Damagetype "MagicCard"
 Obituary "$OB_MAGICBALL"
 +DONTBLAST
 +DONTREFLECT
 +THRUGHOST
 +SKYEXPLODE
-+EXPLODEONWATER
 -NOGRAVITY
 Gravity 0.50
 ReactionTime 60
@@ -408,7 +563,7 @@ TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
 TNT1 A 0 A_GiveToTarget("MagicBallEnd",1)
 TNT1 A 0 //A_GiveToTarget("MagicBallPickupSync2",1)
 TNT1 A 0 //A_PlaySound("weapon/napalm",1,1.0)
-TNT1 A 0 A_SpawnItemEx("MagicBallFirework",0,0,9,0,0,12,0,1)
+TNT1 A 0 A_SpawnItemEx("MagicFirework",0,0,9,0,0,12)
 TNT1 A 0 A_SpawnItemEx("MagicBallFX",0,0,0,0,0,0,0,1)
 TNT1 A 0 A_JumpIfInTargetInventory("FakeMagicFlag",1,"Death2")
 TNT1 A 0 A_SpawnItemEx("MagicBallExplosion",0,0,16)
@@ -450,17 +605,17 @@ stop
 
 actor MagicBallExplosion : BasicExplosion
 {
-Damagetype "MagicM_Ball"
+Damagetype "DMGNoHitstun"//ClassPain
 Obituary "$OB_MAGICBALL"
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_JumpIfInTargetInventory("PowerSpread_ST",1,"Spawn_S")
-TNT1 A 2 A_Explode(180,64,0,0,18)
+TNT1 A 2 A_Explode(18,64,0,0,18)
 stop
 Spawn_S:
-TNT1 AAA 0 A_Explode(180,64,0,0,18)
+TNT1 AAA 0 A_Explode(18,64,0,0,18)
 TNT1 A 2
 stop
 }
@@ -492,8 +647,51 @@ stop
 }
 }
 
-actor MagicBallFX : BasicClientSide
+actor MagicBallB : MagicBall{translation "199:199=74:74","202:202=205:205"}
+actor MagicBallR : MagicBall{translation "199:199=41:41","202:202=171:171"}
+actor MagicBallO : MagicBall{translation "199:199=128:128", "202:202=104:104"}
+actor MagicBallP : MagicBall{translation "199:199=232:232", "202:202=229:229"}
+
+actor MagicFirework
 {
+-SOLID
++NOGRAVITY
++NOINTERACTION
+scale 2.5
+States
+{
+Spawn:
+DOMP G 2
+DOMP G 0 A_Stop
+DOMP H 4 A_SpawnItemEx("MagicFireworkExp",random(-15,15),random(-15,15),10)
+DOMP H 4 A_SpawnItemEx("MagicFireworkExp",random(-15,15),random(-15,15),0)
+DOMP H 4 A_SpawnItemEx("MagicFireworkExp",random(-15,15),random(-15,15),-10)
+stop
+}
+}
+
+actor MagicFireworkExp
+{
+-SOLID
+scale 2.0
++NOGRAVITY
++NOINTERACTION
+States
+{
+Spawn:
+DOMP IJKLMN 4
+stop
+}
+}
+
+actor MagicBallFX
+{
+-SOLID
++NOGRAVITY
++NOINTERACTION
+Scale 2.5
+radius 0
+height 0
 States
 {
 Spawn:
@@ -508,43 +706,13 @@ stop
 }
 }
 
-actor MagicBallFirework : BasicExplosion
-{
-scale 2.5
-States
-{
-Spawn:
-X_4A G 0
-X_4A GH 2
-X_4A I 0 A_Stop
-X_4A I 0 A_SpawnItemEx("MagicBallFireworkFX",random(-15,15),random(-15,15),10,0,0,0,0,1)
-X_4A IJ 2
-X_4A I 0 A_SpawnItemEx("MagicBallFireworkFX",random(-15,15),random(-15,15),0,0,0,0,0,1)
-X_4A IJ 2
-X_4A I 0 A_SpawnItemEx("MagicBallFireworkFX",random(-15,15),random(-15,15),-10,0,0,0,0,1)
-X_4A IJK 2
-stop
-}
-}
-actor MagicBallFireworkFX : BasicClientSide
-{
-scale 2.0
-States
-{
-Spawn:
-TMFX D 4
-MGB9 JKLMN 4
-stop
-}
-}
-
 actor MagicBirdsSound : BasicHelper
 {
 States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 2 A_PlaySound("weapon/MagicBirds",1,1.0)
+TNT1 A 0 A_PlaySound("weapon/MagicBirds",1,1.0)
 stop
 }
 }
@@ -557,7 +725,7 @@ Obituary "$OB_MAGICBIRD"
 +DONTSEEKINVISIBLE//
 +SEEKERMISSILE
 reactiontime 10
-damage (30)
+damage (3)
 Radius 6
 Height 5
 speed 19
@@ -565,6 +733,8 @@ scale 2.0
 States
 {
 Spawn:
+TNT1 AA 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 TNT1 A 1
 TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12)
 Spawn2:
@@ -578,17 +748,22 @@ stop
 }
 }
 
-actor ConfettiMagicSpawner : BasicHelper
+actor ConfettiMagic : Confetti
+{
++THRUGHOST
+}
+
+actor ConfettiMagicSpawner : ConfettiSpawner
 {
 ReactionTime 10//10
 States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_PlaySoundEx("misc/partyball",1)
+TNT1 A 1 A_PlaySoundEx("misc/partyball", 1)
 goto Spawn2
 Spawn2:
-TNT1 AAA 0 A_SpawnItemEx("MagicMDeath_Confetti",random(-16,16),random(-16,16),Random(8,16),random(-3,3),random(-3,3),random(1,-1),0,1)
+TNT1 AAA 0 A_SpawnItemEx("ConfettiMagic",random(-16, 16),random(-16, 16),Random(8, 16),random(-3,3), random(-3,3), random(1,-1),0)
 TNT1 A 1 A_CountDown
 Loop
 }
@@ -599,7 +774,7 @@ actor ConfettiPickup : CustomInventory
 states
 {
 Pickup:
-TNT1 A 0 A_SpawnItemEx("ConfettiMagicSpawner",0,0,28,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("ConfettiMagicSpawner",0,0,28)
 stop
 }
 }
@@ -734,24 +909,74 @@ actor MagicmanMain1_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("MagicCardB",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("MagicCardB",0,1,0,15)
+TNT1 A 0 A_FireCustomMissile("MagicCard2B",0,1,0,-15)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("MagicCardBB",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("MagicCardBB",0,1,0,15)
+TNT1 A 0 A_FireCustomMissile("MagicCard2BB",0,1,0,-15)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("MagicCardBR",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("MagicCardBR",0,1,0,15)
+TNT1 A 0 A_FireCustomMissile("MagicCard2BR",0,1,0,-15)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("MagicCardBO",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("MagicCardBO",0,1,0,15)
+TNT1 A 0 A_FireCustomMissile("MagicCard2BO",0,1,0,-15)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("MagicCardBP",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("MagicCardBP",0,1,0,15)
+TNT1 A 0 A_FireCustomMissile("MagicCard2BP",0,1,0,-15)
 goto Done
 }
 }
 
 actor MagicmanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("MagicCardBF",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("MagicCardBFB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("MagicCardBFR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("MagicCardBFO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("MagicCardBFP",0,0,0,0)
+goto Done
+}
+}
+
+
+actor MagicmanMain3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("MagicCardBF",(random(0,1)*2-1)*random(1,10),0,0,0,0,(random(0,1)*2-1)*random(1,10))
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("MagicCardBFB",(random(0,1)*2-1)*random(1,10),0,0,0,0,(random(0,1)*2-1)*random(1,10))
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("MagicCardBFR",(random(0,1)*2-1)*random(1,10),0,0,0,0,(random(0,1)*2-1)*random(1,10))
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("MagicCardBFO",(random(0,1)*2-1)*random(1,10),0,0,0,0,(random(0,1)*2-1)*random(1,10))
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("MagicCardBFP",(random(0,1)*2-1)*random(1,10),0,0,0,0,(random(0,1)*2-1)*random(1,10))
+goto Done
+}
+}
+
+actor MagicmanMainCBM_CI : TeamColor_CI
 {
 states
 {

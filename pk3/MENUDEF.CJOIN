@@ -110,6 +110,8 @@ OptionMenu CBM_JoinMenuSelect
 	StaticText""
 	Option "$M_G10", "playerclass", "CBM_ClassStrings10"
 	StaticText""
+	Option "$M_G11", "playerclass", "CBM_ClassStrings11"
+	StaticText""
 	Option "$M_GV", "playerclass", "CBM_ClassStringsV"
 	StaticText""
 	Option "$M_GWT", "playerclass", "CBM_ClassStringsWT"
@@ -152,6 +154,8 @@ OptionMenu CBM_JoinMenuSelectT
 	StaticText""
 	Option "$M_G10", "playerclass", "CBM_ClassStrings10"
 	StaticText""
+	Option "$M_G11", "playerclass", "CBM_ClassStrings11"
+	StaticText""
 	Option "$M_GV", "playerclass", "CBM_ClassStringsV"
 	StaticText""
 	Option "$M_GWT", "playerclass", "CBM_ClassStringsWT"
@@ -186,6 +190,7 @@ OptionString CBM_ClassStrings1
 "Elecman", "Elecman"
 "Timeman", "Timeman"
 "Oilman", "Oilman"
+"YellowDevil", "Yellow Devil"
 "Random", "Random"
 }
 OptionString CBM_ClassStrings2
@@ -212,6 +217,7 @@ OptionString CBM_ClassStrings3
 "Sparkman", "Sparkman"
 "Shadowman", "Shadowman"
 "DocRobot", "DocRobot"
+"GreenDevil", "Breakman"//bumo bumo?
 "Random", "Random"
 }
 OptionString CBM_ClassStrings4
@@ -299,10 +305,20 @@ OptionString CBM_ClassStrings10
 "Pumpman", "Pumpman"
 "Commandoman", "Commandoman"
 "Chillman", "Chillman"
-//"Sheepman", "Sheepman"
-//"Strikeman", "Strikeman"
+"Sheepman", "Sheepman"
+"Strikeman", "Strikeman"
 "Nitroman", "Nitroman"
 "Solarman", "Solarman"
+"Random", "Random"
+}
+OptionString CBM_ClassStrings11
+{
+"Fuseman", "Fuseman"
+"Blastman", "Blastman"
+"Acidman", "Acidman"
+"Tundraman", "Tundraman"
+"Torchman", "Torchman"
+"Bounceman", "Bounceman"
 "Random", "Random"
 }
 OptionString CBM_ClassStringsB
@@ -323,11 +339,11 @@ OptionString CBM_ClassStringsV
 "Venus", "Venus"
 "Mars", "Mars"
 "Jupiter", "Jupiter"
-//"Saturn", "Saturn"
+"Saturn", "Saturn"
 "Uranus", "Uranus"
 "Pluto", "Pluto"
 "Neptune", "Neptune"
-//"Sunstar", "Sunstar"
+"Sunstar", "Sunstar"
 "Random", "Random"
 }
 OptionString CBM_ClassStringsWT
@@ -369,6 +385,7 @@ OptionString CBM_ClassStrings
 "Elecman", "Elecman"
 "Timeman", "Timeman"
 "Oilman", "Oilman"
+"YellowDevil", "Yellow Devil"
 
 "Metalman", "Metalman"
 "Airman", "Airman"
@@ -463,8 +480,8 @@ OptionString CBM_ClassStrings
 "Pumpman", "Pumpman"
 "Commandoman", "Commandoman"
 "Chillman", "Chillman"
-//"Sheepman", "Sheepman"
-//"Strikeman", "Strikeman"
+"Sheepman", "Sheepman"
+"Strikeman", "Strikeman"
 "Nitroman", "Nitroman"
 "Solarman", "Solarman"
 
@@ -473,11 +490,18 @@ OptionString CBM_ClassStrings
 "Venus", "Venus"
 "Mars", "Mars"
 "Jupiter", "Jupiter"
-//"Saturn", "Saturn"
+"Saturn", "Saturn"
 "Uranus", "Uranus"
 "Pluto", "Pluto"
 "Neptune", "Neptune"
-//"Sunstar", "Sunstar"
+"Sunstar", "Sunstar"
+
+"Fuseman", "Fuseman"
+"Blastman", "Blastman"
+"Acidman", "Acidman"
+"Tundraman", "Tundraman"
+"Torchman", "Torchman"
+"Bounceman", "Bounceman"
 
 "BusterRodG", "BusterRod G"
 "MegaWaterS", "MegaWater S"

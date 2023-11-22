@@ -57,7 +57,7 @@ damagetype "WaveBuster"
 Obituary "$OB_WAVEBUSTER"
 +FORCEXYBILLBOARD
 +BRIGHT
-damage (160)
+damage (16)
 Radius 10
 Height 10
 speed 10

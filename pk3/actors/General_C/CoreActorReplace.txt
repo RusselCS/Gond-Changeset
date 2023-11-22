@@ -1,11 +1,11 @@
-actor CBM_SmallHealth : BaseMM8BDMItem replaces SmallHealth
+actor CBM_SmallHealth : CustomInventory replaces SmallHealth
 {
 inventory.pickupmessage "$PU_SMALLHEALTH"
 +COUNTITEM
 Scale 2.0
 States
 {
-SpawnLoop://Spawn
+Spawn:
 HBAL AB 6
 loop
 Pickup:
@@ -22,14 +22,14 @@ stop
 }
 }
 
-actor CBM_BigHealth : BaseMM8BDMItem replaces BigHealth
+actor CBM_BigHealth : CustomInventory replaces BigHealth
 {
 inventory.pickupmessage "$PU_LARGEHEALTH"
 +COUNTITEM
 Scale 2.0
 States
 {
-SpawnLoop://Spawn
+Spawn:
 HBAL CD 6
 loop
 Pickup:
@@ -108,18 +108,18 @@ stop
 }
 }
 
-actor CBM_MegaHealth : BaseMM8BDMItem replaces MegaHealth
+actor CBM_MegaHealth : CustomInventory replaces MegaHealth
 {
 inventory.pickupmessage "Picked up a mega health capsule."
 +COUNTITEM
 Scale 2.0
 States
 {
-SpawnLoop://Spawn
+Spawn:
 HBAL E 0
 HBAL E 0 Thing_ChangeTID(0,999)
 HBAL EF 6
-Goto SpawnLoop+2//Spawn
+Goto Spawn+2
 Pickup:
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(CBM_FetchMyHealth,2),"HealMe")
 TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
@@ -306,7 +306,8 @@ Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:
 Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
 Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:
 Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:
-Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:
+Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:Pain.ChillM_Freeze:Pain.ChillSpikeClass:
+Pain.TundraM_Glacier:Pain.TundraM_Slow:Pain.TundraM_Tornado:
 TNT1 A 0
 goto Pain.IceSlasher
 }
@@ -327,7 +328,8 @@ Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:
 Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
 Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:
 Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:
-Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:
+Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:Pain.ChillSpikeClass:
+Pain.TundraM_Glacier:Pain.TundraM_Slow:Pain.TundraM_Tornado:
 TERU A 0
 goto Pain.FreezeCracker
 
@@ -385,7 +387,7 @@ States
 Death:
 BALA A 0 A_Stop
 BALA A 0 A_PlaySoundEx("weapon/crackerexplode", "Weapon")
-BALA A 0 A_Explode(480,160,1)
+BALA A 0 A_Explode(48,160,1)
 TNT1 A 35 A_SpawnItemEx("ExplosionEffect2")
 stop
 }
@@ -405,7 +407,8 @@ Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:
 Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
 Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:
 Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:
-Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:
+Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:Pain.ChillSpikeClass:
+Pain.TundraM_Glacier:Pain.TundraM_Slow:Pain.TundraM_Tornado:
 "----" A 0
 goto Pain.IceSlasher
 }
@@ -416,7 +419,7 @@ States
 {
 Pain.ChillShot:Pain.ChillSpike:
 Pain.MegaIceBall:Pain.IceM_Slasher:Pain.IceM_Slow:Pain.IceM_Slow2:Pain.IceM_Icicle:Pain.IceM_Sculpt:Pain.DrWily_Ice:Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
-Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:
+Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:Pain.ChillSpikeClass:Pain.TundraM_Glacier:Pain.TundraM_Slow:Pain.TundraM_Tornado:
 "----" A 0
 goto Pain.IceSlasher
 }
@@ -427,7 +430,7 @@ States
 {
 Pain.ChillShot:Pain.ChillSpike:
 Pain.MegaIceBall:Pain.IceM_Slasher:Pain.IceM_Slow:Pain.IceM_Slow2:Pain.IceM_Icicle:Pain.IceM_Sculpt:Pain.DrWily_Ice:Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
-Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:
+Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:Pain.ChillSpikeClass:Pain.TundraM_Glacier:Pain.TundraM_Slow:Pain.TundraM_Tornado:
 "----" A 0
 goto Pain.IceSlasher
 }
@@ -439,7 +442,7 @@ States
 {
 Pain.ChillShot:Pain.ChillSpike:
 Pain.MegaIceBall:Pain.IceM_Slasher:Pain.IceM_Slow:Pain.IceM_Slow2:Pain.IceM_Icicle:Pain.IceM_Sculpt:Pain.DrWily_Ice:Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
-Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:
+Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:Pain.ChillSpikeClass:Pain.TundraM_Glacier:Pain.TundraM_Slow:Pain.TundraM_Tornado:
 "----" A 0
 goto Pain.IceSlasher
 }
@@ -450,7 +453,7 @@ States
 {
 Pain.ChillShot:Pain.ChillSpike:
 Pain.MegaIceBall:Pain.IceM_Slasher:Pain.IceM_Slow:Pain.IceM_Slow2:Pain.IceM_Icicle:Pain.IceM_Sculpt:Pain.DrWily_Ice:Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
-Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:
+Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:Pain.ChillSpikeClass:Pain.TundraM_Glacier:Pain.TundraM_Slow:Pain.TundraM_Tornado:
 "----" A 0
 goto Pain.IceSlasher
 }
@@ -461,7 +464,7 @@ States
 {
 Pain.ChillShot:Pain.ChillSpike:
 Pain.MegaIceBall:Pain.IceM_Slasher:Pain.IceM_Slow:Pain.IceM_Slow2:Pain.IceM_Icicle:Pain.IceM_Sculpt:Pain.DrWily_Ice:Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
-Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:
+Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:Pain.ChillSpikeClass:
 "----" A 0
 goto Pain.IceSlasher
 }
@@ -556,8 +559,8 @@ stop
 actor CBM_MirrorBuster1 : MirrorBuster1 replaces MirrorBuster1
 {
 +DONTDRAIN
-Health 1000
-Stamina 1000
+Health 100
+Stamina 100
 States
 {
 Pain:
@@ -573,8 +576,8 @@ stop
 actor CBM_MirrorBuster2 : MirrorBuster2 replaces MirrorBuster2
 {
 +DONTDRAIN
-Health 1000
-Stamina 1000
+Health 100
+Stamina 100
 States
 {
 Pain:
@@ -613,7 +616,6 @@ TNT1 A 0 A_TakeFromTarget("PowerBeatBoostUpSpeed",1)
 TNT1 A 0 A_GiveToTarget("PowerBeatBoostSpeed",1)
 SpawnWatch:
 TNT1 A 0 A_CountDown
-TNT1 A 0 A_JumpIfInTargetInventory("FlightDisableFlag",1,"SpawnDead")
 TNT1 A 0 A_JumpIfInTargetInventory("BeatBoosterHasLanded",1,"SpawnDead")
 TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"SpawnDead")
 TNT1 A 1 A_GiveToTarget("BeatBoostFall_P",1)

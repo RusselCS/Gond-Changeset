@@ -223,7 +223,7 @@ damagetype "Bass_TrebleShot"
 Obituary "$OB_TREBLEBOOST"
 +FORCEXYBILLBOARD
 +BRIGHT
-Damage (100)
+Damage (10)
 Speed 64
 radius 7
 height 7

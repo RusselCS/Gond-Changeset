@@ -1,22 +1,19 @@
 actor BBAMegaman : ClassBase
 {
+Player.StartItem "IFMM00", 1
 Player.ScoreIcon "C_00T0X"
 player.displayname "BBAMegaMan"
 player.soundclass "bbamegamanc"
-
-player.maxhealth 1000
-health 1000
-player.jumpz 10
-player.forwardmove 0.8, 0.8
-player.sidemove 0.78, 0.78
-
-Player.Face "BBA"
-Player.MugShotMaxHealth 1000
-
 player.startitem "BBA_Pistol"
 player.startitem "BBA_Clip", 50
-player.startitem "BBA_Money", 75
+player.startitem "BBA_Money", 0
 player.startitem "BBA_ShopItem", 1
+
+player.maxhealth 100
+health 100
+player.jumpz 10
+player.forwardmove 0.85, 0.85
+player.sidemove 0.83, 0.83
 
 player.weaponSlot 1, "BBA_Pistol"
 player.weaponSlot 2, "BBA_Shotgun"

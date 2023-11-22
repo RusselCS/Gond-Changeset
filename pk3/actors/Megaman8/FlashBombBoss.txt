@@ -6,8 +6,8 @@ Weapon.AmmoUse 4
 Weapon.AmmoGive 35
 Obituary "$OB_FLASHBOMB"
 Inventory.Pickupmessage "CRUSH EVERYONE, HA HA HA"
-weapon.ammotype "I'llPunishYouAmmo"
-weapon.ammotype2 "ThatFeltGoodAmmo"
+weapon.ammotype "FBOMBBOSSAMMO"
+weapon.ammotype2 "THATFELTGOODAMMO"
 +WEAPON.NOAUTOAIM
 States
 {
@@ -16,120 +16,197 @@ C_08 G 1
 loop
 Ready:
 GRHU A 0 ACS_ExecuteAlways(998,0,DYE_GRENADEMAN)
-GRHU A 0 A_GunFlash("Flash.Begin")
-goto Ready0
-Ready0:
-GRHU A 0 A_JumpIfInventory("I'llPunishYouAmmo",4,"Ready1")
+GRHU A 0 A_GiveInventory("THATFELTGOOD_Pickup",1)
+GRHU A 0 A_GunFlash
+GRHU A 0 A_JumpIfInventory("FBOMBBOSSAMMO",4,"Ready1")
 GRHU A 10 A_WeaponReady(4)
 Goto Ready2
 Ready1:
 GRHU A 10 A_WeaponReady
 Goto Ready3
 Ready2:
-GRHU A 0 A_JumpIfInventory("I'llPunishYouAmmo",4,"Ready3")
+GRHU A 0 A_JumpIfInventory("FBOMBBOSSAMMO",4,"Ready3")
 GRHU A 5 A_WeaponReady(4)
-GRHU A 0 A_GiveInventory("I'llPunishYouAmmo",1)
+GRHU A 0 A_GiveInventory("FBOMBBOSSAMMO",1)
 loop
 Ready3:
 GRHU A 5 A_WeaponReady
-GRHU A 0 A_GiveInventory("I'llPunishYouAmmo",1)
+GRHU A 0 A_GiveInventory("FBOMBBOSSAMMO",1)
 loop
 
 Deselect:
-GRHU AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
 GRHU A 1 A_Lower
 Loop
 Select:
-GRHU AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 GRHU A 1 A_Raise
 Loop
 
 Fire:
-GRHU A 2 Offset(22,56)A_GiveInventory("GrenadeM_FireCheck_P")
-GRHU A 2 Offset(42,75)
-GRHU A 2 Offset(22,56)
-GRHU A 20 A_WeaponReady(14)
-Goto Ready0
+GRHU A 0 A_PlaySoundEx("weapon/GrenadeShot","Weapon")
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",36,"5RageFire")
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",35,"4RageFire")
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",25,"3RageFire")
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",15,"2RageFire")
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",5,"1RageFire")
+GRHU A 0 A_GiveInventory("GrenademanMain_CI",1)
+goto FireEnd
+FireEnd:
+GRHU B 1 Offset(50,80)
+GRHU B 1 Offset(60,90)
+GRHU A 1 Offset(63,93)
+GRHU A 1 Offset(65,95)
+GRHU A 1 Offset(66,96)
+GRHU A 1 Offset(65,95)
+GRHU A 1 Offset(63,93)
+GRHU A 1 Offset(60,90)
+GRHU A 1 Offset(50,80)
+GRHU A 1 Offset(40,70)
+GRHU A 1 Offset(30,60)
+GRHU A 1 Offset(20,50)
+GRHU A 1 Offset(10,40)
+GRHU A 13 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+Goto Ready+3
+1RageFire:
+GRHU A 0 A_GiveInventory("GrenademanMain1_CI",1)
+goto FireEnd
+2RageFire:
+GRHU A 0 A_GiveInventory("GrenademanMain2_CI",1)
+goto FireEnd
+3RageFire:
+GRHU A 0 A_GiveInventory("GrenademanMain3_CI",1)
+goto FireEnd
+4RageFire:
+GRHU A 0 A_GiveInventory("GrenademanMain4_CI",1)
+goto FireEnd
+5RageFire:
+GRHU A 0 A_GiveInventory("GrenademanMain4_CI",1)
+goto FireEnd
 
 Altfire:
 //GRHU A 0 A_JumpIfNoAmmo("NoAmmo")
-GRHU A 0 A_GiveInventory("VivifyDelay8",1)
-GRHU A 0 A_Refire(1)
-GRHU A 2 Offset(-7,40)
-GRHU A 2 Offset(-16,51)
-GRHU A 0 A_JumpIfInventory("CuteBombDrain",1,"3Grenades")
-GRHU A 0 A_JumpIfInventory("ThatFeltGoodAmmo",36,"7Grenades")
-GRHU A 0 A_JumpIfInventory("ThatFeltGoodAmmo",27,"6Grenades")
-GRHU A 0 A_JumpIfInventory("ThatFeltGoodAmmo",18,"5Grenades")
-GRHU A 0 A_JumpIfInventory("ThatFeltGoodAmmo",9,"4Grenades")
+HSN8 A 0 ACS_NamedExecuteWithResult("BULL_SetState",1)
+GRHU A 0 A_JumpIfInventory("CuteBombDrain",1,5)
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",36,"7Grenades")
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",27,"6Grenades")
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",18,"5Grenades")
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",9,"4Grenades")
 3Grenades:
-GRHU A 2 Offset(-27,64)A_GiveInventory("ShootGrrnade3",1)
-GRHU A 2 Offset(6,44)A_GiveInventory("ShootGrrnade3",1)
-GRHU A 2 Offset(67,17)A_GiveInventory("ShootGrrnade2",1)
-GRHU A 2 Offset(125,-17)A_TakeInventory("I'llPunishYouAmmo",1,1)
+GRHU A 1 Offset(-5,52)
+GRHU A 1 Offset(-10,72)
+GRHU A 1 Offset(-15,92)
+GRHU A 1 Offset(-25,112)
+GRHU A 1 Offset(-35,132)
+GRHU A 1 Offset(40, 92) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(-37, 64)
+GRHU A 1 Offset(-19, 29) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(6, 3)
+GRHU A 1 Offset(43, -15) A_GiveInventory("ShootGrrnade2",1)
+GRHU A 1 Offset(94, -25)
+GRHU A 1 Offset(129, -44) A_TakeInventory("FBOMBBOSSAMMO",1)
+GRHU A 1 Offset(158, -69)
+/*GRHU DE 2 A_GiveInventory("ShootGrrnade3",1)
+GRHU F 2 A_GiveInventory("ShootGrrnade2",1)
+GRHU G 2 A_TakeInventory("FBOMBBOSSAMMO",1)*/
 goto AltfireEnd
 AltfireEnd:
-TNT1 A 5
-GRHU A 3 Offset(8,111)
-GRHU A 3 Offset(4,71)
-GRHU A 3 A_WeaponReady(14)
+TNT1 A 5 OffSet(110,69)
+GRHU A 1 OffSet(110,69)
+GRHU A 1 OffSet(55,48)
+GRHU A 7 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 GRHU A 0 A_Refire
-Goto Ready0
+Goto Ready+3
 
 4Grenades:
-GRHU A 0 A_JumpIfInventory("I'llPunishYouAmmo",2,1)
+GRHU A 0 A_JumpIfInventory("FBOMBBOSSAMMO",2,1)
 goto 3Grenades
-GRHU A 2 Offset(-27,64)A_GiveInventory("ShootGrrnade4",1)
-GRHU A 2 Offset(6,44)A_GiveInventory("ShootGrrnade3",1)
-GRHU AA 1 Offset(67,17)A_GiveInventory("ShootGrrnade3",1)
-GRHU A 2 Offset(125,-17)A_TakeInventory("I'llPunishYouAmmo",2,1)
+GRHU A 1 Offset(-5,52)
+GRHU A 1 Offset(-10,72)
+GRHU A 1 Offset(-15,92)
+GRHU A 1 Offset(-25,112)
+GRHU A 1 Offset(-35,132)
+
+GRHU A 1 Offset(40, 92) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(-37, 64)
+GRHU A 1 Offset(-19, 29) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(6, 3)
+GRHU A 1 Offset(43, -15) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(94, -25) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(129, -44) A_TakeInventory("FBOMBBOSSAMMO",2)
+GRHU A 1 Offset(158, -69)
 goto AltfireEnd
 5Grenades:
-GRHU A 0 A_JumpIfInventory("I'llPunishYouAmmo",4,1)
+GRHU A 0 A_JumpIfInventory("FBOMBBOSSAMMO",4,1)
 goto 4Grenades
-GRHU A 2 Offset(-27,64)A_GiveInventory("ShootGrrnade4",1)
-GRHU A 1 Offset(6,44)A_GiveInventory("ShootGrrnade4",1)
-GRHU A 1 Offset(6,44)A_GiveInventory("ShootGrrnade3",1)
-GRHU AA 1 Offset(67,17)A_GiveInventory("ShootGrrnade3",1)
-GRHU A 2 Offset(125,-17)A_TakeInventory("I'llPunishYouAmmo",4,1)
+GRHU A 1 Offset(-5,52)
+GRHU A 1 Offset(-10,72)
+GRHU A 1 Offset(-15,92)
+GRHU A 1 Offset(-25,112)
+GRHU A 1 Offset(-35,132)
+
+GRHU A 1 Offset(40, 92) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(-37, 64)
+GRHU A 1 Offset(-19, 29) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(6, 3) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(43, -15) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(94, -25) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 0 
+GRHU A 1 Offset(129, -44) A_TakeInventory("FBOMBBOSSAMMO",4)
+GRHU A 1 Offset(158, -69)
 goto AltfireEnd
 6Grenades:
-GRHU A 0 A_JumpIfInventory("I'llPunishYouAmmo",6,1)
+GRHU A 0 A_JumpIfInventory("FBOMBBOSSAMMO",6,1)
 goto 5Grenades
-GRHU AA 1 Offset(-27,64)A_GiveInventory("ShootGrrnade4",1)
-GRHU A 1 Offset(6,44)A_GiveInventory("ShootGrrnade4",1)
-GRHU A 1 Offset(6,44)A_GiveInventory("ShootGrrnade3",1)
-GRHU AA 1 Offset(67,17)A_GiveInventory("ShootGrrnade3",1)
-GRHU A 2 Offset(125,-17)A_TakeInventory("I'llPunishYouAmmo",6,1)
+GRHU A 1 Offset(-5,52)
+GRHU A 1 Offset(-10,72)
+GRHU A 1 Offset(-15,92)
+GRHU A 1 Offset(-25,112)
+GRHU A 1 Offset(-35,132)
+
+GRHU A 1 Offset(40, 92) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(-37, 64) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(-19, 29) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(6, 3) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(43, -15) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(94, -25) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 0
+GRHU A 1 Offset(129, -44) A_TakeInventory("FBOMBBOSSAMMO",6)
+GRHU A 1 Offset(158, -69)
 goto AltfireEnd
 7Grenades:
-GRHU A 0 A_JumpIfInventory("I'llPunishYouAmmo",7,1)
+GRHU A 0 A_JumpIfInventory("FBOMBBOSSAMMO",7,1)
 goto 6Grenades
-GRHU A 1 Offset(-27,64)A_GiveInventory("ShootGrrnade5",1)
-GRHU A 1 Offset(-27,64)A_GiveInventory("ShootGrrnade4",1)
-GRHU AA 1 Offset(6,44)A_GiveInventory("ShootGrrnade4",1)
-GRHU AA 1 Offset(67,17)A_GiveInventory("ShootGrrnade3",1)
-GRHU A 1 Offset(125,-17)A_GiveInventory("ShootGrrnade3",1)
-GRHU A 1 Offset(125,-17)A_TakeInventory("I'llPunishYouAmmo",7,1)
+GRHU A 1 Offset(-5,52)
+GRHU A 1 Offset(-10,72)
+GRHU A 1 Offset(-15,92)
+GRHU A 1 Offset(-25,112)
+GRHU A 1 Offset(-35,132)
+
+GRHU A 1 Offset(40, 92) A_GiveInventory("ShootGrrnade5",1)
+GRHU A 1 Offset(-37, 64) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(-19, 29) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(6, 3) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(43, -15) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(94, -25) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(129, -44) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(158, -69) A_TakeInventory("FBOMBBOSSAMMO",7)
 goto AltfireEnd
 
 NoAmmo:
 GRHU A 1
 Goto Ready+3
 
-Flash.Begin:
-TNT1 A 4
-goto Flash
 Flash:
 TNT1 A 0 A_GiveInventory("THATFELTGOOD_Pickup",1)
 TNT1 A 1 ACS_NamedExecuteAlways("cbm_HealthDamageRage",0,4)
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-TNT1 A 0 A_JumpIfInventory("ThatFeltGoodAmmo",36,"FlashR")
+TNT1 A 0 A_JumpIfInventory("THATFELTGOODAMMO",36,"FlashR")
 loop
 FlashR:
 TNT1 A 0 A_PlaySoundEx("classes/skullabs","Body")
 TNT1 A 0 A_TakeInventory("THATFELTGOODFlag",99)
-TNT1 A 0 A_GiveInventory("I'llPunishYouAmmo",28)
+TNT1 A 0 A_GiveInventory("FBOMBBOSSAMMO",28)
 TNT1 A 0 A_GiveInventory("CuteBombFlag",500)
 TNT1 A 1 ACS_NamedExecuteAlways("cbm_HealthDamageRage",0,4)
 goto FlashR2
@@ -144,32 +221,26 @@ TNT1 A 0 A_GiveInventory("CuteBombDrain",1)
 TNT1 A 0 A_TakeInventory("CuteBombFlag",999)
 goto FlashRD2
 FlashRD2:
-TNT1 A 0 A_TakeInventory("ThatFeltGoodAmmo",1)
+TNT1 A 0 A_TakeInventory("THATFELTGOODAMMO",1)
 TNT1 A 1 ACS_NamedExecuteAlways("cbm_HealthDamageRage",0,4)
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-TNT1 A 0 A_JumpIfInventory("ThatFeltGoodAmmo",1,"FlashRD2")
+TNT1 A 0 A_JumpIfInventory("THATFELTGOODAMMO",1,"FlashRD2")
 goto FlashRD3
 FlashRD3:
 TNT1 A 0 A_TakeInventory("CuteBombDrain",9)
-TNT1 A 0 A_TakeInventory("ThatFeltGoodAmmo",50)
+TNT1 A 0 A_TakeInventory("THATFELTGOODAMMO",50)
 TNT1 A 0 A_TakeInventory("CuteBombFlag",999)
 goto Flash
 }
 }
 
-actor I'llPunishYouAmmo : Ammo
+actor THATFELTGOODAMMO : Ammo
 {
-inventory.amount 1
-inventory.maxamount 28
 +INVENTORY.IGNORESKILL
-}
-
-actor ThatFeltGoodAmmo : Ammo
-{
 inventory.amount 1
 inventory.maxamount 36
-+INVENTORY.IGNORESKILL
 }
+
 
 actor CuteBombDrain : OnceC {}
 
@@ -185,36 +256,18 @@ inventory.amount 1
 inventory.maxamount 40
 }
 
-actor GrenadeM_FireCheck_P : CustomInventory
+
+actor FBOMBBOSSAMMO : Ammo
 {
-States
-{
-Pickup:
-TNT1 A 0 A_PlaySoundEx("weapon/GrenadeShot","Weapon")
-TNT1 A 0 A_JumpIfInventory("CuteBombDrain",1,6)
-TNT1 A 0 A_JumpIfInventory("ThatFeltGoodAmmo",36,"5RageFire")
-TNT1 A 0 A_JumpIfInventory("ThatFeltGoodAmmo",35,"4RageFire")
-TNT1 A 0 A_JumpIfInventory("ThatFeltGoodAmmo",25,"3RageFire")
-TNT1 A 0 A_JumpIfInventory("ThatFeltGoodAmmo",15,"2RageFire")
-TNT1 A 0 A_JumpIfInventory("ThatFeltGoodAmmo",5,"1RageFire")
-TNT1 A 0 A_GiveInventory("GrenademanMain_CI")
-stop
-1RageFire:
-TNT1 A 0 A_GiveInventory("GrenademanMain1_CI")
-stop
-2RageFire:
-TNT1 A 0 A_GiveInventory("GrenademanMain2_CI")
-stop
-3RageFire:
-TNT1 A 0 A_GiveInventory("GrenademanMain3_CI")
-stop
-4RageFire:
-TNT1 A 0 A_GiveInventory("GrenademanMain4_CI")
-stop
-5RageFire:
-TNT1 A 0 A_GiveInventory("GrenademanMain4_CI")
-stop
++INVENTORY.IGNORESKILL
+inventory.amount 1
+inventory.maxamount 28
 }
+
+actor GrenadeHealth : Inventory
+{
+inventory.amount 1
+inventory.maxamount 100
 }
 
 
@@ -223,7 +276,7 @@ actor THATFELTGOOD_Pickup : CustomInventory
 States
 {
 Pickup:
-TNT1 A 0 A_JumpIfInventory("ThatFeltGoodAmmo",1,"Pickup0")
+TNT1 A 0 A_JumpIfInventory("THATFELTGOODAMMO",1,"Pickup0")
 TNT1 A 0 A_TakeInventory("THATFELTGOODFlag",99)
 stop
 Pickup0:
@@ -233,7 +286,7 @@ Pickup1:
 TNT1 A 0 A_GiveInventory("THATFELTGOODFlag",1)
 stop
 Pickup2:
-TNT1 A 0 A_TakeInventory("ThatFeltGoodAmmo",1)
+TNT1 A 0 A_TakeInventory("THATFELTGOODAMMO",1)
 TNT1 A 0 A_TakeInventory("THATFELTGOODFlag",99)
 stop
 }
@@ -285,7 +338,7 @@ TNT1 A 0 A_Jump(256,"p18","p20","p22","p24","p26","p28","p30","p32","p34")
 stop
 }
 }
-
+//This right here is a PRIME example of transfer translation being VERY useful in the future
 actor ShootGrrnade2 : ShootGrrnade
 {
 states
@@ -524,7 +577,7 @@ BounceFactor 0.0
 WallBounceFactor 0.0
 
 reactiontime 15
-Damage(20)
+Damage(2)
 Radius 6
 Height 7
 speed 20
@@ -534,6 +587,7 @@ States
 Spawn:
 XH0D Q 0
 XH0D Q 0 ThrustThingZ(0,25,0,1)
+XH0D Q 0 A_CheckCeiling("Death")
 XH0D QRST 4
 Goto Spawn+2
 Death:
@@ -542,12 +596,12 @@ XH0D QRST 4
 XH0D QRST 4
 //Goto XDeath
 TNT1 A 0 A_PlaySoundEx("weapon/napalm", "Weapon")
-TNT1 A 0 A_Explode(100,128,0)
+TNT1 A 0 A_Explode(10,128,0)
 TNT1 A 1 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
 stop
 XDeath:
 TNT1 A 0 A_PlaySoundEx("weapon/napalm", "Weapon")
-TNT1 A 0 A_Explode(80,128,0)
+TNT1 A 0 A_Explode(8,128,0)
 TNT1 A 1 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
 stop
 }
@@ -576,12 +630,13 @@ scale 5.0
 States
 {
 Spawn:
-TNT1 A 0
-TNT1 A 0 A_Stop
-TNT1 A 0 A_PlaySoundEx("misc/hugequake","Weapon")
+
+TN_B E 0
+TN_B E 0 A_Stop
+TN_B E 0 A_PlaySoundEx("misc/hugequake", "Weapon")
 TNT1 A 0 A_PlaySoundEx("weapon/GrenadeGood","Body")
 TNT1 A 0 A_PlaySoundEx("weapon/GrenadeGood","Voice")
-TNT1 A 0 A_Explode(400,500,0,0,96)
+TN_B E 0 A_Explode(40,500,0,0,96)
 TNT1 A 1 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32+16384)
 stop
 }
@@ -594,32 +649,30 @@ actor FlashBombPBoss
 translation "198:198=194:194","192:192=4:4","199:199=194:194","202:202=215:215"
 PROJECTILE
 damagetype "GrenadeM_Bomb"
-Obituary "$OB_FLASHBOMB"//Shining Bomb
+Obituary "$OB_FLASHBOMB"
 +FORCEXYBILLBOARD
-damage (60)
-Radius 8
-Height 8
+damage (6)//0
+Radius 8//6
+Height 8//7
 speed 26
 scale 2.5
 States
 {
 Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
 GRHU O 0
 GRHU O 0 A_Jump(256,1,2,3,4)
 GRHU OPQR 3 A_SpawnItemEx("FlashBombPBossFX",0,0,0,frandom(-1,1),frandom(-1,1),frandom(5,6),0,1)
-goto Spawn+2
+goto SpawnLOOP+2
 Death:
-Y_8G A 0 A_Stop
-Y_8G A 0 A_PlaySoundEx("weapon/flashbomb","Weapon")
-Y_8G A 1 A_SpawnItemEx("FlashBombExplosionBoss",0,0,0,0,0,0,0,1)
+GRGR A 0 A_Stop
+GRGR A 0 A_PlaySoundEx("weapon/flashbomb","Weapon")
+GRGR A 1 A_SpawnItemEx("FlashBombExplosionBoss",0,0,0,0,0,0,0,1)
 stop
 }
 }
-
-actor FlashBombPBossB : FlashBombPBoss{translation "198:198=74:74","192:192=205:205","199:199=74:74","202:202=205:205"}
-actor FlashBombPBossR : FlashBombPBoss{translation "198:198=41:41","192:192=171:171","199:199=41:41","202:202=171:171"}
-actor FlashBombPBossO : FlashBombPBoss{translation "198:198=128:128","192:192=104:104","199:199=128:128","202:202=104:104"}
-actor FlashBombPBossP : FlashBombPBoss{translation "198:198=232:232","192:192=229:229","199:199=232:232","202:202=229:229"}
 
 actor FlashBombPBossFX : BasicClientSide
 {
@@ -632,6 +685,13 @@ GRHU LMN 3
 stop
 }
 }
+
+
+actor FlashBombPBossB : FlashBombPBoss{translation "198:198=74:74","192:192=205:205","199:199=74:74","202:202=205:205"}
+actor FlashBombPBossR : FlashBombPBoss{translation "198:198=41:41","192:192=171:171","199:199=41:41","202:202=171:171"}
+actor FlashBombPBossO : FlashBombPBoss{translation "198:198=128:128","192:192=104:104","199:199=128:128","202:202=104:104"}
+actor FlashBombPBossP : FlashBombPBoss{translation "198:198=232:232","192:192=229:229","199:199=232:232","202:202=229:229"}
+
 
 actor FlashBombPBoss1 : FlashBombPBoss{speed 29}
 actor FlashBombPBoss1B : FlashBombPBossB{speed 29}
@@ -675,12 +735,12 @@ Y_8G A 0
 Y_8G A 0 A_SetUserVar("user_Flash",5)
 Y_8G AB 1 
 Y_8G CD 1
-Y_8G A 0 A_Explode(150,80,0)
+Y_8G A 0 A_Explode(15,80,0)
 Y_8G EE 0 A_SpawnItemEx("FlashBombFX2_B",Random(-16, 16),Random(-40, 40), Random(-32, 32),0,0,0,0,1)
 Y_8G EF 1 A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
 Y_8G EE 0 A_SpawnItemEx("FlashBombFX2_B",Random(-16, 16),Random(-40, 40), Random(-32, 32),0,0,0,0,1)
 Y_8G GF 1 A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
-Y_8G A 0 A_Explode(100,80,0)
+Y_8G A 0 A_Explode(10,80,0)
 Goto Pattern1
 Pattern1:
 Y_8G EF 1 A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
@@ -696,7 +756,7 @@ Y_8G EF 1 A_SpawnItemEx("FlashBombFX2_B",Random(-16, 16),Random(-40, 40), Random
 Y_8G G 0 A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
 Goto DamageNow
 DamageNow:
-Y_8G A 0 A_Explode(90+user_Flash*10,80,0)
+Y_8G A 0 A_Explode(9+user_Flash*1,80,0)
 Goto Continue
 Continue:
 Y_8G A 0 A_CountDown

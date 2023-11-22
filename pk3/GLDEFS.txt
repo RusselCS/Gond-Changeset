@@ -1,0 +1,105 @@
+pointlight SOLARLIGHT
+{
+color 5.0 0.55 0.25
+size 75
+dontlightself 1
+}
+
+object SolarFlare2 {frame GSOL {light SOLARLIGHT}}
+object SolarFlare3 {frame GSOL {light SOLARLIGHT}}
+object SolarMortar {frame GSOL {light SOLARLIGHT}}
+object SolarMortarLobFX {frame GSOL {light SOLARLIGHT}}
+object SolarGrenadeLob {frame GSOL {light SOLARLIGHT}}
+object SolarGrenadeLobFX {frame GSOL {light SOLARLIGHT}}
+object SolarGrenadeLobAir {frame GSOL {light SOLARLIGHT}}
+object SolarHeadFX {frame GSOL {light SOLARLIGHT}}
+object SolarFlareExplosionWave {frame GSOL {light SOLARLIGHT}}
+object SolarFlareExplosionWaveFX {frame GSOL {light SOLARLIGHT}}
+object SolarFlareExplosionWaveFX2 {frame GSOL {light SOLARLIGHT}}
+object SolarInfernoHelper {frame GSOL {light SOLARLIGHT}}
+pointlight FIRELIGHT
+{
+color 1.0 0.1 0.05
+size 35
+dontlightself 1
+}
+
+object FireManWaveD {frame FWVE {light FIRELIGHT}}
+object FireManWave2D {frame FWVE {light FIRELIGHT}}
+object FiremanStormShot {frame FWVE {light FIRELIGHT}}
+object ScorchWheelB {frame SCTU {light FIRELIGHT}}
+object ScorchWheelB1 {frame SCTU {light FIRELIGHT}}
+object ScorchWheelB2 {frame SCTU {light FIRELIGHT}}
+object ScorchWheelB3 {frame SCTU {light FIRELIGHT}}
+object TurbomanWheelWarper {frame SCTU {light FIRELIGHT}}
+
+pointlight FIRELIGHTSMALL
+{
+color 1.0 0.1 0.05
+size 20
+dontlightself 1
+}
+
+object FiremanStormShieldFX {frame FWVE {light FIRELIGHTSMALL}}
+object FiremanStormShotBit {frame FWVE {light FIRELIGHTSMALL}}
+object ScorchWheelB2_Bit {frame TUCA {light FIRELIGHTSMALL}}
+
+pointlight BRIGHTMAINSGLOWINTHEDARK
+{
+color 1.0 1.0 1.0
+size 75
+}
+
+//object BrightLightWarper {frame TNT1 {light BRIGHTMAINSGLOWINTHEDARK}}
+object BrightBulbToss {frame FSTB {light BRIGHTMAINSGLOWINTHEDARK}}
+
+pointlight BRIGHTMAINSGLOWEVENBRIGHTERINTHEDARK
+{
+color 1.0 1.0 1.0
+size 512
+}
+
+object BrightmanFlashStopperFX {frame BRTS {light BRIGHTMAINSGLOWEVENBRIGHTERINTHEDARK}}
+
+pointlight GerminiLight
+{
+color 0.1 0.2 1.0
+size 25
+}
+
+object BossGeminiLaser {frame GEMB {light GerminiLight}}
+object BossGeminiLaserFX1 {frame GEMB {light GerminiLight}}
+object BossGeminiLaserFX2 {frame GEMB {light GerminiLight}}
+object BossGeminiLaserFX3 {frame GEMB {light GerminiLight}}
+object BossGeminiLaserFX4 {frame GEMB {light GerminiLight}}
+object BossGeminiLaserFX5 {frame GEMB {light GerminiLight}}
+
+pointlight TerraLightMain
+{
+color 0.1 0.2 1.0
+size 15
+}
+
+//object TerraClassSparkChaser {frame TERV {light TerraLightMain}}
+//object TerraClassSparkChaserTrail_Fake {frame TERS {light TerraLightMain}}
+//object TerraClassSparkChaserTrail {frame TERS {light TerraLightMain}}
+
+pointlight TerraLightAlt
+{
+color 0.3 1.0 0.3
+size 15
+}
+
+//object TerraClassSparkChaserAlt {frame TERS {light TerraLightAlt}}
+//object TerraClassSparkChaserTrailAlt {frame TERS {light TerraLightAlt}}
+
+pointlight ElecLight
+{
+color 1.0 1.0 0.2
+size 35
+}
+
+object ThunderManBeam {frame ELEB {light ElecLight}}
+object ElecBarrierProjTrail1 {frame ELEB {light ElecLight}}
+object ElecBarrierProjTrail2 {frame ELEB {light ElecLight}}
+object ElecBarrierProjTrail3 {frame ELEB {light ElecLight}}

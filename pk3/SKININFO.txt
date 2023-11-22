@@ -1,263 +1,184 @@
-////////////////
-//Weapon Skins//
-////////////////
-{
-name = "Power-Megaman"
-sprite = MM6P
-class = Megaman
-//dsnoway = DG_NOPOT
-*land = LAND
-//dsoof = dsnone
-dspldeth = MEGADEAT
-//dspdiehi = MEGADEAT//xdeath
-//dsslop = MEGADEAT//gibbed
-dsplpain = MEGAPAIN
-*weakpain = M2_HURT
-dstaunt = MEGATAUN
-gender = male
-}
 
 {
-name = "Flight-Megaman"
-sprite = MM6F
-class = Megaman
-*land = LAND
+name = "BetaSheep"
+sprite = BESH
+face = SHE
+class = Sheepman
+dsnoway = MM2LAND
+dsoof = MM2LAND
 dspldeth = MEGADEAT
-dsplpain = MEGAPAIN
-*weakpain = M2_HURT
-dstaunt = MEGATAUN
-gender = male
-}
-
-{
-name = "Protoman-ShieldLess"
-sprite = PRO_
-class = Protoman
-*land = LAND
-dspldeth = MEGADEAT
-dsplpain = MEGAPAIN
-*weakpain = M2_HURT
-dstaunt = whistl
-gender = male
-hidden = false
-}
-
-{
-name = "Auto-Met"
-sprite = AUT7
-face = AUT
-class = Auto
-*land = LAND
-dspldeth = MEGADEAT
-dsplpain = MM4PAIN
-*weakpain = M4_WEAK
-dstaunt = AUTOTAU
-gender = male
-}
-
-{
-name = "Base-Wily"
-sprite = W2CP
-class = DrWily
-*land = LAND
-dspldeth = MEGADEAT
-dsplpain = MM4PAIN
-*weakpain = M4_WEAK
-dstaunt = WILYTAU
-gender = male
-}
-
-{
-name = "SkullSuit-Wily"
-sprite = DRWI
-class = DrWily
-*land = MM6LAND
-dspldeth = MEGADEAT
-dsplpain = MM4PAIN
-*weakpain = M4_WEAK
-dstaunt = WILYTAU
-gender = male
-}
-
-{
-name = "Capsule-Wily"
-sprite = W7CP
-class = DrWily
-*land = MM6LAND
-dspldeth = MEGADEAT
-dsplpain = MM4PAIN
-*weakpain = M4_WEAK
-dstaunt = WILYTAU
-gender = male
-}
-
-{
-name = "Armor-SniperJoe"
-sprite = S2IP
-class = SniperJoe
-*land = FATLAND
-dspldeth = MEGADEAT
-dsplpain = MM4PAIN
-*weakpain = M4_WEAK
-dstaunt = JOETAUNT
-gender = male
-}
-
-{
-name = "Apache-SniperJoe"
-sprite = S5IP
-class = SniperJoe
-*land = LAND
-dspldeth = MEGADEAT
-dsslop = MEGADEAT
-dsplpain = MM4PAIN
-*weakpain = M4_WEAK
-dstaunt = JOETAUNT
-gender = male
-}
-
-{
-name = "Truck-SniperJoe"
-sprite = S7IP
-class = SniperJoe
-*land = quake
-dspldeth = MEGADEAT
-dsplpain = MM4PAIN
-*weakpain = M4_WEAK
-dstaunt = JOETAUNT
-gender = male
-}
-
-{
-name = "MachineGun-SniperJoe"
-sprite = S9IP
-class = SniperJoe
-*land = MM2LAND
-dspldeth = M1_DIED
+dspdiehi = MEGADEAT
 dsplpain = MM2PAIN
-*weakpain = M2_WEAK
-dstaunt = JOETAUNT
+dstaunt = dsnone
 gender = male
 }
 
 {
-name = "King-Shield"
-sprite = KIN5
-class = King
-*land = MM6JUMP
+name = "Freeze-Redflash"
+sprite = FRZN
+face = FRE
+class = Freezeman
+dsnoway = LAND
+dsoof = LAND
 dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
 dsplpain = MM4PAIN
-*weakpain = M4_WEAK
-dstaunt = KINGTAU
-gender = male
-}
-
-
-///////////////
-//Bonus Skins//
-///////////////
-
-{
-name = "MM8_Roll"
-sprite = ROL8
-face = ROL
-class = Roll
-*land = LAND
-dspldeth = M1_DIED
-dsplpain = M1_PAIN
-*weakpain = M1_HURT
-dstaunt = ROLLTAUN
+dstaunt = dsnone
 gender = male
 }
 
 {
-name = "MM11_Roll"
-sprite = ROL9
-face = R0L
-class = Roll
-*land = LAND
-dspldeth = M1_DIED
-dsplpain = M1_PAIN
-*weakpain = M1_HURT
-dstaunt = ROLLTAUN
-gender = male
-}
-
-{
-name = "Chargeman-Thomas"
-sprite = CHRT
-face = CHR
-class = Chargeman
-*land = LAND
+name = "Turbo-Redflash"
+sprite = TRBO
+face = TUR
+class = Turboman
+dsnoway = MM6LAND
+dsoof = MM6LAND
 dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
 dsplpain = MM4PAIN
-*weakpain = M4_WEAK
-dstaunt = CHARGTAU
+dstaunt = dsnone
 gender = male
 }
 
 {
-name = "Centaurwoman"
-sprite = CENW
-face = CEN
-class = Centaurman
-*land = MM6JUMP
+name = "Tengu-Redflash"
+sprite = TENM
+face = TEN
+class = Tenguman
+dsnoway = LAND
+dsoof = LAND
 dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
 dsplpain = MM4PAIN
-*weakpain = M4_WEAK
-dstaunt = CENTAU
+dstaunt = dsnone
 gender = male
 }
 
 {
-name = "Slashman--RM7FC"
-sprite = SLA2
-face = SLA
-class = Slashman
-*land = MM6JUMP
+name = "Sunstar-Redflash"
+sprite = SUGD
+face = SGD
+class = Sunstar
+dsnoway = MM6LAND
+dsoof = MM6LAND
+dspldeth = GBDEATH
+dspdiehi = GBDEATH
+dsplpain = GBPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Flash-Redflash"
+sprite = FL_2
+class = Flashman
+dsnoway = LAND
+dsoof = LAND
 dspldeth = MEGADEAT
-dsplpain = MM4PAIN
-*weakpain = M4_WEAK
-dstaunt = SLASTAUN
+dspdiehi = MEGADEAT
+dsplpain = MM3PAIN
+dstaunt = dsnone
 gender = male
 }
 
 {
-name = "Coldman-Bison"
-sprite = COLB
-face = COL
-class = Coldman
-*land = LAND
+name = "Crystal-Redflash"
+sprite = CR_5
+class = Crystalman
+dsnoway = LAND
+dsoof = LAND
 dspldeth = MEGADEAT
-dsplpain = MM4PAIN
-*weakpain = M4_WEAK
-dstaunt = COLDTAU
+dspdiehi = MEGADEAT
+dsplpain = MM3PAIN
+dstaunt = dsnone
 gender = male
 }
 
 {
-name = "Honeywoman"
-sprite = HONW
-face = HON
-class = Hornetman
+name = "Ice-Redflash"
+sprite = ICE2
+class = Iceman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = BOSSPAIN
+dstaunt = dsnone
+gender = male
+}
+
+//k -redflash
+
+{
+name = "Fuseman-Dimspy"
+sprite = FUSL
+class = Fuseman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = BOSSPAIN
+dstaunt = dsnone
+gender = male
+}
+
+//LONG LIVE THE KING
+
+{
+name = "Maestro-Guts"
+sprite = PLY2
+class = Maestro
 *land = MM2LAND
-dspldeth = MEGADEAT
-dsplpain = MM2PAIN
-*weakpain = M2_WEAK
-dstaunt = HORNETAU
+dsnoway = MM2LAND
+dsoof = dsnone
+dspldeth = ROCKDEAD
+dspdiehi = ROCKDEAD
+dsslop = ROCKDEAD
+dsplpain = ROCKHURT
+dstaunt = ROCKMTAU
 gender = male
 }
 
 {
-name = "Ballade-AltC"
-sprite = BAL2
-face = BAL
-class = Ballade
-*land = GBLAND
-dspldeth = MV_DIED
-dsplpain = MV_OUCH
-*weakpain = MV_WEAK
-dstaunt = BALDTAU2
+name = "Maestro-Custom"
+sprite = PLY3
+class = Maestro
+*land = MM2LAND
+dsnoway = MM2LAND
+dsoof = dsnone
+dspldeth = ROCKDEAD
+dspdiehi = ROCKDEAD
+dsslop = ROCKDEAD
+dsplpain = ROCKHURT
+dstaunt = ROCKMTAU
 gender = male
 }
 
+{
+name = "Maestro-Shield"
+sprite = PLY4
+class = Maestro
+*land = MM2LAND
+dsnoway = MM2LAND
+dsoof = dsnone
+dspldeth = ROCKDEAD
+dspdiehi = ROCKDEAD
+dsslop = ROCKDEAD
+dsplpain = ROCKHURT
+dstaunt = ROCKMTAU
+gender = male
+}
+
+{
+name = "Pumpkin-action Sniper"
+sprite = DARH
+class = Darkman3
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM3PAIN
+dstaunt = dsnone
+gender = male
+}

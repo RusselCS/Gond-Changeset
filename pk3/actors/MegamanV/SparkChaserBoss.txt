@@ -1,590 +1,655 @@
+//Terra - From Mega Man V
+//Coded by Ecl1p5e, Assistant Developer and Lead Animator, Competitive Class Based Modification
+//Skin by Redflash
+//HUD Sprites by A.M Roulette
+//Original Concept by Pr. Gibus
+//gibus here time to mess with this :D
+
 actor SparkChaserBoss : BaseMM8BDMWep_CBM
 {
 tag "$TAGC_VA"
-Dropitem "SparkChaserWepCDropped"
-weapon.ammouse 0
-weapon.ammogive 112
-obituary "$OB_TERRACHASER"
-Inventory.Pickupmessage "Power up! Dirt power!"
-weapon.ammotype "ChiaPetAmmo"
-weapon.ammotype2 "StardustCrusaderAmmo"
-inventory.icon "SCHSWI"
+dropitem "SparkChaserWepCDropped"
+Weapon.AmmoUse 1
+Weapon.AmmoGive 3
+Weapon.SlotNumber 1
+Obituary "$OB_TERRAMELEE"
+Inventory.Pickupmessage "Raditz."
+weapon.ammotype "ShonenAmmo"
+weapon.ammotype2 "ShojoAmmo"
 States
 {
 Spawn:
-C_0V A 1
+C_00 C 1
 loop
 
 Ready:
-T_RR A 0 ACS_ExecuteAlways(998,0,DYE_TERRA)
-//T_RR B 0 A_GiveInventory("ShieldCheck",1)
-//T_RR B 0 A_GiveInventory("Terra_SparkBuddyStart_P",1)//Sync isn't good, maybe later [Cel]
-Goto Ready1
+TERH A 0 ACS_ExecuteAlways(998,0,DYE_TERRA)
+TERH A 0 A_GunFlash
+TERH A 0 A_JumpIfInventory("SparkChaserChecker",1,"Ready2")
+TERH A 0 A_TakeInventory("SparkChaserFlag",999)
+TNT1 A 0 A_GiveInventory("ShonenAmmo",5)
+TERH A 0 A_TakeInventory("TerraMustMelee",99)
+TERH A 2 A_WeaponReady(WRF_ALLOWRELOAD)
+Goto Ready+2
 
-Ready1:
-T_RR A 0 A_JumpIfInventory("ChiaPetAmmo",14,"Ready2")
-T_RR A 0 A_JumpIfInventory("StardustCrusaderAmmo",14,"Ready3")
-T_RR A 4 A_WeaponReady(12)
-T_RR A 0 A_GiveInventory("ChiaPetAmmo",3)
-T_RR A 0 A_GiveInventory("StardustCrusaderAmmo",1)
-loop
 Ready2:
-T_RR A 0 A_JumpIfInventory("StardustCrusaderAmmo",14,"Ready4")
-T_RR A 4 A_WeaponReady(8)
-T_RR A 0 A_GiveInventory("ChiaPetAmmo",3)
-T_RR A 0 A_GiveInventory("StardustCrusaderAmmo",1)
-loop
+TERH A 0 A_TakeInventory("TerraMustMelee",99)
+TERH A 2 A_WeaponReady(WRF_ALLOWRELOAD)
+Goto Ready+2
+
 Ready3:
-T_RR A 0 A_JumpIfInventory("ChiaPetAmmo",14,"Ready4")
-T_RR A 4 A_WeaponReady(4)
-T_RR A 0 A_GiveInventory("ChiaPetAmmo",3)
-T_RR A 0 A_GiveInventory("StardustCrusaderAmmo",1)
-loop
-Ready4:
-T_RR A 4 A_WeaponReady
-T_RR A 0 A_GiveInventory("ChiaPetAmmo",3)
-T_RR A 0 A_GiveInventory("StardustCrusaderAmmo",1)
-loop
+TERH A 2
+Goto Ready+2
 
 Deselect:
-T_RR AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-T_RR A 1 A_Lower
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+TERH A 1 A_Lower
 Loop
+
 Select:
-T_RR AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-T_RR A 1 A_Raise
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+TERH A 1 A_Raise
 Loop
 
 Fire:
-//T_RR B 0 A_GiveInventory("TerraBuddyFlag",1)
-T_RR A 0 A_PlaySoundEX("weapon/TerraChaser","Weapon")
-T_RR B 0 A_GiveInventory("Terra_ChaserDawdle",364)
-T_RR B 0 A_GiveInventory("TerraCurrentRadius",1)
-T_RR BB 1 offset(5,25)A_GiveInventory("Terra_MainfireStart_P")
+TERH A 0 A_JumpIfInventory("ShonenAmmo",100,2)
+TERH A 0 A_GiveInventory("TerraNoAmmoFlag",1)
+Goto NoAmmo
+TERH A 0 A_TakeInventory("TerraNoAmmoFlag",1)
+TERH A 0 A_TakeInventory("ShonenAmmo",100)
+TNT1 A 0 A_GiveInventory("SliceOfEyefeTimer",70)
+TERH A 0 A_TakeInventory("TerraRegenCounter",99)
+TERH A 0 A_PlaySoundEx("weapon/sparkchaser","Weapon")
+TERH B 1 OffSet(14,22) A_GiveInventory("TerraMain1_CI",1)
+TERH B 1
+Goto M1Hold
+M1Hold:
+TERH C 0 A_GiveInventory("SparkLaserTimer",1)
+TERH CC 1 A_JumpIfInventory("SparkChaserDetFlag",1,"M1HoldEndAnim")
+TERH KK 1 bright A_JumpIfInventory("SparkChaserDetFlag",1,"M1HoldEndAnim")
+TERH C 0 A_Refire("M1Hold")
+M1HoldEnd:
+TERH B 1 A_GiveInventory("SparkChaserFlag",1)
+TERH C 0 A_TakeInventory("SparkLaserTimer",999)
+TNT1 A 0 A_TakeInventory("SliceOfEyefeTimer",999)
+TERH AB 1
+TERH L 9
+TERH BBB 1 A_WeaponReady(14)
+TERH A 6
+Goto Ready+1
 
-T_RR BBBBB 1 offset(10,20)A_GiveInventory("Terra_MainfireStart_P")
-
-FireH:
-T_RR B 0 A_JumpIfInventory("Terra_ChaserDawdle",1,1)//ChiaPetAmmo
-Goto FireReturn
-T_RR B 0 A_JumpIfInventory("PressButton_Alt_F",1,"FireH_IncSnd")
-//T_RR B 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_SINGLE_INPUT,8,0)==1,"FireH_IncSnd")
-T_RR B 1 offset(10,20)A_GiveInventory("Terra_MainfireHold_P")
-T_RR B 0 A_Refire("FireH")
-Goto FireReturn
-FireH2:
-T_RR B 0 A_JumpIfInventory("Terra_ChaserDawdle",1,1)
-Goto FireReturn
-T_RR B 0 A_JumpIfInventory("PressButton_Alt_F",1,"FireH_DecSnd")
-//T_RR B 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_SINGLE_INPUT,8,0)==1,"FireH_DecSnd")
-T_RR B 1 offset(10,20)A_GiveInventory("Terra_MainfireHold_P")
-T_RR B 0 A_Refire("FireH2")
-Goto FireReturn
-
-FireH_IncSnd://E offset(10,20)
-T_RR B 0 A_PlaySoundEX("wep/CrysCharge4","Body")
-FireH_Inc:
-T_RR B 0 A_JumpIfInventory("Terra_ChaserDawdle",1,1)
-Goto FireReturn
-T_RR E 1 offset(16,13)A_GiveInventory("Terra_MainfireHoldInc_P")
-T_RR B 0 A_JumpIfInventory("PressButton_Alt_F",1,2)
-T_RR B 0 A_Refire("FireH2")
-Goto FireReturn
-T_RR B 0 A_Refire("FireH_Inc2")
-Goto FireReturn
-FireH_Inc2:
-T_RR B 0 A_JumpIfInventory("Terra_ChaserDawdle",1,1)
-Goto FireReturn
-T_RR E 1 offset(16,13)A_GiveInventory("Terra_MainfireHoldInc_P")
-T_RR B 0 A_JumpIfInventory("PressButton_Alt_F",1,2)
-T_RR B 0 A_Refire("FireH2")
-Goto FireReturn
-T_RR B 0 A_Refire("FireH_Inc3")
-Goto FireReturn
-FireH_Inc3:
-T_RR B 0 A_JumpIfInventory("Terra_ChaserDawdle",1,1)
-Goto FireReturn
-T_RR B 1 offset(16,13)A_GiveInventory("Terra_MainfireHoldInc_P")
-T_RR B 0 A_JumpIfInventory("PressButton_Alt_F",1,2)
-T_RR B 0 A_Refire("FireH2")
-Goto FireReturn
-T_RR B 0 A_Refire("FireH_Inc5")
-Goto FireReturn
-FireH_Inc5:
-T_RR B 0 A_JumpIfInventory("Terra_ChaserDawdle",1,1)
-Goto FireReturn
-T_RR B 1 offset(16,13)A_GiveInventory("Terra_MainfireHoldInc_P")
-T_RR B 0 A_JumpIfInventory("PressButton_Alt_F",1,2)
-T_RR B 0 A_Refire("FireH2")
-Goto FireReturn
-T_RR B 0 A_Refire("FireH_Inc")
-Goto FireReturn
-
-FireH_DecSnd://F offset(-10,40)//offset(4,26)
-T_RR B 0 A_PlaySoundEX("wep/CrysCharge1","Body")
-FireH_Dec:
-T_RR B 0 A_JumpIfInventory("Terra_ChaserDawdle",1,1)
-Goto FireReturn
-T_RR E 1 offset(4,27)A_GiveInventory("Terra_MainfireHoldDec_P")
-T_RR B 0 A_JumpIfInventory("PressButton_Alt_F",1,2)
-T_RR B 0 A_Refire("FireH")
-Goto FireReturn
-T_RR B 0 A_Refire("FireH_Dec2")
-Goto FireReturn
-FireH_Dec2:
-T_RR B 0 A_JumpIfInventory("Terra_ChaserDawdle",1,1)
-Goto FireReturn
-T_RR E 1 offset(4,27)A_GiveInventory("Terra_MainfireHoldDec_P")
-T_RR B 0 A_JumpIfInventory("PressButton_Alt_F",1,2)
-T_RR B 0 A_Refire("FireH")
-Goto FireReturn
-T_RR B 0 A_Refire("FireH_Dec3")
-Goto FireReturn
-FireH_Dec3:
-T_RR B 0 A_JumpIfInventory("Terra_ChaserDawdle",1,1)
-Goto FireReturn
-T_RR B 1 offset(4,27)A_GiveInventory("Terra_MainfireHoldDec_P")
-T_RR B 0 A_JumpIfInventory("PressButton_Alt_F",1,2)
-T_RR B 0 A_Refire("FireH")
-Goto FireReturn
-T_RR B 0 A_Refire("FireH_Dec4")
-Goto FireReturn
-FireH_Dec4:
-T_RR B 0 A_JumpIfInventory("Terra_ChaserDawdle",1,1)
-Goto FireReturn
-T_RR B 1 offset(4,27)A_GiveInventory("Terra_MainfireHoldDec_P")
-T_RR B 0 A_JumpIfInventory("PressButton_Alt_F",1,2)
-T_RR B 0 A_Refire("FireH")
-Goto FireReturn
-T_RR B 0 A_Refire("FireH_Dec")
-Goto FireReturn
-
-FireReturn:
-T_RR B 1 offset(10,20)A_GiveInventory("Terra_MainfireEnd_P")
-T_RR B 0 A_PlaySoundEX("weapon/TerraChaser2","Weapon")
-ReturnWait:
-T_RR B 1 offset(10,20)A_GiveInventory("Terra_MainfireEnd_P")
-T_RR B 0 A_JumpIfInventory("TerraCurrentRadius",1,"ReturnWait")
-//T_RR A 0 A_TakeInventory("TerraBuddyFlag",999)
-T_RR A 2 offset(-4,42)A_PlaySoundEX("weapon/AdapterReturn","Body")
-T_RR A 4 offset(-12,52)A_TakeInventory("Terra_ChaserDawdle")
-T_RR A 2 offset(-7,42)
-T_RR A 2 offset(-3,37)
-goto Ready1
+M1HoldEndAnim:
+TERH B 1 A_GiveInventory("SparkChaserFlag",1)
+TERH C 0 A_TakeInventory("SparkLaserTimer",999)
+TERH CCCCCCCBBBAA 1 A_WeaponReady(14)
+TERH A 4
+Goto Ready+1
 
 Altfire:
-T_RR A 0 A_GiveInventory("VivifyDelay4")
-T_RR A 0 A_ReFire(1)
-T_RR A 2 offset(-10,40)A_GiveInventory("Terra_AltBoostCheck_P")
-T_RR A 2 offset(-30,60)
-T_RR A 8 offset(-40,70)
-T_RR A 1 offset(-20,50)
-T_RR A 1 offset(-10,40)
-Goto Ready1
-}
-}
+TERH A 0 A_JumpIfInventory("ShojoAmmo",1,2)
+TERH A 0 A_GiveInventory("TerraNoAmmoFlag",1)
+Goto NoAmmo
+TERH A 0 A_TakeInventory("TerraNoAmmoFlag",1)
+TERH A 0 A_GiveInventory("TerraAltfireFlag",1)
+TERH B 2 offset(10,24)
+TERH B 2 OffSet(14,22)
+Altfire_Sparks:
+TERH A 0 A_JumpIfInventory("ShojoAmmo",1,1)
+Goto Altfire_End
+TERH A 0 A_PlaySoundEx("weapon/sparkchaser2","Weapon")
+TERH A 0 A_TakeInventory("ShojoAmmo",2)
+Altfire_Sparks_3:
+//TERH A 0 A_TakeInventory("TerraAltAnimOnce0",1)
+TERH A 0 A_JumpIfInventory("ShojoAmmo",42,1)
+Goto Altfire_Sparks_2
+TERH A 0 A_JumpIfInventory("TerraAltAnimOnce3",1,"Sparks_Level3")
+TERH A 0 A_JumpIfInventory("ShojoAmmo",42,"Sparks_Level3_X")
+Altfire_Sparks_2:
+TERH A 0 A_TakeInventory("TerraAltAnimOnce3",1)
+TERH A 0 A_JumpIfInventory("ShojoAmmo",28,1)
+Goto Altfire_Sparks_1
+TERH A 0 A_JumpIfInventory("TerraAltAnimOnce2",1,"Sparks_Level2")
+TERH A 0 A_JumpIfInventory("ShojoAmmo",28,"Sparks_Level2_X")
+Altfire_Sparks_1:
+TERH A 0 A_TakeInventory("TerraAltAnimOnce3",1)
+TERH A 0 A_TakeInventory("TerraAltAnimOnce2",1)
+TERH A 0 A_JumpIfInventory("ShojoAmmo",14,1)
+Goto Altfire_Sparks_0
+TERH A 0 A_JumpIfInventory("TerraAltAnimOnce1",1,"Sparks_Level1")
+TERH A 0 A_JumpIfInventory("ShojoAmmo",14,"Sparks_Level1_X")
+Altfire_Sparks_0:
+TERH A 0 A_TakeInventory("TerraAltAnimOnce3",1)
+TERH A 0 A_TakeInventory("TerraAltAnimOnce2",1)
+TERH A 0 A_TakeInventory("TerraAltAnimOnce1",1)
+TERH A 0 A_JumpIfInventory("TerraAltAnimOnce0",1,"Sparks_Level0")
+Sparks_Level0_X:
+TERH AAAAAAAAAA 0 A_GiveInventory("TerraAltAnimOnce0",1)
+TERH A 0 A_GiveInventory("SheepSwitchChecker",1)
+TERH A 0 A_TakeInventory("TerraAltAnim",1)
+//TERH A 0 A_PrintBold("Level 0 X", 2)
+Sparks_Level0:
+TERH A 0 A_JumpIfInventory("TerraAltAnim",1,2)
+TERH C 0 A_GiveInventory("TerraAlt1Fx_CI")
+TERH C 1 offset(14,22)A_GiveInventory("TerraAlt1_CI")
+TERH C 1 offset(11,25)
+TERH C 1 offset(14,28)
+TERH C 1 offset(17,22)
+TERH A 0 A_GiveInventory("TerraAltAnim",1)
+TERH A 0 A_ReFire("Altfire_Sparks")
+Goto Altfire_End
+Sparks_Level1_X:
+TERH AAAAAAAAAA 0 A_GiveInventory("TerraAltAnimOnce1",1)
+TERH A 0 A_GiveInventory("SheepSwitchChecker",1)
+TERH A 0 A_TakeInventory("TerraAltAnim",1)
+//TERH A 0 A_PrintBold("Level 1 X", 2)
+Sparks_Level1:
+TERH A 0 A_JumpIfInventory("TerraAltAnim",1,2)
+TERH C 0 A_GiveInventory("TerraAlt2Fx_CI")
+TERH C 1 offset(14,22)A_GiveInventory("TerraAlt2_CI")
+TERH C 1 offset(11,25)
+TERH C 1 offset(14,28)
+TERH C 1 offset(17,22)
+TERH A 0 A_GiveInventory("TerraAltAnim",1)
+TERH A 0 A_ReFire("Altfire_Sparks")
+Goto Altfire_End
+Sparks_Level2_X:
+TERH AAAAAAAAAA 0 A_GiveInventory("TerraAltAnimOnce2",1)
+TERH A 0 A_GiveInventory("SheepSwitchChecker",1)
+TERH A 0 A_TakeInventory("TerraAltAnim",1)
+//TERH A 0 A_PrintBold("Level 2 X", 2)
+Sparks_Level2:
+TERH A 0 A_JumpIfInventory("TerraAltAnim",1,2)
+TERH C 0 A_GiveInventory("TerraAlt3Fx_CI")
+TERH C 1 offset(14,22)A_GiveInventory("TerraAlt3_CI")
+TERH C 1 offset(11,25)
+TERH C 1 offset(14,28)
+TERH C 1 offset(17,22)
+TERH A 0 A_GiveInventory("TerraAltAnim",1)
+TERH A 0 A_ReFire("Altfire_Sparks")
+Goto Altfire_End
+Sparks_Level3_X:
+TERH AAAAAAAAAA 0 A_GiveInventory("TerraAltAnimOnce3",1)
+TERH A 0 A_GiveInventory("SheepSwitchChecker",1)
+TERH A 0 A_TakeInventory("TerraAltAnim",1)
+//TERH A 0 A_PrintBold("Level 3 X", 2)
+Sparks_Level3:
+TERH A 0 A_JumpIfInventory("TerraAltAnim",1,2)
+TERH C 0 A_GiveInventory("TerraAlt4Fx_CI")
+TERH C 1 offset(14,22)A_GiveInventory("TerraAlt4_CI")
+TERH C 1 offset(11,25)
+TERH C 1 offset(14,28)
+TERH C 1 offset(17,22)
+TERH A 0 A_GiveInventory("TerraAltAnim",1)
+TERH A 0 A_ReFire("Altfire_Sparks")
+Goto Altfire_End
+Altfire_End:
+TERH A 0 A_ClearRefire
+TERH A 0 A_TakeInventory("TerraAltfireFlag",1)
+TERH A 0 A_TakeInventory("TerraAltAnim",1)
+TERH A 0 A_TakeInventory("TerraAltAnimOnce3",1)
+TERH A 0 A_TakeInventory("TerraAltAnimOnce2",1)
+TERH A 0 A_TakeInventory("TerraAltAnimOnce1",1)
+TERH A 0 A_TakeInventory("TerraAltAnimOnce0",1)
+TERH A 0 A_GiveInventory("SheepHoldChecker")
+TERH B 2 OffSet(14,22)
+TERH B 2 offset(10,24)
+TERH A 2
+TERH A 2 A_WeaponReady(WRF_NOFIRE)
+TERH A 0 A_GiveInventory("SparkPacerFlag")
+Goto Ready+2
 
-actor SparkChaserStunBoss : BaseMM8BDMWep_CBM
-{
-tag "$TAGC_VA2"
-Dropitem "SparkChaserWepCDropped"
-weapon.ammouse 112
-weapon.ammogive 112
-obituary "$OB_TERRACHASER"
-Inventory.Pickupmessage "Power up! Soil power!"
-weapon.ammotype "ChiaPetAmmo"
-weapon.ammotype2 "StardustCrusaderAmmo"
-inventory.icon "TERRA_I2"
-States
-{
-Spawn:
-C_0V A 1
-loop
+Reload:
+TERH A 0 A_JumpIfInventory("TerraKneeTimer",1,1)
+Goto Reload+4
+TERH A 0 A_GiveInventory("TerraNoAmmoFlag",1)
+Goto NoAmmo
+TERH A 0 A_TakeInventory("TerraNoAmmoFlag",1)
+TERH A 0 ACS_NamedExecute("BULL_SetState",0,2)
+TERH A 0 A_PlaySoundEx("weapon/terrateleport","SoundSlot6")
+TERH A 0 ACS_NamedExecute("BULL_SetState",0,2)
+TERH A 0 A_SpawnItemEx("TerraMeleeChecker",3,0,0,momx,momy,momz,0,8)
+TERH A 0 A_JumpIfInventory("TerraMustMelee",1,"Release")
+TERH E 1 A_ChangeVelocity(Cos(pitch)*25, 0, -sin(pitch)*25,1)
+TERH A 0 A_SpawnItemEx("TerraMeleeChecker",3,0,0,momx,momy,momz,0,8)
+TERH A 0 A_JumpIfInventory("TerraMustMelee",1,"Release")
+TERH E 1 A_ChangeVelocity(Cos(pitch)*25, 0, -sin(pitch)*25,1)
+TERH A 0 A_SpawnItemEx("TerraMeleeChecker",3,0,0,momx,momy,momz,0,8)
+TERH A 0 A_JumpIfInventory("TerraMustMelee",1,"Release")
+TERH E 1 A_ChangeVelocity(Cos(pitch)*25, 0, -sin(pitch)*25,1)
+TERH A 0 A_SpawnItemEx("TerraMeleeChecker",3,0,0,momx,momy,momz,0,8)
+TERH A 0 A_JumpIfInventory("TerraMustMelee",1,"Release")
+TERH E 1 A_ChangeVelocity(Cos(pitch)*25, 0, -sin(pitch)*25,1)
+TERH A 0 A_SpawnItemEx("TerraMeleeChecker",3,0,0,momx,momy,momz,0,8)
+TERH A 0 A_JumpIfInventory("TerraMustMelee",1,"Release")
+TERH E 1 A_ChangeVelocity(Cos(pitch)*25, 0, -sin(pitch)*25,1)
+TERH A 0 A_SpawnItemEx("TerraMeleeChecker",3,0,0,momx,momy,momz,0,8)
+TERH A 0 A_JumpIfInventory("TerraMustMelee",1,"Release")
+TERH E 1 A_ChangeVelocity(Cos(pitch)*25, 0, -sin(pitch)*25,1)
+TERH A 0 A_SpawnItemEx("TerraMeleeChecker",3,0,0,momx,momy,momz,0,8)
+TERH A 0 A_JumpIfInventory("TerraMustMelee",1,"Release")
+Goto Release
+Release:
+TERH B 0 A_PlaySoundEx("Weapon/pharaohpunchswing","Weapon")
+TERH B 0 A_GiveInventory("TerraReload_CI",1)
+TERH B 0 A_GiveInventory("TerraKneeTimer",61)
+TERH B 0 A_GunFlash("Flash_Knee")
+TERH B 0 A_ChangeVelocity(16,0,0,3)
+TERH EEDDDDD 1 //A_Stop
+TERH E 2 A_WeaponReady(14)
+TERH A 0 A_ClearRefire
+Goto Ready+2
 
-Ready:
-T_RR C 0 ACS_ExecuteAlways(998,0,DYE_TERRA)
-//T_RR C 0 A_TakeInventory("ShieldCheck",999)
-Goto Ready1
-
-Ready1:
-T_RR C 0 A_JumpIfInventory("ChiaPetAmmo",112,"Ready2")
-T_RR C 0 A_JumpIfInventory("StardustCrusaderAmmo",14,"Ready3")
-T_RR C 4 A_WeaponReady(12)
-T_RR C 0 A_GiveInventory("ChiaPetAmmo",3)
-T_RR C 0 A_GiveInventory("StardustCrusaderAmmo",1)
-loop
-Ready2:
-T_RR C 0 A_JumpIfInventory("StardustCrusaderAmmo",14,"Ready4")
-T_RR C 4 A_WeaponReady(8)
-T_RR C 0 A_GiveInventory("ChiaPetAmmo",3)
-T_RR C 0 A_GiveInventory("StardustCrusaderAmmo",1)
-loop
-Ready3:
-T_RR C 0 A_JumpIfInventory("ChiaPetAmmo",112,"Ready4")
-T_RR C 4 A_WeaponReady(4)
-T_RR C 0 A_GiveInventory("ChiaPetAmmo",3)
-T_RR C 0 A_GiveInventory("StardustCrusaderAmmo",1)
-loop
-Ready4:
-T_RR C 4 A_WeaponReady
-T_RR C 0 A_GiveInventory("ChiaPetAmmo",3)
-T_RR C 0 A_GiveInventory("StardustCrusaderAmmo",1)
-loop
-
-
-Deselect:
-T_RR CCCCCCCCCCCCCCCCCCCCCC 0 A_Lower
-T_RR C 1 A_Lower
-Loop
-Select:
-T_RR CCCCCCCCCCCCCCCCCCCCCC 0 A_Raise
-T_RR C 1 A_Raise
-Loop
-
-Fire:
-T_RR D 0 A_GiveInventory("ShieldCheck",1)
-T_RR D 0 A_GiveInventory("TerraChargeFlag",1)
-T_RR D 0 A_ReFire(1)
-//T_RR D 0 A_GiveInventory("ShieldCheck",1)
-//T_RR D 0 A_SpawnItemEX("TerraNullOrbiterWarper",48,16,32,0,0,0,0,1)//TerraNullOrbiter_P
-T_RR D 2 offset(10,40)A_GiveInventory("TerraNullOrbiter_P",1)//A_PlaySoundEX("weapon/TerraOrbiterCast","Weapon")
-T_RR D 2 offset(20,50)
-T_RR D 2 offset(30,60)
-T_RR D 0 A_GiveInventory("TerraChargeFlag",8)
-T_RR D 2 A_GunFlash
-//T_RR D 0 A_ReFire(1)
-T_RR DDD 2 A_GiveInventory("TerraChargeFlag",8)
-//T_RR D 0 A_ReFire(1)
-T_RR DDD 2 A_GiveInventory("TerraChargeFlag",8)
-ShieldHold:
-T_RR D 0 A_JumpIfInventory("TerraChargeFlag",1,1)
-Goto ShieldFire
-T_RR D 1 A_TakeInventory("TerraChargeFlag",1)
-T_RR D 0 A_Refire("ShieldHold")
-ShieldFire:
-T_RR D 0 A_GiveInventory("VivifyDelay3",1)
-T_RR D 0 A_TakeInventory("TerraChargeFlag",999)
-T_RR D 0 A_ReFire(1)
-T_RR D 1 offset(17,44)
-T_RR D 1 offset(2,27)A_GunFlash("NoFlash",1)
-T_RR D 0 A_PlaySoundEx("weapon/TerraOrbiter","SoundSlot7")
-T_RR D 0 A_TakeInventory("ShieldCheck",999)
-//T_RR D 0 A_TakeInventory("ChiaPetAmmo",98,1)
-T_RR D 5 offset(-10,10)A_GiveInventory("TerraMain2_CI")
-T_RR D 2 offset(-2,21)
-goto Ready1
-
-
-Altfire:
-T_RR C 0 A_GiveInventory("VivifyDelay4")
-T_RR C 0 A_ReFire(1)
-T_RR C 2 offset(10,40)A_GiveInventory("Terra_AltBoostCheck_P")
-T_RR C 2 offset(30,60)
-T_RR C 8 offset(40,70)
-T_RR C 1 offset(20,50)
-T_RR C 1 offset(10,40)
-Goto Ready1
+NoAmmo:
+TERH A 0 A_JumpIfInventory("TerraNoAmmoFlag",1,1)
+TERH A 2
+Goto Ready+2
 
 Flash:
-TNT1 A 1 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_SINGLE_INPUT,8,0)==1,3)
-TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-TNT1 A 0 A_JumpIfInventory("TerraChargeFlag",1,"Flash")
-stop
-TNT1 A 1 A_JumpIfInventory("StardustCrusaderAmmo",14,1)
-loop
-TNT1 A 2 A_GiveInventory("Terra_AltBoostCheck_P")
+//TNT1 A 0 A_JumpIfInventory("SparkEyeFlag",1,)
+TNT1 A 0 A_JumpIfInventory("TerraAltfireFlag",1,2)
+TNT1 A 0 A_GiveInventory("ShojoAmmo",1)
+TNT1 A 0 A_TakeInventory("TerraKneeTimer",1)
 TNT1 A 2
-TNT1 A 8
-TNT1 A 1
-TNT1 A 1
-loop
-}
-} 
+EyeCheck:
+TNT1 A 0 A_JumpIfInventory("SliceOfEyefeTimer",1,1)
+goto EyeStop
+TNT1 A 0 A_JumpIfInventory("SparkEyeFlag",1,3)
+EyeStop:
+TNT1 A 0 ChangeCamera(0,0,0)
+TNT1 A 0 //A_GiveInventory("SliceOfEyefeTimer",4)
+goto Flash
+TNT1 A 0 ChangeCamera(400+TID,0,0)
+TNT1 A 0 A_TakeInventory("SliceOfEyefeTimer",1)
+goto Flash
 
-actor ChiaPetAmmo : Ammo
+Flash_Knee:
+//TERH FGHHHIIJ 1
+TERH FFGHHHHGIJ 1
+Goto Flash
+}
+}
+
+actor ShonenAmmo : Ammo
 {
-inventory.amount 1
-inventory.maxamount 112
+inventory.amount 5
+inventory.maxamount 500
 +INVENTORY.IGNORESKILL
 }
 
-actor StardustCrusaderAmmo : Ammo
+actor ShojoAmmo : Ammo
 {
-inventory.amount 1
-inventory.maxamount 28
-+INVENTORY.IGNORESKILL
-}
-
-actor Terra_ChaserDawdle : Inventory
-{
-inventory.amount 1
-inventory.maxamount 364
-}
-
-actor TerraChargeFlag : Inventory
-{
-inventory.amount 1
+inventory.amount 56
 inventory.maxamount 56
++INVENTORY.IGNORESKILL
 }
 
-actor TerraBuddyFlag : OnceC{}
-
-actor Terra_ChaserVivify : Inventory
+actor SliceOfEyefeTimer : Ammo
 {
-inventory.amount 1
-inventory.maxamount 100
-}
-actor TerraCurrentRadius : Inventory
-{
-inventory.amount 1
-inventory.maxamount 16
+inventory.amount 70
+inventory.maxamount 70
++INVENTORY.IGNORESKILL
 }
 
-actor Terra_MainfireBase_P : CustomInventory
+actor TerraKneeTimer : Ammo
 {
-States
-{
-P_End:
-//TNT1 A 0 A_TakeInventory("ChiaPetAmmo",1,1)
-TNT1 A 0 A_TakeInventory("Terra_ChaserDawdle",1)
-TNT1 A 0 A_GiveInventory("Terra_MainfireSpawn_P")
-stop
-P_CheckAlt:
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_SINGLE_INPUT,8,0)==1,2)
-TNT1 A 0 A_TakeInventory("PressButton_Alt_F")
-goto P_End
-TNT1 A 0 A_GiveInventory("PressButton_Alt_F",1)
-goto P_End
-}
-}
-actor Terra_MainfireStart_P : Terra_MainfireBase_P
-{
-States
-{
-Pickup:
-TNT1 A 0 A_GiveInventory("TerraCurrentRadius",1)
-TNT1 A 0 A_TakeInventory("ChiaPetAmmo",2,1)
-goto P_End
-}
-}
-actor Terra_MainfireHold_P : Terra_MainfireBase_P
-{
-States
-{
-Pickup:
-goto P_CheckAlt
-}
-}
-actor Terra_MainfireEnd_P : Terra_MainfireBase_P
-{
-States
-{
-Pickup:
-TNT1 A 0 A_TakeInventory("Terra_ChaserVivify",45)
-TNT1 A 0 A_TakeInventory("Terra_ChaserDawdle",45)
-TNT1 A 0 A_TakeInventory("TerraCurrentRadius",1)
-TNT1 A 0 A_TakeInventory("PressButton_Alt_F")
-goto P_End
-}
+inventory.amount 0
+inventory.maxamount 61
++INVENTORY.IGNORESKILL
 }
 
-actor Terra_MainfireHoldInc_P : Terra_MainfireBase_P
+actor TerraRegenCounter : Ammo
 {
-States
-{
-Pickup:
-TNT1 A 0 A_JumpIfInventory("TerraCurrentRadius",16,"P_CheckAlt")//TERRA_MAXRAD
-TNT1 A 0 A_GiveInventory("TerraCurrentRadius",1)
-goto P_CheckAlt
-}
-}
-actor Terra_MainfireHoldDec_P : Terra_MainfireBase_P
-{
-States
-{
-Pickup:
-TNT1 A 0 A_JumpIfInventory("TerraCurrentRadius",3,2)
-TNT1 A 0 A_JumpIfInventory("TerraCurrentRadius",2,"P_CheckAlt")//TERRA_MINRAD
-TNT1 A 0 A_TakeInventory("TerraCurrentRadius",1)
-goto P_CheckAlt
-}
+inventory.amount 0
+inventory.maxamount 30
++INVENTORY.IGNORESKILL
 }
 
-actor Terra_MainfireSpawn_P : CustomInventory
+actor SparkLaserTimer : Ammo
 {
-States
-{
-Pickup:
-TNT1 A 0 A_JumpIfInventory("TerraCurrentRadius",1,1)
-stop
-TNT1 A 0 A_GiveInventory("Terra_ChaserVivify",1)
-TNT1 A 0 A_JumpIfInventory("Terra_ChaserVivify",32,"Pickup3")
-TNT1 A 0 A_JumpIfInventory("Terra_ChaserVivify",29,"Pickup2")
-
-TNT1 A 0 A_JumpIfInventory("Terra_ChaserVivify",25,"Pickup1")
-TNT1 A 0 A_JumpIfInventory("Terra_ChaserVivify",21,"Pickup2")
-
-TNT1 A 0 A_JumpIfInventory("Terra_ChaserVivify",17,"Pickup1")
-TNT1 A 0 A_JumpIfInventory("Terra_ChaserVivify",13,"Pickup2")
-
-TNT1 A 0 A_JumpIfInventory("Terra_ChaserVivify",9,"Pickup1")
-TNT1 A 0 A_JumpIfInventory("Terra_ChaserVivify",5,"Pickup2")
-
-Pickup1:
-TNT1 A 0 A_SpawnItemEx("Terra_SparkChaser1",cos(-pitch)*30*CallACS("cbm_countinv_acs",500),0,32+sin(-pitch)*30*CallACS("cbm_countinv_acs",500),0,0,0,0,33)
-TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,1)
-stop
-TNT1 A 0 A_SpawnItemEx("Terra_SparkChaser1",cos(-pitch)*30*CallACS("cbm_countinv_acs",500),0,32+sin(-pitch)*30*CallACS("cbm_countinv_acs",500),0,0,0,15,33)
-TNT1 A 0 A_SpawnItemEx("Terra_SparkChaser1",cos(-pitch)*30*CallACS("cbm_countinv_acs",500),0,32+sin(-pitch)*30*CallACS("cbm_countinv_acs",500),0,0,0,-15,33)
-stop
-Pickup3:
-TNT1 A 0 A_GiveInventory("StardustCrusaderAmmo",1)
-TNT1 A 0 A_TakeInventory("Terra_ChaserVivify")
-Pickup2:
-TNT1 A 0 A_SpawnItemEx("Terra_SparkChaser2",cos(-pitch)*30*CallACS("cbm_countinv_acs",500),0,32+sin(-pitch)*30*CallACS("cbm_countinv_acs",500),0,0,0,0,33)
-TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,1)
-stop
-TNT1 A 0 A_SpawnItemEx("Terra_SparkChaser2",cos(-pitch)*30*CallACS("cbm_countinv_acs",500),0,32+sin(-pitch)*30*CallACS("cbm_countinv_acs",500),0,0,0,15,33)
-TNT1 A 0 A_SpawnItemEx("Terra_SparkChaser2",cos(-pitch)*30*CallACS("cbm_countinv_acs",500),0,32+sin(-pitch)*30*CallACS("cbm_countinv_acs",500),0,0,0,-15,33)
-stop
-}
+inventory.amount 0
+inventory.maxamount 80
++INVENTORY.IGNORESKILL
 }
 
-actor Terra_SparkChaserProtect : PowerProtection
+actor SparkChaserFlag : Powerup
 {
 Powerup.Duration 5
-DamageFactor "Terra_SparkChaser", 0.0
 }
 
-actor Terra_SparkChaser1 : BasicExplosion
+actor SparkChaserDetFlag : Powerup
 {
-Obituary "$OB_TERRACHASER"
-DamageType "Terra_SparkChaser"
-RenderStyle None
-//+FORCEXYBILLBOARD
-//+BRIGHT
-//+EXPLODEONDEATH
-//reactiontime 10
-//scale 3.5
+Powerup.Duration 5
+}
+
+actor SparkEyeFlag : OnceC{}
+
+actor TerraMustMelee : OnceC{}
+
+actor TerraNoAmmoFlag : OnceC{}
+
+actor TerraAltfireFlag : OnceC{}
+
+actor TerraAltAnim : OnceC{}
+
+actor TerraAltAnimOnce0 : OnceC{}
+
+actor TerraAltAnimOnce1 : OnceC{}
+
+actor TerraAltAnimOnce2 : OnceC{}
+
+actor TerraAltAnimOnce3 : OnceC{}
+
+actor SheepSwitchChecker : Powerup
+{
+Powerup.Duration 1
+}
+
+actor SparkChaserChecker : Powerup
+{
+Powerup.Duration 5
+}
+
+actor SparkPacerFlag : Powerup
+{
+Powerup.Duration 10
+}
+
+actor BasicItemDelay : Powerup
+{
+Powerup.Duration 10
+}
+
+actor SparkChaserTerraProtectC : PowerProtection
+{
+Powerup.Duration 3
+DamageFactor "SparkChaserTerra", 0.0
+}
+
+actor TerraSuppressorProtect : PowerProtection
+{
+Powerup.Duration 3
+DamageFactor "Terra_Suppressor", 0.0
+}
+
+actor SparkChaserSoundCounter : Ammo
+{
+inventory.amount 0
+inventory.maxamount 12
++INVENTORY.IGNORESKILL
+}
+
+actor TerraSparkEyeItem : BasicClassItem
+{
+inventory.pickupmessage "fgsfds!"
+inventory.icon "VTERICON"
+Tag "Spark Chaser Sight: Off"
 states
 {
 Spawn:
+AHUG Z 1
+loop
+Use:
+TNT1 A 0 A_JumpIfInventory("BasicItemDelay",1,"ElFail")
+goto RealUse//TNT1 A 0 A_JumpIfInventory("SparkChaserChecker",1,"RealUse")
+ElFail:
 TNT1 A 0
-TNT1 A 0 A_SpawnItemEx("Terra_SparkChaserFXA",0,0,0,0,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("Terra_SparkChaserFX_H1",0,0,0,0,0,0,0,1)
-Spawn0:
-TNT1 A 0 A_Explode(0,38,0,0,38)
-TNT1 AAA 2 A_Explode(56,38,0,0,38)
+fail
+RealUse:
+TNT1 A 0 A_PlaySoundEx("item/ItemUseMM9","SoundSlot7")
+TNT1 A 0 A_GiveInventory("BasicItemDelay",1)
+TNT1 A 0 A_JumpIfInventory("SparkEyeFlag",1,"Take")
+//TNT1 A 0 ChangeCamera(400+TID,0,0)
+TNT1 A 0 A_GiveInventory("TerraSparkEyeItem2",1)
+TNT1 A 0 A_GiveInventory("SparkEyeFlag",1)
+stop
+Take:
+TNT1 A 0 A_GiveInventory("TerraSparkEyeItem",1)
+TNT1 A 0 A_TakeInventory("SparkEyeFlag",1)
+//TNT1 A 10 ChangeCamera(0,0,0)
 stop
 }
 }
-actor Terra_SparkChaser2 : Terra_SparkChaser1
+
+actor TerrAuch : CustomInventory
+{//Cambiaso
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("SparkChaserChecker",1,"Yes")
+stop
+Yes:
+TNT1 A 0 A_GiveInventory("OuchMyTerra",1)
+stop
+}
+}
+
+actor OuchMyTerra : Powerup
+{
+Powerup.Duration 15
+}
+
+  actor TerraSparkEyeItem2 : TerraSparkEyeItem {
+  inventory.icon "TERICONX"
+  Tag "Spark Chaser Sight: ON"
+  }
+
+actor TerraMain1_CI : TeamColor_CI
 {
 states
 {
-Spawn:
-TNT1 A 0
-TNT1 A 0 A_SpawnItemEx("Terra_SparkChaserFXB",0,0,0,0,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("Terra_SparkChaserFX_H2",0,0,0,0,0,0,0,1)
-goto Spawn0
+FireX:
+TNT1 A 0 A_FireCustomMissile("TerraClassSparkChaser",0,0,-4,5)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("TerraClassSparkChaserB",0,0,-4,5)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("TerraClassSparkChaserR",0,0,-4,5)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("TerraClassSparkChaserO",0,0,-4,5)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("TerraClassSparkChaserP",0,0,-4,5)
+goto Done
 }
 }
 
-
-actor Terra_SparkChaserFX_H1 : BasicClientSide
+actor TerraAlt1_CI : TeamColor_CI
 {
-+FORCEXYBILLBOARD
-+BRIGHT
-ReactionTime 3
-States
+states
 {
-Spawn:
-TNT1 A 0
-//TNT1 A 0 A_SpawnItemEx("Terra_SparkChaserFX1",0,0,0,0,0,0,0,1)
-
-TNT1 A 1 A_SpawnItemEx("Terra_SparkChaserFX2",random(1,5),0,random(-4,4),random(4,5),0,random(-5,5),random(0,359),1,32)
-T_RR TTTT 2 A_SpawnItemEx("Terra_SparkChaserFX2",random(1,5),0,random(-4,4),random(4,5),0,random(-5,5),random(0,359),1,96)
-stop
-
-SpawnOld://?
-TNT1 A 1 A_SpawnItemEx("Terra_SparkChaserFX2",random(1,5),0,random(-4,4),random(4,5),0,random(-5,5),random(0,359),1,32)
-Y_VA C 2 A_SpawnItemEx("Terra_SparkChaserFX2",random(3,6),0,random(-3,3),random(5,6),0,random(-5,5),random(0,359),1,32)
-Y_VA C 0 A_SetScale(ScaleX, ScaleY - 0.5)
-Y_VA C 2 A_SpawnItemEx("Terra_SparkChaserFX2",random(5,7),0,random(-2,2),random(6,7),0,random(-5,5),random(0,359),1,64)
-Y_VA C 0 A_SetScale(ScaleX, ScaleY - 0.5)
-Y_VA C 2 A_SpawnItemEx("Terra_SparkChaserFX2",random(7,8),0,random(-1,1),random(7,8),0,random(-5,5),random(0,359),1,96)
-Y_VA C 0 A_SetScale(ScaleX, ScaleY - 0.5)
-Y_VA C 2 A_SpawnItemEx("Terra_SparkChaserFX2",random(9,9),0,random(-0,0),random(8,9),0,random(-5,5),random(0,359),1,128)
-stop
-}
-}
-actor Terra_SparkChaserFX_H2 : Terra_SparkChaserFX_H1
-{
-//Scale 2.5
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 A 1 A_SpawnItemEx("Terra_SparkChaserFX3",random(1,5),0,random(-4,4),random(4,5),0,random(-5,5),random(0,359),1,32)
-T_RR UUUU 2 A_SpawnItemEx("Terra_SparkChaserFX3",random(1,5),0,random(-4,4),random(4,5),0,random(-5,5),random(0,359),1,96)
-stop
+FireX:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAlt",frandom(-8,8),0,-6,4,0,frandom(-4.5,4.5))
+goto Done
+FireB:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltB",frandom(-8,8),0,-6,4,0,frandom(-4.5,4.5))
+goto Done
+FireR:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltR",frandom(-8,8),0,-6,4,0,frandom(-4.5,4.5))
+goto Done
+FireO:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltO",frandom(-8,8),0,-6,4,0,frandom(-4.5,4.5))
+goto Done
+FireP:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltP",frandom(-8,8),0,-6,4,0,frandom(-4.5,4.5))
+goto Done
 }
 }
 
-actor Terra_SparkChaserFX1 : BasicClientSide
+actor TerraAlt2_CI : TeamColor_CI
 {
-+FORCEXYBILLBOARD
-+BRIGHT
-Scale 1.0
-States
+states
 {
-Spawn:
-TNT1 A 0
-TNT1 A 1
-Y_VA S 1
-Y_VA SSSSS 1 A_SetScale(ScaleX - 0.15)
-stop
+FireX:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAlt",frandom(-6,6),0,-6,4,0,frandom(-3.5,3.5))
+goto Done
+FireB:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltB",frandom(-6,6),0,-6,4,0,frandom(-3.5,3.5))
+goto Done
+FireR:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltR",frandom(-6,6),0,-6,4,0,frandom(-3.5,3.5))
+goto Done
+FireO:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltO",frandom(-6,6),0,-6,4,0,frandom(-3.5,3.5))
+goto Done
+FireP:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltP",frandom(-6,6),0,-6,4,0,frandom(-3.5,3.5))
+goto Done
 }
 }
-actor Terra_SparkChaserFX2 : Terra_SparkChaserFX1
+
+actor TerraAlt3_CI : TeamColor_CI
 {
-States
+states
 {
-Spawn:
-Y_VA W 0
-Y_VA WXV random(1,2)
-stop
+FireX:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAlt",frandom(-4,4),0,-6,4,0,frandom(-2.5,2.5))
+goto Done
+FireB:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltB",frandom(-4,4),0,-6,4,0,frandom(-2.5,2.5))
+goto Done
+FireR:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltR",frandom(-4,4),0,-6,4,0,frandom(-2.5,2.5))
+goto Done
+FireO:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltO",frandom(-4,4),0,-6,4,0,frandom(-2.5,2.5))
+goto Done
+FireP:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltP",frandom(-4,4),0,-6,4,0,frandom(-2.5,2.5))
+goto Done
 }
 }
-actor Terra_SparkChaserFX3 : Terra_SparkChaserFX1
+
+actor TerraAlt4_CI : TeamColor_CI
 {
-States
+states
 {
-Spawn:
-Y_VA N 0
-Y_VA NOP random(1,2)
-stop
+FireX:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAlt",frandom(-2,2),0,-6,4,0,frandom(-1.5,1.5))
+goto Done
+FireB:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltB",frandom(-2,2),0,-6,4,0,frandom(-1.5,1.5))
+goto Done
+FireR:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltR",frandom(-2,2),0,-6,4,0,frandom(-1.5,1.5))
+goto Done
+FireO:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltO",frandom(-2,2),0,-6,4,0,frandom(-1.5,1.5))
+goto Done
+FireP:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltP",frandom(-4,4),0,-6,4,0,frandom(-2.5,2.5))
+goto Done
 }
 }
-actor Terra_SparkChaserFXA : Terra_SparkChaserFX1
+
+actor TerraAlt1Fx_CI : TeamColor_CI
 {
-Scale 3.5
-States
+states
 {
-Spawn:
-Y_VA A 0
-Y_VA A 1
-stop
+FireX:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing1",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing1B",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing1R",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing1O",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing1P",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
 }
 }
-actor Terra_SparkChaserFXB : Terra_SparkChaserFXA
+
+actor TerraAlt2Fx_CI : TeamColor_CI
 {
-States
+states
 {
-Spawn:
-Y_VA B 0
-Y_VA B 1
-stop
+FireX:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing2",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing2B",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing2R",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing2O",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing2P",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+}
+}
+
+actor TerraAlt3Fx_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing3",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing3B",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing3R",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing3O",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing3P",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+}
+}
+
+actor TerraAlt4Fx_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing4",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing4B",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing4R",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing4O",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing4P",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+}
+}
+
+actor TerraReload_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("TerraMelee",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("TerraMeleeB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("TerraMeleeR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("TerraMeleeO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("TerraMeleeP",0,0,0,0)
+goto Done
 }
 }
 
@@ -631,12 +696,6 @@ stop
 }
 }
 
-actor Terra_StopperProtect : PowerProtection
-{
-Powerup.Duration 120
-DamageFactor "Terra_Stopper", 0.0
-}
-
 actor Terra_NullOrbiter
 {
 var int user_angle;
@@ -660,7 +719,7 @@ TNT1 A 0 A_SpawnItemEx("Terra_NullOrbiterFX",32,0,0,0,0,momz*0.5,120+user_angle,
 TNT1 A 0 A_SpawnItemEx("Terra_NullOrbiterFX",32,0,0,0,0,momz*0.5,240+user_angle,1)
 
 TNT1 A 1 A_SetUserVar("user_angle",user_angle+12)
-TNT1 A 0 A_Explode(25,48,0,0,48)
+TNT1 A 0 A_Explode(3,48,0,0,48)
 loop
 }
 }
@@ -700,139 +759,6 @@ stop
 }
 }
 
-
-actor Terra_AltBoostCheck_P : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 A_JumpIf(z-floorz==0,1)
-goto PickupCheck
-TNT1 A 0 ThrustThingZ(0,16,0,0)
-goto PickupCheck
-
-PickupCheck:
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==21,"P_LF")
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==19,"P_RF")
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==17,"P_F")
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==13,"P_LB")
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==11,"P_RB")
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==9,"P_B")
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==5,"P_L")
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==3,"P_R")
-TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==1,"P_None")
-goto P_None
-
-P_R://Right (2)
-TNT1 A 0 A_ChangeVelocity(0,-35,momz,3)
-goto End
-P_L://Left (4)
-TNT1 A 0 A_ChangeVelocity(0,35,momz,3)
-goto End
-P_B://Back (8)
-TNT1 A 0 A_ChangeVelocity(-35,0,momz,3)
-goto End
-P_F://Forward (16)
-TNT1 A 0 A_ChangeVelocity(35,0,momz,3)
-goto End
-
-P_RB:
-TNT1 A 0 A_ChangeVelocity(sin(-45)*35,sin(-45)*35,momz,3)
-goto End
-P_LB:
-TNT1 A 0 A_ChangeVelocity(sin(-45)*35,sin(45)*35,momz,3)
-goto End
-
-P_RF:
-TNT1 A 0 A_ChangeVelocity(sin(45)*35,sin(-45)*35,momz,3)
-goto End
-P_LF:
-TNT1 A 0 A_ChangeVelocity(sin(45)*35,sin(45)*35,momz,3)
-goto End
-P_None://No input/conflicting input (left+right=0)
-TNT1 A 0 ThrustThingZ(0,26,0,1)//16
-goto End
-End:
-TNT1 A 0 ThrustThingZ(0,12,0,1)
-
-TNT1 A 0 A_SpawnItemEX("TerraDashFX_H",0,0,0,0,0,0,0,1)
-
-TNT1 A 0 A_PlaySound("weapon/TerraQuickDash",4,0.875)//weapon/BurnerDive
-TNT1 A 0 A_GiveInventory("ChiaPetAmmo",8)
-TNT1 A 0 A_TakeInventory("StardustCrusaderAmmo",14,1)
-stop
-}
-}
-
-actor TerraDashFX_H : BasicHelper
-{
-//translation "192:192=117:117"
-reactiontime 5
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 A 1
-TNT1 A 1 A_GiveToTarget("TerraDashFX_P")
-TNT1 A 1 A_CountDown
-Loop
-}
-}
-
-actor TerraDashFX_P : CustomInventory
-{
-states
-{
-Pickup:
-TNT1 A 0 A_SpawnItemEx("TerraDashFX",0,0,0,0,0,0,0,1)
-stop
-}
-}
-
-actor TerraDashFX : BasicClientSide
-{
-+MISSILE
-+NOBLOCKMAP
-+BRIGHT
-RenderStyle Translucent
-Alpha 0.99
-Speed 50
-States
-{
-Spawn:
-TRRA J 0
-TRRA J 2
-TRRA J 2 A_FadeOut(0.2)
-wait
-}
-}
-
-actor Terra_SparkBuddyStart_P : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 A_SpawnItemEX("Terra_SparkBuddy",-16,-32,32,0,0,0,0,1)
-stop
-}
-}
-
-actor Terra_SparkBuddy : ShieldWarper_CBM
-{
-States
-{
-Shield:
-Y_VA A 0 A_JumpIfInTargetInventory("TerraBuddyFlag",1,"Hidden")
-Y_VA AAA 1 A_Warp(2,-16,-32,32,0,24)
-Y_VA B 0 A_JumpIfInTargetInventory("TerraBuddyFlag",1,"Hidden")
-Y_VA BBB 1 A_Warp(2,-16,-32,32,0,24)
-Goto Shield
-Hidden:
-TNT1 A 1 A_Warp(2,-16,-32,32,0,24)
-goto Shield
-}
-}
-
 actor TerraMain2_CI : TeamColor_CI
 {
 states
@@ -854,5 +780,3 @@ TNT1 A 0 A_FireCustomMissile("Terra_NullOrbiterP",0,1,0,8)
 goto Done
 }
 }
-
-

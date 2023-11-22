@@ -31,16 +31,36 @@ script "core_synccolors" (void)
             Switch(GetPlayerInfo(i, PLAYERINFO_TEAM))
             {
 			Case 0:
-				Thing_SetTranslation(i+1000, 10600);//$CBM
+				If(CheckInventory("ThunderClawBoss") == 1)
+				{
+				Thing_SetTranslation(i+1000, 11975);//$CBM
+				break;
+				}
+				Thing_SetTranslation(i+1000, 20600);//$CBM
 				break;
 			Case 1:
-				Thing_SetTranslation(i+1000, 10610);//$CBM
+				If(CheckInventory("ThunderClawBoss") == 1)
+				{
+				Thing_SetTranslation(i+1000, 11976);//$CBM
+				break;
+				}
+				Thing_SetTranslation(i+1000, 20610);//$CBM
 				break;
 			Case 2:
-				Thing_SetTranslation(i+1000, 10620);//$CBM
+				If(CheckInventory("ThunderClawBoss") == 1)
+				{
+				Thing_SetTranslation(i+1000, 11977);//$CBM
+				break;
+				}
+				Thing_SetTranslation(i+1000, 20620);//$CBM
 				break;
 			Case 3:
-				Thing_SetTranslation(i+1000, 10630);//$CBM
+				If(CheckInventory("ThunderClawBoss") == 1)
+				{
+				Thing_SetTranslation(i+1000, 11978);//$CBM
+				break;
+				}
+				Thing_SetTranslation(i+1000, 20630);//$CBM
 				break;
 			default:
 				SetActivator(i+1000);
@@ -78,7 +98,7 @@ script 998 (int weap, int nosound) //$CBM
 				Switch(nosound)
 					{
 					default:
-					weap = 10600;//Team color
+					weap = 20600;//Team color
 					break;
 					Case 3:
 					weap = 10603;//Darkened color
@@ -98,7 +118,7 @@ script 998 (int weap, int nosound) //$CBM
 				Switch(nosound)
 					{
 					default:
-					weap = 10610;
+					weap = 20610;
 					break;
 					Case 3:
 					weap = 10613;
@@ -118,7 +138,7 @@ script 998 (int weap, int nosound) //$CBM
 				Switch(nosound)
 					{
 					default:
-					weap = 10620;
+					weap = 20620;
 					break;
 					Case 3:
 					weap = 10623;
@@ -138,7 +158,7 @@ script 998 (int weap, int nosound) //$CBM
 				Switch(nosound)
 					{
 					default:
-					weap = 10630;
+					weap = 20630;
 					break;
 					Case 3:
 					weap = 10633;
@@ -186,4 +206,41 @@ function int GetMaxPlayers(void)
 	if(PlayerCount()>ret)
 		ret = PlayerCount();
 	return ret;
+}
+
+script "GayClownColors" (int weap, int nosound) //$CBM
+{
+	if(nosound==0 && CheckInventory("NoWeaponSwitchSound")==0)
+	{
+		LocalAmbientSound("menu/cursor",127); // Play weapon switch noise
+	}
+
+	if(CheckInventory("NoWeaponTranslation")>0){
+	terminate;
+	}
+	
+	If(IsTeamGame==1 && nosound<=9 && CheckInventory("NoTeamTranslation")==0)//$CBM
+		{
+		Switch(PlayerTeam())
+			{
+			Case 0:
+	Thing_SetTranslation(0, 11975);
+	PlayerTranslation[PlayerNumber()] = 11975;
+					terminate;
+			Case 1:
+	Thing_SetTranslation(0, 11976);
+	PlayerTranslation[PlayerNumber()] = 11976;
+					terminate;
+			Case 2:
+	Thing_SetTranslation(0, 11977);
+	PlayerTranslation[PlayerNumber()] = 11977;
+					terminate;
+			Case 3:
+	Thing_SetTranslation(0, 11978);
+	PlayerTranslation[PlayerNumber()] = 11978;
+					terminate;
+			}
+		}
+	Thing_SetTranslation(0, weap);
+	PlayerTranslation[PlayerNumber()] = weap;
 }

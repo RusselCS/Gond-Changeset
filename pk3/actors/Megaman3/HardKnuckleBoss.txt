@@ -1,11 +1,11 @@
 actor HardKnuckleBoss : BaseMM8BDMWep_CBM
 {
-tag "$TAGC_3D"
+Tag "$TAGC_3D"
 dropitem "HardKnuckleWepCDropped"
 Weapon.AmmoUse 0
 Weapon.AmmoGive 28
 Obituary "$OB_HARDKNUCKLE"
-weapon.ammotype "LandFlattenAmmo"
+weapon.ammotype "QuakeAmmo"
 States
 {
 Spawn:
@@ -14,213 +14,296 @@ loop
 Ready:
 HFIS A 0 ACS_ExecuteAlways(998,0,DYE_HARDMAN)
 HFIS A 0 A_GunFlash
-HFIS A 0 A_GiveInventory("HardM_HasFist",1)
-HFIS A 0 A_GiveInventory("HardM_HasFist2",1)
+RINA A 0 A_GiveInventory("HasFist",1)
+RINA A 0 A_GiveInventory("HasFist2",1)
 goto Ready2
 Ready2:
-HFIS A 0 A_JumpIfInventory("LandFlattenAmmo",28,"Ready3")
-HFIS A 10 A_WeaponReady(8)
-HFIS A 0 A_GiveInventory("LandFlattenAmmo",2)
-loop
+HFIS A 0 A_JumpIfInventory("QuakeAmmo",28,"Ready2Full")
+HFIS A 10 A_WeaponReady(WRF_NOSECONDARY)
+HFIS A 0 A_GiveInventory("QuakeAmmo",2)
+Goto Ready2
 Ready3:
-HFIS A 10 A_WeaponReady
-HFIS A 0 A_GiveInventory("LandFlattenAmmo",2)
+HFIS A 0 A_GiveInventory("MissingFist",1)
+HFIS A 0 A_JumpIfInventory("MissingFist",40, "FistRefund")
+HFIS A 0 A_JumpIfInventory("HasFist",1,"Ready2")
+HFIS E 0 A_JumpIfInventory("QuakeAmmo",28,"Ready3Full")
+HFIS E 1 A_WeaponReady(WRF_NOSECONDARY)
+Goto Ready3
+Ready2Full:
+HFIS A 1 A_WeaponReady
 loop
-ReadyFistWait:
-HFIS E 0 A_GiveInventory("MissingFist",1)
-HFIS E 0 A_JumpIfInventory("MissingFist",40,"ReadyFistRefund")
-HFIS E 0 A_JumpIfInventory("HardM_HasFist",1,"Ready2")
-HFIS E 0 A_JumpIfInventory("LandFlattenAmmo",28,2)
-HFIS E 1 A_WeaponReady(8)
-Goto ReadyFistWait
+Ready3Full:
 HFIS E 1 A_WeaponReady
-Goto ReadyFistWait
-ReadyFistRefund:
-HFIS A 0 A_GiveInventory("HardM_HasFist",1)
+Goto Ready3
+FistRefund:
+HFIS A 0 A_GiveInventory("HasFist",1)
 goto Ready2
-
 Deselect:
-HFIS AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-HFIS A 1 A_Lower
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+FIST A 1 A_Lower
 Loop
 Select:
-HFIS AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-HFIS A 1 A_Raise
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+FIST A 1 A_Raise
 Loop
-
 Fire:
-HFIS A 0 A_JumpIfInventory("IsBot",1,"BotFire")
-HFIS A 0 A_JumpIfInventory("HardM_HasFist",1,"FireFist_R")
-HFIS A 0 A_JumpIfInventory("HardM_HasFist2",1,"FireFist_L")
-Goto ReadyFistWait
-FireFist_R:
-HFIS A 0 A_PlaySound("weapon/HardFistFire",1,0.70)
+TNT1 A 0 A_JumpIfInventory("IsBot",1,"BotFire")
+HFIS A 0 A_JumpIfInventory("HasFist",1,"Fisted")
+HFIS A 0 A_JumpIfInventory("HasFist2",1,"Fisted2")
+Goto Ready3
+Fisted:
 HFIS A 0 A_TakeInventory("MissingFist",999)
-HFIS A 0 A_TakeInventory("HardM_HasFist",1)
-HFIS B 3 A_SpawnItemEx("HardmanKnuckleFiringFX1",3,10,32,0,0,0,0,1)
-HFIS C 3
-HFIS D 3 A_GiveInventory("HardmanMain_CI",1)
+HFIS A 0 A_TakeInventory("HasFist",1)
+HFIS A 3
+HFIS B 3 A_SpawnItemEx("HardKnuckleFX",-1,8,32,0,0,0)
+HFIS C 2
+HFIS A 0 A_PlaySoundEx("weapon/hknuckle","Weapon")
+HFIS D 0 A_GiveInventory("HardmanMain_CI",1)
+HFIS D 1
 HFIS E 18
-Goto ReadyFistWait
-FireFist_L:
-HFIS A 0 A_GiveInventory("HardM_AltFist",1)
-goto FireFist_LWait
-FireFist_LWait:
-HFIS E 0 A_JumpIfInventory("HardM_HasFist",1,"FireFist_LWait2")
+Goto Ready3
+Fisted2:
+HFIS A 0 A_GiveInventory("AltFist",1)
+goto Fisted2Wait1
+Fisted2Wait1:
+HFIS A 0 A_JumpIfInventory("HasFist",1,"Fisted2Wait2")
 HFIS E 1 A_RailWait
-HFIS E 0 A_JumpIfInventory("HardM_AltFist",1,"FireFist_LWait")
-goto ReadyFistWait
-FireFist_LWait2:
+HFIS A 0 A_JumpIfInventory("AltFist",1,"Fisted2Wait1")
+goto Ready3
+Fisted2Wait2:
 HFIS A 1 A_RailWait
-HFIS A 0 A_JumpIfInventory("HardM_AltFist",1,"FireFist_LWait2")
+HFIS A 0 A_JumpIfInventory("AltFist",1,"Fisted2Wait2")
 goto Ready2
 Altfire:
-HFIS A 0 A_JumpIfInventory("Quaking",1,"QuakeBoost")
-HFIS A 0 A_JumpIfInventory("LandFlattenAmmo",28,"QuakeStart")
-HFIS A 0 A_JumpIfInventory("HardM_HasFist",1,"Ready2")
-Goto ReadyFistWait
+HFIS A 0 A_JumpIfInventory("Quaking",1,"Boost")
+HFIS A 0 A_JumpIfInventory("QuakeAmmo",28,"QuakeStart")
+HFIS A 0 A_JumpIfInventory("HasFist",1,"Ready2")
+Goto Ready3
 QuakeStart:
-HFIS A 0 A_GunFlash("Flash.QuakeStart")
-HFIS A 0 A_GiveInventory("HardM_AltStart_P")
+HFIS A 0 A_TakeInventory("Quaking",999)
+HFIS A 0 A_GiveInventory("Quaking",1)
 HFIS A 0 A_Refire(1)
-HFIS A 0 A_JumpIfInventory("HardM_HasFist",1,"QuakeStart2")
-HFIS HI 2 A_SpawnItemEX("HardmanBoosterFX",-8,0,-8,0,0,-1,0,1)
-TNT1 A 0 A_GiveInventory("Quaking_RC",1)
-goto QuakeContinue
-QuakeStart2:
+HFIS A 0 A_TakeInventory("HardEnd",999)
+HFIS A 0 A_TakeInventory("JumpCancler",1)
+HFIS A 0 A_GiveInventory("PowerHardBoostSpeed",1)
+HFIS A 0 A_GiveInventory("LadderDisable",1)
+HFIS A 0 A_TakeInventory("QuakeAmmo",3)
+HFIS A 0 A_PlaySoundEx("weapon/superboost","Weapon")
+HFIS A 0 A_SpawnItemEx("HSHDustFX",0,0,0,0,0,0,0,1)
+HFIS A 0
+HFIS A 0 A_Recoil(-1)
+HFIS A 0 ThrustThingZ(0,50,0,0)
 HFIS FG 2 A_SpawnItemEX("HardmanBoosterFX",-8,0,-8,0,0,-1,0,1)
-TNT1 A 0 A_GiveInventory("Quaking_RC",1)
-goto QuakeContinue
+TNT1 A 0 A_GiveInventory("QuakingRageCheck",1)
 QuakeContinue:
-TNT1 A 1 A_Refire("QuakeBoost")//A_WeaponReady(WRF_NOSWITCH|WRF_NOPRIMARY)
-TNT1 A 0 A_JumpIf(momz<=0,"QuakeDown")
-loop
-QuakeContinue2:
-TNT1 A 1 A_JumpIf(momz<=0,"QuakeDown")
-TNT1 A 0 A_Refire("QuakeContinue2")
-loop
-QuakeBoost:
-TNT1 A 0 A_JumpIfInventory("LandFlattenAmmo",1,"QuakeBoost2")
-goto QuakeContinue2
-QuakeBoost2:
-TNT1 A 3 A_GiveInventory("HardM_AltThrust_P")
+TNT1 A 0 A_JumpIf(momz<=0, "QuakeDown")
+TNT1 A 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOPRIMARY)
+goto QuakeContinue
+Boost:
+TNT1 A 0 A_JumpIfInventory("QuakeAmmo",1,"Boost2")
+goto QuakeContinue
+Boost2:
+TNT1 A 0 A_PlaySoundEx("weapon/superboost","Weapon")
+TNT1 A 0 A_TakeInventory("QuakeAmmo",3)
+TNT1 A 0 A_SpawnItemEX("HardmanBoosterFX",-8,0,-8,0,0,-1,0,1)
+TNT1 A 0 A_Recoil(-1)
+TNT1 A 2 ThrustThingZ(0,7,0,1)
+TNT1 A 1 A_GiveInventory("PowerHardBoostSpeed",1)
 goto QuakeContinue
 QuakeDown:
-TNT1 A 0 A_GiveInventory("HardM_AltCrush_P")
+TNT1 A 0 ThrustThingZ(0,10,1,1)
+TNT1 A 0 A_GiveInventory("HardCrush_P",1)
+TNT1 A 0 A_GiveInventory("QuakingRageCheck",1)
 TNT1 A 0 A_JumpIf(z-floorz==0,"QuakeCrash")
 TNT1 A 0 A_JumpIfInventory("Quaking",999,"QuakeCrash")
-TNT1 A 1
+TNT1 A 0 A_GiveInventory("PowerHardBoostSpeed",1)
+TNT1 A 1 A_GiveInventory("HardSoundGive",1)
 loop
 QuakeCrash:
-TNT1 A 0 A_JumpIfInventory("IsBot",1,"BotQuakeCrash")
 TNT1 A 0 A_Quake(7,20,0,300,0)
 TNT1 A 0 A_PlaySoundEX("weapon/hardquakeland","Weapon")
-TNT1 A 0 A_GiveInventory("Hardman_FloorQuake_P",1)
-TNT1 A 0 A_GiveInventory("VivifyDelay10",1)
+TNT1 A 0 A_JumpIfInventory("Quaking",50,"QuakeCrash5")
+TNT1 A 0 A_JumpIfInventory("Quaking",40,"QuakeCrash4")
+TNT1 A 0 A_JumpIfInventory("Quaking",30,"QuakeCrash4")
+TNT1 A 0 A_JumpIfInventory("Quaking",20,"QuakeCrash3")
+TNT1 A 0 A_JumpIfInventory("Quaking",10,"QuakeCrash2")
+goto QuakeCrash1
+
+QuakeCrash6:
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_FloorQuakeDamage",0,700,30,33)
+TNT1 A 0 A_SpawnItemEx("Hardman_QuakeFX_H6")
+goto QuakeEnd
+QuakeCrash5:
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_FloorQuakeDamage",0,600,25,33)
+TNT1 A 0 A_SpawnItemEx("Hardman_QuakeFX_H5")
+goto QuakeEnd
+QuakeCrash4:
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_FloorQuakeDamage",0,500,20,33)
+TNT1 A 0 A_SpawnItemEx("Hardman_QuakeFX_H4")
+goto QuakeEnd
+QuakeCrash3:
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_FloorQuakeDamage",0,400,15,33)
+TNT1 A 0 A_SpawnItemEx("Hardman_QuakeFX_H3")
+goto QuakeEnd
+QuakeCrash2:
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_FloorQuakeDamage",0,300,10,33)
+TNT1 A 0 A_SpawnItemEx("Hardman_QuakeFX_H2")
+goto QuakeEnd
+QuakeCrash1:
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_FloorQuakeDamage",0,200,5,33)
+TNT1 A 0 A_SpawnItemEx("Hardman_QuakeFX_H1")
+goto QuakeEnd
+QuakeEnd:
+TNT1 A 0 A_GiveInventory("Stuck",1)
 TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,5)
 TNT1 AAAAAAAAA 1 A_Stop
 TNT1 A 0 A_TakeInventory("PowerHardBoostSpeed",99)
-TNT1 A 0 A_TakeInventory("VivifyDelay10",1)
-TNT1 A 0 A_GiveInventory("VivifyDelay5",1)
-HFIS H 0 A_TakeInventory("Quaking",999)
-TNT1 A 0 A_JumpIfInventory("HardM_HasFist",1,"QuakeCrash2")
-HFIS IIH 1 A_Stop
-HFIS H 0 A_TakeInventory("Quaking",999)
-HFIS H 0 A_GiveInventory("LadderEnable",1)
-HFIS H 1 ThrustThingZ(0,30,0,0)
-HFIS A 0 A_TakeInventory("LandFlattenAmmo",28,1)
-TNT1 A 0 A_JumpIfInventory("HardM_HasFist",1,"Ready2")
-goto ReadyFistWait
-QuakeCrash2:
-HFIS GGF 1 A_Stop
-HFIS F 0 A_TakeInventory("Quaking",999)
-HFIS F 0 A_GiveInventory("LadderEnable",1)
-HFIS F 1 ThrustThingZ(0,30,0,0)
-HFIS A 0 A_TakeInventory("LandFlattenAmmo",28,1)
-goto Ready2
-
-
+TNT1 A 0 A_TakeInventory("Stuck",1)
+TNT1 A 0 A_GiveInventory("HardEnd",1)
+TNT1 AAA 1 A_Stop
+TNT1 A 0 A_TakeInventory("Quaking",999)
+TNT1 A 0 A_GiveInventory("LadderEnable",1)
+TNT1 A 1 ThrustThingZ(0,30,0,0)
+TNT1 A 0 A_TakeInventory("QuakeAmmo",28)
+TNT1 A 0 A_JumpIfInventory("HasFist",1,"Ready2")
+Goto Ready3
+NoAmmo:
+HFIS A 0
+Goto Ready2
 Flash:
 HFI2 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+HFI2 A 1 A_JumpIfInventory("AltFist",1,"FlashFisted")
 HFI2 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
-HFI2 AA 1 A_JumpIfInventory("HardM_AltFist",1,"Flash.FireFist")
+HFI2 A 0 A_JumpIfInventory("Quaking",1,"HideFist")
+HFI2 A 1 A_JumpIfInventory("AltFist",1,"FlashFisted")
+HFI2 A 0 A_JumpIfInventory("Quaking",1,"HideFist")
+HFI2 A 1 A_JumpIfInventory("AltFist",1,"FlashFisted")
 HFI2 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
-HFI2 AA 1 A_JumpIfInventory("HardM_AltFist",1,"Flash.FireFist")
+HFI2 A 0 A_JumpIfInventory("Quaking",1,"HideFist")
+HFI2 A 1 A_JumpIfInventory("AltFist",1,"FlashFisted")
+HFI2 A 0 A_JumpIfInventory("Quaking",1,"HideFist")
+HFI2 A 1 A_JumpIfInventory("AltFist",1,"FlashFisted")
 HFI2 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
-HFI2 AA 1 A_JumpIfInventory("HardM_AltFist",1,"Flash.FireFist")
+HFI2 A 0 A_JumpIfInventory("Quaking",1,"HideFist")
+HFI2 A 1 A_JumpIfInventory("AltFist",1,"FlashFisted")
+HFI2 A 0 A_JumpIfInventory("Quaking",1,"HideFist")
+HFI2 A 1 A_JumpIfInventory("AltFist",1,"FlashFisted")
 HFI2 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
-HFI2 AA 1 A_JumpIfInventory("HardM_AltFist",1,"Flash.FireFist")
+HFI2 A 0 A_JumpIfInventory("Quaking",1,"HideFist")
+HFI2 A 1 A_JumpIfInventory("AltFist",1,"FlashFisted")
+HFI2 A 0 A_JumpIfInventory("Quaking",1,"HideFist")
+HFI2 A 1 A_JumpIfInventory("AltFist",1,"FlashFisted")
 HFI2 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
-HFI2 AA 1 A_JumpIfInventory("HardM_AltFist",1,"Flash.FireFist")
-HFI2 A 0 A_GiveInventory("LandFlattenAmmo",2)
+HFI2 A 0 A_JumpIfInventory("Quaking",1,"HideFist")
+HFI2 A 1 A_JumpIfInventory("AltFist",1,"FlashFisted")
+HFI2 A 0 A_JumpIfInventory("Quaking",1,"HideFist")
+HFIS A 0 A_GiveInventory("QuakeAmmo",2)
 loop
-Flash.FireFist:
-HFI2 A 0 A_PlaySound("weapon/HardFistFire",1,0.70)
-HFI2 A 0 A_TakeInventory("MissingFist2",999)
-HFI2 A 0 A_TakeInventory("HardM_HasFist2",1)
-HFI2 B 3 A_SpawnItemEx("HardmanKnuckleFiringFX2",3,-10,32,0,0,0,0,1)
-HFI2 C 3
-HFI2 D 3 A_GiveInventory("HardmanMain2_CI",1)
+FlashFisted:
+HFIS A 0 A_TakeInventory("MissingFist2",999)
+HFIS A 0 A_TakeInventory("HasFist2",1)
+HFI2 A 6
+HFI2 B 3 A_SpawnItemEx("HardKnuckleFX",-1,-8,32,0,0,0)
+HFI2 C 2
+HFI2 A 0 A_PlaySoundEx("weapon/hknuckle","Weapon")
+HFI2 D 0 A_GiveInventory("HardmanMain2_CI",1)
+HFI2 D 1
 HFI2 E 0 A_JumpIfInventory("IsDead",1,"NoFlash")
 HFI2 E 18
-HFI2 A 0 A_TakeInventory("HardM_AltFist",1)
-goto Flash.FistWait
-Flash.FistWait:
-HFI2 E 0 A_GiveInventory("MissingFist2",1)
-HFI2 E 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-HFI2 E 0 A_JumpIfInventory("MissingFist2",40,"Flash.FistRefund")
-HFI2 E 0 A_JumpIfInventory("HardM_HasFist2",1,"Flash")
+HFIS A 0 A_TakeInventory("AltFist",1)
+goto Flash2
+Flash2:
+HFIS A 0 A_GiveInventory("MissingFist2",1)
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+HFIS A 0 A_JumpIfInventory("MissingFist2",40, "FistRefund2")
+HFIS A 0 A_JumpIfInventory("HasFist2",1,"Flash")
+HFI2 F 0 A_JumpIfInventory("Quaking", 1, "HideFist")
 HFI2 E 1
-loop
-Flash.FistRefund:
-HFI2 A 0 A_GiveInventory("HardM_HasFist2",1)
+Goto Flash2
+FistRefund2:
+HFIS A 0 A_GiveInventory("HasFist2",1)
 goto Flash
-Flash.QuakeStart:
-HFIS H 0 A_JumpIfInventory("HardM_HasFist2",1,3)
-HFI2 HI 2
-goto Flash.QuakeWait
+HideFist:
 HFI2 FG 2
-goto Flash.QuakeWait
-Flash.QuakeWait:
+goto HideFist2
+HideFist2:
 TNT1 A 1
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-TNT1 A 0 A_JumpIfInventory("Quaking",1,"Flash.QuakeWait")
-TNT1 A 0 A_JumpIfInventory("HardM_HasFist2",1,3)
-HFI2 IH 2
-goto Flash.FistWait
-HFI2 GF 2
-goto Flash
+HFI2 E 0 A_JumpIfInventory("Quaking", 1, "HideFist2")
+HFI2 E 0 A_JumpIfInventory("HasFist2",1,"Flash")
+goto Flash2
 
 BotFire:
-TNT1 A 0 A_JumpIfInventory("LandFlattenAmmo",28,"BotFire2")
+TNT1 A 0 A_JumpIfInventory("QuakeAmmo",28,"BotFire2")
 goto Fire+1
 BotFire2:
-HFIS A 0 A_JumpIfInventory("HardM_HasFist",1,"BotFire3")
-HFIS A 0 A_JumpIfInventory("HardM_HasFist2",1,"BotFire3")
+HFIS A 0 A_JumpIfInventory("HasFist",1,"BotFire3")
+HFIS A 0 A_JumpIfInventory("HasFist2",1,"BotFire3")
 goto BotQuakeStart
 BotFire3:
-TNT1 A 0 A_Jump(200,"BotQuakeStart")
+TNT1 A 0 A_Jump(200, "BotQuakeStart")
 goto Fire+1
+
 BotQuakeStart:
 TNT1 A 0 A_GiveInventory("BotHugFlag",1)
-goto QuakeStart
+TNT1 A 0 A_TakeInventory("Quaking",999)
+TNT1 A 0 A_GiveInventory("Quaking",1)
+TNT1 A 0 A_Refire(1)
+TNT1 A 0 A_TakeInventory("HardEnd",999)
+TNT1 A 0 A_TakeInventory("JumpCancler",1)
+TNT1 A 0 A_GiveInventory("PowerHardBoostSpeed",1)
+TNT1 A 0 A_GiveInventory("LadderDisable",1)
+TNT1 A 0 A_TakeInventory("QuakeAmmo",3)
+TNT1 A 0 A_PlaySoundEx("weapon/superboost","Weapon")
+TNT1 A 0 A_SpawnItemEx("HSHDustFX",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_Recoil(-1)
+TNT1 A 0 ThrustThingZ(0,50,0,0)
+HFI2 FG 2 A_SpawnItemEX("HardmanBoosterFX",-8,0,-8,0,0,-1,0,1)
+TNT1 A 0 A_GiveInventory("QuakingRageCheck",1)
+BotQuakeContinue://QuakeFlag
+TNT1 A 0 A_JumpIf(momz<=0, "BotQuakeDown")
+TNT1 A 0 A_ReFire(1)
+TNT1 A 1
+TNT1 A 0 A_Jump(240,"BotBoost")
+goto BotQuakeContinue
+BotBoost:
+TNT1 A 0 A_JumpIfInventory("QuakeAmmo",1,"BotBoost2")
+goto BotQuakeContinue
+BotBoost2:
+TNT1 A 0 A_PlaySoundEx("weapon/superboost","Weapon")
+TNT1 A 0 A_TakeInventory("QuakeAmmo",3)
+TNT1 A 0 A_SpawnItemEX("HardmanBoosterFX",-8,0,-8,0,0,-1,0,1)
+TNT1 A 0 A_Recoil(-1)
+TNT1 A 2 ThrustThingZ(0,7,0,1)
+TNT1 A 1 A_GiveInventory("PowerHardBoostSpeed",1)
+goto BotQuakeContinue
+BotQuakeDown:
+TNT1 A 0 ThrustThingZ(0,1,1,1)
+TNT1 A 0 A_GiveInventory("HardCrush_P",1)
+TNT1 A 0 A_GiveInventory("QuakingRageCheck",1)
+TNT1 A 0 A_JumpIf(z-floorz==0, "BotQuakeCrash")
+TNT1 A 0 A_JumpIfInventory("Quaking",999,"BotQuakeCrash")
+TNT1 A 0 A_GiveInventory("PowerHardBoostSpeed",1)
+TNT1 A 1 A_GiveInventory("HardSoundGive",1)
+loop
 BotQuakeCrash:
+
 TNT1 A 0 A_TakeInventory("BotHugFlag",999)
-goto QuakeCrash+1
+goto QuakeCrash
 }
 }
 
-actor LandFlattenAmmo : Ammo
+actor QuakeAmmo : Ammo
 {
 inventory.amount 1
 inventory.maxamount 28
 +INVENTORY.IGNORESKILL
 }
 
-actor HardM_HasFist : OnceC{}
-actor HardM_HasFist2 : OnceC{}
+actor HasFist : OnceC{}
+actor HasFist2 : OnceC{}
 
-actor HardM_AltFist : OnceC{}
+actor AltFist : OnceC{}
 
 actor MissingFist : Inventory
 {
@@ -234,7 +317,7 @@ actor MissingFist2 : MissingFist
 actor PowerHardBoostSpeed : PowerSpeed
 {
 powerup.duration 10
-Speed 1.75
+Speed 2.25
 +POWERSPEED.NOTRAIL
 }
 
@@ -244,7 +327,7 @@ inventory.amount 1
 inventory.maxamount 999
 }
 
-actor Quaking_RC : CustomInventory
+actor QuakingRageCheck : CustomInventory
 {
 States
 {
@@ -258,131 +341,29 @@ TNT1 A 0 A_GiveInventory("Quaking",2)
 stop
 }
 }
-actor Quaking3_RC : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0
-TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
-TNT1 A 0 A_GiveInventory("Quaking",3)
-stop
-PickupR:
-TNT1 A 0 A_GiveInventory("Quaking",6)
-stop
-}
-}
 
 actor QuakeFlag : Powerup
 {
 Powerup.Duration 20
 }
 
-actor HardM_AltStart_P : CustomInventory
+actor Stuck : OnceC{}
+actor HardEnd : OnceC{}
+
+actor HardSoundGive : CustomInventory
 {
+inventory.amount 1
+inventory.maxamount 1
 States
 {
 Pickup:
-TNT1 A 0 A_TakeInventory("Quaking")
-TNT1 A 0 A_GiveInventory("Quaking",1)
-TNT1 A 0 A_TakeInventory("JumpCancler",1)
-TNT1 A 0 A_GiveInventory("PowerHardBoostSpeed",1)
-TNT1 A 0 A_GiveInventory("LadderDisable",1)
-TNT1 A 0 A_TakeInventory("LandFlattenAmmo",3,1)
-TNT1 A 0 A_PlaySoundEx("weapon/superboost","Weapon")
-TNT1 A 0 A_SpawnItemEx("HardM_DustFX",0,0,0,0,0,0,0,1)
-TNT1 A 0 A_Recoil(-1)
-TNT1 A 0 ThrustThingZ(0,50,0,0)
-stop
-}
-}
-
-actor HardM_AltThrust_P : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 A_SpawnItemEX("HardmanBoosterFX",-8,0,-8,0,0,-1,0,1)
-TNT1 A 0 A_PlaySoundEx("weapon/superboost","Weapon")
-TNT1 A 0 A_Recoil(-1)
-TNT1 A 0 A_GiveInventory("PowerHardBoostSpeed",1)
-TNT1 A 0 A_TakeInventory("LandFlattenAmmo",3,1)
-TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,2)
-TNT1 A 0 ThrustThingZ(0,7,0,!(momz<=0))
-stop
-TNT1 A 0 ThrustThingZ(0,7,0,1)
-stop
-}
-}
-
-actor HardM_AltCrush_P : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 ThrustThingZ(0,1,1,1)
-TNT1 A 0 A_GiveInventory("HardCrush_P",1)
-TNT1 A 0 A_GiveInventory("Quaking_RC",1)
-TNT1 A 0 A_GiveInventory("PowerHardBoostSpeed",1)
-
+TNT1 A 0
 TNT1 A 0 A_JumpIfInventory("Quaking",15,"Sound")
 stop
 Sound:
 TNT1 A 0 A_PlaySoundEx("weapon/hardglitch","weapon")
 stop
 }
-}
-
-actor HardM_DustFX
-{
-+NOINTERACTION
-+NOGRAVITY
-+CLIENTSIDEONLY
-Radius 4
-Height 4
-Scale 3.5
-States
-{
-Spawn://HyperStormH sprite
-HSHH PQR 6
-stop
-}
-}
-
-actor HardmanKnuckleFiringFX1
-{
--SOLID
-+MISSILE
-+NOGRAVITY
-+NOINTERACTION
-+NOTIMEFREEZE
-+THRUACTORS
-+DONTBLAST
-+FORCEXYBILLBOARD
-+BRIGHT
-+CLIENTSIDEONLY
-
-Meleerange 3//Warp X
-Accuracy 10//Warp Y 
-Mass 32//Warp Z
-
-Radius 2
-Height 2
-Speed 40
-scale 2.5
-States
-{
-Spawn:
-XMFX Q 0
-XMFX QQSS 1 A_Warp(2,Meleerange,Accuracy,Mass,0,24)
-VMFX JJKK 1 A_Warp(2,Meleerange,Accuracy,Mass,0,24)
-stop
-}
-}
-
-actor HardmanKnuckleFiringFX2 : HardmanKnuckleFiringFX1
-{
-Accuracy -10
 }
 
 actor HardmanBoosterFX
@@ -405,11 +386,23 @@ stop
 }
 }
 
+actor HardSoundGive2 : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_PlaySoundEx("weapon/adapterreturn","Body")
+stop
+}
+}
+
 actor HardCrush_P : CustomInventory
 {
 States
 {
 Pickup:
+TNT1 A 0
 TNT1 A 0 A_SpawnItemEx("HardCrush",0,0,-10,0,0,-10)
 TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"Pickup_S")
 stop
@@ -423,13 +416,12 @@ stop
 actor HardCrush
 {
 PROJECTILE
-Obituary "$OB_HARDCRUSH"
-damagetype "HardM_Flat"
 +DONTBLAST
-+THRUGHOST
-damage (100)
+damage (15)
 Radius 15
 Height 2
+Obituary "$OB_HARDCRUSH"
+damagetype "HardM_Flat"
 renderstyle none
 States
 {
@@ -440,56 +432,10 @@ stop
 }
 
 
-actor Hardman_FloorQuake_P : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 A_JumpIfInventory("Quaking",70,"Quake7")
-TNT1 A 0 A_JumpIfInventory("Quaking",60,"Quake6")
-TNT1 A 0 A_JumpIfInventory("Quaking",50,"Quake5")
-TNT1 A 0 A_JumpIfInventory("Quaking",40,"Quake4")
-TNT1 A 0 A_JumpIfInventory("Quaking",30,"Quake3")
-TNT1 A 0 A_JumpIfInventory("Quaking",20,"Quake2")
-TNT1 A 0 A_JumpIfInventory("Quaking",10,"Quake1")
-goto Quake1
-
-Quake7:
-TNT1 A 0 ACS_NamedExecuteAlways("cbm_FloorQuakeDamage",0,800,35,33)
-TNT1 A 0 A_SpawnItemEx("Hardman_QuakeFX_H7")
-stop
-Quake6:
-TNT1 A 0 ACS_NamedExecuteAlways("cbm_FloorQuakeDamage",0,700,30,33)
-TNT1 A 0 A_SpawnItemEx("Hardman_QuakeFX_H6")
-stop
-Quake5:
-TNT1 A 0 ACS_NamedExecuteAlways("cbm_FloorQuakeDamage",0,600,25,33)
-TNT1 A 0 A_SpawnItemEx("Hardman_QuakeFX_H5")
-stop
-Quake4:
-TNT1 A 0 ACS_NamedExecuteAlways("cbm_FloorQuakeDamage",0,500,20,33)
-TNT1 A 0 A_SpawnItemEx("Hardman_QuakeFX_H4")
-stop
-Quake3:
-TNT1 A 0 ACS_NamedExecuteAlways("cbm_FloorQuakeDamage",0,400,15,33)
-TNT1 A 0 A_SpawnItemEx("Hardman_QuakeFX_H3")
-stop
-Quake2:
-TNT1 A 0 ACS_NamedExecuteAlways("cbm_FloorQuakeDamage",0,300,10,33)
-TNT1 A 0 A_SpawnItemEx("Hardman_QuakeFX_H2")
-stop
-Quake1:
-TNT1 A 0 ACS_NamedExecuteAlways("cbm_FloorQuakeDamage",0,200,5,33)
-TNT1 A 0 A_SpawnItemEx("Hardman_QuakeFX_H1")
-stop
-}
-}
-
 actor Hardman_FloorQuakeSpawn : BasicExplosion
 {
 Obituary "$OB_HARDQUAKE"
 damagetype "HardM_Shock"
-+NOCLIP
 Renderstyle None
 States
 {
@@ -510,13 +456,12 @@ actor Hardman_FloorQuakeBoom : BasicExplosion
 {
 Obituary "$OB_HARDQUAKE"
 damagetype "HardM_Shock"
-Renderstyle None
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 //A_LogInt(ScaleX)
-TNT1 A 0 A_Explode(ScaleX*10,15,0,0,15)
+TNT1 A 0 A_Explode(ScaleX,15,0,0,15)
 TNT1 A 0 A_FaceTarget
 TNT1 A 0 A_SpawnItemEx("BasicHardQuakeFX",random(10,30),random(-20,20),-28,0,0,0,30,0)
 TNT1 A 0 A_SpawnItemEx("BasicHardQuakeFX",random(10,30),random(-20,20),-28,0,0,0,0,0)
@@ -526,81 +471,71 @@ stop
 }
 }
 
-actor Hardman_QuakeFX : BasicClientSide
-{
-var int user_A;
-var int user_Dist;
-reactiontime 1
-Renderstyle None
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 A 0 A_SetUserVar("user_A",random(0,5))
-TNT1 A 0 A_SetUserVar("user_Dist",ScaleX)
-TNT1 A 0 A_SetArg(4,pitch)
-TNT1 AAAAAAAAAA 0 A_SpawnItemEx("BasicHardQuakeFX",10*random(1,user_Dist),0,0,0,0,0,5*random(0,71)+user_A,0)
-goto Spawn2
-Spawn2:
-TNT1 AAAAAAAAAA 0 A_SpawnItemEx("BasicHardQuakeFX",10*random(1,user_Dist),0,0,0,0,0,5*random(0,71)+user_A,0)
-TNT1 A 0 A_CountdownArg(4,"End")
-loop
-End:
-TNT1 A 1 A_Countdown
-wait
-
-Death:
-TNT1 A 0 A_SpawnItemEx("BasicHardQuakeFX",random(10,30),random(-20,20),0,0,0,0,30,0)
-TNT1 A 0 A_SpawnItemEx("BasicHardQuakeFX",random(10,30),random(-20,20),0,0,0,0,0,0)
-TNT1 A 0 A_SpawnItemEx("BasicHardQuakeFX",random(10,30),random(-20,20),0,0,0,0,-30,0)
-TNT1 A 1
-stop
-}
-}
-
 actor Hardman_QuakeFX_H1 : BasicHelper
 {
-Mass 0
-Scale 20
 States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_SetPitch(Mass)
-TNT1 A 1 A_SpawnItemEx("Hardman_QuakeFX",0,0,0,0,0,0,0,16384+512)
+TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("BasicHardQuakeFX",10*random(1,20),0,0,0,0,0,5*random(0,71),0)
 TNT1 A 1
 stop
 }
 }
-actor Hardman_QuakeFX_H2 : Hardman_QuakeFX_H1
+actor Hardman_QuakeFX_H2 : BasicHelper
 {
-Mass 1
-Scale 30
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("BasicHardQuakeFX",10*random(1,30),0,0,0,0,0,5*random(0,71),0)
+TNT1 A 1
+stop
 }
-actor Hardman_QuakeFX_H3 : Hardman_QuakeFX_H1
-{
-Mass 2
-Scale 40
 }
-actor Hardman_QuakeFX_H4 : Hardman_QuakeFX_H1
+actor Hardman_QuakeFX_H3 : BasicHelper
 {
-Mass 3
-Scale 50
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("BasicHardQuakeFX",10*random(1,40),0,0,0,0,0,5*random(0,71),0)
+TNT1 A 1
+stop
 }
-actor Hardman_QuakeFX_H5 : Hardman_QuakeFX_H1
-{
-Mass 4
-Scale 60
 }
-actor Hardman_QuakeFX_H6 : Hardman_QuakeFX_H1
+actor Hardman_QuakeFX_H4 : BasicHelper
 {
-Mass 5
-Scale 70
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("BasicHardQuakeFX",10*random(1,50),0,0,0,0,0,5*random(0,71),0)
+TNT1 A 1
+stop
 }
-actor Hardman_QuakeFX_H7 : Hardman_QuakeFX_H1
+}
+actor Hardman_QuakeFX_H5 : BasicHelper
 {
-Mass 6
-Scale 80
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("BasicHardQuakeFX",10*random(1,60),0,0,0,0,0,5*random(0,71),0)
+TNT1 A 1
+stop
+}
+}
+actor Hardman_QuakeFX_H6 : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("BasicHardQuakeFX",10*random(1,70),0,0,0,0,0,5*random(0,71),0)
+TNT1 A 1
+stop
+}
 }
 
 actor BossHardKnuckleFX : BasicClientSide
@@ -617,38 +552,49 @@ stop
 }
 }
 
-actor BossHardKnuckle
+actor BossHardKnuckle : HardKnuckle
 {
-translation "192:192=87:87","198:198=195:195","204:204=215:215"
-PROJECTILE
-damagetype "HardM_Knuckle"
-Obituary "$OB_HARDKNUCKLE"
 +DONTBLAST
 +DONTREFLECT
-Damage (300)
++FORCEXYBILLBOARD
+translation "192:192=87:87", "198:198=195:195", "204:204=215:215","250:250=248:248","249:249=222:222"
+damagetype "HardKnuckleClass"
+Damage (30)
 Radius 12
 Height 12
 Speed 40
-scale 2.5
 States
 {
 Spawn:
 HFIS T 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
 HFIS T 2 A_TakeFromTarget("MissingFist",999)
 HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
+HFIS T 0 A_PlaySoundEx("weapon/hknuckletravel","Body")
 HFIS T 2 A_TakeFromTarget("MissingFist",999)
 HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
+//HFIS T 0 A_PlaySound("weapon/superboost",CHAN_BODY,1.0)
 HFIS T 2 A_TakeFromTarget("MissingFist",999)
 HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
+HFIS T 0 A_PlaySoundEx("weapon/hknuckletravel","Body")
 HFIS T 2 A_TakeFromTarget("MissingFist",999)
 HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
+//HFIS T 0 A_PlaySound("weapon/superboost",CHAN_BODY,1.0)
 HFIS T 2 A_TakeFromTarget("MissingFist",999)
 HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
+HFIS T 0 A_PlaySoundEx("weapon/hknuckletravel","Body")
 HFIS T 2 A_TakeFromTarget("MissingFist",999)
+//HFIS T 0 A_PlaySoundEx("weapon/jetboost","body")
 HFIS T 0 A_ChangeFlag("DONTBLAST",0)
 goto Spawn1
 Spawn1:
 HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
+HFIS T 0 A_PlaySoundEx("weapon/hknuckletravel","Body")
+HFIS T 2 A_TakeFromTarget("MissingFist",999)
+HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
+HFIS T 0 A_PlaySoundEx("weapon/hknuckletravel","Body")
 HFIS T 2 A_TakeFromTarget("MissingFist",999)
 loop
 Death:
@@ -661,33 +607,34 @@ Continue:
 TNT1 A 0 A_SpawnItemEx("BossHardKnuckleReturn",0,0,0,0,0,0,0,1)
 stop
 OldDeath:
+//HFIS T 0 A_PlaySoundEx("CBM/NONE","Body")
 TNT1 A 0 A_GiveInventory("BossHardKnuckleFuncR",1)
 stop
 XDeath:
+HFIS T 1
+//HFIS T 0 A_PlaySoundEx("weapon/hknucklehit","Body")
+//TNT1 A 0 A_SpawnItemEx("HardKnuckleHitFX",0,0,0,0,0,0,0,0)
 TNT1 A 0 A_JumpIfCloser(60,"Return")
 TNT1 A 0 A_SpawnItemEx("BossHardKnuckleReturnH",0,0,0,0,0,0,0,1)
+//CRIT ABCDEF 1
+//TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy"),"SoundSwag")
+//stop
+//SoundSwag:
+//HFIS T 0 A_PlaySoundEx("weapon/hknucklehit","Body")
+//TNT1 A 0 A_SpawnItemEx("HardKnuckleHitFX",0,0,0,0,0,0,0,0)
 stop
 Return:
-TNT1 A 0 A_GiveToTarget("HardM_HasFist",1)
-TNT1 A 0 A_GiveToTarget("HardM_FistReturnSnd_P",1)
+TNT1 A 0 A_GiveToTarget("HasFist",1)
+TNT1 A 0 A_GiveToTarget("HardSoundGive2",1)
+//CRIT ABCDEF 1
 stop
 }
 }
 
-actor BossHardKnuckleB : BossHardKnuckle{translation"192:192=205:205","198:198=74:74","204:204=205:205"}
-actor BossHardKnuckleR : BossHardKnuckle{translation"192:192=171:171","198:198=41:41","204:204=171:171"}
-actor BossHardKnuckleO : BossHardKnuckle{translation"192:192=104:104","198:198=128:128","204:204=104:104"}
-actor BossHardKnuckleP : BossHardKnuckle{translation"192:192=229:229","198:198=232:232","204:204=229:229"}
-
-actor HardM_FistReturnSnd_P : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 A_PlaySoundEx("weapon/adapterreturn","Body")
-stop
-}
-}
+actor BossHardKnuckleB : BossHardKnuckle{translation"192:192=205:205","198:198=74:74","204:204=205:205","250:250=205:205","249:249=74:74"}
+actor BossHardKnuckleR : BossHardKnuckle{translation"192:192=171:171","198:198=41:41","204:204=171:171","250:250=171:171","249:249=41:41"}
+actor BossHardKnuckleO : BossHardKnuckle{translation"192:192=104:104","198:198=128:128","204:204=104:104","250:250=104:104","249:249=128:128"}
+actor BossHardKnuckleP : BossHardKnuckle{translation"192:192=229:229","198:198=232:232","204:204=229:229","250:250=229:229","249:249=232:232"}
 
 actor BossHardKnuckleReturn : BossHardKnuckle
 {
@@ -707,11 +654,26 @@ Spawn2:
 HFIS T 0 A_TakeFromTarget("MissingFist",999)
 HFIS TT 0 A_SeekerMissile(90,90,SMF_PRECISE)
 HFIS T 1 A_JumpIfCloser(60,"Return")
+HFIS T 0 A_PlaySoundEx("weapon/hknuckletravel","Body")
 HFIS T 0 A_CountDown
 HFIS T 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
 HFIS T 0 A_TakeFromTarget("MissingFist",999)
 HFIS TT 0 A_SeekerMissile(90,90,SMF_PRECISE)
 HFIS T 1 A_JumpIfCloser(60,"Return")
+//HFIS T 0 A_PlaySound("weapon/superboost",CHAN_BODY,1.0)
+HFIS T 0 A_CountDown
+HFIS T 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
+HFIS T 0 A_TakeFromTarget("MissingFist",999)
+HFIS TT 0 A_SeekerMissile(90,90,SMF_PRECISE)
+HFIS T 1 A_JumpIfCloser(60,"Return")
+//HFIS T 0 A_PlaySoundEx("weapon/hknuckletravel","Body")
+HFIS T 0 A_CountDown
+HFIS T 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+HFIS T 0 A_TakeFromTarget("MissingFist",999)
+HFIS TT 0 A_SeekerMissile(90,90,SMF_PRECISE)
+HFIS T 1 A_JumpIfCloser(60,"Return")
+//HFIS T 0 A_PlaySound("weapon/superboost",CHAN_BODY,1.0)
 HFIS T 0 A_CountDown
 HFIS T 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
 HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
@@ -719,6 +681,10 @@ loop
 Death:
 TNT1 A 0 A_JumpIfCloser(60,"Return")
 goto OldDeath
+XDeath:
+TNT1 A 0 A_JumpIfCloser(60,"Return")
+TNT1 A 0 A_SpawnItemEx("BossHardKnuckleReturnH",0,0,0,0,0,0,0,1)
+stop
 }
 }
 
@@ -726,6 +692,31 @@ actor BossHardKnuckleReturnB : BossHardKnuckleReturn{translation"192:192=205:205
 actor BossHardKnuckleReturnR : BossHardKnuckleReturn{translation"192:192=171:171","198:198=41:41","204:204=171:171"}
 actor BossHardKnuckleReturnO : BossHardKnuckleReturn{translation"192:192=104:104","198:198=128:128","204:204=104:104"}
 actor BossHardKnuckleReturnP : BossHardKnuckleReturn{translation"192:192=229:229","198:198=232:232","204:204=229:229"}
+
+actor HardKnuckleHitFX
+{
+Translation "192:192=248:248", "198:198=222:222"
++MISSILE
++THRUACTORS
++CLIENTSIDEONLY
++FORCEXYBILLBOARD
++NOGRAVITY
+damage 0
+Radius 2
+Height 2
+scale 2
+States
+{
+Spawn:
+CRIT ABCDEF 1 //A_SpawnItemEx("BebeNoise",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor HardKnuckleHitFXB : HardKnuckleHitFX{translation"192:192=205:205","198:198=74:74"}
+actor HardKnuckleHitFXR : HardKnuckleHitFX{translation"192:192=171:171","198:198=41:41"}
+actor HardKnuckleHitFXO : HardKnuckleHitFX{translation"192:192=104:104","198:198=128:128"}
+actor HardKnuckleHitFXP : HardKnuckleHitFX{translation"192:192=229:229","198:198=232:232"}
 
 actor BossHardKnuckleFuncR : CustomInventory
 {
@@ -771,22 +762,32 @@ actor BossHardKnuckle2 : BossHardKnuckle
 States
 {
 Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
 HFIS T 0
 HFIS T 2 A_TakeFromTarget("MissingFist2",999)
+HFIS T 0 A_PlaySoundEx("weapon/hknuckletravel","Body")
 HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
 HFIS T 2 A_TakeFromTarget("MissingFist2",999)
 HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
 HFIS T 2 A_TakeFromTarget("MissingFist2",999)
+HFIS T 0 A_PlaySoundEx("weapon/hknuckletravel","Body")
 HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
 HFIS T 2 A_TakeFromTarget("MissingFist2",999)
 HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
 HFIS T 2 A_TakeFromTarget("MissingFist2",999)
+HFIS T 0 A_PlaySoundEx("weapon/hknuckletravel","Body")
 HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
 HFIS T 2 A_TakeFromTarget("MissingFist2",999)
 HFIS T 0 A_ChangeFlag("DONTBLAST",0)
 goto Spawn1
 Spawn1:
 HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
+HFIS T 0 A_PlaySoundEx("weapon/hknuckletravel","Body")
+HFIS T 2 A_TakeFromTarget("MissingFist2",999)
+HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
+HFIS T 0 A_PlaySoundEx("weapon/hknuckletravel","Body")
 HFIS T 2 A_TakeFromTarget("MissingFist2",999)
 loop
 
@@ -797,23 +798,32 @@ Continue:
 TNT1 A 0 A_SpawnItemEx("BossHardKnuckleReturn2",0,0,0,0,0,0,0,1)
 stop
 OldDeath:
+//HFIS T 0 A_PlaySoundEx("CBM/NONE","Body")
 TNT1 A 0 A_GiveInventory("BossHardKnuckleFuncR2",1)
 stop
 XDeath:
+//TNT1 A 0 A_SpawnItemEx("HardKnuckleHitFX",0,0,0,0,0,0,0,0)
 TNT1 A 0 A_JumpIfCloser(60,"Return")
 TNT1 A 0 A_SpawnItemEx("BossHardKnuckleReturnH2",0,0,0,0,0,0,0,1)
+//CRIT ABCDEF 1
+//TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy"),"SoundSwag")
+//stop
+//SoundSwag:
+//HFIS T 0 A_PlaySoundEx("weapon/hknucklehit","Body")
+//TNT1 A 0 A_SpawnItemEx("HardKnuckleHitFX",0,0,0,0,0,0,0,0)
 stop
 Return:
-TNT1 A 0 A_GiveToTarget("HardM_HasFist2",1)
-TNT1 A 0 A_GiveToTarget("HardM_FistReturnSnd_P",1)
+TNT1 A 0 A_GiveToTarget("HasFist2",1)
+TNT1 A 0 A_GiveToTarget("HardSoundGive2",1)
+//CRIT ABCDEF 1
 stop
 }
 }
 
-actor BossHardKnuckle2B : BossHardKnuckle2{translation"192:192=205:205","198:198=74:74","204:204=205:205"}
-actor BossHardKnuckle2R : BossHardKnuckle2{translation"192:192=171:171","198:198=41:41","204:204=171:171"}
-actor BossHardKnuckle2O : BossHardKnuckle2{translation"192:192=104:104","198:198=128:128","204:204=104:104"}
-actor BossHardKnuckle2P : BossHardKnuckle2{translation"192:192=229:229","198:198=232:232","204:204=229:229"}
+actor BossHardKnuckle2B : BossHardKnuckle2{translation"192:192=205:205","198:198=74:74","204:204=205:205","250:250=205:205","249:249=74:74"}
+actor BossHardKnuckle2R : BossHardKnuckle2{translation"192:192=171:171","198:198=41:41","204:204=171:171","250:250=171:171","249:249=41:41"}
+actor BossHardKnuckle2O : BossHardKnuckle2{translation"192:192=104:104","198:198=128:128","204:204=104:104","250:250=104:104","249:249=128:128"}
+actor BossHardKnuckle2P : BossHardKnuckle2{translation"192:192=229:229","198:198=232:232","204:204=229:229","250:250=229:229","249:249=232:232"}
 
 actor BossHardKnuckleReturn2 : BossHardKnuckle2
 {
@@ -832,6 +842,7 @@ Spawn2:
 HFIS T 0 A_TakeFromTarget("MissingFist2",999)
 HFIS TT 0 A_SeekerMissile(90,90,SMF_PRECISE)
 HFIS T 1 A_JumpIfCloser(60,"Return")
+HFIS T 0 A_PlaySoundEx("weapon/hknuckletravel","Body")
 HFIS T 0 A_CountDown
 HFIS T 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
 HFIS T 0 A_TakeFromTarget("MissingFist2",999)
@@ -840,10 +851,26 @@ HFIS T 1 A_JumpIfCloser(60,"Return")
 HFIS T 0 A_CountDown
 HFIS T 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
 HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
+HFIS T 0 A_TakeFromTarget("MissingFist2",999)
+HFIS TT 0 A_SeekerMissile(90,90,SMF_PRECISE)
+HFIS T 1 A_JumpIfCloser(60,"Return")
+//HFIS T 0 A_PlaySoundEx("weapon/hknuckletravel","Body")
+HFIS T 0 A_CountDown
+HFIS T 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+HFIS T 0 A_TakeFromTarget("MissingFist2",999)
+HFIS B 0 A_SeekerMissile(90,90,SMF_PRECISE)
+HFIS T 1 A_JumpIfCloser(60,"Return")
+HFIS T 0 A_CountDown
+HFIS T 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+HFIS T 0 A_SpawnItemEx("BossHardKnuckleFX",0,0,0,0,0,0,0,1)
 loop
 Death:
 TNT1 A 0 A_JumpIfCloser(60,"Return")
 goto OldDeath
+XDeath:
+TNT1 A 0 A_JumpIfCloser(60,"Return")
+TNT1 A 0 A_SpawnItemEx("BossHardKnuckleReturnH2",0,0,0,0,0,0,0,1)
+stop
 }
 }
 
@@ -851,6 +878,8 @@ actor BossHardKnuckleReturn2B : BossHardKnuckleReturn2{translation"192:192=205:2
 actor BossHardKnuckleReturn2R : BossHardKnuckleReturn2{translation"192:192=171:171","198:198=41:41","204:204=171:171"}
 actor BossHardKnuckleReturn2O : BossHardKnuckleReturn2{translation"192:192=104:104","198:198=128:128","204:204=104:104"}
 actor BossHardKnuckleReturn2P : BossHardKnuckleReturn2{translation"192:192=229:229","198:198=232:232","204:204=229:229"}
+
+
 
 actor BossHardKnuckleFuncR2 : CustomInventory
 {

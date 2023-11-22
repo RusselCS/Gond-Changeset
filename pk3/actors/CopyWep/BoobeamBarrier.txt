@@ -205,7 +205,7 @@ Obituary "$OB_BOOBEAMBARRIER"
 +BRIGHT
 +THRUSPECIES
 Species "DumbBoobeamBarrier"
-Damage (170)
+Damage (17)
 radius 12
 height 12
 Speed 52
@@ -229,7 +229,7 @@ const int COPY_BBTRAPSPEED = 52;
 
 actor BoobeamBarrierShot2 : BoobeamBarrierShot
 {
-Damage (120)
+Damage (12)
 Speed 52
 States
 {
@@ -244,7 +244,7 @@ stop
 }
 actor BoobeamBarrierShot3 : BoobeamBarrierShot2
 {
-Damage (110)
+Damage (11)
 States
 {
 Death:
@@ -262,7 +262,7 @@ Obituary "$OB_BOOBEAMBARRIERX"
 +DONTREFLECT
 +THRUSPECIES
 Species "DumbBoobeamBarrier"
-Damage(220)
+Damage(22)
 Height 10
 Radius 10
 speed 25

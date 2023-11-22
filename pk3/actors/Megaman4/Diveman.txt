@@ -1,23 +1,24 @@
 actor Diveman : ClassBase
 {
+Player.StartItem "IFMM04", 1
 Player.ScoreIcon "C_04G0X"
 player.displayname "Diveman"
 player.soundclass "divemanc"
 
-player.maxhealth 1000
-health 1000
+player.maxhealth 100
+health 100
 player.jumpz 10
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78
 
 player.startitem "DiveMissileBoss"
-player.startitem "DiveTackleBoss"
+//player.startitem "DiveTackleBoss"
 player.startitem "YouSunkMyAmmo",420
 player.startitem "DiveTackleAmmo",280
 player.startitem "DiveMissileUseItem"
 
-player.weaponslot 1, "DiveMissileBoss"
-player.weaponslot 2, "DiveTackleBoss"
+//player.weaponslot 1, "DiveMissileBoss"
+//player.weaponslot 2, "DiveTackleBoss"
 
 player.startitem "SkullBarrierWeakness2", 1
 
