@@ -1,0 +1,6 @@
+actor Sunstar : ClassBase
+{
+Player.ScoreIcon "C_0VJ0X"
+player.displayname "Sunstar"
+player.soundclass "sunstarc"
+}

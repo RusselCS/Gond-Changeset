@@ -1,0 +1,54 @@
+actor Fireman : ClassBase
+{
+Player.ScoreIcon "C_01E0X"
+player.displayname "Fireman"
+player.soundclass "firemanc"
+
+player.maxhealth 850
+health 850
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
+player.startitem "FireStormBoss"
+player.startitem "BurningJusticeAmmo", 21
+
+player.startitem "IceSlasherWeakness2", 1
+
+player.startitem "IceSlasherWeakness", 1
+player.startitem "BubbleLeadWeakness", 1
+player.startitem "TopSpinWeakness", 1
+player.startitem "RainFlushWeakness", 1
+player.startitem "WaterWaveWeakness", 1
+player.startitem "BlizzardAttackWeakness", 1
+player.startitem "FreezeCrackerWeakness", 1
+player.startitem "IceWaveWeakness", 1
+player.startitem "IceWallWeakness", 1
+player.startitem "TornadoBlowWeakness", 1
+player.startitem "ChillSpikeWeakness", 1
+player.startitem "SaltWaterWeakness", 1
+
+States
+{
+Spawn:
+FIRM A 0
+FIRM B 1
+FIRM A 1
+FIRM A random(110,220)
+FIRM RS 5
+Goto Spawn+4
+See:
+FIRM BCDE 5
+Goto Spawn
+Missile:
+FIRM F 5
+FIRM G 4
+goto Spawn
+ClassPain:
+FIRM H 0
+goto PainContinue
+ClassDeath:
+FIRM H 0
+goto DeathContinue
+}
+}

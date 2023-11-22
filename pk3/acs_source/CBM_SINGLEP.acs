@@ -1,0 +1,22 @@
+#library "CBM_SINGLEP"
+#include "zcommon.acs"
+
+script "cbm_CoreTweak_Open" OPEN
+{
+	if(!PlayerOnTeam()){//Check if Online or not
+/*		Log(s:StrParam(n:PRINTNAME_LEVELNAME));
+		Log(s:StrParam(n:PRINTNAME_LEVEL));
+		Log(i:GetLevelInfo(LEVELINFO_LEVELNUM));*/
+		str lvl = StrParam(n:PRINTNAME_LEVEL);
+		str lvl_name = StrParam(n:PRINTNAME_LEVELNAME);
+		//GetLevelInfo(LEVELINFO_LEVELNUM)==9998
+		if(lvl=="MAP01"||lvl=="MAP02"||StrIcmp(lvl_name,"UNKNOWN")==0)
+		{
+			//Log(s:"Falling Respawn Force Disabled!");
+			Delay(35);
+			GiveActorInventory(1000,"NoFallingRespawn_F",1);
+			Delay(35);
+			GiveActorInventory(1000,"NoFallingRespawn_F",1);
+		}
+	}
+}

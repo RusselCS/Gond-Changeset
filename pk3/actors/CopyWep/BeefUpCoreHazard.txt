@@ -1,0 +1,150 @@
+/////////////////////////////////////////////////
+//Stage Hazards Damage
+/////////////////////////////////////////////////
+
+//MEGAMAN 1
+actor Beef_FireWave : FireWave replaces FireWave{Damage (150)}
+actor Beef_FirePillar : CBM_FirePillar replaces CBM_FirePillar{Damage (150)}
+actor Beef_OilCanisterDamager : OilCanisterDamager replaces OilCanisterDamager{states{Spawn:NAPA E 0 nodelay A_Explode(200-20,120,0,0,120)goto Super::Spawn}}
+actor Beef_OilFlame : OilFlame replaces OilFlame{damagetype "OilStageFlame" Damage (100)}//FlameBlastStage
+actor Beef_BigEye : BigEye replaces BigEye{states{
+Spawn:
+BIGE B 0 A_PlaySound("robot/bigeye")
+BIGE B 0 A_Explode(384,64,0)//128
+goto Super::Spawn+3}}
+
+//MEGAMAN 2
+actor Beef_PressDamager : PressDamager replaces PressDamager{Damage (80)}
+actor Beef_OHKOPressDamager : OHKOPressDamager replaces OHKOPressDamager{Damage (2550)}
+actor Beef_SpikeDamager : SpikeDamager replaces SpikeDamager{Damage (255)}//255
+actor Beef_QuickBeam : QuickBeam replaces QuickBeam{Damage 255}//255
+
+//MEGAMAN 3
+
+//MEGAMAN 4
+actor Beef_MetoolSwimProjectile : MetoolSwimProjectile replaces MetoolSwimProjectile{Damage (150)}
+
+//MEGAMAN 5
+actor Beef_PressBall : PressBall replaces PressBall{states{
+Spawn:
+PRES A 0
+PRES A 3 A_Explode(255,32,1,0,33)//255
+loop}}
+
+//MEGAMAN 6
+
+//MEGAMAN 7
+actor Beef_TeruTeru : CBM_TeruTeru replaces CBM_TeruTeru{Health 1000}
+actor Beef_DustCrusherEnemyHead : DustCrusherEnemyHead replaces DustCrusherEnemyHead{Damage (10)}
+actor Beef_DustCrusherEnemyBody : DustCrusherEnemyBody replaces DustCrusherEnemyBody{Damage (10)}
+actor Beef_DustCrusherEnemyTail : DustCrusherEnemyTail replaces DustCrusherEnemyTail{Damage (10)}
+actor Beef_SpringBoxExplode : SpringBoxExplode replaces SpringBoxExplode{Damage (50)}
+actor Beef_KingGajuras : KingGajuras replaces KingGajuras{Damage (2550)}
+actor Beef_GhostsNGoblinsThing : GhostsNGoblinsThing replaces GhostsNGoblinsThing{Damage (2550)}
+actor Beef_KyorownBullet : KyorownBullet replaces KyorownBullet{Damage (250)}
+actor Beef_TurboRoaderBumper : TurboRoaderBumper replaces TurboRoaderBumper{Damage (80)}
+actor Beef_GutsManG : GutsManG replaces GutsManG{States{
+Melee:
+GUTG A 0 A_Stop
+GUTG A 0 A_TakeInventory("CutterFlag",999)
+GUTG E 2 A_FaceTarget
+GUTG D 0 A_GiveToTarget("Beef_GutsManGWhack",1)
+GUTG D 0 A_PlaySoundEx("weapon/powerstone","Voice")
+GUTG F 15 A_ClearTarget
+goto Spawn
+}
+}
+actor Beef_GutsManGWhack : GutsManGWhack replaces GutsManGWhack{States{Pickup:TNT1 A 0 Thing_Damage(tid,250,22)goto GutsManGWhack::Pickup+1}}
+
+//MEGAMAN 8
+//Clown Pickups in 'actors/misc/mm8' due to replaces not being possible for CustomInventory
+actor Beef_TrainWind : TrainWind replaces TrainWind{+THRUGHOST Damage (30)}
+actor Beef_CountBomb : CountBomb replaces CountBomb{States{
+StartCount:TNT1 A 0
+Timer9:CBDP K 10
+CBDP A 2 A_PlaySoundEx("misc/BombCount","Voice")
+Timer8:CBDP J 10
+CBDP A 2 A_PlaySoundEx("misc/BombCount","Voice")
+Timer7:CBDP I 10
+CBDP A 2 A_PlaySoundEx("misc/BombCount","Voice")
+Timer6:CBDP H 10
+CBDP A 2 A_PlaySoundEx("misc/BombCount","Voice")
+Timer5:CBDP G 10
+CBDP A 2 A_PlaySoundEx("misc/BombCount","Voice")
+Timer4:CBDP F 10
+CBDP A 2 A_PlaySoundEx("misc/BombCount","Voice")
+Timer3:CBDP E 10
+CBDP A 2 A_PlaySoundEx("misc/BombCount","Voice")
+Timer2:CBDP D 10
+CBDP A 2 A_PlaySoundEx("misc/BombCount","Voice")
+Timer1:CBDP C 10
+CBDP A 2 A_PlaySoundEx("misc/BombCount","Voice")
+Timer0:CBDP L 10
+CBDP A 0 A_GiveInventory("AtomicFireAmmo",1)
+CBDP ABABABAB 2
+CBDP A 0 A_ClearTarget
+CBDP A 0 A_Explode(700,96,0)
+NAPA E 0 A_Changeflag("Solid",0)
+NAPA E 0 A_PlaySoundEx("misc/mm3explosion","Voice")
+NAPA EFGHIJKLMNOPQRS 1
+CBDP A 0 A_TakeInventory("AtomicFireAmmo", 999)
+Goto Respawn
+}
+}
+actor Beef_CountBombClear : CountBombClear replaces CountBombClear{damagetype "CountBombClear" Damage (2550)}
+
+//MEGAMAN & BASS
+actor Beef_OniWindMachine : OniWindMachine replaces OniWindMachine{Obituary "%o was blown away."}//puff
+actor Beef_OniWind : OniWind replaces OniWind{Damage (10)}
+actor Beef_IceBlock : IceBlock replaces IceBlock{Damage (150)}
+actor Beef_PirateMine : CBM_PirateMine replaces CBM_PirateMine{Health 1000 Damage (300)}
+actor Beef_BigTellyBomb : BigTellyBomb replaces BigTellyBomb{States{Death:BRNT I 0 A_Explode(500-50,128,0)goto Super::Death}}
+actor Beef_BurnWave : BurnWave replaces BurnWave{Damage (400)}
+
+//MEGAMAN WT
+actor Beef_FireSnakeyHead : FireSnakeyHead replaces FireSnakeyHead{Damage (50)}
+actor Beef_FireSnakeyBody : FireSnakeyBody replaces FireSnakeyBody{Damage (50)}
+
+//MEGAMAN 9
+actor Beef_CBM_MagmaBeamV1 : CBM_MagmaBeamV1 replaces CBM_MagmaBeamV1{Damage 255}//(255)
+actor Beef_CBM_MagmaBeamV2 : CBM_MagmaBeamV2 replaces CBM_MagmaBeamV2{Damage 255}
+actor Beef_CBM_MagmaBeamV3 : CBM_MagmaBeamV3 replaces CBM_MagmaBeamV3{Damage 255}
+actor Beef_CBM_MagmaBeamH1 : CBM_MagmaBeamH1 replaces CBM_MagmaBeamH1{Damage 255}
+actor Beef_CBM_MagmaBeamH2 : CBM_MagmaBeamH2 replaces CBM_MagmaBeamH2{Damage 255}
+actor Beef_CBM_MagmaBeamH3 : CBM_MagmaBeamH3 replaces CBM_MagmaBeamH3{Damage 255}
+actor Beef_MagmaDrakeHead : MagmaDrakeHead replaces MagmaDrakeHead{Damage (50)}
+actor Beef_MagmaDrakeNeck : MagmaDrakeNeck replaces MagmaDrakeNeck{Damage (50)}
+actor Beef_MagmaDrakeLegs : MagmaDrakeLegs replaces MagmaDrakeLegs{Damage (50)}
+actor Beef_MagmaDrakeArms : MagmaDrakeArms replaces MagmaDrakeArms{Damage (50)}
+actor Beef_MagmaDrakeTail : MagmaDrakeTail replaces MagmaDrakeTail{Damage (50)}
+actor Beef_MagmaDrakeTailFlame : MagmaDrakeTailFlame replaces MagmaDrakeTailFlame{Damage (50)}
+actor Beef_MagmaDrakeYashichi : MagmaDrakeYashichi replaces MagmaDrakeYashichi{Damage (50)}
+
+//MEGAMAN 10
+actor Beef_ChillIceCubeRespawnDamager : ChillIceCubeRespawnDamager replaces ChillIceCubeRespawnDamager{Damage (50)}
+actor Beef_SheepBlockDetect : SheepBlockDetect replaces SheepBlockDetect{+SERVERSIDEONLY}
+actor Beef_SheepBlockDamager : SheepBlockDamager replaces SheepBlockDamager{+SERVERSIDEONLY}//Damage (0x7FFFFFFD)
+actor Beef_SoccerBallPlatformPlayerCheck : SoccerBallPlatformPlayerCheck replaces SoccerBallPlatformPlayerCheck{Damage (50)}
+actor Beef_SoccerBallPlatformSpike : SoccerBallPlatformSpike replaces SoccerBallPlatformSpike{Damage (50)}
+actor Beef_SoccerBallPlatformBottomSpike : SoccerBallPlatformBottomSpike replaces SoccerBallPlatformBottomSpike{Damage (50)}
+actor Beef_NitroTruckRoadkiller : NitroTruckRoadkiller replaces NitroTruckRoadkiller{Damage (100)}
+actor Beef_SolarChangkey : SolarChangkey replaces SolarChangkey{Damage (50)}
+actor Beef_SolarChangkeyCeiling : SolarChangkeyCeiling replaces SolarChangkeyCeiling{Damage (50)}
+actor Beef_SolarChangkeyYashichi : SolarChangkeyYashichi replaces SolarChangkeyYashichi{Damage (50)}
+//actor Beef_Elevator10W3Damager : Elevator10W3Damager replaces Elevator10W3Damager{Damage (0x7FFFFFFD)}
+
+//MEGAMAN V
+actor Beef_MarsMine : MarsMine replaces MarsMine{States{
+Death:
+MARP D 0 A_ClearTarget
+MARP D 0 A_Explode(200,96,0)
+goto Super::Death+2
+}}
+actor Beef_MarsRocket : MarsRocket replaces MarsRocket{States{
+Death:
+MARP F 0 A_Explode(200,96,0)
+goto Super::Death+1
+}}
+
+//MEGAMAN SINGLE PLAYER
+actor Beef_RuinsFire : RuinsFire replaces RuinsFire{Damage (500)}

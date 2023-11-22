@@ -1,0 +1,75 @@
+#library "CBM_TEST"
+#include "zcommon.acs"
+
+
+script "CBM_TEST_ENTER" ENTER
+{
+	if(ACS_NamedExecuteWithResult("cbm_FetchServerCVar",65)){//YD_TestHavocDamageBonus
+		Switch(PlayerClass(PlayerNumber())){
+			Case -1://Null
+			Case 0://Mega
+			Case 1://Proto
+			Case 2://Bass
+			Case 3://Duo
+			Case 4://Maestro
+			Case 36://Doc
+			Case 82://Evil
+				break;
+			Default:
+				GiveInventory("Power_CBMTestHavocBuff",1);
+				break;
+		}
+	}
+}
+script "CBM_TEST_RESPAWN" RESPAWN
+{
+	ACS_NamedExecuteAlways("CBM_TEST_ENTER",0);
+}
+script "CBM_TEST_DEATH" DEATH
+{
+	ACS_NamedExecuteAlways("CBM_TEST_ENTER",0);
+}
+script "CBM_TEST_DISCONNECT" (int Player) DISCONNECT
+{
+	if(ACS_NamedExecuteWithResult("cbm_FetchServerCVar",65)){//YD_TestHavocDamageBonus
+		Switch(PlayerClass(Player)){
+			Case -1://Actual Disconnect
+			Case 0://Mega
+			Case 1://Proto
+			Case 2://Bass
+			Case 3://Duo
+			Case 4://Maestro
+			Case 36://Doc
+			Case 82://Evil
+				break;
+			Default:
+				GiveInventory("Power_CBMTestHavocBuff",1);
+				break;
+		}
+	}
+}
+
+script "CBM_TestTimerCheck" (void)
+{
+	SetResultValue(Timer());
+}
+
+script "CBM_TestHPRespawnCvarCheck" (void)
+{
+	if(GetCvar("lastmanstanding")!=1 && GetCvar("teamlms")!=1){
+		SetResultValue(1);
+	}
+	else{
+		SetResultValue(GetCvar("CBM_LMS_TestHPRespawn"));
+	}
+}
+
+script "CBM_TestHPSpawnCvarCheck" (void)
+{
+	if(GetCvar("lastmanstanding")!=1 && GetCvar("teamlms")!=1){
+		SetResultValue(3);
+	}
+	else{
+		SetResultValue(GetCvar("CBM_LMS_TestHPSpawn"));
+	}
+}

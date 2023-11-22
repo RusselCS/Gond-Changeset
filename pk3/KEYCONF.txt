@@ -1,0 +1,176 @@
+clearplayerclasses
+addplayerclass MegamanC nomenu
+addplayerclass Protoman nomenu
+addplayerclass Bass nomenu
+addplayerclass Duo nomenu
+addplayerclass Maestro nomenu
+addplayerclass RockClass nomenu
+addplayerclass RollClass nomenu
+addplayerclass AutoClass nomenu
+addplayerclass LightRyu nomenu
+addplayerclass DrWily nomenu
+addplayerclass SniperJoe nomenu
+
+addplayerclass Cutman nomenu
+addplayerclass Gutsman nomenu
+addplayerclass Iceman nomenu
+addplayerclass Bombman nomenu
+addplayerclass Fireman nomenu
+addplayerclass Elecman nomenu
+addplayerclass Timeman nomenu
+addplayerclass Oilman nomenu
+
+addplayerclass Metalman nomenu
+addplayerclass Airman nomenu
+addplayerclass Bubbleman nomenu
+addplayerclass Quickman nomenu
+addplayerclass Crashman nomenu
+addplayerclass Flashman nomenu
+addplayerclass Heatman nomenu
+addplayerclass Woodman nomenu
+addplayerclass Alien nomenu
+
+//addplayerclass MetalmanRNC nomenu
+//addplayerclass AirmanRNC nomenu
+//addplayerclass BubblemanRNC nomenu
+//addplayerclass QuickmanRNC nomenu
+//addplayerclass CrashmanRNC nomenu
+//addplayerclass FlashmanRNC nomenu
+//addplayerclass HeatmanRNC nomenu
+//addplayerclass WoodmanRNC nomenu
+//addplayerclass AlienRNC nomenu
+
+addplayerclass Needleman nomenu
+addplayerclass Magnetman nomenu
+addplayerclass Geminiman nomenu
+addplayerclass Hardman nomenu
+addplayerclass Topman nomenu
+addplayerclass Snakeman nomenu
+addplayerclass Sparkman nomenu
+addplayerclass Shadowman nomenu
+addplayerclass DocRobot nomenu
+
+addplayerclass Brightman nomenu
+addplayerclass Toadman nomenu
+addplayerclass Drillman nomenu
+addplayerclass Pharaohman nomenu
+addplayerclass Ringman nomenu
+addplayerclass Dustman nomenu
+addplayerclass Diveman nomenu
+addplayerclass Skullman nomenu
+
+addplayerclass Gravityman nomenu//Where is the logic?
+addplayerclass Waveman nomenu//Wave pun
+addplayerclass Stoneman nomenu
+addplayerclass Gyroman nomenu//huzzah
+addplayerclass Starman nomenu
+addplayerclass Chargeman nomenu//I choo choo choose you to be my class!
+addplayerclass Napalmman nomenu//huzzah
+addplayerclass Crystalman nomenu
+addplayerclass Darkman1 nomenu
+addplayerclass Darkman2 nomenu
+addplayerclass Darkman3 nomenu
+addplayerclass Darkman4 nomenu
+
+addplayerclass Blizzardman nomenu
+addplayerclass Centaurman nomenu
+addplayerclass Flameman nomenu
+addplayerclass Knightman nomenu
+addplayerclass Plantman nomenu
+addplayerclass Tomahawkman nomenu
+addplayerclass Windman nomenu
+addplayerclass Yamatoman nomenu
+
+addplayerclass Freezeman nomenu
+addplayerclass Junkman nomenu
+addplayerclass Burstman nomenu
+addplayerclass Cloudman nomenu
+addplayerclass Springman nomenu
+addplayerclass Slashman nomenu
+addplayerclass Shademan nomenu
+addplayerclass Turboman nomenu
+
+addplayerclass Tenguman nomenu
+addplayerclass Astroman nomenu
+addplayerclass Swordman nomenu
+addplayerclass Clownman nomenu
+addplayerclass Searchman nomenu
+addplayerclass Frostman nomenu
+addplayerclass Grenademan nomenu
+addplayerclass Aquaman nomenu
+addplayerclass OriginalDuo nomenu
+addplayerclass Trio nomenu
+
+addplayerclass Dynamoman nomenu
+addplayerclass Coldman nomenu
+addplayerclass Groundman nomenu
+addplayerclass Pirateman nomenu
+addplayerclass Burnerman nomenu
+addplayerclass Magicman nomenu
+addplayerclass KingClass nomenu
+
+addplayerclass Concreteman nomenu
+addplayerclass Tornadoman nomenu
+addplayerclass Splashwoman nomenu
+addplayerclass Plugman nomenu
+addplayerclass Jewelman nomenu
+addplayerclass Hornetman nomenu
+addplayerclass Magmaman nomenu
+addplayerclass Galaxyman nomenu
+addplayerclass Fakeman nomenu
+
+addplayerclass Blademan nomenu
+addplayerclass Pumpman nomenu
+addplayerclass Commandoman nomenu
+addplayerclass Chillman nomenu
+//addplayerclass Sheepman nomenu
+//addplayerclass Strikeman nomenu
+addplayerclass Nitroman nomenu
+addplayerclass Solarman nomenu
+
+addplayerclass Terra nomenu
+addplayerclass Mercury nomenu
+addplayerclass Venus nomenu
+addplayerclass Mars nomenu
+addplayerclass Jupiter nomenu
+//addplayerclass Saturn nomenu
+addplayerclass Uranus nomenu
+addplayerclass Pluto nomenu
+addplayerclass Neptune nomenu
+//addplayerclass Sunstar nomenu
+
+addplayerclass BusterRodG nomenu
+addplayerclass MegaWaterS nomenu
+addplayerclass HyperStormH nomenu
+
+addplayerclass Enker nomenu
+addplayerclass Punk nomenu
+addplayerclass Ballade nomenu
+addplayerclass Quint nomenu
+addplayerclass RaThor nomenu
+
+addplayerclass BBAMegaman nomenu
+
+//////
+//addplayerclass HelperClass nomenu
+//////
+
+//Tricking the Menu
+alias !cbm_justjoin "closemenu;join"
+
+//Class Information ALIAS
+alias classhelp "pukename CBM_ClassHelp_NET"
+alias cbm_SetCHelpNum "pukename cbm_SetCH_MenuNum"
+
+alias menuclasshelp "menuconsole;classhelp"
+alias menu_CH_NumHelp "cbm_SetCHelpNum"
+alias menu_CBM_ResetDim "dimamount -1"
+
+//alias !EXAMPLE "closemenu;pukename EXAMPLE 0"
+
+alias +rapidattackc "+user1; +altattack"
+alias -rapidattackc "-user1; -altattack"
+
+addkeysection "Classes Extra Controls" MM8BDMSpecials
+addmenukey "Turbo Attack" +rapidattackc
+

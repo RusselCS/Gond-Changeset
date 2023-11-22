@@ -1,0 +1,14 @@
+//SPECIAL BARS
+height 0;
+
+statusbar None,forcescaled
+{
+
+}
+/*
+statusbar Automap,forcescaled
+{
+	Alpha 0.8 DrawString CONFONT,Yellow,"Health",44,28,0,alignment(left);
+	Alpha 0.8 DrawNumber 5,"8BDMAFONT",Untranslated,Health,alignment(left),11,31;
+}
+*/

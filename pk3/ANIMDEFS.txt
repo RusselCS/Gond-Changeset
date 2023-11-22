@@ -1,0 +1,812 @@
+// ___  ______  ___ _____ _______________  ___
+// |  \/  ||  \/  ||  _  || ___ \  _  \  \/  |
+// | .  . || .  . | \ V / | |_/ / | | | .  . |
+// | |\/| || |\/| | / _ \ | ___ \ | | | |\/| |
+// | |  | || |  | || |_| || |_/ / |/ /| |  | |
+// \_|  |_/\_|  |_/\_____/\____/|___/ \_|  |_/
+
+//LeafShield Lines
+texture 2H_A_BAR
+pic 2H_B_BAR tics 2
+pic 2H_C_BAR tics 2
+pic 2H_D_BAR tics 2
+pic 2H_E_BAR tics 2
+
+texture 2H_A_VAR
+pic 2H_B_VAR tics 2
+pic 2H_C_VAR tics 2
+pic 2H_D_VAR tics 2
+pic 2H_E_VAR tics 2
+
+//SkullBarrier Lines
+texture 4H_A_BAR
+pic 4H_B_BAR tics 3.5
+pic 4H_C_BAR tics 3.5
+pic 4H_D_BAR tics 3.5
+pic 4H_E_BAR tics 3.5
+pic 4H_F_BAR tics 7
+pic 4H_E_BAR tics 3.5
+pic 4H_D_BAR tics 3.5
+pic 4H_C_BAR tics 3.5
+pic 4H_B_BAR tics 3.5
+pic TNT1A0 tics 3.5
+pic 4H_G_BAR tics 3.5
+pic 4H_H_BAR tics 3.5
+pic 4H_I_BAR tics 3.5
+pic 4H_J_BAR tics 3.5
+pic 4H_K_BAR tics 7
+pic 4H_J_BAR tics 3.5
+pic 4H_I_BAR tics 3.5
+pic 4H_H_BAR tics 3.5
+pic 4H_G_BAR tics 3.5
+pic TNT1A0 tics 3.5
+
+texture 4H_A_VAR
+pic 4H_B_VAR tics 3.5
+pic 4H_C_VAR tics 3.5
+pic 4H_D_VAR tics 3.5
+pic 4H_E_VAR tics 3.5
+pic 4H_F_VAR tics 7
+pic 4H_E_VAR tics 3.5
+pic 4H_D_VAR tics 3.5
+pic 4H_C_VAR tics 3.5
+pic 4H_B_VAR tics 3.5
+pic TNT1A0 tics 3.5
+pic 4H_G_VAR tics 3.5
+pic 4H_H_VAR tics 3.5
+pic 4H_I_VAR tics 3.5
+pic 4H_J_VAR tics 3.5
+pic 4H_K_VAR tics 7
+pic 4H_J_VAR tics 3.5
+pic 4H_I_VAR tics 3.5
+pic 4H_H_VAR tics 3.5
+pic 4H_G_VAR tics 3.5
+pic TNT1A0 tics 3.5
+
+//PlantBarrier Lines
+texture 6E_A_BAR
+pic 6E_E_BAR tics 3
+pic 6E_D_BAR tics 3
+pic 6E_C_BAR tics 3
+pic 6E_B_BAR tics 3
+
+texture 6E_A_VAR
+pic 6E_E_VAR tics 3
+pic 6E_D_VAR tics 3
+pic 6E_C_VAR tics 3
+pic 6E_B_VAR tics 3
+
+//  _____ _________  ___
+// /  __ \| ___ \  \/  |
+// | /  \/| |_/ / .  . |
+// | |    | ___ \ |\/| |
+// | \__/\| |_/ / |  | |
+//  \____/\____/\_|  |_/
+
+//CBM SEGA Menu
+texture CBM_L000 range CBM_L125 tics 4
+
+//IsInvunFlag
+texture 0H_I_BAR
+pic 0H_J_BAR tics 4
+pic 0H_K_BAR tics 4
+pic 0H_L_BAR tics 4
+texture 0H_I_VAR
+pic 0H_J_VAR tics 4
+pic 0H_K_VAR tics 4
+pic 0H_L_VAR tics 4
+
+texture 0H_M_BAR
+pic 0H_N_BAR tics 4
+pic 0H_O_BAR tics 4
+pic 0H_P_BAR tics 4
+texture 0H_M_VAR
+pic 0H_N_VAR tics 4
+pic 0H_O_VAR tics 4
+pic 0H_P_VAR tics 4
+
+//GuardUpFlag
+texture 0H_R_BAR
+pic 0H_S_BAR tics 4
+pic 0H_T_BAR tics 4
+pic 0H_U_BAR tics 4
+
+texture 0H_R_VAR
+pic 0H_S_VAR tics 4
+pic 0H_T_VAR tics 4
+pic 0H_U_VAR tics 4
+
+//GuardDownFlag
+texture 0H_W_BAR
+pic 0H_X_BAR tics 4
+pic 0H_Y_BAR tics 4
+pic 0H_Z_BAR tics 4
+
+texture 0H_W_VAR
+pic 0H_X_VAR tics 4
+pic 0H_Y_VAR tics 4
+pic 0H_Z_VAR tics 4
+
+//   ___
+//  / _ \
+// | | | |
+// | | | |
+// | |_| |
+//  \___/ 
+
+//Proto Items
+texture PJETE0
+pic TNT1A0 tics 4
+pic PJETH0 tics 4
+pic TNT1A0 tics 4
+pic PJETI0 tics 4
+
+texture PJETF0
+pic PJETH0 tics 4
+pic PJETI0 tics 4
+
+texture PJETR0
+pic PJETQ0 tics 4
+pic TNT1A0 tics 4
+
+//Bass Jet/Marine
+texture TRBL10
+pic TNT1A0 tics 4
+pic TRBLV0 tics 4
+pic TNT1A0 tics 4
+pic TRBLW0 tics 4
+
+texture TRBL20
+pic TRBLV0 tics 4
+pic TRBLW0 tics 4
+
+texture TRBLX0
+pic TRBLY0 tics 4
+pic TNT1A0 tics 4
+
+//Auto
+texture 00_GA_BR
+pic 00_GB_BR tics 6
+pic TNT1A0 tics 6
+
+texture 00_GA_VR
+pic 00_GB_VR tics 6
+pic TNT1A0 tics 6
+
+//LightRyu
+texture 0R_A_BAR
+pic 0R_B_BAR tics 2 pic 0R_C_BAR tics 2 pic 0R_D_BAR tics 2 pic 0R_E_BAR tics 2
+pic 0R_F_BAR tics 2
+pic 0R_G_BAR tics 2 pic 0R_H_BAR tics 2 pic 0R_I_BAR tics 2 pic 0R_J_BAR tics 2
+texture 0R_A_VAR
+pic 0R_B_VAR tics 2 pic 0R_C_VAR tics 2 pic 0R_D_VAR tics 2 pic 0R_E_VAR tics 2
+pic 0R_F_VAR tics 2
+pic 0R_G_VAR tics 2 pic 0R_H_VAR tics 2 pic 0R_I_VAR tics 2 pic 0R_J_VAR tics 2
+
+//JoeBar
+texture BARFLSJ
+pic BARAMM48 tics 4
+pic BARAMMO4 tics 4
+
+texture VARFLSJ
+pic VARAMM48 tics 4
+pic VARAMMO4 tics 4
+//Joe Options
+texture JoeIcon1
+pic JoeIconA tics 5 pic JoeIconB tics 5 pic JoeIconC tics 5 pic JoeIconD tics 5
+pic JoeIconE tics 5 pic JoeIconF tics 5 pic JoeIconG tics 5 pic JoeIconH tics 5
+texture JoeIcon2
+pic JoeIconP tics 5 pic JoeIconO tics 5 pic JoeIconN tics 5 pic JoeIconM tics 5
+pic JoeIconL tics 5 pic JoeIconK tics 5 pic JoeIconJ tics 5 pic JoeIconI tics 5
+
+//BBAMegaman
+texture BBBRDA1
+pic BBBRDY1 tics 6 pic TNT1A0 tics 6
+texture BBBRDA2
+pic BBBRDY2 tics 6 pic TNT1A0 tics 6
+texture BBBRDA2
+pic BBBRDY2 tics 6 pic TNT1A0 tics 6
+texture BBBRDA3
+pic BBBRDY3 tics 6 pic TNT1A0 tics 6
+texture BBBRDA4
+pic BBBRDY4 tics 6 pic TNT1A0 tics 6
+texture BBBRDA5
+pic BBBRDY5 tics 6 pic TNT1A0 tics 6
+texture BBBRDA6
+pic BBBRDY6 tics 6 pic TNT1A0 tics 6
+
+texture BBHRDA1
+pic BBHRDY1 tics 6 pic TNT1A0 tics 6
+texture BBHRDA2
+pic BBHRDY2 tics 6 pic TNT1A0 tics 6
+texture BBHRDA2
+pic BBHRDY2 tics 6 pic TNT1A0 tics 6
+texture BBHRDA3
+pic BBHRDY3 tics 6 pic TNT1A0 tics 6
+texture BBHRDA4
+pic BBHRDY4 tics 6 pic TNT1A0 tics 6
+texture BBHRDA5
+pic BBHRDY5 tics 6 pic TNT1A0 tics 6
+texture BBHRDA6
+pic BBHRDY6 tics 6 pic TNT1A0 tics 6
+//  __
+// /_ |
+//  | |
+//  | |
+//  | |
+//  |_|
+
+//Oilman
+texture 1H_S_BAR
+pic 1H_T_BAR tics 4
+pic CBMHLTRN tics 4
+texture 1H_S_VAR
+pic 1H_T_VAR tics 4
+pic CVMHLTRN tics 4
+
+//  ___
+// |__ \
+//    ) |
+//   / /
+//  / /_
+// |____|
+
+//Metal Stall
+texture METSTALA
+pic METSTAL1 tics 2
+pic METSTAL2 tics 7
+pic METSTAL3 tics 9
+
+//Airman
+texture AIRICON1
+range AIRICON8 tics 3
+
+//Bubbleman Icon
+texture BubIcon
+pic BubIcon1 tics 3
+pic BubIcon2 tics 3
+pic BubIcon3 tics 3
+
+//Bubble Swim
+texture 2C_S_BAR
+pic 2C_T_BAR tics 2
+pic 2C_U_BAR tics 2
+pic 2C_V_BAR tics 2
+pic 2C_W_BAR tics 2
+
+texture 2C_S_VAR
+pic 2C_T_VAR tics 2
+pic 2C_U_VAR tics 2
+pic 2C_V_VAR tics 2
+pic 2C_W_VAR tics 2
+
+//Quickman
+texture 2D_A_BAR
+pic 2D_B_BAR tics 1
+pic 2D_C_BAR tics 1
+pic 2D_D_BAR tics 1
+pic 2D_E_BAR tics 1
+
+texture 2D_A_VAR
+pic 2D_B_VAR tics 1
+pic 2D_C_VAR tics 1
+pic 2D_D_VAR tics 1
+pic 2D_E_VAR tics 1
+
+//Woodman Bar Flash
+texture BARFLS3X
+pic BARHEALT tics 4
+pic BARAMXO4 tics 4
+
+texture VARFLS3X
+pic VARHEALT tics 4
+pic VARAMXO4 tics 4
+
+//  ____
+// |___ \
+//   __) |
+//  |__ <
+//  ___) |
+// |____/
+
+//Geminiman
+texture 3C_G_BAR
+pic 3C_K_BAR tics 2.5
+pic 3C_J_BAR tics 2.5
+pic 3C_I_BAR tics 2.5
+pic 3C_H_BAR tics 2.5
+
+texture 3C_G_VAR
+pic 3C_K_VAR tics 2.5
+pic 3C_J_VAR tics 2.5
+pic 3C_I_VAR tics 2.5
+pic 3C_H_VAR tics 2.5
+
+//Snakeman
+texture SNACRAWA
+pic SNACRAW1 tics 4
+pic SNACRAW2 tics 4
+
+//  _  _
+// | || |
+// | || |_
+// |__   _|
+//    | |
+//    |_|
+
+//Pharaohman
+texture PHAFLS1
+pic PHAH1 tics 4
+pic PHAH2 tics 4
+pic PHAH3 tics 4
+
+//Diveman
+texture DIVLOCK
+pic DIVLOCK1 tics 6
+pic DIVLOCK2 tics 6
+
+texture DIVLOCN
+pic DIVLOCN1 tics 6
+pic DIVLOCN2 tics 6
+
+//Skullman
+texture 4H_S_BAR
+pic 4H_T_BAR tics 1.5
+pic 4H_U_BAR tics 1.5
+pic 4H_V_BAR tics 1.5
+pic 4H_W_BAR tics 1.5
+
+texture 4H_S_VAR
+pic 4H_T_VAR tics 1.5
+pic 4H_U_VAR tics 1.5
+pic 4H_V_VAR tics 1.5
+pic 4H_W_VAR tics 1.5
+
+//Old Skull Barrier
+texture BARFLS5X
+pic BARHEALT tics 4
+pic BARAMM21 tics 4
+texture VARFLS5X
+pic VARHEALT tics 4
+pic VARAMM21 tics 4
+
+//  _____
+// | ____|
+// | |__ 
+// |___ \
+//  ___) |
+// |____/
+
+texture 5K_B_BAR
+pic 5K_C_BAR tics 4
+pic 5K_D_BAR tics 4
+pic 5K_E_BAR tics 4
+pic 5K_F_BAR tics 4
+pic 5K_G_BAR tics 4
+pic 5K_H_BAR tics 4
+pic 5K_I_BAR tics 4
+pic TNT1A0 tics 4
+texture 5K_B_VAR
+pic 5K_C_VAR tics 4
+pic 5K_D_VAR tics 4
+pic 5K_E_VAR tics 4
+pic 5K_F_VAR tics 4
+pic 5K_G_VAR tics 4
+pic 5K_H_VAR tics 4
+pic 5K_I_VAR tics 4
+pic TNT1A0 tics 4
+
+//    __
+//   / /
+//  / /_
+// | '_ \
+// | (_) |
+//  \___/
+
+//  ______
+// |____  |
+//     / /
+//    / /
+//   / /
+//  /_/
+
+//Cloudman
+texture 7D_A_BAR
+pic 7D_B_BAR tics 3.25
+pic 7D_C_BAR tics 3.25
+pic 7D_D_BAR tics 3.25
+pic 7D_E_BAR tics 3.25
+
+texture 7D_A_VAR
+pic 7D_B_VAR tics 3.25
+pic 7D_C_VAR tics 3.25
+pic 7D_D_VAR tics 3.25
+pic 7D_E_VAR tics 3.25
+
+//Turboman
+texture 7H_A_BAR
+pic 7H_B_BAR tics 3
+pic 7H_C_BAR tics 3
+pic 7H_D_BAR tics 3
+pic 7H_E_BAR tics 3
+
+texture 7H_A_VAR
+pic 7H_B_VAR tics 3
+pic 7H_C_VAR tics 3
+pic 7H_D_VAR tics 3
+pic 7H_E_VAR tics 3
+
+//   ___
+//  / _ \
+// | (_) |
+//  > _ <
+// | (_) |
+//  \___/
+
+//Tengu Jet Icon
+texture TENJET0
+pic TENJET2 tics 4
+pic TNT1A0 tics 4
+
+//Astroman
+texture 7A_S_BAR
+pic 7A_O_BAR tics 1
+pic 7A_P_BAR tics 1
+pic 7A_Q_BAR tics 1
+pic 7A_R_BAR tics 1
+
+texture 7A_S_VAR
+pic 7A_O_VAR tics 1
+pic 7A_P_VAR tics 1
+pic 7A_Q_VAR tics 1
+pic 7A_R_VAR tics 1
+
+//Sword Leg Pain
+texture SWRDICON
+pic SWRDICO1 tics 4
+pic SWRDICO2 tics 4
+
+//Homing Sniper Hud Flash
+texture HomVisA
+pic HomVis1 tics 2
+pic TNT1A0 tics 6
+
+//Frostman
+texture 8F_A_BAR
+pic 8F_B_BAR tics 2.5
+pic 8F_C_BAR tics 2.5
+pic 8F_D_BAR tics 2.5
+pic 8F_E_BAR tics 2.5
+
+texture 8F_A_VAR
+pic 8F_B_VAR tics 2.5
+pic 8F_C_VAR tics 2.5
+pic 8F_D_VAR tics 2.5
+pic 8F_E_VAR tics 2.5
+
+//Grenademan
+texture 8G_A_BAR
+pic 8G_B_BAR tics 3
+pic 8G_C_BAR tics 3
+pic 8G_D_BAR tics 3
+pic 8G_E_BAR tics 3
+
+texture 8G_A_VAR
+pic 8G_B_VAR tics 3
+pic 8G_C_VAR tics 3
+pic 8G_D_VAR tics 3
+pic 8G_E_VAR tics 3
+
+//Aquaman
+texture 8H_A_BAR
+pic 8H_C_BAR tics 4
+pic 8H_D_BAR tics 4
+texture 8H_B_BAR
+pic 8H_E_BAR tics 4
+pic 8H_F_BAR tics 4
+
+texture 8H_A_VAR
+pic 8H_C_VAR tics 4
+pic 8H_D_VAR tics 4
+texture 8H_B_VAR
+pic 8H_E_VAR tics 4
+pic 8H_F_VAR tics 4
+
+
+
+//Trio Exodia
+//texture ERO9S0
+//pic ERO9T0 tics 3
+//pic TNT1A0 tics 3
+
+
+
+//   ___
+//  / _ \
+// | (_) |
+//  \__, |
+//    / /
+//   /_/
+
+//Tornadoman
+texture TORNICON
+	pic TORICON1 tics 5
+	pic TORICON2 tics 5
+
+//Splash Buffs
+texture SPLWBUF1
+	pic SPLWBUFM tics 3.5
+	pic SPLWBUFN tics 3.5
+texture SPLWBUF2
+	pic SPLWBUFO tics 5
+	pic SPLWBUFP tics 5
+texture SPLWBUF3
+	pic SPLWBUFQ tics 2
+	pic SPLWBUFR tics 2
+	pic SPLWBUFS tics 2
+	pic SPLWBUFT tics 2
+
+//Splash Swim
+texture 9C_S_BAR
+	pic 9C_T_BAR tics 2
+	pic 9C_U_BAR tics 2
+	pic 9C_V_BAR tics 2
+	pic 9C_W_BAR tics 2
+
+texture 9C_S_VAR
+	pic 9C_T_VAR tics 2
+	pic 9C_U_VAR tics 2
+	pic 9C_V_VAR tics 2
+	pic 9C_W_VAR tics 2
+
+//Plug Rage
+texture PLUGBUFF
+	pic PLUGBUF3 tics 3
+	pic PLUGBUF4 tics 3
+
+//Galaxyman
+texture GALBAR
+	allowdecals
+	pic GALBAR1 tics 4
+	pic GALBAR2 tics 4
+	pic GALBAR3 tics 4
+	pic GALBAR4 tics 4
+	pic GALBAR5 tics 4
+	pic GALBAR6 tics 4
+	pic GALBAR7 tics 4
+	
+texture GALBARJ
+	allowdecals
+	pic GALVAR1 tics 4
+	pic GALVAR2 tics 4
+	pic GALVAR3 tics 4
+	pic GALVAR4 tics 4
+	pic GALVAR5 tics 4
+	pic GALVAR6 tics 4
+	pic GALVAR7 tics 4
+
+texture GALCON
+	allowdecals
+	pic GALCON1 tics 4
+	pic GALCON2 tics 4
+	pic GALCON3 tics 4
+	pic GALCON4 tics 4
+	pic GALCON5 tics 4
+	pic GALCON6 tics 4
+	pic GALCON7 tics 4
+
+texture C_09H0X
+	pic C_09R0X tics 4
+	pic C_09S0X tics 4
+	pic C_09T0X tics 4
+	pic C_09U0X tics 4
+	pic C_09V0X tics 4
+	pic C_09W0X tics 4
+	pic C_09X0X tics 4
+
+//Hornetman Icon
+texture HORNJET0
+pic HORNJET2 tics 4
+pic TNT1A0 tics 4
+
+//  __    ___
+// /_ |  / _ \
+//  | | | | | |
+//  | | | | | |
+//  | | | |_| |
+//  |_|  \___/
+
+//Chillman
+texture 10D_S_BR
+pic 10D_T_BR tics 3
+pic 10D_U_BR tics 3
+pic 10D_V_BR tics 3
+pic 10D_W_BR tics 3
+
+texture 10D_S_VR
+pic 10D_T_VR tics 3
+pic 10D_U_VR tics 3
+pic 10D_V_VR tics 3
+pic 10D_W_VR tics 3
+
+//Solarman
+texture 10H_F_BR
+pic 10_8_BAR tics 1.5
+pic 10H_G_BR tics 1.5
+
+texture 10H_F_VR
+pic 10_8_VAR tics 1.5
+pic 10H_G_VR tics 1.5
+
+texture 10H_S_BR
+pic 10H_T_BR tics 3
+pic 10H_U_BR tics 3
+pic 10H_V_BR tics 3
+pic 10H_W_BR tics 3
+
+texture 10H_S_VR
+pic 10H_T_VR tics 3
+pic 10H_U_VR tics 3
+pic 10H_V_VR tics 3
+pic 10H_W_VR tics 3
+
+//  __    __
+// /_ |  /_ |
+//  | |   | |
+//  | |   | |
+//  | |   | |
+//  |_|   |_|
+
+// ______
+// | ___ \
+// | |_/ /
+// | ___ \
+// | |_/ /
+// \____/
+
+//Dynamo Flash
+texture DYNABFLS
+pic BARHLTRN tics 4
+pic DYNABAR tics 4
+
+texture DYNAVFLS
+pic VARHLTRN tics 4
+pic DYNAVAR tics 4
+
+texture DYNATAG
+pic DYNATAG6 rand 1.5 3.0//rand 0.5 1.5
+pic DYNATAG7 rand 1.5 3.0//rand 1 2.5
+//pic DYNATAG4 rand 0.5 1.5
+//pic DYNATAG3 rand 1 2.5
+
+//King Stamina
+texture BK_A_BAR
+pic BK_B_BAR tics 4
+pic BK_C_BAR tics 4
+pic BK_D_BAR tics 4
+pic BK_E_BAR tics 4
+
+texture BK_A_VAR
+pic BK_B_VAR tics 4
+pic BK_C_VAR tics 4
+pic BK_D_VAR tics 4
+pic BK_E_VAR tics 4
+
+
+//  _   __
+// | | / /
+// | |/ /
+// |    \
+// | |\  \
+// \_| \_/
+
+//Ballade
+texture KC_A_BAR
+pic KC_B_BAR tics 4
+pic KC_C_BAR tics 4
+pic KC_D_BAR tics 4
+pic KC_E_BAR tics 4
+
+texture KC_A_VAR
+pic KC_B_VAR tics 4
+pic KC_C_VAR tics 4
+pic KC_D_VAR tics 4
+pic KC_E_VAR tics 4
+
+//RaThor
+texture THORSINS
+pic THORSINR tics 3
+pic TNT1A0 tics 3
+
+texture SINTHOR0
+pic SINTHOR7 tics 4
+pic SINTHOR8 tics 4
+pic SINTHOR9 tics 4
+
+
+//  _    _   _____ 
+// | |  | | |_   _|
+// | |  | |   | |
+// | |/\| |   | |
+// \  /\  /   | |
+//  \/  \/    \_/
+
+// __       __
+// \ \     / /
+//  \ \   / /
+//   \ \ / /
+//    \ V /
+//     \_/
+
+//Terra
+texture VA_A_BAR
+pic VA_B_BAR tics 4
+pic VA_C_BAR tics 4
+pic VA_D_BAR tics 4
+pic VA_E_BAR tics 4
+
+texture VA_A_VAR
+pic VA_B_VAR tics 4
+pic VA_C_VAR tics 4
+pic VA_D_VAR tics 4
+pic VA_E_VAR tics 4
+
+//Venus
+texture VENJUMP1
+pic VENJUMP6 tics 3
+pic VENJUMP7 tics 3
+
+//Mars Stamina
+texture VD_S_BAR
+pic VD_T_BAR tics 2
+pic VD_U_BAR tics 2
+pic VD_V_BAR tics 2
+pic VD_W_BAR tics 2
+
+texture VD_S_VAR
+pic VD_T_VAR tics 2
+pic VD_U_VAR tics 2
+pic VD_V_VAR tics 2
+pic VD_W_VAR tics 2
+
+//Uranus
+texture URANGORE
+pic URANGOR1 tics 3
+pic URANGOR2 tics 3
+
+texture VG_A_BAR
+pic VG_B_BAR tics 2.5
+pic VG_C_BAR tics 2.5
+pic VG_D_BAR tics 2.5
+pic VG_E_BAR tics 2.5
+
+texture VG_A_VAR
+pic VG_B_VAR tics 2.5
+pic VG_C_VAR tics 2.5
+pic VG_D_VAR tics 2.5
+pic VG_E_VAR tics 2.5
+
+//Pluto
+texture VH_S_BAR
+pic VH_T_BAR tics 4
+pic TNT1A0 tics 4
+texture VH_S_VAR
+pic VH_T_VAR tics 4
+pic TNT1A0 tics 4
+
+//  _   _       _   _ 
+// | \ | |     | \ | |
+// |  \| | __ _|  \| |
+// | . ` |/ _` | . ` |
+// | |\  | (_| | |\  |
+// \_| \_/\__,_\_| \_/
+
+//Out of Stamina
+texture ARCSTAMX
+pic ARCSTAM1 tics 4
+pic ARCSTAM2 tics 4
+pic ARCSTAM3 tics 4
+pic ARCSTAM4 tics 4
+pic ARCSTAM5 tics 4
+pic ARCSTAM6 tics 4
+pic ARCSTAM7 tics 4

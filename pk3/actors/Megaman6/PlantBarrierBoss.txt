@@ -1,0 +1,533 @@
+actor PlantBarrierBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_6E"
+dropitem "PlantTrapperWepCDropped"
+weapon.ammouse 1
+Weapon.AmmoGive 28
+Weapon.AmmoUse2 1
+Obituary "$OB_PLANTBARRIER"
+Inventory.Pickupmessage "Power up! Plant Vines?!"
+weapon.ammotype "BioticFieldAmmo"
+weapon.ammotype2 "PsychedelicAmmo"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_06 E 1
+loop
+Ready:
+PBUS A 0 ACS_ExecuteAlways(998,0,DYE_PLANTMAN)
+PBUS A 0 A_GunFlash
+Ready2:
+PBUS A 0 //A_ClearRefire
+PBUS A 3 A_WeaponReady
+PBUS A 0 A_GiveInventory("PsychedelicAmmo",1)
+Goto Ready2+1
+Deselect:
+PBUS A 0 A_JumpIfInventory("ShieldCheck",1,"DeselectShield")
+PBUS AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+PBUS A 1 A_Lower
+Goto Deselect+1
+DeselectShield:
+PBUS A 0 A_TakeInventory("PowerPlantM_Drain",99)
+PBUS A 0 A_TakeInventory("ShieldCheck",99)
+PBUS A 0 //A_FireCustomMissile("",0,0,0,0)
+Goto Deselect+1
+Select:
+PBUS AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+PBUS A 1 A_Raise
+Loop
+Fire:
+PBUS A 0 A_JumpIfInventory("ShieldCheck",1,"ShieldThrow")
+PBUS A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+PBUS A 0 A_GiveInventory("PlantmanMain_CI",1)
+PBUS CB 2
+PBUS A 0 A_Refire
+goto Ready2
+AltFire:
+PBUS A 0 A_JumpIfInventory("ShieldCheck",1,"ShieldThrow")
+PBUS A 0 A_PlaySoundEx("weapon/blizzboss","Weapon")
+PBUS A 0 A_GiveInventory("ShieldCheck",1)
+PBUS A 0 A_Refire(1)
+PBUS A 1 offset(2,38)
+goto ShieldActive
+ShieldActive:
+PBUS A 0 A_SpawnItemEx("PlantmanShieldWarper",0,0,28,0,0,0,0,1,0)
+PBUS A 2 offset(5,57)
+PBUS A 2 offset(11,88)
+PBUS D 2 offset(-10,72)
+PBUS D 2 offset(-2,54)
+PBUS D 0 A_JumpIfNoAmmo("ShieldThrow")
+PBUS E 0 A_WeaponReady
+Goto Shield
+Shield:
+PBUS E 0 A_GiveInventory("PlantM_DrainRune",1)
+
+PBUS E 0 A_FireCustomMissile("PlantMDrainer",0,0,0,0)
+PBUS E 8 A_WeaponReady
+PBUS E 0 A_FireCustomMissile("PlantMDrainer",0,0,0,0)
+PBUS E 8 A_WeaponReady
+
+PBUS E 0 A_TakeInventory("PsychedelicAmmo",3,1)
+PBUS E 0 A_JumpIfNoAmmo("ShieldThrow")
+
+PBUS E 0 A_FireCustomMissile("PlantMDrainer",0,0,0,0)
+PBUS E 8 A_WeaponReady
+PBUS E 0 A_FireCustomMissile("PlantMDrainer",0,0,0,0)
+PBUS E 8 A_WeaponReady
+
+PBUS E 0 A_TakeInventory("PsychedelicAmmo",3,1)
+PBUS E 0 A_JumpIfNoAmmo("ShieldThrow")
+loop
+
+ShieldThrow:
+PBUS E 0 A_GiveInventory("PlantM_DrainRune",1)
+PBUS E 0 A_TakeInventory("ShieldCheck",999)
+PBUS E 2 A_GiveInventory("PlantmanAlt_CI",1)
+
+PBUS D 2 offset(1,48)
+PBUS D 2 offset(-3,64)
+PBUS D 2 offset(-6,80)
+PBUS D 2 offset(-9,96)
+TNT1 A 2 offset(16,116)
+PBUS A 2 offset(12,98)
+PBUS A 2 offset(9,82)
+PBUS A 2 offset(6,68)
+PBUS A 2 offset(4,56)
+PBUS A 2 offset(2,46)
+PBUS A 2 offset(1,38)
+
+PBUS A 5 A_WeaponReady(12)
+PBUS A 0 A_TakeInventory("PowerPlantM_Drain",1)
+goto Ready2
+
+Flash:
+TNT1 A 8 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 50 A_GiveInventory("BioticFieldAmmo",1)
+loop
+}
+}
+
+actor PlantM_DrainRune : BasicPowerupGiver
+{
+Powerup.Type "PlantM_Drain"
+}
+actor PowerPlantM_Drain : PowerDrain
+{
+Powerup.Duration -30
+//Powerup.Strength 0.75
+}
+
+actor PsychedelicAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor BioticFieldAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 56
++INVENTORY.IGNORESKILL
+}
+
+actor PlantmanItem : BasicClassItem
+{
+inventory.icon "PlntIcon"
+inventory.pickupmessage "Biotic Field deployed."
+Tag "Plant Biotic Field"
+states
+{
+Spawn:
+PBUS Z 1
+loop
+Use:
+TNT1 A 0 A_JumpIfInventory("BioticFieldAmmo",28,"Success")
+fail
+Success:
+TNT1 A 0 A_TakeInventory("BioticFieldAmmo",7)
+TNT1 A 0 A_TakeInventory("BioticFieldAmmo",21,1)
+TNT1 A 0 A_GiveInventory("PlantmanItem_CI",1)
+fail
+}
+}
+
+actor PlantM_BioFieldSpawner : BasicHelper
+{
+Translation "192:192=104:104","198:198=60:60","202:202=248:248","199:199=41:41"
+ReactionTime 9
+Speed 1
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_PlaySoundEx("weapon/blizzboss","Weapon")
+TNT1 A 0 A_ScaleVelocity(0.01)
+TNT1 A 3 A_SpawnItemEx("PlantM_BioFieldToss",0,0,0,momx*5000,momy*5000,momz*5000,0,41)
+Spawn2:
+TNT1 A 0 A_PlaySoundEx("weapon/blizzboss","Weapon")
+TNT1 A 3 A_SpawnItemEx("PlantM_BioFieldTossFX",0,0,0,momx*5000,momy*5000,momz*5000,0,41)
+TNT1 A 0 A_CountDown
+loop
+}
+}
+
+actor PlantM_BioFieldSpawnerB : PlantM_BioFieldSpawner {Translation "192:192=196:196","198:198=199:199","202:202=196:196","199:199=199:199"}
+actor PlantM_BioFieldSpawnerR : PlantM_BioFieldSpawner {Translation "192:192=170:170","198:198=43:43","202:202=170:170","199:199=43:43"}
+actor PlantM_BioFieldSpawnerO : PlantM_BioFieldSpawner {Translation "192:192=138:138","198:198=131:131","202:202=138:138","199:199=131:131"}
+actor PlantM_BioFieldSpawnerP : PlantM_BioFieldSpawner {Translation "192:192=214:214","198:198=223:223","202:202=214:214","199:199=223:223"}
+
+actor PlantM_BioFieldToss
+{
+PROJECTILE
+-NOGRAVITY
++THRUACTORS
++SKYEXPLODE
++BOUNCEONWALLS
++BOUNCEONCEILINGS
++CANBOUNCEWATER
+BounceFactor 1.0
+WallBounceFactor 1.0
+BounceCount 10
+gravity 1.65
+Damage (0)
+Radius 14
+Height 14
+Speed 50
+scale 2.5
+States
+{
+Spawn:
+PBUS X 0
+PBUS X 0 ThrustThingZ(0,8,0,1)
+PBUS X 1 
+wait
+Death:
+TNT1 A 0 //A_JumpIf(CallACS("core_targetexists")==0,"NoDeath")
+TNT1 A 1 A_SpawnItemEx("PlantM_BioticField",0,0,0,0,0,0,0,1)
+stop
+NoDeath:
+TNT1 A 1
+stop
+}
+}
+
+actor PlantM_BioFieldTossFX : PlantM_BioFieldToss
+{
+//+CLIENTSIDEONLY
+States
+{
+Death:
+goto NoDeath
+}
+}
+
+actor PlantM_BioticField : BasicHelper
+{
+-MISSILE
+RenderStyle Normal
+ReactionTime 18//11
+Height 56
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 3 A_SpawnItemEX("PlantM_BioPetalFX",256,0,20,0,0,0,0,1)
+TNT1 A 3 A_SpawnItemEX("PlantM_BioPetalFX",256,0,20,0,0,0,36+12*1,1)
+TNT1 A 3 A_SpawnItemEX("PlantM_BioPetalFX",256,0,20,0,0,0,72+12*2,1)
+TNT1 A 3 A_SpawnItemEX("PlantM_BioPetalFX",256,0,20,0,0,0,108+12*3,1)
+TNT1 A 3 A_SpawnItemEX("PlantM_BioPetalFX",256,0,20,0,0,0,144+12*4,1)
+TNT1 A 3 A_SpawnItemEX("PlantM_BioPetalFX",256,0,20,0,0,0,180+12*5,1)
+TNT1 A 3 A_SpawnItemEX("PlantM_BioPetalFX",256,0,20,0,0,0,216+12*6,1)
+PBUS J 3 A_SpawnItemEX("PlantM_BioPetalFX",256,0,20,0,0,0,252+12*7,1)
+PBUS K 3 A_SpawnItemEX("PlantM_BioPetalFX",256,0,20,0,0,0,288+12*8,1)
+PBUS L 3 A_SpawnItemEX("PlantM_BioPetalFX",256,0,20,0,0,0,324+12*9,1)
+PBUS M 0 A_SpawnItemEX("PlantM_HealFX_H",0,0,0,0,0,0,0,1)
+PBUS M 0 A_ChangeFlag("MISSILE",1)
+Spawn2:
+PBUS MMMMNNNNOOOO 1 A_RadiusGive("PlantM_BioHeal_P",256,2)
+//TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_RadiusGive("PlantM_BioHeal_P",256,2)
+TNT1 A 0 A_Countdown//20
+loop
+Death:
+PBUS LLL 1 A_RadiusGive("PlantM_BioHeal_P",256,2)
+PBUS PPP 1
+PBUS QQQ 1
+stop
+}
+}
+
+actor PlantM_BioPetalFX : BasicClientSide
+{
+States
+{
+Spawn:
+PBUS X 0
+PBUS X 1 A_Warp(2,256,0,20,4,28)//angle 4
+PBUS X 0 A_CheckFlag("NOGRAVITY","Spawn",2)
+stop
+}
+}
+
+actor PlantM_HealFX_H : BasicClientSide
+{
+RenderStyle None
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAA 0 A_SpawnItemEx("PlantM_HealFX",random(32,256),0,random(-64,16),0,0,random(4,5),random(0,359),1)
+TNT1 A 1
+TNT1 A 0 A_CheckFlag("NOGRAVITY","Spawn",2)
+stop
+}
+}
+
+actor PlantM_HealFX : BasicClientSide
+{
++MISSILE
+Speed 20
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(64,"Spawn3")
+TNT1 A 0 A_Jump(128,"Spawn2")
+goto Spawn1
+Spawn1:
+X_0C AAABBB 1 A_FadeOut(0.05)
+loop
+Spawn2:
+X_0C CCCDDD 1 A_FadeOut(0.05)
+loop
+Spawn3:
+X_0C EEEFFF 1 A_FadeOut(0.05)
+loop
+}
+}
+
+actor PlantM_BioHealDelay : Powerup
+{
+powerup.duration 10
+}
+
+actor PlantM_BioHeal_P : CustomInventory
+{
+States
+{
+Pickup:
+Pickup2:
+TNT1 A 0 A_JumpIfInventory("PlantM_BioHealDelay",1,"No")
+TNT1 A 0 A_GiveInventory("PlantM_BioHealDelay",1)
+TNT1 A 0 A_GiveInventory("CBM_HealThing10_P")
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor PlantmanShieldWarper : ShieldWarper_CBM
+{
++NOTIMEFREEZE
+States
+{
+Shield:
+PLAB A 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"ShieldR1")
+PLAB ABCDEFGH 1 A_Warp(AAPTR_TARGET,0,0,28,0,24)
+PLAB I 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"ShieldR2")
+PLAB IJKLMNOP 1 A_Warp(2,0,0,28,0,24)
+PLAB Q 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"ShieldR3")
+PLAB QRSTUVWX 1 A_Warp(2,0,0,28,0,24)
+PLAB Y 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"ShieldR4")
+PLAB YZ 1 A_Warp(2,0,0,28,0,24)
+PBUS RSTUVW 1 A_Warp(2,0,0,28,0,24)
+loop
+ShieldR1:
+PLAB ACEG 1 A_Warp(2,0,0,28,0,24)
+goto Shield+9
+ShieldR2:
+PLAB IKMO 1 A_Warp(2,0,0,28,0,24)
+goto Shield+18
+ShieldR3:
+PLAB QSUW 1 A_Warp(2,0,0,28,0,24)
+goto Shield+27
+ShieldR4:
+PLAB Y 1 A_Warp(2,0,0,28,0,24)
+PBUS RTV 1 A_Warp(2,0,0,28,0,24)
+goto Shield
+}
+}
+
+actor PlantShield
+{
+Translation "202:202=248:248","199:199=41:41"
+//translation "217:255=174:174","173:173=218:218"
+//translation "217:255=174:174","173:173=219:219"
+PROJECTILE
+Obituary "$OB_PLANTBARRIER"
+Damagetype "PlantM_Toss"
+Damage (200)
+Speed 20
+Radius 16
+Height 16
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32)
+PLAB ABCDEFGHIJKLMNOPQRSTUVWXYZ 1
+PBUS RSTUVW 1
+goto Spawn+2
+}
+}
+
+actor PlantShieldB : PlantShield{translation "202:202=205:205", "199:199=74:74"}
+actor PlantShieldR : PlantShield{translation "202:202=171:171", "199:199=41:41"}
+actor PlantShieldO : PlantShield{translation "202:202=104:104", "199:199=128:128"}
+actor PlantShieldP : PlantShield{translation "202:202=229:229", "199:199=232:232"}
+
+actor PlantShot
+{
+Translation "204:204=210:210"
+PROJECTILE
+-NOGRAVITY
++HITTRACER
+damagetype "PlantM_Shot"
+Obituary "$OB_PLANTBUSTER"
+Speed 43
+Damage (50)
+radius 5
+height 5
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ThrustThingZ(0,8,0,1)
+CENB E 1
+wait
+XDeath:
+Crash:
+CENB E 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,"Give")
+Goto Death
+Give:
+CENB E 0 A_GiveToTarget("PlantM_ShotHeal_P")
+Goto Death
+Death:
+CENB E 1
+stop
+}
+}
+
+actor PlantShotB : PlantShot{translation "204:204=205:205"}
+actor PlantShotR : PlantShot{translation "204:204=171:171"}
+actor PlantShotO : PlantShot{translation "204:204=104:104"}
+actor PlantShotP : PlantShot{translation "204:204=229:229"}
+
+actor PlantM_ShotHeal_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("CBM_HealThing10_P")
+stop
+}
+}
+
+actor PlantMDrainer : BasicExplosion
+{
+Damagetype "PlantM_Barrier"
+Obituary "$OB_PLANTDRAIN"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Explode(40,160,0,0,96)
+TNT1 A 2 A_Explode(70,160,0,0,20)
+stop
+}
+}
+
+actor PlantRadiusHeal : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 2
+stop
+}
+}
+
+actor PlantmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PlantShot",random(-5,5),0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PlantShotB",random(-5,5),0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PlantShotR",random(-5,5),0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PlantShotO",random(-5,5),0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PlantShotP",random(-5,5),0,8,0)
+goto Done
+}
+}
+
+actor PlantmanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PlantShield",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PlantShieldB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PlantShieldR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PlantShieldO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PlantShieldP",0,0,0,0)
+goto Done
+Done:
+TNT1 A 0 A_TakeInventory("PsychedelicAmmo",3,1)
+stop
+}
+}
+
+actor PlantmanItem_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PlantM_BioFieldSpawner",0,0,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PlantM_BioFieldSpawnerB",0,0,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PlantM_BioFieldSpawnerR",0,0,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PlantM_BioFieldSpawnerO",0,0,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PlantM_BioFieldSpawnerP",0,0,-8,0)
+goto Done
+}
+}

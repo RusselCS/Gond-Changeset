@@ -1,0 +1,157 @@
+
+OptionMenu "CBM_ChangelogMenu_H"
+{
+	Title "Version 9_F_H Changelog"
+
+StaticText ""
+	StaticText"$MNU_CHELP_EQUALLINE"
+	StaticText ""
+
+StaticText""
+Option "", "CBM_Null_Menu", "CL__General"
+Option "", "CBM_Null_Menu", "CL1_General1"
+Option "", "CBM_Null_Menu", "CL1_General2"
+Option "", "CBM_Null_Menu", "CL1_General3"
+Option "", "CBM_Null_Menu", "CL1_General4"
+Option "", "CBM_Null_Menu", "CL1_General5"
+Option "", "CBM_Null_Menu", "CL1_General6"
+Option "", "CBM_Null_Menu", "CL1_General7"
+Option "", "CBM_Null_Menu", "CL1_General8"
+Option "", "CBM_Null_Menu", "CL1_General9"
+Option "", "CBM_Null_Menu", "CL1_General10"
+Option "", "CBM_Null_Menu", "CL1_General11"
+StaticText""
+Option "", "CBM_Null_Menu", "CL__HealthC"
+Option "", "CBM_Null_Menu", "CL1_HealthC1"
+Option "", "CBM_Null_Menu", "CL1_HealthC2"
+StaticText""
+Option "", "CBM_Null_Menu", "CL__SpeedC"
+Option "", "CBM_Null_Menu", "CL1_SpeedC1"
+Option "", "CBM_Null_Menu", "CL1_SpeedC2"
+StaticText""
+Option "", "CBM_Null_Menu", "CL__Copy_Classes"
+Option "", "CBM_Null_Menu", "CL1_Copy_Classes1"
+StaticText""
+Option "", "CBM_Null_Menu", "CL__Rock"
+Option "", "CBM_Null_Menu", "CL1_Rock1"
+StaticText""
+Option "", "CBM_Null_Menu", "CL__Oilman"
+Option "", "CBM_Null_Menu", "CL1_Oilman1"
+StaticText""
+Option "", "CBM_Null_Menu", "CL__Airman"
+Option "", "CBM_Null_Menu", "CL1_Airman1"
+StaticText""
+Option "", "CBM_Null_Menu", "CL__Skullman"
+Option "", "CBM_Null_Menu", "CL1_Skullman1"
+Option "", "CBM_Null_Menu", "CL1_Skullman2"
+StaticText""
+Option "", "CBM_Null_Menu", "CL__Stoneman"
+Option "", "CBM_Null_Menu", "CL1_Stoneman1"
+Option "", "CBM_Null_Menu", "CL1_Stoneman2"
+StaticText""
+Option "", "CBM_Null_Menu", "CL__Aquaman"
+Option "", "CBM_Null_Menu", "CL1_Aquaman1"
+StaticText""
+Option "", "CBM_Null_Menu", "CL__Commandoman"
+Option "", "CBM_Null_Menu", "CL1_Commandoman1"
+Option "", "CBM_Null_Menu", "CL1_Commandoman2"
+Option "", "CBM_Null_Menu", "CL1_Commandoman3"
+Option "", "CBM_Null_Menu", "CL1_Commandoman4"
+Option "", "CBM_Null_Menu", "CL1_Commandoman5"
+StaticText""
+Option "", "CBM_Null_Menu", "CL__Terra"
+Option "", "CBM_Null_Menu", "CL1_Terra1"
+Option "", "CBM_Null_Menu", "CL1_Terra2"
+Option "", "CBM_Null_Menu", "CL1_Terra3"
+Option "", "CBM_Null_Menu", "CL1_Terra4"
+
+	StaticText ""
+	StaticText"$MNU_CHELP_EQUALLINE"
+	Option "", "CBM_Null_Menu", "CL_Null"
+}
+
+
+OptionValue CL1_General1
+{0,"\c[Crayon208]-Fixed default chat not playing"}
+OptionValue CL1_General2
+{0,"\c[Crayon208]-LMS Gas default values adjusted"}
+OptionValue CL1_General3
+{0,"\c[Crayon208]-Added cvar CBM_LMSGas_SpawnStyle"}
+OptionValue CL1_General4
+{0,"\c[Crayon88]--Controls where the center point spawns"}
+OptionValue CL1_General5
+{0,"\c[Crayon88]---0 is DM Spawns, 1 is Weapon Spawns"}
+OptionValue CL1_General6
+{0,"\c[Crayon208]-Added a radar that points to gas center"}
+OptionValue CL1_General7
+{0,"\c[Crayon88]--User option can control radar's alpha"}
+OptionValue CL1_General8
+{0,"\c[Crayon208]-Added server cvar 'CBM_LMS_TestHPSpawn'"}
+OptionValue CL1_General9
+{0,"\c[Crayon88]--0 = No HP, 1 = Big HP, 2 = All HP"}
+OptionValue CL1_General10
+{0,"\c[Crayon208]-Added server cvar 'CBM_LMS_TestHPRespawn'"}
+OptionValue CL1_General11
+{0,"\c[Crayon88]--If off, HP does not respawn"}
+
+
+OptionValue CL__HealthC
+{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Health changes"}
+OptionValue CL1_HealthC1
+{0,"\c[Crayon208]-650hp -> 700hp"}
+OptionValue CL1_HealthC2
+{0,"\c[Crayon88]--Metalman, Shadowman, Burnerman"}
+
+OptionValue CL__SpeedC
+{0,"\c[Crayon197][\ck-\c[Crayon197]]\c[Crayon161]Speed changes"}
+OptionValue CL1_SpeedC1
+{0,"\c[Crayon208]-Under 0.6/0.58 speed increased to it"}
+OptionValue CL1_SpeedC2
+{0,"\c[Crayon88]--Guts, Hard, Frost, Uranus, HSH"}
+
+OptionValue CL1_Copy_Classes1
+{0,"\c[Crayon208]-Fixed DocScanner with Terra"}
+
+OptionValue CL1_Rock1
+{0,"\c[Crayon208]-Allies can now kick the balls"}
+
+OptionValue CL1_Oilman1
+{0,"\c[Crayon208]-Hud updated by HeelNavi"}
+
+OptionValue CL1_Airman1
+{0,"\c[Crayon208]-Item drain is 3x slower on the ground"}
+
+OptionValue CL1_Skullman1
+{0,"\c[Crayon208]-Alt ammo regen changes removed"}
+OptionValue CL1_Skullman2
+{0,"\c[Crayon208]-Shield ammo per rage shot 6->2"}
+
+OptionValue CL1_Stoneman1
+{0,"\c[Crayon208]-Reviving is now shared across gamemodes"}
+OptionValue CL1_Stoneman2
+{0,"\c[Crayon88]--Revive duration 5/10->8 seconds"}
+
+OptionValue CL1_Aquaman1
+{0,"\c[Crayon208]-Mainfire balloon ammo cost 2->1"}
+
+OptionValue CL1_Commandoman1
+{0,"\c[Crayon208]-Waves radius 14->10 (matches core)"}
+OptionValue CL1_Commandoman2
+{0,"\c[Crayon88]--Wave damage 50/20->12, protection removed"}
+OptionValue CL1_Commandoman3
+{0,"\c[Crayon88]--First and last wave no longer damage"}
+OptionValue CL1_Commandoman4
+{0,"\c[Crayon208]-Alt waves NoClip->64 Dropoff"}
+OptionValue CL1_Commandoman5
+{0,"\c[Crayon88]--Travel Duration 100->80"}
+
+OptionValue CL1_Terra1
+{0,"\c[Crayon208]-SparkChaser damage 70->56"}
+OptionValue CL1_Terra2
+{0,"\c[Crayon208]-Null Orbiter ammo use 50%->100%"}
+OptionValue CL1_Terra3
+{0,"\c[Crayon208]-Dash ammo use 25%->50%"}
+OptionValue CL1_Terra4
+{0,"\c[Crayon88]--Null dash upward boost 16->26"}
+
+

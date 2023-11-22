@@ -1,0 +1,578 @@
+
+
+For those who want a clean to read changelog
+
+
+================
+Version 9 - F H
+================
+
+==General
+-Fixed default chat not playing
+-LMS Gas default values adjusted
+-Added cvar CBM_LMSGas_SpawnStyle
+--Controls where the center point spawns
+---0 is DM Spawns, 1 is Weapon Spawns
+-Added a radar that points to gas center
+--User option can control radar's alpha
+-Added server cvar 'CBM_LMS_TestHPSpawn'
+--0 = No HP, 1 = Big HP, 2 = All HP
+-Added server cvar 'CBM_LMS_TestHPRespawn'
+--If off, HP does not respawn
+
+==Health changes
+-650hp -> 700hp
+--Metalman, Shadowman, Burnerman
+
+==Speed changes
+-Under 0.6/0.58 speed increased to it
+--Guts, Hard, Frost, Uranus, HSH
+
+==Copy Classes
+-Fixed DocScanner with Terra
+
+==Rock
+-Allies can now kick the balls
+
+==Oilman
+-Hud updated by HeelNavi
+
+==Airman
+-Item drain is 3x slower on the ground
+
+==Skullman
+-Alt ammo regen changes removed
+-Shield ammo per rage shot 6->2
+
+==Stoneman
+-Reviving is now shared across gamemodes
+--Revive duration 5/10->8 seconds
+
+==Aquaman
+-Mainfire balloon ammo cost 2->1
+
+==Commandoman
+-Waves radius 14->10 (matches core)
+--Wave damage 50/20->12, protection removed
+--First and last wave no longer damage
+-Alt waves NoClip->64 Dropoff
+--Travel Duration 100->80
+
+==Terra
+-SparkChaser damage 70->56
+-Null Orbiter ammo use 50%->100%
+-Dash ammo use 25%->50%
+--Null dash upward boost 16->26
+
+==Modding Notes (not shown internally)
+-Airman bot fixed
+-Toadman bot fixed
+-Turboman bot fires properly
+-Fixed red team Sparkman main+alt
+-Fixed Rock balls bouncing off players
+-Added NoSourcePushFlag for fishy friends
+-IsLMSFlag/IsBuckshotFlag removed
+-Changed LMSGas ACS start from EVENT to OPEN
+
+
+================
+Version 9 - F
+================
+
+==General
+-Every class has x10 health (115 -> 1150)
+-All attacks now do x10 damage
+--Except attacks like Dynamo Tagger
+-Most stage hazards do x10 damage
+--Death hazards are not x10 stronger
+-Players are now sent to a spawn point when damaged by death hazards (Pits/Spikes)
+--No Pit Protection default False->True
+-Weapons/Health/Ammo now spawn in T/LMS
+--Set modifier to 'buckshot' to disable
+-LMS Gas by CutmanMike ported in
+--Can be adjusted via cvars CBM_LMSGas_*
+-Healing ally classes now heal everyone
+--These classes now slowly regen heal ammo
+-Added missing class TextColors
+--Added every palette color as 'Crayon'
+---Examples, Crayon71, Crayon250
+-Added server cvar 'YD_Drops_Exodia'
+--If off, EvilRobot doesn't drop parts
+-Added server cvar 'YD_TestHavocDamageBonus'
+--If on, non-copywep classes do 1.35x damage
+-Weakness sounds now match pain sounds
+
+==Copy Classes
+-Fixed SkullBarrier with DocRobot's health
+-Fixed spread CopyVision doing extra damage
+-Damage reduction 90%/91%/92% -> 90%
+-Most CBM Copy weapons gained 1.35x damage
+--This is due to core damage increases
+
+==Megaman
+-Fixed crashes involving adaptors
+
+==Rock
+-Dropped ball teamcolors fixed
+
+==Roll
+-Updated hud/skin by hansungkee added
+--Default skin MM8 Roll -> Classic Roll
+---Mobile Roll removed, MM11 Roll added
+-Refire delay for first swing 25->24
+-Dash ammo now regens during mainfire
+--Regen rate is doubled when idle
+-Dashing movement lockout removed
+
+==Auto
+-Health 1150->1000
+-Met hat cost, 100 screws->50% heal ammo
+-Fixed faster ammo regen via swapping
+-E-Tank Lite now heals over time
+--Changed to a green version
+-ExitUnit item removed
+
+==DrLight
+-Shoryuken thrust, single->constant
+--Damager is no longer velocity based
+---Moved closer to user and is visible
+-Item mainfire speed multiplier 0.4->0.6
+
+==DrWily
+-Tweaked Foot/Capsule skin with colors
+-Sprite for strong Suit mainfire by Pegg
+--Other shots tweaked by Celebi to match
+-Frying pan can now block shots
+--Added FastProjectile to fix aiming
+
+==Cutman
+-Can extend cutter distance via mainfire
+-Cutter damager spawn reverted
+
+==Gutsman
+-Placed rock health 750->850
+
+==Iceman
+-IceSlasher damage 100->80, speed 22->36
+-Altfire cost 100%->25%, cloud removed
+--Laser damage removed, speed 50->200
+-Statue explosions leave lingering slow
+
+==Oilman
+-Mainfire revert to a shotgun charge
+--Blobs fired during charge 1/3/5->1/2/3
+-Oil Slider high damage 120->100
+-Big alt blobs now boost once when sliding
+
+==Airman
+-Jump height 10->12.5
+-Can now double jump
+-Item added that toggles Air Control
+--When on, increased speed in the air
+-Mainfire shot radius 6->7, height 7->8
+--Damage 150->120
+--Forward thrust on spawn 0->8
+--Upwards thrust when going up 2->3
+-Altfire spread straightened/compressed
+--Radius 6->8, height 7->10
+--Spawn damage 50->90, travelling unchanged
+---Reduced damage from multi-hits
+
+==Quickman
+-Walljumps 6->4
+
+==Heatman
+-Removed jump changes during dash
+
+==Alien
+-Pit hover drain rate 20->10
+--Now regens 1 hover stamina midair
+
+==Geminiman
+-Allies no longer damage clone
+
+==Sparkman
+-Hud redone by Pegg and Lamp
+-Mainfire direct hit damage 350->250
+--Non-direct hit explosion removed
+--Alt after 25% charge does old alt
+---Total shots 8->16, aimable shots 1->3
+---Damage 120->60, Radius/Height 6->9
+-New altfire, lobs a lingering stun zone
+
+==Shadowman
+-Walljumps 3->6
+
+==DocRobot
+-Adjusted stats to better match classes
+--Bad stats were buffed up
+---Example, ThunderBolt speed 75->100%
+-Default jump/speed is no longer boosted
+
+==Brightman
+-Walljumps 2->0
+-Double item issue fixed
+-Bulb blind now uses core blind style
+
+==Pharaohman
+-Cleaned up weapon, delays are similar
+-Mid charge shot end delay 18->16
+-Altfire tweaked to be more responsive
+
+==Ringman
+-Bonus sound when a ring gleams
+
+==Dustman
+-Suction sound changed
+-Scrap grabber is now visible to user
+
+==Diveman
+-Tackle end delay 12->21
+
+==Skullman
+-Altfire max ammo 56->112
+--Any ammo mentions are after 2x ammo
+--Normal regen 4->3 every 4 tics
+--Regen during rage 4->5 every 2 tics
+--Regen when firing 6->4 per shot
+-Now gets 6 shield ammo per rage shot
+
+==Gravityman
+-Alt ammo now regens during mainfire
+-All flings have semi-hitstun
+-Added a charge attack to altfire
+--Summons a Gravity Well at a pinpoint
+-G-Well snaps to the nearest floor/ceiling
+--Floor flings up, ceiling flings down
+--Fling delayed based on distance to user
+
+==Waveman
+-Added slow pull in to hookshot when holding jump near the end hook
+
+==Stoneman
+-Rocks 2->3, reduced damage on multi hits
+--Stones travel straight, stop, then spin
+---Spinning curve adjusted due to above
+-Duration to fully charge leap 180->112
+-Weak land self freeze duration 21->15
+-Shock land damage 150->200, size 200->250
+-Time needed to revive 9->10 seconds
+
+==Gyroman
+-Flight management cleaned up
+-Mainfire total delay 25->24
+-Ammo drain rate for holding altfire 6->8
+--Removed midair ammo drain after flying
+
+==Darkman3
+-Reworked by Sir An0n
+
+==Flameman
+-Ammo regen delay after firing 0->8
+-Mainfire ammo use 0->4, regen 1->2
+--Floor shots split into 2 pillars forward
+--Wall flame damage 140->170
+-Altfire now has its own ammo
+--Intial spawn angle flipped
+--Spawning trail is now visible
+
+==Plantman
+-Hud/animations tweaked
+-Passive health regen removed
+--Buster healing works in all gamemodes
+--Barrier healing allies removed
+-New item that creates a healing field
+--Uses screws and slowly generates ammo
+
+==Freezeman
+-Mainfire ammo cost 2->4
+-Main shot damage 190->130
+--Bits on wall hit 6->8, pattern tweaked
+--Spawns 3 more icicles on floor/ceiling
+---Mainfire ceiling ice doesn't split
+-Icicle priming delay, 8->10 tics
+
+==Junkman
+-Health 1250->1350
+-Fixed infinite JunkLeak
+-JunkCube touched up, health 2000->2500
+--Cube punch range check 100->150
+--Everyone near a cube gets junk ammo
+-Pushed cube damage 210->140
+--Is no longer invulnerable
+--Can be pushed multiple times
+---First push speed 26->8, second push 26
+-Junk punch damage 300->250
+--Punch shot damage 200->150, speed 42->50
+---Ammo use 70->80, ammo needed 35->40
+-JunkShield damage 70/60/50->50/40/30
+
+==Burstman
+-Item can cycle back to 1 stock
+-Mainfire doesn't reset current stock
+--Added no ammo attack
+-Altfire bubble flight bombs removed
+
+==Cloudman
+-Hud and several sprites updated
+-Recharge damager spawn height 276->416
+
+==Slashman
+-Walljumps 5->6
+
+==Shademan
+-Weapon tweaked for altfire start
+
+==Tenguman
+-Hover changed back to item toggle
+
+==Astroman
+-Pit hover drain rate 20->10
+--Now regens 1 hover stamina midair
+
+==Swordman
+-Adjusted how flames bounce off surfaces
+
+==Clownman
+-ThunderClaw speed 26->33
+--Duration lowered to match old distance
+-Claw return speed 33->43
+
+==Aquaman
+-Recharge refire delay 10->4
+-Mainfire balloon ammo cost 1->2
+--Shot speed 15/25/35/45/55->15/25/32/39/46
+-Water Tower now blocks shots
+
+==OriginalDuo
+-Altfire punch adjusted to GutPunch style
+
+==EvilRobot
+-Players drop a bonus part on death
+-Evil Beam damage 90->66
+
+==Dynamoman
+-Adjusted weapon/ACS for server intensity
+-Scanner can now stack infinitely
+--First 4 still adds 150 damage
+---Further scans add 50 damage
+-Dynamo Disk radius/height 14/10->12/8
+
+==Groundman
+-Tank mode now uses Mars' method
+
+==Pirateman
+-Stealing adds damage to placed/pushed mines
+
+==Magicman
+-Hud updated by Pegg
+-Mainfire refire delay removed
+--Card damage 120->90
+--Fake cards removed from mainfire
+-Altfire changed to a magical shot
+--Costs no ammo but has limited range
+
+==Concreteman
+-Updated skin frames by FTX added
+-Due to above, hud/skin flips removed
+
+==Tornadoman
+-Altfire team lift now checks for jump
+
+==Jewelman
+-Ruby kaboom damage 50->20/40/60/80
+--Boom size 48/64/120/180->64/96/128/160
+-Sapphire mines with Ruby damage 50->0
+--Mine duration 40/80/120/170->20/50/80/110
+--Fall style, 1.3 ScaleVelocity->0.5 gravity
+---Starting fall speed 0.5->5
+---Now stops on floors, except if explosion
+-Topaz speed bonus 30->83% for stack
+-Item can now jump to the next color set
+
+==Hornetman
+-Hover changed back to item toggle
+
+==Magmaman
+-Rapid fire issue fixed
+
+==Fakeman
+-Confiscating adds damage to baton
+
+==Blademan
+-Horizontal wall shot angle 7/14->5/10
+--Vertical wall shot pitch 5/10->2.5/5
+-Initial altfire ammo cost 5->7
+-First cling delay before actions 4->8 tics
+--Repeated cling delay 2->8 tics
+
+==Pumpman
+-Allies no longer damage bubbles
+--Bubble health 450->300
+-Fixed Slugger Bubble split not working
+
+==Commandoman
+-CommandoBomb behaves like core weapon
+--Except splitting on direct hits
+-Explosive wave damage now matches core
+-Mine toss speed 20->35
+-Stomp refire delay 30->43, end delay 15->23
+--Wave pattern is now 5 waves forward
+
+==Chillman
+-Walljumps 6->3
+-Health lost on shield break 50->0
+--Shield regen lost on hit 60->all
+--Time to regen shield 5->6 seconds
+-Slide ammo 336->168, ammo regen 6->4
+--Still needs 168 ammo to use slide
+-Mainfire generates 7 slide ammo
+-Slide speed loss without shield removed
+--Ammo drain when not moving/airborn 1->0
+-Item mainfire spread narrowed
+
+==Solarman **NEW**
+-Made by Muzaru
+
+==Terra **NEW**
+-Made by Pegg
+
+==Mercury
+-Stealing adds damage to snatch damager
+--Chance of communism snatch 0%->1/8192
+---Still becomes 1/256 after 91 stacks
+-Ammo return is similar to core GrabBuster
+-Blob splash explosion damage 200->180
+--Weak splash 100->90
+-Tackle blobs don't damage for 8 tics
+
+==Mars
+-Vulcan firing end delay 2->10
+-Vulcan shot damage falloff removed
+--Duration of shot, infinite->5 tics
+-Tank mode backwards thrust 100%->35%
+
+==Jupiter
+-Basic mainfire duration 32->16 tics
+-Altfire knockback power 25->20
+
+==Uranus
+-SpawningMisfire correctly added
+-DeepDigger alt attack is more focused
+--4 bits forward in a light spread
+
+==Pluto
+-Speed 0.8/0.78->0.9/0.88
+--Max speed bonus from moving 103%->81%
+-Walljumps 6->4
+-Low ammo swipe set explosion size 0->24
+
+==Neptune
+-SaltWater split style now matches core
+--Except SaltWater splits on direct hit
+-Leaping off foes now refunds 2 ammo
+
+==Enker
+-Item added, performs a directional dash
+--Can be used anytime while on the ground
+-Hud animations adjusted, left hand removed
+-THRUGHOST removed from both shots
+-Small shot speed 40->50
+-Minimum ammo gain during altfire 3->1
+--Death hazard ammo gain is 1 if teleported
+-Spear swipe explosion size 80->100
+
+==Ballade
+-Main shot speed 20 to 65->20/35/50/65
+--Speed is based on focus charge per bar
+-Failsafe added for losing mines somehow
+
+==RaThor
+-Players drop a bonus part on death
+
+==BBAMegaman
+-Mugshot added
+-Weapons work better with FastWeapons
+-Heavy Cannon explosion damage 360->240
+-Energy Lancer damage 60->80
+-BFG90XX tracer money gain 17->1
+
+==Modding Notes (not shown internally)
+-Weapon files shifted to class file area
+--Clownman stage files updated
+-JunkShot damagetype removed
+-FlameSwordSpark2/3 damagetype removed
+-Dynamoman lightning actors reduced
+-Darkman3 alt is now dynamic in delays (old)
+-EvilRobot Giga numbers adjusted
+--Rock ball numbers matched
+-Invisible player icons touched up
+-Request: Pluto B frame copied to O for idle
+-Burstman sprites removed, BMBU H to P
+-Dustman AttackZOffset removed
+-cbm_istargetclient->cbm_IsPointerClient
+--Added arguments for Pointer/PlayerNum
+-BaseWepAltOverride_F added to BaseWep
+--MegaBusterFlag replaced with above
+-Removed all MegaSlide related inventory
+--Replaced with SlideVivifyFlag
+-Touched up sliding related actors
+-Experimental CBM_TEST map edit added
+-Renamed class weapons from C->Boss
+--MegaBuster, DocBuster, EvilFist
+-Darkmen.txt's renamed to their weapons
+-EndBossFlashStoppered is now a powerup
+-Reorganized location of files
+--Mainly to '/actors/Wep' and '/actors'
+--If you patch CBM, compare carefully
+-ClassBase split up more for modders
+-'GlassHealthBar' and friends removed
+-Cloudman sprites adjusted, actors renamed
+-Fixed Flameman wall flames high server usage?
+--The same to Dynamo Tendril?
+-Dynamo scanner redone? Is it better?
+-Tweaked CBM User/Server menu colors
+-Adjusted 'C_JAX_SUCKRECODE' and HSH
+-NOBLOCKMAP added to BasicHelper
+-cbm_GiveIfPlayerHitMe and actors adjusted
+-Air/Walljump uses SetActorVelocity to fix rounding issues
+-Updated a great amount of things for v6a
+--Mars class sprites renamed due to stage sprite conflicts
+-Updated Buster huds to new style if applicable
+-Added several MusashiAA sound requests and creations from the deep past
+-Added various eye candy sprites, such as skin idles and small particles
+-Removed all A_Jump calls on Blademan weapon to fix weapon swap issues?
+-Attempted to fix ammo desync with user1+altfire copyweapons
+-AtomicFire3 protection removed (AtomicOnce)
+-Removed DeathFix from ClassBase
+--Fixed desync for modified ClassDeath states?
+-Added `damagefactor "spawntelefrag", 0.0` to ClassBase
+-Fixed several infinite flight issues
+-Instances of script 147 renamed to 'cbm_GetPointerTID_147'
+-Added NoPushFlag checks to all ACS based flings for fishing
+-TopTwist changed from HitTracer to a painstate
+-Moved several HealThing calls to 'HealThingMod' in 'actors/General_C'
+-Moved all armor pickups to 'BasicArmorMod' in 'actors/General_C'
+--Renamed BossBasicArmorAmount to DynamicArmorDosage_F
+-Fixed set velocity moves being slightly off (Example HeatTackle)
+-More under the hood changes to help with fishing
+-Resolidifer updated to a new method thats highly accurate
+--Due to above, Resolidify damage increased to 10% MaxHP
+-Renamed and added damagetypes for almost every class attack
+--Check 'Damagetype_List.txt' for all the changes
+-Updated movement key checks to ignore right+left or forward+back
+-Removed weakness sounds, added new weakness sounds
+--These sound similar to normal pain sounds
+--Cleaned up weakness sound playing, it should now play properly
+-Fixed ammo desync on SpreadDrillWep by redoing it
+-Updated most HEXENBOUNCE/DOOMBOUNCE/Bouncetype usage to use bounce flags
+-Added a simple credits list to the bottom of 'README.txt'
+-Replaced doom1/2 chat sounds, this causes issues with campaign chat (misc/chat)
+-Updated several classes to not use 'StaminaFlag' specifically
+-Changed the default dimcolor to 40% black
+--To force old yellow, in the console 'dimcolor ff d7 00' and 'dimamount 0.2'
+---Can also be tweaked in CBM Menu -> User Options at the bottom
+-Borrowed Rune sprites from Unholy
+-Added Runes and Tunes options to CBM_TEST
+
+

@@ -1,0 +1,353 @@
+LISTMENU "MainMenu"//Edit from MM8BDM-v6a //[C] means addition or edit
+{
+	IfGame(Doom, Chex)
+	{
+		StaticPatch 94, 2, "M_DOOM"
+		Position 97, 72
+	}
+	IfGame(Strife)
+	{
+		StaticPatch 84, 2, "M_STRIFE"
+		Position 97, 45
+	}
+	IfGame(Heretic)
+	{
+		StaticPatch 88, 0, "M_HTIC"
+		StaticPatch 40, 10, "M_SKL01"
+		StaticPatch 232, 10, "M_SKL00"
+		Position 110, 56
+	}
+	IfGame(Hexen)
+	{
+		StaticPatch 88, 0, "M_HTIC"
+		StaticPatch 37, 80, "FBULB0"
+		StaticPatch 278, 80, "FBULA0"
+		Position 110, 56
+	}
+	
+	IfGame(Doom, Strife, Chex)
+	{
+		Font "DBIGFONT", "MenuWhite"
+		TextItem "SinglePlayer", "s", "PlayerclassMenu"
+		TextItem "Multiplayer", "m", "ZA_MultiplayerOptions" // [Russ]
+		TextItem "Player Setup", "p", "PlayerMenu"
+		TextItem "Options", "o", "OptionsMenu"
+		Font "DBIGFONT", "MenuBlue"// [C]
+		TextItem "CBM Menu", "c", "CBM_MainMenu"// [C]
+		Font "DBIGFONT", "MenuGreen"// [C]
+		TextItem "Help", "h", "ReadThisMenu"// [C]
+		Font "DBIGFONT", "MenuWhite"// [C]
+		TextItem "Quit Game", "q", "QuitMenu"
+	}
+	
+	IfGame(Heretic, Hexen)
+	{
+		TextItem "$MNU_NEWGAME", "n", "PlayerclassMenu"
+		TextItem "$MNU_OPTIONS", "o", "OptionsMenu"
+		TextItem "$MNU_GAMEFILES", "g", "GameFilesMenu"
+		TextItem "$MNU_INFO", "i", "ReadThisMenu"
+		TextItem "$MNU_QUITGAME", "q", "QuitMenu"
+	}
+}
+
+ListMenu "PlayerMenu"
+{
+	StaticTextCentered 160, 6, "$MNU_PLAYERSETUP"
+	Font "SmallFont"//, "White", "Cyan"
+	Linespacing 14
+	Position 48, 36
+	IfGame(Doom, Heretic, Strife, Chex)
+	{
+		MouseWindow 0, 220
+		//PlayerDisplay 220, 80, "20 00 00", "80 00 40", 1, "PlayerDisplay"//Zandronum
+		//PlayerDisplay 220, 75, "20 00 00", "80 00 40", 1, "PlayerDisplay"//v5a
+		//PlayerDisplay 220, 55, "00 00 00", "00 AA AA", 1, "PlayerDisplay"//v5d
+		PlayerDisplay 220, 55, "20 00 00", "20 FF 40", 1, "PlayerDisplay"// [C]
+	}
+	IfGame(Hexen)
+	{
+		MouseWindow 0, 220
+		PlayerDisplay 220, 75, "00 07 00", "40 53 40", 1, "PlayerDisplay"
+	}
+	
+	IfGame (Doom, Strife, Chex)
+	{
+		PlayerNameBox "Name", 0, "Playerbox"
+		Selector "-", -16, -1
+	}
+	IfGame(Heretic, Hexen)
+	{
+		PlayerNameBox "Name", 5, "Playerbox"
+		Selector "-", -16, 1
+	}
+	
+	// [TP] Zandronum does not store team in userinfo
+	// ValueText "Team", "Team"
+	// [TP] For now Zandronum doesn't support colorsets either.
+	// ValueText "Color", "Color"
+	Linespacing 14
+	//Slider "Red", "Red", 0, 255, 16
+	//Slider "Green", "Green", 0, 255, 16
+	//Linespacing 14
+	//Slider "Blue", "Blue", 0, 255, 16
+	ValueText "Class", "Class"
+	ValueText "Skin", "Skin"
+	ValueText "Gender", "Gender", "Gender"
+	ValueText "Autoaim", "Autoaim", "Autoaim"
+	//Slider "Handicap", "Handicap", 0, 200, 5 // [TP]
+	// [TP] This is moved to weapon setup
+	// ValueText "Switch on pickup", "Switch", "OffOn"
+	ValueText "Always Run", "AlwaysRun", "OnOff"
+	//ValueText "Chat Substitution", "chat_substitution", "OnOff"// (doesn't work :/)
+	TextItem "Weapon Setup", "w", "ZA_WeaponSetup" // [TP]
+	//Font "SmallFont", "MenuGreen" // [C]
+	TextItem "Copy Weapon Loadout", "c", "CBM_UserOptionsMenu" // [C]
+
+	Class "PlayerMenu"
+}
+
+//End of MM8BDM-v6a Menu
+
+//########################################
+//########################################
+
+//Start of CBM Menu
+
+LISTMENU "CBM_MainMenu"
+{
+	//StaticPatch 108,31, "CBMTITLE"//94,2
+	StaticPatch 110,32, "CBM_L000"
+	Position 97,72
+	Font "DBIGFONT", "MenuOrange"
+	TextItem "Class Information", "c", "CBM_ClassHelpMenu"
+	Font "DBIGFONT", "MenuYellow"
+	TextItem "User Options", "u", "CBM_UserOptionsMenu"
+	Font "DBIGFONT", "MenuGreen"
+	TextItem "Server Options", "s", "CBM_ServerOptionsMenu"
+	Font "DBIGFONT", "MenuCyan"
+	TextItem "The Changelog", "s", "CBM_ChangelogMenu"
+	Font "DBIGFONT", "Crayon196"
+	TextItem "Hotfix Changelog", "s", "CBM_ChangelogMenu_H"
+	Font "DBIGFONT", "MenuPurple"
+	TextItem "Previous Changelog", "s", "CBM_ChangelogMenuOld"
+}
+
+OptionMenu "CBM_UserOptionsMenu"
+{
+	Title "CBM User Options"
+
+	StaticText ""
+	//StaticText "User Options", 1
+	//StaticText ""
+
+	Option "$MNU_USER1C", "CBM_NoGravitySpawnHop", "OnOff"
+	Option "$MNU_USER2C", "CBM_AutoAltHud", "OnOff"
+	Option "$MNU_USER3C", "CBM_OldGalaxyHud", "OnOff"
+	Slider "$MNU_USER4C", "CBM_GasRadarFade", 0.0, 1.0, 0.05, 2
+	StaticText ""
+	StaticText "$MNU_USER_0C", 1
+	StaticText ""
+	Command "$MNU_USER_1C", "menuclasshelp"
+	StaticText ""
+	StaticText "$MNU_LDOUT_0C", 1
+	StaticText "$MNU_LDOUT__C", 1
+	StaticText " "
+	Option "$MNU_LDOUT_1C", "LO_range", "LO_RangeOptions"
+	StaticText ""
+	Option "$MNU_LDOUT_2C", "LO_rapid", "LO_RapidOptions"
+	StaticText ""
+	Option "$MNU_LDOUT_3C", "LO_close", "LO_CloseOptions"
+	StaticText ""
+	Option "$MNU_LDOUT_4C", "LO_power", "LO_PowerOptions"
+	StaticText ""
+	Option "$MNU_LDOUT_5C", "LO_guard", "LO_GuardOptions"
+	StaticText ""
+	StaticText ""
+	StaticText "Menu Dimming Options", 1
+	StaticText ""
+	Slider "$MNU_USERDIM1", "dimamount", 0.0, 1.0, 0.05, 2
+	Command "$MNU_USERDIM2", "menu_CBM_ResetDim"
+	ColorPicker "$MNU_USERDIM3", "dimcolor"
+}
+
+OptionMenu "CBM_ServerOptionsMenu"
+{
+	Title "CBM Server Options"
+	StaticText ""
+	Option "$MNU_SERV1C", "YD_WeaknessSetting", "CBMWeaknessOptions"
+	Option "$MNU_SERV2C", "YD_NoCTFMorph", "NoYes"
+	Option "$MNU_SERV3C", "YD_NoPitProtect", "NoYes"
+	Option "$MNU_SERV4C", "YD_NoHealingScale", "NoYes"
+	Option "$MNU_SERV5C", "YD_NoLMSWeapons", "NoYes"
+	Option "$MNU_SERV6C", "YD_LMSLoadouts", "YesNo"
+	Option "$MNU_SERV7C____________", "YD_Drops_Exodia", "YesNo"
+	Option "$MNU_SERV8C", "YD_TestHavocDamageBonus", "YesNo"
+	Option "$MNU_SERV9C", "CBM_LMS_TestHPSpawn", "CBMLMS_HP_Spawn"
+	Option "$MNU_SERV10C", "CBM_LMS_TestHPRespawn", "YesNo"
+	StaticText ""
+	StaticText ""
+	StaticText "$MNU_LMSGAS0"
+	StaticText ""
+	TextField "$MNU_LMSGAS1", "CBM_LMSGas_Time"
+	TextField "$MNU_LMSGAS2", "CBM_LMSGas_Speed"
+	TextField "$MNU_LMSGAS3", "CBM_LMSGas_Damage"
+	TextField "$MNU_LMSGAS4", "CBM_LMSGas_Size"
+	Option "$MNU_LMSGAS5", "CBM_LMSGas_SpawnStyle", "CBMLMSGasSpawnStyle"
+	StaticText "$MNU_LMSGAS_", 1
+}
+
+OptionValue CBMLMS_HP_Spawn
+{
+0, "No HP pickups"
+1, "Big HP pickups"
+2, "All HP pickups"
+}
+
+OptionValue CBMLMSGasSpawnStyle
+{
+0, "RNG DM Spawn"
+1, "RNG Weapon Spawn"
+}
+
+OptionValue CBMWeaknessOptions
+{
+0, "No"
+1, "Sounds Only"
+2, "Yes"
+}
+
+OptionValue LO_RangeOptions
+{
+-1, "(-1) Random"
+0, "(0) Fire Storm"
+1, "(1) Thunder Beam"
+2, "(2) Magnet Missile"
+3, "(3) Gemini Laser"
+4, "(4) Search Snake"
+5, "(5) Spark Shock"
+6, "(6) Dust Crusher"
+7, "(7) Skull Sniper"
+8, "(8) Gyro Attack"
+9, "(9) Blizzard Attack"
+10, "(10) Silver Tomahawk"
+11, "(11) Freeze Cracker"
+12, "(12) Thunder Bolt"
+13, "(13) Noise Crush"
+14, "(14) Mega Ball"
+15, "(15) Homing Sniper"
+16, "(16) Ice Wave"
+17, "(17) Copy Vision"
+18, "(18) Dynamo Tendril"
+19, "(19) Laser Trident"
+20, "(20) Fake Repeater"
+21, "(21) Rebound Striker"
+22, "(22) Spark Chaser"
+23, "(23) Grab Buster"
+24, "(24) Deep Digger"
+}
+OptionValue LO_RapidOptions
+{
+-1, "(-1) Random"
+0, "(0) Wave Buster"
+1, "(1) Ice Slasher"
+2, "(2) Metal Blade"
+3, "(3) Quick Boomerang"
+4, "(4) Needle Cannon"
+5, "(5) Top Twist"
+6, "(6) Water Wave"
+7, "(7) Plant Trapper"
+8, "(8) Yamato Spear"
+9, "(9) Water Balloon"
+10, "(10) Wave Burner"
+11, "(11) Plug Ball"
+12, "(12) Rainbow Galaxy"
+13, "(13) Triple Blade"
+14, "(14) Electric Shock"
+15, "(15) Screw Crusher"
+16, "(16) Buster Rod Pole"
+}
+OptionValue LO_CloseOptions
+{
+-1, "(-1) Random"
+0, "(0) Roll Sweep"
+1, "(1) Rising Fist"
+2, "(2) Rolling Cutter"
+3, "(3) Oil Slider"
+4, "(4) Air Shooter"
+5, "(5) Bubble Lead"
+6, "(6) Shadow Blade"
+7, "(7) Ring Boomerang"
+8, "(8) Power Stone"
+9, "(9) Charge Kick"
+10, "(10) Flame Blast"
+11, "(11) Knight Crush"
+12, "(12) Wind Storm"
+13, "(13) Wild Coil"
+14, "(14) Slash Claw"
+15, "(15) Tornado Hold"
+16, "(16) Flame Sword"
+17, "(17) Thunder Claw"
+18, "(18) Tengu Blade"
+19, "(19) Magic Card"
+20, "(20) Concrete Shot"
+21, "(21) Hornet Chaser"
+22, "(22) Magma Bazooka"
+23, "(23) Chill Spike"
+24, "(24) Thunder Wool"
+25, "(25) Wheel Cutter"
+26, "(26) Break Dash"
+27, "(27) Salt Water"
+28, "(28) Sakugarne"
+29, "(29) Hyper Storm Blaster"
+}
+OptionValue LO_PowerOptions
+{
+-1, "(-1) Random"
+0, "(0) Frag Bomber"
+1, "(1) Super Arm"
+2, "(2) Hyper Bomb"
+3, "(3) Crash Bomb"
+4, "(4) Atomic Fire"
+5, "(5) Hard Knuckle"
+6, "(6) Drill Bomb"
+7, "(7) Pharaoh Shot"
+8, "(8) Gravity Sphere"
+9, "(9) Napalm Bomb"
+10, "(10) Crystal Eye"
+11, "(11) Centaur Arrow"
+12, "(12) Danger Wrap"
+13, "(13) Flash Bomb"
+14, "(14) Spread Drill"
+15, "(15) Remote Mine"
+16, "(16) Commando Bomb"
+17, "(17) Solar Blaze"
+18, "(18) Bubble Bomb"
+19, "(19) Photon Missile"
+20, "(20) Ballade Cracker"
+}
+OptionValue LO_GuardOptions
+{
+-1, "(-1) Random"
+0, "(0) Time Slow"
+1, "(1) Time Bender"
+2, "(2) Boobeam Barrier"
+3, "(3) Leaf Shield"
+4, "(4) Doc Scanner"
+5, "(5) Flash Bulb"
+6, "(6) Rain Flush"
+7, "(7) Dive Sonar"
+8, "(8) Skull Barrier"
+9, "(9) Star Crash"
+10, "(10) Dark Shield"
+11, "(11) Centaur Flash"
+12, "(12) Junk Shield"
+13, "(13) Scorch Wheel"
+14, "(14) Ice Wall"
+15, "(15) Tornado Blow"
+16, "(16) Jewel Satellite"
+17, "(17) Water Shield"
+18, "(18) Black Hole"
+19, "(19) Mirror Buster"
+20, "(20) Mega Water Barrier"
+}
+

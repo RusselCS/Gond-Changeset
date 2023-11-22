@@ -1,0 +1,23 @@
+//global//Already loaded by core
+//tools//No need to load it again
+//wepacs
+
+bugfix
+bugfix_f
+cbm_colors
+docammo
+PITFIND
+
+CBM_SINGLEP
+CBM_GENERAL
+CBM_SPECIFIC
+CBM_TOOLS
+
+CBM_LOADOUT
+CBM_TIPS_HELP
+
+CBM_LMSGAS
+
+CBM_LEGACY
+CBM_DEBUG
+CBM_TEST

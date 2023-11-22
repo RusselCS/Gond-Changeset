@@ -1,0 +1,308 @@
+//Copy of v6a 'ctf.txt'
+//Adds INVENTORY.UNDROPPABLE to flags?
+
+ACTOR MegaBlueFlag : BlueFlag replaces BlueFlag 11005//5130
+{
+//$Category MM8BDM-Flags
+  SpawnID 177
+  Radius 20
+  Height 64
+  +INTERHUBSTRIP
+  +NOTDMATCH
+  +INVENTORY.UNDROPPABLE
+  scale 2.0
+  Inventory.PickupSound "misc/k_pkup"
+  Inventory.PickupMessage "$PU_BLUEFLAG"
+  Inventory.Icon ""
+  States
+  {
+  Spawn:
+ 	BFLA A 0
+	BFLA A 0 A_GiveInventory("FlagSpawnAction",1)
+	BFLA A 0 ACS_NamedExecuteAlways("core_musichandler",0)
+  Spawn2:
+    BFLA ABCDE 3
+    Loop
+  Carry:
+    BFLA FGHIJ 3
+    Loop
+  }
+}
+
+ACTOR MegaRedFlag : RedFlag replaces RedFlag 11006//5131
+{
+//$Category MM8BDM-Flags
+  SpawnID 178
+  Radius 20
+  Height 64
+  +INTERHUBSTRIP
+  +NOTDMATCH
+  +INVENTORY.UNDROPPABLE
+  scale 2.0
+  Inventory.PickupSound "misc/k_pkup"
+  Inventory.PickupMessage "$PU_REDFLAG"
+  Inventory.Icon ""
+  States
+  {
+  Spawn:
+	RFLA A 0
+	RFLA A 0 A_GiveInventory("FlagSpawnAction",1)
+	RFLA A 0 ACS_NamedExecuteAlways("core_musichandler",0)
+  Spawn2:
+    RFLA ABCDE 3
+    Loop
+  Carry:
+    RFLA FGHIJ 3
+    Loop
+  }
+}
+
+ACTOR MegaGreenFlag : Flag 10005 //Replace Current
+{
+//$Category MM8BDM-Flags
+//	SpawnID 177
+	Radius 20
+	Height 64
+	+INTERHUBSTRIP
+	+NOTDMATCH
+	+INVENTORY.UNDROPPABLE
+	scale 2.0
+	Inventory.PickupSound "misc/k_pkup"
+	Inventory.PickupMessage "$PU_GREENFLAG"
+	Inventory.Icon ""
+	States
+	{
+	Spawn:
+	GFLA A 0
+	GFLA A 0 A_GiveInventory("FlagSpawnAction",1)
+	GFLA A 0 ACS_NamedExecuteAlways("core_musichandler",0)
+	Spawn2:
+	GFLA ABCDE 3
+	Loop
+	Carry:
+	GFLA FGHIJ 3
+	Loop
+	}
+}
+
+ACTOR MegaYellowFlag : Flag 10006
+{
+//$Category MM8BDM-Flags
+//	SpawnID 177
+	Radius 20
+	Height 64
+	+INTERHUBSTRIP
+	+NOTDMATCH
+	+INVENTORY.UNDROPPABLE
+	scale 2.0
+	Inventory.PickupSound "misc/k_pkup"
+	Inventory.PickupMessage "$PU_YELLOWFLAG"
+	Inventory.Icon ""
+	States
+	{
+	Spawn:
+		YFLA C 0
+		YFLA C 0 A_GiveInventory("FlagSpawnAction",1)
+		YFLA C 0 ACS_NamedExecuteAlways("core_musichandler",0)
+	Spawn2:
+		YFLA ABCDE 3
+		Loop
+	Carry:
+		YFLA FGHIJ 3
+		Loop
+	}
+}
+
+actor FlagSpawnAction : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("MM8BDMFlagSpawnFunc",1)
+TNT1 A 0 A_GiveInventory("FlagStartPlacer",1)
+TNT1 A 0 A_GiveInventory("FlagDropPlacer",1)
+stop
+}
+}
+
+actor FlagStartPlacer : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("mm8bdm_ctf_FIRSTTICCHECK"),"SpawnStart")
+stop
+SpawnStart:
+TNT1 A 0 ACS_NamedExecuteAlways("mm8bdm_ctf_FLAGOBJECTSPAWN",0,1)
+stop
+}
+}
+
+actor FlagDropPlacer : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_NAmedExecuteWithResult("mm8bdm_ctf_FLAGTAKENCHECK"),"SpawnDrop")
+stop
+SpawnDrop:
+TNT1 A 0 ACS_NamedExecuteAlways("mm8bdm_ctf_FLAGOBJECTSPAWN",0,2)
+stop
+}
+}
+
+actor MegaWhiteFlag : WhiteFlag replaces WhiteFlag// replaces MegaWhiteFlag
+{
++INVENTORY.UNDROPPABLE
+//scale 2.0 Zandronum needs to fix flag replacing first!
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("core_musichandler",0)
+TNT1 A 0 A_GiveInventory("FlagSpawnAction",1)
+goto "Super::Spawn"
+}
+}
+/*
+actor WhiteFlagReplace : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("MegaWhiteFlag",1,"FirstPickup")
+//TNT1 A 0 DamageThing(255)
+stop
+FirstPickup:
+TNT1 A 0 A_TakeInventory("MegaWhiteFlag",1)
+TNT1 A 0 A_GiveInventory("WhiteFlag",1)
+TNT1 A 0 A_SpawnItemEx("WhiteFlagHUDUpdate")
+//TNT1 A 0 DamageThing(255)
+stop
+}
+}
+*/
+
+actor WhiteFlagReplace : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("MegaWhiteFlag",1,"FirstPickup")
+TNT1 A 0 A_JumpIfInventory("WhiteFlag",1,"Pickup2")
+stop
+FirstPickup:
+TNT1 A 0 A_TakeInventory("MegaWhiteFlag",1)
+TNT1 A 0 A_GiveInventory("WhiteFlag",1)
+TNT1 A 0 A_SpawnItemEx("WhiteFlagHUDUpdate")
+Pickup2:
+TNT1 A 0 ACS_NamedExecuteAlways("mm8bdm_ctf_WHITEFLAGACTIVATE",0)
+//TNT1 A 0 DamageThing(255)
+stop
+}
+}
+
+actor WhiteFlagHUDUpdate : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
++INVENTORY.QUIET
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+stop
+}
+}
+
+actor RadarFlagMarker
+{
+-SOLID
++NOBLOCKMAP
++DONTSPLASH
+RenderStyle "Translucent"
+Alpha 0.35
++INVISIBLE
+scale 1.25
+states
+{
+Spawn:
+PLAY A 1
+loop
+Spawn2:
+"----" A 1
+loop
+}
+}
+
+actor MegaBlueFlagStart : RadarFlagMarker
+{
+States
+{
+Spawn:
+BFLA A 0
+goto Spawn2
+}
+}
+
+actor MegaRedFlagStart : RadarFlagMarker
+{
+States
+{
+Spawn:
+RFLA A 0
+goto Spawn2
+}
+}
+
+actor MegaGreenFlagStart : RadarFlagMarker
+{
+States
+{
+Spawn:
+GFLA C 0
+goto Spawn2
+}
+}
+
+actor MegaYellowFlagStart : RadarFlagMarker
+{
+States
+{
+Spawn:
+YFLA C 0
+goto Spawn2
+}
+}
+
+actor MegaWhiteFlagStart : RadarFlagMarker
+{
+Radius 20
+Height 16
+states
+{
+Spawn:
+WFLA A 0
+goto Spawn2
+}
+}
+
+actor MegaBlueFlagDropped : MegaBlueFlagStart {}
+actor MegaRedFlagDropped : MegaRedFlagStart {}
+actor MegaGreenFlagDropped : MegaGreenFlagStart {}
+actor MegaYellowFlagDropped : MegaYellowFlagStart {}
+actor MegaWhiteFlagDropped : MegaWhiteFlagStart {}
+
+
+//Team Flags for sbarinfo
+actor LightTeamFlag : Once {}
+actor WilyTeamFlag : Once {}
+actor CossackTeamFlag : Once {}
+actor KingTeamFlag : Once {}
+
+// No one plays this mode so forget it!
+
+ACTOR YellowSkullST : BlueSkullST
+{
+}

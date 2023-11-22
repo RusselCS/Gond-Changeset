@@ -1,0 +1,476 @@
+#library "CBM_LMSGAS"
+#include "zcommon.acs"
+
+Bool GameEnd = False;
+int GameStartTic;
+
+int MAX_WepSpawn = 0;
+int WepSpawn_Arr[300][3];
+int TotalGasPoints = 0;
+int LMSGas_SpawnPoints[300][3];
+bool GasTime;
+str LMSMessage = "HURRY UP! ROBOENZA IS APPROACHING!";
+int ServerMAX = 32;
+
+Script "cbm_IsTeamServerMAX_Gas" OPEN
+{
+	//IsTeamGame = ACS_ExecuteWithResult(975,1);
+	ServerMAX = GetMaxPlayers();
+}
+
+function int GetMaxPlayers(void)
+{
+	int ret = GetCVAR("sv_MaxClients");
+	if(PlayerCount()>ret)
+		ret = PlayerCount();
+	return ret;
+}
+
+Script "cbm_logweaponspot" (void)//Called by every Weapon Token
+{
+	if(Timer()>3){terminate;}
+	WepSpawn_Arr[MAX_WepSpawn][0] = GetActorX(0);
+	WepSpawn_Arr[MAX_WepSpawn][1] = GetActorY(0);
+	WepSpawn_Arr[MAX_WepSpawn][2] = GetActorZ(0);
+	MAX_WepSpawn++;
+}
+
+script "cbm_RadarPointer_Respawn" RESPAWN// CLIENTSIDE
+{
+	if(GasTime && !GameEnd){
+		GiveInventory("CBM_LMSGas_Radar_P",1);
+	}
+}
+
+Script "cbm_RadarPointer" (void) CLIENTSIDE
+{
+	int ownerNumber = PlayerNumber();
+	if(ownerNumber==ConsolePlayerNumber()) {
+		int selfAngle;
+		int selfX;
+		int selfY;
+		int selfZ;
+		int angle;
+
+		int FlagX;
+		int FlagY;
+		
+		int UserAlpha;
+
+		SetHudSize(320,200,0);
+		while(GetActorProperty(0,APROP_HEALTH) > 0 && GetActorProperty(7000,APROP_HEALTH) > 0) {
+			selfAngle = GetActorAngle(0);
+			selfX = GetActorX(0);
+			selfY = GetActorY(0);
+			selfZ = GetActorZ(0);
+
+			FlagX = GetActorX(7000);
+			FlagY = GetActorY(7000);
+
+			angle = VectorAngle(FlagX-selfX,FlagY-selfY)-selfAngle;
+
+			UserAlpha = GetUserCVar(ownerNumber,"CBM_GasRadarFade");
+
+			drawCompass(4040, 160.0, 24.4, "CTFRAD2", "CBMRAD0", UserAlpha);//165.0
+			drawCompassArrow(4050,160.0,24.4,angle, UserAlpha);//165.0
+			delay(1);
+		}
+	}
+}
+
+function void drawCompass(int id, int centerX, int centerY, str image1, str image2, int alpha)
+{
+	//SETFONT(image1);
+	//HudMessage(s:"A"; HUDMSG_PLAIN, id, -1, centerX + 0.1, centerY + 0.1, 0.1, 0);
+	SETFONT(image2);
+	HudMessage(s:"A"; HUDMSG_PLAIN|HUDMSG_ALPHA, id+1, -1, centerX + 0.1, centerY + 0.1, 0.1, alpha);//0.5
+}
+
+function void drawCompassArrow(int id, int centerX, int centerY, int angle, int alpha)
+{
+	SETFONT("CTFRAD4");
+	drawCompassArrowDot(id,centerX,centerY,angle,14,alpha);
+	drawCompassArrowDot(id+1,centerX,centerY,angle+0.03,10,alpha);
+	drawCompassArrowDot(id+2,centerX,centerY,angle-0.03,10,alpha);
+}
+
+function void drawCompassArrowDot(int id, int centerX, int centerY, int angle, int dist, int alpha)
+{
+	HudMessage(s:"A"; HUDMSG_PLAIN|HUDMSG_ALPHA, id, -1, roundf(centerX + dist*-sin(angle)) + 0.1, roundf(centerY + dist*-cos(angle)) + 0.1, 0.1, alpha);//0.5
+}
+
+function int roundf(int fixedNumber)
+{
+	return roundint(fixednumber) << 16;
+}
+
+function int roundint(int fixedNumber)
+{
+	return (fixedNumber + 0.5) >> 16;
+}
+
+
+Script "cbm_LMSGasStartup" OPEN
+{
+	if(GetCvar("lastmanstanding")!=1 && GetCvar("teamlms")!=1){
+		//Log(s:"Must be T/LMS!");
+		Terminate;
+	}
+
+	if(GetGameModeState()==GAMESTATE_WAITFORPLAYERS||GetGameModeState()==GAMESTATE_COUNTDOWN){
+		//Log(s:"GetGameModeState is 0 or 1!");
+		terminate;
+	}
+
+	GameStartTic = Timer();
+	delay(5);
+	ACS_NamedExecuteAlways("cbm_LMSGasDirector",0,0);
+}
+/*
+//EVENT seems to cause connection issues?
+Script "cbm_GasEventHandler" (int type, int arg1, int arg2) EVENT
+{
+	if(GetCvar("lastmanstanding")!=1 && GetCvar("teamlms")!=1){Terminate;}
+
+	Switch(Type){
+		Case 5://GAMEEVENT_ROUND_STARTS
+		GameStartTic = Timer();
+		delay(5);
+		ACS_NamedExecuteAlways("cbm_LMSGasDirector",0,0);
+		Break;
+
+		Case 6://GAMEEVENT_ROUND_ENDS
+		GameEnd = True;
+		Break;
+	}
+}
+*/
+
+Script "cbm_GasGuardRespawn" RESPAWN
+{
+	if(GetCvar("lastmanstanding")!=1 && GetCvar("teamlms")!=1){Terminate;}
+	GiveInventory("CBM_LMSGas_GuardPower",1);
+}
+
+Script "cbm_LMSGasDirector" (Void)
+{
+	int GasHurtTimer;
+	Delay(3);
+
+	if(GetCvar("lastmanstanding")!=1 && GetCvar("teamlms")!=1){Terminate;}
+
+	//Terminate if the gas timer is set to zero (to toggle the mod off).
+	if(GetCvar("CBM_LMSGas_Time") <= 0){
+		terminate;
+	}
+
+	//Terminate if the game is no longer on going.
+	if(GetGameModeState()!=GAMESTATE_INPROGRESS){//2
+		terminate;
+	}
+
+	//Attempt to spawn a GasPoint
+	if(ThingCountName("CBM_LMSGas_Center", 0)==0){
+
+		GiveInventory("MapRevealer",1);
+		GiveInventory("PowerCBM_LMSGasStartProtect",1);//Prevent TeleOther and Suicide
+		SpawnForced("CBM_LMSGas_MonsterChecker",0,0,0,0);
+		//SpawnForced("CBM_LMSGas_MonsterChecker",0,0,0,0);
+
+		Delay(6);
+		//Delay(130);//Wait for the MonsterChecker to find DM Spawns
+
+		int RNG_Gas = 0;
+		if(MAX_WepSpawn<=0 || !GetCvar("CBM_LMSGas_SpawnStyle")){
+			RNG_Gas = random(1,TotalGasPoints);
+			SpawnForced("CBM_LMSGas_Center",LMSGas_SpawnPoints[RNG_Gas][0],LMSGas_SpawnPoints[RNG_Gas][1],LMSGas_SpawnPoints[RNG_Gas][2],7000);
+		}
+		else{
+			RNG_Gas = random(0,MAX_WepSpawn-1);
+			SpawnForced("CBM_LMSGas_Center",WepSpawn_Arr[RNG_Gas][0],WepSpawn_Arr[RNG_Gas][1],WepSpawn_Arr[RNG_Gas][2],7000);
+		}
+
+		Delay(1);
+
+		if(ThingCount(0,7000)==0){
+			PrintBold(s:"Failed to spawn LMS-Gas center!");
+			Terminate;
+		}
+
+		ACS_NamedExecuteAlways("cbm_LMSGasTimer",0);
+
+		until(GasTime){
+			Delay(1);
+		}
+		GiveInventory("CBM_LMSGas_Radar_P",1);
+
+		//Make the Gas actor start spawning effects
+	//	ACS_ExecuteAlways(972,0,2,1);//Music play in GLOBAL
+	//	ACS_ExecuteAlways(972,0,1,1);//Set BossMusic in GLOBAL
+	//	SetMusic("BOTAPOC");
+		AmbientSound("misc/bot_roboenzainfected",127);
+		SetActorState(7000,"GasStart");
+
+		//Set up the gas.
+		int gasRange = 4500;
+		int gasStatus = 0;
+
+		//Start shrinking the gas circle and checking for players in the gas.
+		while(true){
+
+			//Tell the Gas actor the range of it's circle
+			SetUserVariable(7000,"user_GasSize",gasRange);
+
+			int targetTID;
+			int userTID = 7000;
+			int gasSpeedBuffer;
+
+			GasHurtTimer++;
+			if(GasHurtTimer >= 5){
+				GasHurtTimer = 0;
+				int gasBaseDamage = GetCvar("CBM_LMSGas_Damage");
+
+				//Scan for every player
+				for(int p = 0;p < ServerMax; p++){
+					if(!PlayerInGame(p))
+						continue;//Player found!
+					
+					targetTID = p+1000;
+					
+					if(GetActorProperty(targetTID, APROP_Health)==0)
+						continue;//Cancel if he is dead.
+
+					int gasPlayerDistance = xyDistance(userTID, targetTID);
+
+					//Check if the player is outside of the circle and has no Gas protection
+					if(gasPlayerDistance > gasRange && !CheckActorInventory(TargetTID,"CBM_LMSGas_GuardPower")){
+						//If the gas spawned ontop of a player, expand it and try again.
+						if(gasStatus < 2){
+							gasRange += 200;
+							//PrintBold(s:"map 2 fat!!");
+							gasSpeedBuffer++;
+							gasStatus = 1;
+							Delay(1);
+							continue;
+						}
+
+						//Player is outside the circle.
+						//GiveActorInventory(targetTID,"CBM_LMSGas_FoilInvun_P",1);
+						Thing_Damage(targetTID,(1+CheckActorInventory(targetTID,"CBM_LMSGas_FlagStack"))*gasBaseDamage,20);
+						GiveActorInventory(targetTID,"CBM_LMSGas_FlagStack",1);
+						//ThingSound(targetTID,"misc/infect", 80);
+					}
+
+					// Spawn effects for if a player is in the gas or is too close to the edge.
+					if(gasPlayerDistance > gasRange - 50 && gasStatus >= 2){
+						ACS_NamedExecuteAlways("cbm_LMSGas_InGasFX",0,userTID,gasRange,targetTID);
+					}
+				}
+			}
+			//If no players were stuck in the spawning of the gas, continue as normal
+			if(gasStatus == 0){
+				gasStatus = 2;
+			}
+
+			//Wait 1/5 second then shrink the gas
+			if(gasStatus == 2){
+				//PrintBold(s:"running");
+				Delay(7);
+
+				if(gasRange>GetCvar("CBM_LMSGas_Size")){
+					gasRange -= (GetCvar("CBM_LMSGas_Speed") + gasSpeedBuffer);
+				}
+
+				if(GameEnd || GetGameModeState()==GAMESTATE_INRESULTSEQUENCE){//If the game is over, terminate.
+					GameEnd = true;
+					Thing_Remove(userTID);
+					terminate;
+				}
+			}
+
+			// Prevent Gas from entering negative radius
+			if(gasRange<=0){
+				gasRange = 0;
+			}
+			
+			// If a player was caught in the spawning gas, retry
+			if(gasStatus == 1){
+				//PrintBold(s:"fat delay!!");
+				Delay(1);
+				gasStatus = 0;
+			}
+		}
+	}
+}
+
+//Player in/near Gas FX
+Script "cbm_LMSGas_InGasFX" (int userid, int gasrange, int target)
+{
+	Delay(1);
+	GiveActorInventory(target,"CBM_LMSGas_FogPowerup",1);
+
+	for(int i = 0; i < 35; i++){
+		GiveActorInventory(target,"CBM_LMSGas_InGas_P",1);
+		Delay(1);
+	}
+
+	if(xyDistance(userid, target) < gasRange - 50){
+		TakeActorInventory(target,"CBM_LMSGas_FogPowerup",1);
+	}
+}
+
+Script "cbm_LMSGasRangeFetch" (void)
+{
+	SetResultValue(GetUserVariable(7000,"user_GasSize"));
+}
+
+Script "cbm_LMSGasTimer" (void) 
+{
+	Bool Countdown = true;
+	Bool TimeLow = false;
+	int TimerX = 226.5;//160.4
+	int TimerY = 24.4;//16.4
+	int TimerColor = CR_WHITE;
+	int timelimit = GetCvar("CBM_LMSGas_Time")+1;
+	int time;
+	int timelimittics;
+	int timeleftsecs;
+	int timeleftmin;
+	int last_timeleftsecs;
+//	int AlphaNum = -1;
+//	int HudMessDuration = 0;
+//	int HudMessDelay = 35;
+
+	SetFont("STCFN");
+	SetHudSize(480,360,0);//320,240
+
+	While(GetCVar("CBM_LMSGas_Time")>0 && Countdown)
+	{
+		timelimit = GetCVar("CBM_LMSGas_Time")+1;
+		time = Timer() - GameStartTic;
+		timelimittics = timelimit*35;//((timelimit * 60 * 35)>>16);
+		timeleftsecs = (timelimittics-time)/35;
+		timeleftmin = (timelimittics-time)/2100;
+
+		//Log(i:timelimittics-time);
+		//Log(i:timeleftsecs);
+		//Log(i:timeleftsecs%60);
+
+		if(timelimittics <= time+35){
+			Countdown = false;
+			GasTime = True;
+		}
+
+		if(GameEnd || GetGameModeState()==GAMESTATE_INRESULTSEQUENCE){
+			GameEnd = true;
+			HudMessage(s:""; 0,-567427,-1,0.99,0.01,1873);
+			terminate;
+		}
+		if(timelimittics-time <= 1085 && TimerColor != CR_PURPLE){TimerColor = CR_PURPLE;}//1225
+		else if(timelimittics-time >= 1086 && TimerColor != CR_WHITE){TimerColor = CR_WHITE;}//If for some reason the Timer is changed
+
+		if(timeleftsecs != last_timeleftsecs){
+			HudMessage(i:timeleftmin, s:":", i:((timeleftsecs)%60)/10, i:(timeleftsecs)%10;HUDMSG_PLAIN,-567427,TimerColor,TimerX,TimerY,5.0,1.0);
+			last_timeleftsecs = timeleftsecs;
+		}
+
+	//Below used alpha to fade in and out 3 seconds before every 30 seconds.
+	//Requested for timer to always show, so above HudMessage was used instead.
+
+	/*	if(HudMessDuration > 0 && AlphaNum < 41){//HUDMSG_ALPHA doesn't work online if its not done by a player
+			HudMessage(i:timeleftmin, s:":", i:((timeleftsecs)%60)/10, i:(timeleftsecs)%10;HUDMSG_ALPHA,-567427,TimerColor,TimerX,TimerY,1.25,0.025*AlphaNum);
+			AlphaNum++;
+		}
+		else if(HudMessDuration > 0){
+			if(HudMessDelay >= 35){
+				HudMessage(i:timeleftmin, s:":", i:((timeleftsecs)%60)/10, i:(timeleftsecs)%10;HUDMSG_ALPHA,-567427,TimerColor,TimerX,TimerY,1.25,0.025*AlphaNum);
+				HudMessDelay = -1;
+				HudMessDuration--;
+			}
+			HudMessDelay++;
+		}
+		else if(AlphaNum >= 0){
+			HudMessage(i:timeleftmin, s:":", i:((timeleftsecs)%60)/10, i:(timeleftsecs)%10;HUDMSG_ALPHA,-567427,TimerColor,TimerX,TimerY,1.25,0.025*AlphaNum);
+			AlphaNum--;
+		}*/
+		delay(1);
+	//	if(timeleftmin == 0 && timeleftsecs%60 <= 6){HudMessDuration = 6;}
+	//	else if(timeleftsecs%60 == 33 || timeleftsecs%60 == 3){HudMessDuration = 6;}
+
+	}
+	HudMessage(s:LMSMessage;HUDMSG_FADEOUT,-567427,CR_PURPLE,TimerX-0.1,TimerY,3.0,1.0);
+}
+
+//Called by "CBM_LMSGas_MonsterChecker"
+script "cbm_LMSGas_LogSpawnPoint" (void)
+{
+	Func_CheckSpawnPoint();
+}
+
+script "cbm_LMSGas_DebugSpawnPoints" (void)
+{
+	Log(s:"<> Deathmatch Spawns <>");
+	for(int i = 0; i <= TotalGasPoints; i++){
+		Log(s:"ID: ",i:i,s:" <> X: ",f:LMSGas_SpawnPoints[i][0],s:" <> Y: ",f:LMSGas_SpawnPoints[i][1],s:" <> Z: ",f:LMSGas_SpawnPoints[i][2]);
+		delay(1);
+	}
+	Log(s:"<> Weapon Spawns <>");
+	for(i = 0; i <= MAX_WepSpawn; i++){
+		Log(s:"ID: ",i:i,s:" X: ",f:WepSpawn_Arr[i][0],s:" >> Y: ",f:WepSpawn_Arr[i][1],s:" >> Z: ",f:WepSpawn_Arr[i][2]);
+		delay(1);
+	}
+}
+
+function void Func_CheckSpawnPoint (void)
+{
+	int Curr_X = GetActorX(0);
+	int Curr_Y = GetActorY(0);
+	int Curr_Z = GetActorZ(0);
+	bool Success = true;
+	for(int i = 0; i <= TotalGasPoints; i++){
+		if(LMSGas_SpawnPoints[i][0] == Curr_X && LMSGas_SpawnPoints[i][1] == Curr_Y && LMSGas_SpawnPoints[i][2] == Curr_Z)
+//			(LMSGas_SpawnPoints[i][2] >= Curr_Z-48 && LMSGas_SpawnPoints[i][2] <= Curr_Z+48))
+		{
+			//Log(s:"Existing spot!");
+			Success = false;
+			break;
+		}
+	}
+	if(Success){
+		LMSGas_SpawnPoints[i][0] = Curr_X;
+		LMSGas_SpawnPoints[i][1] = Curr_Y;
+		LMSGas_SpawnPoints[i][2] = Curr_Z;
+		TotalGasPoints++;
+	}
+}
+
+
+function int sqrt8(int number)
+{
+	if(number <= 3)
+	{
+		if(number > 0)
+		{
+			return 1;
+		}
+		return 0;
+	}
+	int oldAns = number >> 1,
+		newAns = (oldAns + number / oldAns) >> 1;
+
+	while(newAns < oldAns)
+	{
+		oldAns = newAns;
+		newAns = (oldAns + number / oldAns) >> 1;
+	}
+	return oldAns;
+}
+
+function int xyDistance (int tid1, int tid2)
+{
+	int x, y, d;
+	x = GetActorX(tid1) - GetActorX(tid2) >> 16;
+	y = GetActorY(tid1) - GetActorY(tid2) >> 16;
+	d = sqrt8( x*x + y*y );
+	return d;
+}

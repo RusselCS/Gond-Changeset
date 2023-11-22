@@ -1,0 +1,417 @@
+actor DarkShieldBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_5J"
+dropitem "DarkShieldWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 28
+Obituary "$OB_DARK2SHIELD"
+Inventory.Pickupmessage "still no"
+weapon.ammotype "Darkman2ShieldAmmo"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_05 J 1
+loop
+Ready:
+DKC2 A 0 ACS_ExecuteAlways(998,0,DYE_DARKMAN2)
+DKC2 A 0 A_GunFlash
+DKC2 A 1 A_WeaponReady
+Goto Ready+2
+Ready2:
+DKC2 A 1 A_WeaponReady
+loop
+
+Deselect:
+DKC2 A 0 A_GiveInventory("StopShield",9)
+DKC2 A 0 A_TakeInventory("ShieldCheck",9)
+DKC2 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+DKC2 A 1 A_Lower
+Loop
+Select:
+DKC2 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+DKC2 A 1 A_Raise
+Loop
+
+Fire:
+DKC2 G 0 A_JumpIfInventory("ShieldCheck",1,"ShieldThrow")
+DKC2 G 4 Offset(-1,32)
+DKC2 G 4 Offset(-20,18)
+DKC2 H 3 Offset(-20,18)
+DKC2 H 0 A_PlaySoundEx("weapon/sparkshock","Weapon")
+DKC2 H 0 A_GiveInventory("Darkman2Main_CI",1)
+DKC2 H 10 Offset(-20,18)
+DKC2 G 3 Offset(-1,32)
+DKC2 A 0 A_Refire
+Goto Ready2//
+AltFire:
+DKC2 B 0 A_JumpIfInventory("ShieldCheck",1,"ShieldThrow2")
+DKC2 B 0 A_GiveInventory("ShieldCheck",1)
+DKC2 B 0 A_TakeInventory("StopShield",9)
+DKC2 B 0 A_SpawnItemEx("Darkman2ShieldBlocker",55,0,0,0,0,0,0,1)
+DKC2 B 0 A_SpawnItemEx("Darkman2ShieldBlocker",55,0,0,0,0,0,180,1)
+DKC2 BCDEF 2
+DKC2 A 2 Offset(0,78)
+DKC2 A 2 Offset(0,50)
+goto Ready2
+ShieldThrow:
+DKC2 G 0 A_GiveInventory("StopShield",1)
+DKC2 G 0 A_TakeInventory("ShieldCheck",999)
+DKC2 G 0 A_JumpIfInventory("PowerSpread_ST",1,"ShieldThrow_S")
+//DKC2 G 0 A_FireCustomMissile("Darkman2ShieldTosser",0,0,0,-37)
+//DKC2 G 0 A_FireCustomMissile("Darkman2ShieldTosser",180,0,0,-37)
+DKC2 G 0 A_SpawnItemEx("Darkman2ShieldTosser",0,0,0,28,0,0,0,1)
+DKC2 G 0 A_SpawnItemEx("Darkman2ShieldTosser",0,0,0,28,0,0,180,1)
+DKC2 G 3 Offset(-1,32)
+DKC2 G 3 Offset(-20,18)
+DKC2 H 20 Offset(-20,18)
+DKC2 G 3 Offset(-1,32)
+Goto Ready2//
+ShieldThrow_S:
+DKC2 G 0 A_SpawnItemEx("Darkman2ShieldTosser",0,0,0,28,0,0,15,1)
+DKC2 G 0 A_SpawnItemEx("Darkman2ShieldTosser",0,0,0,28,0,0,195,1)
+DKC2 G 0 A_SpawnItemEx("Darkman2ShieldTosser",0,0,0,28,0,0,-15,1)
+DKC2 G 0 A_SpawnItemEx("Darkman2ShieldTosser",0,0,0,28,0,0,165,1)
+goto ShieldThrow+2
+ShieldThrow2:
+DKC2 G 0 A_GiveInventory("StopShield",1)
+DKC2 G 0 A_TakeInventory("ShieldCheck",999)
+DKC2 G 0 A_GiveInventory("Darkman2Alt2_CI",1)
+DKC2 G 3 Offset(-1,32)
+DKC2 G 3 Offset(-20,18)
+DKC2 H 20 Offset(-20,18)
+DKC2 G 3 Offset(-1,32)
+Goto Ready2//
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1 A_GiveInventory("Darkman2ShieldFlash_P",1)
+loop
+}
+}
+
+actor Darkman2ShieldAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor Darkman2ShieldFlash_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_SetActorPropertyMath",0,17)//2
+TNT1 A 0 A_JumpIfInventory("ShieldCheck",1,"PickupSnd")
+stop
+PickupSnd:
+TNT1 A 0 A_JumpIfInventory("VivifyDelay10",1,"No")
+TNT1 A 0 A_GiveInventory("VivifyDelay10",1)
+TNT1 A 0 A_PlaySoundEX("weapon/shieldhum","Body")
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor Darkman2ShieldBlocker
+{
+Translation "202:202=216:216"
+damagetype "DM2_Shield"
+Obituary "$OB_DARK2SHIELD"
+
+-SOLID
++MISSILE
++DONTSPLASH
++DONTBLAST
++DONTDRAIN
++DONTREFLECT
++DONTRIP
+//+RIPPER
+//+THRUGHOST
++GHOST
++INVULNERABLE
++SHOOTABLE
+//+SKYEXPLODE
+//+EXPLODEONWATER
+//+EXPLODEONDEATH
++NOBLOOD
++NOCLIP
++NORADIUSDMG
++NOTIMEFREEZE
++NOGRAVITY
++NOTARGETSWITCH
++BRIGHT
+//+NOINTERACTION
+
+damagefactor "DM2_Shield",0.0
+damagefactor "DM2_TossSpin",0.0
+damagefactor "DM2_Toss",0.0
+damagefactor "DM4_Shield",0.0
+damagefactor "DM4_TossSpin",0.0
+damagefactor "DarkShield",0.0
+damagefactor "Telefrag",0.0
+
+painchance 0
+painchance "DM2_Shield", 0
+painchance "DM2_TossSpin", 0
+painchance "DM2_Toss", 0
+painchance "DM4_Shield", 0
+painchance "DM4_TossSpin", 0
+painchance "DarkShield", 0
+painchance "Telefrag", 0
+
+Species "DUMBDARKSHIELD"
+
+//renderstyle translucent
+//alpha 0.85
+health 999999
+
+Accuracy 30//Damage
+Meleerange 55//WarpX
+Stamina -20//WarpAngle
+
+Damage (0)//6
+Radius 8
+Height 56
+Speed 0
+scale 2.5
+States
+{
+Spawn:
+DSHO F 0
+//DSHO F 0 A_ChangeFlag("NOINTERACTION",0)
+//DSHO F 1
+DSHO F 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+DSHO F 0 A_JumpIfInTargetInventory("StopShield",1,"SpawnStop")
+DSHO F 0 A_Explode(Accuracy*(CallACS("cbm_CheckForSpread",2)*2+1),radius*2,0,0,radius)
+DSHO F 1 A_Warp(2,Meleerange,0,0,Stamina*(CallACS("cbm_CheckForRage",2)+1),28)
+
+DSHO G 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+DSHO G 0 A_JumpIfInTargetInventory("StopShield",1,"SpawnStop")
+DSHO G 0 A_Explode(Accuracy*(CallACS("cbm_CheckForSpread",2)*2+1),radius*2,0,0,radius)
+DSHO G 1 A_Warp(2,Meleerange,0,0,Stamina*(CallACS("cbm_CheckForRage",2)+1),28)
+
+DSHO H 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+DSHO H 0 A_JumpIfInTargetInventory("StopShield",1,"SpawnStop")
+DSHO H 0 A_Explode(Accuracy*(CallACS("cbm_CheckForSpread",2)*2+1),radius*2,0,0,radius)
+DSHO H 1 A_Warp(2,Meleerange,0,0,Stamina*(CallACS("cbm_CheckForRage",2)+1),28)
+
+DSHO G 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+DSHO G 0 A_JumpIfInTargetInventory("StopShield",1,"SpawnStop")
+DSHO G 0 A_Explode(Accuracy*(CallACS("cbm_CheckForSpread",2)*2+1),radius*2,0,0,radius)
+DSHO G 1 A_Warp(2,Meleerange,0,0,Stamina*(CallACS("cbm_CheckForRage",2)+1),28)
+loop
+SpawnStop:
+TNT1 A 0
+TNT1 A 1
+stop
+Death:
+TNT1 A 0
+TNT1 A 1
+stop
+}
+}
+
+actor Darkman2ShieldSpinner_H : BasicHelper
+{
+Translation "202:202=216:216"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("Darkman2ShieldSpinner",46,0,-28,0,0,0,90,1)
+TNT1 A 0 A_SpawnItemEx("Darkman2ShieldSpinner",46,0,-28,0,0,0,270,1)
+stop
+}
+}
+
+actor Darkman2ShieldSpinner_HB : Darkman2ShieldSpinner_H{translation "202:202=205:205"}
+actor Darkman2ShieldSpinner_HR : Darkman2ShieldSpinner_H{translation "202:202=171:171"}
+actor Darkman2ShieldSpinner_HO : Darkman2ShieldSpinner_H{translation "202:202=104:104"}
+actor Darkman2ShieldSpinner_HP : Darkman2ShieldSpinner_H{translation "202:202=229:229"}
+
+actor Darkman2ShieldSpinner
+{
+Translation "202:202=216:216"
+var int user_speed;
+var int user_num;
+var int user_time;
+var int user_time_add;
+PROJECTILE
+damagetype "DM2_TossSpin"
+Obituary "$OB_DARK2SHIELD"
++RIPPER
++SHOOTABLE
+-NOBLOCKMAP
++NOBLOOD
++NOTARGETSWITCH
++INVULNERABLE
++NORADIUSDMG
++GHOST
++THRUGHOST
++BRIGHT
++THRUSPECIES
+Species "DUMBDARKSHIELD"
+mass 9999
+damage (50)
+Radius 16
+Height 56
+speed 0
+scale 2.5
+States
+{
+Spawn:
+DSHO F 0
+TNT1 A 0 A_SetUserVar("user_speed",40)
+TNT1 A 0 A_SetUserVar("user_num",1400)
+TNT1 A 0 A_SetUserVar("user_time",17)
+TNT1 A 0 A_SetUserVar("user_time_add",3)
+Spawn2:
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+DSHO F 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+DSHO F 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+DSHO G 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+DSHO G 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+DSHO H 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+DSHO H 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+loop
+Death:
+DARS A 0
+stop
+}
+}
+
+
+actor Darkman2ShieldTosser : Darkman2ShieldSpinner
+{
+damagetype "DM2_Toss"
++EXPLODEONDEATH
+Damage (0)
+Speed 28
+States
+{
+Spawn:
+DSHO F 0
+DSHO FFGGHH 1 A_Explode(40,64,0,0,12)
+loop
+}
+}
+
+
+actor ElectromagneticNet
+{
+Translation "202:202=216:216"
+PROJECTILE
+damagetype "DM2_Shock"
+Obituary "$OB_DARK2NET"
+-NOGRAVITY
++FORCEXYBILLBOARD
++BRIGHT
+gravity 0.4
+damage (60)
+Radius 7
+Height 7
+speed 35
+scale 2.5
+States
+{
+Spawn:
+DSHO D 0
+DSHO D 0 ThrustThingZ(0,4,0,1)
+DSHO DE 4
+loop
+}
+}
+
+actor ElectromagneticNetB : ElectromagneticNet{translation "202:202=205:205"}
+actor ElectromagneticNetR : ElectromagneticNet{translation "202:202=171:171"}
+actor ElectromagneticNetO : ElectromagneticNet{translation "202:202=104:104"}
+actor ElectromagneticNetP : ElectromagneticNet{translation "202:202=229:229"}
+
+actor ElectromagneticNet2 : ElectromagneticNet{speed 25}
+actor ElectromagneticNet2B : ElectromagneticNetB{speed 25}
+actor ElectromagneticNet2R : ElectromagneticNetR{speed 25}
+actor ElectromagneticNet2O : ElectromagneticNetO{speed 25}
+actor ElectromagneticNet2P : ElectromagneticNetP{speed 25}
+
+actor ElectromagneticNet3 : ElectromagneticNet{speed 15}
+actor ElectromagneticNet3B : ElectromagneticNetB{speed 15}
+actor ElectromagneticNet3R : ElectromagneticNetR{speed 15}
+actor ElectromagneticNet3O : ElectromagneticNetO{speed 15}
+actor ElectromagneticNet3P : ElectromagneticNetP{speed 15}
+
+
+actor Darkman2Main_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNet",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNet2",30,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNet2",-30,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNet3",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNetB",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNet2B",30,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNet2B",-30,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNet3B",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNetR",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNet2R",30,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNet2R",-30,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNet3R",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNetO",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNet2O",30,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNet2O",-30,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNet3O",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNetP",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNet2P",30,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNet2P",-30,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ElectromagneticNet3P",0,1,8,0)
+goto Done
+}
+}
+
+actor Darkman2Alt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Darkman2ShieldSpinner_H",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Darkman2ShieldSpinner_HB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Darkman2ShieldSpinner_HR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Darkman2ShieldSpinner_HO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Darkman2ShieldSpinner_HP",0,0,0,0)
+goto Done
+}
+}
+
+
+

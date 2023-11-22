@@ -1,0 +1,593 @@
+actor ClassBase3 : ClassBase2//Weakness Pain checks
+{
+States//Sorry for the formatting [Cel]
+{
+//MM0
+
+//MM1//MM1//MM1//MM1//MM1
+//MM1//MM1//MM1//MM1//MM1
+Pain.RollingCutter:"----" H 0 A_JumpIfInventory(W_RollingCutter_Tag,1,1)goto Super::Pain.RollingCutter"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.RollingCutter
+Pain.CutM_Cutter:"----" H 0 A_JumpIfInventory(W_RollingCutter_Tag,1,1)goto Super::Pain.CutM_Cutter"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CutM_Cutter
+Pain.MegaCutBall:"----" H 0 A_JumpIfInventory(W_RollingCutter_Tag,1,1)goto Super::Pain.MegaCutBall"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MegaCutBall
+
+Pain.SuperArm:"----" H 0 A_JumpIfInventory(W_SuperArm_Tag,1,1)goto Super::Pain.SuperArm"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SuperArm
+Pain.GutsM_Rock:"----" H 0 A_JumpIfInventory(W_SuperArm_Tag,1,1)goto Super::Pain.GutsM_Rock"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GutsM_Rock
+Pain.GutsM_RockBit:"----" H 0 A_JumpIfInventory(W_SuperArm_Tag,1,1)goto Super::Pain.GutsM_RockBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GutsM_RockBit
+Pain.MegaGutsBall:"----" H 0 A_JumpIfInventory(W_SuperArm_Tag,1,1)goto Super::Pain.MegaGutsBall"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MegaGutsBall
+
+Pain.IceSlasher:"----" H 0 A_JumpIfInventory(W_IceSlasher_Tag,1,1)goto Super::Pain.IceSlasher"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.IceSlasher
+Pain.IceM_Slasher:"----" H 0 A_JumpIfInventory(W_IceSlasher_Tag,1,1)goto Super::Pain.IceM_Slasher"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.IceM_Slasher
+Pain.IceM_Slow:"----" H 0 A_JumpIfInventory(W_IceSlasher_Tag,1,1)goto Super::Pain.IceM_Slow"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.IceM_Slow
+Pain.IceM_Icicle:"----" H 0 A_JumpIfInventory(W_IceSlasher_Tag,1,1)goto Super::Pain.IceM_Icicle"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.IceM_Icicle
+Pain.IceM_Sculpt:"----" H 0 A_JumpIfInventory(W_IceSlasher_Tag,1,1)goto Super::Pain.IceM_Sculpt"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.IceM_Sculpt
+Pain.IceM_Slow2:"----" H 0 A_JumpIfInventory(W_IceSlasher_Tag,1,1)goto Super::Pain.IceM_Slow2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.IceM_Slow2
+Pain.MegaIceBall:"----" H 0 A_JumpIfInventory(W_IceSlasher_Tag,1,1)goto Super::Pain.MegaIceBall"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MegaIceBall
+
+Pain.HyperBomb:"----" H 0 A_JumpIfInventory(W_HyperBomb_Tag,1,1)goto Super::Pain.HyperBomb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.HyperBomb
+Pain.BombM_Boom:"----" H 0 A_JumpIfInventory(W_HyperBomb_Tag,1,1)goto Super::Pain.BombM_Boom"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BombM_Boom
+Pain.MegaBombBall:"----" H 0 A_JumpIfInventory(W_HyperBomb_Tag,1,1)goto Super::Pain.MegaBombBall"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MegaBombBall
+
+Pain.FireStorm:"----" H 0 A_JumpIfInventory(W_FireStorm_Tag,1,1)goto Super::Pain.FireStorm"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FireStorm
+Pain.FireSpin:"----" H 0 A_JumpIfInventory(W_FireStorm_Tag,1,1)goto Super::Pain.FireSpin"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FireSpin
+Pain.FireM_Storm:"----" H 0 A_JumpIfInventory(W_FireStorm_Tag,1,1)goto Super::Pain.FireM_Storm"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FireM_Storm
+Pain.FireM_StormBit:"----" H 0 A_JumpIfInventory(W_FireStorm_Tag,1,1)goto Super::Pain.FireM_StormBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FireM_StormBit
+Pain.FireM_Spin:"----" H 0 A_JumpIfInventory(W_FireStorm_Tag,1,1)goto Super::Pain.FireM_Spin"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FireM_Spin
+Pain.FireM_Wave:"----" H 0 A_JumpIfInventory(W_FireStorm_Tag,1,1)goto Super::Pain.FireM_Wave"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FireM_Wave
+Pain.MegaFireBall:"----" H 0 A_JumpIfInventory(W_FireStorm_Tag,1,1)goto Super::Pain.MegaFireBall"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MegaFireBall
+Pain.MegaFireBallBurn:"----" H 0 A_JumpIfInventory(W_FireStorm_Tag,1,1)goto Super::Pain.MegaFireBallBurn"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MegaFireBallBurn
+
+Pain.ThunderBeam:"----" H 0 A_JumpIfInventory(W_ThunderBeam_Tag,1,1)goto Super::Pain.ThunderBeam"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ThunderBeam
+Pain.ElecM_Beam:"----" H 0 A_JumpIfInventory(W_ThunderBeam_Tag,1,1)goto Super::Pain.ElecM_Beam"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ElecM_Beam
+Pain.ElecM_Zap:"----" H 0 A_JumpIfInventory(W_ThunderBeam_Tag,1,1)goto Super::Pain.ElecM_Zap"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ElecM_Zap
+Pain.ElecM_TeleZap:"----" H 0 A_JumpIfInventory(W_ThunderBeam_Tag,1,1)goto Super::Pain.ElecM_TeleZap"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ElecM_TeleZap
+Pain.MegaElecBall:"----" H 0 A_JumpIfInventory(W_ThunderBeam_Tag,1,1)goto Super::Pain.MegaElecBall"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MegaElecBall
+
+Pain.TimeSlow:"----" H 0 A_JumpIfInventory(W_TimeSlow_Tag,1,1)goto Super::Pain.TimeSlow"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TimeSlow
+Pain.TimeM_Slow:"----" H 0 A_JumpIfInventory(W_TimeSlow_Tag,1,1)goto Super::Pain.TimeM_Slow"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TimeM_Slow
+Pain.MegaTimeBall:"----" H 0 A_JumpIfInventory(W_TimeSlow_Tag,1,1)goto Super::Pain.MegaTimeBall"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MegaTimeBall
+
+Pain.OilSlider:"----" H 0 A_JumpIfInventory(W_OilSlider_Tag,1,1)goto Super::Pain.OilSlider"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.OilSlider
+Pain.OilFlame:"----" H 0 A_JumpIfInventory(W_OilSlider_Tag,1,1)goto Super::Pain.OilFlame"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.OilFlame
+Pain.OilM_Shot:"----" H 0 A_JumpIfInventory(W_OilSlider_Tag,1,1)goto Super::Pain.OilM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.OilM_Shot
+Pain.OilM_Blob:"----" H 0 A_JumpIfInventory(W_OilSlider_Tag,1,1)goto Super::Pain.OilM_Blob"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.OilM_Blob
+Pain.OilM_Flame:"----" H 0 A_JumpIfInventory(W_OilSlider_Tag,1,1)goto Super::Pain.OilM_Flame"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.OilM_Flame
+Pain.OilM_Snap:"----" H 0 A_JumpIfInventory(W_OilSlider_Tag,1,1)goto Super::Pain.OilM_Snap"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.OilM_Snap
+Pain.OilM_Slider:"----" H 0 A_JumpIfInventory(W_OilSlider_Tag,1,1)goto Super::Pain.OilM_Slider"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.OilM_Slider
+Pain.OilM_Board:"----" H 0 A_JumpIfInventory(W_OilSlider_Tag,1,1)goto Super::Pain.OilM_Board"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.OilM_Board
+Pain.MegaOilBall:"----" H 0 A_JumpIfInventory(W_OilSlider_Tag,1,1)goto Super::Pain.MegaOilBall"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MegaOilBall
+//MM1//MM1//MM1//MM1//MM1
+//MM1//MM1//MM1//MM1//MM1
+/////////////////////////
+//MM2//MM2//MM2//MM2//MM2
+//MM2//MM2//MM2//MM2//MM2
+Pain.MetalBlade:"----" H 0 A_JumpIfInventory(W_MetalBlade_Tag,1,1)goto Super::Pain.MetalBlade"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MetalBlade
+Pain.MetalM_Blade:"----" H 0 A_JumpIfInventory(W_MetalBlade_Tag,1,1)goto Super::Pain.MetalM_Blade"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MetalM_Blade
+Pain.MetalM_Chain:"----" H 0 A_JumpIfInventory(W_MetalBlade_Tag,1,1)goto Super::Pain.MetalM_Chain"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MetalM_Chain
+
+Pain.AirShooter:"----" H 0 A_JumpIfInventory(W_AirShooter_Tag,1,1)goto Super::Pain.AirShooter"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.AirShooter
+Pain.AirM_Shot:"----" H 0 A_JumpIfInventory(W_AirShooter_Tag,1,1)goto Super::Pain.AirM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.AirM_Shot
+Pain.AirM_Wall:"----" H 0 A_JumpIfInventory(W_AirShooter_Tag,1,1)goto Super::Pain.AirM_Wall"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.AirM_Wall
+
+Pain.BubbleLead:"----" H 0 A_JumpIfInventory(W_BubbleLead_Tag,1,1)goto Super::Pain.BubbleLead"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BubbleLead
+Pain.BubbleM_Lead:"----" H 0 A_JumpIfInventory(W_BubbleLead_Tag,1,1)goto Super::Pain.BubbleM_Lead"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BubbleM_Lead
+
+Pain.QuickBoomerang:"----" H 0 A_JumpIfInventory(W_QuickBoomerang_Tag,1,1)goto Super::Pain.QuickBoomerang"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.QuickBoomerang
+Pain.QuickM_Shot:"----" H 0 A_JumpIfInventory(W_QuickBoomerang_Tag,1,1)goto Super::Pain.QuickM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.QuickM_Shot
+Pain.QuickM_Rapid:"----" H 0 A_JumpIfInventory(W_QuickBoomerang_Tag,1,1)goto Super::Pain.QuickM_Rapid"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.QuickM_Rapid
+
+Pain.CrashBomb:"----" H 0 A_JumpIfInventory(W_CrashBomb_Tag,1,1)goto Super::Pain.CrashBomb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CrashBomb
+Pain.CrashM_Clash:"----" H 0 A_JumpIfInventory(W_CrashBomb_Tag,1,1)goto Super::Pain.CrashM_Clash"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CrashM_Clash
+Pain.CrashM_Mine:"----" H 0 A_JumpIfInventory(W_CrashBomb_Tag,1,1)goto Super::Pain.CrashM_Mine"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CrashM_Mine
+
+Pain.TimeStopper:"----" H 0 A_JumpIfInventory(W_TimeStopper_Tag,1,1)goto Super::Pain.TimeStopper"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TimeStopper
+Pain.FlashM_Stopper:"----" H 0 A_JumpIfInventory(W_TimeStopper_Tag,1,1)goto Super::Pain.FlashM_Stopper"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FlashM_Stopper
+Pain.TimeBender:"----" H 0 A_JumpIfInventory(W_TimeStopper_Tag,1,1)goto Super::Pain.TimeBender"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TimeBender
+
+Pain.AtomicFire1:"----" H 0 A_JumpIfInventory(W_AtomicFire_Tag,1,1)goto Super::Pain.AtomicFire1"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.AtomicFire1
+Pain.AtomicFire2:"----" H 0 A_JumpIfInventory(W_AtomicFire_Tag,1,1)goto Super::Pain.AtomicFire2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.AtomicFire2
+Pain.AtomicFire3:"----" H 0 A_JumpIfInventory(W_AtomicFire_Tag,1,1)goto Super::Pain.AtomicFire3"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.AtomicFire3
+Pain.HeatM_Toss:"----" H 0 A_JumpIfInventory(W_AtomicFire_Tag,1,1)goto Super::Pain.HeatM_Toss"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.HeatM_Toss
+Pain.HeatM_Pillar:"----" H 0 A_JumpIfInventory(W_AtomicFire_Tag,1,1)goto Super::Pain.HeatM_Pillar"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.HeatM_Pillar
+Pain.HeatM_Tackle:"----" H 0 A_JumpIfInventory(W_AtomicFire_Tag,1,1)goto Super::Pain.HeatM_Tackle"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.HeatM_Tackle
+Pain.HeatM_Shot:"----" H 0 A_JumpIfInventory(W_AtomicFire_Tag,1,1)goto Super::Pain.HeatM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.HeatM_Shot
+
+Pain.LeafShield:"----" H 0 A_JumpIfInventory(W_LeafShield_Tag,1,1)goto Super::Pain.LeafShield"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.LeafShield
+Pain.WoodM_Shield:"----" H 0 A_JumpIfInventory(W_LeafShield_Tag,1,1)goto Super::Pain.WoodM_Shield"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WoodM_Shield
+Pain.WoodM_Seed:"----" H 0 A_JumpIfInventory(W_LeafShield_Tag,1,1)goto Super::Pain.WoodM_Seed"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WoodM_Seed
+Pain.WoodM_SeedStun:"----" H 0 A_JumpIfInventory(W_LeafShield_Tag,1,1)goto Super::Pain.WoodM_SeedStun"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WoodM_SeedStun
+Pain.WoodM_SeedTrap:"----" H 0 A_JumpIfInventory(W_LeafShield_Tag,1,1)goto Super::Pain.WoodM_SeedTrap"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WoodM_SeedTrap
+Pain.WoodM_Leaf:"----" H 0 A_JumpIfInventory(W_LeafShield_Tag,1,1)goto Super::Pain.WoodM_Leaf"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WoodM_Leaf
+Pain.WoodM_LeafRain:"----" H 0 A_JumpIfInventory(W_LeafShield_Tag,1,1)goto Super::Pain.WoodM_LeafRain"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WoodM_LeafRain
+//MM2//MM2//MM2//MM2//MM2
+//MM2//MM2//MM2//MM2//MM2
+/////////////////////////
+//MM3//MM3//MM3//MM3//MM3
+//MM3//MM3//MM3//MM3//MM3
+Pain.NeedleCannon:"----" H 0 A_JumpIfInventory(W_NeedleCannon_Tag,1,1)goto Super::Pain.NeedleCannon"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.NeedleCannon
+Pain.NeedleM_Shot:"----" H 0 A_JumpIfInventory(W_NeedleCannon_Tag,1,1)goto Super::Pain.NeedleM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.NeedleM_Shot
+
+Pain.MagnetMissile:"----" H 0 A_JumpIfInventory(W_MagnetMissile_Tag,1,1)goto Super::Pain.MagnetMissile"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MagnetMissile
+Pain.MagnetM_Shot:"----" H 0 A_JumpIfInventory(W_MagnetMissile_Tag,1,1)goto Super::Pain.MagnetM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MagnetM_Shot
+Pain.MagnetM_Push:"----" H 0 A_JumpIfInventory(W_MagnetMissile_Tag,1,1)goto Super::Pain.MagnetM_Push"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MagnetM_Push
+
+Pain.GeminiLaser:"----" H 0 A_JumpIfInventory(W_GeminiLaser_Tag,1,1)goto Super::Pain.GeminiLaser"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GeminiLaser
+Pain.GeminiM_Laser:"----" H 0 A_JumpIfInventory(W_GeminiLaser_Tag,1,1)goto Super::Pain.GeminiM_Laser"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GeminiM_Laser
+
+Pain.HardKnuckle:"----" H 0 A_JumpIfInventory(W_HardKnuckle_Tag,1,1)goto Super::Pain.HardKnuckle"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.HardKnuckle
+Pain.HardM_Knuckle:"----" H 0 A_JumpIfInventory(W_HardKnuckle_Tag,1,1)goto Super::Pain.HardM_Knuckle"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.HardM_Knuckle
+
+Pain.TopSpin:"----" H 0 A_JumpIfInventory(W_TopSpin_Tag,1,1)goto Super::Pain.TopSpin"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TopSpin
+Pain.TopM_Windup:"----" H 0 A_JumpIfInventory(W_TopSpin_Tag,1,1)goto Super::Pain.TopM_Windup"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TopM_Windup
+Pain.TopM_Spin:"----" H 0 A_JumpIfInventory(W_TopSpin_Tag,1,1)goto Super::Pain.TopM_Spin"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TopM_Spin
+Pain.TopM_Spin2:"----" H 0 A_JumpIfInventory(W_TopSpin_Tag,1,1)goto Super::Pain.TopM_Spin2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TopM_Spin2
+Pain.TopTwist:"----" H 0 A_JumpIfInventory(W_TopSpin_Tag,1,1)goto Super::Pain.TopTwist"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TopTwist
+
+Pain.SearchSnake:"----" H 0 A_JumpIfInventory(W_SearchSnake_Tag,1,1)goto Super::Pain.SearchSnake"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SearchSnake
+Pain.SnakeM_Snake:"----" H 0 A_JumpIfInventory(W_SearchSnake_Tag,1,1)goto Super::Pain.SnakeM_Snake"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SnakeM_Snake
+Pain.SnakeM_Snake2:"----" H 0 A_JumpIfInventory(W_SearchSnake_Tag,1,1)goto Super::Pain.SnakeM_Snake2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SnakeM_Snake2
+
+Pain.SparkShock:"----" H 0 A_JumpIfInventory(W_SparkShock_Tag,1,1)goto Super::Pain.SparkShock"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SparkShock
+Pain.SparkM_Shock:"----" H 0 A_JumpIfInventory(W_SparkShock_Tag,1,1)goto Super::Pain.SparkM_Shock"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SparkM_Shock
+Pain.SparkM_Shock2:"----" H 0 A_JumpIfInventory(W_SparkShock_Tag,1,1)goto Super::Pain.SparkM_Shock2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SparkM_Shock2
+Pain.SparkM_Zap:"----" H 0 A_JumpIfInventory(W_SparkShock_Tag,1,1)goto Super::Pain.SparkM_Zap"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SparkM_Zap
+Pain.SparkM_Lob:"----" H 0 A_JumpIfInventory(W_SparkShock_Tag,1,1)goto Super::Pain.SparkM_Lob"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SparkM_Lob
+
+Pain.ShadowBlade:"----" H 0 A_JumpIfInventory(W_ShadowBlade_Tag,1,1)goto Super::Pain.ShadowBlade"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ShadowBlade
+Pain.ShadowM_Blade1:"----" H 0 A_JumpIfInventory(W_ShadowBlade_Tag,1,1)goto Super::Pain.ShadowM_Blade1"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ShadowM_Blade1
+Pain.ShadowM_Blade2:"----" H 0 A_JumpIfInventory(W_ShadowBlade_Tag,1,1)goto Super::Pain.ShadowM_Blade2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ShadowM_Blade2
+Pain.ShadowM_Caltrop:"----" H 0 A_JumpIfInventory(W_ShadowBlade_Tag,1,1)goto Super::Pain.ShadowM_Caltrop"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ShadowM_Caltrop
+//MM3//MM3//MM3//MM3//MM3
+//MM3//MM3//MM3//MM3//MM3
+/////////////////////////
+//MM4//MM4//MM4//MM4//MM4
+//MM4//MM4//MM4//MM4//MM4
+Pain.FlashStopper:"----" H 0 A_JumpIfInventory(W_FlashStopper_Tag,1,1)goto Super::Pain.FlashStopper"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FlashStopper
+Pain.BrightM_Stopper:"----" H 0 A_JumpIfInventory(W_FlashStopper_Tag,1,1)goto Super::Pain.BrightM_Stopper"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BrightM_Stopper
+Pain.BrightM_Bulb:"----" H 0 A_JumpIfInventory(W_FlashStopper_Tag,1,1)goto Super::Pain.BrightM_Bulb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BrightM_Bulb
+Pain.FlashBulb:"----" H 0 A_JumpIfInventory(W_FlashStopper_Tag,1,1)goto Super::Pain.FlashBulb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FlashBulb
+
+Pain.RainFlush:"----" H 0 A_JumpIfInventory(W_RainFlush_Tag,1,1)goto Super::Pain.RainFlush"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.RainFlush
+Pain.ToadM_Rain:"----" H 0 A_JumpIfInventory(W_RainFlush_Tag,1,1)goto Super::Pain.ToadM_Rain"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ToadM_Rain
+Pain.ToadM_Rain2:"----" H 0 A_JumpIfInventory(W_RainFlush_Tag,1,1)goto Super::Pain.ToadM_Rain2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ToadM_Rain2
+
+Pain.DrillBomb:"----" H 0 A_JumpIfInventory(W_DrillBomb_Tag,1,1)goto Super::Pain.DrillBomb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.DrillBomb
+Pain.DrillM_Bomb:"----" H 0 A_JumpIfInventory(W_DrillBomb_Tag,1,1)goto Super::Pain.DrillM_Bomb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.DrillM_Bomb
+
+Pain.PharaohShot1:"----" H 0 A_JumpIfInventory(W_PharaohShot_Tag,1,1)goto Super::Pain.PharaohShot1"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PharaohShot1
+Pain.PharaohShot2:"----" H 0 A_JumpIfInventory(W_PharaohShot_Tag,1,1)goto Super::Pain.PharaohShot2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PharaohShot2
+Pain.PharaohShot3:"----" H 0 A_JumpIfInventory(W_PharaohShot_Tag,1,1)goto Super::Pain.PharaohShot3"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PharaohShot3
+Pain.PharaohHold:"----" H 0 A_JumpIfInventory(W_PharaohShot_Tag,1,1)goto Super::Pain.PharaohHold"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PharaohHold
+Pain.PharaohM_Shot:"----" H 0 A_JumpIfInventory(W_PharaohShot_Tag,1,1)goto Super::Pain.PharaohM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PharaohM_Shot
+Pain.PharaohM_Shot3:"----" H 0 A_JumpIfInventory(W_PharaohShot_Tag,1,1)goto Super::Pain.PharaohM_Shot3"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PharaohM_Shot3
+Pain.PharaohM_Wave:"----" H 0 A_JumpIfInventory(W_PharaohShot_Tag,1,1)goto Super::Pain.PharaohM_Wave"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PharaohM_Wave
+Pain.PharaohM_Hold:"----" H 0 A_JumpIfInventory(W_PharaohShot_Tag,1,1)goto Super::Pain.PharaohM_Hold"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PharaohM_Hold
+
+Pain.RingBoomerang:"----" H 0 A_JumpIfInventory(W_RingBoomerang_Tag,1,1)goto Super::Pain.RingBoomerang"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.RingBoomerang
+Pain.RingM_Ring1:"----" H 0 A_JumpIfInventory(W_RingBoomerang_Tag,1,1)goto Super::Pain.RingM_Ring1"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.RingM_Ring1
+Pain.RingM_Ring2:"----" H 0 A_JumpIfInventory(W_RingBoomerang_Tag,1,1)goto Super::Pain.RingM_Ring2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.RingM_Ring2
+
+Pain.DustCrusher:"----" H 0 A_JumpIfInventory(W_DustCrusher_Tag,1,1)goto Super::Pain.DustCrusher"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.DustCrusher
+Pain.DustCrusherBit:"----" H 0 A_JumpIfInventory(W_DustCrusher_Tag,1,1)goto Super::Pain.DustCrusherBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.DustCrusherBit
+Pain.DustM_Crush:"----" H 0 A_JumpIfInventory(W_DustCrusher_Tag,1,1)goto Super::Pain.DustM_Crush"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.DustM_Crush
+Pain.DustM_CrushBit:"----" H 0 A_JumpIfInventory(W_DustCrusher_Tag,1,1)goto Super::Pain.DustM_CrushBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.DustM_CrushBit
+
+Pain.DiveMissile:"----" H 0 A_JumpIfInventory(W_DiveMissile_Tag,1,1)goto Super::Pain.DiveMissile"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.DiveMissile
+Pain.DiveM_Torpedo:"----" H 0 A_JumpIfInventory(W_DiveMissile_Tag,1,1)goto Super::Pain.DiveM_Torpedo"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.DiveM_Torpedo
+Pain.DiveSonar:"----" H 0 A_JumpIfInventory(W_DiveMissile_Tag,1,1)goto Super::Pain.DiveSonar"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.DiveSonar
+
+Pain.SkullBarrier:"----" H 0 A_JumpIfInventory(W_SkullBarrier_Tag,1,1)goto Super::Pain.SkullBarrier"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SkullBarrier
+Pain.SkullM_Shot:"----" H 0 A_JumpIfInventory(W_SkullBarrier_Tag,1,1)goto Super::Pain.SkullM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SkullM_Shot
+Pain.SkullM_ShotX:"----" H 0 A_JumpIfInventory(W_SkullBarrier_Tag,1,1)goto Super::Pain.SkullM_ShotX"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SkullM_ShotX
+Pain.SkullM_Barrier:"----" H 0 A_JumpIfInventory(W_SkullBarrier_Tag,1,1)goto Super::Pain.SkullM_Barrier"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SkullM_Barrier
+Pain.SkullSniper:"----" H 0 A_JumpIfInventory(W_SkullBarrier_Tag,1,1)goto Super::Pain.SkullSniper"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SkullSniper
+//MM4//MM4//MM4//MM4//MM4
+//MM4//MM4//MM4//MM4//MM4
+/////////////////////////
+//MM5//MM5//MM5//MM5//MM5
+//MM5//MM5//MM5//MM5//MM5
+Pain.GravityHold:"----" H 0 A_JumpIfInventory(W_GravityHold_Tag,1,1)goto Super::Pain.GravityHold"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GravityHold
+Pain.GravityM_Down:"----" H 0 A_JumpIfInventory(W_GravityHold_Tag,1,1)goto Super::Pain.GravityM_Down"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GravityM_Down
+Pain.GravityM_Up:"----" H 0 A_JumpIfInventory(W_GravityHold_Tag,1,1)goto Super::Pain.GravityM_Up"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GravityM_Up
+Pain.GravitySphere:"----" H 0 A_JumpIfInventory(W_GravityHold_Tag,1,1)goto Super::Pain.GravitySphere"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GravitySphere
+Pain.GravityM_Dunked:"----" H 0 A_JumpIfInventory(W_TornadoHold_Tag,1,1)goto Super::Pain.GravityM_Dunked"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GravityM_Dunked
+Pain.StoneM_Dunked:"----" H 0 A_JumpIfInventory(W_TornadoHold_Tag,1,1)goto Super::Pain.StoneM_Dunked"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.StoneM_Dunked
+Pain.TenguM_Dunked:"----" H 0 A_JumpIfInventory(W_TornadoHold_Tag,1,1)goto Super::Pain.TenguM_Dunked"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TenguM_Dunked
+Pain.TornadoM_Dunked:"----" H 0 A_JumpIfInventory(W_TornadoHold_Tag,1,1)goto Super::Pain.TornadoM_Dunked"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TornadoM_Dunked
+
+Pain.WaterWave:"----" H 0 A_JumpIfInventory(W_WaterWave_Tag,1,1)goto Super::Pain.WaterWave"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WaterWave
+Pain.WaveM_Water:"----" H 0 A_JumpIfInventory(W_WaterWave_Tag,1,1)goto Super::Pain.WaveM_Water"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WaveM_Water
+
+Pain.PowerStone:"----" H 0 A_JumpIfInventory(W_PowerStone_Tag,1,1)goto Super::Pain.PowerStone"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PowerStone
+Pain.StoneM_Rock:"----" H 0 A_JumpIfInventory(W_PowerStone_Tag,1,1)goto Super::Pain.StoneM_Rock"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.StoneM_Rock
+Pain.StoneM_Hand:"----" H 0 A_JumpIfInventory(W_PowerStone_Tag,1,1)goto Super::Pain.StoneM_Hand"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.StoneM_Hand
+
+Pain.GyroAttack:"----" H 0 A_JumpIfInventory(W_GyroAttack_Tag,1,1)goto Super::Pain.GyroAttack"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GyroAttack
+Pain.GyroM_Shot:"----" H 0 A_JumpIfInventory(W_GyroAttack_Tag,1,1)goto Super::Pain.GyroM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GyroM_Shot
+
+Pain.StarCrash:"----" H 0 A_JumpIfInventory(W_StarCrash_Tag,1,1)goto Super::Pain.StarCrash"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.StarCrash
+Pain.StarM_Crash:"----" H 0 A_JumpIfInventory(W_StarCrash_Tag,1,1)goto Super::Pain.StarM_Crash"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.StarM_Crash
+Pain.StarM_Throw:"----" H 0 A_JumpIfInventory(W_StarCrash_Tag,1,1)goto Super::Pain.StarM_Throw"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.StarM_Throw
+Pain.StarM_Throw2:"----" H 0 A_JumpIfInventory(W_StarCrash_Tag,1,1)goto Super::Pain.StarM_Throw2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.StarM_Throw2
+Pain.StarM_Flurry:"----" H 0 A_JumpIfInventory(W_StarCrash_Tag,1,1)goto Super::Pain.StarM_Flurry"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.StarM_Flurry
+
+Pain.ChargeKick:"----" H 0 A_JumpIfInventory(W_ChargeKick_Tag,1,1)goto Super::Pain.ChargeKick"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ChargeKick
+Pain.ChargeM_Ram:"----" H 0 A_JumpIfInventory(W_ChargeKick_Tag,1,1)goto Super::Pain.ChargeM_Ram"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ChargeM_Ram
+Pain.ChargeM_Ram2:"----" H 0 A_JumpIfInventory(W_ChargeKick_Tag,1,1)goto Super::Pain.ChargeM_Ram2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ChargeM_Ram2
+
+Pain.NapalmBomb:"----" H 0 A_JumpIfInventory(W_NapalmBomb_Tag,1,1)goto Super::Pain.NapalmBomb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.NapalmBomb
+Pain.NapalmM_Bomb:"----" H 0 A_JumpIfInventory(W_NapalmBomb_Tag,1,1)goto Super::Pain.NapalmM_Bomb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.NapalmM_Bomb
+Pain.NapalmM_Missile:"----" H 0 A_JumpIfInventory(W_NapalmBomb_Tag,1,1)goto Super::Pain.NapalmM_Missile"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.NapalmM_Missile
+
+Pain.CrystalEye:"----" H 0 A_JumpIfInventory(W_CrystalEye_Tag,1,1)goto Super::Pain.CrystalEye"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CrystalEye
+Pain.CrystalEyeBit:"----" H 0 A_JumpIfInventory(W_CrystalEye_Tag,1,1)goto Super::Pain.CrystalEyeBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CrystalEyeBit
+Pain.CrystalM_Eye:"----" H 0 A_JumpIfInventory(W_CrystalEye_Tag,1,1)goto Super::Pain.CrystalM_Eye"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CrystalM_Eye
+Pain.CrystalM_EyeBit:"----" H 0 A_JumpIfInventory(W_CrystalEye_Tag,1,1)goto Super::Pain.CrystalM_EyeBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CrystalM_EyeBit
+Pain.CrystalM_EyeShot:"----" H 0 A_JumpIfInventory(W_CrystalEye_Tag,1,1)goto Super::Pain.CrystalM_EyeShot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CrystalM_EyeShot
+//MM5//MM5//MM5//MM5//MM5
+//MM5//MM5//MM5//MM5//MM5
+/////////////////////////
+//MM6//MM6//MM6//MM6//MM6
+//MM6//MM6//MM6//MM6//MM6
+Pain.BlizzardAttack:"----" H 0 A_JumpIfInventory(W_BlizzardAttack_Tag,1,1)goto Super::Pain.BlizzardAttack"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BlizzardAttack
+Pain.BlizzardM_Shot:"----" H 0 A_JumpIfInventory(W_BlizzardAttack_Tag,1,1)goto Super::Pain.BlizzardM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BlizzardM_Shot
+Pain.BlizzardM_Shot2:"----" H 0 A_JumpIfInventory(W_BlizzardAttack_Tag,1,1)goto Super::Pain.BlizzardM_Shot2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BlizzardM_Shot2
+
+Pain.CentaurFlash:"----" H 0 A_JumpIfInventory(W_CentaurFlash_Tag,1,1)goto Super::Pain.CentaurFlash"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CentaurFlash
+Pain.CentaurM_Flash:"----" H 0 A_JumpIfInventory(W_CentaurFlash_Tag,1,1)goto Super::Pain.CentaurM_Flash"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CentaurM_Flash
+Pain.CentaurM_Shock:"----" H 0 A_JumpIfInventory(W_CentaurFlash_Tag,1,1)goto Super::Pain.CentaurM_Shock"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CentaurM_Shock
+Pain.CentaurArrow:"----" H 0 A_JumpIfInventory(W_CentaurFlash_Tag,1,1)goto Super::Pain.CentaurArrow"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CentaurArrow
+
+Pain.FlameBlast:"----" H 0 A_JumpIfInventory(W_FlameBlast_Tag,1,1)goto Super::Pain.FlameBlast"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FlameBlast
+Pain.FlameM_Shot:"----" H 0 A_JumpIfInventory(W_FlameBlast_Tag,1,1)goto Super::Pain.FlameM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FlameM_Shot
+Pain.FlameM_Pillar:"----" H 0 A_JumpIfInventory(W_FlameBlast_Tag,1,1)goto Super::Pain.FlameM_Pillar"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FlameM_Pillar
+
+Pain.KnightCrush:"----" H 0 A_JumpIfInventory(W_KnightCrush_Tag,1,1)goto Super::Pain.KnightCrush"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.KnightCrush
+Pain.KnightM_Mace:"----" H 0 A_JumpIfInventory(W_KnightCrush_Tag,1,1)goto Super::Pain.KnightM_Mace"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.KnightM_Mace
+
+Pain.PlantBarrier:"----" H 0 A_JumpIfInventory(W_PlantBarrier_Tag,1,1)goto Super::Pain.PlantBarrier"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PlantBarrier
+Pain.PlantM_Barrier:"----" H 0 A_JumpIfInventory(W_PlantBarrier_Tag,1,1)goto Super::Pain.PlantM_Barrier"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PlantM_Barrier
+Pain.PlantM_Toss:"----" H 0 A_JumpIfInventory(W_PlantBarrier_Tag,1,1)goto Super::Pain.PlantM_Toss"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PlantM_Toss
+Pain.PlantTrapper2:"----" H 0 A_JumpIfInventory(W_PlantBarrier_Tag,1,1)goto Super::Pain.PlantTrapper2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PlantTrapper2
+
+Pain.SilverTomahawk:"----" H 0 A_JumpIfInventory(W_SilverTomahawk_Tag,1,1)goto Super::Pain.SilverTomahawk"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SilverTomahawk
+Pain.TomahawkM_Shot:"----" H 0 A_JumpIfInventory(W_SilverTomahawk_Tag,1,1)goto Super::Pain.TomahawkM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TomahawkM_Shot
+
+Pain.WindStorm:"----" H 0 A_JumpIfInventory(W_WindStorm_Tag,1,1)goto Super::Pain.WindStorm"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WindStorm
+Pain.WindM_Push:"----" H 0 A_JumpIfInventory(W_WindStorm_Tag,1,1)goto Super::Pain.WindM_Push"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WindM_Push
+Pain.WindM_Pull:"----" H 0 A_JumpIfInventory(W_WindStorm_Tag,1,1)goto Super::Pain.WindM_Pull"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WindM_Pull
+
+Pain.YamatoSpear:"----" H 0 A_JumpIfInventory(W_YamatoSpear_Tag,1,1)goto Super::Pain.YamatoSpear"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.YamatoSpear
+Pain.YamatoM_Shot:"----" H 0 A_JumpIfInventory(W_YamatoSpear_Tag,1,1)goto Super::Pain.YamatoM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.YamatoM_Shot
+//MM6//MM6//MM6//MM6//MM6
+//MM6//MM6//MM6//MM6//MM6
+/////////////////////////
+//MM7//MM7//MM7//MM7//MM7
+//MM7//MM7//MM7//MM7//MM7
+Pain.FreezeCracker:"----" H 0 A_JumpIfInventory(W_FreezeCracker_Tag,1,1)goto Super::Pain.FreezeCracker"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FreezeCracker
+Pain.FreezeCrackerBit:"----" H 0 A_JumpIfInventory(W_FreezeCracker_Tag,1,1)goto Super::Pain.FreezeCrackerBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FreezeCrackerBit
+Pain.FreezeM_Shot:"----" H 0 A_JumpIfInventory(W_FreezeCracker_Tag,1,1)goto Super::Pain.FreezeM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FreezeM_Shot
+Pain.FreezeM_ShotBit:"----" H 0 A_JumpIfInventory(W_FreezeCracker_Tag,1,1)goto Super::Pain.FreezeM_ShotBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FreezeM_ShotBit
+Pain.FreezeM_Frozen:"----" H 0 A_JumpIfInventory(W_FreezeCracker_Tag,1,1)goto Super::Pain.FreezeM_Frozen"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FreezeM_Frozen
+Pain.FreezeM_Iced:"----" H 0 A_JumpIfInventory(W_FreezeCracker_Tag,1,1)goto Super::Pain.FreezeM_Iced"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FreezeM_Iced
+Pain.FreezeM_SpikeF:"----" H 0 A_JumpIfInventory(W_FreezeCracker_Tag,1,1)goto Super::Pain.FreezeM_SpikeF"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FreezeM_SpikeF
+Pain.FreezeM_SpikeC:"----" H 0 A_JumpIfInventory(W_FreezeCracker_Tag,1,1)goto Super::Pain.FreezeM_SpikeC"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FreezeM_SpikeC
+
+Pain.JunkShield:"----" H 0 A_JumpIfInventory(W_JunkShield_Tag,1,1)goto Super::Pain.JunkShield"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.JunkShield
+Pain.JunkM_Cube:"----" H 0 A_JumpIfInventory(W_JunkShield_Tag,1,1)goto Super::Pain.JunkM_Cube"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.JunkM_Cube
+Pain.JunkM_Shot:"----" H 0 A_JumpIfInventory(W_JunkShield_Tag,1,1)goto Super::Pain.JunkM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.JunkM_Shot
+Pain.JunkM_Shield:"----" H 0 A_JumpIfInventory(W_JunkShield_Tag,1,1)goto Super::Pain.JunkM_Shield"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.JunkM_Shield
+Pain.JunkM_Shock:"----" H 0 A_JumpIfInventory(W_JunkShield_Tag,1,1)goto Super::Pain.JunkM_Shock"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.JunkM_Shock
+
+Pain.DangerWrap:"----" H 0 A_JumpIfInventory(W_DangerWrap_Tag,1,1)goto Super::Pain.DangerWrap"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.DangerWrap
+Pain.BurstM_Shot:"----" H 0 A_JumpIfInventory(W_DangerWrap_Tag,1,1)goto Super::Pain.BurstM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BurstM_Shot
+Pain.BurstM_Boom:"----" H 0 A_JumpIfInventory(W_DangerWrap_Tag,1,1)goto Super::Pain.BurstM_Boom"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BurstM_Boom
+Pain.BurstM_Trap:"----" H 0 A_JumpIfInventory(W_DangerWrap_Tag,1,1)goto Super::Pain.BurstM_Trap"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BurstM_Trap
+
+Pain.ThunderBolt:"----" H 0 A_JumpIfInventory(W_ThunderBolt_Tag,1,1)goto Super::Pain.ThunderBolt"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ThunderBolt
+Pain.CloudM_Shot:"----" H 0 A_JumpIfInventory(W_ThunderBolt_Tag,1,1)goto Super::Pain.CloudM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CloudM_Shot
+Pain.CloudM_Zapper:"----" H 0 A_JumpIfInventory(W_ThunderBolt_Tag,1,1)goto Super::Pain.CloudM_Zapper"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CloudM_Zapper
+Pain.CloudM_Spark:"----" H 0 A_JumpIfInventory(W_ThunderBolt_Tag,1,1)goto Super::Pain.CloudM_Spark"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CloudM_Spark
+Pain.CloudM_Charge:"----" H 0 A_JumpIfInventory(W_ThunderBolt_Tag,1,1)goto Super::Pain.CloudM_Charge"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CloudM_Charge
+
+Pain.WildCoil:"----" H 0 A_JumpIfInventory(W_WildCoil_Tag,1,1)goto Super::Pain.WildCoil"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WildCoil
+Pain.WildCoil2:"----" H 0 A_JumpIfInventory(W_WildCoil_Tag,1,1)goto Super::Pain.WildCoil2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WildCoil2
+Pain.SpringM_Coil:"----" H 0 A_JumpIfInventory(W_WildCoil_Tag,1,1)goto Super::Pain.SpringM_Coil"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SpringM_Coil
+Pain.SpringM_Fist:"----" H 0 A_JumpIfInventory(W_WildCoil_Tag,1,1)goto Super::Pain.SpringM_Fist"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SpringM_Fist
+
+Pain.SlashClaw:"----" H 0 A_JumpIfInventory(W_SlashClaw_Tag,1,1)goto Super::Pain.SlashClaw"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SlashClaw
+Pain.SlashM_Swipe:"----" H 0 A_JumpIfInventory(W_SlashClaw_Tag,1,1)goto Super::Pain.SlashM_Swipe"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SlashM_Swipe
+
+Pain.NoiseCrush1:"----" H 0 A_JumpIfInventory(W_NoiseCrush_Tag,1,1)goto Super::Pain.NoiseCrush1"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.NoiseCrush1
+Pain.NoiseCrush2:"----" H 0 A_JumpIfInventory(W_NoiseCrush_Tag,1,1)goto Super::Pain.NoiseCrush2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.NoiseCrush2
+Pain.ShadeM_Shot:"----" H 0 A_JumpIfInventory(W_NoiseCrush_Tag,1,1)goto Super::Pain.ShadeM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ShadeM_Shot
+Pain.ShadeM_Shot2:"----" H 0 A_JumpIfInventory(W_NoiseCrush_Tag,1,1)goto Super::Pain.ShadeM_Shot2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ShadeM_Shot2
+
+Pain.ScorchWheel:"----" H 0 A_JumpIfInventory(W_ScorchWheel_Tag,1,1)goto Super::Pain.ScorchWheel"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ScorchWheel
+Pain.ScorchWheelB:"----" H 0 A_JumpIfInventory(W_ScorchWheel_Tag,1,1)goto Super::Pain.ScorchWheelB"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ScorchWheelB
+Pain.TurboM_Wheel:"----" H 0 A_JumpIfInventory(W_ScorchWheel_Tag,1,1)goto Super::Pain.TurboM_Wheel"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TurboM_Wheel
+Pain.TurboM_WheelBit:"----" H 0 A_JumpIfInventory(W_ScorchWheel_Tag,1,1)goto Super::Pain.TurboM_WheelBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TurboM_WheelBit
+//MM7//MM7//MM7//MM7//MM7
+//MM7//MM7//MM7//MM7//MM7
+/////////////////////////
+//MM8//MM8//MM8//MM8//MM8
+//MM8//MM8//MM8//MM8//MM8
+Pain.TornadoHold:"----" H 0 A_JumpIfInventory(W_TornadoHold_Tag,1,1)goto Super::Pain.TornadoHold"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TornadoHold
+Pain.TenguM_Pod:"----" H 0 A_JumpIfInventory(W_TornadoHold_Tag,1,1)goto Super::Pain.TenguM_Pod"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TenguM_Pod
+Pain.TenguM_THold:"----" H 0 A_JumpIfInventory(W_TornadoHold_Tag,1,1)goto Super::Pain.TenguM_THold"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TenguM_THold
+Pain.TrioTornadoHold:"----" H 0 A_JumpIfInventory(W_TornadoHold_Tag,1,1)goto Super::Pain.TrioTornadoHold"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TrioTornadoHold
+
+Pain.AstroCrush:"----" H 0 A_JumpIfInventory(W_AstroCrush_Tag,1,1)goto Super::Pain.AstroCrush"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.AstroCrush
+Pain.AstroM_Meteor:"----" H 0 A_JumpIfInventory(W_AstroCrush_Tag,1,1)goto Super::Pain.AstroM_Meteor"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.AstroM_Meteor
+Pain.TrioAstroCrush:"----" H 0 A_JumpIfInventory(W_AstroCrush_Tag,1,1)goto Super::Pain.TrioAstroCrush"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TrioAstroCrush
+
+Pain.FlameSword:"----" H 0 A_JumpIfInventory(W_FlameSword_Tag,1,1)goto Super::Pain.FlameSword"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FlameSword
+Pain.FlameSwordSpark:"----" H 0 A_JumpIfInventory(W_FlameSword_Tag,1,1)goto Super::Pain.FlameSwordSpark"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FlameSwordSpark
+Pain.SwordM_Swipe:"----" H 0 A_JumpIfInventory(W_FlameSword_Tag,1,1)goto Super::Pain.SwordM_Swipe"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SwordM_Swipe
+Pain.SwordM_SwipeBit:"----" H 0 A_JumpIfInventory(W_FlameSword_Tag,1,1)goto Super::Pain.SwordM_SwipeBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SwordM_SwipeBit
+Pain.SwordM_Torso:"----" H 0 A_JumpIfInventory(W_FlameSword_Tag,1,1)goto Super::Pain.SwordM_Torso"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SwordM_Torso
+Pain.TrioFlameSword:"----" H 0 A_JumpIfInventory(W_FlameSword_Tag,1,1)goto Super::Pain.TrioFlameSword"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TrioFlameSword
+
+Pain.ThunderClaw:"----" H 0 A_JumpIfInventory(W_ThunderClaw_Tag,1,1)goto Super::Pain.ThunderClaw"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ThunderClaw
+Pain.ClownM_Claw:"----" H 0 A_JumpIfInventory(W_ThunderClaw_Tag,1,1)goto Super::Pain.ClownM_Claw"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ClownM_Claw
+Pain.ClownM_ClawChain:"----" H 0 A_JumpIfInventory(W_ThunderClaw_Tag,1,1)goto Super::Pain.ClownM_ClawChain"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ClownM_ClawChain
+Pain.ClownM_Peg:"----" H 0 A_JumpIfInventory(W_ThunderClaw_Tag,1,1)goto Super::Pain.ClownM_Peg"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ClownM_Peg
+Pain.ClownM_Aura:"----" H 0 A_JumpIfInventory(W_ThunderClaw_Tag,1,1)goto Super::Pain.ClownM_Aura"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ClownM_Aura
+Pain.ClownM_Aura2:"----" H 0 A_JumpIfInventory(W_ThunderClaw_Tag,1,1)goto Super::Pain.ClownM_Aura2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ClownM_Aura2
+Pain.ClownM_Ground:"----" H 0 A_JumpIfInventory(W_ThunderClaw_Tag,1,1)goto Super::Pain.ClownM_Ground"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ClownM_Ground
+Pain.TrioThunderClaw:"----" H 0 A_JumpIfInventory(W_ThunderClaw_Tag,1,1)goto Super::Pain.TrioThunderClaw"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TrioThunderClaw
+
+Pain.HomingSniper:"----" H 0 A_JumpIfInventory(W_HomingSniper_Tag,1,1)goto Super::Pain.HomingSniper"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.HomingSniper
+Pain.SearchM_Shot:"----" H 0 A_JumpIfInventory(W_HomingSniper_Tag,1,1)goto Super::Pain.SearchM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SearchM_Shot
+Pain.SearchM_LockShot:"----" H 0 A_JumpIfInventory(W_HomingSniper_Tag,1,1)goto Super::Pain.SearchM_LockShot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SearchM_LockShot
+Pain.TrioHomingSniper:"----" H 0 A_JumpIfInventory(W_HomingSniper_Tag,1,1)goto Super::Pain.TrioHomingSniper"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TrioHomingSniper
+
+Pain.IceWave:"----" H 0 A_JumpIfInventory(W_IceWave_Tag,1,1)goto Super::Pain.IceWave"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.IceWave
+Pain.FrostM_Shot:"----" H 0 A_JumpIfInventory(W_IceWave_Tag,1,1)goto Super::Pain.FrostM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FrostM_Shot
+Pain.FrostM_Iced:"----" H 0 A_JumpIfInventory(W_IceWave_Tag,1,1)goto Super::Pain.FrostM_Iced"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FrostM_Iced
+Pain.FrostM_Iced2:"----" H 0 A_JumpIfInventory(W_IceWave_Tag,1,1)goto Super::Pain.FrostM_Iced2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FrostM_Iced2
+Pain.TrioIceWave:"----" H 0 A_JumpIfInventory(W_IceWave_Tag,1,1)goto Super::Pain.TrioIceWave"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TrioIceWave
+
+Pain.FlashBomb:"----" H 0 A_JumpIfInventory(W_FlashBomb_Tag,1,1)goto Super::Pain.FlashBomb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.FlashBomb
+Pain.GrenadeM_Nade:"----" H 0 A_JumpIfInventory(W_FlashBomb_Tag,1,1)goto Super::Pain.GrenadeM_Nade"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GrenadeM_Nade
+Pain.GrenadeM_Bomb:"----" H 0 A_JumpIfInventory(W_FlashBomb_Tag,1,1)goto Super::Pain.GrenadeM_Bomb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GrenadeM_Bomb
+Pain.TrioFlashBomb:"----" H 0 A_JumpIfInventory(W_FlashBomb_Tag,1,1)goto Super::Pain.TrioFlashBomb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TrioFlashBomb
+Pain.TrioFlashBomb2:"----" H 0 A_JumpIfInventory(W_FlashBomb_Tag,1,1)goto Super::Pain.TrioFlashBomb2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TrioFlashBomb2
+
+Pain.WaterBalloon:"----" H 0 A_JumpIfInventory(W_WaterBalloon_Tag,1,1)goto Super::Pain.WaterBalloon"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WaterBalloon
+Pain.AquaM_Shot:"----" H 0 A_JumpIfInventory(W_WaterBalloon_Tag,1,1)goto Super::Pain.AquaM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.AquaM_Shot
+Pain.AquaM_Tower:"----" H 0 A_JumpIfInventory(W_WaterBalloon_Tag,1,1)goto Super::Pain.AquaM_Tower"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.AquaM_Tower
+Pain.AquaM_TowerBit:"----" H 0 A_JumpIfInventory(W_WaterBalloon_Tag,1,1)goto Super::Pain.AquaM_TowerBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.AquaM_TowerBit
+Pain.AquaM_Cannon:"----" H 0 A_JumpIfInventory(W_WaterBalloon_Tag,1,1)goto Super::Pain.AquaM_Cannon"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.AquaM_Cannon
+Pain.AquaM_CannonBit:"----" H 0 A_JumpIfInventory(W_WaterBalloon_Tag,1,1)goto Super::Pain.AquaM_CannonBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.AquaM_CannonBit
+Pain.TrioWaterBalloon:"----" H 0 A_JumpIfInventory(W_WaterBalloon_Tag,1,1)goto Super::Pain.TrioWaterBalloon"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TrioWaterBalloon
+
+Pain.MegaBall:"----" H 0 A_JumpIfInventory(W_MegaBall_Tag,1,1)goto Super::Pain.MegaBall"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MegaBall
+Pain.Rock_MegaBall:"----" H 0 A_JumpIfInventory(W_MegaBall_Tag,1,1)goto Super::Pain.Rock_MegaBall"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Rock_MegaBall
+//MM8//MM8//MM8//MM8//MM8
+//MM8//MM8//MM8//MM8//MM8
+/////////////////////////
+//MMB//MMB//MMB//MMB//MMB
+//MMB//MMB//MMB//MMB//MMB
+Pain.TenguSlash:"----" H 0 A_JumpIfInventory(W_TenguBlade_Tag,1,1)goto Super::Pain.TenguSlash"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TenguSlash
+Pain.TenguBlade:"----" H 0 A_JumpIfInventory(W_TenguBlade_Tag,1,1)goto Super::Pain.TenguBlade"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TenguBlade
+Pain.TenguM_Slam:"----" H 0 A_JumpIfInventory(W_TornadoHold_Tag,1,1)goto Super::Pain.TenguM_Slam"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TenguM_Slam
+Pain.TenguM_Shot:"----" H 0 A_JumpIfInventory(W_TornadoHold_Tag,1,1)goto Super::Pain.TenguM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TenguM_Shot
+
+Pain.CopyVision:"----" H 0 A_JumpIfInventory(W_CopyVision_Tag,1,1)goto Super::Pain.CopyVision"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CopyVision
+Pain.AstroM_Shot:"----" H 0 A_JumpIfInventory(W_TornadoHold_Tag,1,1)goto Super::Pain.AstroM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.AstroM_Shot
+Pain.AstroM_CloneShot:"----" H 0 A_JumpIfInventory(W_TornadoHold_Tag,1,1)goto Super::Pain.AstroM_CloneShot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.AstroM_CloneShot
+
+Pain.LightningBolt:"----" H 0 A_JumpIfInventory(W_LightningBolt_Tag,1,1)goto Super::Pain.LightningBolt"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.LightningBolt
+Pain.DynamoM_Bolt:"----" H 0 A_JumpIfInventory(W_LightningBolt_Tag,1,1)goto Super::Pain.DynamoM_Bolt"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.DynamoM_Bolt
+Pain.DynamoM_TaggedBolt:"----" H 0 A_JumpIfInventory(W_LightningBolt_Tag,1,1)goto Super::Pain.DynamoM_TaggedBolt"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.DynamoM_TaggedBolt
+Pain.DynamoM_Orb:"----" H 0 A_JumpIfInventory(W_LightningBolt_Tag,1,1)goto Super::Pain.DynamoM_Orb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.DynamoM_Orb
+Pain.DynamoM_DishZap:"----" H 0 A_JumpIfInventory(W_LightningBolt_Tag,1,1)goto Super::Pain.DynamoM_DishZap"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.DynamoM_DishZap
+Pain.DynamoTendrilZap:"----" H 0 A_JumpIfInventory(W_LightningBolt_Tag,1,1)goto Super::Pain.DynamoTendrilZap"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.DynamoTendrilZap
+
+Pain.IceWall:"----" H 0 A_JumpIfInventory(W_IceWall_Tag,1,1)goto Super::Pain.IceWall"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.IceWall
+Pain.ColdM_Wall:"----" H 0 A_JumpIfInventory(W_IceWall_Tag,1,1)goto Super::Pain.ColdM_Wall"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ColdM_Wall
+Pain.ColdM_WallFloor:"----" H 0 A_JumpIfInventory(W_IceWall_Tag,1,1)goto Super::Pain.ColdM_WallFloor"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ColdM_WallFloor
+Pain.ColdM_WallAir:"----" H 0 A_JumpIfInventory(W_IceWall_Tag,1,1)goto Super::Pain.ColdM_WallAir"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ColdM_WallAir
+Pain.ColdM_Freeze:"----" H 0 A_JumpIfInventory(W_IceWall_Tag,1,1)goto Super::Pain.ColdM_Freeze"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ColdM_Freeze
+
+Pain.SpreadDrill:"----" H 0 A_JumpIfInventory(W_SpreadDrill_Tag,1,1)goto Super::Pain.SpreadDrill"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SpreadDrill
+Pain.SpreadDrill2:"----" H 0 A_JumpIfInventory(W_SpreadDrill_Tag,1,1)goto Super::Pain.SpreadDrill2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SpreadDrill2
+Pain.SpreadDrill3:"----" H 0 A_JumpIfInventory(W_SpreadDrill_Tag,1,1)goto Super::Pain.SpreadDrill3"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SpreadDrill3
+Pain.GroundM_Shot1:"----" H 0 A_JumpIfInventory(W_SpreadDrill_Tag,1,1)goto Super::Pain.GroundM_Shot1"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GroundM_Shot1
+Pain.GroundM_Shot2:"----" H 0 A_JumpIfInventory(W_SpreadDrill_Tag,1,1)goto Super::Pain.GroundM_Shot2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GroundM_Shot2
+Pain.GroundM_Shot3:"----" H 0 A_JumpIfInventory(W_SpreadDrill_Tag,1,1)goto Super::Pain.GroundM_Shot3"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GroundM_Shot3
+Pain.GroundM_Stab:"----" H 0 A_JumpIfInventory(W_SpreadDrill_Tag,1,1)goto Super::Pain.GroundM_Stab"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GroundM_Stab
+Pain.GroundM_ShotCeil:"----" H 0 A_JumpIfInventory(W_SpreadDrill_Tag,1,1)goto Super::Pain.GroundM_ShotCeil"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GroundM_ShotCeil
+Pain.GroundM_GigaDrill:"----" H 0 A_JumpIfInventory(W_SpreadDrill_Tag,1,1)goto Super::Pain.GroundM_GigaDrill"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GroundM_GigaDrill
+
+Pain.RemoteMine:"----" H 0 A_JumpIfInventory(W_RemoteMine_Tag,1,1)goto Super::Pain.RemoteMine"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.RemoteMine
+Pain.PirateM_Mine:"----" H 0 A_JumpIfInventory(W_RemoteMine_Tag,1,1)goto Super::Pain.PirateM_Mine"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PirateM_Mine
+Pain.PirateM_Boom:"----" H 0 A_JumpIfInventory(W_RemoteMine_Tag,1,1)goto Super::Pain.PirateM_Boom"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PirateM_Boom
+
+Pain.WaveBurner:"----" H 0 A_JumpIfInventory(W_WaveBurner_Tag,1,1)goto Super::Pain.WaveBurner"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WaveBurner
+Pain.WaveBurnerUW:"----" H 0 A_JumpIfInventory(W_WaveBurner_Tag,1,1)goto Super::Pain.WaveBurnerUW"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WaveBurnerUW
+Pain.BurnerM_Shot:"----" H 0 A_JumpIfInventory(W_WaveBurner_Tag,1,1)goto Super::Pain.BurnerM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BurnerM_Shot
+Pain.BurnerM_Shot2:"----" H 0 A_JumpIfInventory(W_WaveBurner_Tag,1,1)goto Super::Pain.BurnerM_Shot2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BurnerM_Shot2
+Pain.BurnerM_DiveLand:"----" H 0 A_JumpIfInventory(W_WaveBurner_Tag,1,1)goto Super::Pain.BurnerM_DiveLand"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BurnerM_DiveLand
+Pain.BurnerM_FireLine:"----" H 0 A_JumpIfInventory(W_WaveBurner_Tag,1,1)goto Super::Pain.BurnerM_FireLine"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BurnerM_FireLine
+
+Pain.MagicCard:"----" H 0 A_JumpIfInventory(W_MagicCard_Tag,1,1)goto Super::Pain.MagicCard"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MagicCard
+Pain.MagicM_Card:"----" H 0 A_JumpIfInventory(W_MagicCard_Tag,1,1)goto Super::Pain.MagicM_Card"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MagicM_Card
+Pain.MagicM_Orb:"----" H 0 A_JumpIfInventory(W_MagicCard_Tag,1,1)goto Super::Pain.MagicM_Orb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MagicM_Orb
+Pain.MagicM_Ball:"----" H 0 A_JumpIfInventory(W_MagicCard_Tag,1,1)goto Super::Pain.MagicM_Ball"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MagicM_Ball
+//MMB//MMB//MMB//MMB//MMB
+//MMB//MMB//MMB//MMB//MMB
+/////////////////////////
+//MM9//MM9//MM9//MM9//MM9
+//MM9//MM9//MM9//MM9//MM9
+Pain.ConcreteShot:"----" H 0 A_JumpIfInventory(W_ConcreteShot_Tag,1,1)goto Super::Pain.ConcreteShot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ConcreteShot
+Pain.ConcreteM_Shot:"----" H 0 A_JumpIfInventory(W_ConcreteShot_Tag,1,1)goto Super::Pain.ConcreteM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ConcreteM_Shot
+Pain.ConcreteM_Toss:"----" H 0 A_JumpIfInventory(W_ConcreteShot_Tag,1,1)goto Super::Pain.ConcreteM_Toss"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ConcreteM_Toss
+Pain.ConcreteM_TossBit:"----" H 0 A_JumpIfInventory(W_ConcreteShot_Tag,1,1)goto Super::Pain.ConcreteM_TossBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ConcreteM_TossBit
+
+Pain.TornadoBlow:"----" H 0 A_JumpIfInventory(W_TornadoBlow_Tag,1,1)goto Super::Pain.TornadoBlow"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TornadoBlow
+Pain.TornadoM_Shot:"----" H 0 A_JumpIfInventory(W_TornadoBlow_Tag,1,1)goto Super::Pain.TornadoM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TornadoM_Shot
+Pain.TornadoM_Blow:"----" H 0 A_JumpIfInventory(W_TornadoBlow_Tag,1,1)goto Super::Pain.TornadoM_Blow"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TornadoM_Blow
+Pain.TornadoM_Blow2:"----" H 0 A_JumpIfInventory(W_TornadoBlow_Tag,1,1)goto Super::Pain.TornadoM_Blow2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TornadoM_Blow2
+Pain.TornadoM_Wall:"----" H 0 A_JumpIfInventory(W_TornadoBlow_Tag,1,1)goto Super::Pain.TornadoM_Wall"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TornadoM_Wall
+Pain.TornadoM_Lift:"----" H 0 A_JumpIfInventory(W_TornadoBlow_Tag,1,1)goto Super::Pain.TornadoM_Lift"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TornadoM_Lift
+Pain.TornadoM_Slam:"----" H 0 A_JumpIfInventory(W_LightningBolt_Tag,1,1)goto Super::Pain.TornadoM_Slam"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TornadoM_Slam
+
+Pain.LaserTrident:"----" H 0 A_JumpIfInventory(W_LaserTrident_Tag,1,1)goto Super::Pain.LaserTrident"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.LaserTrident
+Pain.SplashW_Laser:"----" H 0 A_JumpIfInventory(W_LaserTrident_Tag,1,1)goto Super::Pain.SplashW_Laser"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SplashW_Laser
+Pain.SplashW_Laser2:"----" H 0 A_JumpIfInventory(W_LaserTrident_Tag,1,1)goto Super::Pain.SplashW_Laser2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SplashW_Laser2
+
+Pain.PlugBall:"----" H 0 A_JumpIfInventory(W_PlugBall_Tag,1,1)goto Super::Pain.PlugBall"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PlugBall
+Pain.PlugM_Ball:"----" H 0 A_JumpIfInventory(W_PlugBall_Tag,1,1)goto Super::Pain.PlugM_Ball"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PlugM_Ball
+Pain.PlugM_Prong:"----" H 0 A_JumpIfInventory(W_PlugBall_Tag,1,1)goto Super::Pain.PlugM_Prong"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PlugM_Prong
+Pain.PlugM_Plugged:"----" H 0 A_JumpIfInventory(W_PlugBall_Tag,1,1)goto Super::Pain.PlugM_Plugged"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PlugM_Plugged
+
+Pain.JewelSatellite:"----" H 0 A_JumpIfInventory(W_JewelSatellite_Tag,1,1)goto Super::Pain.JewelSatellite"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.JewelSatellite
+Pain.JewelM_Shot:"----" H 0 A_JumpIfInventory(W_JewelSatellite_Tag,1,1)goto Super::Pain.JewelM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.JewelM_Shot
+Pain.JewelM_ShotBit:"----" H 0 A_JumpIfInventory(W_JewelSatellite_Tag,1,1)goto Super::Pain.JewelM_ShotBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.JewelM_ShotBit
+Pain.JewelM_ShotBoom:"----" H 0 A_JumpIfInventory(W_JewelSatellite_Tag,1,1)goto Super::Pain.JewelM_ShotBoom"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.JewelM_ShotBoom
+
+Pain.HornetChaser:"----" H 0 A_JumpIfInventory(W_HornetChaser_Tag,1,1)goto Super::Pain.HornetChaser"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.HornetChaser
+Pain.HornetM_Shot:"----" H 0 A_JumpIfInventory(W_HornetChaser_Tag,1,1)goto Super::Pain.HornetM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.HornetM_Shot
+Pain.HornetM_Slow:"----" H 0 A_JumpIfInventory(W_HornetChaser_Tag,1,1)goto Super::Pain.HornetM_Slow"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.HornetM_Slow
+
+Pain.MagmaBazooka1:"----" H 0 A_JumpIfInventory(W_MagmaBazooka_Tag,1,1)goto Super::Pain.MagmaBazooka1"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MagmaBazooka1
+Pain.MagmaBazooka2:"----" H 0 A_JumpIfInventory(W_MagmaBazooka_Tag,1,1)goto Super::Pain.MagmaBazooka2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MagmaBazooka2
+Pain.MagmaM_Shot1:"----" H 0 A_JumpIfInventory(W_MagmaBazooka_Tag,1,1)goto Super::Pain.MagmaM_Shot1"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MagmaM_Shot1
+Pain.MagmaM_Shot2:"----" H 0 A_JumpIfInventory(W_MagmaBazooka_Tag,1,1)goto Super::Pain.MagmaM_Shot2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MagmaM_Shot2
+
+Pain.BlackHoleBomb:"----" H 0 A_JumpIfInventory(W_BlackHoleBomb_Tag,1,1)goto Super::Pain.BlackHoleBomb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BlackHoleBomb
+Pain.GalaxyM_Shot:"----" H 0 A_JumpIfInventory(W_BlackHoleBomb_Tag,1,1)goto Super::Pain.GalaxyM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GalaxyM_Shot
+Pain.GalaxyM_BHB:"----" H 0 A_JumpIfInventory(W_BlackHoleBomb_Tag,1,1)goto Super::Pain.GalaxyM_BHB"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GalaxyM_BHB
+Pain.GalaxyM_Ram:"----" H 0 A_JumpIfInventory(W_BlackHoleBomb_Tag,1,1)goto Super::Pain.GalaxyM_Ram"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GalaxyM_Ram
+Pain.RainbowGalaxy:"----" H 0 A_JumpIfInventory(W_BlackHoleBomb_Tag,1,1)goto Super::Pain.RainbowGalaxy"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.RainbowGalaxy
+//MM9//MM9//MM9//MM9//MM9
+//MM9//MM9//MM9//MM9//MM9
+/////////////////////////
+//MM10//MM10//MM10//MM10//MM10
+//MM10//MM10//MM10//MM10//MM10
+Pain.TripleBlade:"----" H 0 A_JumpIfInventory(W_TripleBlade_Tag,1,1)goto Super::Pain.TripleBlade"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.TripleBlade
+Pain.BladeM_Shot:"----" H 0 A_JumpIfInventory(W_TripleBlade_Tag,1,1)goto Super::Pain.BladeM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BladeM_Shot
+Pain.BladeM_Swipe:"----" H 0 A_JumpIfInventory(W_TripleBlade_Tag,1,1)goto Super::Pain.BladeM_Swipe"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BladeM_Swipe
+
+Pain.WaterShield:"----" H 0 A_JumpIfInventory(W_WaterShield_Tag,1,1)goto Super::Pain.WaterShield"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WaterShield
+Pain.PumpM_Shield:"----" H 0 A_JumpIfInventory(W_WaterShield_Tag,1,1)goto Super::Pain.PumpM_Shield"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PumpM_Shield
+Pain.PumpM_ShieldToss:"----" H 0 A_JumpIfInventory(W_WaterShield_Tag,1,1)goto Super::Pain.PumpM_ShieldToss"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PumpM_ShieldToss
+
+Pain.CommandoBomb:"----" H 0 A_JumpIfInventory(W_CommandoBomb_Tag,1,1)goto Super::Pain.CommandoBomb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CommandoBomb
+Pain.CommandoM_Shot:"----" H 0 A_JumpIfInventory(W_CommandoBomb_Tag,1,1)goto Super::Pain.CommandoM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CommandoM_Shot
+Pain.CommandoM_Wave:"----" H 0 A_JumpIfInventory(W_CommandoBomb_Tag,1,1)goto Super::Pain.CommandoM_Wave"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CommandoM_Wave
+Pain.CommandoM_WaveBit:"----" H 0 A_JumpIfInventory(W_CommandoBomb_Tag,1,1)goto Super::Pain.CommandoM_WaveBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CommandoM_WaveBit
+Pain.CommandoM_Mine:"----" H 0 A_JumpIfInventory(W_CommandoBomb_Tag,1,1)goto Super::Pain.CommandoM_Mine"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.CommandoM_Mine
+
+Pain.ChillShot:"----" H 0 A_JumpIfInventory(W_ChillSpike_Tag,1,1)goto Super::Pain.ChillShot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ChillShot
+Pain.ChillSpike:"----" H 0 A_JumpIfInventory(W_ChillSpike_Tag,1,1)goto Super::Pain.ChillSpike"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ChillSpike
+Pain.ChillM_Shot:"----" H 0 A_JumpIfInventory(W_ChillSpike_Tag,1,1)goto Super::Pain.ChillM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ChillM_Shot
+Pain.ChillM_Spike:"----" H 0 A_JumpIfInventory(W_ChillSpike_Tag,1,1)goto Super::Pain.ChillM_Spike"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ChillM_Spike
+Pain.ChillM_Freeze:"----" H 0 A_JumpIfInventory(W_ChillSpike_Tag,1,1)goto Super::Pain.ChillM_Freeze"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ChillM_Freeze
+
+Pain.ThunderWool:"----" H 0 A_JumpIfInventory(W_ThunderWool_Tag,1,1)goto Super::Pain.ThunderWool"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ThunderWool
+
+Pain.ReboundStriker:"----" H 0 A_JumpIfInventory(W_ReboundStriker_Tag,1,1)goto Super::Pain.ReboundStriker"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ReboundStriker
+
+Pain.WheelCutter:"----" H 0 A_JumpIfInventory(W_WheelCutter_Tag,1,1)goto Super::Pain.WheelCutter"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WheelCutter
+Pain.WheelCutterSaw:"----" H 0 A_JumpIfInventory(W_WheelCutter_Tag,1,1)goto Super::Pain.WheelCutterSaw"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.WheelCutterSaw
+Pain.NitroM_Shot:"----" H 0 A_JumpIfInventory(W_WheelCutter_Tag,1,1)goto Super::Pain.NitroM_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.NitroM_Shot
+Pain.NitroM_Shot2:"----" H 0 A_JumpIfInventory(W_WheelCutter_Tag,1,1)goto Super::Pain.NitroM_Shot2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.NitroM_Shot2
+
+Pain.SolarBlaze:"----" H 0 A_JumpIfInventory(W_SolarBlaze_Tag,1,1)goto Super::Pain.SolarBlaze"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SolarBlaze
+Pain.SolarM_Blaze:"----" H 0 A_JumpIfInventory(W_SolarBlaze_Tag,1,1)goto Super::Pain.SolarM_Blaze"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SolarM_Blaze
+Pain.SolarM_BlazeWave:"----" H 0 A_JumpIfInventory(W_SolarBlaze_Tag,1,1)goto Super::Pain.SolarM_BlazeWave"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SolarM_BlazeWave
+Pain.SolarM_Head:"----" H 0 A_JumpIfInventory(W_SolarBlaze_Tag,1,1)goto Super::Pain.SolarM_Head"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SolarM_Head
+//MM10//MM10//MM10//MM10//MM10
+//MM10//MM10//MM10//MM10//MM10
+/////////////////////////
+//MMV//MMV//MMV//MMV//MMV
+//MMV//MMV//MMV//MMV//MMV
+Pain.SparkChaser:"----" H 0 A_JumpIfInventory(W_SparkChaser_Tag,1,1)goto Super::Pain.SparkChaser"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SparkChaser
+Pain.Terra_SparkChaser:"----" H 0 A_JumpIfInventory(W_SparkChaser_Tag,1,1)goto Super::Pain.Terra_SparkChaser"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Terra_SparkChaser
+
+Pain.GrabBuster:"----" H 0 A_JumpIfInventory(W_GrabBuster_Tag,1,1)goto Super::Pain.GrabBuster"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.GrabBuster
+Pain.Mercury_Shot:"----" H 0 A_JumpIfInventory(W_GrabBuster_Tag,1,1)goto Super::Pain.Mercury_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Mercury_Shot
+Pain.Mercury_Swipe:"----" H 0 A_JumpIfInventory(W_GrabBuster_Tag,1,1)goto Super::Pain.Mercury_Swipe"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Mercury_Swipe
+Pain.Mercury_Swipe2:"----" H 0 A_JumpIfInventory(W_GrabBuster_Tag,1,1)goto Super::Pain.Mercury_Swipe2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Mercury_Swipe2
+
+Pain.BubbleBomb:"----" H 0 A_JumpIfInventory(W_BubbleBomb_Tag,1,1)goto Super::Pain.BubbleBomb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BubbleBomb
+Pain.Venus_Shot:"----" H 0 A_JumpIfInventory(W_BubbleBomb_Tag,1,1)goto Super::Pain.Venus_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Venus_Shot
+Pain.Venus_Shot2:"----" H 0 A_JumpIfInventory(W_BubbleBomb_Tag,1,1)goto Super::Pain.Venus_Shot2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Venus_Shot2
+Pain.Venus_Bomb:"----" H 0 A_JumpIfInventory(W_BubbleBomb_Tag,1,1)goto Super::Pain.Venus_Bomb"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Venus_Bomb
+Pain.Venus_Acid:"----" H 0 A_JumpIfInventory(W_BubbleBomb_Tag,1,1)goto Super::Pain.Venus_Acid"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Venus_Acid
+Pain.Venus_BoomJump:"----" H 0 A_JumpIfInventory(W_BubbleBomb_Tag,1,1)goto Super::Pain.Venus_BoomJump"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Venus_BoomJump
+
+Pain.PhotonMissile:"----" H 0 A_JumpIfInventory(W_PhotonMissile_Tag,1,1)goto Super::Pain.PhotonMissile"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.PhotonMissile
+Pain.Mars_Shot:"----" H 0 A_JumpIfInventory(W_PhotonMissile_Tag,1,1)goto Super::Pain.Mars_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Mars_Shot
+Pain.Mars_Photon:"----" H 0 A_JumpIfInventory(W_PhotonMissile_Tag,1,1)goto Super::Pain.Mars_Photon"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Mars_Photon
+Pain.Mars_Mortar:"----" H 0 A_JumpIfInventory(W_PhotonMissile_Tag,1,1)goto Super::Pain.Mars_Mortar"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Mars_Mortar
+
+Pain.ElectricShock:"----" H 0 A_JumpIfInventory(W_ElectricShock_Tag,1,1)goto Super::Pain.ElectricShock"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ElectricShock
+Pain.Jupiter_Shot:"----" H 0 A_JumpIfInventory(W_ElectricShock_Tag,1,1)goto Super::Pain.Jupiter_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Jupiter_Shot
+Pain.Jupiter_Beam:"----" H 0 A_JumpIfInventory(W_ElectricShock_Tag,1,1)goto Super::Pain.Jupiter_Beam"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Jupiter_Beam
+
+Pain.BlackHole:"----" H 0 A_JumpIfInventory(W_BlackHole_Tag,1,1)goto Super::Pain.BlackHole"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BlackHole
+
+Pain.DeepDigger:"----" H 0 A_JumpIfInventory(W_DeepDigger_Tag,1,1)goto Super::Pain.DeepDigger"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.DeepDigger
+Pain.Uranus_ShotDown:"----" H 0 A_JumpIfInventory(W_DeepDigger_Tag,1,1)goto Super::Pain.Uranus_ShotDown"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Uranus_ShotDown
+Pain.Uranus_ShotBit:"----" H 0 A_JumpIfInventory(W_DeepDigger_Tag,1,1)goto Super::Pain.Uranus_ShotBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Uranus_ShotBit
+
+Pain.BreakDash:"----" H 0 A_JumpIfInventory(W_BreakDash_Tag,1,1)goto Super::Pain.BreakDash"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BreakDash
+Pain.Pluto_Dash1:"----" H 0 A_JumpIfInventory(W_BreakDash_Tag,1,1)goto Super::Pain.Pluto_Dash1"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Pluto_Dash1
+Pain.Pluto_Dash2:"----" H 0 A_JumpIfInventory(W_BreakDash_Tag,1,1)goto Super::Pain.Pluto_Dash2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Pluto_Dash2
+
+Pain.SaltWater:"----" H 0 A_JumpIfInventory(W_SaltWater_Tag,1,1)goto Super::Pain.SaltWater"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.SaltWater
+Pain.Neptune_Shot:"----" H 0 A_JumpIfInventory(W_SaltWater_Tag,1,1)goto Super::Pain.Neptune_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Neptune_Shot
+Pain.Neptune_ShotBit:"----" H 0 A_JumpIfInventory(W_SaltWater_Tag,1,1)goto Super::Pain.Neptune_ShotBit"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Neptune_ShotBit
+Pain.Neptune_SaltQuake:"----" H 0 A_JumpIfInventory(W_SaltWater_Tag,1,1)goto Super::Pain.Neptune_SaltQuake"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Neptune_SaltQuake
+//MMV//MMV//MMV//MMV//MMV
+//MMV//MMV//MMV//MMV//MMV
+/////////////////////////
+//MMWT//MMWT//MMWT//MMWT//MMWT
+//MMWT//MMWT//MMWT//MMWT//MMWT
+Pain.BRG_Bash:"----" H 0 A_JumpIfInventory(W_BusterRodG_Tag,1,1)goto Super::Pain.BRG_Bash"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BRG_Bash
+Pain.BRG_Spin:"----" H 0 A_JumpIfInventory(W_BusterRodG_Tag,1,1)goto Super::Pain.BRG_Spin"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BRG_Spin
+Pain.BusterRodPole:"----" H 0 A_JumpIfInventory(W_BusterRodG_Tag,1,1)goto Super::Pain.BusterRodPole"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BusterRodPole
+
+Pain.MWS_Barrier:"----" H 0 A_JumpIfInventory(W_MegaWaterS_Tag,1,1)goto Super::Pain.MWS_Barrier"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MWS_Barrier
+Pain.MWS_Lift:"----" H 0 A_JumpIfInventory(W_MegaWaterS_Tag,1,1)goto Super::Pain.MWS_Lift"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MWS_Lift
+Pain.MegaWaterBarrier:"----" H 0 A_JumpIfInventory(W_MegaWaterS_Tag,1,1)goto Super::Pain.MegaWaterBarrier"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MegaWaterBarrier
+
+Pain.HSH_Shot:"----" H 0 A_JumpIfInventory(W_HyperStormH_Tag,1,1)goto Super::Pain.HSH_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.HSH_Shot
+Pain.HSH_ShotHot:"----" H 0 A_JumpIfInventory(W_HyperStormH_Tag,1,1)goto Super::Pain.HSH_ShotHot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.HSH_ShotHot
+Pain.HSH_Drain:"----" H 0 A_JumpIfInventory(W_HyperStormH_Tag,1,1)goto Super::Pain.HSH_Drain"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.HSH_Drain
+Pain.HyperStormBlaster:"----" H 0 A_JumpIfInventory(W_HyperStormH_Tag,1,1)goto Super::Pain.HyperStormBlaster"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.HyperStormBlaster
+//MMWT//MMWT//MMWT//MMWT//MMWT
+//MMWT//MMWT//MMWT//MMWT//MMWT
+/////////////////////////
+//MMK//MMK//MMK//MMK//MMK
+//MMK//MMK//MMK//MMK//MMK
+Pain.MirrorBuster:"----" H 0 A_JumpIfInventory(W_MirrorBuster_Tag,1,1)goto Super::Pain.MirrorBuster"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MirrorBuster
+Pain.MirrorBuster1:"----" H 0 A_JumpIfInventory(W_MirrorBuster_Tag,1,1)goto Super::Pain.MirrorBuster1"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MirrorBuster1
+Pain.MirrorBuster2:"----" H 0 A_JumpIfInventory(W_MirrorBuster_Tag,1,1)goto Super::Pain.MirrorBuster2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MirrorBuster2
+Pain.MirrorBuster3:"----" H 0 A_JumpIfInventory(W_MirrorBuster_Tag,1,1)goto Super::Pain.MirrorBuster3"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.MirrorBuster3
+Pain.Enker_Shot:"----" H 0 A_JumpIfInventory(W_MirrorBuster_Tag,1,1)goto Super::Pain.Enker_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Enker_Shot
+Pain.Enker_Shot2:"----" H 0 A_JumpIfInventory(W_MirrorBuster_Tag,1,1)goto Super::Pain.Enker_Shot2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Enker_Shot2
+
+Pain.ScrewCrusher:"----" H 0 A_JumpIfInventory(W_ScrewCrusher_Tag,1,1)goto Super::Pain.ScrewCrusher"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.ScrewCrusher
+Pain.Punk_Shot:"----" H 0 A_JumpIfInventory(W_ScrewCrusher_Tag,1,1)goto Super::Pain.Punk_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Punk_Shot
+Pain.Punk_Rapid:"----" H 0 A_JumpIfInventory(W_ScrewCrusher_Tag,1,1)goto Super::Pain.Punk_Rapid"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Punk_Rapid
+Pain.Punk_Ram:"----" H 0 A_JumpIfInventory(W_ScrewCrusher_Tag,1,1)goto Super::Pain.Punk_Ram"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Punk_Ram
+
+Pain.BalladeCracker:"----" H 0 A_JumpIfInventory(W_BalladeCracker_Tag,1,1)goto Super::Pain.BalladeCracker"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.BalladeCracker
+Pain.Ballade_Shot:"----" H 0 A_JumpIfInventory(W_BalladeCracker_Tag,1,1)goto Super::Pain.Ballade_Shot"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Ballade_Shot
+Pain.Ballade_Mine:"----" H 0 A_JumpIfInventory(W_BalladeCracker_Tag,1,1)goto Super::Pain.Ballade_Mine"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Ballade_Mine
+
+Pain.Sakugarne:"----" H 0 A_JumpIfInventory(W_Sakugarne_Tag,1,1)goto Super::Pain.Sakugarne"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Sakugarne
+Pain.Quint_SakuLand:"----" H 0 A_JumpIfInventory(W_Sakugarne_Tag,1,1)goto Super::Pain.Quint_SakuLand"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Quint_SakuLand
+Pain.Quint_SakuLand2:"----" H 0 A_JumpIfInventory(W_Sakugarne_Tag,1,1)goto Super::Pain.Quint_SakuLand2"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Quint_SakuLand2
+Pain.Quint_Leap:"----" H 0 A_JumpIfInventory(W_Sakugarne_Tag,1,1)goto Super::Pain.Quint_Leap"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Quint_Leap
+Pain.Quint_Spin:"----" H 0 A_JumpIfInventory(W_Sakugarne_Tag,1,1)goto Super::Pain.Quint_Spin"----" H 0 A_GiveInventory(WeakPain_P)goto Super::Pain.Quint_Spin
+//MMK//MMK//MMK//MMK//MMK
+//MMK//MMK//MMK//MMK//MMK
+}
+}
+
+

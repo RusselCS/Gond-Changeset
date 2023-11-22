@@ -1,0 +1,83 @@
+
+//Model from CSCC Blaze class
+Model JoeCrateDrop
+{
+Path "models/MM0"
+Model 0 "JOECRATE.md2"
+Skin 0 "JOE_CRATE.png"
+scale 10.0 10.0 10.0
+zoffset 9
+FrameIndex JOSH X 0 0
+}
+Model JoeCrateWait
+{
+Path "models/MM0"
+Model 0 "JOECRATE.md2"
+Skin 0 "JOE_CRATE.png"
+scale 10.0 10.0 10.0
+zoffset 9
+FrameIndex JOSH X 0 0
+}
+
+//Model from "Zan-Models-r16.pk3"
+Model BubbleFloodFXM1
+{
+	Path "models/MM2"
+	Model 0 "BUBBLE.md2"
+	Skin 0 "BUBBLE1.png"
+
+	scale 5.0 5.0 5.0
+
+	//Rotating
+	//Rotation-Speed 10
+	//Rotation-Vector -1 0 0
+	//PitchFromMomentum
+	//ALIGNANGLE
+	//ALIGNPITCH
+
+	FrameIndex BUBA G 0 0
+}
+
+Model BubbleFloodFXM2
+{
+Path "models/MM2"
+Model 0 "BUBBLE.md2"
+Skin 0 "BUBBLE2.png"
+scale 5.0 5.0 5.0
+FrameIndex BUBA H 0 0
+}
+
+Model BubbleFloodFXM3
+{
+Path "models/MM2"
+Model 0 "BUBBLE.md2"
+Skin 0 "BUBBLE3.png"
+scale 5.0 5.0 5.0
+FrameIndex BUBA I 0 0
+}
+
+Model BubbleFloodFX1
+{
+FrameIndex BUBA G 0 0
+}
+
+Model BubbleFloodFX2
+{
+FrameIndex BUBA H 0 0
+}
+
+Model BubbleFloodFX3
+{
+FrameIndex BUBA I 0 0
+}
+
+Model BubbleFloodFXMA{Path "models/MM2" Model 0 "BUBBLE.md2" Skin 0 "BUBBLE1.png" scale 5.0 5.0 5.0 FrameIndex BUBA G 0 0}
+Model BubbleFloodFXMB{Path "models/MM2" Model 0 "BUBBLE.md2" Skin 0 "BUBBLE2.png" scale 5.0 5.0 5.0 FrameIndex BUBA H 0 0}
+Model BubbleFloodFXMC{Path "models/MM2" Model 0 "BUBBLE.md2" Skin 0 "BUBBLE3.png" scale 5.0 5.0 5.0 FrameIndex BUBA I 0 0}
+Model BubbleFloodFXMD{Path "models/MM2" Model 0 "BUBBLE.md2" Skin 0 "BUBBLE1.png" scale 5.0 5.0 5.0 FrameIndex BUBA G 0 0}
+Model BubbleFloodFXME{Path "models/MM2" Model 0 "BUBBLE.md2" Skin 0 "BUBBLE2.png" scale 5.0 5.0 5.0 FrameIndex BUBA H 0 0}
+Model BubbleFloodFXMF{Path "models/MM2" Model 0 "BUBBLE.md2" Skin 0 "BUBBLE3.png" scale 5.0 5.0 5.0 FrameIndex BUBA I 0 0}
+Model BubbleFloodFXMG{Path "models/MM2" Model 0 "BUBBLE.md2" Skin 0 "BUBBLE1.png" scale 5.0 5.0 5.0 FrameIndex BUBA G 0 0}
+Model BubbleFloodFXMH{Path "models/MM2" Model 0 "BUBBLE.md2" Skin 0 "BUBBLE2.png" scale 5.0 5.0 5.0 FrameIndex BUBA H 0 0}
+
+

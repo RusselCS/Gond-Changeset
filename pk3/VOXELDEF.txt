@@ -1,0 +1,17 @@
+
+
+CARYA="CARYA" {}
+CARYB="CARYB" {}
+CARYC="CARYC" {}
+
+GUTPP="GUTPP" {
+//Scale = 0.84
+}//OverridePalette
+
+CLDWA="CLDWA" {}
+CLDWB="CLDWB" {}
+
+Y_9AW="CONCCBMD" {}
+Y_9AX="CONCCBME" {}
+Y_9AY="CONCCBMF" {}
+Y_9AZ="CONCCBMG" {}

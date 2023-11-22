@@ -1,0 +1,50 @@
+
+////////
+////
+//Adjusted projectiles for CBM
+////
+////////
+
+actor CBM_SpreadDrillRefire : Inventory
+{
+inventory.amount 1
+inventory.maxamount 9
+}
+//This isn't perfect, but ditching powerups at least fixes ammo desync [C]
+//It also makes RageRune easier!
+actor CBM_Beef_SpreadDrill : Beef_SpreadDrill replaces Beef_SpreadDrill
+{
+states
+{
+Spawn:
+TNT1 A 0
+SPRE A 2
+SPRE FAFAFA 2 A_JumpIfInTargetInventory("SpreadDrillTrigger",1,"Spread")
+SPRE A 0 A_ChangeFlag("NOGRAVITY",0)
+SPRE A 0 ThrustThingZ(0,1,0,1)
+Waiting2:
+SPRE AF 2 A_JumpIfInTargetInventory("SpreadDrillTrigger",1,"Spread")
+Loop
+Spread:
+TNT1 A 0 A_GiveToTarget("CBM_SpreadDrillRefire",9)
+goto Super::Spread
+}
+}
+actor CBM_Beef_MediumDrill2 : Beef_MediumDrill2 replaces Beef_MediumDrill2
+{
+states
+{
+Spawn:
+SPRE CB 2
+SPRE C 0 A_JumpIfInTargetInventory("SpreadDrillTrigger",1,"SpreadQuick")
+Waiting2:
+SPRE CB 2 A_JumpIfInTargetInventory("SpreadDrillTrigger",1,"Spread")
+loop
+SpreadQuick:
+TNT1 A 0 //A_GiveToTarget("CBM_SpreadDrillRefire",1)
+goto Super::Spread
+Spread:
+TNT1 A 0 A_GiveToTarget("CBM_SpreadDrillRefire",9)
+goto Super::Spread
+}
+}

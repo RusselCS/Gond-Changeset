@@ -1,0 +1,707 @@
+#library "CBM_GENERAL"
+#include "zcommon.acs"
+//#include "8bdmlib.acs"
+
+#DEFINE C_SET_POINTER 4000
+#DEFINE C_COMPARE_TEAM 4001
+#DEFINE C_FETCH_TEAM 4002
+
+#DEFINE C_CHECK_SINGLE_INPUT 4004
+
+#DEFINE C_DIVELOCKDISPLAY 4407
+#DEFINE C_CHECK_TID_JUMP 4707
+
+#DEFINE C_SET_POINTER_DELUXE 14000
+
+BOOL IsTeamGame = 0;
+int ServerMAX = 32;
+
+//Precursor to ACS cleanup/organization
+
+script "cbm_IsTeamServerMAX_G" OPEN
+{
+	IsTeamGame = ACS_ExecuteWithResult(975,1);
+	ServerMAX = GetMaxPlayers();
+}
+
+script "cbm_IsPlayerAlive" (int TID)
+{
+	SetActivator(TID);
+	if(PlayerNumber() == -1 || CheckInventory("IsDead") || !PlayerInGame(PlayerNumber())){
+		SetResultValue(0);
+	}
+	else{
+		SetResultValue(1);
+	}
+}
+
+script "cbm_RenderCheck" (void)
+{
+	if (GetCVar("vid_renderer") == 1)
+	{
+		SetResultValue(1);//OpenGL
+	}
+	else{
+		SetResultValue(0);//Software
+	}
+}
+
+script C_SET_POINTER (int Point, int TID)
+{
+	if(TID==0){terminate;}
+	//Log(s:"C_SET_POINTER >> ",i:Point,s:" with TID >> ",i:TID);
+	SetPointer(Point,TID);
+}
+script C_SET_POINTER_DELUXE (int A_Slot, int TID, int Pointer)
+{
+	//Log(s:"C_SET_POINTER_DELUXE >> ",i:A_Slot,s:" with TID >> ",i:TID,s:" with their Pointer >>",i:Pointer);
+	SetResultValue(SetPointer(A_Slot,TID,Pointer));
+}
+/*
+Script "cbm_getpointertid" (int Swap)
+{
+	Switch(Swap){
+		Case 0:
+			SetActivator(0,AAPTR_TARGET);
+			break;
+		Case 1:
+			SetActivator(0,AAPTR_TRACER);
+			break;
+		Case 2:
+			SetActivator(0,AAPTR_MASTER);
+			break;
+	}
+	//Log(i:ActivatorTID());
+	SetResultValue(ActivatorTID());
+}
+*/
+Script "cbm_GetTIDFromDoublePointer" (int Point1, int Point2)
+{
+	Switch(Point1){
+		Case 0:
+			SetActivator(0,AAPTR_TARGET);
+			break;
+		Case 1:
+			SetActivator(0,AAPTR_TRACER);
+			break;
+		Case 2:
+			SetActivator(0,AAPTR_MASTER);
+			break;
+	}
+	Switch(Point2){
+		Case 0:
+			SetActivator(0,AAPTR_TARGET);
+			break;
+		Case 1:
+			SetActivator(0,AAPTR_TRACER);
+			break;
+		Case 2:
+			SetActivator(0,AAPTR_MASTER);
+			break;
+	}
+	//Log(i:ActivatorTID());
+	SetResultValue(ActivatorTID());
+}
+
+script "cbm_user1_check" (void)
+{
+SetResultValue((GetPlayerInput(-1, INPUT_BUTTONS)&BT_USER1)>0);
+}
+
+script C_FETCH_TEAM (int Pointer)
+{
+	SetActivator(0,Pointer);
+	SetResultValue(GetPlayerInfo(PlayerNumber(),PLAYERINFO_TEAM));
+}
+
+script C_COMPARE_TEAM (int ID)
+{
+	SetResultValue(PlayerTeam() != ACS_ExecuteWithResult(143,ID,1));
+}
+
+script C_CHECK_TID_JUMP (int ID)
+{
+SetResultValue(checkForJump(GetPlayerInput(ID, INPUT_BUTTONS)));
+}
+
+function bool checkForJump(int buttons) {
+	return ((buttons & BT_JUMP)>0);
+}
+
+script C_CHECK_SINGLE_INPUT (int Which, int ThePoint)
+{
+	int Result = 0;
+
+	Switch(ThePoint){
+		Case 2:
+			SetActivator(0,AAPTR_TARGET);
+			break;
+		Case 4:
+			SetActivator(0,AAPTR_MASTER);
+			break;
+		Case 8:
+			SetActivator(0,AAPTR_TRACER);
+			break;
+	}
+
+	int BT = GetPlayerInput(-1, INPUT_BUTTONS);
+
+	switch(Which)
+	{
+		Case 0:
+			break;
+		Case 1:Result = Input_BT_1(BT); break;
+		Case 2:Result = Input_BT_2(BT); break;
+		Case 3:Result = Input_BT_3(BT); break;
+		Case 4:Result = Input_BT_4(BT); break;
+		Case 5:Result = Input_BT_5(BT); break;
+		Case 6:Result = Input_BT_6(BT); break;
+		Case 7:Result = Input_BT_7(BT); break;
+		Case 8:Result = Input_BT_8(BT); break;
+		Case 9:Result = Input_BT_9(BT); break;
+		Case 10:Result = Input_BT_10(BT); break;
+		Case 11:Result = Input_BT_11(BT); break;
+		Case 12:Result = Input_BT_12(BT); break;
+		Case 13:Result = Input_BT_13(BT); break;
+		Case 14:Result = Input_BT_14(BT); break;
+		Case 15:Result = Input_BT_15(BT); break;
+		Case 16:Result = Input_BT_16(BT); break;
+		Case 17:Result = Input_BT_17(BT); break;
+		Case 18:Result = Input_BT_18(BT); break;
+		Case 19:Result = Input_BT_19(BT); break;
+		Case 20:Result = Input_BT_20(BT); break;
+		Case 21:Result = Input_BT_21(BT); break;
+		Case 22:Result = Input_BT_22(BT); break;
+		Case 23:Result = Input_BT_23(BT); break;
+		Case 24:Result = Input_BT_24(BT); break;
+		Case 25:Result = Input_BT_25(BT); break;
+	}
+	
+	SetResultValue(Result);
+}
+
+function bool Input_BT_1(int BT) {
+	return((BT & BT_FORWARD)>0);
+}
+function bool Input_BT_2(int BT) {return((BT & BT_BACK)>0);}
+function bool Input_BT_3(int BT) {return((BT & BT_LEFT)>0);}
+function bool Input_BT_4(int BT) {return((BT & BT_RIGHT)>0);}
+function bool Input_BT_5(int BT) {return((BT & BT_MOVELEFT)>0);}
+function bool Input_BT_6(int BT) {return((BT & BT_MOVERIGHT)>0);}
+function bool Input_BT_7(int BT) {return((BT & BT_ATTACK)>0);}
+function bool Input_BT_8(int BT) {return((BT & BT_ALTATTACK)>0);}
+function bool Input_BT_9(int BT) {return((BT & BT_USE)>0);}
+function bool Input_BT_10(int BT){return((BT & BT_JUMP)>0);}
+function bool Input_BT_11(int BT){return((BT & BT_CROUCH)>0);}
+function bool Input_BT_12(int BT){return((BT & BT_TURN180)>0);}
+function bool Input_BT_13(int BT){return((BT & BT_RELOAD)>0);}
+function bool Input_BT_14(int BT){return((BT & BT_ZOOM)>0);}
+function bool Input_BT_15(int BT){return((BT & BT_SPEED)>0);}
+function bool Input_BT_16(int BT){return((BT & BT_STRAFE)>0);}
+function bool Input_BT_17(int BT){return((BT & BT_LOOKUP)>0);}
+function bool Input_BT_18(int BT){return((BT & BT_LOOKDOWN)>0);}
+function bool Input_BT_19(int BT){return((BT & BT_MOVEUP)>0);}
+function bool Input_BT_20(int BT){return((BT & BT_MOVEDOWN)>0);}
+function bool Input_BT_21(int BT){return((BT & BT_SHOWSCORES)>0);}
+function bool Input_BT_22(int BT){return((BT & BT_USER1)>0);}
+function bool Input_BT_23(int BT){return((BT & BT_USER2)>0);}
+function bool Input_BT_24(int BT){return((BT & BT_USER3)>0);}
+function bool Input_BT_25(int BT){return((BT & BT_USER4)>0);}
+
+
+/*
+script "CheckDistanceTID" (int TID1, int TID2)
+{
+	while(true){
+		int distance = xyzDistance(TID1,TID2);
+		int distancexy = xyDistance(TID1,TID2);
+		int distancez = zDistance(TID1,TID2);
+		Log(s:"Dist = ",i:distance,s:" \\\ Dist_XY = ",i:distancexy,s:" \\\ Dist_Z = ",i:distancez);
+		Delay(1);
+	}
+}
+*/
+
+
+script "cbm_CheckForwardBackInput" (void)
+{
+	SetResultValue(checkInput_ForwardBack(GetPlayerInput(-1, INPUT_BUTTONS)));
+}
+
+function bool checkInput_ForwardBack(int buttons) {
+	int result = 0;
+
+	if (buttons & BT_BACK){
+		result-=1;
+	}
+	if (buttons & BT_FORWARD){
+		result+=1;
+	}
+
+	return(result);
+}
+
+
+
+
+Script "cbm_GetPointerTID_Client" (int Pointer) CLIENTSIDE
+{
+	SetActivator(0,Pointer);
+	SetResultValue(ActivatorTID());
+}
+
+Script "cbm_clientwarper_invis" (int Pointer) CLIENTSIDE
+{
+	int Player = ACS_NamedExecuteWithResult("cbm_GetPointerTID_Client",Pointer);
+
+	while(GetActorProperty(Player, APROP_HEALTH)>0 && CheckFlag(Player, "DONTIDENTIFYTARGET")){
+		Delay(1);
+	}
+	Thing_Remove(0);
+}
+
+Script "cbm_clientwarper" (int Object) CLIENTSIDE
+{
+	int Player = ACS_NamedExecuteWithResult("core_gettarget",0);
+	//Log(s:"Player = ",i:Player);
+	str TheString = "Honk";
+	bool Check = true;
+	Switch(Object)
+	{
+		Default:
+			Check = false;
+			break;
+		Case -4:
+			TheString = "SuperArmTemp";
+			break;
+		Case 1:
+			TheString = "ShieldCheck";
+			break;
+		Case 37:
+			TheString = "SparkmanHoldFlag";
+			break;
+		Case 73:
+			TheString = "DangerFly";
+			break;
+		Case 91:
+			TheString = "ConcreteBlockReady";
+			break;
+		Case 93:
+			TheString = "SplashIsSinging";
+			break;
+	}
+	//Log(s:TheString);
+	if(Check){
+		while(GetActorProperty(Player, APROP_HEALTH)>0){
+			//Log(i:CheckActorInventory(Player, TheString));
+			if(CheckActorInventory(Player, TheString) == 0){
+				break;
+			}
+			Delay(1);
+		}
+	}
+	else{
+		while(GetActorProperty(Player, APROP_HEALTH)>0){
+			Delay(1);//Remember! The actor that runs this ACS, even if it doesn't exist!
+		}
+	}
+	Thing_Remove(0);
+}
+
+
+
+
+// Checks if the Pointer or PlayerNumber is the client. Useful for FX you don't want to render for the creator of them.
+script "cbm_IsPointerClient" (int Pointer, int PlayerNum) CLIENTSIDE
+{
+	//SetActivatorToTarget(0);
+	if(Pointer>0){
+		SetActivator(0,Pointer);
+		PlayerNum = PlayerNumber();
+	}
+	//Log(i:consoleplayernumber(),s:" = Console -cbm_IsPointerClient- Player =",i:PlayerNum);
+	if(ConsolePlayerNumber() == PlayerNum){
+		SetResultValue(1);
+	}
+	else
+	{
+		SetResultValue(0);
+	}
+}
+
+
+script "cbm_istracerenemy" (void)
+{
+	int targetTID = ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",2);
+	//int tracerTID = ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",8);
+	bool result = 0;
+
+	SetActivator(0, AAPTR_TRACER);
+
+	if(!(ClassifyActor(0) & ACTOR_PLAYER)){
+		//Log(s:"Not a player");
+		result = 0;
+	}
+	else if(IsTeamGame && GetPlayerInfo(targetTID - 1000, PLAYERINFO_TEAM) == GetPlayerInfo(PlayerNumber(), PLAYERINFO_TEAM)){
+		result = 0;
+		//Log(s:"Not different teams");
+	}
+	else{
+		//Log(s:"SUCCESS");
+		result = 1;
+	}
+	SetResultValue(result);
+}
+
+script "cbm_istracerally" (void)
+{
+	if(!IsTeamGame){SetResultValue(0);terminate;}
+
+	int targetTID = ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",2);
+	bool result = 0;
+
+	SetActivator(0, AAPTR_TRACER);
+
+	if(!(ClassifyActor(0) & ACTOR_PLAYER)){
+		result = 0;
+	}
+	else if(IsTeamGame && GetPlayerInfo(targetTID - 1000, PLAYERINFO_TEAM) != GetPlayerInfo(PlayerNumber(), PLAYERINFO_TEAM)){
+		result = 0;
+	}
+	else{
+		result = 1;
+	}
+	SetResultValue(result);
+}
+
+script "cbm_istracerplayer" (void)
+{
+	bool result = 0;
+	SetActivator(0, AAPTR_TRACER);
+
+	if(ClassifyActor(0) & ACTOR_PLAYER){
+		if(PlayerNumber() == -1 || !PlayerInGame(PlayerNumber())){
+			result = 0;
+		}
+		else{
+			result = 1;
+		}
+	}
+	SetResultValue(result);
+}
+
+
+script "cbm_pointerheightfromground" (int Swap)
+{
+	Switch(Swap) {
+		Case 3:
+			SetActivator(0,AAPTR_FRIENDPLAYER);
+			break;
+		Case 2:
+			SetActivator(0,AAPTR_MASTER);
+			break;
+		Case 1:
+			SetActivator(0,AAPTR_TRACER);
+			break;
+		Case 0:
+			SetActivatorToTarget(0);
+			break;
+	}
+	SetResultValue((GetActorZ(0) - GetActorFloorZ (0)) >> 16);
+}
+
+
+//Decorate does not remember Args transfered via A_SpawnItemEx. This fixes it.
+script "cbm_Re_SetThingSpecial" (int Thing0, int Thing1, int Thing2, int Thing3)
+{
+	SetThingSpecial(0,0,Thing0,Thing1,Thing2,Thing3);
+}
+
+
+script "cbm_telefogcolorget" (void)
+{
+	int FogTID = ActivatorTID();
+	//Log(i:FogTID);
+	SetActivatorToTarget(0);
+	Thing_SetTranslation(FogTID,-1);
+}
+
+script "cbm_getplayervelocity" (int cap, int includez)//Example users Topman/Heatman
+{
+	int x, y, z, speed, result;
+	x = GetActorVelX(0);
+	y = GetActorVelY(0);
+	if(includez){z = GetActorVelZ(0);}else{z = 0;}
+	speed = FixedMul(x, x) + FixedMul(y, y) + FixedMul(z, z);
+
+	result = fixedSqrt(speed)>>16;
+	//Log(i:result);
+	if(result > cap){result = cap;}
+	SetResultValue(result);
+}
+
+
+script "cbm_CheckForRage" (int Pointer)
+{
+	bool Check = false;
+	Switch(Pointer){
+		Default:
+			break;
+		Case 2:
+			SetActivator(0,AAPTR_TARGET);
+			break;
+		Case 4:
+			SetActivator(0,AAPTR_MASTER);
+			break;
+		Case 8:
+			SetActivator(0,AAPTR_TRACER);
+			break;
+	}
+	if(CheckInventory("PowerRage_ST")>=1 || CheckInventory("RuneDoubleFiringSpeed")>=1){
+		Check = true;
+	}
+	SetResultValue(Check);
+}
+
+script "cbm_CheckForSpread" (int Pointer)
+{
+	bool Check = false;
+	Switch(Pointer){
+		Default:
+			break;
+		Case 2:
+			SetActivator(0,AAPTR_TARGET);
+			break;
+		Case 4:
+			SetActivator(0,AAPTR_MASTER);
+			break;
+		Case 8:
+			SetActivator(0,AAPTR_TRACER);
+			break;
+	}
+	if(CheckInventory("PowerSpread_ST")>=1 || CheckInventory("RuneSpread")>=1){
+		Check = true;
+	}
+	SetResultValue(Check);
+}
+
+
+script "cbm_getTIDPointerhealth" (int TID, int HitPoint)
+{
+	int TheTID = -1;
+	int TheHP = -1;
+	if(TID >= 1000){
+		TheTID = TID;
+	}
+	else{
+		TheTID = ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",TID);
+	}
+	Switch(HitPoint){
+		Default:
+			break;
+		Case 0:
+			TheHP = GetActorProperty(TheTID,APROP_HEALTH);
+			break;
+		Case 1:
+			TheHP = GetActorProperty(TheTID,APROP_SPAWNHEALTH);
+			break;
+	}
+	SetResultValue(TheHP);
+}
+
+
+script "cbm_getfixedangle" (void)//BBA uses this
+{
+	SetResultValue(GetActorAngle(0));
+}
+
+
+
+script "cbm_FetchVectorAngle" (int Which)
+{
+	Switch(Which){
+		Case 2:
+			SetActivator(0,AAPTR_TARGET);
+			break;
+		Case 4:
+			SetActivator(0,AAPTR_MASTER);
+			break;
+		Case 8:
+			SetActivator(0,AAPTR_TRACER);
+			break;
+	}
+	//Log(s:"GetActorVelX = ",f:GetActorVelX(0),s:" <> GetActorVelY = ",f:GetActorVelY(0));
+	SetResultValue(VectorAngle(GetActorVelX(0), GetActorVelY(0)));
+}
+
+script "cbm_TellVectorAngle" (int TheAngle, int TheThrust)
+{
+Log(s:"TheAngle = ",f:TheAngle,s:" Cos >> ",f:cos(TheAngle),s:" Sin >> ",f:sin(TheAngle),s:" FixedMulC >> ",f:FixedMul(cos(TheAngle),TheThrust << 16),s:" FixedMulS >> ",f:FixedMul(sin(TheAngle),TheThrust << 16));
+}
+
+script "CBM_AdjustMaxHealth" (int NewMaxHP, int Update)
+{
+	int MaxHP = GetActorProperty(0, APROP_SPAWNHEALTH);
+	if(MaxHP == NewMaxHP){
+		Log(s:"CBM_AdjustMaxHealth says NewMaxHP was not unique");
+		terminate;
+	}
+	int CurrentHP = max(PlayerHealth(),0);
+
+	SetActorProperty(0, APROP_SPAWNHEALTH, NewMaxHP);
+
+	if(NewMaxHP < CurrentHP){
+		SetActorProperty(0,APROP_HEALTH,NewMaxHP);
+	}
+	else if(Update && NewMaxHP > MaxHP){
+		HealThing(30000,NewMaxHP-MaxHP+CurrentHP);
+	}
+}
+
+script "CBM_SetMusic" (int TheTunes)//Would be nice if this could be done with decorate, but not yet.
+{
+	switch (TheTunes){
+		Default:
+			SetMusic("",0);
+			break;
+		case 1:
+			SetMusic("MGCMUSX",0);
+			break;
+	}
+}
+
+
+
+
+script "CBM_JaxFlingAway" (int Pusher, int pushee, int Force)
+{
+	ThrustThing(VectorAngle(GetActorX(pushee)-GetActorX(Pusher),GetActorY(pushee)-GetActorY(Pusher)) >> 8, Force, 1, pushee);
+}
+
+
+//ZANGIEF
+
+#define GRAB_DISTANCE 100 //how far to position the grabbed away from zangief
+#define GRAB_DISTANCE_LIMIT 100000 //how far away to give up on the grabbed, squared
+
+
+str ZangiefCountItem[3] = 
+{
+"WalrusSlideAngle",
+"ZangiefAngle",
+"SuplexID"
+};
+
+str ZangiefGiveItem[3] = 
+{
+"TempPitProtect_P",
+//"AirSuplexGroundCheck",
+"AntiInvincible",
+"ShademanGrabRelease_P"
+};
+
+script "cbm_ZangiefCountInv" (int Item, int ThePointer)
+{
+	if(ThePointer>0){
+		SetActivator(0,ThePointer);
+	}
+	SetResultValue(CheckInventory(ZangiefCountItem[Item]));
+}
+
+script "cbm_ZangiefGiver" (int i, int target)
+{
+	//log(i:i,s:" & ",i:target);
+	if (target==999) { terminate; }
+	GiveActorInventory(target,ZangiefGiveItem[i],1);
+}
+
+//#import "global.acs" //putting this here erases the item list
+
+script "cbm_ZangiefGiveToAll" (int i)
+{
+	for(int j=0; j<ServerMAX; j++) {
+		if(PlayerInGame(j))GiveActorInventory(1000+j,ZangiefGiveItem[i],1);
+	}
+}
+
+script "cbm_ZangiefFaceTarget" (int target)
+{
+	SetResultValue(VectorAngle(getActorX(target) - getActorX(0), getActorY(target) - getActorY(0)) >> 8);
+}
+
+script "cbm_ZangiefStartGrab" (int target)
+{
+	if (target==999) { SetResultValue(1); terminate; }
+	int angle = getActorAngle(0);
+	int xDiff = (getActorX(0)+GRAB_DISTANCE*cos(angle)) - getActorX(target);
+	int yDiff = (getActorY(0)+GRAB_DISTANCE*sin(angle)) - getActorY(target);
+	int zDiff = getActorZ(0) - getActorZ(target);
+	
+	int xDiffI = xDiff>>16;
+	int yDiffI = yDiff>>16;
+	int zDiffI = zDiff>>16;
+	
+	if (xDiffI*xDiffI+yDiffI*yDiffI+zDiffI*zDiffI < GRAB_DISTANCE_LIMIT) {
+		SetActorVelocity(target, xDiff, yDiff, zDiff, 0, 0);
+		setResultValue(1);
+	} else {
+		setResultValue(0);
+	}
+}
+
+script "cbm_ZangiefGrab" (int pitch, int angle, int Grab_D) //Pitch is given as x/360, Angle is given as x/255
+{
+	int target = ACS_NamedExecuteWithResult("cbm_ZangiefCountInv",2)+999;
+	if (target==999) { SetResultValue(1); terminate; }
+	angle = angle<<8;
+	pitch = (pitch-360)*1.0/360;
+	int xDiff = (getActorX(0)+fixedMul(Grab_D*cos(angle),cos(pitch))) - getActorX(target);
+	int yDiff = (getActorY(0)+fixedMul(Grab_D*sin(angle),cos(pitch))) - getActorY(target);
+	int zDiff = (getActorZ(0)-Grab_D*sin(pitch)) - getActorZ(target);
+	
+	int xDiffI = xDiff>>16;
+	int yDiffI = yDiff>>16;
+	int zDiffI = zDiff>>16;
+
+	if (xDiffI*xDiffI+yDiffI*yDiffI+zDiffI*zDiffI < GRAB_DISTANCE_LIMIT) {
+		SetActorVelocity(target, xDiff, yDiff, zDiff, 0, 0);
+		setResultValue(1);
+	} else {
+		setResultValue(0);
+	}
+}
+
+script "cbm_ZangiefSetThrow" (int target, int force, int zforce)
+{
+	GiveActorInventory(target,"TempPitProtect_P",1);
+	Thing_Stop(target);
+	ThrustThing(GetActorAngle(0) >> 8, force, 1, target);
+	ThrustThingZ(target,zforce,0,0);
+}
+
+
+//Function copies, don't need all of 8BDMLIB
+
+
+function int min (int a, int b)
+{
+	if (a < b)
+		return a;
+	return b;
+}
+function int max (int a, int b)
+{
+	if (a > b)
+		return a;
+	return b;
+}
+
+
+function int GetMaxPlayers(void)
+{
+	int ret = GetCVAR("sv_MaxClients");
+	if(PlayerCount()>ret)
+		ret = PlayerCount();
+	return ret;
+}
+

@@ -1,0 +1,386 @@
+//Texture set up for all the class icons.
+
+//Skin Mugs
+
+/*
+graphic ST00,32,32{XScale 4.0 YScale 4.0 Patch FACE,0,0}
+graphic ST01,32,32{XScale 4.0 YScale 4.0 Patch FACE,0,0}
+graphic ST02,32,32{XScale 4.0 YScale 4.0 Patch FACE,0,0}
+graphic GOD0,32,32{XScale 4.0 YScale 4.0 Patch FACE,0,0}
+graphic DEAD0,32,32{XScale 4.0 YScale 4.0 Patch FACE,0,0}
+graphic QUAD,32,32{XScale 4.0 YScale 4.0 Patch FACE,0,0}
+*/
+
+graphic ROLST00,32,32{XScale 4.0 YScale 4.0 Patch FACE0BX3,0,0}//MM8 Roll
+graphic ROLST01,32,32{XScale 4.0 YScale 4.0 Patch FACE0BX3,0,0}
+graphic ROLST02,32,32{XScale 4.0 YScale 4.0 Patch FACE0BX3,0,0}
+graphic ROLGOD0,32,32{XScale 4.0 YScale 4.0 Patch FACE0BX3,0,0}
+graphic ROLDEAD0,32,32{XScale 4.0 YScale 4.0 Patch FACE0BX3,0,0}
+graphic ROLQUAD,32,32{XScale 4.0 YScale 4.0 Patch FACE0BX3,0,0}
+
+graphic R0LST00,32,32{XScale 4.0 YScale 4.0 Patch FACE0RX3,0,0}//MM11 Roll
+graphic R0LST01,32,32{XScale 4.0 YScale 4.0 Patch FACE0RX3,0,0}
+graphic R0LST02,32,32{XScale 4.0 YScale 4.0 Patch FACE0RX3,0,0}
+graphic R0LGOD0,32,32{XScale 4.0 YScale 4.0 Patch FACE0RX3,0,0}
+graphic R0LDEAD0,32,32{XScale 4.0 YScale 4.0 Patch FACE0RX3,0,0}
+graphic R0LQUAD,32,32{XScale 4.0 YScale 4.0 Patch FACE0RX3,0,0}
+
+graphic AUTST00,32,32{XScale 4.0 YScale 4.0 Patch FACE0MX6,0,0}//Auto Met
+graphic AUTST01,32,32{XScale 4.0 YScale 4.0 Patch FACE0MX6,0,0}
+graphic AUTST02,32,32{XScale 4.0 YScale 4.0 Patch FACE0MX6,0,0}
+graphic AUTGOD0,32,32{XScale 4.0 YScale 4.0 Patch FACE0MX6,0,0}
+graphic AUTDEAD0,32,32{XScale 4.0 YScale 4.0 Patch FACE0MX6,0,0}
+graphic AUTQUAD,32,32{XScale 4.0 YScale 4.0 Patch FACE0MX6,0,0}
+
+graphic CHRST00,32,32{XScale 4.0 YScale 4.0 Patch FACE41X,0,0}//Charge
+graphic CHRST01,32,32{XScale 4.0 YScale 4.0 Patch FACE41X,0,0}
+graphic CHRST02,32,32{XScale 4.0 YScale 4.0 Patch FACE41X,0,0}
+graphic CHRGOD0,32,32{XScale 4.0 YScale 4.0 Patch FACE41X,0,0}
+graphic CHRDEAD0,32,32{XScale 4.0 YScale 4.0 Patch FACE41X,0,0}
+graphic CHRQUAD,32,32{XScale 4.0 YScale 4.0 Patch FACE41X,0,0}
+
+graphic CENST00,32,32{XScale 4.0 YScale 4.0 Patch FACE52X,0,0}//Centaur
+graphic CENST01,32,32{XScale 4.0 YScale 4.0 Patch FACE52X,0,0}
+graphic CENST02,32,32{XScale 4.0 YScale 4.0 Patch FACE52X,0,0}
+graphic CENGOD0,32,32{XScale 4.0 YScale 4.0 Patch FACE52X,0,0}
+graphic CENDEAD0,32,32{XScale 4.0 YScale 4.0 Patch FACE52X,0,0}
+graphic CENQUAD,32,32{XScale 4.0 YScale 4.0 Patch FACE52X,0,0}
+
+graphic SLAST00,32,32{XScale 4.0 YScale 4.0 Patch FACE66X,0,0}//Slash
+graphic SLAST01,32,32{XScale 4.0 YScale 4.0 Patch FACE66X,0,0}
+graphic SLAST02,32,32{XScale 4.0 YScale 4.0 Patch FACE66X,0,0}
+graphic SLAGOD0,32,32{XScale 4.0 YScale 4.0 Patch FACE66X,0,0}
+graphic SLADEAD0,32,32{XScale 4.0 YScale 4.0 Patch FACE66X,0,0}
+graphic SLAQUAD,32,32{XScale 4.0 YScale 4.0 Patch FACE66X,0,0}
+
+graphic COLST00,32,32{XScale 4.0 YScale 4.0 Patch FACE90X,0,0}//Cold
+graphic COLST01,32,32{XScale 4.0 YScale 4.0 Patch FACE90X,0,0}
+graphic COLST02,32,32{XScale 4.0 YScale 4.0 Patch FACE90X,0,0}
+graphic COLGOD0,32,32{XScale 4.0 YScale 4.0 Patch FACE90X,0,0}
+graphic COLDEAD0,32,32{XScale 4.0 YScale 4.0 Patch FACE90X,0,0}
+graphic COLQUAD,32,32{XScale 4.0 YScale 4.0 Patch FACE90X,0,0}
+
+graphic HONST00,32,32{XScale 4.0 YScale 4.0 Patch FACE109X,0,0}//Hornet
+graphic HONST01,32,32{XScale 4.0 YScale 4.0 Patch FACE109X,0,0}
+graphic HONST02,32,32{XScale 4.0 YScale 4.0 Patch FACE109X,0,0}
+graphic HONGOD0,32,32{XScale 4.0 YScale 4.0 Patch FACE109X,0,0}
+graphic HONDEAD0,32,32{XScale 4.0 YScale 4.0 Patch FACE109X,0,0}
+graphic HONQUAD,32,32{XScale 4.0 YScale 4.0 Patch FACE109X,0,0}
+
+graphic BALST00,32,32{XScale 4.0 YScale 4.0 Patch FACE03_K,0,0}//Ballade
+graphic BALST01,32,32{XScale 4.0 YScale 4.0 Patch FACE03_K,0,0}
+graphic BALST02,32,32{XScale 4.0 YScale 4.0 Patch FACE03_K,0,0}
+graphic BALGOD0,32,32{XScale 4.0 YScale 4.0 Patch FACE03_K,0,0}
+graphic BALDEAD0,32,32{XScale 4.0 YScale 4.0 Patch FACE03_K,0,0}
+graphic BALQUAD,32,32{XScale 4.0 YScale 4.0 Patch FACE03_K,0,0}
+
+//Class Mugs
+
+sprite  C_00A0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE00X5, 0, 0}//PROTO//FACE49
+texture C_00A0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE00X5, 0, 0}
+sprite  C_00B0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE00X0, 0, 0}//MEGAMAN
+texture C_00B0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE00X0, 0, 0}
+sprite  C_00C0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE00X1, 0, 0}//ROCKMAN
+texture C_00C0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE00X1, 0, 0}
+sprite  C_00D0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE00X2, 0, 0}//ROCK
+texture C_00D0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE00X2, 0, 0}
+sprite  C_00E0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE00X3, 0, 0}//ROLL
+texture C_00E0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE00X3, 0, 0}
+sprite  C_00F0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE00X4, 0, 0}//BASS
+texture C_00F0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE00X4, 0, 0}
+sprite  C_00G0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE00X6, 0, 0}//AUTO
+texture C_00G0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE00X6, 0, 0}
+sprite  C_00H0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE00X7, 0, 0}//MEGAMAN?
+texture C_00H0X, 45, 32{XScale 4.0 YScale 4.0 				Patch FACE00X7, 0, 0}
+sprite  C_00I0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE00X8, 0, 0}//BREAKMAN
+texture C_00I0X, 45, 32{XScale 4.0 YScale 4.0 				Patch FACE00X8, 0, 0}
+sprite  C_00J0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE00XJ, 0, 0}//JOE
+texture C_00J0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE00XJ, 0, 0}
+
+sprite  C_00R0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE00XL, 0, 0}//Ryu Light
+texture C_00R0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE00XL, 0, 0}
+sprite  C_00T0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE00XB, 0, 0}//BADBOXART
+texture C_00T0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE00XB, 0, 0}
+
+sprite  C_00X0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE10, 0, 0}//YD Bearer
+texture C_00X0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE10, 0, 0}
+
+sprite  C_01A0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE0, 0, 0}//CUT
+texture C_01A0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE0, 0, 0}
+sprite  C_01B0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE1, 0, 0}//GUTS
+texture C_01B0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE1, 0, 0}
+sprite  C_01C0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE4, 0, 0}//ICE
+texture C_01C0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE4, 0, 0}
+sprite  C_01D0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE2, 0, 0}//BOMB
+texture C_01D0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE2, 0, 0}
+sprite  C_01E0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE5, 0, 0}//FIRE
+texture C_01E0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE5, 0, 0}
+sprite  C_01F0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE3, 0, 0}//ELEC
+texture C_01F0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE3, 0, 0}
+sprite  C_01G0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE6, 0, 0}//TIME
+texture C_01G0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE6, 0, 0}
+sprite  C_01H0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE7, 0, 0}//OIL
+texture C_01H0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE7, 0, 0}
+
+sprite  C_02A0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE18_G, 0, 0}//METAL
+texture C_02A0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE18_G, 0, 0}
+sprite  C_02B0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE12_G, 0, 0}//AIR
+texture C_02B0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE12_G, 0, 0}
+sprite  C_02C0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE11_G, 0, 0}//BUBBLE
+texture C_02C0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE11_G, 0, 0}
+sprite  C_02D0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE15_G, 0, 0}//QUICK
+texture C_02D0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE15_G, 0, 0}
+sprite  C_02E0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE17_G, 0, 0}//CRASH
+texture C_02E0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE17_G, 0, 0}
+sprite  C_02F0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE14_G, 0, 0}//FLASH
+texture C_02F0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE14_G, 0, 0}
+sprite  C_02G0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE13_G, 0, 0}//HEAT
+texture C_02G0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE13_G, 0, 0}
+sprite  C_02H0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE16_G, 0, 0}//WOOD
+texture C_02H0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE16_G, 0, 0}
+sprite  C_02I0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE60W, 0, 0}//WILY
+texture C_02I0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE60W, 0, 0}
+sprite  C_02J0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE02XA, 0, 0}//ALIEN
+texture C_02J0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE02XA, 0, 0}
+
+sprite  C_03A0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE23, 0, 0}//NEEDLE
+texture C_03A0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE23, 0, 0}
+sprite  C_03B0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE26, 0, 0}//MAGNET
+texture C_03B0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE26, 0, 0}
+sprite  C_03C0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE25, 0, 0}//GEMINI
+texture C_03C0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE25, 0, 0}
+sprite  C_03D0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE24, 0, 0}//HARD
+texture C_03D0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE24, 0, 0}
+sprite  C_03E0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE22, 0, 0}//TOP
+texture C_03E0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE22, 0, 0}
+sprite  C_03F0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE21, 0, 0}//SNAKE
+texture C_03F0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE21, 0, 0}
+sprite  C_03G0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE27, 0, 0}//SPARK
+texture C_03G0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE27, 0, 0}
+sprite  C_03H0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE28, 0, 0}//SHADOW
+texture C_03H0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE28, 0, 0}
+sprite  C_03I0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE30, 0, 0}//DOCROBOT
+texture C_03I0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE30, 0, 0}
+
+sprite  C_04A0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE38, 0, 0}//BRIGHT
+texture C_04A0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE38, 0, 0}
+sprite  C_04B0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE34, 0, 0}//TOAD
+texture C_04B0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE34, 0, 0}
+sprite  C_04C0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE33, 0, 0}//DRILL
+texture C_04C0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE33, 0, 0}
+sprite  C_04D0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE31, 0, 0}//PHARAOH
+texture C_04D0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE31, 0, 0}
+sprite  C_04E0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE36, 0, 0}//RING
+texture C_04E0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE36, 0, 0}
+sprite  C_04F0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE35, 0, 0}//DUST
+texture C_04F0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE35, 0, 0}
+sprite  C_04G0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE32, 0, 0}//DIVE
+texture C_04G0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE32, 0, 0}
+sprite  C_04H0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE37, 0, 0}//SKULL
+texture C_04H0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE37, 0, 0}
+
+sprite  C_05A0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE46, 0, 0}//GRAVITY
+texture C_05A0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE46, 0, 0}
+sprite  C_05B0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE44, 0, 0}//WAVE
+texture C_05B0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE44, 0, 0}
+sprite  C_05C0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE42, 0, 0}//STONE
+texture C_05C0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE42, 0, 0}
+sprite  C_05D0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE45, 0, 0}//GYRO
+texture C_05D0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE45, 0, 0}
+sprite  C_05E0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE47, 0, 0}//STAR
+texture C_05E0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE47, 0, 0}
+sprite  C_05F0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE41, 0, 0}//CHARGE
+texture C_05F0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE41, 0, 0}
+sprite  C_05G0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE43, 0, 0}//NAPALM
+texture C_05G0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE43, 0, 0}
+sprite  C_05H0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE48, 0, 0}//CRYSTAL
+texture C_05H0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE48, 0, 0}
+
+sprite  C_05I0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE50A, 0, 0}//DARK1
+texture C_05I0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE50A, 0, 0}
+sprite  C_05J0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE50B, 0, 0}//DARK2
+texture C_05J0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE50B, 0, 0}
+sprite  C_05K0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE50C, 0, 0}//DARK3
+texture C_05K0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE50C, 0, 0}
+sprite  C_05L0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE50D, 0, 0}//DARK4
+texture C_05L0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE50D, 0, 0}
+
+sprite  C_06A0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE54, 0, 0}//BLIZZARD
+texture C_06A0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE54, 0, 0}
+sprite  C_06B0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE52, 0, 0}//CENTAUR
+texture C_06B0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE52, 0, 0}
+sprite  C_06C0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE56, 0, 0}//FLAME
+texture C_06C0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE56, 0, 0}
+sprite  C_06D0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE53, 0, 0}//KNIGHT
+texture C_06D0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE53, 0, 0}
+sprite  C_06E0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE55, 0, 0}//PLANT
+texture C_06E0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE55, 0, 0}
+sprite  C_06F0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE51, 0, 0}//TOMAHAWK
+texture C_06F0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE51, 0, 0}
+sprite  C_06G0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE57, 0, 0}//WIND
+texture C_06G0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE57, 0, 0}
+sprite  C_06H0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE58, 0, 0}//YAMATO
+texture C_06H0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE58, 0, 0}
+
+sprite  C_07A0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE61, 0, 0}//FREEZE
+texture C_07A0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE61, 0, 0}
+sprite  C_07B0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE62, 0, 0}//JUNK
+texture C_07B0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE62, 0, 0}
+sprite  C_07C0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE63, 0, 0}//BURST
+texture C_07C0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE63, 0, 0}
+sprite  C_07D0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE64, 0, 0}//CLOUD
+texture C_07D0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE64, 0, 0}
+sprite  C_07E0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE65, 0, 0}//SPRING
+texture C_07E0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE65, 0, 0}
+sprite  C_07F0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE66, 0, 0}//SLASH
+texture C_07F0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE66, 0, 0}
+sprite  C_07G0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE67, 0, 0}//SHADE
+texture C_07G0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE67, 0, 0}
+sprite  C_07H0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE68, 0, 0}//TURBO
+texture C_07H0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE68, 0, 0}
+
+sprite  C_08A0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE87, 0, 0}//TENGU
+texture C_08A0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE87, 0, 0}
+sprite  C_08B0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE88, 0, 0}//ASTRO
+texture C_08B0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE88, 0, 0}
+sprite  C_08C0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE76, 0, 0}//SWORD
+texture C_08C0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE76, 0, 0}
+sprite  C_08D0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE77, 0, 0}//CLOWN
+texture C_08D0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE77, 0, 0}
+sprite  C_08E0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE78, 0, 0}//SEARCH
+texture C_08E0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE78, 0, 0}
+sprite  C_08F0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE79, 0, 0}//FROST
+texture C_08F0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE79, 0, 0}
+sprite  C_08G0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE80, 0, 0}//GRENADE
+texture C_08G0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE80, 0, 0}
+sprite  C_08H0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE81, 0, 0}//AQUA
+texture C_08H0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE81, 0, 0}
+sprite  C_08I0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE82, 0, 0}//DUO
+texture C_08I0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE82, 0, 0}
+sprite  C_08J0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE85_O, 0, 0}//ORIGINALDUO
+texture C_08J0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE85_O, 0, 0}
+sprite  C_08K0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE85, 0, 0}//EVILROBOT
+texture C_08K0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE85, 0, 0}
+
+
+sprite  C_09A0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE104, 0, 0}//CONCRETE
+texture C_09A0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE104, 0, 0}
+sprite  C_09B0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE105, 0, 0}//TORNADO
+texture C_09B0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE105, 0, 0}
+sprite  C_09C0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE106, 0, 0}//SPLASH
+texture C_09C0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE106, 0, 0}
+sprite  C_09D0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE107, 0, 0}//PLUG
+texture C_09D0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE107, 0, 0}
+sprite  C_09E0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE108, 0, 0}//JEWEL
+texture C_09E0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE108, 0, 0}
+sprite  C_09F0, 32, 34{XScale 2.0 YScale 2.0 offset 16, 34  Patch FACE109, 0, 0}//HORNET
+texture C_09F0X, 32, 34{XScale 4.0 YScale 4.0 				Patch FACE109, 0, 0}
+sprite  C_09G0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE110, 0, 0}//MAGMA
+texture C_09G0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE110, 0, 0}
+sprite  C_09H0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE111, 0, 0}//GALAXY
+texture C_09H0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE111, 0, 0}
+
+sprite  C_09I0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE113, 0, 0}//FAKE
+texture C_09I0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE113, 0, 0}
+
+//Galaxy Colors
+//,"183:183=183:183","227:227=227:227"
+sprite C_09R0,32,32{XScale 2.0 YScale 2.0 offset 16,32 patch FACE111X,0,0{Translation"199:199=77:77","198:198=206:206","197:197=205:205","196:196=201:201"}}
+texture C_09R0X,32,32{XScale 4.0 YScale 4.0 patch FACE111X,0,0{Translation"199:199=77:77","198:198=206:206","197:197=205:205","196:196=201:201"}}
+sprite C_09S0,32,32{XScale 2.0 YScale 2.0 offset 16,32 patch FACE111X,0,0{Translation"199:199=119:119","198:198=116:116","197:197=103:103","196:196=97:97"}}
+texture C_09S0X,32,32{XScale 4.0 YScale 4.0 patch FACE111X,0,0{Translation"199:199=119:119","198:198=116:116","197:197=103:103","196:196=97:97"}}
+sprite C_09T0,32,32{XScale 2.0 YScale 2.0 offset 16,32 patch FACE111X,0,0{Translation"199:199=121:121","198:198=111:111","197:197=106:106","196:196=105:105"}}
+texture C_09T0X,32,32{XScale 4.0 YScale 4.0 patch FACE111X,0,0{Translation"199:199=121:121","198:198=111:111","197:197=106:106","196:196=105:105"}}
+sprite C_09U0,32,32{XScale 2.0 YScale 2.0 offset 16,32 patch FACE111X,0,0{Translation"199:199=233:233","198:198=230:230","197:197=248:248","196:196=213:213"}}
+texture C_09U0X,32,32{XScale 4.0 YScale 4.0 patch FACE111X,0,0{Translation"199:199=233:233","198:198=230:230","197:197=248:248","196:196=213:213"}}
+sprite C_09V0,32,32{XScale 2.0 YScale 2.0 offset 16,32 patch FACE111X,0,0{Translation"199:199=223:223","198:198=227:227","197:197=225:225","196:196=224:224"}}
+texture C_09V0X,32,32{XScale 4.0 YScale 4.0 patch FACE111X,0,0{Translation"199:199=223:223","198:198=227:227","197:197=225:225","196:196=224:224"}}
+sprite C_09W0,32,32{XScale 2.0 YScale 2.0 offset 16,32 patch FACE111X,0,0{Translation"199:199=30:30","198:198=40:40","197:197=38:38","196:196=33:33"}}
+texture C_09W0X,32,32{XScale 4.0 YScale 4.0 patch FACE111X,0,0{Translation"199:199=30:30","198:198=40:40","197:197=38:38","196:196=33:33"}}
+sprite C_09X0,32,32{XScale 2.0 YScale 2.0 offset 16,32 patch FACE111X,0,0{Translation"199:199=79:79","198:198=60:60","197:197=57:57","196:196=66:66"}}
+texture C_09X0X,32,32{XScale 4.0 YScale 4.0 patch FACE111X,0,0{Translation"199:199=79:79","198:198=60:60","197:197=57:57","196:196=66:66"}}
+
+
+sprite  C_10A0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE137, 0, 0}//BLADE
+texture C_10A0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE137, 0, 0}
+sprite  C_10B0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE138, 0, 0}//PUMP
+texture C_10B0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE138, 0, 0}
+sprite  C_10C0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE139, 0, 0}//COMMANDO
+texture C_10C0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE139, 0, 0}
+sprite  C_10D0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE140, 0, 0}//CHILL
+texture C_10D0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE140, 0, 0}
+texture C_10D0Y, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE140X, 0, 0}//Chill No Ice
+//sprite  C_10E0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE141, 0, 0}//SHEEP
+//texture C_10E0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE141, 0, 0}
+//sprite  C_10F0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE142, 0, 0}//STRIKE
+//texture C_10F0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE142, 0, 0}
+sprite  C_10G0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE143, 0, 0}//NITRO
+texture C_10G0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE143, 0, 0}
+sprite  C_10H0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE144, 0, 0}//SOLAR
+texture C_10H0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE144, 0, 0}
+
+sprite  C_0BA0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE89, 0, 0}//DYNAMO
+texture C_0BA0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE89, 0, 0}
+sprite  C_0BB0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE90, 0, 0}//COLD
+texture C_0BB0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE90, 0, 0}
+sprite  C_0BC0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE91, 0, 0}//GROUND
+texture C_0BC0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE91, 0, 0}
+sprite  C_0BD0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE92, 0, 0}//PIRATE
+texture C_0BD0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE92, 0, 0}
+sprite  C_0BE0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE93, 0, 0}//BURNER
+texture C_0BE0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE93, 0, 0}
+sprite  C_0BF0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE94, 0, 0}//MAGIC
+texture C_0BF0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE94, 0, 0}
+sprite  C_0BG0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE96, 0, 0}//KING
+texture C_0BG0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE96, 0, 0}
+
+
+sprite  C_WTA0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE97, 0, 0}//BUSTERRODG
+texture C_WTA0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE97, 0, 0}
+sprite  C_WTB0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE98, 0, 0}//MEGAWATERS
+texture C_WTB0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE98, 0, 0}
+sprite  C_WTC0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE99, 0, 0}//HYPERSTORMH
+texture C_WTC0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE99, 0, 0}
+
+sprite  C_0KA0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE129, 0, 0}//ENKER
+texture C_0KA0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE129, 0, 0}
+sprite  C_0KB0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE130, 0, 0}//PUNK
+texture C_0KB0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE130, 0, 0}
+sprite  C_0KC0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE128, 0, 0}//BALLADE
+texture C_0KC0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE128, 0, 0}
+sprite  C_0KD0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE131, 0, 0}//QUINT
+texture C_0KD0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE131, 0, 0}
+sprite  C_0KE0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE176, 0, 0}//RATHOR
+texture C_0KE0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE176, 0, 0}
+
+sprite  C_0VA0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE146, 0, 0}//TERRA
+texture C_0VA0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE146, 0, 0}
+sprite  C_0VB0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE147, 0, 0}//MERCURY
+texture C_0VB0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE147, 0, 0}
+sprite  C_0VC0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE148, 0, 0}//VENUS
+texture C_0VC0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE148, 0, 0}
+sprite  C_0VD0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE149, 0, 0}//MARS
+texture C_0VD0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE149, 0, 0}
+sprite  C_0VE0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE150, 0, 0}//JUPITER
+texture C_0VE0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE150, 0, 0}
+//sprite  C_0VF0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE151, 0, 0}//SATURN
+//texture C_0VF0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE151, 0, 0}
+sprite  C_0VG0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE152, 0, 0}//URANUS
+texture C_0VG0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE152, 0, 0}
+sprite  C_0VH0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE153, 0, 0}//PLUTO
+texture C_0VH0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE153, 0, 0}
+sprite  C_0VI0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE154, 0, 0}//NEPTUNE
+texture C_0VI0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE154, 0, 0}
+//sprite  C_0VJ0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE155, 0, 0}//SUNSTAR
+//texture C_0VJ0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE155, 0, 0}
+
+
+//HELPERCLASS ZONE
+
+sprite  C_66U0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch "C@ICN0N", 0, 0}//HELPERCLASS
+texture C_66U0X, 32, 32{XScale 4.0 YScale 4.0 				Patch "C@ICN0N", 0, 0}
+
+sprite "H$LPX0",339,108{Offset 16,-80 Patch ENKAC0,0,0{Translation "198:198=194:194","199:199=195:195","228:228=95:95","162:162=3:3","226:226=118:118","220:220=119:119"}}
+sprite "H$LPY0",177,129{Offset -144,-44 Patch ENKAD0,0,0{Translation "198:198=194:194","199:199=195:195","228:228=95:95","162:162=3:3","226:226=118:118","220:220=119:119"}}
+sprite "H$LPZ0",123,291{Offset -240,60 Patch ENKAF0,0,0{Translation "198:198=194:194","199:199=195:195","228:228=95:95","162:162=3:3","226:226=118:118","220:220=119:119"}}
+

@@ -1,0 +1,676 @@
+//These are all the weakness powerups
+//1.2x is the general amount, 1.2 * 1.2 = 1.44x weakness.
+//These weaknesses are boosted in power to be more useful due to their low damage
+/*Weakness boost ( c ):
+"TimeSlow"
+"TimeStop"
+"TimeBender"
+"FlashStopper"
+"FlashStopperB"
+"CentaurShock"
+*/
+
+//MM1//MM1//MM1//MM1//MM1
+actor Pwr_RollingCutter_Flaw : Weakness{
+damagefactor "RollingCutter", 1.2
+damagefactor "CutM_Cutter", 1.2
+damagefactor "MegaCutBall", 1.2}
+actor Pwr_RollingCutter_Flaw2 : Pwr_RollingCutter_Flaw {}
+actor Pwr_SuperArm_Flaw : Weakness{
+damagefactor "SuperArm", 1.2
+damagefactor "GutsM_Rock", 1.2
+damagefactor "GutsM_RockBit", 1.2
+damagefactor "MegaGutsBall", 1.2}
+actor Pwr_SuperArm_Flaw2 : Pwr_SuperArm_Flaw {}
+actor Pwr_IceSlasher_Flaw : Weakness{
+damagefactor "IceSlasher", 1.2
+damagefactor "IceM_Slasher", 1.2
+damagefactor "IceM_Slow", 1.2
+damagefactor "IceM_Icicle", 1.2
+damagefactor "IceM_Sculpt", 1.2
+damagefactor "IceM_Slow2", 1.2
+damagefactor "MegaIceBall", 1.2}
+actor Pwr_IceSlasher_Flaw2 : Pwr_IceSlasher_Flaw {}
+actor Pwr_HyperBomb_Flaw : Weakness{
+damagefactor "HyperBomb", 1.2
+damagefactor "BombM_Boom", 1.2
+damagefactor "MegaBombBall", 1.2}
+actor Pwr_HyperBomb_Flaw2 : Pwr_HyperBomb_Flaw {}
+actor Pwr_FireStorm_Flaw : Weakness{
+damagefactor "FireStorm", 1.2
+damagefactor "FireSpin", 1.2
+damagefactor "FireM_Storm", 1.2
+damagefactor "FireM_StormBit", 1.2
+damagefactor "FireM_Spin", 1.2
+damagefactor "FireM_Wave", 1.2
+damagefactor "MegaFireBall", 1.2
+damagefactor "MegaFireBallBurn", 1.2}
+actor Pwr_FireStorm_Flaw2 : Pwr_FireStorm_Flaw {}
+actor Pwr_ThunderBeam_Flaw : Weakness{
+damagefactor "ThunderBeam", 1.2
+damagefactor "ElecM_Beam", 1.2
+damagefactor "ElecM_Zap", 1.2
+damagefactor "ElecM_TeleZap", 1.2
+damagefactor "MegaElecBall", 1.2}
+actor Pwr_ThunderBeam_Flaw2 : Pwr_ThunderBeam_Flaw {}
+actor Pwr_TimeSlow_Flaw : Weakness{
+damagefactor "TimeSlow", 1.9
+damagefactor "TimeM_Slow", 1.9
+damagefactor "MegaTimeBall", 1.2}
+actor Pwr_TimeSlow_Flaw2 : Pwr_TimeSlow_Flaw {}
+actor Pwr_OilSlider_Flaw : Weakness{
+damagefactor "OilSlider", 1.2
+damagefactor "OilFlame", 1.2
+damagefactor "OilM_Shot", 1.2
+damagefactor "OilM_Blob", 1.2
+damagefactor "OilM_Flame", 1.2
+damagefactor "OilM_Snap", 2.0
+damagefactor "OilM_Slider", 1.2
+damagefactor "OilM_Board", 1.2
+damagefactor "MegaOilBall", 1.2}
+actor Pwr_OilSlider_Flaw2 : Pwr_OilSlider_Flaw {}
+//MM1//MM1//MM1//MM1//MM1
+
+//MM2//MM2//MM2//MM2//MM2
+actor Pwr_MetalBlade_Flaw : Weakness{
+damagefactor "MetalBlade", 1.2
+damagefactor "MetalM_Blade", 1.2
+damagefactor "MetalM_Chain", 1.2}
+actor Pwr_MetalBlade_Flaw2 : Pwr_MetalBlade_Flaw {}
+actor Pwr_AirShooter_Flaw : Weakness{
+damagefactor "AirShooter", 1.2
+damagefactor "AirM_Shot", 1.2
+damagefactor "AirM_Wall", 1.2}
+actor Pwr_AirShooter_Flaw2 : Pwr_AirShooter_Flaw {}
+actor Pwr_BubbleLead_Flaw : Weakness{
+damagefactor "BubbleLead", 1.2
+damagefactor "BubbleM_Lead", 1.2}
+actor Pwr_BubbleLead_Flaw2 : Pwr_BubbleLead_Flaw {}
+actor Pwr_QuickBoomerang_Flaw : Weakness{
+damagefactor "QuickBoomerang", 1.2
+damagefactor "QuickM_Shot", 1.2
+damagefactor "QuickM_Rapid", 1.2}
+actor Pwr_QuickBoomerang_Flaw2 : Pwr_QuickBoomerang_Flaw {}
+actor Pwr_CrashBomb_Flaw : Weakness{
+damagefactor "CrashBomb", 1.2
+damagefactor "CrashM_Clash", 1.2
+damagefactor "CrashM_Mine", 1.2}
+actor Pwr_CrashBomb_Flaw2 : Pwr_CrashBomb_Flaw {}
+actor Pwr_TimeStopper_Flaw : Weakness{
+damagefactor "TimeStopper", 2.6
+damagefactor "FlashM_Stopper", 2.6
+damagefactor "TimeBender", 2.6}
+actor Pwr_TimeStopper_Flaw2 : Pwr_TimeStopper_Flaw {}
+actor Pwr_AtomicFire_Flaw : Weakness{
+damagefactor "AtomicFire1", 1.2
+damagefactor "AtomicFire2", 1.2
+damagefactor "AtomicFire3", 1.2
+damagefactor "HeatM_Toss", 1.2
+damagefactor "HeatM_Pillar", 1.2
+damagefactor "HeatM_Tackle", 1.2
+damagefactor "HeatM_Shot", 1.2}
+actor Pwr_AtomicFire_Flaw2 : Pwr_AtomicFire_Flaw {}
+actor Pwr_LeafShield_Flaw : Weakness{
+damagefactor "LeafShield", 1.2
+damagefactor "WoodM_Seed", 1.2
+damagefactor "WoodM_SeedStun", 1.2
+damagefactor "WoodM_SeedTrap", 1.2
+damagefactor "WoodM_Leaf", 1.2
+damagefactor "WoodM_LeafRain", 1.2
+damagefactor "WoodM_Shield", 1.2}
+actor Pwr_LeafShield_Flaw2 : Pwr_LeafShield_Flaw {}
+//MM2//MM2//MM2//MM2//MM2
+
+//MM3//MM3//MM3//MM3//MM3
+actor Pwr_NeedleCannon_Flaw : Weakness{
+damagefactor "NeedleCannon", 1.2
+damagefactor "NeedleM_Shot", 1.2}
+actor Pwr_NeedleCannon_Flaw2 : Pwr_NeedleCannon_Flaw {}
+actor Pwr_MagnetMissile_Flaw : Weakness{
+damagefactor "MagnetMissile", 1.2
+damagefactor "MagnetM_Shot", 1.2
+damagefactor "MagnetM_Push", 1.2}
+actor Pwr_MagnetMissile_Flaw2 : Pwr_MagnetMissile_Flaw {}
+actor Pwr_GeminiLaser_Flaw : Weakness{
+damagefactor "GeminiLaser", 1.2
+damagefactor "GeminiM_Laser", 1.2}
+actor Pwr_GeminiLaser_Flaw2 : Pwr_GeminiLaser_Flaw {}
+actor Pwr_HardKnuckle_Flaw : Weakness{
+damagefactor "HardKnuckle", 1.2
+damagefactor "HardM_Knuckle", 1.2}
+actor Pwr_HardKnuckle_Flaw2 : Pwr_HardKnuckle_Flaw {}
+actor Pwr_TopSpin_Flaw : Weakness{
+damagefactor "TopSpin", 1.2
+damagefactor "TopM_Windup", 1.2
+damagefactor "TopM_Spin", 1.2
+damagefactor "TopM_Spin2", 1.2
+damagefactor "TopTwist", 1.2}
+actor Pwr_TopSpin_Flaw2 : Pwr_TopSpin_Flaw {}
+actor Pwr_SearchSnake_Flaw : Weakness{
+damagefactor "SearchSnake", 1.2
+damagefactor "SnakeM_Snake", 1.2
+damagefactor "SnakeM_Snake2", 1.2}
+actor Pwr_SearchSnake_Flaw2 : Pwr_SearchSnake_Flaw {}
+actor Pwr_SparkShock_Flaw : Weakness{
+damagefactor "SparkShock", 1.2
+damagefactor "SparkM_Shock", 1.2
+damagefactor "SparkM_Shock2", 1.2
+damagefactor "SparkM_Zap", 1.2
+damagefactor "SparkM_Lob", 1.2}
+actor Pwr_SparkShock_Flaw2 : Pwr_SparkShock_Flaw {}
+actor Pwr_ShadowBlade_Flaw : Weakness{
+damagefactor "ShadowBlade", 1.2
+damagefactor "ShadowM_Blade1", 1.2
+damagefactor "ShadowM_Blade2", 1.2
+damagefactor "ShadowM_Caltrop", 1.2}
+actor Pwr_ShadowBlade_Flaw2 : Pwr_ShadowBlade_Flaw {}
+//MM3//MM3//MM3//MM3//MM3
+
+//MM4//MM4//MM4//MM4//MM4
+actor Pwr_FlashStopper_Flaw : Weakness{
+damagefactor "FlashStopper", 2.6
+damagefactor "BrightM_Stopper", 2.6
+damagefactor "BrightM_Bulb", 1.2
+damagefactor "FlashBulb", 1.2}
+actor Pwr_FlashStopper_Flaw2 : Pwr_FlashStopper_Flaw {}
+actor Pwr_RainFlush_Flaw : Weakness{
+damagefactor "RainFlush", 1.2
+damagefactor "ToadM_Rain", 1.2
+damagefactor "ToadM_Rain2", 1.2}
+actor Pwr_RainFlush_Flaw2 : Pwr_RainFlush_Flaw {}
+actor Pwr_DrillBomb_Flaw : Weakness{
+damagefactor "DrillBomb", 1.2
+damagefactor "DrillM_Bomb", 1.2}
+actor Pwr_DrillBomb_Flaw2 : Pwr_DrillBomb_Flaw {}
+actor Pwr_PharaohShot_Flaw : Weakness{
+damagefactor "PharaohShot1", 1.2
+damagefactor "PharaohShot2", 1.2
+damagefactor "PharaohShot3", 1.2
+damagefactor "PharaohHold", 1.2
+damagefactor "PharaohM_Shot", 1.2
+damagefactor "PharaohM_Shot3", 1.2
+damagefactor "PharaohM_Wave", 1.2
+damagefactor "PharaohM_Hold", 1.2}
+actor Pwr_PharaohShot_Flaw2 : Pwr_PharaohShot_Flaw {}
+actor Pwr_RingBoomerang_Flaw : Weakness{
+damagefactor "RingBoomerang", 1.2
+damagefactor "RingM_Ring1", 1.2
+damagefactor "RingM_Ring2", 1.2}
+actor Pwr_RingBoomerang_Flaw2 : Pwr_RingBoomerang_Flaw {}
+actor Pwr_DustCrusher_Flaw : Weakness{
+damagefactor "DustCrusher", 1.2
+damagefactor "DustCrusherBit", 1.2
+damagefactor "DustM_Crush", 1.2
+damagefactor "DustM_CrushBit", 1.2}
+actor Pwr_DustCrusher_Flaw2 : Pwr_DustCrusher_Flaw {}
+actor Pwr_DiveMissile_Flaw : Weakness{
+damagefactor "DiveMissile", 1.2
+damagefactor "DiveM_Torpedo", 1.2
+damagefactor "DiveSonar", 1.2}
+actor Pwr_DiveMissile_Flaw2 : Pwr_DiveMissile_Flaw {}
+actor Pwr_SkullBarrier_Flaw : Weakness{
+damagefactor "SkullBarrier", 1.2
+damagefactor "SkullM_Shot", 1.2
+damagefactor "SkullM_ShotX", 1.2
+damagefactor "SkullM_Barrier", 1.2
+damagefactor "SkullSniper", 1.2}
+actor Pwr_SkullBarrier_Flaw2 : Pwr_SkullBarrier_Flaw {}
+//MM4//MM4//MM4//MM4//MM4
+
+//MM5//MM5//MM5//MM5//MM5
+actor Pwr_GravityHold_Flaw : Weakness{
+damagefactor "GravityHold", 1.2
+damagefactor "GravityM_Down", 1.2
+damagefactor "GravityM_Up", 1.2
+damagefactor "GravityM_Dunked", 1.2
+damagefactor "StoneM_Dunked", 1.2
+damagefactor "TenguM_Dunked", 1.2
+damagefactor "TornadoM_Dunked", 1.2}
+actor Pwr_GravityHold_Flaw2 : Pwr_GravityHold_Flaw {}
+actor Pwr_WaterWave_Flaw : Weakness{
+damagefactor "WaterWave", 1.2}
+actor Pwr_WaterWave_Flaw2 : Pwr_WaterWave_Flaw {}
+actor Pwr_PowerStone_Flaw : Weakness{
+damagefactor "PowerStone", 1.2}
+actor Pwr_PowerStone_Flaw2 : Pwr_PowerStone_Flaw {}
+actor Pwr_GyroAttack_Flaw : Weakness{
+damagefactor "GyroAttack", 1.2}
+actor Pwr_GyroAttack_Flaw2 : Pwr_GyroAttack_Flaw {}
+actor Pwr_StarCrash_Flaw : Weakness{
+damagefactor "StarCrash", 1.2
+damagefactor "StarCrashB", 1.2}
+actor Pwr_StarCrash_Flaw2 : Pwr_StarCrash_Flaw {}
+actor Pwr_ChargeKick_Flaw : Weakness{
+damagefactor "ChargeKick", 1.2}
+actor Pwr_ChargeKick_Flaw2 : Pwr_ChargeKick_Flaw {}
+actor Pwr_NapalmBomb_Flaw : Weakness{
+damagefactor "NapalmBomb", 1.2
+damagefactor "NapalmBombB", 1.2}
+actor Pwr_NapalmBomb_Flaw2 : Pwr_NapalmBomb_Flaw {}
+actor Pwr_CrystalEye_Flaw : Weakness{
+damagefactor "CrystalEye", 1.2
+damagefactor "CrystalEyeBit", 1.2
+damagefactor "CrystalEyeBitB", 1.2
+damagefactor "CrystalEyeBitC", 1.2}
+actor Pwr_CrystalEye_Flaw2 : Pwr_CrystalEye_Flaw {}
+//MM5//MM5//MM5//MM5//MM5
+
+//MM6//MM6//MM6//MM6//MM6
+actor Pwr_BlizzardAttack_Flaw : Weakness{
+damagefactor "BlizzardAttack", 1.2
+damagefactor "BlizzardM_Shot", 1.2
+damagefactor "BlizzardM_Shot2", 1.2}
+actor Pwr_BlizzardAttack_Flaw2 : Pwr_BlizzardAttack_Flaw {}
+actor Pwr_CentaurFlash_Flaw : Weakness{
+damagefactor "CentaurFlash", 1.2
+damagefactor "CentaurM_Flash", 1.2
+damagefactor "CentaurM_Shock", 1.8
+damagefactor "CentaurArrow", 1.2}
+actor Pwr_CentaurFlash_Flaw2 : Pwr_CentaurFlash_Flaw {}
+actor Pwr_FlameBlast_Flaw : Weakness{
+damagefactor "FlameBlast", 1.2
+damagefactor "FlameM_Shot", 1.2
+damagefactor "FlameM_Pillar", 1.2}
+actor Pwr_FlameBlast_Flaw2 : Pwr_FlameBlast_Flaw {}
+actor Pwr_KnightCrush_Flaw : Weakness{
+damagefactor "KnightCrush", 1.2
+damagefactor "KnightM_Mace", 1.2}
+actor Pwr_KnightCrush_Flaw2 : Pwr_KnightCrush_Flaw {}
+actor Pwr_PlantBarrier_Flaw : Weakness{
+damagefactor "PlantBarrier", 1.2
+damagefactor "PlantM_Barrier", 1.2
+damagefactor "PlantM_Toss", 1.2
+damagefactor "PlantTrapper2", 1.2}
+actor Pwr_PlantBarrier_Flaw2 : Pwr_PlantBarrier_Flaw {}
+actor Pwr_SilverTomahawk_Flaw : Weakness{
+damagefactor "SilverTomahawk", 1.2
+damagefactor "TomahawkM_Shot", 1.2}
+actor Pwr_SilverTomahawk_Flaw2 : Pwr_SilverTomahawk_Flaw {}
+actor Pwr_WindStorm_Flaw : Weakness{
+damagefactor "WindStorm", 1.2
+damagefactor "WindM_Push", 1.2
+damagefactor "WindM_Pull", 1.2}
+actor Pwr_WindStorm_Flaw2 : Pwr_WindStorm_Flaw {}
+actor Pwr_YamatoSpear_Flaw : Weakness{
+damagefactor "YamatoSpear", 1.2
+damagefactor "YamatoM_Shot", 1.2}
+actor Pwr_YamatoSpear_Flaw2 : Pwr_YamatoSpear_Flaw {}
+//MM6//MM6//MM6//MM6//MM6
+
+//MM7//MM7//MM7//MM7//MM7
+actor Pwr_FreezeCracker_Flaw : Weakness{
+damagefactor "FreezeCracker", 1.2
+damagefactor "FreezeCrackerBit", 1.2
+damagefactor "FreezeM_Shot", 1.2
+damagefactor "FreezeM_ShotBit", 1.2
+damagefactor "FreezeM_Frozen", 1.2
+damagefactor "FreezeM_Iced", 1.2
+damagefactor "FreezeM_SpikeF", 1.2
+damagefactor "FreezeM_SpikeC", 1.2}
+actor Pwr_FreezeCracker_Flaw2 : Pwr_FreezeCracker_Flaw {}
+actor Pwr_JunkShield_Flaw : Weakness{
+damagefactor "JunkShield", 1.2
+damagefactor "JunkM_Shield", 1.2
+damagefactor "JunkM_Shot", 1.2
+damagefactor "JunkM_Shock", 1.2
+damagefactor "JunkM_Punch", 1.2
+damagefactor "JunkM_Cube", 1.2}
+actor Pwr_JunkShield_Flaw2 : Pwr_JunkShield_Flaw {}
+actor Pwr_DangerWrap_Flaw : Weakness{
+damagefactor "DangerWrap", 1.2
+damagefactor "BurstM_Shot", 1.2
+damagefactor "BurstM_Boom", 1.2
+damagefactor "BurstM_Trap", 1.2}
+actor Pwr_DangerWrap_Flaw2 : Pwr_DangerWrap_Flaw {}
+actor Pwr_ThunderBolt_Flaw : Weakness{
+damagefactor "ThunderBolt", 1.2
+damagefactor "CloudM_Shot", 1.2
+damagefactor "CloudM_Zapper", 1.2
+damagefactor "CloudM_Spark", 1.2
+damagefactor "CloudM_Charge", 1.2}
+actor Pwr_ThunderBolt_Flaw2 : Pwr_ThunderBolt_Flaw {}
+actor Pwr_WildCoil_Flaw : Weakness{
+damagefactor "WildCoil", 1.2
+damagefactor "WildCoil2", 1.2
+damagefactor "SpringM_Coil", 1.2
+damagefactor "SpringM_Fist", 1.2}
+actor Pwr_WildCoil_Flaw2 : Pwr_WildCoil_Flaw {}
+actor Pwr_SlashClaw_Flaw : Weakness{
+damagefactor "SlashClaw", 1.2
+damagefactor "SlashM_Swipe", 1.2}
+actor Pwr_SlashClaw_Flaw2 : Pwr_SlashClaw_Flaw {}
+actor Pwr_NoiseCrush_Flaw : Weakness{
+damagefactor "NoiseCrush1", 1.2
+damagefactor "NoiseCrush2", 1.2
+damagefactor "ShadeM_Shot", 1.2
+damagefactor "ShadeM_Shot2", 1.2}
+actor Pwr_NoiseCrush_Flaw2 : Pwr_NoiseCrush_Flaw {}
+actor Pwr_ScorchWheel_Flaw : Weakness{
+damagefactor "ScorchWheel", 1.2
+damagefactor "TurboM_Wheel", 1.2
+damagefactor "TurboM_WheelBit", 1.2}
+actor Pwr_ScorchWheel_Flaw2 : Pwr_ScorchWheel_Flaw {}
+//MM7//MM7//MM7//MM7//MM7
+
+//MM8//MM8//MM8//MM8//MM8
+actor Pwr_TornadoHold_Flaw : Weakness{
+damagefactor "TornadoHold", 1.2
+damagefactor "TenguM_Pod", 1.2
+damagefactor "TenguM_THold", 1.2
+damagefactor "TrioTornadoHold", 1.2}
+actor Pwr_TornadoHold_Flaw2 : Pwr_TornadoHold_Flaw {}
+actor Pwr_AstroCrush_Flaw : Weakness{
+damagefactor "AstroCrush", 1.2
+damagefactor "AstroM_Meteor", 1.2
+damagefactor "TrioAstroCrush", 1.2}
+actor Pwr_AstroCrush_Flaw2 : Pwr_AstroCrush_Flaw {}
+actor Pwr_FlameSword_Flaw : Weakness{
+damagefactor "FlameSword", 1.2
+damagefactor "FlameSwordSpark", 1.2
+damagefactor "SwordM_Swipe", 1.2
+damagefactor "SwordM_Torso", 1.2
+damagefactor "SwordM_SwipeBit", 1.2
+damagefactor "TrioFlameSword", 1.2}
+actor Pwr_FlameSword_Flaw2 : Pwr_FlameSword_Flaw {}
+actor Pwr_ThunderClaw_Flaw : Weakness{
+damagefactor "ThunderClaw", 1.2
+damagefactor "ClownM_Claw", 1.2
+damagefactor "ClownM_ClawChain", 1.2
+damagefactor "ClownM_Peg", 1.2
+damagefactor "ClownM_Aura", 1.2
+damagefactor "ClownM_Aura2", 1.2
+damagefactor "ClownM_Ground", 1.2
+damagefactor "TrioThunderClaw", 1.2}
+actor Pwr_ThunderClaw_Flaw2 : Pwr_ThunderClaw_Flaw {}
+actor Pwr_HomingSniper_Flaw : Weakness{
+damagefactor "HomingSniper", 1.2
+damagefactor "SearchM_Shot", 1.2
+damagefactor "SearchM_LockShot", 1.2
+damagefactor "TrioHomingSniper", 1.2
+damagefactor "TrioHomingSniperShock", 1.2}
+actor Pwr_HomingSniper_Flaw2 : Pwr_HomingSniper_Flaw {}
+actor Pwr_IceWave_Flaw : Weakness{
+damagefactor "IceWave", 1.2
+damagefactor "FrostM_Shot", 1.2
+damagefactor "FrostM_Iced", 1.2
+damagefactor "FrostM_Iced2", 1.2
+damagefactor "TrioIceWave", 1.2}
+actor Pwr_IceWave_Flaw2 : Pwr_IceWave_Flaw {}
+actor Pwr_FlashBomb_Flaw : Weakness{
+damagefactor "FlashBomb", 1.2
+damagefactor "GrenadeM_Nade", 1.2
+damagefactor "GrenadeM_Bomb", 1.2
+damagefactor "TrioFlashBomb", 1.2
+damagefactor "TrioFlashBomb2", 1.2}
+actor Pwr_FlashBomb_Flaw2 : Pwr_FlashBomb_Flaw {}
+actor Pwr_WaterBalloon_Flaw : Weakness{
+damagefactor "WaterBalloon", 1.2
+damagefactor "AquaM_Shot", 1.2
+damagefactor "AquaM_Tower", 1.2
+damagefactor "AquaM_TowerBit", 1.2
+damagefactor "AquaM_Cannon", 1.2
+damagefactor "AquaM_CannonBit", 1.2
+damagefactor "TrioWaterBalloon", 1.2}
+actor Pwr_WaterBalloon_Flaw2 : Pwr_WaterBalloon_Flaw {}
+actor Pwr_MegaBall_Flaw : Weakness{
+damagefactor "MegaBall", 1.2
+damagefactor "Rock_MegaBall", 1.2}
+actor Pwr_MegaBall_Flaw2 : Pwr_MegaBall_Flaw {}
+//MM8//MM8//MM8//MM8//MM8
+
+//MMB//MMB//MMB//MMB//MMB
+actor Pwr_TenguBlade_Flaw : Weakness{
+damagefactor "TenguSlash", 1.2
+damagefactor "TenguBlade", 1.2
+damagefactor "TenguM_Slam", 1.2
+damagefactor "TenguM_Shot", 1.2}
+actor Pwr_TenguBlade_Flaw2 : Pwr_TenguBlade_Flaw {}
+actor Pwr_CopyVision_Flaw : Weakness{
+damagefactor "CopyVision", 1.2
+damagefactor "AstroM_Shot", 1.2
+damagefactor "AstroM_CloneShot", 1.2}
+actor Pwr_CopyVision_Flaw2 : Pwr_CopyVision_Flaw {}
+actor Pwr_LightningBolt_Flaw : Weakness{
+damagefactor "LightningBolt", 1.2
+damagefactor "DynamoM_Bolt", 1.2
+damagefactor "DynamoM_TaggedBolt", 1.2
+damagefactor "DynamoM_Orb", 1.2
+damagefactor "DynamoM_DishZap", 1.2
+damagefactor "DynamoTendrilZap", 1.2}
+actor Pwr_LightningBolt_Flaw2 : Pwr_LightningBolt_Flaw {}
+actor Pwr_IceWall_Flaw : Weakness{
+damagefactor "IceWall", 1.2
+damagefactor "ColdM_Wall", 1.2
+damagefactor "ColdM_WallFloor", 1.2
+damagefactor "ColdM_WallAir", 1.2
+damagefactor "ColdM_Freeze", 1.2}
+actor Pwr_IceWall_Flaw2 : Pwr_IceWall_Flaw {}
+actor Pwr_SpreadDrill_Flaw : Weakness{
+damagefactor "SpreadDrill", 1.2
+damagefactor "SpreadDrill2", 1.2
+damagefactor "SpreadDrill3", 1.2
+damagefactor "GroundM_Shot1", 1.2
+damagefactor "GroundM_Shot2", 1.2
+damagefactor "GroundM_Shot3", 1.2
+damagefactor "GroundM_ShotCeil", 1.2
+damagefactor "GroundM_GigaDrill", 1.2
+damagefactor "GroundM_Stab", 1.2}
+actor Pwr_SpreadDrill_Flaw2 : Pwr_SpreadDrill_Flaw {}
+actor Pwr_RemoteMine_Flaw : Weakness{
+damagefactor "RemoteMine", 1.2
+damagefactor "PirateM_Mine", 1.2
+damagefactor "PirateM_Boom", 1.2}
+actor Pwr_RemoteMine_Flaw2 : Pwr_RemoteMine_Flaw {}
+actor Pwr_WaveBurner_Flaw : Weakness{
+damagefactor "WaveBurner", 1.2
+damagefactor "WaveBurnerUW", 1.2
+damagefactor "BurnerM_Shot", 1.2
+damagefactor "BurnerM_Shot2", 1.2
+damagefactor "BurnerM_DiveLand", 1.2
+damagefactor "BurnerM_FireLine", 1.2}
+actor Pwr_WaveBurner_Flaw2 : Pwr_WaveBurner_Flaw {}
+actor Pwr_MagicCard_Flaw : Weakness{
+damagefactor "MagicCard", 1.2
+damagefactor "MagicM_Card", 1.2
+damagefactor "MagicM_Orb", 1.2
+damagefactor "MagicM_Ball", 1.2}
+actor Pwr_MagicCard_Flaw2 : Pwr_MagicCard_Flaw {}
+//MMB//MMB//MMB//MMB//MMB
+
+//MM9//MM9//MM9//MM9//MM9
+actor Pwr_ConcreteShot_Flaw : Weakness{
+damagefactor "ConcreteShot", 1.2
+damagefactor "ConcreteM_Shot", 1.2
+damagefactor "ConcreteM_Toss", 1.2
+damagefactor "ConcreteM_TossBit", 1.2}
+actor Pwr_ConcreteShot_Flaw2 : Pwr_ConcreteShot_Flaw {}
+actor Pwr_TornadoBlow_Flaw : Weakness{
+damagefactor "TornadoBlow", 1.2
+damagefactor "TornadoM_Shot", 1.2
+damagefactor "TornadoM_Blow", 1.2
+damagefactor "TornadoM_Blow2", 1.2
+damagefactor "TornadoM_Wall", 1.2
+damagefactor "TornadoM_Lift", 1.2
+damagefactor "TornadoM_Slam", 1.2}
+actor Pwr_TornadoBlow_Flaw2 : Pwr_TornadoBlow_Flaw {}
+actor Pwr_LaserTrident_Flaw : Weakness{
+damagefactor "LaserTrident", 1.2
+damagefactor "SplashW_Laser", 1.2
+damagefactor "SplashW_Laser2", 1.2}
+actor Pwr_LaserTrident_Flaw2 : Pwr_LaserTrident_Flaw {}
+actor Pwr_PlugBall_Flaw : Weakness{
+damagefactor "PlugBall", 1.2
+damagefactor "PlugM_Ball", 1.2
+damagefactor "PlugM_Prong", 1.2
+damagefactor "PlugM_Plugged", 1.2}
+actor Pwr_PlugBall_Flaw2 : Pwr_PlugBall_Flaw {}
+actor Pwr_JewelSatellite_Flaw : Weakness{
+damagefactor "JewelSatellite", 1.2
+damagefactor "JewelM_Shot", 1.2
+damagefactor "JewelM_ShotBit", 1.2
+damagefactor "JewelM_ShotBoom", 1.2}
+actor Pwr_JewelSatellite_Flaw2 : Pwr_JewelSatellite_Flaw {}
+actor Pwr_HornetChaser_Flaw : Weakness{
+damagefactor "HornetChaser", 1.2
+damagefactor "HornetM_Shot", 1.2
+damagefactor "HornetM_Slow", 1.2}
+actor Pwr_HornetChaser_Flaw2 : Pwr_HornetChaser_Flaw {}
+actor Pwr_MagmaBazooka_Flaw : Weakness{
+damagefactor "MagmaBazooka1", 1.2
+damagefactor "MagmaBazooka2", 1.2
+damagefactor "MagmaM_Shot1", 1.2
+damagefactor "MagmaM_Shot2", 1.2}
+actor Pwr_MagmaBazooka_Flaw2 : Pwr_MagmaBazooka_Flaw {}
+actor Pwr_BlackHoleBomb_Flaw : Weakness{
+damagefactor "BlackHoleBomb", 1.2
+damagefactor "GalaxyM_Shot", 1.2
+damagefactor "GalaxyM_BHB", 1.2
+damagefactor "GalaxyM_Ram", 1.2
+damagefactor "RainbowGalaxy", 1.2}
+actor Pwr_BlackHoleBomb_Flaw2 : Pwr_BlackHoleBomb_Flaw {}
+//MM9//MM9//MM9//MM9//MM9
+
+//MM10//MM10//MM10//MM10//MM10
+actor Pwr_TripleBlade_Flaw : Weakness{
+damagefactor "TripleBlade", 1.2
+damagefactor "BladeM_Shot", 1.2
+damagefactor "BladeM_Swipe", 1.2}
+actor Pwr_TripleBlade_Flaw2 : Pwr_TripleBlade_Flaw {}
+actor Pwr_WaterShield_Flaw : Weakness{
+damagefactor "WaterShield", 1.2
+damagefactor "PumpM_Shield", 1.2
+damagefactor "PumpM_ShieldToss", 1.2}
+actor Pwr_WaterShield_Flaw2 : Pwr_WaterShield_Flaw {}
+actor Pwr_CommandoBomb_Flaw : Weakness{
+damagefactor "CommandoBomb", 1.2
+damagefactor "CommandoM_Shot", 1.2
+damagefactor "CommandoM_Wave", 1.2
+damagefactor "CommandoM_WaveBit", 1.2
+damagefactor "CommandoM_Mine", 1.2}
+actor Pwr_CommandoBomb_Flaw2 : Pwr_CommandoBomb_Flaw {}
+actor Pwr_ChillSpike_Flaw : Weakness{
+damagefactor "ChillShot", 1.2
+damagefactor "ChillSpike", 1.2
+damagefactor "ChillM_Shot", 1.2
+damagefactor "ChillM_Spike", 1.2
+damagefactor "ChillM_Freeze", 1.2}
+actor Pwr_ChillSpike_Flaw2 : Pwr_ChillSpike_Flaw {}
+actor Pwr_ThunderWool_Flaw : Weakness{
+damagefactor "ThunderWool", 1.2}
+actor Pwr_ThunderWool_Flaw2 : Pwr_ThunderWool_Flaw {}
+actor Pwr_ReboundStriker_Flaw : Weakness{
+damagefactor "ReboundStriker", 1.2}
+actor Pwr_ReboundStriker_Flaw2 : Pwr_ReboundStriker_Flaw {}
+actor Pwr_WheelCutter_Flaw : Weakness{
+damagefactor "WheelCutter", 1.2
+damagefactor "WheelCutterSaw", 1.2
+damagefactor "NitroM_Shot", 1.2
+damagefactor "NitroM_Shot2", 1.2}
+actor Pwr_WheelCutter_Flaw2 : Pwr_WheelCutter_Flaw {}
+actor Pwr_SolarBlaze_Flaw : Weakness{
+damagefactor "SolarBlaze", 1.2
+damagefactor "SolarM_Blaze", 1.2
+damagefactor "SolarM_BlazeWave", 1.2
+damagefactor "SolarM_Head", 1.2}
+actor Pwr_SolarBlaze_Flaw2 : Pwr_SolarBlaze_Flaw {}
+//MM10//MM10//MM10//MM10//MM10
+
+//MMV//MMV//MMV//MMV//MMV
+actor Pwr_SparkChaser_Flaw : Weakness{
+damagefactor "SparkChaser", 1.2
+damagefactor "Terra_SparkChaser", 1.2}
+actor Pwr_SparkChaser_Flaw2 : Pwr_SparkChaser_Flaw {}
+actor Pwr_GrabBuster_Flaw : Weakness{
+damagefactor "GrabBuster", 1.2
+damagefactor "Mercury_Shot", 1.2
+damagefactor "Mercury_Swipe", 1.2
+damagefactor "Mercury_Swipe2", 1.2}
+actor Pwr_GrabBuster_Flaw2 : Pwr_GrabBuster_Flaw {}
+actor Pwr_BubbleBomb_Flaw : Weakness{
+damagefactor "BubbleBomb", 1.2
+damagefactor "Venus_Shot", 1.2
+damagefactor "Venus_Shot2", 1.2
+damagefactor "Venus_Bomb", 1.2
+damagefactor "Venus_Acid", 1.2
+damagefactor "Venus_BoomJump", 1.2}
+actor Pwr_BubbleBomb_Flaw2 : Pwr_BubbleBomb_Flaw {}
+actor Pwr_PhotonMissile_Flaw : Weakness{
+damagefactor "PhotonMissile", 1.2
+damagefactor "PhotonMissileStart", 1.2
+damagefactor "Mars_Shot", 1.2
+damagefactor "Mars_Photon", 1.2
+damagefactor "Mars_Mortar", 1.2}
+actor Pwr_PhotonMissile_Flaw2 : Pwr_PhotonMissile_Flaw {}
+actor Pwr_ElectricShock_Flaw : Weakness{
+damagefactor "ElectricShock", 1.2
+damagefactor "Jupiter_Shot", 1.2
+damagefactor "Jupiter_Beam", 1.2}
+actor Pwr_ElectricShock_Flaw2 : Pwr_ElectricShock_Flaw {}
+actor Pwr_BlackHole_Flaw : Weakness{
+damagefactor "BlackHole", 1.2}
+actor Pwr_BlackHole_Flaw2 : Pwr_BlackHole_Flaw {}
+actor Pwr_DeepDigger_Flaw : Weakness{
+damagefactor "DeepDigger", 1.2
+damagefactor "Uranus_ShotDown", 1.2
+damagefactor "Uranus_ShotBit", 1.2}
+actor Pwr_DeepDigger_Flaw2 : Pwr_DeepDigger_Flaw {}
+actor Pwr_BreakDash_Flaw : Weakness{
+damagefactor "BreakDash", 1.2
+damagefactor "Pluto_Dash1", 1.2
+damagefactor "Pluto_Dash2", 1.2}
+actor Pwr_BreakDash_Flaw2 : Pwr_BreakDash_Flaw {}
+actor Pwr_SaltWater_Flaw : Weakness{
+damagefactor "SaltWater", 1.2
+damagefactor "Neptune_Shot", 1.2
+damagefactor "Neptune_ShotBit", 1.2
+damagefactor "Neptune_SaltQuake", 1.2}
+actor Pwr_SaltWater_Flaw2 : Pwr_SaltWater_Flaw {}
+//MMV//MMV//MMV//MMV//MMV
+
+//MMWT//MMWT//MMWT//MMWT//MMWT
+actor Pwr_BusterRodG_Flaw : Weakness{
+damagefactor "BRG_Bash", 1.2
+damagefactor "BRG_Spin", 1.2
+damagefactor "BusterRodPole", 1.2}
+actor Pwr_BusterRodG_Flaw2 : Pwr_BusterRodG_Flaw {}
+actor Pwr_MegaWaterS_Flaw : Weakness{
+damagefactor "MWS_Barrier", 1.2
+damagefactor "MWS_Lift", 1.2
+damagefactor "MegaWaterBarrier", 1.2}
+actor Pwr_MegaWaterS_Flaw2 : Pwr_MegaWaterS_Flaw {}
+actor Pwr_HyperStormH_Flaw : Weakness{
+damagefactor "HSH_Shot", 1.2
+damagefactor "HSH_ShotHot", 1.2
+damagefactor "HSH_Drain", 1.2
+damagefactor "HyperStormBlaster", 1.2}
+actor Pwr_HyperStormH_Flaw2 : Pwr_HyperStormH_Flaw {}
+//MMWT//MMWT//MMWT//MMWT//MMWT
+
+//MMK//MMK//MMK//MMK//MMK
+actor Pwr_MirrorBuster_Flaw : Weakness{
+damagefactor "MirrorBuster", 1.2
+damagefactor "MirrorBuster1", 1.2
+damagefactor "MirrorBuster2", 1.2
+damagefactor "MirrorBuster3", 1.2
+damagefactor "Enker_Shot", 1.2
+damagefactor "Enker_Shot2", 1.2}
+actor Pwr_MirrorBuster_Flaw2 : Pwr_MirrorBuster_Flaw {}
+actor Pwr_ScrewCrusher_Flaw : Weakness{
+damagefactor "ScrewCrusher", 1.2
+damagefactor "Punk_Shot", 1.2
+damagefactor "Punk_Rapid", 1.2
+damagefactor "Punk_Ram", 1.2}
+actor Pwr_ScrewCrusher_Flaw2 : Pwr_ScrewCrusher_Flaw {}
+actor Pwr_BalladeCracker_Flaw : Weakness{
+damagefactor "BalladeCracker", 1.2
+damagefactor "Ballade_Shot", 1.2
+damagefactor "Ballade_Mine", 1.2}
+actor Pwr_BalladeCracker_Flaw2 : Pwr_BalladeCracker_Flaw {}
+actor Pwr_Sakugarne_Flaw : Weakness{
+damagefactor "Sakugarne", 1.2
+damagefactor "Quint_Leap", 1.2
+damagefactor "Quint_Spin", 1.2
+damagefactor "Quint_SakuLand", 1.2
+damagefactor "Quint_SakuLand2", 1.2}
+actor Pwr_Sakugarne_Flaw2 : Pwr_Sakugarne_Flaw {}
+//MMK//MMK//MMK//MMK//MMK

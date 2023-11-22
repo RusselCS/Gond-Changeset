@@ -1,0 +1,46 @@
+actor Protoman : ClassBase
+{
+Player.ScoreIcon "C_00A0X"
+player.displayname "Protoman"
+player.soundclass "protomanc"
+
+player.maxhealth 850
+health 850
+player.jumpz 10
+player.forwardmove 0.83, 0.83
+player.sidemove 0.81, 0.81
+
+player.startitem "ProtoBusterBoss"
+player.startitem "BaseWepAltOverride_F", 1
+player.startitem "CanCopyWeapons"
+player.startitem "CanUseItems"
+player.startitem "SlideLimitFlag", 500
+player.startitem "CopyNerf"
+
+States
+{
+Spawn:
+PROM A 0
+PROM B 1
+PROM A 1
+PROM AY 5
+Goto Spawn+2
+See:
+PROM BCDE 5
+Goto Spawn
+Missile:
+PROM F 0 A_JumpIfInventory("SlideVivifyFlag",1,"Slide")
+PROM F 5
+PROM G 4
+goto Spawn+2
+Slide:
+PROM W 20
+goto Spawn
+ClassPain:
+PROM H 0
+goto PainContinue
+ClassDeath:
+PROM H 0
+goto DeathContinue
+}
+}

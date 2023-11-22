@@ -1,0 +1,241 @@
+actor QuickBoomerangBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_2D"
+dropitem "QuickBoomerangWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 100
+Obituary "$OB_QUICKBOOMERANG"
+weapon.ammotype "QuickerOatsAmmo"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_02 D 1
+loop
+Ready:
+QUIK N 0 ACS_ExecuteAlways(998,0,DYE_QUICKMAN)
+goto Ready1
+Ready1:
+QUIK N 0 A_JumpIfInventory("QuickManTrail",1,"Ready2")
+QUIK N 2 A_WeaponReady
+QUIK N 0 A_GiveInventory("QuickerOatsAmmo",2)
+goto Ready1+1
+Ready2:
+QUIK N 1 A_WeaponReady
+goto Ready1
+Deselect:
+QUIK NNNNNNNNNNNNNNNNNNNNNN 0 A_Lower
+QUIK N 1 A_Lower
+loop
+Select:
+QUIK NNNNNNNNNNNNNNNNNNNNNN 0 A_Raise
+QUIK N 1 A_Raise
+Loop
+Fire:
+QUIK N 0 A_JumpIfInventory("IsBot",1,"BotFire")
+QUIK N 0 A_JumpIfInventory("QuickManTrail",1,"Fire2_Rapid")
+goto Fire1_Spread
+Fire1_Spread:
+QUIK N 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+QUIK N 0 A_GiveInventory("QuickmanMain_CI",1)
+QUIK N 4 OffSet(10,42)A_GiveInventory("QuickerOatsAmmo",1)
+QUIK N 4 OffSet(20,52)A_GiveInventory("QuickerOatsAmmo",1)
+QUIK N 4 OffSet(10,42)A_GiveInventory("QuickerOatsAmmo",1)
+QUIK N 0 A_GiveInventory("QuickerOatsAmmo",1)
+QUIK N 4 A_WeaponReady(14)
+Goto Ready1
+
+Fire2_Rapid:
+QUIK N 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+QUIK N 0 A_GiveInventory("QuickmanMain2_CI",1)
+QUIK N 2 OffSet(10,42)
+QUIK N 2 A_WeaponReady(14)
+Goto Ready1
+
+Altfire:
+QUIK N 0 A_JumpIfInventory("QuickManTrail",1,"Fire2_Rapid")
+QUIK N 0 A_JumpIfInventory("QuickerOatsAmmo",100,"Altfire2")
+goto Fire1_Spread
+Altfire2:
+QUIK N 0 A_PlaySoundEx("Class/QuickRun","SoundSlot7")
+QUIK N 0 A_GiveInventory("QuickManTrail",1)
+QUIK N 1 A_GunFlash
+QUIK N 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,160,10)
+goto Fire2_Rapid
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1 A_TakeInventory("QuickerOatsAmmo",1,1)
+TNT1 A 0 A_JumpIfInventory("QuickManTrail",1,"Flash")
+TNT1 A 1 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,110,10)
+stop
+
+BotFire:
+QUIK N 0
+Goto AltFire
+
+}
+}
+
+actor QuickerOatsAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 100
++INVENTORY.IGNORESKILL
+}
+
+actor Quickman_Flag : Ammo
+{
+inventory.amount 1
+inventory.maxamount 70
+}
+
+actor QuickManTrail : PowerSpeed
+{
+Speed 1.5
+Powerup.Duration 100
+}
+
+actor QuickTrailItem : BasicClassItem
+{
+inventory.icon "QuiIcon"
+inventory.pickupmessage "Five hour energy packed into less than five seconds."
+Tag "Drink 5 hour energy"
+states
+{
+Spawn:
+QUIK Z 1
+loop
+Use:
+TNT1 A 0 A_JumpIfInventory("QuickerOatsAmmo",100,"Success")
+fail
+Success:
+QUIK N 0 A_PlaySoundEx("Class/QuickRun","SoundSlot7")
+TNT1 A 0 A_GiveInventory("QuickManTrail",1)
+TNT1 A 0 A_TakeInventory("QuickerOatsAmmo",999)
+fail
+}
+}
+
+actor QuickmanBoomerang
+{
+translation "192:192=229:229"
+var int user_X;
+var int user_Z;
+PROJECTILE
+damagetype "QuickM_Shot"
+Obituary "$OB_QUICKBOOMERANG"
+reactiontime 8
+damage (70)
+Radius 7
+Height 7
+Speed 60
+scale 2.5
+States
+{
+Spawn:
+QUIK T 0
+QUIK T 0 A_SetUserVar("user_X",sqrt(momx*momx+momy*momy)*10)
+QUIK T 1 A_SetUserVar("user_Z",momz*10)
+goto Spawn2+1
+Spawn2:
+QUIK Q 0 A_CountDown
+QUIK QQRR 1 A_ChangeVelocity(-user_X/160.0f,0,-user_Z/160.0f,1)//CVF_RELATIVE
+QUIK Q 0 A_CountDown
+QUIK SSTT 1 A_ChangeVelocity(-user_X/160.0f,0,-user_Z/160.0f,1)//-3.5
+loop
+}
+}
+
+actor QuickmanBoomerangB : QuickmanBoomerang{translation "192:192=205:205"}
+actor QuickmanBoomerangR : QuickmanBoomerang{translation "192:192=171:171"}
+actor QuickmanBoomerangO : QuickmanBoomerang{translation "192:192=104:104"}
+actor QuickmanBoomerangP : QuickmanBoomerang{translation "192:192=229:229"}
+
+
+actor QuickmanBoomerang2 : QuickmanBoomerang{damage (80)}
+actor QuickmanBoomerang2B : QuickmanBoomerangB{damage (80)}
+actor QuickmanBoomerang2R : QuickmanBoomerangR{damage (80)}
+actor QuickmanBoomerang2O : QuickmanBoomerangO{damage (80)}
+actor QuickmanBoomerang2P : QuickmanBoomerangP{damage (80)}
+
+actor QuickmanBoomerangRapid : QuickmanBoomerang
+{
+damagetype "QuickM_Rapid"
+reactiontime 3
+damage (70)
+Speed 65
+States
+{
+Spawn:
+QUIK T 0
+QUIK T 0 A_SetUserVar("user_X",sqrt(momx*momx+momy*momy)*10)
+QUIK T 1 A_SetUserVar("user_Z",momz*10)
+goto Spawn2+1
+Spawn2:
+QUIK Q 0 A_CountDown
+QUIK QQRRSSTT 1 A_ChangeVelocity(-user_X/120.0f,0,-user_Z/120.0f,1)//-4.0
+loop
+}
+}
+
+actor QuickmanBoomerangRapidB : QuickmanBoomerangRapid{translation "192:192=205:205"}
+actor QuickmanBoomerangRapidR : QuickmanBoomerangRapid{translation "192:192=171:171"}
+actor QuickmanBoomerangRapidO : QuickmanBoomerangRapid{translation "192:192=104:104"}
+actor QuickmanBoomerangRapidP : QuickmanBoomerangRapid{translation "192:192=229:229"}
+
+actor QuickmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerang",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerang2",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerang",-15,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerangB",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerang2B",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerangB",-15,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerangR",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerang2R",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerangR",-15,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerangO",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerang2O",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerangO",-15,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerangP",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerang2P",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerangP",-15,1,8,0)
+goto Done
+}
+}
+
+actor QuickmanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerangRapid",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerangRapidB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerangRapidR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerangRapidO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("QuickmanBoomerangRapidP",0,0,8,0)
+goto Done
+}
+}
+
+

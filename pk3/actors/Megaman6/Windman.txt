@@ -1,0 +1,46 @@
+actor Windman : ClassBase
+{
+Player.ScoreIcon "C_06G0X"
+player.displayname "Windman"
+player.soundclass "windmanc"
+
+player.maxhealth 1250
+health 1250
+player.jumpz 10
+player.forwardmove 0.7, 0.7
+player.sidemove 0.68, 0.68
+
+player.startitem "WindStormBoss"
+player.startitem "YouDontMessWithChinAmmo", 22
+player.startitem "FlyingKickAmmo", 21
+player.startitem "WindFlightItem"
+
+player.startitem "CentaurFlashWeakness2", 1
+
+player.startitem "TimeSlowWeakness", 1
+player.startitem "TimeStopperWeakness", 1
+player.startitem "FlashStopperWeakness", 1
+player.startitem "CentaurFlashWeakness", 1
+
+States
+{
+Spawn:
+WINM A 0 
+WINM B 1
+WINM A 1
+Goto Spawn+2
+See:
+WINM BC 4
+Goto Spawn+1
+Missile:
+WINM F 5
+WINM G 4
+goto Spawn
+ClassPain:
+WINM H 0
+goto PainContinue
+ClassDeath:
+WINM H 0
+goto DeathContinue
+}
+}

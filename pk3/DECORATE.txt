@@ -1,0 +1,30 @@
+#include "actors/ConstIntList_C.txt"
+
+#include "actors/General_C/TestHelpers1.txt"
+
+#include "actors/General_C/CoreActorReplace.txt"
+#include "actors/General_C/BasicActors.txt"
+#include "actors/General_C/GeneralThings_C.txt"
+#include "actors/General_C/General-inator.txt"
+#include "actors/General_C/FlightDisable.txt"
+#include "actors/General_C/WeaknessBase.txt"
+#include "actors/General_C/WeaknessPower.txt"
+#include "actors/ClassBaseFlags.txt"
+#include "actors/ClassBase0.txt"
+#include "actors/ClassBase1.txt"
+#include "actors/ClassBase2.txt"
+#include "actors/ClassBase3.txt"
+#include "actors/ClassBaseTID.txt"
+#include "actors/ClassBase.txt"
+
+//Weapons and class actors
+#include "actors/CBM_IncludeList.txt"
+//Weapons and class actors
+
+#include "actors/General_C/TestHelpers2.txt"
+#include "actors/General_C/AntiDrain.txt"
+#include "actors/General_C/HealThingMod.txt"
+#include "actors/General_C/BasicArmorMod.txt"
+
+#include "actors/General_C/LMS_GasC.txt"
+

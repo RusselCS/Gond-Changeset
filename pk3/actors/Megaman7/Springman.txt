@@ -1,0 +1,53 @@
+actor Springman : ClassBase
+{
+Player.ScoreIcon "C_07E0X"
+player.displayname "Springman"
+player.soundclass "springmanc"
+
+player.maxhealth 1000
+health 1000
+player.jumpz 20
+player.forwardmove 0.76, 0.76
+player.sidemove 0.74, 0.74
+
+player.startitem "WildCoilBoss"
+player.startitem "GumAmmo", 105
+
+player.startitem "SlashClawWeakness2", 1
+
+player.startitem "RollingCutterWeakness", 1
+player.startitem "MetalBladeWeakness", 1
+player.startitem "ShadowBladeWeakness", 1
+player.startitem "GyroAttackWeakness", 1
+player.startitem "SlashClawWeakness", 1
+player.startitem "TenguBladeWeakness", 1
+player.startitem "BlackHoleBombWeakness", 1
+player.startitem "WheelCutterWeakness", 1
+
+States
+{
+Spawn:
+SPNG A 0
+SPNG B 1
+SPNG A 1 A_JumpIfInventory("VivifyFlag1",1,"Missile")
+Goto Spawn+2
+See:
+SPNG B 5
+SPNG C 5
+SPNG D 5
+SPNG E 5
+Goto Spawn
+Missile:
+SPNG F 3
+SPNG FF 1 A_JumpIfInventory("VivifyFlag1",1,"Missile")
+SPNG F 0 A_JumpIfInventory("VivifyFlag1",1,"Missile")
+SPNG G 4
+goto Spawn
+ClassPain:
+SPNG H 0
+goto PainContinue
+ClassDeath:
+SPNG H 0
+goto DeathContinue
+}
+}

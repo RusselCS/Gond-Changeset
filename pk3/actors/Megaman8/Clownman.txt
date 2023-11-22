@@ -1,0 +1,50 @@
+actor Clownman : ClassBase
+{
+Player.ScoreIcon "C_08D0X"
+player.displayname "Clownman"
+player.soundclass "clownmanc"
+
+player.maxhealth 850
+health 850
+player.jumpz 12
+player.forwardmove 0.93, 0.93
+player.sidemove 0.91, 0.91
+
+player.startitem "ThunderClawBoss"
+player.startitem "ThunderClawBosT"
+player.startitem "YoGeekyAmmo", 300
+
+player.weaponslot 1, "ThunderClawBoss"
+player.weaponslot 2, "ThunderClawBosT"
+
+player.startitem "TornadoHoldWeakness2", 1
+
+player.startitem "AirShooterWeakness", 1
+player.startitem "WindStormWeakness", 1
+player.startitem "TornadoHoldWeakness", 1
+player.startitem "TenguBladeWeakness", 1 
+player.startitem "TornadoBlowWeakness", 1
+player.startitem "BlackHoleWeakness", 1
+
+States
+{
+Spawn:
+CLWN A 0 
+CLWN B 1
+CLWN A 1
+Goto Spawn+2
+See:
+CLWN BCDE 5
+Goto Spawn
+Missile:
+CLWN F 5
+CLWN G 4
+goto Spawn
+ClassPain:
+CLWN H 0
+goto PainContinue
+ClassDeath:
+CLWN H 0
+goto DeathContinue
+}
+}

@@ -1,0 +1,1045 @@
+actor ClassBase1 : ClassBase0//Contains most of the new damagetypes
+{//'ClassBase0' contains the base 'Pain' and 'Death' states
+
+//+LONGMELEERANGE//Used to sync ammo usage for copywep altfire
+//+SHORTMISSILERANGE
+//+NOMENU
+
+states
+{
+
+///////////////////
+//Sound Based / Power Protects
+///////////////////
+
+Pain.IceM_Slow2:
+"----" H 0 A_GiveInventory("IceM_Slow2Protect",1)
+goto Pain.IceM_Slow
+
+Pain.AirM_Wall:
+"----" H 0 A_GiveInventory("AirM_WallProtect",1)
+Goto Pain
+
+Pain.WoodM_LeafRain:
+"----" H 0 A_GiveInventory("WoodM_LeafRainProtect",1)
+Goto Pain
+
+Pain.WoodM_SeedTrap:
+"----" H 0 A_GiveInventory("WoodM_SeedTrapProtect",1)
+Goto Pain+2
+Pain.WoodM_SeedStun:
+"----" H 0 A_GiveInventory("WoodM_SeedStunProtect",1)
+Goto Pain.NeutralStopShock
+
+Pain.TopM_Spin:
+"----" H 0 A_GiveInventory("TopM_SpinProtect",1)
+Goto Pain+2
+
+Pain.SparkM_Lob:
+"----" H 0 A_GiveInventory("SparkM_LobProtect",1)
+Goto Pain.SparkShock
+
+Pain.ShadowM_Blade1:
+"----" H 0 A_GiveInventory("ShadowM_Blade1Protect",1)
+Goto Pain+2
+Pain.ShadowM_Blade2:
+"----" H 0 A_GiveInventory("ShadowM_Blade2Protect",1)
+Goto Pain+2
+
+Pain.RingM_Ring1:
+"----" H 0 A_GiveInventory("RingM_Ring1Protect",1)
+Goto Pain+2
+Pain.RingM_Ring2:
+"----" H 0 A_GiveInventory("RingM_Ring2Protect",1)
+Goto Pain+2
+
+Pain.DiveM_Mine:
+"----" H 0 A_GiveInventory("DiveM_MineProtect",1)
+Goto Pain+1
+
+Pain.DiveSonar:
+"----" H 0 A_GiveInventory("DiveSonarProtect",1)
+Goto Pain+2
+
+Pain.StoneM_Rock:
+"----" H 0 A_GiveInventory("StoneM_RockProtect",1)
+Goto Pain
+
+Pain.StoneM_Leap:
+"----" H 0 A_GiveInventory("StoneM_LeapProtect",1)
+Goto Pain+2
+
+Pain.CrystalM_EyeBit:
+"----" H 0 A_GiveInventory("CrystalM_EyeBitProtect",1)
+Goto Pain+2
+
+Pain.FlameM_Pillar:
+"----" H 0 A_GiveInventory("FlameM_PillarProtect",1)
+Goto Pain
+
+Pain.WindM_Shot:
+"----" H 0 A_GiveInventory("WindM_ShotProtect",1)
+Goto Pain_90
+
+Pain.JunkM_Cube:
+"----" H 0 A_GiveInventory("JunkM_CubeProtect",1)
+Goto Pain
+
+Pain.Pluto_Swipe:
+goto Pain.SlashClaw
+Pain.SlashM_Swipe:
+"----" H 0 A_PlaySoundEx("weapon/slashclawhit","SoundSlot5")
+"----" H 0 A_GiveInventory("SlashM_SwipeProtect",1)
+Goto Pain+2
+
+Pain.ClownM_ClawChain:
+"----" H 0 A_GiveInventory("ClownM_ClawChainProtect",1)
+Goto Pain+2
+
+Pain.TrioFlameSword:
+"----" H 0 A_GiveInventory("TrioFlameSwordProtect",1)
+goto Pain.FlameSword+1
+
+Pain.SwordM_Torso:
+"----" H 0 A_GiveInventory("SwordM_TorsoProtect",1)
+Goto Pain.SwordM_Swipe+3
+
+Pain.SwordM_Swipe:
+"----" H 0 A_GiveInventory("SwordM_SwipeProtect",1)
+"----" H 0 A_PlaySoundEx("weapon/flamehit","SoundSlot5")
+"----" HH 0 A_SpawnItemEx("FlameSwordBitB",0,0,0,random(-10,10),random(-10,10),random(10,15),random(0,359))
+Goto Pain+2
+
+Pain.AquaM_Cannon:
+"----" H 0 A_JumpIfInventory("AquaM_CannonProtect",1,2)
+"----" H 0 A_GiveInventory("AquaM_CannonProtect",1)
+"----" H 0
+Goto Pain+2
+
+Pain.TrioFlashBomb:
+"----" H 0 A_GiveInventory("TrioFlashBombProtect",1)
+Pain.TrioFlashBomb2:
+goto Pain_90
+
+Pain.ODuo_Wave:
+"----" H 0 A_GiveInventory("ODuo_WaveProtect",1)
+Goto Pain+1
+
+Pain.Trio_Beam:
+"----" H 0 A_GiveInventory("Trio_Beam_P",1)
+Goto Pain+2
+
+Pain.ColdM_WallFloor:
+Pain.ColdM_WallAir:
+"----" H 0 A_GiveInventory("ColdM_WallMoveProtect",1)
+"----" H 0 A_GiveInventory("ColdM_WallMoveProtect0",1)
+Goto Pain+2
+
+Pain.GroundM_Shot1:
+Pain.GroundM_Shot2:
+Pain.GroundM_Shot3:
+"----" H 0 A_JumpIfInventory("GroundM_DrillProtect",1,2)
+"----" H 0 A_PlaySoundEx("weapon/spreaddrillhit","SoundSlot5")
+"----" H 0 A_GiveInventory("GroundM_DrillProtect",1)
+Goto Pain+1
+
+Pain.PirateM_Boom:
+"----" H 0 A_GiveInventory("PirateM_BoomProtect",1)
+Goto Pain+2
+
+Pain.TornadoM_Wall:
+"----" H 0 A_GiveInventory("TornadoM_WallProtect",1)
+goto Pain+2
+
+Pain.SplashW_Laser:
+"----" H 0 A_GiveInventory("SplashW_LaserProtect",1)
+goto Pain+2
+Pain.SplashW_Laser2:
+"----" H 0 A_GiveInventory("SplashW_Laser2Protect",1)
+goto Pain+2
+
+Pain.GalaxyM_BHB:
+"----" H 0 A_GiveInventory("GalaxyM_BHBProtect4",1)
+"----" H 0 A_GiveInventory("GalaxyM_BHBProtect",1)
+"----" H 0 A_JumpIfInventory("PowerGalaxyBHB_ACS",1,2)
+"----" H 0 A_Stop
+"----" H 0
+Goto Pain+2
+
+Pain.PumpM_Shield:
+"----" H 0 A_GiveInventory("PumpM_ShieldProtect",1)
+Goto Pain+2
+
+Pain.ChillM_Spike:
+"----" H 0 A_GiveInventory("ChillM_SpikeProtect",1)
+Goto Pain+2
+
+Pain.SolarM_BlazeWave:
+"----" H 0 A_GiveInventory("SolarM_BlazeWaveProtect",1)
+Goto Pain+2
+
+Pain.Punk_Ram:
+"----" H 0 A_GiveInventory("Punk_RamProtect",1)
+goto Pain+2
+
+Pain.Quint_Wave:
+"----" H 0 A_GiveInventory("Quint_WaveProtect",1)
+Goto Pain+2
+
+Pain.Quint_Rock:
+"----" H 0 A_GiveInventory("Quint_RockProtect",1)
+Goto Pain_90
+
+Pain.Terra_SparkChaser:
+"----" H 0 A_GiveInventory("Terra_SparkChaserProtect",1)
+Goto Pain+2
+
+Pain.Jupiter_Beam:
+"----" H 0 A_GiveInventory("Jupiter_BeamProtect",1)
+Goto Pain+2
+
+Pain.Uranus_Stampede:
+"----" H 0 A_GiveInventory("Uranus_StampedeProtect",1)
+Goto Pain+2
+
+Pain.Pluto_Dash1:
+"----" H 0 A_GiveInventory("Pluto_Dash1Protect",1)
+Goto Pain+2
+Pain.Pluto_Dash2:
+"----" H 0 A_GiveInventory("Pluto_Dash2Protect",1)
+Goto Pain+2
+
+Pain.Neptune_SaltQuake:
+"----" H 0 A_GiveInventory("Neptune_SaltQuakeProtect",1)
+Goto Pain+2
+
+///////////////////
+//Movement Based (Stops/Slows)
+///////////////////
+
+Pain.TimeBender:
+Pain.FlashM_Stopper:
+goto Fun_TimeStop
+
+Pain.Terra_Stopper:
+"----" H 0 A_GiveInventory("Terra_StopperProtect",1)
+"----" H 0 A_PlaySoundEx("weapon/TerraStun","SoundSlot5")
+goto Echo_TimeStop//Pain_TimeStop
+
+Pain.LightRyu_Stop://BearerClass has a copy of this
+"####" H 0 A_SpawnItemEx("PainLightRyu_StopHit")
+"####" H 0 A_GiveInventory("LightRyu_StopProtect",1)
+"####" H 0 A_GiveInventory("TimeStoppedTF",1)
+"####" HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1 A_Stop
+Goto Pain+2
+
+Pain.BrightM_Stopper:
+"----" H 0 A_SpawnItemEx("BossFlashStoppered")
+Goto Pain+2
+Pain.ChillM_Freeze:
+"----" H 0 A_SpawnItemEx("ChillFreezeStoppered")
+Goto Pain+2
+
+Pain.ColdM_Freeze:
+"----" H 0 A_JumpIfInventory("ColdM_FreezeProtect",1,3)
+"----" H 0 A_PlaySound("weapon/ColdFrozen",5,1.0)
+"----" H 0 A_SpawnItemEx("GroundIce_Cold")
+"----" H 0
+Goto Pain+2
+Pain.FreezeM_Frozen:
+"----" H 0 A_JumpIfInventory("GroundIceFlag",1,3)
+"----" H 0 A_PlaySound("weapon/ColdFrozen",5,1.0)
+"----" H 0 A_SpawnItemEx("GroundIce_FreezeAir")
+"----" H 0
+Goto Pain+2
+Pain.FreezeM_Iced:
+"----" H 0 A_SpawnItemEx("GroundIce_Freeze")
+Goto Pain+2
+Pain.FrostM_Iced:
+Pain.FrostM_Iced2:
+"----" H 0 A_SpawnItemEx("GroundIce_Frost")
+Goto Pain+2
+
+Pain.CrashM_Mine:
+goto Pain.CrashBomb
+Pain.ConcreteM_Toss:
+"----" H 0 A_GiveInventory("PainStopC",1)
+Goto Pain
+Pain.ClownM_Ground:
+"----" H 0 A_JumpIfInventory("ClownM_GroundProtect",1,2)
+"----" H 0 A_GiveInventory("PainStopC",1)
+"----" H 0 A_GiveInventory("ClownM_GroundProtect",1)
+Goto Pain+2
+
+Pain.TimeM_Slow:Pain.MegaTimeBall:
+goto Pain.TimeSlow
+
+Pain.MegaIceBall:
+"----" H 0 A_GiveInventory("PainStopC",1)
+Pain.HornetM_Slow:
+Pain.IceM_Slow:Pain.IceM_Icicle:Pain.IceM_Sculpt:
+"----" H 0 A_GiveInventory("IcemanSlowPickup",1)
+Goto Pain+2
+Pain.SlashM_Goop:
+"----" H 0 A_GiveInventory("PowerSlashM_GoopSlow",1)
+goto Pain
+Pain.ChillM_Shot:
+"----" H 0 A_GiveInventory("PowerChillmanSlow1",1)
+"----" H 0 A_GiveInventory("PowerChillmanSlow2",1)
+"----" H 0 A_GiveInventory("PowerChillmanSlow3",1)
+goto Pain+1
+
+Pain.ConcreteM_Shot:
+goto Pain.ConcreteShot
+
+Pain.BurnerM_HalfShock:
+"----" H 0 A_SpawnItemEx("ShockFX",4,0,32)
+"----" H 0 A_GiveInventory("Shocked_18",1)
+"----" H 0 A_GiveInventory("BurnerTrapProtect",1)
+Goto Pain+1
+Pain.BurnerM_Shock:
+"----" H 0 A_GiveInventory("BurnerTrapProtect",1)
+Pain.TrioHomingSniperShock:
+Pain.NeutralStopShock:
+"----" H 0 A_Stop//PainStopC
+"----" H 0 A_SpawnItemEx("ShockFX",4,0,32)
+"----" H 0 A_GiveInventory("Shocked",1)
+Goto Pain+2
+
+Pain.FakeM_Baton:
+"----" H 0 A_JumpIfInventory("PowerFakeM_Baton",1,3)
+"----" H 0 A_SpawnItemEx("ShockFX",4,0,32)
+"----" H 0 A_GiveInventory("PowerFakeM_Baton",1)
+"----" H 0
+Goto Pain+2
+
+Pain.Roll_CleanseShock:
+"----" H 0 A_GiveInventory("Roll_CleanseShockProtect",1)
+goto Pain.SparkShock
+
+Pain.HardM_Shock:Pain.SparkM_Shock:Pain.SparkM_Shock2:
+Pain.StoneM_Shock:Pain.DM2_Shock:Pain.DM3_Shock:
+Pain.CentaurM_Shock:
+Pain.JunkM_Shock:
+Pain.King_XShock:
+Pain.Neptune_Shock:
+Pain.NeutralShock:
+Goto Pain.SparkShock
+
+Pain.SparkM_Zap:
+Pain.ConcreteM_HalfShock:
+Pain.NeutralShockW:
+"----" H 0 A_SpawnItemEx("ShockFX",4,0,32)
+"----" H 0 A_GiveInventory("Shocked_18",1)
+Goto Pain+1
+
+///////////////////
+//Movement Based (Flings)
+///////////////////
+
+Pain.BurstM_Trap:
+"----" H 0 A_SpawnItemEx("DangerTrapped")
+Goto Pain+2
+Pain.TenguM_THold:
+"----" H 0 A_JumpIfInventory("TenguM_THoldProtect",1,3)
+"----" H 0 A_GiveInventory("TenguM_THoldProtect",1)
+"----" H 0 A_SpawnItemEx("TenguTornadoHeld_H")
+"----" H 0
+goto Pain+2
+Pain.TrioTornadoHold:
+"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+"----" H 0 ThrustThingZ(0,60,0,0)
+"----" H 0
+goto Pain+2
+Pain.MWS_Lift:
+"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+"----" H 0 ThrustThingZ(0,80,0,0)
+"----" H 0 A_GiveInventory("MWS_LiftProtect",1)
+Goto Pain+2
+
+Pain.RollSweep:
+"----" H 0 A_GiveInventory("TempPitProtect_P",1)
+"----" H 0 ThrustThing(random(0,255),4.5,1,0)
+"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+"----" H 0 ThrustThingZ(0,32,0,1)
+"----" H 0
+Goto Pain+2
+Death.RollSweep:
+"----" H 0 ThrustThing(random(0,255),12,1,0)
+"----" H 0 ThrustThingZ(0,50,0,0)
+Goto Death.FlingDamage
+
+Pain.RisingFist:
+"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+"----" H 0 ThrustThingZ(0,56,0,0)
+"----" H 0
+Goto Pain+2
+Death.RisingFist:
+"----" H 0 ThrustThingZ(0,90,0,0)
+"----" H 0 A_SpawnItemEx("DeathLightRyu_ShoryuHit",1)
+Goto Death.FlingDamage
+
+Pain.LightRyu_Shoryu:
+"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+"----" H 0 ThrustThingZ(0,56,0,0)
+"----" H 0
+Goto Pain.LightRyu_Kick
+Death.LightRyu_Shoryu:
+"----" H 0 A_GiveToTarget("SuperComboGauge",1)
+"----" H 0 ThrustThingZ(0,90,0,0)
+"----" H 0 A_SpawnItemEx("DeathLightRyu_ShoryuHit",1)
+Goto Death.FlingDamage
+
+Pain.LightRyu_ShinShoryu:
+"----" H 0 A_TakeInventory("LightRyu_StopProtect",1)
+"----" H 0 ThrustThingZ(0,200,0,0)
+Goto Pain+2
+Death.LightRyu_ShinShoryu:
+"----" H 0 ThrustThingZ(0,200,0,0)
+"----" H 0 A_SpawnItemEx("DeathLightRyu_ShinShoryuHit",1)
+Goto Death.FlingDamageGib
+
+Pain.TopTwist:
+"----" H 0 ThrustThingZ(0,52,0,1)
+"----" H 0 A_SpawnItemEx("TopTwistPain_H")
+Goto Pain+2
+Death.TopTwist:
+"----" H 0 ThrustThingZ(0,52,0,0)
+Goto Death
+
+Pain.NitroM_Ram:
+"----" H 0 ThrustThingZ(0,65,0,1)
+"----" H 0 A_GiveInventory("NitroM_RamProtect",1)
+Goto Pain+2
+Death.NitroM_Ram:
+"----" H 0 ThrustThingZ(0,65,0,0)
+Goto Death
+
+Pain.Uranus_Lift:
+"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+"----" H 0 ThrustThingZ(0,random(70,80),0,0)
+"----" H 0
+Goto Pain+2
+Death.Uranus_Lift:
+"----" H 0 ThrustThingZ(0,100,0,0)
+"----" H 0 A_SpawnItemEx("DeathUranus_LiftHit",1)
+Goto Death.FlingDamage
+
+Pain.TornadoM_Lift:
+"----" H 0 A_GiveInventory("TornadoM_LiftProtect",1)
+Pain.TornadoM_Blow:
+goto Pain.TornadoBlow
+Pain.TornadoM_Shot:Pain.TornadoM_Blow2:
+"----" H 0 ThrustThingZ(0,2,0,1)
+goto Pain+2
+
+Pain.ColdM_Down:
+Pain.Uranus_ShotDown:
+goto Pain.GravityM_Down+1
+
+Pain.GravityM_Down:Pain.GravitySphere:
+"----" H 0 A_GiveInventory("PainHitstun_90_P",1)
+"----" H 0 A_SpawnItemEx("PainGravitySmackDown_H")
+"----" H 0 A_CheckFloor(2)
+"----" H 0 ThrustThingZ(0,70,1,0)
+"----" H 0
+goto Pain+2
+
+Pain.GravityM_Up:
+"----" H 0 A_GiveInventory("PainHitstun_90_P",1)
+"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+"----" H 0 ThrustThingZ(0,70,0,0)
+"----" H 0
+goto Pain+2
+
+///////////////////
+//Effect Based
+///////////////////
+
+Pain.BrightM_Bulb:Pain.FlashBulb:
+"----" H 0 A_GiveInventory("FlashStopperHit", 1)
+Goto Pain+1
+
+Pain.DrWily_Ice:
+goto Pain.WilyIce
+
+///////////////////
+//TID Soup Based
+///////////////////
+
+//*****************
+//Bonus Damage*****
+//*****************
+//Pain.MegaFireBall:
+//"----" H 0 A_SpawnItemEx("PainMegaFireBallHit",0,0,0,0,0,0,0,1)
+//Goto Pain+1
+
+Pain.LightRyu_Fire:
+"----" H 0 A_GiveInventory("LightRyu_FireProtect",1)
+"----" H 0 A_SpawnItemEx("PainLightRyu_FireHit",0,0,0,0,0,0,0,1)
+Goto Pain+1
+
+Pain.DrWily_Fire:
+"----" H 0 A_SpawnItemEx("PainDrWily_FireHit",0,0,0,0,0,0,0,1)
+Goto Pain+1
+
+//Stone
+Pain.TenguM_Slam:
+"----" H 0 A_SpawnItemEx("PainTenguM_SlamHit")
+Goto Pain+2
+Pain.TornadoM_Slam:
+"----" H 0 A_GiveInventory("TornadoM_SlamProtect",1)
+"----" H 0 A_JumpIfInventory("BeingTornadoM_Slammed",1,2)
+"----" H 0 A_SpawnItemEx("PainTornadoM_SlamHit")
+"----" H 0 A_GiveInventory("BeingTornadoM_Slammed",1)
+Goto Pain+2
+
+//**********
+//Fling*****
+//**********
+Pain.Duo_Ram:
+"----" H 0 A_SpawnItemEx("PainDuo_RamHit")
+"----" H 0 ThrustThingZ(0,28,0,0)
+Goto Pain+2
+Death.Duo_Ram:
+"----" H 0 A_SpawnItemEx("DeathDuo_RamHit")
+"----" H 0 ThrustThingZ(0,56,0,0)
+goto Death.FlingDamage
+Pain.Duo_Meteor:
+"----" H 0 A_SpawnItemEx("PainDuo_MeteorHit")
+"----" H 0 ThrustThingZ(0,32,0,0)
+Goto Pain+2
+Death.Duo_Meteor:
+"----" H 0 A_SpawnItemEx("DeathDuo_MeteorHit")
+"----" H 0 ThrustThingZ(0,80,0,0)
+goto Death.FlingDamage
+
+Pain.MagnetM_Push:
+"----" H 0 A_SpawnItemEx("PainMagnetM_PushHit")
+Goto Pain+2
+Death.MagnetM_Push:
+"----" H 0 A_SpawnItemEx("DeathMagnetM_PushHit")
+"----" H 0 ThrustThingZ(0,36,0,0)
+goto Death.FlingDamage
+
+Pain.SkullM_Barrier:
+"----" H 0 A_SpawnItemEx("PainSkullM_BarrierHit")
+Goto Pain+2
+Death.SkullM_Barrier:
+"----" H 0 A_SpawnItemEx("DeathSkullM_BarrierHit")
+"----" H 0 ThrustThingZ(0,40,0,0)
+goto Death.FlingDamage
+
+Pain.DM3_Snipe:
+"----" H 0 A_SpawnItemEx("PainDM3_SnipeHit")
+"----" H 0 ThrustThingZ(0,8,0,1)
+Goto Pain+2
+Death.DM3_Snipe:
+"----" H 0 A_SpawnItemEx("DeathDM3_SnipeHit")
+"----" H 0 ThrustThingZ(0,32,0,0)
+goto Death.FlingDamage
+
+Pain.KnightM_Push:
+"----" H 0 A_SpawnItemEx("PainKnightM_PushHit")
+Goto Pain.SparkShock
+Death.KnightM_Push:
+"----" H 0 A_SpawnItemEx("DeathKnightM_PushHit")
+"----" H 0 ThrustThingZ(0,44,0,0)
+goto Death.FlingDamage
+
+Pain.WindM_Pull:
+"----" H 0 A_GiveInventory("WindM_PullProtect",1)
+"----" H 0 A_GiveInventory("PainStopC",1)
+"----" H 0 ThrustThingZ(0,30,0,0)
+"----" H 0 A_SpawnItemEx("PainWindM_PullHit")
+Goto Pain+2
+Pain.WindM_Push:
+"----" H 0 A_GiveInventory("PainStopC",1)
+"----" H 0 ThrustThingZ(0,30,0,0)
+"----" H 0 A_SpawnItemEx("PainWindM_PushHit")
+Goto Pain+2
+Death.WindM_Push:
+"----" H 0 A_SpawnItemEx("DeathWindM_PushHit")
+"----" H 0 ThrustThingZ(0,48,0,0)
+goto Death.FlingDamage
+
+Pain.TurboM_Honk:
+"----" H 0 A_GiveInventory("TurboM_HonkProtect",1)
+"----" H 0 A_SpawnItemEx("PainTurboM_HonkHit")
+Goto Pain+2
+Death.TurboM_Honk:
+"----" H 0 A_SpawnItemEx("DeathTurboM_HonkHit")
+"----" H 0 ThrustThingZ(0,56,0,0)
+goto Death.FlingDamage
+
+Pain.ODuo_Tackle:
+"----" H 0 //A_JumpIfInventory("ODuo_TackleProtect",1,2)
+"----" H 0 A_SpawnItemEx("PainODuo_TackleHit")
+"----" H 0 A_GiveInventory("ODuo_TackleProtect",1)
+Goto Pain+2
+Death.ODuo_Punch:
+Death.ODuo_Tackle:
+"----" H 0 A_SpawnItemEx("DeathODuo_TackleHit")
+"----" H 0 ThrustThingZ(0,64,0,0)
+Goto Death.FlingDamage
+Pain.ODuo_MeteorPush:
+"----" H 0 A_SpawnItemEx("PainODuo_MeteorPushHit")
+"----" H 0 ThrustThingZ(0,28,0,0)
+Goto Pain+2
+Death.ODuo_MeteorPush:
+"----" H 0 A_SpawnItemEx("DeathODuo_MeteorPushHit")
+"----" H 0 ThrustThingZ(0,84,0,0)
+Goto Death.FlingDamageGib
+
+Pain.Jupiter_Push:
+"----" H 0 A_SpawnItemEx("PainJupiter_PushHit")
+Goto Pain+2
+Death.Jupiter_Push:
+"----" H 0 A_SpawnItemEx("DeathJupiter_PushHit")
+"----" H 0 ThrustThingZ(0,24,0,0)
+Goto Death.FlingDamage
+
+Pain.Enker_Push:
+"----" H 0 A_SpawnItemEx("PainEnker_PushHit")
+Goto Pain+2
+Death.Enker_Push:
+"----" H 0 A_SpawnItemEx("DeathEnker_PushHit")
+"----" H 0 ThrustThingZ(0,44,0,0)
+Goto Death.FlingDamage
+
+Pain.MWS_Barrier:
+Pain.MegaWaterBarrier:
+"----" H 0 A_SpawnItemEx("PainMegaWaterBarrierHit")
+Goto Pain+2
+Death.MWS_Barrier:
+Death.MegaWaterBarrier:
+"----" H 0 A_SpawnItemEx("DeathMegaWaterBarrierHit")
+"----" H 0 ThrustThingZ(0,16,0,0)
+Goto Death.FlingDamage
+
+Pain.HyperStormBlaster:
+"----" H 0 A_SpawnItemEx("PainHyperStormBlasterHit")
+Goto Pain+2
+Death.HyperStormBlaster:
+"----" H 0 A_SpawnItemEx("DeathHyperStormBlasterHit")
+"----" H 0 ThrustThingZ(0,12,0,0)
+Goto Death.FlingDamage
+
+Pain.YellowDevilP:
+"----" H 0 A_SpawnItemEx("PainYellowDevilPHit")
+"----" H 0 ThrustThingZ(0,60,0,0)
+Goto Pain+2
+Death.YellowDevilP:
+"----" H 0 A_SpawnItemEx("DeathYellowDevilPHit",1)
+"----" H 0 ThrustThingZ(0,120,0,0)
+goto Death.FlingDamageGib
+
+//****************
+//Give on-hit*****
+//****************
+
+Pain.Roll_Swing:
+"----" H 0 A_GiveInventory("TempPitProtect_P",1)
+"----" H 0 ThrustThing(random(0,255),15,1,0)
+"----" H 0 ThrustThingZ(0,50,0,0)
+"----" H 0 A_SpawnItemEx("PainRollHit")
+Goto Pain+2
+Death.Roll_Swing:
+"----" H 0 A_GiveToTarget("RollHealAmmo",4)
+Death.Roll_Whiff:
+"----" H 0 ThrustThing(random(0,255),15,1,0)
+"----" H 0 ThrustThingZ(0,50,0,0)
+Goto Death.FlingDamage
+
+Pain.LightRyu_Kick:
+"----" H 0 A_SpawnItemEx("PainLightRyu_KickHit")
+Goto Pain+2
+Pain.LightRyu_Hadoken:
+"----" H 0 A_SpawnItemEx("PainLightRyu_HadokenHit")
+Goto Pain+1
+Death.LightRyu_Kick:Death.LightRyu_SpinKick:Death.LightRyu_Fire:Death.LightRyu_FireBurn:
+"----" H 0 A_GiveToTarget("SuperComboGauge",1)
+goto Death
+Death.LightRyu_Hadoken:
+"----" H 0 A_GiveToTarget("SuperComboGauge",4)
+goto Death
+
+Pain.Joe_Truck:Pain.Joe_Crate:
+"----" H 0 A_GiveInventory("JoeHitItem",1)
+goto Pain+2
+Pain.Joe_Buster:Pain.Joe_MGun:Pain.Joe_Grenade:Pain.Joe_Apache:
+"----" H 0 A_GiveInventory("JoeHitItem",1)
+goto Pain+1
+Death.Joe_Buster:Death.Joe_MGun:Death.Joe_Grenade:Death.Joe_Crate:
+"----" H 0 A_GiveToTarget("JoeUpgradeAmmo",105)
+Death.Joe_Truck:Death.Joe_Apache:
+"----" H 0 A_GiveInventory("JoeHitItem",1)
+goto Death
+
+Pain.BBA_RocketBoom:
+"----" H 0 A_SpawnItemEx("PainBBA_RocketBoomHit")
+Goto Pain+2
+Death.BBA_RocketBoom:
+"----" H 0 A_GiveToTarget("BBA_Money",16)
+goto Death
+
+Pain.ToadM_Leap:
+"----" H 0 A_SpawnItemEx("PainToadM_LeapHit")
+"----" H 0 A_GiveInventory("ToadM_LeapProtect",1)
+Goto Pain+2
+Death.ToadM_Leap:
+"----" H 0 A_GiveToTarget("ToadM_Leap_P",1)
+goto Death.Flatten
+
+Death.SkullM_ShotX:
+"----" H 0 A_GiveToTarget("SkullM_CounterRefresh_P",1)
+goto Death
+
+Pain.BlizzardM_Bowl:
+"----" H 0 A_SpawnItemEx("PainBlizzardM_BowlHit")
+"----" H 0 A_GiveInventory("BlizzardM_BowlProtect",1)
+Goto Pain
+Death.BlizzardM_Bowl:
+"----" H 0 A_GiveToTarget("CrackFlag",1)
+"----" H 0 A_SpawnItemEx("DeathBlizzardM_BowlHit")
+"----" H 0 ThrustThingZ(0,106,0,0)
+goto Death.FlingDamage
+
+Pain.ShadeM_Drain:
+"----" H 0 A_PlaySoundEx("weapon/shadesuck","SoundSlot5")
+"----" H 0 A_SpawnItemEx("PainShadeM_DrainHit")
+Goto Pain+2
+Death.ShadeM_Drain:
+"----" H 0 A_GiveToTarget("CBM_HealThing50_PU",1)
+goto Death
+
+Pain.GrenadeM_Nade:
+"----" H 0 A_SpawnItemEx("PainGrenadeM_NadeHit")
+goto Pain_90
+Pain.GrenadeM_Bomb:
+"----" H 0 A_SpawnItemEx("PainGrenadeM_BombHit")
+goto Pain_90
+Death.GrenadeM_Nade:
+"----" H 0 A_GiveToTarget("THATFELTGOODAMMO",2)
+Goto Death
+Death.GrenadeM_Bomb:
+"----" H 0 A_GiveToTarget("THATFELTGOODAMMO",6)
+Goto Death
+
+Pain.ODuo_Meteor:
+"----" H 0 A_SpawnItemEx("PainODuo_MeteorHit")
+"----" H 0 //A_GiveInventory("ODuo_MeteorProtect",1)
+Goto Pain+2
+Death.ODuo_Meteor:
+"----" H 0 A_GiveToTarget("ODuoTheMeteorPickup",1)
+goto Death.ODuo_MeteorPush
+
+Pain.MagicM_Card:
+"----" H 0 A_GiveInventory("MagicM_CardProtect",1)
+"----" H 0 A_GiveInventory("PainMagicM_CardHit",1)
+goto Pain
+Death.MagicM_Card:
+"----" H 0 A_GiveToTarget("CBM_HealThing40_PU",1)
+Goto Death
+
+Pain.ConcreteM_Bash:
+"----" H 0 A_GiveInventory("ConcreteM_BashProtect",1)
+"----" H 0 A_SpawnItemEx("PainConcreteM_BashHit",1)
+"----" H 0 A_SpawnItemEx("PainKnightM_PushHit")
+goto Pain
+Death.ConcreteM_Bash:
+"----" H 0 ThrustThingZ(0,120,0,0)
+"----" H 0 A_SpawnItemEx("DeathConcreteM_BashHit",1)
+"----" H 0 A_GiveToTarget("ConcreteBashFlag",1)
+Goto Death.FlingDamageGib
+Death.GutsM_Punch:Death.FrostM_Punch:
+"----" H 0 ThrustThingZ(0,120,0,0)
+"----" H 0 A_SpawnItemEx("DeathConcreteM_BashHit",1)
+goto Death.FlingDamageGib
+
+Pain.TornadoM_Leap:
+"----" H 0 A_SpawnItemEx("PainTornadoM_LeapHit")
+"----" H 0 A_GiveInventory("TornadoM_LeapProtect",1)
+Goto Pain+2
+Death.TornadoM_Leap:
+"----" H 0 A_GiveToTarget("TornadoM_Leap_Pickup",1)
+goto Death.Flatten
+
+Pain.SolarM_Head:
+"----" H 0 A_GiveInventory("SolarM_HeadProtect",1)
+"----" H 0 A_SpawnItemEx("PainSolarM_HeadHit")
+Goto Pain+2
+Death.SolarM_Head:
+"----" H 0 A_GiveToTarget("PainSolarM_HeadHit_P",1)
+goto Death
+
+Pain.Quint_Leap:
+"----" H 0 A_SpawnItemEx("PainQuint_LeapHit")
+"----" H 0 A_GiveInventory("Quint_LeapProtect",1)
+Goto Pain+2
+Death.Quint_Leap:
+"----" H 0 A_GiveToTarget("QuintLeap_Pickup",1)
+goto Death.Flatten
+
+Pain.HSH_Wallop:
+"----" H 0 A_SpawnItemEx("PainHSH_WallopHit")
+Goto Pain+2
+Death.HSH_Wallop:
+"----" H 0 A_GiveToTarget("HyperStormCold",25)
+Goto Death.Flatten
+
+Pain.HSH_Drain:
+"----" H 0 A_SpawnItemEx("PainHSH_DrainHit")
+Goto Pain+2
+Death.HSH_Drain:
+"----" H 0 A_GiveToTarget("CBM_HealThing20_PU",1)
+Goto Death
+
+Pain.Neptune_Leap:
+"----" H 0 A_SpawnItemEx("PainNeptune_LeapHit")
+"----" H 0 A_GiveInventory("Neptune_LeapProtect",1)
+Goto Pain+2
+Death.Neptune_Leap:
+"----" H 0 A_GiveToTarget("NeptuneLeap_Pickup",1)
+goto Death.Flatten
+
+Pain.RaThor_Shot1:Pain.RaThor_Shot2:Pain.RaThor_Shot3:Pain.RaThor_Shot4:Pain.RaThor_Shot5:
+"----" H 0 A_GiveInventory("RaThorHitItem",1)
+Goto Pain+2
+Pain.RaThor_BuryFreeze:
+"----" H 0 A_SpawnItemEx("RaThorSlamFloorChecker",0,0,0,0,0,0,0,1)
+Goto Pain.RaThor_Shot1
+Pain.RaThor_Wave:
+"----" H 0 A_GiveInventory("RaThor_WaveProtect",1)
+Goto Pain.RaThor_Shot1
+Pain.RaThor_Spirit:
+"----" H 0 A_GiveInventory("RaThor_SpiritProtect",1)
+Goto Pain.RaThor_Shot1
+
+Pain.RaThor_Toss:
+"----" H 0 A_GiveInventory("Shocked_18",1)
+Goto Pain.RaThor_Shot1
+Death.RaThor_Toss:
+"----" H 0 A_GiveInventory("RaThorHitItem",1)
+goto Death.FlingDamage
+
+Death.RaThor_BuryFreeze:
+"----" H 0 A_PlaySound("weapon/RaThorSlam",5,1.0)
+Death.RaThor_Shot1:Death.RaThor_Shot2:Death.RaThor_Shot3:Death.RaThor_Shot4:Death.RaThor_Shot5:
+Death.RaThor_Spirit:
+Death.RaThor_Wave:
+"----" H 0 A_GiveInventory("RaThorHitItem",1)
+goto Death
+
+
+///////////////////
+//Nothing Special Based
+///////////////////
+
+//Nothing uses these?
+Pain.Oil:Pain.Mine:Pain.MirrorBuster:
+"----" H 0
+goto Pain
+
+//0.75x Hitstun (goto Pain)
+//Pain.Normal:
+
+Pain.YellowDevilB:
+Pain.FragBomber:Pain.SkullSniper:Pain.CentaurArrow:Pain.PlantTrapper2:Pain.DynamoTendrilZap:Pain.RainbowGalaxy:
+
+Pain.ProtoM_Shot2:Pain.ProtoM_Shot3:Pain.MegaM_Shot3:Pain.MegaM_PowerFist2:Pain.MegaM_PowerFist3:
+Pain.Duo_Fist1:Pain.Duo_Fist2:Pain.Duo_Fist3:
+Pain.Rock_MegaBall:Pain.MegaCutBall:Pain.MegaGutsBall:/*Pain.MegaIceBall:*/Pain.MegaBombBall:Pain.MegaFireBall:Pain.MegaElecBall:/*Pain.MegaTimeBall:*/Pain.MegaOilBall:
+
+Pain.CutM_Cutter:Pain.GutsM_Rock:Pain.GutsM_RockBit:Pain.BombM_Boom:Pain.FireM_Storm:Pain.FireM_StormBit:
+Pain.ElecM_Beam:Pain.ElecM_Zap:Pain.ElecM_TeleZap:Pain.OilM_Flame:Pain.OilM_Snap:
+
+Pain.MetalM_Blade:Pain.MetalM_Chain:Pain.AirM_Shot:Pain.BubbleM_Lead:
+Pain.HeatM_Toss:Pain.HeatM_Shot:Pain.WoodM_Leaf:Pain.WoodM_Shield:Pain.WoodM_Slam:
+Pain.DrWily_Pan:Pain.DrWily_Elec:Pain.Alien_Boobeam:
+
+Pain.NeedleM_Stab:Pain.GeminiM_Laser:Pain.HardM_Knuckle:
+Pain.SnakeM_Snake:Pain.SnakeM_Snake2:Pain.ShadowM_Caltrop:
+
+Pain.ToadM_Rain:Pain.DrillM_Bomb:Pain.PharaohM_Shot:Pain.PharaohM_Shot3:Pain.PharaohM_Wave:
+Pain.DustM_Crush:Pain.DustM_CrushBit:Pain.DiveM_Tackle:Pain.SkullM_Shot:Pain.SkullM_ShotX:
+
+Pain.WaveM_Water:Pain.StoneM_Hand:Pain.GyroM_Shot:Pain.ChargeM_Coal:
+Pain.NapalmM_Missile:Pain.CrystalM_Eye:Pain.CrystalM_EyeShot:Pain.DM3_Shot:Pain.DM4_Shot:
+
+Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:Pain.FlameM_Shot:Pain.KnightM_Mace:
+Pain.PlantM_Toss:Pain.TomahawkM_Shot:
+
+Pain.FreezeM_Shot:Pain.FreezeM_SpikeC:Pain.BurstM_Shot:Pain.BurstM_Boom:
+Pain.CloudM_Shot:Pain.CloudM_Zapper:Pain.CloudM_Spark:Pain.CloudM_Charge:
+Pain.SpringM_Fist:Pain.ShadeM_Shot:Pain.ShadeM_Shot2:
+
+Pain.AstroM_Meteor:Pain.SearchM_Shot:Pain.SearchM_LockShot:Pain.SearchM_Disc:
+Pain.FrostM_Shot:Pain.GrenadeM_Kamikaze:
+Pain.Trio_Shot2:Pain.Trio_Shot3:Pain.TrioAstroCrush:Pain.TrioHomingSniper:Pain.TrioIceWave:
+
+Pain.ConcreteM_TossBit:Pain.SplashW_Fish1:Pain.SplashW_Fish2:Pain.SplashW_Fish3:
+Pain.PlugM_Ball:Pain.PlugM_Prong:Pain.PlugM_Plugged:Pain.MagmaM_Shot1:Pain.MagmaM_Shot2:
+Pain.GalaxyM_Shot:
+
+Pain.PumpM_ShieldToss:Pain.CommandoM_Shot:Pain.CommandoM_Mine:Pain.NitroM_Shot:
+
+Pain.AstroM_Shot:Pain.AstroM_CloneShot:Pain.DynamoM_Orb:Pain.DynamoM_Bolt:
+Pain.DynamoM_TaggedBolt:Pain.DynamoM_DishZap:Pain.MagicM_Orb:Pain.MagicM_Ball:Pain.King_ShieldDrop:
+
+Pain.Mercury_Swipe:Pain.Mercury_Swipe2:Pain.Mercury_Blob:Pain.Mercury_Slam:
+Pain.Venus_Bomb:Pain.Venus_Acid:Pain.Venus_BoomJump:Pain.Mars_Photon:Pain.Mars_Mortar:
+Pain.Uranus_ShotBit:Pain.Neptune_Shot:Pain.Neptune_ShotBit:
+
+Pain.HSH_ShotHot:
+
+Pain.Enker_Shot:Pain.Enker_Shot2:Pain.Punk_Shot:Pain.Ballade_Shot:Pain.Ballade_Mine:
+Pain.Quint_SakuLand:
+
+"----" H 0
+Goto Pain
+
+
+//0.9x Hitstun
+Pain.MegaM_Shot2:
+Pain.SnakeM_Poke:
+Pain.DrillM_DigUp:
+Pain.WaveM_Shot:
+Pain.TomahawkM_Feather:
+Pain.AquaM_Shot:Pain.AquaM_TowerBit:Pain.AquaM_CannonBit:Pain.TrioWaterBalloon:
+Pain.DynamoM_Dish:Pain.DynamoTendril:Pain.GroundM_DigUp:Pain.PirateM_Mine:
+Pain.NitroM_Shot2:
+Pain.Pluto_Shot:
+"----" H 0
+Goto Pain_90
+
+
+//No Hitstun (goto Pain+2)
+
+//Pain.:
+
+Pain.WaveBuster:Pain.DocScanner:Pain.DarkShield:Pain.PlantTrapper:Pain.BusterRodPole:
+
+Pain.ProtoM_Shot:Pain.ProtoM_Strike:Pain.MegaM_Shot:Pain.MegaM_PowerFist:Pain.MegaM_JetShot:
+Pain.Bass_Shot:Pain.Bass_TrebleShot:
+Pain.MegaFireBallBurn:Pain.Rock_Kick:Pain.Roll_Whiff:Pain.Roll_Cleanse:Pain.Auto_Firework:
+Pain.LightRyu_FireBurn:Pain.LightRyu_ShinkuShot:Pain.LightRyu_SpinKick:
+
+Pain.BBA_Punch:Pain.BBA_Pistol:Pain.BBA_Shotgun:Pain.BBA_Chaingun:Pain.BBA_SSG:
+Pain.BBA_Rocket:/*Pain.BBA_RocketBoom:*/Pain.BBA_Plasma:Pain.BBA_BFG:Pain.BBA_BFGSplash:
+
+Pain.CutM_Slice:Pain.GutsM_Punch:Pain.IceM_Slasher:Pain.FireM_Spin:Pain.FireM_Wave:
+Pain.TimeM_Arrow:Pain.TimeM_ArrowSlow:Pain.TimeM_ArrowFast:
+Pain.OilM_Shot:Pain.OilM_Blob:Pain.OilM_Slider:Pain.OilM_Board:
+
+Pain.BubbleM_Shot:Pain.QuickM_Shot:Pain.QuickM_Rapid:Pain.CrashM_Clash:
+Pain.FlashM_Shot:Pain.HeatM_Pillar:Pain.HeatM_Tackle:Pain.WoodM_Seed:
+Pain.DrWily_Wave:Pain.DrWily_Suit:Pain.DrWily_FireBurn:Pain.Alien_Shot:Pain.Alien_BooShot:
+
+Pain.NeedleM_Shot:Pain.MagnetM_Shot:Pain.GeminiM_Shot:Pain.GeminiM_CloneShot:
+Pain.HardM_Flat:Pain.TopM_Toss:Pain.TopM_Windup:Pain.TopM_Spin2:
+Pain.DocRobot_Shot:Pain.DocRobot_Scan:
+
+Pain.BrightM_Shot:Pain.ToadM_Rain2:Pain.DrillM_Stab:Pain.PharaohM_Hold:Pain.PharaohM_Aura:
+Pain.DustM_Shot:Pain.DiveM_Torpedo:
+
+Pain.GravityM_Shot:Pain.GravityM_Dunked:Pain.WaveM_Hook:Pain.StoneM_Head:Pain.StoneM_Dunked:Pain.StoneM_Quake:
+Pain.StarM_Crash:Pain.StarM_Throw:Pain.StarM_Throw2:Pain.StarM_Flurry:
+Pain.ChargeM_Ram:Pain.ChargeM_Ram2:Pain.NapalmM_Bomb:Pain.CrystalEyeBitB:
+Pain.DM1_Shot:Pain.DM1_Shot2:Pain.DM1_Boost:Pain.DM2_Shield:Pain.DM2_TossSpin:Pain.DM2_Toss:
+Pain.DM3_Rapid:Pain.DM4_Shield:Pain.DM4_TossSpin:
+
+Pain.CentaurM_Shot:Pain.CentaurM_Flash:Pain.PlantM_Shot:Pain.PlantM_Barrier:
+Pain.WindM_Crush:Pain.YamatoM_Shot:Pain.YamatoM_Spin:
+
+Pain.FreezeM_ShotBit:Pain.FreezeM_SpikeF:Pain.JunkM_Shot:Pain.JunkM_Shield:Pain.JunkM_Punch:
+Pain.SpringM_Coil:Pain.TurboM_Wheel:Pain.TurboM_WheelBit:Pain.TurboM_Ram:
+
+Pain.TenguM_Dunked:Pain.TenguM_Pod:Pain.SwordM_SwipeBit:
+Pain.ClownM_Claw:Pain.ClownM_Peg:Pain.ClownM_Aura:Pain.ClownM_Aura2:
+Pain.FrostM_Punch:Pain.AquaM_Tower:
+Pain.ODuo_Shot:Pain.ODuo_Punch:Pain.ODuo_MeteorBoom:Pain.ODuo_Crush:Pain.TrioThunderClaw:
+
+Pain.ConcreteM_Flat:Pain.TornadoM_Dunked:Pain.SplashW_Sing:Pain.JewelM_Shot:Pain.JewelM_ShotBit:Pain.JewelM_ShotBoom:
+Pain.HornetM_Shot:Pain.GalaxyM_Ram:Pain.FakeM_Shot:Pain.FakeRepeater:
+
+Pain.BladeM_Shot:Pain.BladeM_Swipe:Pain.PumpM_Handle:Pain.CommandoM_Crush:Pain.CommandoM_Wave:Pain.CommandoM_WaveBit:
+Pain.SolarM_Blaze:
+
+Pain.TenguM_Shot:Pain.DynamoM_Tag:Pain.ColdM_Wall:Pain.ColdM_Punch:
+Pain.GroundM_Stab:Pain.GroundM_ShotCeil:Pain.GroundM_GigaDrill:Pain.PirateM_Hose:Pain.PirateM_BubbleRam:
+Pain.BurnerM_Shot:Pain.BurnerM_Shot2:Pain.BurnerM_DiveLand:Pain.BurnerM_FireLine:Pain.MagicM_Bird:
+Pain.King_Slash:Pain.King_AxeSpin:Pain.King_Laser:Pain.King_ShieldLaser:
+
+Pain.Mercury_Shot:Pain.Venus_Shot:Pain.Venus_Shot2:Pain.Mars_Shot:Pain.Jupiter_Shot:
+Pain.Uranus_Flat:Pain.Uranus_Gored:Pain.Neptune_Stomp:Pain.Neptune_Stomp2:Pain.Neptune_Crush:
+
+Pain.BRG_Bash:Pain.BRG_Spin:Pain.MWS_Shot:Pain.HSH_Shot:Pain.HSH_Booster:
+
+Pain.Punk_Rapid:Pain.Quint_Shot:Pain.Quint_SakuLand2:Pain.Quint_Spin:
+
+Pain.Punch:
+Pain.Flatten:
+Pain.CountBombClear:
+"----" H 0
+Goto Pain+2
+
+///////////////////
+//Death states
+///////////////////
+
+Death.MegaIceBall:
+Death.IceM_Slow:Death.IceM_Slow2:Death.IceM_Icicle:Death.IceM_Sculpt:
+Death.FlashM_Stopper:Death.TimeBender:
+Death.FreezeM_Iced:Death.FreezeM_Frozen:
+Death.FrostM_Shot:Death.FrostM_Iced:Death.FrostM_Iced2:Death.TrioIceWave:
+Death.ColdM_Freeze:Death.ColdM_Punch:Death.ColdM_Down:
+Death.ChillM_Shot:Death.ChillM_Spike:Death.ChillM_Freeze:
+Death.Terra_Stopper:
+goto Death.Ice
+
+Death.WindM_Pull:
+Death.GravityM_Up:
+Death.BurstM_Trap:
+Death.TenguM_Slam:Death.TenguM_THold:Death.TrioTornadoHold:
+Death.TornadoM_Shot:Death.TornadoM_Blow:Death.TornadoM_Blow2:Death.TornadoM_Lift:
+Death.MWS_Lift:
+goto Death.WindStorm
+
+Death.GravitySphere:Death.GravityM_Dunked:Death.StoneM_Dunked:Death.StoneM_Head:
+Death.TenguM_Dunked:Death.GrenadeM_Kamikaze:
+Death.DynamoM_Tag:
+Death.TornadoM_Dunked:Death.PlugM_Plugged:
+Death.Mercury_Swipe2:Death.Uranus_Gored:
+Death.CountBombClear:Death.VehicleHazard:
+goto Death.Beam
+
+Death.HardM_Flat:
+Death.StoneM_Leap:
+Death.WindM_Crush:
+Death.ODuo_Crush:
+Death.ConcreteM_Flat:
+Death.CommandoM_Crush:
+Death.Uranus_Flat:Death.Uranus_Stampede:Death.Neptune_Crush:
+Death.Flatten:
+goto Death.MetalPress
+
+Death.DustM_Shot:Death.DustM_Crush:Death.DustM_CrushBit:
+Death.JunkM_Cube:Death.JunkM_Shot:Death.JunkM_Punch:Death.JunkM_Shield:Death.JunkM_Shock:
+goto Death.DustCrusher
+
+Death.MagicM_Orb:
+"----" H 0 A_SpawnItemEx("MagicM_KillTrick_H",0,0,0,momx,momy,momz,0,9)
+"----" H 0 A_Stop
+goto Death.TopSpin
+
+//AmmoGet:
+//"----" Y 0 A_PlaySoundEx("weapon/mirrorabsorb","Voice")
+//"----" Y 0 A_GiveInventory("MirrorCharge",7)
+//EnkerClassAbsorb:
+//"----" Y 35 
+//"----" Y 0
+//goto Spawn+1
+
+}
+}

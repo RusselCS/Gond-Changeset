@@ -1,0 +1,37 @@
+actor Darkman4 : ClassBase
+{
+Player.ScoreIcon "C_05L0X"
+player.displayname "Darkman4"
+player.soundclass "darkman4c"
+
+player.maxhealth 1250
+health 1250
+player.jumpz 10
+player.forwardmove 0.7, 0.7
+player.sidemove 0.68, 0.68
+
+player.startitem "DarkBusterBoss"
+player.startitem "Darkman4ShieldAmmo",28
+
+States
+{
+Spawn:
+DAR4 A 0 
+DAR4 B 1
+DAR4 A 1
+Goto Spawn+2
+See:
+DAR4 BCDE 5
+Goto Spawn
+Missile:
+DAR4 F 5
+DAR4 G 4
+goto Spawn
+ClassPain:
+DAR4 H 0
+goto PainContinue
+ClassDeath:
+DAR4 H 0
+goto DeathContinue
+}
+}

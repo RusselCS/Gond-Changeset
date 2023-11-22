@@ -1,0 +1,973 @@
+actor RollSwingBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_0E"
+dropitem "RollSweepWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 0
+Obituary "$OB_ROLLSWING"
+Inventory.Pickupmessage "Power up! Roll Swing!"
+weapon.ammotype "RollHealAmmo"
+weapon.ammotype2 "RollHyperDashAmmo"
+inventory.icon "Rol2Icon"
+States
+{
+Spawn:
+C_00 E 1
+loop
+//RSWB Z 1
+Ready:
+RSWB A 0 ACS_ExecuteAlways(998,0,DYE_ROLLC)
+RSWB A 0 A_GunFlash("Flash",1)
+goto Ready2
+Ready2:
+RSWB A 2 A_WeaponReady
+RSWB A 0 A_GiveInventory("Roll_ReadyState_P")
+loop
+Deselect:
+RSWB A 0 A_TakeInventory("SecondSwing")//offset(1,180)
+RSWB AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+RSWB A 1 A_Lower
+goto Deselect+1
+Select:
+RSWB AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+RSWB A 1 A_Raise
+Loop
+
+Flash:
+TNT1 A 2
+TNT1 A 0 A_GiveInventory("Roll_FlashState_P")
+loop
+
+Fire:
+RSWB A 0 A_JumpIfInventory("IsBot",1,"BotFire")
+RSWB A 0 A_PlaySoundEx("weapon/RollSwing","Weapon")
+RSWB A 0 A_JumpIfInventory("SecondSwing",1,"Fire2")
+
+RSWB A 0 A_GiveInventory("VivifyDelay5")
+RSWB A 0 A_Refire(1)
+
+RSWB B 2 OffSet(-12,20)
+RSWB C 2 OffSet(-39,23)A_GiveInventory("RollSwingChecker_P1",1)
+RSWB C 2 OffSet(-84,32)
+RSWB D 2 OffSet(-133,42)
+RSWB E 2 OffSet(-164,44)//SetPlayerProperty(0,0,0)
+RSWB E 2 OffSet(-208,55)
+RSWB E 2 OffSet(-256,69)
+RSWB E 2 OffSet(-304,86)
+
+TNT1 A 6//7
+TNT1 A 2 A_GiveInventory("SecondSwing",1)
+TNT1 A 15 A_WeaponReady
+TNT1 A 0 A_TakeInventory("SecondSwing")
+
+RSWB A 2 OffSet(-48,217)A_WeaponReady(1)
+RSWB A 2 OffSet(-32,162)A_WeaponReady(1)
+RSWB A 2 OffSet(-19,118)A_WeaponReady(1)
+RSWB A 2 OffSet(-10,83)A_WeaponReady(1)
+RSWB A 2 OffSet(-3,55)A_WeaponReady(1)
+Goto Ready2
+
+Fire2:
+RSWB A 0 A_GiveInventory("VivifyDelay5")
+RSWB A 0 A_Refire(1)
+
+RSWB F 2 OffSet(-110,47)
+RSWB G 2 OffSet(-93,42)A_GiveInventory("RollMain2_CI",1)
+RSWB G 2 OffSet(-46,33)
+RSWB H 2 OffSet(-30,25)//SetPlayerProperty(0,0,0)
+RSWB H 2 OffSet(19,19)
+RSWB H 2 OffSet(72,21)
+RSWB H 2 OffSet(129,33)
+
+TNT1 A 6
+TNT1 A 2 A_TakeInventory("SecondSwing")
+
+RSWB A 2 OffSet(78,67)A_WeaponReady(1)
+RSWB A 2 OffSet(54,54)A_WeaponReady(1)
+RSWB A 2 OffSet(32,45)A_WeaponReady(1)
+RSWB A 2 OffSet(16,39)A_WeaponReady(1)
+RSWB A 2 OffSet(6,35)A_WeaponReady(1)
+RSWB A 0
+Goto Ready2
+
+Altfire:
+RSWB I 0 OffSet(-14,64)A_GiveInventory("RollSlideThrust_P")
+RSWB I 0 A_Refire(1)
+RSWB I 1 OffSet(-14,64)
+RSWB I 1 OffSet(-32,41)
+RSWB I 0 A_TakeInventory("SlideVivifyFlag",99)
+RSWB I 10 OffSet(-56,15)A_WeaponReady(11)
+RSWB I 3 OffSet(-43,35)A_WeaponReady(11)
+RSWB I 3 OffSet(-26,60)A_WeaponReady(11)
+RSWB I 2 OffSet(-4,91)A_WeaponReady(11)
+RSWB I 0
+Goto Ready2
+
+BotFire:
+RSWB A 0 A_JumpIfInventory("SecondSwing",1,"BotFire1")
+RSWB A 0 A_JumpIfInventory("RollHyperDashAmmo",111,"BotFire2")
+RSWB A 0 A_Jump(192,"BotFireSwap")
+goto Fire+1
+BotFire1:
+RSWB A 0 A_FaceTarget
+RSWB A 0 A_Jump(160,1)
+goto BotFire+1
+RSWB A 0 A_GiveInventory("RollHyperDashAmmo",random(7,77))
+goto Fire+1
+BotFire2:
+RSWB A 0 A_Jump(96,"Altfire")
+goto Fire+1
+BotFireSwap:
+RSWB A 0 A_SelectWeapon("RollBucketBoss")
+goto Ready2
+}
+}
+
+actor RollBucketBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_0E2"
+dropitem "RollSweepWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 0
+Obituary "$OB_ROLLBUCKET"
+Inventory.Pickupmessage "Power up! Roll Bucket!"
+weapon.ammotype "RollHealAmmo"
+weapon.ammotype2 "RollHyperDashAmmo"
+inventory.icon "Rol1Icon"
+States
+{
+Spawn:
+C_00 E 1
+loop
+//RSWB Z 1
+Ready:
+RSWB O 0 ACS_ExecuteAlways(998,0,DYE_ROLLC)
+RSWB O 0 A_GunFlash("Flash",1)
+Goto Ready2
+Ready2:
+RSWB O 2 A_WeaponReady
+RSWB O 0 A_GiveInventory("Roll_ReadyState_P")
+loop
+Deselect:
+RSWB OOOOOOOOOOOOOOOOOOOOOO 0 A_Lower
+RSWB O 1 A_Lower
+Loop
+Select:
+RSWB OOOOOOOOOOOOOOOOOOOOOO 0 A_Raise
+RSWB O 1 A_Raise
+Loop
+
+Flash:
+TNT1 A 2
+TNT1 A 0 A_GiveInventory("Roll_FlashState_P")
+loop
+
+Fire:
+RSWB O 0 A_JumpIfInventory("IsBot",1,"BotFire")
+RSWB O 0 A_PlaySoundEx("weapon/WaveSummonGo","Weapon")
+RSWB O 0 A_GiveInventory("RollMain3_CI",1)
+RSWB O 2 OffSet(-5,22)
+RSWB PQO 2 OffSet(-10,12)
+RSWB O 2 OffSet(-5,22)//SetPlayerProperty(0,0,0)
+RSWB O 0 A_WeaponReady(14)
+RSWB OOOO 2
+goto Ready2
+
+Altfire:
+RSWB I 0 OffSet(-14,64)A_GiveInventory("RollSlideThrust_P")
+RSWB I 0 A_Refire(1)
+RSWB I 1 OffSet(-14,64)
+RSWB I 1 OffSet(-32,41)
+RSWB I 0 A_TakeInventory("SlideVivifyFlag",99)
+RSWB I 10 OffSet(-56,15)A_WeaponReady(11)
+RSWB I 3 OffSet(-43,35)A_WeaponReady(11)
+RSWB I 3 OffSet(-26,60)A_WeaponReady(11)
+RSWB I 2 OffSet(-4,91)A_WeaponReady(11)
+RSWB I 0
+Goto Ready2
+
+BotFire:
+RSWB O 0 A_JumpIfInventory("RollHyperDashAmmo",777,"BotFire1")
+RSWB O 0 A_JumpIfInventory("RollHyperDashAmmo",111,"BotFire2")
+RSWB O 0 A_FaceTarget(35)
+goto Fire+1
+BotFire1:
+RSWB O 0 A_FaceTarget
+RSWB O 0 A_Jump(192,"BotFireSwap")
+goto BotFire+1
+BotFire2:
+RSWB O 0 A_GiveInventory("RollHyperDashAmmo",random(33,77))
+RSWB O 0 A_Jump(32,"Altfire")
+goto Fire+1
+BotFireSwap:
+RSWB O 0 A_SelectWeapon("RollSwingBoss")
+goto Ready2
+}
+}
+
+actor RollHealAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 56
++INVENTORY.IGNORESKILL
+}
+
+actor RollHyperDashAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 777
++INVENTORY.IGNORESKILL
+}
+
+actor SecondSwing : Inventory{}
+
+actor RollAmmoRegenDelay : Inventory
+{
+inventory.amount 1
+inventory.maxamount 28
+}
+
+actor PowerRollDashing : Powerup
+{
+Powerup.Duration 22
+}
+
+actor PowerRollRepulsion : Powerup
+{
+Powerup.Duration 3
+}
+actor PowerRollRepulsionX : Powerup
+{
+Powerup.Duration 3
+}
+
+actor Roll_StaminaDelay : Powerup
+{
+Powerup.Duration -2
+}
+actor Roll_StaminaDelayW : Powerup
+{
+Powerup.Duration -1
+}
+
+actor RollSwingChecker_P1 : CustomInventory
+{
+States
+{
+Pickup:
+//TNT1 A 0 A_GiveInventory("Roll_StaminaDelayW",1)
+TNT1 A 0 A_JumpIfInventory("PowerRollDashing",1,"PickupX")
+TNT1 A 0 A_GiveInventory("PowerRollRepulsion",1)
+TNT1 A 0 A_GiveInventory("RollMain_CI",1)
+stop
+PickupX:
+TNT1 A 0 A_GiveInventory("PowerRollRepulsionX",1)
+TNT1 A 0 A_GiveInventory("RollMainX_CI",1)
+TNT1 A 0 A_TakeInventory("PowerRollDashing",99)
+stop
+}
+}
+
+actor Roll_ReadyState_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("Roll_StaminaDelay",1,3)
+TNT1 A 0 A_JumpIfInventory("Roll_StaminaDelayW",1,2)
+TNT1 A 0 A_GiveInventory("RollHyperDashAmmo",2)
+TNT1 A 0
+stop
+}
+}
+
+actor Roll_FlashState_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("RollAmmoRegenDelay",28,"Give")
+TNT1 A 0 A_GiveInventory("RollAmmoRegenDelay",1)
+goto SlideAmmo
+Give:
+TNT1 A 0 A_GiveInventory("RollHealAmmo",1)
+TNT1 A 0 A_TakeInventory("RollAmmoRegenDelay")
+goto SlideAmmo
+SlideAmmo:
+TNT1 A 0 A_JumpIfInventory("Roll_StaminaDelay",1,3)
+TNT1 A 0 A_JumpIfInventory("Roll_StaminaDelayW",1,2)
+TNT1 A 0 A_GiveInventory("RollHyperDashAmmo",2)
+TNT1 A 0
+stop
+}
+}
+
+actor RollSlideThrust_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("RollSlideFX",-10,0,16,0,0,0,0,1)
+
+TNT1 A 0 A_TakeInventory("SecondSwing")
+TNT1 A 0 A_GiveInventory("SlideVivifyFlag",1)
+TNT1 A 0 A_GiveInventory("PowerRollDashing",1)
+TNT1 A 0 A_PlaySoundEx("weapon/superboost","Body")
+//TNT1 A 0 SetPlayerProperty(0,1,0)
+
+TNT1 A 0 A_JumpIfInventory("RollHyperDashAmmo",111,"Pickup2")
+goto Pickup1
+Pickup1:
+TNT1 A 0 A_GiveInventory("Roll_StaminaDelayW",1)
+TNT1 A 0 A_JumpIf(z-floorz==0,"PickupG1")
+TNT1 A 0 A_ChangeVelocity(13,0,momz,3)
+TNT1 A 0 ThrustThingZ(0,6,0,1)
+stop
+PickupG1:
+TNT1 A 0 A_ChangeVelocity(17,0,momz,3)
+TNT1 A 0 ThrustThingZ(0,14,0,0)
+stop
+Pickup2:
+TNT1 A 0 A_GiveInventory("Roll_StaminaDelay",1)
+TNT1 A 0 A_JumpIf(z-floorz==0,"PickupG2")
+//TNT1 A 0 A_Recoil(-20)//-23
+//TNT1 A 0 ThrustThingZ(0,12,0,1)
+TNT1 A 0 A_ChangeVelocity(26,0,momz,3)
+TNT1 A 0 ThrustThingZ(0,12,0,1)
+goto End
+PickupG2:
+//TNT1 A 0 A_Recoil(-25)//-28
+//TNT1 A 0 ThrustThingZ(0,28,0,0) 
+TNT1 A 0 A_ChangeVelocity(34,0,momz,3)
+TNT1 A 0 ThrustThingZ(0,28,0,0)
+goto End
+End:
+TNT1 A 0 A_TakeInventory("RollHyperDashAmmo",111,1)
+stop
+}
+}
+
+actor RollSlideFX : BasicClientSide
+{
+Scale 2.5
+States
+{
+Spawn:
+RSWD MNOPQ 3
+stop
+}
+}
+
+actor BossRollSwing
+{
+Translation "202:202=196:196"
+PROJECTILE
+damagetype "Roll_Whiff"
+Obituary "$OB_ROLLSWING"
++DONTBLAST
++NOGRAVITY
+-NOBLOCKMAP
++SHOOTABLE
++NOTARGETSWITCH
+//+NODAMAGE
++INVULNERABLE
++NORADIUSDMG
++DONTRIP
++NOBLOOD
++THRUSPECIES
+//+REFLECTIVE
+
+ReactionTime 1
+Damage (0)
+Radius 20
+Height 16
+speed 27
+Species "RollStuff"
+Scale 2.5
+States
+{
+Spawn:
+PLUH P 0
+PLUH P 0 A_SpawnItemEx("WaterGush_Torrent")
+//PLUH P 0 A_JumpIfInTargetInventory("PowerRollDashing",1,"Spawn2")
+PLUH PQRRS 1
+PLUH T 1 A_CountDown
+wait
+Spawn2:
+PLUH PQRRS 1 //A_GiveInventory("RollRepulsion2",1)
+PLUH T 1 A_CountDown
+wait
+Death:
+PLUH T 0
+PLUH T 0 A_SpawnItemEx("WaterGush_Torrent")
+//PLUH T 0 A_SetDamageType("Roll_Whiff")
+PLUH T 1 A_Explode(140,128,0,0,16)
+stop
+XDeath:
+PLUH T 0
+PLUH T 0 A_SpawnItemEx("WaterGush_Torrent")
+PLUH T 1 A_Explode(200,128,0,0,24)
+stop
+}
+}
+
+actor BossRollSwingB : BossRollSwing{translation "202:202=205:205"}
+actor BossRollSwingR : BossRollSwing{translation "202:202=171:171"}
+actor BossRollSwingO : BossRollSwing{translation "202:202=104:104"}
+actor BossRollSwingP : BossRollSwing{translation "202:202=229:229"}
+
+actor BossRollSwing2 : BossRollSwing
+{
+damagetype "Roll_Swing"
+Speed 30
+States
+{
+Spawn:
+Y_7F P 0
+Y_7F P 0 A_SpawnItemEx("WaterGush_Torrent")
+Y_7F PQRRS 1
+Y_7F T 1 A_CountDown
+wait
+Death:
+Y_7F T 0
+Y_7F T 0 A_SpawnItemEx("WaterGush_Torrent")
+Y_7F T 0 A_SetDamageType("Roll_Whiff")
+Y_7F T 1 A_Explode(140,128,0,0,16)
+stop
+XDeath:
+Y_7F T 0
+Y_7F T 0 A_SpawnItemEx("WaterGush_Torrent")
+Y_7F T 1 A_Explode(200,128,0,0,24)
+stop
+}
+}
+actor BossRollSwing2B : BossRollSwing2{translation "202:202=205:205"}
+actor BossRollSwing2R : BossRollSwing2{translation "202:202=171:171"}
+actor BossRollSwing2O : BossRollSwing2{translation "202:202=104:104"}
+actor BossRollSwing2P : BossRollSwing2{translation "202:202=229:229"}
+
+actor BossRollSwingX : BossRollSwing {Speed 38}
+actor BossRollSwingXB : BossRollSwingB {Speed 38}
+actor BossRollSwingXR : BossRollSwingR {Speed 38}
+actor BossRollSwingXO : BossRollSwingO {Speed 38}
+actor BossRollSwingXP : BossRollSwingP {Speed 38}
+
+actor RollRepulsion : CustomInventory
+{
+//damagetype "Melee"
+States
+{
+Pickup:
+TNT1 A 0 //A_RadiusGive("PowerRollDashing",192,RGF_MISSILES,1,"RollCleanserShot")
+TNT1 A 0 A_Blast(0,255,192,25.0,"RollRepulsionFX")
+stop
+}
+}
+
+
+actor RollRepulsion2 : CustomInventory
+{
+//damagetype "Melee"
+States
+{
+Pickup:
+TNT1 A 0 //A_RadiusGive("PowerRollDashing",192,RGF_MISSILES,1,"RollCleanserShot")
+TNT1 A 0 A_Blast(0,255,192,40.0,"RollRepulsionFX")
+stop
+}
+}
+
+actor RollRepulsionFX : BasicClientSide
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1// A_Stop
+//ROL6 BCDE 2
+stop
+}
+}
+
+actor RollCleanserShot
+{
+Translation "199:199=197:197", "202:202=196:196"
+PROJECTILE
+damagetype "Roll_Cleanse"
+Obituary "$OB_ROLLBUCKET"
+-NOGRAVITY
+
++BOUNCEONCEILINGS
++BOUNCEONWALLS
+BounceCount 4
+BounceFactor 0.25
+WallBounceFactor 0.01
+
+
++THRUSPECIES
+Species "RollStuff"
+MeleeRange 8
+Damage (150)
+Height 10
+Radius 9
+speed 32
+Scale 2.0
+States
+{
+Spawn:
+Y_1H R 0
+Y_1H R 0 ThrustThingZ(0,MeleeRange,0,1)
+Y_1H R 1
+wait
+Crash:
+XDeath:
+TNT1 A 1
+stop
+DeathF:
+TNT1 A 1 A_SpawnItemEx("RollCleanserBlob",0,0,0,0,0,0,0,1)
+stop
+Death:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(z-floorz<=9,"DeathF")
+TNT1 A 1 A_SpawnItemEx("RollCleanserShotFall",0,0,0,0,0,-1,0,1)
+stop
+
+//Y_1H R 0 A_JumpIf(z-floorz<=0,"Death2")
+//Y_1H R 1 A_GiveInventory("CutterFlag",1)
+//Y_1H R 0 A_JumpIfInventory("CutterFlag",175,"Xdeath")
+//loop
+//Death2:
+//Y_1H R 1 A_SpawnItemEx("RollCleanserBlob",0,0,0,0,0,0,0,1)
+//stop
+}
+}
+
+actor RollCleanserShotB : RollCleanserShot{translation "202:202=205:205", "199:199=74:74"}
+actor RollCleanserShotR : RollCleanserShot{translation "202:202=171:171", "199:199=41:41"}
+actor RollCleanserShotO : RollCleanserShot{translation "202:202=104:104", "199:199=128:128"}
+actor RollCleanserShotP : RollCleanserShot{translation "202:202=229:229", "199:199=232:232"}
+
+actor RollCleanserShotFall : RollCleanserShot
+{
+damagetype "Roll_CleanseShock"
+MeleeRange -8
+ReactionTime 1
+States
+{
+Spawn:
+Y_1H R 0
+Y_1H R 175 ThrustThingZ(0,MeleeRange,0,1)
+Y_1H R 1
+stop
+Death:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(z-floorz<=9,"DeathF")
+TNT1 A 1
+stop
+}
+}
+
+Actor RollCleanserBlob
+{
+Obituary "$OB_ROLLBUCKET"
+damagetype "Roll_CleanseShock"
++MISSILE
++DONTSPLASH
++EXPLODEONWATER
++NOEXPLODEFLOOR
++THRUSPECIES
+Species "RollStuff"
+reactiontime 175
+Damage (100)
+Height 10
+Radius 9
+scale 2.5
+states
+{
+Spawn:
+Y_1H T 0
+Y_1H T 1 A_SetArg(2,ReactionTime)
+Goto Spawn2
+Spawn2:
+Y_1H T 1 A_Stop
+Goto SlideWait
+SlideWait:
+Y_1H S 0 A_CountDownArg(2)
+Y_1H S 1
+Y_1H S 0 A_JumpIf(abs(z*100000-floorz*100000)>50,"NewShot")
+Y_1H S 0 A_JumpIfInTargetInventory("PowerRollRepulsionX",1,"NewShotFling2")
+Y_1H S 0 A_JumpIfInTargetInventory("PowerRollRepulsion",1,"NewShotFling")
+loop
+NewShot:
+//Y_1H R 0 A_CheckFlag("BLASTED","NewShotX")
+//Goto Death
+//NewShotX:
+Y_1H R 0
+Y_1H R 0 A_SpawnItemEx("RollCleanserShot2",0,0,0,momx,momy,momz,0,9)
+stop
+NewShotFling:
+Y_1H R 0 A_JumpIfCloser(192,1)
+goto SlideWait
+Y_1H R 0 A_FaceTarget
+Y_1H R 0 A_SpawnItemEx("RollCleanserShot2",0,0,0,-25,0,7.25,0,1)
+stop
+NewShotFling2:
+Y_1H R 0 A_JumpIfCloser(192,1)
+goto SlideWait
+Y_1H R 0 A_FaceTarget
+Y_1H R 0 A_SpawnItemEx("RollCleanserShot2",0,0,0,-40,0,7.25,0,1)
+stop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor Roll_CleanseShockProtect : PowerProtection
+{
+Powerup.Duration 6
+DamageFactor "Roll_CleanseShock", 0.35
+}
+
+actor RollCleanserShot2 : RollCleanserShot
+{
+damagetype "Roll_CleanseShock"
+//BounceCount 4
+WallBounceFactor 0.25
+MeleeRange 1
+Damage (250)//30
+}
+
+
+actor RollHealItem : BasicClassItem
+{
+inventory.icon "RollIcon"
+inventory.pickupmessage "Congartulations!"
+Tag "Roll Health Create"
+states
+{
+Spawn:
+RSWB X 1
+loop
+Use:
+TNT1 A 0 A_JumpIfInventory("RollHealAmmo",14,"Success")
+fail
+Success:
+TNT1 A 0 A_PlaySoundEx("weapon/RollHeal","SoundSlot7")
+TNT1 A 0 A_JumpIfInventory("RollHealAmmo",28,"Success2")
+//TNT1 A 0 A_FireCustomMissile("RollHealX",0,0,0,0)
+//TNT1 A 0 //A_SpawnItemEx("RollHeal_P",40,0,256,0,0,0,0,32,0)
+TNT1 A 0 A_TakeInventory("RollHealAmmo",4)
+TNT1 A 0 A_TakeInventory("RollHealAmmo",10,1)
+TNT1 A 0 A_GiveInventory("RollOther2_CI",1)
+fail
+Success2:
+TNT1 A 0 A_TakeInventory("RollHealAmmo",7)
+TNT1 A 0 A_TakeInventory("RollHealAmmo",21,1)
+TNT1 A 0 A_GiveInventory("RollOther_CI",1)
+fail
+}
+}
+
+actor RollHealShot
+{
+Translation"195:195=110:110","250:250=104:104","249:249=130:130"
+//+MISSILE
+//+CANPASS
++DROPOFF
+-SOLID
++NOGRAVITY
++THRUACTORS
++THRUGHOST
++DONTBLAST
++DONTREFLECT
+RenderStyle "Translucent"
+Alpha 0.25
+ReactionTime 1
+radius 2
+height 2
+Speed 50
+scale 2.0
+States
+{
+Spawn:
+RSWB S 0
+RSWB SSSSSSSSSSSS 1 A_SpawnItemEx("RollHealFX",0,random(-20,20),random(-2,28),0,0,0,0,1)
+RSWB S 1 A_CountDown
+wait
+Death:
+RSWB RRRRRRRRRRRRRRRR 1 A_FadeIn(0.05)
+RSWB S 0 A_SpawnItemEx("RollHeal_P",0,0,0,0,0,0,0,1)
+stop
+}
+}
+actor RollHealShotB : RollHealShot{Translation"195:195=74:74","250:250=196:196","249:249=199:199"}
+actor RollHealShotR : RollHealShot{Translation"195:195=41:41","250:250=170:170","249:249=43:43"}
+actor RollHealShotO : RollHealShot{Translation"195:195=128:128","250:250=138:138","249:249=131:131"}
+actor RollHealShotP : RollHealShot{Translation"195:195=232:232","250:250=214:214","249:249=223:223"}
+
+actor RollHealShot2 : RollHealShot
+{
+States
+{
+Spawn:
+RSWB U 0
+RSWB UUUUUUUUUUUU 1 A_SpawnItemEx("RollHealFX",0,random(-16,16),random(-2,22),0,0,0,0,1)
+RSWB U 1 A_CountDown
+wait
+Death:
+RSWB TTTTTTTTTTTTTTTT 1 A_FadeIn(0.05)
+RSWB T 0 A_SpawnItemEx("RollHeal2_P",0,0,0,0,0,0,0,1)
+stop
+}
+}
+actor RollHealShot2B : RollHealShot2{Translation"195:195=74:74","250:250=196:196","249:249=199:199"}
+actor RollHealShot2R : RollHealShot2{Translation"195:195=41:41","250:250=170:170","249:249=43:43"}
+actor RollHealShot2O : RollHealShot2{Translation"195:195=128:128","250:250=138:138","249:249=131:131"}
+actor RollHealShot2P : RollHealShot2{Translation"195:195=232:232","250:250=214:214","249:249=223:223"}
+
+actor RollHeal_P : CustomInventory
+{
+inventory.pickupmessage "Picked up Roll's large health gift."
+//inventory.pickupsound "item/energyup"
+Gravity 0.5
+ReactionTime 42
+Scale 2.0
+States
+{
+Spawn:
+RSWB R 0
+RSWB R 0 A_SpawnItemEx("RollHealFX1",0,0,0,0,0,0,Args[0],1)
+RSWB R 0 A_SetArg(0,Args[0]+8)
+RSWB RSRS 6
+RSWB R 0 A_CountDown
+loop
+Pickup:
+Health:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(CBM_FetchMyHealth,2)==0,"SnatchCheck")
+TNT1 A 0 A_PlaySound("item/energyup",3,1.0)
+TNT1 A 0 ACS_ExecuteAlways(CBM_HealMyThing,0,1,30)
+stop
+SnatchCheck:
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+goto Health+1
+TheSnatch:
+TNT1 A 0 A_GiveInventory("SnatchItems_P2",1)
+stop
+NoF:
+TNT1 A 0
+fail
+}
+}
+
+actor RollHeal2_P : RollHeal_P
+{
+inventory.pickupmessage "Picked up Roll's health gift."
+States
+{
+Spawn:
+RSWB T 0
+RSWB T 0 A_SpawnItemEx("RollHealFX1",0,0,0,0,0,0,Args[0],1)
+RSWB T 0 A_SetArg(0,Args[0]+8)
+RSWB TUTU 6
+RSWB T 0 A_CountDown
+loop
+Pickup:
+Health:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(CBM_FetchMyHealth,2)==0,"SnatchCheck")
+TNT1 A 0 A_PlaySound("item/energyup",3,1.0)
+TNT1 A 0 ACS_ExecuteAlways(CBM_HealMyThing,0,1,15)
+stop
+SnatchCheck:
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+goto Health+1
+TheSnatch:
+TNT1 A 0 A_GiveInventory("SnatchItems_P1",1)
+stop
+}
+}
+
+actor RollHealFX1 : BasicClientSide
+{
+var int user_A;
+ReactionTime 12
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("RollHealFX2",0,0,10,12,0,0,30*ReactionTime,1)
+TNT1 A 0 A_Countdown
+loop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor RollHealFX2 : BasicClientSide
+{
+ReactionTime 3
+states
+{
+Spawn:
+TNT1 A 3 A_CountDown
+TNT1 A 0 A_SpawnItemEx("RollHealFX",0,0,0,0,0,1,0,1)
+loop
+}
+}
+
+actor RollHealFX : BasicClientSide
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(64,"Spawn3")
+TNT1 A 0 A_Jump(128,"Spawn2")
+Spawn1:
+V_0C AAABBB 1 A_FadeOut(0.05)
+loop
+Spawn2:
+V_0C CCCDDD 1 A_FadeOut(0.05)
+loop
+Spawn3:
+V_0C EEEFFF 1 A_FadeOut(0.05)
+loop
+}
+}
+
+actor RollMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BossRollSwing",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BossRollSwingB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BossRollSwingR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BossRollSwingO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BossRollSwingP",0,0,0,0)
+goto Done
+}
+}
+
+actor RollMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BossRollSwing2",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BossRollSwing2B",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BossRollSwing2R",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BossRollSwing2O",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BossRollSwing2P",0,0,0,0)
+goto Done
+Done:
+TNT1 A 0 A_GiveInventory("PowerRollRepulsion",1)
+stop
+}
+}
+
+actor RollMainX_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BossRollSwingX",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BossRollSwingXB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BossRollSwingXR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BossRollSwingXO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BossRollSwingXP",0,0,0,0)
+goto Done
+}
+}
+
+actor RollMain3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("RollCleanserShot",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("RollCleanserShotB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("RollCleanserShotR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("RollCleanserShotO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("RollCleanserShotP",0,0,0,0)
+goto Done
+}
+}
+
+
+actor RollOther_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("RollHealShot",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("RollHealShotB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("RollHealShotR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("RollHealShotO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("RollHealShotP",0,0,0,0)
+goto Done
+}
+}
+actor RollOther2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("RollHealShot2",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("RollHealShot2B",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("RollHealShot2R",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("RollHealShot2O",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("RollHealShot2P",0,0,0,0)
+goto Done
+}
+}
+

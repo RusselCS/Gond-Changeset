@@ -1,0 +1,20 @@
+TID References for people who use TIDs and plan to mix mods.
+
+1000 - 1063 Players
+1100 - 1163 Vanilla TargetAimPoint
+1200 - 1263 Gemini Clone
+1300 - 1363 Boss Homing Sniper
+1400 - 1463 Swordman Camera
+1600 - 1663 Magicman Teleport
+1800 - 1863 Dust Vacuum
+2700 - 2763 WireAdaptor
+3000 - 3063 PlayerRespawnPoint
+4000 - 4063 Eddie Weapon Spawner
+7000 - 7063 Galaxyman Portal
+7300 - 7363 Plugman Final Hit
+8000 - 8063 Trio TargetAimPoint
+10000-10063 Telefog
+
+Negative TID's
+3100 - 3163 Dynamo TaggerTracker
+9200 - 9263 Splash RedFish

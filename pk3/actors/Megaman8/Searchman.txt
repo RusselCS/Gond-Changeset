@@ -1,0 +1,55 @@
+actor Searchman : ClassBase
+{
+Player.ScoreIcon "C_08E0X"
+player.displayname "Searchman"
+player.soundclass "searchmanc"
+
+player.maxhealth 850
+health 850
+player.jumpz 10
+player.forwardmove 0.7, 0.7
+player.sidemove 0.68, 0.68
+
+player.startitem "HomingSniperBoss"
+player.startitem "SearchBusher"
+player.startitem "WilyBanzaiAmmo", 560
+
+player.startitem "FlameSwordWeakness2", 1
+
+player.startitem "FireStormWeakness", 1
+player.startitem "AtomicFireWeakness", 1
+player.startitem "PharaohShotWeakness", 1
+player.startitem "FlameBlastWeakness", 1
+player.startitem "ScorchWheelWeakness", 1
+player.startitem "FlameSwordWeakness", 1
+player.startitem "WaveBurnerWeakness", 1
+player.startitem "MagmaBazookaWeakness", 1
+player.startitem "SolarBlazeWeakness", 1
+player.startitem "BreakDashWeakness", 1
+
+States
+{
+Spawn:
+SEAR A 0
+SEAR B 1
+SEAR A 1
+Goto Spawn+2
+See:
+SEAR BCDE 5
+Goto Spawn
+Missile:
+SEAR F 0 A_JumpIfInventory("VivifyDelay7",1,"Missile2")
+SEAR F 5
+SEAR G 4
+goto Spawn
+Missile2:
+SEAR J 9
+goto Spawn
+ClassPain:
+SEAR H 0
+goto PainContinue
+ClassDeath:
+SEAR H 0
+goto DeathContinue
+}
+}

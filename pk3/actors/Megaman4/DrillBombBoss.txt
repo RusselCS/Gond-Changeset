@@ -1,0 +1,414 @@
+actor DrillBombBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_4C"
+dropitem "DrillBombWepCDropped"
+Weapon.AmmoUse 9
+Weapon.AmmoGive 0
+Obituary "$OB_DRILLBOMB"
+Inventory.Pickupmessage "Power up! Drill Bomb"
+weapon.ammotype "MyDrillIsTheBombAmmo"
+weapon.ammotype2 "MyDrillIsTheBombAmmo"
+States
+{
+Spawn:
+C_04 C 1
+loop
+Ready:
+DRIA A 0 ACS_ExecuteAlways(998,0,DYE_DRILLMAN)
+DRIA A 0 A_TakeInventory("DrillingFlag",1)
+goto Ready1
+Ready1:
+DRIA A 0 A_JumpIfInventory("MyDrillIsTheBombAmmo",9,"Ready3")
+DRIA A 0 A_JumpIfInventory("DigLimit",200,"Ready2")
+DRIA A 4 A_WeaponReady(12)
+DRIA A 0 A_GiveInventory("MyDrillIsTheBombAmmo",1)
+DRIA A 0 A_GiveInventory("DigLimit",6)
+loop
+Ready2:
+DRIA A 0 A_JumpIfInventory("MyDrillIsTheBombAmmo",9,"Ready4")
+DRIA A 4 A_WeaponReady(4)
+DRIA A 0 A_GiveInventory("MyDrillIsTheBombAmmo",1)
+DRIA A 0 A_GiveInventory("DigLimit",6)
+loop
+Ready3:
+DRIA A 0 A_JumpIfInventory("DigLimit",200,"Ready4")
+DRIA A 4 A_WeaponReady(8)
+DRIA A 0 A_GiveInventory("MyDrillIsTheBombAmmo",1)
+DRIA A 0 A_GiveInventory("DigLimit",6)
+loop
+Ready4:
+DRIA A 4 A_WeaponReady
+DRIA A 0 A_GiveInventory("MyDrillIsTheBombAmmo",1)
+DRIA A 0 A_GiveInventory("DigLimit",6)
+loop
+
+Deselect:
+DRIA AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+DRIA A 1 A_Lower
+Loop
+Select:
+DRIA AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+DRIA A 1 A_Raise
+Loop
+
+Fire:
+DRIA A 0 A_JumpIfInventory("MyDrillIsTheBombAmmo",1,"Fire2")
+goto Ready1
+Fire2:
+DRIA A 0 A_JumpIfNoAmmo("FireEnd")
+//DRIA A 0 //A_PlaySoundEx("weapon/mbuster","Weapon")
+DRIA A 0 A_GiveInventory("DrillmanMain_CI",1)
+DRIA BBCCAAA 2 A_GiveInventory("DigLimit",2)
+DRIA A 0 A_Refire("Fire2")
+Goto FireEnd
+FireEnd:
+DRIA A 0
+goto Ready1
+
+
+AltFire:
+DRIA B 0 A_JumpIfInventory("DigLimitDelay",100,"AirE2")
+DRIA B 1 A_JumpIfInventory("DigLimit",200,1)
+Goto Ready1
+DRIA B 0 A_GiveInventory("NoJumpCancel",1)
+DRIA B 0 A_GiveInventory("DrillingFlag",1)
+DRIA B 0 ThrustThingZ(0,50,0,0)
+DRIA B 0 A_TakeInventory("JumpCancler",2)
+DRIA B 1 A_SpawnItemEx("DrillDigCrush",0,0,66,0,0,10)
+DRIA B 0 A_JumpIf(momz<=0,1)
+goto AltFire+5
+DRIA B 0 A_SpawnItemEx("DrillDigCrush",0,0,-10,0,0,-10)
+DRIA B 0 A_GiveInventory("DigLimitDelay",1)
+DRIA B 0 A_JumpIfInventory("DigLimitDelay",100,"AirE")
+DRIA B 2 A_JumpIf(z-floorz==0,"DigStart") //The Ground and Air check
+Goto Altfire+8
+AirE:
+DRIA B 0 A_WeaponReady(6)
+DRIA B 0 A_SpawnItemEx("DrillDigCrush",0,0,-10,0,0,-10)
+DRIA B 1 A_JumpIf(z-floorz==0,"DigStart")
+loop
+AirE2:
+DRIA B 0 A_TakeInventory("DrillingFlag",999)
+DRIA B 0 A_TakeInventory("DigLimitDelay",999)
+DRIA B 0 A_PlaySound("S3_K/MetalSpark",1)
+DRIA BC 3
+goto Ready1
+DigStart:
+DRIA A 0 A_TakeInventory("DigLimit",8)
+DRIA A 0 A_SpawnItemEx("DrillDigCrushFX",0,0,0,0,0,0,0,1)
+DRIA AAAAAAAAAAAA 0 A_SpawnItemEx("DrillRocks",0,0,8,random(-30,30),0,random(3,14),random(0,359),1)
+Goto Dig
+Dig:
+DRIA A 0 A_GiveInventory("InvulnerableOn_Pickup",1)
+DRIA A 0 A_GiveInventory("DrillingFlag2",1)
+DRIA A 0 A_ChangeFlag("DONTIDENTIFYTARGET",1)
+DRIA A 0 A_GiveInventory("DrillM_IsHiddenStart_P",1)
+DRIA A 0 A_TakeInventory("UnSolid",1)
+DRIA A 0 A_ChangeFlag("NONSHOOTABLE",1)
+DRIA A 0 A_ChangeFlag("SOLID",0)
+DRIA A 0 A_ChangeFlag("PICKUP",0)
+DRIA A 0 A_ChangeFlag("FLOORHUGGER",1)
+DRIA A 0 A_SetTranslucent(0.0,0)
+DRIA A 0 //A_Stop
+DRIA A 0 ThrustThingZ(0,40,1,0)
+DRIA A 0 A_GiveInventory("DrillDigSpeedRageCheck",1)
+DRIA A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
+DRIA A 0 //A_Stop
+DRIA A 0 A_TakeInventory("DrillingFlag",99)
+DRIA A 0 A_TakeInventory("DigLimitDelay",999)
+goto DigHold
+DigHold:
+TNT1 A 0 A_TakeInventory("DigLimit",8,1)
+TNT1 A 0 A_PlaySound("classes/drilling",1)
+TNT1 A 2 ThrustThingZ(0,0,1,0)//Fix running over fans/bubbles
+TNT1 A 0 A_GiveInventory("MyDrillIsTheBombAmmo",1)
+TNT1 A 0 A_JumpIfInventory("DigLimit",177,"KeepDiggin")//88
+TNT1 A 0 A_JumpIfInventory("DigLimit",1,"KeepDiggin2")
+goto DigRelease
+KeepDiggin2:
+TNT1 AA 0 A_SpawnItemEx("DrillRocks",0,0,8,random(-10,10),0,random(2,12),random(0,359),1)
+KeepDiggin:
+TNT1 A 0 A_ReFire("DigHold")
+goto DigRelease
+DigRelease:
+DRIA A 0 A_SpawnItemEx("DrillDigCrushFX",0,0,0,0,0,0,0,1)
+DRIA AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("DrillRocks",0,0,8,random(-20,20),0,random(10,30),random(0,359),1)
+//DRIA A 0 A_TakeInventory("DrillingFlag",1)
+DRIA A 0 A_TakeInventory("DrillingFlag2",99)
+DRIA A 0 A_TakeInventory("DigLimit",40,1)//999
+DRIA A 0 A_ClearRefire
+DRIA A 0 //A_Stop
+//DRIA A 0 SetPlayerProperty(0,1,0)
+DRIA A 0 A_SetTranslucent(1.0,0)
+DRIA A 0 A_FireCustomMissile("DrillDamager",0,0,0)
+DRIA A 0 A_PlaySound("classes/drillout",1)
+DRIA A 0 A_ChangeFlag("DONTIDENTIFYTARGET",0)
+DRIA A 0 A_ChangeFlag("FLOORHUGGER",0)
+DRIA A 0 A_ChangeFlag("PICKUP",1)
+DRIA A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+DRIA A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
+DRIA B 0 ThrustThingZ(0,70,0,0)//60
+DRIA B 0 A_ChangeFlag("THRUACTORS",1)
+DRIA CCCCC 2 A_FireCustomMissile("DrillDamager",0,0,0,20)
+//DRIA B 0 SetPlayerProperty(0,0,0)
+DRIA B 0 A_ChangeFlag("NONSHOOTABLE",0)
+DRIA B 0 A_ChangeFlag("THRUACTORS",0)
+DRIA B 0 A_SpawnItemEx("ResolidifyPlayer_H")
+DRIA B 0 A_GiveInventory("InvulnerableOff_Pickup",1)
+DRIA B 0 A_TakeInventory("NoJumpCancel",1)
+DRIA B 4
+Goto Ready1
+}
+}
+
+actor MyDrillIsTheBombAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor DrillingFlag : OnceC{}
+actor DrillingFlag2 : OnceC{}
+
+actor DigLimit : Ammo
+{
+inventory.amount 1
+inventory.maxamount 200
++INVENTORY.IGNORESKILL
+}
+
+actor DigLimitDelay : Inventory
+{
+inventory.amount 1
+inventory.maxamount 100
+}
+
+actor DrillDigSpeedRageCheck : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,20,10)
+stop
+PickupR:
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,40,10)
+stop
+}
+}
+
+actor DMDrillBomb
+{
+Translation "192:192=4:4", "198:198=227:227", "202:202=210:210"
+PROJECTILE
+damagetype "DrillM_Bomb"
+Obituary "$OB_DRILLBOMB"
++EXPLODEONWATER
+Damage (50)
+Radius 10
+Height 10
+speed 34
+Scale 2.5
+States
+{
+Spawn:
+X_4C A 0
+X_4C A 0 A_PlaySoundEx("weapon/drillfly","Weapon")
+X_4C ABC 2 //A_SpawnItemEx("DMDrillBombFX2",0,0,0,0,0,0,0,1)
+loop
+Death:
+TNT1 A 0 A_PlaySoundEx("classes/drillexplode", "Weapon")
+TNT1 A 0 A_Explode(240,96,0,0,8)
+TNT1 A 0 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
+TNT1 A 2
+stop
+}
+}
+
+actor DMDrillBombFX : BasicClientSide
+{
+Scale 3.0
+States
+{
+Spawn:
+DRIA MNOPQ 5
+stop
+}
+}
+
+actor DMDrillBombFX2 : BasicClientSide
+{
+Scale 2.0
+States
+{
+Spawn:
+TNT1 A 1
+DRIA MNOPQ 2
+stop
+}
+}
+
+actor DMDrillBombB : DMDrillBomb{translation "192:192=205:205", "198:198=74:74", "202:202=205:205"}
+actor DMDrillBombR : DMDrillBomb{translation "192:192=171:171", "198:198=41:41", "202:202=171:171"}
+actor DMDrillBombO : DMDrillBomb{translation "192:192=104:104", "198:198=128:128", "202:202=104:104"}
+actor DMDrillBombP : DMDrillBomb{translation "192:192=229:229", "198:198=232:232", "202:202=229:229"}
+
+actor DrillDigCrush
+{
+PROJECTILE
++DONTBLAST
+Obituary "$OB_DRILLDIG"
+damagetype "DrillM_Stab"
+renderstyle none
+damage (40)
+Radius 15
+Height 2
+States
+{
+Spawn:
+TNT1 A 1
+stop
+}
+}
+
+actor DrillDigCrushFX : BasicHelper
+{
+ReactionTime 4
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,1,3,5)
+TNT1 A 0 A_SpawnItemEx("DMDrillBombFX",random(0,36),0,random(0,16),0,0,0,random(0,359),1)
+TNT1 A 3 A_CountDown
+TNT1 A 0 A_SpawnItemEx("DMDrillBombFX",random(0,30),0,random(20,36),0,0,0,random(0,359),1)
+TNT1 A 3 A_CountDown
+TNT1 A 0 A_SpawnItemEx("DMDrillBombFX",random(0,24),0,random(40,56),0,0,0,random(0,359),1)
+TNT1 A 3 A_CountDown
+goto Spawn+2
+}
+}
+
+
+actor DrillDamager : BasicExplosion
+{
+Damagetype "DrillM_DigUp"
+Obituary "$OB_DRILLDIG"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 3 A_Explode(50,72,0,0,72)
+stop
+}
+}
+
+actor DrillRocks
+{
++DONTBLAST
++MISSILE
+-NOGRAVITY
++RIPPER
++THRUACTORS
++CLIENTSIDEONLY
++FLOORCLIP
+//+NOCLIP
+Damage (0)
+Height 5
+Radius 5
+Speed 30
+Scale 2.5
+States
+{
+Spawn:
+Y_5C A 0
+Y_5C A 30
+stop
+}
+}
+
+actor DrillM_IsHiddenStart_P : CBM_IsHiddenStart_P
+{
+States
+{
+Pick_Coop:
+TNT1 A 0 A_GiveInventory("DrillM_IsHidden_P",1)
+stop
+Pick_0:
+TNT1 A 0 A_GiveInventory("DrillM_IsHidden_P0",1)
+stop
+Pick_1:
+TNT1 A 0 A_GiveInventory("DrillM_IsHidden_P1",1)
+stop
+Pick_2:
+TNT1 A 0 A_GiveInventory("DrillM_IsHidden_P2",1)
+stop
+Pick_3:
+TNT1 A 0 A_GiveInventory("DrillM_IsHidden_P3",1)
+stop
+}
+}
+
+actor DrillM_IsHidden_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("DrillM_IsHiddenFX",0,0,48,0,0,0,0,33)
+stop
+}
+}
+
+actor DrillM_IsHidden_P0 : CustomInventory{States{Pickup:
+TNT1 A 0 A_SpawnItemEx("DrillM_IsHiddenFX0",0,0,48,0,0,0,0,33)stop}}
+actor DrillM_IsHidden_P1 : CustomInventory{States{Pickup:
+TNT1 A 0 A_SpawnItemEx("DrillM_IsHiddenFX1",0,0,48,0,0,0,0,33)stop}}
+actor DrillM_IsHidden_P2 : CustomInventory{States{Pickup:
+TNT1 A 0 A_SpawnItemEx("DrillM_IsHiddenFX2",0,0,48,0,0,0,0,33)stop}}
+actor DrillM_IsHidden_P3 : CustomInventory{States{Pickup:
+TNT1 A 0 A_SpawnItemEx("DrillM_IsHiddenFX3",0,0,48,0,0,0,0,33)stop}}
+
+actor DrillM_IsHiddenFX : CBM_IsHiddenFX
+{
+states
+{
+SpawnIcon:
+DRIM N 1 A_Warp(2,0,0,48,0,24)
+wait
+}
+}
+actor DrillM_IsHiddenFX0 : DrillM_IsHiddenFX
+{
+VisibleToTeam 0
+}
+actor DrillM_IsHiddenFX1 : DrillM_IsHiddenFX{VisibleToTeam 1}
+actor DrillM_IsHiddenFX2 : DrillM_IsHiddenFX{VisibleToTeam 2}
+actor DrillM_IsHiddenFX3 : DrillM_IsHiddenFX{VisibleToTeam 3}
+
+
+
+
+actor DrillmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("DMDrillBomb",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("DMDrillBombB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("DMDrillBombR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("DMDrillBombO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("DMDrillBombP",0,1,8,0)
+goto Done
+}
+}
+

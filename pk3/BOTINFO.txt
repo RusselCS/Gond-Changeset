@@ -1,0 +1,33 @@
+
+{
+name = "\c[CBM0C]Maestro"
+accuracy=6 intellect=6 evade=6 anticipation=6 reactiontime=6 perception=6
+class = "Maestro"
+script = "humanbot"
+revealed = false
+}
+{
+name = "\c[CBM0R]Dr. Light"
+accuracy=6 intellect=6 evade=6 anticipation=6 reactiontime=6 perception=6
+class = "DrLight"
+script = "humanbot"
+}
+{
+name = "\c[CBM0D]Rock"
+accuracy=6 intellect=6 evade=6 anticipation=6 reactiontime=6 perception=6
+class = "Rock"
+script = "humanbot"
+revealed = false
+//chatlump = "chats/BOTROCK.txt"
+//chatfrequency = 99
+}
+
+{
+name = "\ckBBA\cj-\chMegaman"
+accuracy=1 intellect=4 evade=4 anticipation=4 reactiontime=4 perception=4
+skin = "Megaman-BBA"
+class = "BBAMegaman"
+script = "humanbot"
+chatlump = "chats/BOTBBA.txt"
+chatfrequency = 50
+}

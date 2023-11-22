@@ -1,0 +1,47 @@
+actor Metalman : ClassBase
+{
+Player.ScoreIcon "C_02A0X"
+player.displayname "Metalman"
+player.soundclass "metalmanc"
+
+player.maxhealth 700
+health 700
+player.jumpz 11
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
+player.startitem "MetalBladeBoss"
+player.startitem "BuzzsawAmmo", 28
+player.startitem "MetalHoverBootsAmmo", 280
+
+//damagefactor "Metal", 1337.5
+player.startitem "QuickBoomerangWeakness2", 1
+player.startitem "MetalBladeWeakness2", 1
+
+player.startitem "NeedleCannonWeakness", 1
+player.startitem "QuickBoomerangWeakness", 1
+player.startitem "YamatoSpearWeakness", 1
+player.startitem "TripleBladeWeakness", 1
+
+States
+{
+Spawn:
+METM A 0
+METM B 1
+METM A 1
+Goto Spawn+2
+See:
+METM BCDE 5
+Goto Spawn
+Missile:
+METM F 5
+METM G 4
+goto Spawn
+ClassPain:
+METM H 0
+goto PainContinue
+ClassDeath:
+METM H 0
+goto DeathContinue
+}
+}

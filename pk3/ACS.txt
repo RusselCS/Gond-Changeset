@@ -1,0 +1,176 @@
+2 scripts of these types will both be activated when activated [Jax]
+ENTER
+RESPAWN
+DEATH
+DISCONNECT
+
+2 scripts of these types will result in only the first defined being activated [Jax]
+(executing, void)
+OPEN
+
+
+
+
+
+Vanilla scripts (out of date, v5b core) [Cel]
+
+188 ENTER
+//Script to prevent certian weapons from causing problems in Possession
+
+190
+//Thrust script
+
+191
+//Speed scripts
+
+192 DISCONNECT
+//TimeStopper related
+
+193
+// Needlessly complex failsafe for the Time Stopper
+
+194
+//Force a bot to be given MegaBuster and use it
+
+195
+//Thrust a bot into the air
+
+197 ENTER
+//Single player check
+
+198
+// Set all global values to zero (locked)
+
+199
+// Check if a global value has been unlocked
+
+200
+// Unlock Global Value (Singleplayer)
+
+202
+//Legacy, Check Flame Blast for oil in Flame Man's stage
+
+203
+//Boss music script
+
+204
+//Gravity for maps/other
+
+205
+//Beat Call Script, pits
+
+247
+//Push / Pull Script. Force falls off with distance unless Linear is set to > 0. 
+
+248
+//Thunder claw peg script
+
+249
+//Flash Stopper
+
+252 ENTER
+//Prevents bots from standing still and allows them to change weapons / use buster upgrades
+//If Bots have the NoBotFix item, this script is terminated
+
+253
+//Sticky lifts / moby
+
+254
+//Returns if a player is a bot
+
+255 ENTER CLIENTSIDE
+//Weapon Energy color script - "cl_NoEnergyColors true" to disable
+
+256
+//Eddie random weapon
+
+257
+//Returns the target of the activator
+
+259
+//Determine pitch or Angle of player on a projectile
+
+260
+//Reggae stole the precious thing
+
+261
+// Returns 1 if a player is within Distance
+
+300
+//Beat Support Script
+
+977 ENTER 
+//Jump script watcher
+
+995 OPEN
+//Forces compat_clientssendfullbuttoninfo true and disabling suicide during t/lms
+
+996 RESPAWN
+//Respawn script
+
+997 ENTER
+//Gives beginning stuff
+
+972
+//Returns BossMusic state
+
+973
+// Custom Teleport Script for two way teleporters
+
+974 clientside
+// Quickly freeze/unfreeze a bot. Used to force them to keep pressing the fire button
+
+975
+//Returns gamemode
+
+976 clientside
+//Quick flash script for Flash Stopper/Centaur Flash
+
+978
+//Forces a bot to select his Mega Buster.
+
+979
+//NoAmmo for bots
+
+980
+//Choose LMS weapons
+
+981
+//LMS weapons giver
+
+983
+//Bot Buddy helper
+
+984
+//Does the player have the energy balancer or a weapon that is not full? If so, pickup ammo
+
+984
+//Energy balancer check
+
+986
+// Time Stopper HUD FX
+
+989
+//Aiming Script for Remote Mine & Copy Vision
+
+990
+//Deprecated Rotation scripts
+
+991
+// Player Color (alternate, no sound)
+
+992
+//Which weapon to give ammo to
+
+993 OPEN
+//Defines translations colors
+
+994
+//IceWall Script
+
+998
+//Player translation
+
+999
+//Nothing (Used to clear FadeOut)
+

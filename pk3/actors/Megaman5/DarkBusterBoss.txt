@@ -1,0 +1,364 @@
+actor DarkBusterBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_5L"
+dropitem "DarkShieldWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 28
+Obituary "$OB_DARK4BUSTER"
+Inventory.Pickupmessage "no again"
+weapon.ammotype "Darkman4ShieldAmmo"
+States
+{
+Spawn:
+C_05 L 1
+loop
+Ready:
+DKC4 A 0 ACS_ExecuteAlways(998,0,DYE_DARKMAN4)
+DKC4 A 0 A_GunFlash
+DKC4 A 1 A_WeaponReady
+Goto Ready+1
+Ready2:
+DKC4 A 0
+DKC4 A 1 A_WeaponReady
+loop
+Deselect:
+DKC4 A 0 A_GiveInventory("StopShield",1)
+DKC4 A 0 A_TakeInventory("ShieldCheck",999)
+DKC4 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+DKC4 A 1 A_Lower
+Loop
+Select:
+DKC4 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+DKC4 A 1 A_Raise
+Loop
+Fire:
+DKC4 A 0 A_JumpIfInventory("ShieldCheck",1,"ShieldFire")
+DKC4 B 0 A_PlaySoundEx("weapon/napalm","Weapon")
+DKC4 B 0 A_GiveInventory("Darkman4Main_CI",1)
+DKC4 BCBAA 3
+DKC4 A 0 A_Refire
+Goto Ready+1
+ShieldFire:
+DKC4 A 0 A_PlaySoundEx("weapon/napalm","Weapon")
+DKC4 A 0 A_GiveInventory("Darkman4Main2_CI",1)
+DKC4 A 0 A_JumpIfHealthLower(ACS_ExecuteWithResult(CBM_FetchMyHealth,1,0)*0.10+1,"Fire7")
+DKC4 A 0 A_JumpIfHealthLower(ACS_ExecuteWithResult(CBM_FetchMyHealth,1,0)*0.25+1,"Fire6")
+DKC4 A 0 A_JumpIfHealthLower(ACS_ExecuteWithResult(CBM_FetchMyHealth,1,0)*0.40+1,"Fire5")
+DKC4 A 0 A_JumpIfHealthLower(ACS_ExecuteWithResult(CBM_FetchMyHealth,1,0)*0.55+1,"Fire4")
+DKC4 A 0 A_JumpIfHealthLower(ACS_ExecuteWithResult(CBM_FetchMyHealth,1,0)*0.70+1,"Fire3")
+DKC4 A 0 A_JumpIfHealthLower(ACS_ExecuteWithResult(CBM_FetchMyHealth,1,0)*0.85+1,"Fire2")
+DKC4 BCBA 4
+DKC4 A 5
+DKC4 B 0 A_Refire
+Goto Ready2+1
+Fire2:
+DKC4 BCBA 4
+DKC4 A 4
+DKC4 B 0 A_Refire
+Goto Ready2+1
+Fire3:
+DKC4 BCB 4
+DKC4 A 3
+DKC4 A 4
+DKC4 B 0 A_Refire
+Goto Ready2+1
+Fire4:
+DKC4 B 3
+DKC4 CB 4
+DKC4 A 3
+DKC4 A 4
+DKC4 B 0 A_Refire
+Goto Ready2+1
+Fire5:
+DKC4 BC 3
+DKC4 B 4
+DKC4 A 3
+DKC4 A 4
+DKC4 B 0 A_Refire
+Goto Ready2+1
+Fire6:
+DKC4 BCBA 3
+DKC4 A 4
+DKC4 B 0 A_Refire
+Goto Ready2+1
+Fire7:
+DKC4 BCBAA 3
+DKC4 B 0 A_Refire
+Goto Ready2+1
+AltFire:
+DKC4 A 0 A_JumpIfInventory("ShieldCheck",1,"ShieldThrow")
+DKC4 A 0 A_GiveInventory("ShieldCheck",1)
+DKC4 A 0 A_TakeInventory("StopShield",9)
+DKC4 A 0 A_SpawnItemEx("Darkman4ShieldBlocker",55,0,0,0,0,0,0,1)
+DKC4 A 0 A_SpawnItemEx("Darkman4ShieldBlocker",55,0,0,0,0,0,180,1)
+DKC4 BC 4 
+DKC4 A 4
+goto Ready2+1
+ShieldThrow:
+DKC4 C 0 A_GiveInventory("StopShield",1)
+DKC4 C 0 A_TakeInventory("ShieldCheck",999)
+DKC4 C 0 A_GiveInventory("Darkman4Alt2_CI",1)
+DKC4 BC 4
+DKC4 C 16
+DKC4 BA 4
+Goto Ready+1
+NoAmmo:
+DKC4 A 0
+Goto Ready+1
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1 A_GiveInventory("Darkman4ShieldFlash_P",1)
+loop
+}
+}
+
+actor Darkman4ShieldAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor Darkman4ShieldFlash_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_SetActorPropertyMath",0,18)//3
+TNT1 A 0 A_JumpIfInventory("ShieldCheck",1,"PickupSnd")
+stop
+PickupSnd:
+TNT1 A 0 A_JumpIfInventory("VivifyDelay10",1,"No")
+TNT1 A 0 A_GiveInventory("VivifyDelay10",1)
+TNT1 A 0 A_PlaySoundEX("weapon/shieldhum","Body")
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor DarkClassShot
+{
+Translation "202:202=216:216"
+var int user_P;
+PROJECTILE
+damagetype "DM4_Shot"
+Obituary "$OB_DARK4BUSTER"
++THRUGHOST
++DONTREFLECT
++FORCEXYBILLBOARD
++BRIGHT
+Damage (150+user_P)
+radius 10
+height 10
+Speed 30
+scale 2.5
+States
+{
+Spawn:
+DSHO A 3
+DSHO A 1 A_ChangeFlag("THRUGHOST",0)
+DSHO A 2 A_JumpIf(user_P>=50,"Spawn2")
+DSHO A 0 A_SetUserVar("user_P",user_P+10)
+goto spawn+2
+Spawn2:
+DSHO A 1
+DSHO A 1
+wait
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor DarkClassShotB : DarkClassShot{translation "202:202=205:205"}
+actor DarkClassShotR : DarkClassShot{translation "202:202=171:171"}
+actor DarkClassShotO : DarkClassShot{translation "202:202=104:104"}
+actor DarkClassShotP : DarkClassShot{translation "202:202=229:229"}
+
+actor Dark4SniperShot
+{
+Translation "202:202=216:216"
+PROJECTILE
+damagetype "DM4_Shot"
+Obituary "$OB_DARK4BUSTER"
++FORCEXYBILLBOARD
++BRIGHT
+Damage(200+pitch*10)
+radius 10
+height 10
+speed 30
+scale 2.5
+States
+{
+Spawn:
+DSHO A 0
+DSHO A 0 A_JumpIf(pitch>=2,"Spawn2")
+DSHO AA 2 A_SpawnItemEx("Darkman4ShotFX1",0,0,0,0,0,0,0,513)
+DSHO A 0 A_SetPitch(pitch+1)
+loop
+Spawn2:
+DSHO A 0
+DSHO A 0 A_JumpIf(pitch>=5,"Spawn3")
+DSHO AA 2 A_SpawnItemEx("Darkman4ShotFX2",0,0,0,0,0,0,0,513)
+DSHO A 0 A_SetPitch(pitch+1)
+loop
+Spawn3:
+DSHO A 0
+DSHO A 0 A_JumpIf(pitch>=7,"Spawn4")
+DSHO AA 2 A_SpawnItemEx("Darkman4ShotFX3",0,0,0,0,0,0,0,513)
+DSHO A 0 A_SetPitch(pitch+1)
+loop
+Spawn4:
+DSHO A 0
+DSHO A 0 A_JumpIf(pitch>=10,"SpawnDone")
+DSHO AA 2 A_SpawnItemEx("Darkman4ShotFX4",0,0,0,0,0,0,0,513)
+DSHO A 0 A_SetPitch(pitch+1)
+loop
+SpawnDone:
+DSHO A 2 A_SpawnItemEx("Darkman4ShotFX5",0,0,0,0,0,0,0,1)
+wait
+Death:
+DSHO A 0
+stop
+}
+}
+
+actor Dark4SniperShotB : Dark4SniperShot{translation "202:202=205:205"}
+actor Dark4SniperShotR : Dark4SniperShot{translation "202:202=171:171"}
+actor Dark4SniperShotO : Dark4SniperShot{translation "202:202=104:104"}
+actor Dark4SniperShotP : Dark4SniperShot{translation "202:202=229:229"}
+
+actor Darkman4ShotFX1 : BasicClientSide
+{
++FORCEXYBILLBOARD
++BRIGHT
+RenderStyle "translucent"
+Alpha 0.0//9
+ReactionTime 4
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetTranslucent(0.4+0.06*pitch,0)
+TNT1 A 1
+goto SpawnL
+SpawnL:
+DSHO A 1 A_CountDown
+DSHO A 0 A_FadeOut
+DSHO A 0 A_SetScale(scaleX-0.2)
+loop
+}
+}
+actor Darkman4ShotFX2 : Darkman4ShotFX1{ReactionTime 5}
+actor Darkman4ShotFX3 : Darkman4ShotFX1{ReactionTime 6}
+actor Darkman4ShotFX4 : Darkman4ShotFX1{ReactionTime 7}
+actor Darkman4ShotFX5 : Darkman4ShotFX1
+{
+RenderStyle "Add"
+Alpha 1.0
+ReactionTime 8
+States
+{
+Spawn:
+TNT1 A 1
+goto SpawnL
+}
+}
+
+actor Darkman4ShieldBlocker : Darkman2ShieldBlocker
+{
+damagetype "DM4_Shield"
+//Radius 9
+}
+
+actor Darkman4ShieldSpinner_H : BasicHelper
+{
+Translation "202:202=216:216"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("Darkman4ShieldSpinner",46,0,-28,0,0,0,90,1)
+TNT1 A 0 A_SpawnItemEx("Darkman4ShieldSpinner",46,0,-28,0,0,0,270,1)
+stop
+}
+}
+
+actor Darkman4ShieldSpinner_HB : Darkman4ShieldSpinner_H{translation "202:202=205:205"}
+actor Darkman4ShieldSpinner_HR : Darkman4ShieldSpinner_H{translation "202:202=171:171"}
+actor Darkman4ShieldSpinner_HO : Darkman4ShieldSpinner_H{translation "202:202=104:104"}
+actor Darkman4ShieldSpinner_HP : Darkman4ShieldSpinner_H{translation "202:202=229:229"}
+
+actor Darkman4ShieldSpinner : Darkman2ShieldSpinner
+{
+damagetype "DM4_TossSpin"
+}
+
+actor Darkman4Main_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Dark4SniperShot",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Dark4SniperShotB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Dark4SniperShotR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Dark4SniperShotO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Dark4SniperShotP",0,0,8,0)
+goto Done
+}
+}
+
+actor Darkman4Main2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("DarkClassShot",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("DarkClassShotB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("DarkClassShotR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("DarkClassShotO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("DarkClassShotP",0,0,8,0)
+goto Done
+}
+}
+
+actor Darkman4Alt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Darkman4ShieldSpinner_H",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Darkman4ShieldSpinner_HB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Darkman4ShieldSpinner_HR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Darkman4ShieldSpinner_HO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Darkman4ShieldSpinner_HP",0,0,0,0)
+goto Done
+}
+}

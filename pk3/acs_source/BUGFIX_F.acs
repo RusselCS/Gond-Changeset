@@ -1,0 +1,461 @@
+#library "bugfix_f"//F no longer stands for for fish :(
+#include "zcommon.acs"
+
+#include "8bdmlib.acs"
+
+#DEFINE C_JAX_SUCKRECODE 422
+
+#DEFINE TEAM_NONE -1
+#DEFINE MAX_PLAYERS 64
+
+script "cbmf_IsTeamServerMAX" OPEN
+{
+IsTeamGame = ACS_ExecuteWithResult(975,1);
+ServerMAX = GetMaxPlayers();
+}
+
+//Hitscan based suck/blow
+script C_JAX_SUCKRECODE (int distRange, int angleRange, int suckPower, int type)
+{
+	distRange <<= 16;
+	angleRange <<= 8;
+	int owner = ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",2);
+	if(CheckActorInventory(owner,"NoSourcePushFlag"))terminate;//$CBM (Fishy)
+	int angle = GetActorAngle(owner);
+	int pitch = pitchAdjust(GetActorPitch(owner));
+	int team = ACS_ExecuteWithResult(143, 0);
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0);
+
+	int xDist;
+	int yDist;
+	int zDist;
+	int angleDist;
+	int pitchDist;
+	int dist;
+
+	for(int i=0; i<MAX_PLAYERS; i++) {
+		if(owner == 1000 + i)
+			continue;
+		if(CheckActorInventory(1000 +i, "NoPushFlag")){continue;}
+		if((team==TEAM_NONE||isDifferentTeams(team,i))&&CheckSight(0,1000+i,0)) {
+			xDist = GetActorX(1000+i) - x;
+			yDist = GetActorY(1000+i) - y;
+			angleDist = VectorAngle(xDist,yDist);
+			if(abs(WrapAround(angleDist-angle))<angleRange){
+				dist = fDistanceVal1(angleDist, xDist, yDist);
+				zDist = GetActorZ(1000+i) + 28.0 - z;
+				pitchDist = VectorAngle(dist, zDist);
+				if(abs(WrapAround(pitchDist-pitch))<angleRange) {
+					dist = fDistanceVal2(pitchDist, dist, zDist);
+					if(dist<distRange) {
+						ThrustThing((angle >> 8), suckPower, 1, 1000+i);
+						if(type>0){
+							GiveActorInventory(1000+i,"TempPitProtect_P",1);
+						}
+						switch(abs(type)) {
+						//	case 101://Targeter Type
+						//		GiveActorInventory(1000+i,"HomingLockGiver",1);
+						//		break;
+						//	case 20://Dynamo
+						//		GiveActorInventory(1000+i,"HomingLockGiver",1);
+						//		break;
+							case 4://HSH Suck Cold
+								GiveActorInventory(1000+i,"IcemanSlowPickup",1);
+								break;
+							case 2://Dust Suck
+								if(ACS_NamedExecuteWithResult("cbm_IsPlayerAlive",i+1000)){
+									GiveActorInventory(owner,"CrushEmAmmo",2);
+								}
+								break;
+							case 1://Null for Negative 1
+								break;
+							default://Blow
+								Log(i:type,s:" >> Invalid Number for script C_JAX_SUCKRECODE (422)");
+								break;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+}
+
+//MegaWaterS uses this
+script "cbm_legacyDustPull" (int Range, int Power)
+{
+	int owner = ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",2);
+	if(CheckActorInventory(owner,"NoSourcePushFlag"))terminate;//$CBM (Fishy)
+	int team = ACS_ExecuteWithResult(143,0);
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0);
+	int angle = GetActorAngle(0);
+
+	if (team == TEAM_NONE) {
+		for(int i=0; i<MAX_PLAYERS; i++) {
+			//Log(i:i);
+			if (owner != 1000 + i) {
+				if(CheckActorInventory(1000 +i, "NoPushFlag")){continue;}
+				if(push2Val(x,y,z,angle, 1000 +i, Power, Range)) {
+					GiveActorInventory(1000 + i, "TempPitProtect_P", 1);
+				}
+			}
+		}	
+	}
+	else{
+		for(int j=0; j<MAX_PLAYERS; j++) {
+			if (owner != 1000 + j) {
+				if (isDifferentTeams(team,j)) {
+					if(CheckActorInventory(1000 +i, "NoPushFlag")){continue;}
+					if(push2Val(x,y,z,angle, 1000 +j, Power, Range)) {
+						GiveActorInventory(1000 + j, "TempPitProtect_P", 1);
+					}
+				}
+			}
+		}
+	}
+}
+
+
+script "cbm_missileyank" (int maxRange)
+{
+	int VelX = GetActorVelX(0);
+	int VelY = GetActorVelY(0);
+	int VelZ = GetActorVelZ(0);
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0)-(28<<16);
+
+	int targetTID;
+	int userTID;
+	int userTeam = -1;
+	//int userCount = 0;
+
+	if(ActivatorTID() == 0)
+	{
+		userTID = ACS_ExecuteWithResult(257, 0);
+		userTeam = GetPlayerInfo(userTID - 1000, PLAYERINFO_TEAM);
+	}
+	else
+	{
+		userTID = ActivatorTID();
+	}
+	if(CheckActorInventory(userTID,"NoSourcePushFlag"))terminate;//$CBM (Fishy)
+	for(int p = 0;p < ServerMAX; p++)
+	{
+		if(!PlayerInGame(p))
+		{
+			continue;
+		}
+		if(IsTeamGame)
+		{
+			if(userTeam == GetPlayerInfo(p, PLAYERINFO_TEAM))
+			{
+				continue;
+			}
+		}
+		if(CheckActorInventory(p+1000, "NoPushFlag")){continue;}
+		targetTID = p+1000;
+		//Log(f:GetActorZ(0)-(28<<16),s:" = FIXED = ",f:GetActorZ(targetTID));
+		if(distanceVal(x,y,z,targetTID) < maxRange && userTID != targetTID)
+		{
+			//userCount++;
+			SetActorVelocity(targetTID, Velx, Vely, Velz, 0, 0);
+		}
+	}
+	//SetResultValue(userCount);
+}
+
+
+script "cbm_GalaxyBHB_ACS" (int maxforce, int maxforceZ, int maxRange)
+{
+	int targetTID, angle, finalforce, finalforceZ, distance, dist_z;
+	bool BHB_Protect;
+	int userTID = ACS_ExecuteWithResult(257,0);
+	if(CheckActorInventory(userTID,"NoSourcePushFlag"))terminate;//$CBM (Fishy)
+	int userTeam = GetPlayerInfo(userTID-1000,PLAYERINFO_TEAM);
+
+	for(int p = 0;p < ServerMAX; p++){
+		if(!PlayerInGame(p)){
+			continue;
+		}
+		if(isTeamGame){
+			if(userTeam == GetPlayerInfo(p,PLAYERINFO_TEAM)){
+				continue;
+			}
+		}
+		targetTID = p+1000;
+		if(!CheckSight(0,targetTID,0)){
+			continue;
+		}
+		if(!CheckActorInventory(targetTID, "NoPushFlag") && xyzDistance(0, targetTID) < maxRange && userTID != targetTID){
+			distance = xyzDistance(0,targetTID);
+			//dist_xy = xyDistance(0,targetTID);
+			dist_z = zDistance(0,targetTID);
+			finalforce = ceilOld(FixedMul(maxforce << 16, 1.0 - FixedDiv(distance, maxRange)));
+			finalforceZ = ceilOld(FixedMul(maxforceZ << 16, 1.0 - FixedDiv(distance, maxRange)));
+
+			if(dist_z < 0){
+				finalforceZ *= -1;
+			}
+			else{
+				finalforceZ += 4;//GetActorProperty(targetTID,APROP_Gravity)*5;
+			}//Can't fetch stage gravity
+
+			//Log(s:"finalforce = ",i:finalforce,s:" \\\ finalforceZ = ",i:finalforceZ);
+
+			if(CheckActorInventory(targetTID,"GalaxyM_BHBProtect")||CheckActorInventory(targetTID,"PowerGalaxyBHB_ACS")){
+				BHB_Protect = true;
+			}
+			else{
+				BHB_Protect = false;
+			}
+			angle = VectorAngle(GetActorX(0) - GetActorX(targetTID), GetActorY(0) - GetActorY(targetTID)) >> 8;
+			if(distance > 40 || finalforce < 0){
+				if(BHB_Protect){
+					GiveActorInventory(targetTID,"GalaxyM_BHBProtect",1);
+					GiveActorInventory(targetTID,"PowerGalaxyBHB_ACS",1);
+				}
+				else{
+					if(F_GetTIDVelocity(targetTID,0)<=80){
+						ThrustThing(angle, finalforce, true, targetTID);
+					}
+				}
+			}
+			else if(BHB_Protect){
+				GiveActorInventory(targetTID,"GalaxyM_BHBProtect",1);
+				GiveActorInventory(targetTID,"PowerGalaxyBHB_ACS",1);
+			}
+			if(dist_z >= 15 || dist_z <= -15){
+				if(BHB_Protect){
+					if(finalforceZ >= 0){
+						ThrustThingZ(targetTID, 2, 0, 0);
+					}
+				}
+				else{
+					if(F_GetTIDVelocityZ(targetTID)<=20){
+						ThrustThingZ(targetTID, finalforceZ, 0, 1);
+					}
+				}
+			}
+		}
+	}
+}
+
+function int F_GetTIDVelocity (int TID, bool incZ)
+{
+	int x, y, z, speed, result;
+	x = GetActorVelX(TID);
+	y = GetActorVelY(TID);
+	if(incZ){z = GetActorVelZ(TID);}
+	else{z = 0;}
+	speed = FixedMul(x, x)+FixedMul(y,y)+FixedMul(z,z);
+
+	result = fixedSqrt(speed)>>16;
+	//Log(s:"F_GetTIDVelocity = ",i:result);
+	return result;
+}
+function int F_GetTIDVelocityZ (int TID)
+{
+	int z, speed, result;
+	z = GetActorVelZ(TID);
+	speed = FixedMul(z,z);
+	result = fixedSqrt(speed)>>16;
+	//Log(s:"F_GetTIDVelocityZ = ",i:result);
+	return result;
+}
+
+
+script "cbm_GalaxyBHB_ACSEnd" (int maxRange)
+{
+	int targetTID;
+	int userTID = ACS_ExecuteWithResult(257,0);
+	if(CheckActorInventory(userTID,"NoSourcePushFlag"))terminate;//$CBM (Fishy)
+	int userTeam = GetPlayerInfo(userTID-1000,PLAYERINFO_TEAM);
+
+	for(int p = 0;p < ServerMAX; p++){
+		if(!PlayerInGame(p)){
+			continue;
+		}
+		if(isTeamGame){
+			if(userTeam == GetPlayerInfo(p,PLAYERINFO_TEAM)){
+				continue;
+			}
+		}
+		targetTID = p+1000;
+		if(!CheckSight(0,targetTID,0)){
+			continue;
+		}
+		if(!CheckActorInventory(targetTID, "NoPushFlag") && xyzDistance(0, targetTID) < maxRange && userTID != targetTID){
+			GiveActorInventory(targetTID,"BlackHoleXPlayerEnd_P",1);
+		}
+	}
+}
+
+//RockForce Tornadoman
+#DEFINE MAX_STRENGTH 256
+
+script 347 (int distRange, int fullDistRange, int strength)
+{
+	if(CheckActorInventory(ACS_ExecuteWithResult(257,0),"NoSourcePushFlag"))terminate;//$CBM (Fishy)
+	distRange <<= 16;
+	fullDistRange <<= 16;
+	int ownerNumber = ACS_ExecuteWithResult(257, 1);
+	int team = getTeam(ownerNumber);
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0);
+	int velX = GetActorVelX(0)*strength/MAX_STRENGTH;
+	int velY = GetActorVelY(0)*strength/MAX_STRENGTH;
+	
+	int i;
+	if(team==TEAM_NONE) {
+		for(i=0;i<ownerNumber;i++) {
+			if(CheckActorInventory(1000+i, "NoPushFlag")){continue;}
+			ShockPull(x, y, z, velX, velY, i, distRange, fullDistRange);
+		}
+		for(i=ownerNumber+1;i<MAX_PLAYERS;i++) {
+			if(CheckActorInventory(1000+i, "NoPushFlag")){continue;}
+			ShockPull(x, y, z, velX, velY, i, distRange, fullDistRange);
+		}
+	} else {
+		for(i=0;i<ownerNumber;i++) {
+			if(CheckActorInventory(1000+i, "NoPushFlag")){continue;}
+			ShockPullTeam(team, x, y, z, velX, velY, i, distRange, fullDistRange);
+		}
+		for(i=ownerNumber+1;i<MAX_PLAYERS;i++) {
+			if(CheckActorInventory(1000+i, "NoPushFlag")){continue;}
+			ShockPullTeam(team, x, y, z, velX, velY, i, distRange, fullDistRange);
+		}
+	}
+	
+}
+
+function void ShockPullTeam(int team,
+int x, int y, int z, int velX, int velY, int i, int distRange, int fullDistRange)
+{
+	if(team != GetPlayerInfo(i, PLAYERINFO_TEAM)) {
+		ShockPull(x, y, z, velX, velY, i, distRange, fullDistRange);
+	}
+}
+
+function void ShockPull(
+int x, int y, int z, int velX, int velY, int i, int distRange, int fullDistRange)
+{
+	int target = i+1000;
+	int dist = fDistanceValTarget(x,y,z,target);
+	//if (i == 1) print(f:dist, s:" ", f:distRange);
+	if(dist<distRange) {
+		//if(dist<=fullDistRange) print(f:1.0);
+		if(dist>fullDistRange) {
+			int scale = 1.0-fixedDiv(dist-fullDistRange,distRange-fullDistRange);
+			//print(f:scale);
+			velX = fixedMul(velX,scale);
+			velY = fixedMul(velY,scale);
+		}
+		//Log(s:"X = ",f:velX,s:" /\/\/\ Y = ",f:velY);
+		SetActorVelocity(target, velX, velY, 0, 1, 0);
+		GiveActorInventory(target,"TempPitProtect_P",1);
+	}
+}
+
+
+function int getTeam(int pNumber)
+{
+if(GetCVar("teamlms")==1||GetCVar("ctf")==1||GetCVar("teamplay")==1
+||GetCVar("oneflagctf")==1||GetCVar("teampossession")==1 ){
+	Return GetPlayerInfo(pNumber,PLAYERINFO_TEAM);
+}
+Return TEAM_NONE;
+}
+
+function int fDistanceValTarget(int x, int y, int z, int target)
+{
+	return fDistanceVal(getactorx(target)-x,getactory(target)-y,getactorz(target)-z);
+}
+
+function int fDistanceVal(int x, int y, int z)
+{
+	int len;
+	
+	int ang = vectorangle(x,y);
+	if(((ang+0.125)%0.5) > 0.25) len = fixeddiv(y, sin(ang));
+	else len = fixeddiv(x, cos(ang));
+
+	ang = vectorangle(len, z);
+	if(((ang+0.125)%0.5) > 0.25) len = fixeddiv(z, sin(ang));
+	else len = fixeddiv(len, cos(ang));
+	
+	//print(f:len);
+	return len;
+}
+
+function int WrapAround(int i)
+{
+	if(i<-0.5) return i+1.0;
+	if(i>0.5) return i-1.0;
+	return i;
+}
+
+function int fDistanceVal1(int ang, int x, int y)
+{
+	int len;
+	
+	if(((ang+0.125)%0.5) > 0.25) len = fixeddiv(y, sin(ang));
+	else len = fixeddiv(x, cos(ang));
+
+	//print(f:len);
+	return len;
+}
+
+function int fDistanceVal2(int ang, int len, int z)
+{
+	if(((ang+0.125)%0.5) > 0.25) len = fixeddiv(z, sin(ang));
+	else len = fixeddiv(len, cos(ang));
+
+	//print(f:len);
+	return len;
+}
+
+
+function int pitchAdjust(int i)
+{
+	if(i>0.0) return 1.0-i;
+	return -i;
+}
+
+function bool isDifferentTeams (int team, int targetNumber)
+{
+	return (team != GetPlayerInfo(targetNumber, PLAYERINFO_TEAM));
+}
+
+function int distanceVal (int tid1x, int tid1y, int tid1z, int tid2)
+{
+	int x, y, z, d;
+	x = tid1x - GetActorX(tid2) >> 16; // Convert fixed point to integer
+	y = tid1y - GetActorY(tid2) >> 16;
+	z = tid1z - GetActorZ(tid2) >> 16;
+	d = sqrt8( x*x + y*y + z*z );
+	return d;
+}
+
+function bool push2Val (int x, int y, int z, int angle, int pushee, int force, int range)
+{
+	bool pushvalid;
+
+	pushvalid = (range == 0 || distanceVal(x, y, z, pushee) < range);
+	if (pushvalid) {
+		if (force!=0) {
+				int angleMod = 0;
+				if (force<0) {
+					force *= -1;
+					angleMod = 128;
+				}
+			ThrustThing(((angle >> 8) + angleMod), force, 1, pushee);
+		}
+	}
+	return pushvalid;
+}

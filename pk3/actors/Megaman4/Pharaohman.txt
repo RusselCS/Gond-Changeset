@@ -1,0 +1,52 @@
+actor Pharaohman : ClassBase
+{
+Player.ScoreIcon "C_04D0X"
+player.displayname "Pharaohman"
+player.soundclass "pharaohmanc"
+
+player.maxhealth 1000
+health 1000
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
+player.startitem "PharaohShotBoss"
+
+player.startitem "FlashStopperWeakness2", 1
+
+//player.startitem "TimeSlowWeakness", 1
+player.startitem "TimeStopperWeakness", 1
+player.startitem "GeminiLaserWeakness", 1
+player.startitem "FlashStopperWeakness", 1
+player.startitem "CrystalEyeWeakness", 1
+player.startitem "CentaurFlashWeakness", 1
+player.startitem "CopyVisionWeakness", 1
+player.startitem "JewelSatelliteWeakness", 1
+player.startitem "GrabBusterWeakness", 1
+States
+{
+Spawn:
+PHAR A 0 
+PHAR B 1
+PHAR A 1
+Goto Spawn+2
+See:
+PHAR BCDE 5
+Goto Spawn
+Missile:
+PHAR M 0 A_JumpIfInventory("PharaohHoverFlag",1,"MissileHover")
+PHAR M 2
+PHAR G 6
+PHAR A 0 A_JumpIfInventory("PharaohHoverFlag",1,"MissileHover")
+goto Spawn
+MissileHover:
+PHAR JKL 4
+goto Spawn
+ClassPain:
+PHAR H 0
+goto PainContinue
+ClassDeath:
+PHAR H 0
+goto DeathContinue
+}
+}

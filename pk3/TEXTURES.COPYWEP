@@ -1,0 +1,207 @@
+//CBM Copy Weapons
+
+//Core Zone
+
+//SpreadDrill
+sprite SPREK0,116,96{Offset -184,-94 Patch BUSTB0,0,0{Translation"192:192=87:87","198:198=220:220","216:216=4:4"}}
+
+//CBM Zone
+
+//Roll Sweep
+graphic XTR0WI_A,30,30{XScale 2.0 YScale 2.0 Patch XWI0A0,0,0}
+
+//XH0AA0
+
+texture XTR0BR_A,8,56{patch BARENERG,0,0{Translation"192:192=35:35","198:198=41:41"}}
+texture XTR0VR_A,56,8{patch XTR0BR_A,0,0{rotate 90}}
+
+//Rising Fist
+graphic XTR0WI_B,30,30{XScale 2.0 YScale 2.0 Patch XWI0B0,0,0}
+
+sprite XH0BA0,148,80{Offset -202,-103 Patch HSPRA0,0,0{Translation"192:192=248:160","198:198=41:41"}}
+sprite XH0BB0,76,156{Offset -224,-32 Patch W_HBS0,0,0{Translation"192:192=248:160","198:198=41:41","118:118=248:208","119:119=41:41","89:89=248:248","95:95=41:41","8:8=41:41"}}
+sprite XH0BC0,112,128{Offset -253,-48 Patch W_HBT0,0,0{Translation"192:192=248:160","198:198=41:41","118:118=248:208","119:119=41:41","89:89=248:248","95:95=41:41","8:8=41:41"}}
+
+texture XTR0BR_B,8,56{patch BARENERG,0,0{Translation"192:192=248:248","198:198=41:41"}}
+texture XTR0VR_B,56,8{patch XTR0BR_B,0,0{rotate 90}}
+
+//Wave Buster
+graphic XTR0WI_C,30,30{XScale 2.0 YScale 2.0 Patch XWI0C0,0,0}
+
+sprite XH0CA0,116,96{Offset -184,-94  Patch BUSTB0,0,0{Translation"192:192=228:228","198:198=253:253"}}
+sprite XH0CB0,136,108{Offset -184,-98  Patch BUSTC0,0,0{Translation"192:192=228:228","198:198=253:253"}}
+sprite XH0CC0,128,100{Offset -188,-102 Patch BUSTD0,0,0{Translation"192:192=228:228","198:198=253:253"}}
+
+texture XTR0BR_C,8,56{patch BARENERG,0,0{Translation"192:192=228:228","198:198=253:253"}}
+texture XTR0VR_C,56,8{patch XTR0BR_C,0,0{rotate 90}}
+
+//Frag Bomber
+graphic XTR0WI_D,30,30{XScale 2.0 YScale 2.0 Patch XWI0D0,0,0}
+
+//XH0DA0
+sprite XH0DB0,148,80{Offset -202,-103 Patch HSPRE0,0,0{Translation"192:192=92:92","198:198=131:131"}}
+sprite XH0DC0,308,204{Offset -272,46 Patch HSPRF0,0,0{Translation"192:192=92:92","198:198=131:131"}}
+sprite XH0DD0,312,108{Offset -126,-123 Patch HSPRK0,0,0{Translation"192:192=92:92","198:198=131:131"}}
+
+texture XTR0BR_D,8,56{patch BARENERG,0,0{Translation"192:192=92:92","198:198=131:131"}}
+texture XTR0VR_D,56,8{patch XTR0BR_D,0,0{rotate 90}}
+
+//Time Bender
+graphic XTR0WI_E,30,30{XScale 2.0 YScale 2.0 Patch XWI0E0,0,0}
+
+sprite XH0EA0,148,80{Offset -202,-103 Patch HSPRE0,0,0{Translation"192:192=34:34","198:198=239:239"}}
+sprite XH0EB0,115,96{Offset -210,-96 Patch HSPRB0,0,0{Translation"192:192=34:34","198:198=239:239"}}
+sprite XH0EC0,115,96{Offset -190,-82 Patch HSPRC0,0,0{Translation"192:192=34:34","198:198=239:239"}}
+sprite XH0ED0,128,128{Offset -177,-50 Patch HSPRD0,0,0{Translation"192:192=34:34","198:198=239:239"}}
+
+//Boobeam Barrier
+graphic XTR0WI_F,30,30{XScale 2.0 YScale 2.0 Patch XWI0F0,0,0}
+
+sprite XH0FA0,148,80{Offset -202,-103 Patch HSPRE0,0,0{Translation"192:192=39:39"}}
+sprite XH0FB0,427,40{Offset 52,-145 Patch HSPRN0,0,0{Translation"192:192=39:39"}}
+sprite XH0FC0,427,52{Offset 53,-133 Patch HSPRO0,0,0{Translation"192:192=39:39"}}
+sprite XH0FD0,427,104{Offset 53,-81 Patch HSPRP0,0,0{Translation"192:192=39:39"}}
+sprite XH0FE0,427,112{Offset 53,-73 Patch HSPRQ0,0,0{Translation"192:192=39:39"}}
+sprite XH0FF0,427,128{Offset 53,-57 Patch HSPRR0,0,0{Translation"192:192=39:39"}}
+
+texture XTR0BR_F,8,56{patch BARENERG,0,0{Translation"192:192=39:39"}}
+texture XTR0VR_F,56,8{patch XTR0BR_F,0,0{rotate 90}}
+
+//Top Twist
+graphic XTR0WI_G,30,30{XScale 2.0 YScale 2.0 Patch XWI0G0,0,0}
+
+//XH0EA0
+sprite XH0GB0,148,80{Offset -202,-103 Patch HSPRE0,0,0{Translation"192:192=52:52","198:198=93:93"}}
+sprite XH0GC0,308,204{Offset -272,46 Patch HSPRF0,0,0{Translation"192:192=52:52","198:198=93:93"}}
+sprite XH0GD0,312,108{Offset -126,-123 Patch HSPRK0,0,0{Translation"192:192=52:52","198:198=93:93"}}
+
+//Doc Scanner
+graphic XTR0WI_H,30,30{XScale 2.0 YScale 2.0 Patch XWI0H0,0,0}
+
+sprite XH0HA0,116,96{Offset -184,-94  Patch BUSTB0,0,0{Translation"192:192=217:217","198:198=174:174"}}
+sprite XH0HB0,136,108{Offset -184,-98  Patch BUSTC0,0,0{Translation"192:192=217:217","198:198=174:174"}}
+sprite XH0HC0,128,100{Offset -188,-102 Patch BUSTD0,0,0{Translation"192:192=217:217","198:198=174:174"}}
+
+texture XTR0BR_H,8,56{patch BARENERG,0,0{Translation"192:192=217:217","198:198=174:174"}}
+texture XTR0VR_H,56,8{patch XTR0BR_H,0,0{rotate 90}}
+
+//Flash Bulb
+graphic XTR0WI_I,30,30{XScale 2.0 YScale 2.0 Patch XWI0I0,0,0}
+
+//XH0FA0
+sprite XH0IB0,148,80{Offset -202,-103 Patch HSPRE0,0,0{Translation"192:192=4:4","198:198=239:239"}}
+sprite XH0IC0,308,204{Offset -272,46 Patch HSPRH0,0,0{Translation"192:192=4:4","198:198=239:239"}}
+sprite XH0ID0,312,108{Offset -126,-123 Patch HSPRK0,0,0{Translation"192:192=4:4","198:198=239:239"}}
+
+//Dive Sonar
+graphic XTR0WI_J,30,30{XScale 2.0 YScale 2.0 Patch XWI0J0,0,0}
+
+//AirShooter Hud
+
+//Skull Sniper
+graphic XTR0WI_K,30,30{XScale 2.0 YScale 2.0 Patch XWI0K0,0,0}
+
+Sprite XH0KA0,116,96{Offset -184,-94  Patch BUSTB0,0,0{Translation"198:198=197:197"}}
+Sprite XH0KB0,136,108{Offset -184,-98  Patch BUSTC0,0,0{Translation"198:198=197:197"}}
+Sprite XH0KC0,128,100{Offset -188,-102 Patch BUSTD0,0,0{Translation"198:198=197:197"}}
+
+//Gravity Sphere
+graphic XTR0WI_L,30,30{XScale 2.0 YScale 2.0 Patch XWI0L0,0,0}
+
+Sprite XH0LA0,116,96{Offset -184,-94  Patch BUSTB0,0,0{Translation"192:192=4:4","198:198=239:239"}}
+Sprite XH0LB0,136,108{Offset -184,-98  Patch BUSTC0,0,0{Translation"192:192=4:4","198:198=239:239"}}
+Sprite XH0LC0,128,100{Offset -188,-102 Patch BUSTD0,0,0{Translation"192:192=4:4","198:198=239:239"}}
+
+//Dark Shield
+graphic XTR0WI_M,30,30{XScale 2.0 YScale 2.0 Patch XWI0M0,0,0}
+
+sprite XH0MA0,148,80{Offset -202,-103 Patch HSPRA0,0,0{Translation"192:192=4:4","198:198=93:93"}}
+sprite XH0MB0,427,40{Offset 52,-145 Patch HSPRN0,0,0{Translation"192:192=4:4","198:198=93:93"}}
+sprite XH0MC0,427,52{Offset 53,-133 Patch HSPRO0,0,0{Translation"192:192=4:4","198:198=93:93"}}
+sprite XH0MD0,427,104{Offset 53,-81 Patch HSPRP0,0,0{Translation"192:192=4:4","198:198=93:93"}}
+sprite XH0ME0,427,112{Offset 53,-73 Patch HSPRQ0,0,0{Translation"192:192=4:4","198:198=93:93"}}
+sprite XH0MF0,427,128{Offset 53,-57 Patch HSPRR0,0,0{Translation"192:192=4:4","198:198=93:93"}}
+sprite XH0MG0,115,96{Offset -210,-96 Patch HSPRB0,0,0{Translation"192:192=4:4","198:198=93:93"}}
+sprite XH0MH0,128,128{Offset -177,-50 Patch HSPRD0,0,0{Translation"192:192=4:4","198:198=93:93"}}
+
+//Centaur Arrow
+graphic XTR0WI_N,30,30{XScale 2.0 YScale 2.0 Patch XWI0N0,0,0}
+
+Sprite XH0NA0,116,96{Offset -184,-94  Patch BUSTB0,0,0{Translation"192:192=4:4","198:198=117:117"}}
+Sprite XH0NB0,136,108{Offset -184,-98  Patch BUSTC0,0,0{Translation"192:192=4:4","198:198=117:117"}}
+Sprite XH0NC0,128,100{Offset -188,-102 Patch BUSTD0,0,0{Translation"192:192=4:4","198:198=117:117"}}
+
+//Plant Trapper
+graphic XTR0WI_O,30,30{XScale 2.0 YScale 2.0 Patch XWI0O0,0,0}
+
+Sprite XH0OA0,116,96{Offset -184,-94  Patch BUSTB0,0,0{Translation"192:192=104:104","198:198=60:60"}}
+Sprite XH0OB0,136,108{Offset -184,-98  Patch BUSTC0,0,0{Translation"192:192=104:104","198:198=60:60"}}
+Sprite XH0OC0,128,100{Offset -188,-102 Patch BUSTD0,0,0{Translation"192:192=104:104","198:198=60:60"}}
+
+texture XTR0BR_O,8,56{patch BARENERG,0,0{Translation"192:192=104:104", "198:198=60:60"}}
+texture XTR0VR_O,56,8{patch XTR0BR_O,0,0{rotate 90}}
+
+//Dynamo Tendril
+graphic XTR0WI_P,30,30{XScale 2.0 YScale 2.0 Patch XWI0P0,0,0}
+
+sprite XH0PA0,116,96{Offset -184,-94 Patch BUSTB0,0,0{Translation"192:192=4:4","198:198=229:229"}}
+sprite XH0PB0,136,108{Offset -184,-98 Patch BUSTC0,0,0{Translation"192:192=4:4","198:198=229:229"}}
+sprite XH0PC0,128,100{Offset -188,-102 Patch BUSTD0,0,0{Translation"192:192=4:4","198:198=229:229"}}
+
+texture XTR0BR_P,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=229:229"}}
+texture XTR0VR_P,56,8{patch XTR0BR_P,0,0{rotate 90}}
+
+//Rainbow Galaxy
+graphic XTR0WI_Q,30,30{XScale 2.0 YScale 2.0 Patch XWI0Q0,0,0}
+
+//BlackHoleBomb Hud
+
+//Fake Repeater
+graphic XTR0WI_R,30,30{XScale 2.0 YScale 2.0 Patch XWI0R0,0,0}
+
+sprite XH0RA0,116,96{Offset -184,-94 Patch BUSTB0,0,0{Translation"192:192=4:4","198:198=73:73"}}
+sprite XH0RB0,136,108{Offset -184,-98 Patch BUSTC0,0,0{Translation"192:192=4:4","198:198=73:73"}}
+sprite XH0RC0,128,100{Offset -188,-102 Patch BUSTD0,0,0{Translation"192:192=4:4","198:198=73:73"}}
+
+texture XTR0BR_R,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=73:73"}}
+texture XTR0VR_R,56,8{patch XTR0BR_R,0,0{rotate 90}}
+
+//Buster Rod Pole
+graphic XTR0WI_S,30,30{XScale 2.0 YScale 2.0 Patch XWI0S0,0,0}
+
+sprite XH0SA0,116,96{Offset -184,-94 Patch BUSTB0,0,0{Translation"192:192=102:102","198:198=221:221"}}
+sprite XH0SB0,136,108{Offset -184,-98 Patch BUSTC0,0,0{Translation"192:192=102:102","198:198=221:221"}}
+sprite XH0SC0,128,100{Offset -188,-102 Patch BUSTD0,0,0{Translation"192:192=102:102","198:198=221:221"}}
+
+texture XTR0BR_S,8,56{patch BARENERG,0,0{Translation"192:192=102:102","198:198=221:221"}}
+texture XTR0VR_S,56,8{patch XTR0BR_S,0,0{rotate 90}}
+
+//Mega Water Barrier
+graphic XTR0WI_T,30,30{XScale 2.0 YScale 2.0 Patch XWI0T0,0,0}
+
+sprite XH0TA0,148,80{Offset -202,-103 Patch HSPRA0,0,0{Translation"192:192=196:196","198:198=118:118"}}
+sprite XH0TB0,115,96{Offset -210,-96 Patch HSPRB0,0,0{Translation"192:192=196:196","198:198=118:118"}}
+sprite XH0TC0,115,96{Offset -190,-82 Patch HSPRC0,0,0{Translation"192:192=196:196","198:198=118:118"}}
+sprite XH0TD0,128,128{Offset -177,-50 Patch HSPRD0,0,0{Translation"192:192=196:196","198:198=118:118"}}
+
+texture XTR0BR_T,8,56{patch BARENERG,0,0{Translation"192:192=196:196","198:198=118:118"}}
+texture XTR0VR_T,56,8{patch XTR0BR_T,0,0{rotate 90}}
+
+//Hyper Storm Blaster
+graphic XTR0WI_U,30,30{XScale 2.0 YScale 2.0 Patch XWI0U0,0,0}
+
+sprite XH0UA0,116,96{Offset -184,-94 Patch BUSTB0,0,0{Translation"192:192=4:4","198:198=76:76"}}
+sprite XH0UB0,136,108{Offset -184,-98 Patch BUSTC0,0,0{Translation"192:192=4:4","198:198=76:76"}}
+sprite XH0UC0,128,100{Offset -188,-102 Patch BUSTD0,0,0{Translation"192:192=4:4","198:198=76:76"}}
+
+texture XTR0BR_U,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=76:76"}}
+texture XTR0VR_U,56,8{patch XTR0BR_U,0,0{rotate 90}}
+
+
+//Upgrade icons
+graphic MEGAUPGD,32,32{XScale 2.0 YScale 2.0 Patch WEA7V0,0,0}
+graphic ROCKUPGD,32,32{XScale 2.0 YScale 2.0 Patch WEA7W0,0,0}
+graphic PROTUPGD,32,32{XScale 2.0 YScale 2.0 Patch WEA7X0,0,0}
+graphic BASSUPGD,32,32{XScale 2.0 YScale 2.0 Patch WEA7Y0,0,0}
+graphic DUOUPGD,32,32{XScale 2.0 YScale 2.0 Patch WEA7Z0,0,0}
+graphic DOCUPGD,32,32{XScale 2.0 YScale 2.0 Patch WEA7W0,0,0}

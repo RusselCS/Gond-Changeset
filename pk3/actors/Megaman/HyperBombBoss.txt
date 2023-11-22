@@ -1,0 +1,567 @@
+const int FUSE_LENGTH = 77;
+//Didn't work for FuseLength's MaxAmmo
+
+actor HyperBombBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_1D"
+dropitem "HyperBombWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 0
+Obituary "$OB_HYPERBOMB"
+weapon.ammotype "GigaAmmo"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_01 D 1
+loop
+Ready:
+BOMT A 0 ACS_ExecuteAlways(998,0,DYE_BOMBMAN)
+BOMT A 0 A_GiveInventory("SpawningMisfire",1)
+goto Ready0
+Ready0:
+BOMT A 2 A_WeaponReady
+BOMT A 0 A_TakeInventory("SpawningMisfire",1)
+Goto Ready1
+Ready1:
+BOMT A 0 A_JumpIfInventory("SuperArmTemp",1,"Ready2")
+BOMT A 1 A_WeaponReady
+wait
+Ready2:
+TNT1 A 0 A_JumpIfInventory("GigaAmmo",FUSE_LENGTH,"ThrowX")
+TNT1 A 1 A_WeaponReady
+TNT1 A 0 A_GiveInventory("GigaAmmo_RC",1)
+loop
+
+Deselect:
+BOMT A 0 A_JumpIfInventory("SuperArmTemp",1,"Drop")
+BOMT AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+BOMT A 1 A_Lower
+goto Deselect+1
+Select:
+BOMT AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+BOMT A 1 A_Raise
+Loop
+SpawnProtect:
+BOMT A 1
+Goto Ready0
+Fire:
+TNT1 A 0 A_JumpIfInventory("SpawningMisfire",1,"SpawnProtect")
+TNT1 A 0 A_JumpIfInventory("SuperArmTemp",1,"HardThrow")
+goto Prime
+AltFire:
+TNT1 A 0 A_JumpIfInventory("SpawningMisfire",1,"SpawnProtect")
+TNT1 A 0 A_JumpIfInventory("SuperArmTemp",1,"Throw")
+goto Prime
+Prime:
+BOMT A 0 A_PlaySoundEx("weapon/superarmuse","Weapon")
+BOMT A 0 A_GiveInventory("SuperArmTemp",1)
+BOMT A 0 A_GiveInventory("VivifyDelay5",1)
+BOMT A 0 A_Refire(1)
+BOMT A 1 Offset(13,78)A_SpawnItemEx("TempSplodePick",0,0,0,0,0,0,0,1)
+BOMT A 1 Offset(13,78)A_JumpIfInventory("PowerRage_ST",1,1)
+
+BOMT B 2 Offset(15,78)A_GiveInventory("GigaAmmo",2)
+BOMT B 2 Offset(-1,32)A_GiveInventory("GigaAmmo",2)
+BOMT B 2 Offset(47,-19)A_GiveInventory("GigaAmmo",2)
+BOMT B 2 Offset(108,-64)A_GiveInventory("GigaAmmo",2)
+
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+TNT1 AA 1 A_GiveInventory("GigaAmmo_RC",1)
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+TNT1 AAA 1 A_GiveInventory("GigaAmmo_RC",1)
+goto Ready1
+
+ThrowX:
+Throw:
+BOMT E 0 A_PlaySoundEx("weapon/BombThrow","Weapon")
+BOMT E 0 A_GiveInventory("BombmanAlt_CI",1)
+BOMT E 0 A_GiveInventory("VivifyDelay8",1)
+BOMT E 0 A_TakeInventory("SuperArmTemp",1)
+BOMT E 0 A_Refire(1)
+BOMT E 2 Offset(-1,32)
+BOMT E 2 Offset(-40,12)
+BOMT E 2 Offset(-50,-8)
+BOMT E 2 Offset(-40,12)
+BOMT E 2 Offset(-1,32)
+TNT1 AAA 2 A_TakeInventory("GigaAmmo",FUSE_LENGTH)
+BOMT A 2 Offset(26,112)
+BOMT A 2 Offset(13,78)
+goto Ready1
+HardThrow:
+BOMT C 0 A_PlaySoundEx("weapon/BombThrow","Weapon")
+BOMT C 0 A_GiveInventory("BombmanMain_CI",1)
+BOMT C 0 A_GiveInventory("VivifyDelay8",1)
+BOMT C 0 A_TakeInventory("SuperArmTemp",1)
+BOMT C 0 A_Refire(1)
+BOMT C 2 Offset(-1,32)
+BOMT C 2 Offset(-70,72)
+BOMT C 2 Offset(-121,112)
+BOMT D 2 Offset(1,32)
+BOMT D 2 Offset(-21,56)
+BOMT D 2 Offset(-33,84)
+TNT1 AA 2 A_TakeInventory("GigaAmmo",FUSE_LENGTH)
+BOMT A 2 Offset(26,112)
+BOMT A 2 Offset(13,78)
+goto Ready1
+Drop:
+BOMT A 0 A_PlaySoundEx("weapon/BombThrow","Weapon")
+BOMT A 0 A_GiveInventory("BombmanOther_CI",1)
+BOMT A 0 A_TakeInventory("SuperArmTemp",1)
+BOMT E 2 Offset(-1,32)
+BOMT E 2 Offset(-40,12)
+BOMT E 2 Offset(-50,-8)
+BOMT E 2 Offset(-40,12)
+BOMT E 2 Offset(-1,32)
+TNT1 AAA 2 A_TakeInventory("GigaAmmo",FUSE_LENGTH)
+BOMT A 2 Offset(26,112)
+BOMT A 2 Offset(13,78)
+goto Deselect+1
+}
+}
+
+actor GigaAmmo : Ammo
+{
+inventory.amount 1
+//inventory.maxamount FUSE_LENGTH
+inventory.maxamount 77
++INVENTORY.IGNORESKILL
+}
+
+
+actor GigaAmmo_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("GigaAmmo",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("GigaAmmo",2)
+stop
+}
+}
+
+actor TempSplodePick : ShieldWarper_CBM
+{
+States
+{
+Spawn:
+TNT1 A 0
+BOMB S 0 ACS_NamedExecuteAlways("cbm_clientwarper",0,-4)
+Goto Lift
+
+Lift:
+"####" "#" 1 A_Warp(2,37,0,-16,0,24)
+"####" "#" 0 A_JumpIfInTargetInventory("PowerRage_ST",1,2)
+"####" "#" 1 A_Warp(2,34,0,33,0,24)
+"####" "#" 1 A_Warp(2,31,0,72,0,24)
+"####" "#" 0 A_JumpIfInTargetInventory("PowerRage_ST",1,2)
+"####" "#" 1 A_Warp(2,28,0,102,0,24)
+"####" "#" 1 A_Warp(2,25,0,124,0,24)
+"####" "#" 0 A_JumpIfInTargetInventory("PowerRage_ST",1,2)
+"####" "#" 1 A_Warp(2,22,0,139,0,24)
+"####" "#" 1 A_Warp(2,19,0,148,0,24)
+"####" "#" 0 A_JumpIfInTargetInventory("PowerRage_ST",1,2)
+"####" "#" 1 A_Warp(2,16,0,152,0,24)
+"####" "#" 1 A_Warp(2,14,0,152,0,24)
+"####" "#" 0 A_JumpIfInTargetInventory("PowerRage_ST",1,2)
+"####" "#" 1 A_Warp(2,12,0,148,0,24)
+"####" "#" 1 A_Warp(2,10,0,140,0,24)
+"####" "#" 0 A_JumpIfInTargetInventory("PowerRage_ST",1,2)
+"####" "#" 1 A_Warp(2,8,0,128,0,24)
+"####" "#" 1 A_Warp(2,6,0,113,0,24)
+"####" "#" 0 A_JumpIfInTargetInventory("PowerRage_ST",1,2)
+"####" "#" 1 A_Warp(2,4,0,95,0,24)
+"####" "#" 1 A_Warp(2,2,0,75,0,24)
+Shield:
+"####" "#" 1 A_Warp(2,0,0,56,0,24)
+loop
+}
+}
+
+
+
+actor Bombman_HyperBomb
+{
+Translation "192:192=216:216", "199:199=0:0", "202:202=215:215"
+PROJECTILE
+damagetype "BombM_Boom"
+Obituary "$OB_HYPERBOMB"
+-NOGRAVITY
++FORCEXYBILLBOARD
+bouncefactor 0.7
+reactiontime 1
+Damage (0)
+Radius 6
+Height 12
+speed 25
+scale 2.5
+states
+{
+Spawn:
+BOMB S 0
+BOMB S 0 A_JumpIfInTargetInventory("GigaAmmo",FUSE_LENGTH,"DetonateX")
+BOMB S 0 ThrustThingZ(0,18,0,1)
+BOMB S 0 ThrustThing(angle*256/360,0,1,0)
+goto FuseGiveCheck
+FuseGive:
+TNT1 A 0 A_GiveInventory("GigaAmmo",ACS_ExecuteWithResult(803,GIGAAMMO))
+TNT1 A 0 //A_TakeFromTarget("GigaAmmo",FUSE_LENGTH)
+TNT1 A 0 A_JumpIfInventory("GigaAmmo",FUSE_LENGTH,"Detonate")
+goto Spawn2+1
+FuseGiveCheck:
+TNT1 A 0 A_JumpIfInTargetInventory("GigaAmmo",1,"FuseGive")
+goto Spawn2+1
+Spawn2:
+BOMB S 0 A_JumpIfInventory("GigaAmmo",FUSE_LENGTH,"Detonate")
+BOMB S 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"Spawn2R")
+//BOMB S 0 A_TakeFromTarget("GigaAmmo",1)
+BOMB S 1 A_GiveInventory("GigaAmmo",1)
+loop
+Spawn2R:
+//BOMB S 0 A_TakeFromTarget("GigaAmmo",2)
+BOMB S 1 A_GiveInventory("GigaAmmo",2)
+goto Spawn2
+Detonate:
+BOMB S 1 A_CountDown
+wait
+DetonateX:
+BOMB S 0 A_SpawnItemEx("BombM_InstantExplosion",0,0,12,0,0,0,0,1)
+stop
+Death:
+BOMB S 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+BOMB S 0 A_ChangeFlag("NOGRAVITY",1)
+BOMB S 0 A_JumpIfInventory("GigaAmmo",FUSE_LENGTH-5,"Deathtonation")
+BOMB S 0 A_PlaySoundEx("weapon/hyperbomb","Weapon")
+TNT1 A 0 A_SpawnItemEx("BombM_ForcedExplosion",0,0,12,0,0,0,0,1)
+TNT1 A 10
+stop
+Deathtonation:
+BOMB S 0 A_Stop
+BOMB S 0 A_ChangeFlag("NOGRAVITY",1)
+BOMB S 0 A_PlaySoundEx("weapon/BombmanBoom","Weapon")
+TNT1 A 0 A_SpawnItemEx("BombM_FuseExplosion",0,0,12,0,0,0,0,1)
+TNT1 A 10
+stop
+}
+}
+
+actor Bombman_HyperBLob : Bombman_HyperBomb
+{
++RIPPER//
+//+THRUGHOST
++CANBOUNCEWATER
++BOUNCEONFLOORS
++BOUNCEONWALLS
++BOUNCEONCEILINGS
++BOUNCEONACTORS
++ALLOWBOUNCEONACTORS
++CANBOUNCEWATER
+States
+{
+Spawn:
+BOMB S 0
+BOMB S 0 A_JumpIfInTargetInventory("GigaAmmo",FUSE_LENGTH,"DetonateX")
+BOMB S 0 ThrustThingZ(0,18,0,1)
+BOMB S 0 ThrustThing(angle*256/360,0,1,0)
+goto FuseGiveCheck
+}
+}
+actor Bombman_HyperBLobB : Bombman_HyperBLob{translation "192:192=205:205", "199:199=74:74", "202:202=205:205"}
+actor Bombman_HyperBLobR : Bombman_HyperBLob{translation "192:192=171:171", "199:199=41:41", "202:202=171:171"}
+actor Bombman_HyperBLobO : Bombman_HyperBLob{translation "192:192=104:104", "199:199=128:128", "202:202=104:104"}
+actor Bombman_HyperBLobP : Bombman_HyperBLob{translation "192:192=229:229", "199:199=232:232", "202:202=229:229"}
+
+
+actor Bombman_HyperBDrop : Bombman_HyperBLob
+{
+-RIPPER
+speed 13
+states
+{
+Spawn:
+BOMB S 0
+BOMB S 0 ThrustThingZ(0,12,0,1)
+BOMB S 0 ThrustThing(angle*256/360,0,1,0)
+goto FuseGiveCheck
+}
+}
+
+actor Bombman_HyperBDropB : Bombman_HyperBDrop{translation "192:192=205:205", "199:199=74:74", "202:202=205:205"}
+actor Bombman_HyperBDropR : Bombman_HyperBDrop{translation "192:192=171:171", "199:199=41:41", "202:202=171:171"}
+actor Bombman_HyperBDropO : Bombman_HyperBDrop{translation "192:192=104:104", "199:199=128:128", "202:202=104:104"}
+actor Bombman_HyperBDropP : Bombman_HyperBDrop{translation "192:192=229:229", "199:199=232:232", "202:202=229:229"}
+
+actor Bombman_HyperBToss : Bombman_HyperBomb
+{
++RIPPER
+//+THRUGHOST
+//+THRUACTORS
+speed 32
+states
+{
+Spawn:
+BOMB S 0
+BOMB S 0 ThrustThingZ(0,22,0,1)
+BOMB S 0 ThrustThing(angle*256/360,0,1,0)
+goto FuseGiveCheck
+}
+}
+
+actor Bombman_HyperBTossB : Bombman_HyperBToss{translation "192:192=205:205", "199:199=74:74", "202:202=205:205"}
+actor Bombman_HyperBTossR : Bombman_HyperBToss{translation "192:192=171:171", "199:199=41:41", "202:202=171:171"}
+actor Bombman_HyperBTossO : Bombman_HyperBToss{translation "192:192=104:104", "199:199=128:128", "202:202=104:104"}
+actor Bombman_HyperBTossP : Bombman_HyperBToss{translation "192:192=229:229", "199:199=232:232", "202:202=229:229"}
+
+
+actor BombM_ForcedExplosion : BasicExplosion
+{
+damagetype "BombM_Boom"
+Obituary "$OB_HYPERBOMB"
++FORCEXYBILLBOARD
++BRIGHT
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Explode(250,150,0,0,10)
+goto Spawn2
+Spawn2:
+Y_1D OPQRSTUVWXYZ 1
+Y_1D "[" 1
+stop
+}
+}
+
+actor BombM_InstantExplosion : BombM_ForcedExplosion
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_PlaySoundEx("weapon/BombmanBoom","Weapon")
+TNT1 A 0 A_Explode(350,150,0,0,18)
+goto Spawn2
+}
+}
+
+actor BombM_FuseExplosion : BasicExplosion
+{
+damagetype "BombM_Boom"
+Obituary "$OB_HYPERBOMB"
+States
+{
+Spawn:
+TNT1 A 0
+//TNT1 A 0 A_SpawnItemEx("BombmanFuseExplosionFX_H0",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("BombmanFuseExplosionFX_H1",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("BombmanFuseExplosionFX_H2",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("BombmanFuseExplosionFX_H3",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("BombmanFuseExplosionFX_H4",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("BombmanFuseExplosionFX_H5",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("BombmanFuseExplosionFX_H6",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("BombmanFuseExplosionFX",0,0,2,0,0,17,0,33)
+TNT1 A 0 A_SpawnItemEx("BombmanFuseExplosionFX",0,0,-2,0,0,-17,0,33)
+//110
+TNT1 A 0 A_Explode(450,196,0,0,28)
+TNT1 A 4
+stop
+}
+}
+
+actor BombmanFuseExplosionFX_H0 : BasicClientSide
+{
+renderstyle none
+Reactiontime 12//Sections
+Args 20,6
+//Speed/lines
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetArg(3,Args[1]+1)
+TNT1 A 0 A_SetArg(4,Reactiontime)
+SpawnL:
+TNT1 A 0 A_SpawnItemEx("BombmanFuseExplosionFX",Cos(90-180/Args[3]*Args[1])*Args[0],0,Sin(90-180/Args[3]*Args[1])*Args[0],Cos(90-180/Args[3]*Args[1])*Args[0],0,Sin(90-180/Args[3]*Args[1])*Args[0],360/Args[4]*Reactiontime,33)
+TNT1 A 0 A_SetArg(1,Args[1]-1)
+TNT1 A 0 A_JumpIf(Args[1]<=0,1)
+loop
+TNT1 A 0 A_Countdown
+TNT1 A 0 A_SetArg(1,Args[3]-1)
+loop
+Death:
+TNT1 A 0 A_SpawnItemEx("BombmanFuseExplosionFX",0,0,Args[0],0,0,Args[0],0,33)
+TNT1 A 0 A_SpawnItemEx("BombmanFuseExplosionFX",0,0,-Args[0],0,0,-Args[0],0,33)
+TNT1 A 1
+stop
+}
+}
+
+actor BombmanFuseExplosionFX_H1 : BasicClientSide
+{
+var int user_RT;
+var int user_A;
+
+Mass 100
+MeleeRange 0
+accuracy 6
+renderstyle none
+reactiontime 15//18
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_RT",360/reactiontime)
+TNT1 A 0 A_SetUserVar("user_A",random(0,user_RT))
+TNT1 A 0 A_SpawnItemEx("BombmanFuseExplosionFX",Mass/accuracy,0,0,Mass/accuracy,0,MeleeRange/accuracy,user_A,37)
+TNT1 A 0 A_SetUserVar("user_A",user_A+user_RT)
+TNT1 A 0 A_Countdown
+goto Spawn+3
+Death:
+TNT1 A 1
+stop
+}
+}
+actor BombmanFuseExplosionFX_H2 : BombmanFuseExplosionFX_H1
+{
+Mass 96
+MeleeRange 26
+reactiontime 12//15
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_RT",360/reactiontime)
+TNT1 A 0 A_SetUserVar("user_A",random(0,user_RT))
+TNT1 A 0 A_SpawnItemEx("BombmanFuseExplosionFX",Mass/accuracy,0,MeleeRange/accuracy,Mass/accuracy,0,MeleeRange/accuracy,user_A,37)
+TNT1 A 0 A_SpawnItemEx("BombmanFuseExplosionFX",Mass/accuracy,0,MeleeRange/-accuracy,Mass/accuracy,0,MeleeRange/-accuracy,user_A,37)
+TNT1 A 0 A_SetUserVar("user_A",user_A+user_RT)
+TNT1 A 0 A_Countdown
+goto Spawn+3
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor BombmanFuseExplosionFX_H3 : BombmanFuseExplosionFX_H2
+{
+Mass 87
+MeleeRange 50
+reactiontime 10//12
+}
+actor BombmanFuseExplosionFX_H4 : BombmanFuseExplosionFX_H2
+{
+Mass 70
+MeleeRange 70
+reactiontime 8//9
+}
+actor BombmanFuseExplosionFX_H5 : BombmanFuseExplosionFX_H2
+{
+Mass 50
+MeleeRange 87
+reactiontime 6
+}
+actor BombmanFuseExplosionFX_H6 : BombmanFuseExplosionFX_H2
+{
+Mass 26
+MeleeRange 96
+reactiontime 4//3
+}
+
+actor BombmanFuseExplosionFX : BasicClientSide
+{
++FORCEXYBILLBOARD
++BRIGHT
+States
+{
+Spawn:
+TNT1 A 0
+XMFX S 0
+XMFX S 1
+UMFX TJKD 1
+XMFX S 1
+UMFX TJKD 1
+stop
+
+Spawn2:
+UMFX R 1//Circle 202 and white
+XMFX Q 1
+UMFX T 1//Solid 202 and white
+XMFX S 1
+UMFX IJK 1//202/white center
+XMFX D 1
+stop
+}
+}
+
+
+actor BombmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBToss",0,1,0,28)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBTossB",0,1,0,28)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBTossR",0,1,0,28)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBTossO",0,1,0,28)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBTossP",0,1,0,28)
+goto Done
+}
+}
+
+actor BombmanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBLob",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBLobB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBLobR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBLobO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBLobP",0,1,8,0)
+goto Done
+}
+}
+
+actor BombmanOther_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBDrop",0,1,0,28)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBDropB",0,1,0,28)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBDropR",0,1,0,28)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBDropO",0,1,0,28)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBDropP",0,1,0,28)
+goto Done
+}
+}
+

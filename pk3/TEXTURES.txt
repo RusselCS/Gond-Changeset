@@ -1,0 +1,359 @@
+
+//General Textures
+
+//Stamina Heart
+graphic ARCSTAMX,32,14{patch TNT1A0,0,0}
+graphic ARCSTAM1,32,14{patch ARCSTAM,0,0{Translation"42:42=227:227","118:118=183:183"}}
+graphic ARCSTAM2,32,14{patch ARCSTAM,0,0{Translation"42:42=216:216","118:118=220:220"}}
+graphic ARCSTAM3,32,14{patch ARCSTAM,0,0{Translation"42:42=215:215","118:118=229:229"}}
+graphic ARCSTAM4,32,14{patch ARCSTAM,0,0{Translation"42:42=103:103","118:118=117:117"}}
+graphic ARCSTAM5,32,14{patch ARCSTAM,0,0{Translation"42:42=205:205","118:118=74:74"}}
+graphic ARCSTAM6,32,14{patch ARCSTAM,0,0{Translation"42:42=75:75","118:118=241:241"}}
+graphic ARCSTAM7,32,14{patch ARCSTAM,0,0{Translation"42:42=239:239","118:118=253:253"}}
+
+//Double Jump
+graphic JMPAIR_1,30,30{XScale 2.0 YScale 2.0 patch JMPSTAMD,0,0}
+graphic JMPAIR_2,30,30{XScale 2.0 YScale 2.0 patch JMPSTAMD,0,0{Translation"192:192=80:80","198:198=87:87","241:241=95:95","4:4=3:3"}}
+//Wall Jump
+graphic JMPWAL_1,30,30{XScale 2.0 YScale 2.0 patch JMPSTAMW,0,0}
+graphic JMPWAL_2,30,30{XScale 2.0 YScale 2.0 patch JMPSTAMW,0,0{Translation"192:192=80:80","198:198=87:87","241:241=95:95","4:4=3:3"}}
+
+//Replace help screen
+graphic f1_1fctf,320,240{patch HELP,0,0}
+graphic f1_coop,320,240{patch HELP,0,0}
+graphic f1_ctf,320,240{patch HELP,0,0}
+graphic f1_dm,320,240{patch HELP,0,0}
+graphic f1_duel,320,240{patch HELP,0,0}
+graphic f1_inv,320,240{patch HELP,0,0}
+graphic f1_lms,320,240{patch HELP,0,0}
+graphic f1_poss,320,240{patch HELP,0,0}
+graphic f1_scp,320,240{patch HELP,0,0}
+graphic f1_st,320,240{patch HELP,0,0}
+graphic f1_tdm,320,240{patch HELP,0,0}
+graphic f1_term,320,240{patch HELP,0,0}
+graphic f1_tlms,320,240{patch HELP,0,0}
+
+//Number Font scales
+graphic STYSCBMA,5,7{XScale 1.5 YScale 1.5 Patch STYS8BD0,0,0}
+graphic STYSCBMB,5,7{XScale 1.5 YScale 1.5 Patch STYS8BD1,0,0}
+graphic STYSCBMC,5,7{XScale 1.5 YScale 1.5 Patch STYS8BD2,0,0}
+graphic STYSCBMD,5,7{XScale 1.5 YScale 1.5 Patch STYS8BD3,0,0}
+graphic STYSCBME,5,7{XScale 1.5 YScale 1.5 Patch STYS8BD4,0,0}
+graphic STYSCBMF,5,7{XScale 1.5 YScale 1.5 Patch STYS8BD5,0,0}
+graphic STYSCBMG,5,7{XScale 1.5 YScale 1.5 Patch STYS8BD6,0,0}
+graphic STYSCBMH,5,7{XScale 1.5 YScale 1.5 Patch STYS8BD7,0,0}
+graphic STYSCBMI,5,7{XScale 1.5 YScale 1.5 Patch STYS8BD8,0,0}
+graphic STYSCBMJ,5,7{XScale 1.5 YScale 1.5 Patch STYS8BD9,0,0}
+graphic STYSCBMK,5,7{XScale 1.5 YScale 1.5 Patch "STYS8BD%",0,0}
+
+
+graphic STYSCBML,5,7{XScale 1.25 YScale 1.25 Patch STYS8BD0,0,0}
+graphic STYSCBMM,5,7{XScale 1.25 YScale 1.25 Patch STYS8BD1,0,0}
+graphic STYSCBMN,5,7{XScale 1.25 YScale 1.25 Patch STYS8BD2,0,0}
+graphic STYSCBMO,5,7{XScale 1.25 YScale 1.25 Patch STYS8BD3,0,0}
+graphic STYSCBMP,5,7{XScale 1.25 YScale 1.25 Patch STYS8BD4,0,0}
+graphic STYSCBMQ,5,7{XScale 1.25 YScale 1.25 Patch STYS8BD5,0,0}
+graphic STYSCBMR,5,7{XScale 1.25 YScale 1.25 Patch STYS8BD6,0,0}
+graphic STYSCBMS,5,7{XScale 1.25 YScale 1.25 Patch STYS8BD7,0,0}
+graphic STYSCBMT,5,7{XScale 1.25 YScale 1.25 Patch STYS8BD8,0,0}
+graphic STYSCBMU,5,7{XScale 1.25 YScale 1.25 Patch STYS8BD9,0,0}
+graphic STYSCBMV,5,7{XScale 1.25 YScale 1.25 Patch "STYS8BD%",0,0}
+
+graphic STYSCBM_,5,7{Patch STYS8BD0,0,0{Translation"0:255=0:0"}}
+graphic "STYSCBM[",5,7{XScale 1.5 YScale 1.5 Patch STYS8BD0,0,0{Translation"0:255=0:0"}}
+graphic "STYSCBM]",5,7{XScale 1.25 YScale 1.25 Patch STYS8BD0,0,0{Translation"0:255=0:0"}}
+
+
+//Player Setup Window
+graphic BRDR_TR,18,18{Offset 0,10 Patch BRDR_TR,0,0{Translation"192:192=129:129","198:198=133:133"}}
+graphic BRDR_B,18,18{Offset 0,50 Patch BRDR_B,0,0{Translation"192:192=129:129","198:198=133:133"}}
+graphic BRDR_BL,18,18{Offset 10,0 Patch BRDR_BL,0,0{Translation"192:192=129:129","198:198=133:133"}}
+graphic BRDR_BR,18,18{Offset 0,0 Patch BRDR_BR,0,0{Translation"192:192=129:129","198:198=133:133"}}
+graphic BRDR_L,18,18{Offset -5,0 Patch BRDR_L,0,0{Translation"192:192=129:129","198:198=133:133"}}
+graphic BRDR_R,18,18{Offset 0,0 Patch BRDR_R,0,0{Translation"192:192=129:129","198:198=133:133"}}
+graphic BRDR_T,18,18{Offset 0,-5 Patch BRDR_T,0,0{Translation"192:192=129:129","198:198=133:133"}}
+graphic BRDR_TL,18,18{Offset 10,10 Patch BRDR_TL,0,0{Translation"192:192=129:129","198:198=133:133"}}
+
+//Teleport FX (Item floor offset)
+sprite TFOGP0,7,32{Offset 3,31 Patch TFOGA0,0,0}
+sprite TFOGQ0,21,11{Offset 11,10 Patch TFOGB0,0,0}
+sprite TFOGR0,22,20{Offset 11,19 Patch TFOGC0,0,0}
+
+//Icons
+graphic WHATICON,30,30{XScale 2.0 YScale 2.0 Patch CARYW0,0,0}
+
+//Red E Tank
+graphic ETANKCBM,30,30{XScale 2.0 YScale 2.0 Patch CARYX0,0,0{Translation"192:192=196:196","198:198=197:197"}}
+
+//Carry
+graphic CARRI,30,30{XScale 2.0 YScale 2.0 Patch CARYD0,0,0}
+
+//Empty Icon
+graphic EmptIcon,30,30{XScale 2.0 YScale 2.0 /*Patch BlacIcon,0,0*/ Patch GrayIcon,0,0}
+
+//SlashClaw Y frames flipX
+sprite Y_7FF1,4,7{Offset -2,2 Patch Y_7FA1,0,0{flipx}}
+sprite Y_7FF5,4,7{Offset 7,2 Patch Y_7FA5,0,0{flipx}}
+sprite Y_7FF6F4,10,5{Offset 5,2 Patch Y_7FA6A4,0,0}
+sprite Y_7FF7F3,12,5{Offset 6,2 Patch Y_7FA7A3,0,0}
+sprite Y_7FF8F2,16,7{Offset 8,3 Patch Y_7FA8A2,0,0}
+
+sprite Y_7FG1,13,9{Offset 7,4 Patch Y_7FB1,0,0{flipx}}
+sprite Y_7FG5,13,9{Offset 7,4 Patch Y_7FB5,0,0{flipx}}
+sprite Y_7FG6G4,21,11{Offset 5,8 Patch Y_7FB6B4,0,0}
+sprite Y_7FG7G3,26,9{Offset 6,4 Patch Y_7FB7B3,0,0}
+sprite Y_7FG8G2,28,9{Offset 8,6 Patch Y_7FB8B2,0,0}
+
+sprite Y_7FH1,18,14{Offset 12,8 Patch Y_7FC1,0,0{flipx}}
+sprite Y_7FH5,18,14{Offset 7,8 Patch Y_7FC5,0,0{flipx}}
+sprite Y_7FH6H4,22,13{Offset 5,10 Patch Y_7FC6C4,0,0}
+sprite Y_7FH7H3,24,12{Offset 2,9 Patch Y_7FC7C3,0,0}
+sprite Y_7FH8H2,29,14{Offset 8,11 Patch Y_7FC8C2,0,0}
+
+sprite Y_7FI1,18,15{Offset 16,12 Patch Y_7FD1,0,0{flipx}}
+sprite Y_7FI5,18,15{Offset 5,11 Patch Y_7FD5,0,0{flipx}}
+sprite Y_7FI6I4,16,15{Offset 0,12 Patch Y_7FD6D4,0,0}
+sprite Y_7FI7I3,12,15{Offset -11,12 Patch Y_7FD7D3,0,0}
+sprite Y_7FI8I2,16,15{Offset -5,13 Patch Y_7FD8D2,0,0}
+
+sprite Y_7FJ1,11,11{Offset 17,13 Patch Y_7FE1,0,0{flipx}}
+sprite Y_7FJ5,11,11{Offset -5,13 Patch Y_7FE5,0,0{flipx}}
+sprite Y_7FJ6J4,9,11{Offset -5,13 Patch Y_7FE6E4,0,0}
+sprite Y_7FJ7J3,8,11{Offset -15,12 Patch Y_7FE7E3,0,0}
+sprite Y_7FJ8J2,8,11{Offset -8,13 Patch Y_7FE8E2,0,0}
+
+
+sprite Y_7FP1P5,32,16{Offset 16,12 Patch Y_7FK1K5,0,0{flipx}}
+sprite Y_7FP6P4,32,16{Offset 16,12 Patch Y_7FK6K4,0,0}
+sprite Y_7FP7P3,32,16{Offset 16,12 Patch Y_7FK7K3,0,0}
+sprite Y_7FP8P2,32,16{Offset 16,12 Patch Y_7FK8K2,0,0}
+sprite Y_7FQ1Q5,32,16{Offset 16,12 Patch Y_7FL1L5,0,0{flipx}}
+sprite Y_7FQ6Q4,32,16{Offset 16,12 Patch Y_7FL6L4,0,0}
+sprite Y_7FQ7Q3,32,16{Offset 16,12 Patch Y_7FL7L3,0,0}
+sprite Y_7FQ8Q2,32,16{Offset 16,12 Patch Y_7FL8L2,0,0}
+sprite Y_7FR1R5,32,16{Offset 16,12 Patch Y_7FM1M5,0,0{flipx}}
+sprite Y_7FR6R4,32,16{Offset 16,12 Patch Y_7FM6M4,0,0}
+sprite Y_7FR7R3,32,16{Offset 16,12 Patch Y_7FM7M3,0,0}
+sprite Y_7FR8R2,32,16{Offset 16,12 Patch Y_7FM8M2,0,0}
+sprite Y_7FS1S5,32,16{Offset 16,12 Patch Y_7FN1N5,0,0{flipx}}
+sprite Y_7FS6S4,32,16{Offset 16,12 Patch Y_7FN6N4,0,0}
+sprite Y_7FS7S3,32,16{Offset 16,12 Patch Y_7FN7N3,0,0}
+sprite Y_7FS8S2,32,16{Offset 16,12 Patch Y_7FN8N2,0,0}
+sprite Y_7FT1T5,32,16{Offset 16,12 Patch Y_7FO1O5,0,0{flipx}}
+sprite Y_7FT6T4,32,16{Offset 16,12 Patch Y_7FO6O4,0,0}
+sprite Y_7FT7T3,32,16{Offset 16,12 Patch Y_7FO7O3,0,0}
+sprite Y_7FT8T2,32,16{Offset 16,12 Patch Y_7FO8O2,0,0}
+
+
+//Unknown textures???
+
+graphic BAR1111,8,56{patch B_BAR02C,0,0{Translation"192:192=227:227","198:198=183:183"}}
+
+//Some Armor Bar?
+texture BARAMTB,8,280
+{
+/*patch NOBAR,0,0
+patch NOBAR,0,56
+patch NOBAR,0,112
+patch NOBAR,0,168*/
+patch BARAMT31,0,224
+}
+
+//???
+texture NOBARB,8,280
+{
+/*patch NOBAR,0,0
+patch NOBAR,0,56
+patch NOBAR,0,112
+patch NOBAR,0,168
+patch NOBAR,0,224*/
+}
+
+sprite KM23A0,244,124{Offset -77,-65 Patch MKICA0,0,0 {Translation "192:192=4:4","198:198=93:93"}}
+sprite KM23B0,232,64{Offset -89,-125 Patch MKICB0,0,0 {Translation "192:192=4:4","198:198=93:93"}}
+sprite KM23C0,128,100{Offset -180,-89 Patch MKICC0,0,0 {Translation "192:192=4:4","198:198=93:93"}}
+
+//ErRoR zONe (if seen old sprite referenced!)
+//sprite UHOHEROR,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite BASBT0,91,60{Offset 45,60 Patch UHOHEROR,0,0}//Bass shot
+sprite BUSTT0,91,60{Offset 45,60 Patch UHOHEROR,0,0}//Buster shot
+sprite BUSTU0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+
+sprite TN_BE0,91,60{Offset 45,60 Patch UHOHEROR,0,0}//NapalmBomb FX
+sprite TN_BF0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TN_BG0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TN_BH0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TN_BI0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TN_BJ0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TN_BK0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TN_BL0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TN_BM0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TN_BN0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TN_BO0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TN_BP0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TN_BQ0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TN_BR0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TN_BS0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+
+sprite TH_BB0,91,60{Offset 45,60 Patch UHOHEROR,0,0}//HyperBomb FX
+sprite TH_BC0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TH_BD0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TH_BE0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TH_BF0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TH_BG0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TH_BH0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TH_BI0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TH_BJ0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+sprite TH_BK0,91,60{Offset 45,60 Patch UHOHEROR,0,0}
+
+
+
+
+
+//CBM Menu colors
+
+//SEGA Font (Logo Intro-Style)
+//by Devy from Spriters Resource
+
+texture CBM_L000,83,32{patch CBMSEGA1,0,0{Translation"96:135=%[0,0,0]:[2.0,0.0,0.0]"}}//Red
+texture CBM_L001,83,32{patch CBMSEGA2,0,0{Translation"96:135=%[0,0,0]:[2.0,0.0,0.0]"}}
+texture CBM_L002,83,32{patch CBMSEGA3,0,0{Translation"96:135=%[0,0,0]:[2.0,0.0,0.0]"}}
+texture CBM_L003,83,32{patch CBMSEGA4,0,0{Translation"96:135=%[0,0,0]:[2.0,0.0,0.0]"}}
+texture CBM_L004,83,32{patch CBMSEGA5,0,0{Translation"96:135=%[0,0,0]:[2.0,0.0,0.0]"}}
+texture CBM_L005,83,32{patch CBMSEGA6,0,0{Translation"96:135=%[0,0,0]:[2.0,0.0,0.0]"}}
+texture CBM_L006,83,32{patch CBMSEGA7,0,0{Translation"96:135=%[0,0,0]:[2.0,0.0,0.0]"}}
+texture CBM_L007,83,32{patch CBMSEGA8,0,0{Translation"96:135=%[0,0,0]:[2.0,0.0,0.0]"}}
+texture CBM_L008,83,32{patch CBMSEGA9,0,0{Translation"96:135=%[0,0,0]:[2.0,0.0,0.0]"}}
+
+texture CBM_L009,83,32{patch CBMSEGA1,0,0{Translation"96:135=%[0,0,0]:[2.0,0.1,0.0]"}}
+texture CBM_L010,83,32{patch CBMSEGA2,0,0{Translation"96:135=%[0,0,0]:[2.0,0.2,0.0]"}}
+texture CBM_L011,83,32{patch CBMSEGA3,0,0{Translation"96:135=%[0,0,0]:[2.0,0.3,0.0]"}}
+texture CBM_L012,83,32{patch CBMSEGA4,0,0{Translation"96:135=%[0,0,0]:[2.0,0.4,0.0]"}}
+texture CBM_L013,83,32{patch CBMSEGA5,0,0{Translation"96:135=%[0,0,0]:[2.0,0.5,0.0]"}}
+texture CBM_L014,83,32{patch CBMSEGA6,0,0{Translation"96:135=%[0,0,0]:[2.0,0.6,0.0]"}}
+texture CBM_L015,83,32{patch CBMSEGA7,0,0{Translation"96:135=%[0,0,0]:[2.0,0.7,0.0]"}}
+texture CBM_L016,83,32{patch CBMSEGA8,0,0{Translation"96:135=%[0,0,0]:[2.0,0.8,0.0]"}}
+texture CBM_L017,83,32{patch CBMSEGA9,0,0{Translation"96:135=%[0,0,0]:[2.0,0.9,0.0]"}}
+
+texture CBM_L018,83,32{patch CBMSEGA1,0,0{Translation"96:135=%[0,0,0]:[2.0,1.0,0.0]"}}//Orange
+texture CBM_L019,83,32{patch CBMSEGA2,0,0{Translation"96:135=%[0,0,0]:[2.0,1.0,0.0]"}}
+texture CBM_L020,83,32{patch CBMSEGA3,0,0{Translation"96:135=%[0,0,0]:[2.0,1.0,0.0]"}}
+texture CBM_L021,83,32{patch CBMSEGA4,0,0{Translation"96:135=%[0,0,0]:[2.0,1.0,0.0]"}}
+texture CBM_L022,83,32{patch CBMSEGA5,0,0{Translation"96:135=%[0,0,0]:[2.0,1.0,0.0]"}}
+texture CBM_L023,83,32{patch CBMSEGA6,0,0{Translation"96:135=%[0,0,0]:[2.0,1.0,0.0]"}}
+texture CBM_L024,83,32{patch CBMSEGA7,0,0{Translation"96:135=%[0,0,0]:[2.0,1.0,0.0]"}}
+texture CBM_L025,83,32{patch CBMSEGA8,0,0{Translation"96:135=%[0,0,0]:[2.0,1.0,0.0]"}}
+texture CBM_L026,83,32{patch CBMSEGA9,0,0{Translation"96:135=%[0,0,0]:[2.0,1.0,0.0]"}}
+
+texture CBM_L027,83,32{patch CBMSEGA1,0,0{Translation"96:135=%[0,0,0]:[2.0,1.1,0.0]"}}
+texture CBM_L028,83,32{patch CBMSEGA2,0,0{Translation"96:135=%[0,0,0]:[2.0,1.2,0.0]"}}
+texture CBM_L029,83,32{patch CBMSEGA3,0,0{Translation"96:135=%[0,0,0]:[2.0,1.3,0.0]"}}
+texture CBM_L030,83,32{patch CBMSEGA4,0,0{Translation"96:135=%[0,0,0]:[2.0,1.4,0.0]"}}
+texture CBM_L031,83,32{patch CBMSEGA5,0,0{Translation"96:135=%[0,0,0]:[2.0,1.5,0.0]"}}
+texture CBM_L032,83,32{patch CBMSEGA6,0,0{Translation"96:135=%[0,0,0]:[2.0,1.6,0.0]"}}
+texture CBM_L033,83,32{patch CBMSEGA7,0,0{Translation"96:135=%[0,0,0]:[2.0,1.7,0.0]"}}
+texture CBM_L034,83,32{patch CBMSEGA8,0,0{Translation"96:135=%[0,0,0]:[2.0,1.8,0.0]"}}
+texture CBM_L035,83,32{patch CBMSEGA9,0,0{Translation"96:135=%[0,0,0]:[2.0,1.9,0.0]"}}
+
+texture CBM_L036,83,32{patch CBMSEGA1,0,0{Translation"96:135=%[0,0,0]:[2.0,2.0,0.0]"}}//Yellow
+texture CBM_L037,83,32{patch CBMSEGA2,0,0{Translation"96:135=%[0,0,0]:[2.0,2.0,0.0]"}}
+texture CBM_L038,83,32{patch CBMSEGA3,0,0{Translation"96:135=%[0,0,0]:[2.0,2.0,0.0]"}}
+texture CBM_L039,83,32{patch CBMSEGA4,0,0{Translation"96:135=%[0,0,0]:[2.0,2.0,0.0]"}}
+texture CBM_L040,83,32{patch CBMSEGA5,0,0{Translation"96:135=%[0,0,0]:[2.0,2.0,0.0]"}}
+texture CBM_L041,83,32{patch CBMSEGA6,0,0{Translation"96:135=%[0,0,0]:[2.0,2.0,0.0]"}}
+texture CBM_L042,83,32{patch CBMSEGA7,0,0{Translation"96:135=%[0,0,0]:[2.0,2.0,0.0]"}}
+texture CBM_L043,83,32{patch CBMSEGA8,0,0{Translation"96:135=%[0,0,0]:[2.0,2.0,0.0]"}}
+texture CBM_L044,83,32{patch CBMSEGA9,0,0{Translation"96:135=%[0,0,0]:[2.0,2.0,0.0]"}}
+
+texture CBM_L045,83,32{patch CBMSEGA1,0,0{Translation"96:135=%[0,0,0]:[1.8,2.0,0.0]"}}
+texture CBM_L046,83,32{patch CBMSEGA2,0,0{Translation"96:135=%[0,0,0]:[1.6,2.0,0.0]"}}
+texture CBM_L047,83,32{patch CBMSEGA3,0,0{Translation"96:135=%[0,0,0]:[1.4,2.0,0.0]"}}
+texture CBM_L048,83,32{patch CBMSEGA4,0,0{Translation"96:135=%[0,0,0]:[1.2,2.0,0.0]"}}
+texture CBM_L049,83,32{patch CBMSEGA5,0,0{Translation"96:135=%[0,0,0]:[1.0,2.0,0.0]"}}
+texture CBM_L050,83,32{patch CBMSEGA6,0,0{Translation"96:135=%[0,0,0]:[0.8,2.0,0.0]"}}
+texture CBM_L051,83,32{patch CBMSEGA7,0,0{Translation"96:135=%[0,0,0]:[0.6,2.0,0.0]"}}
+texture CBM_L052,83,32{patch CBMSEGA8,0,0{Translation"96:135=%[0,0,0]:[0.4,2.0,0.0]"}}
+texture CBM_L053,83,32{patch CBMSEGA9,0,0{Translation"96:135=%[0,0,0]:[0.2,2.0,0.0]"}}
+
+texture CBM_L054,83,32{patch CBMSEGA1,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,0.0]"}}//Green
+texture CBM_L055,83,32{patch CBMSEGA2,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,0.0]"}}
+texture CBM_L056,83,32{patch CBMSEGA3,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,0.0]"}}
+texture CBM_L057,83,32{patch CBMSEGA4,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,0.0]"}}
+texture CBM_L058,83,32{patch CBMSEGA5,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,0.0]"}}
+texture CBM_L059,83,32{patch CBMSEGA6,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,0.0]"}}
+texture CBM_L060,83,32{patch CBMSEGA7,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,0.0]"}}
+texture CBM_L061,83,32{patch CBMSEGA8,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,0.0]"}}
+texture CBM_L062,83,32{patch CBMSEGA9,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,0.0]"}}
+
+texture CBM_L063,83,32{patch CBMSEGA1,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,0.2]"}}
+texture CBM_L064,83,32{patch CBMSEGA2,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,0.4]"}}
+texture CBM_L065,83,32{patch CBMSEGA3,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,0.6]"}}
+texture CBM_L066,83,32{patch CBMSEGA4,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,0.8]"}}
+texture CBM_L067,83,32{patch CBMSEGA5,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,1.0]"}}
+texture CBM_L068,83,32{patch CBMSEGA6,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,1.2]"}}
+texture CBM_L069,83,32{patch CBMSEGA7,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,1.4]"}}
+texture CBM_L070,83,32{patch CBMSEGA8,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,1.6]"}}
+texture CBM_L071,83,32{patch CBMSEGA9,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,1.8]"}}
+
+texture CBM_L072,83,32{patch CBMSEGA1,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,2.0]"}}//Cyan
+texture CBM_L073,83,32{patch CBMSEGA2,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,2.0]"}}
+texture CBM_L074,83,32{patch CBMSEGA3,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,2.0]"}}
+texture CBM_L075,83,32{patch CBMSEGA4,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,2.0]"}}
+texture CBM_L076,83,32{patch CBMSEGA5,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,2.0]"}}
+texture CBM_L077,83,32{patch CBMSEGA6,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,2.0]"}}
+texture CBM_L078,83,32{patch CBMSEGA7,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,2.0]"}}
+texture CBM_L079,83,32{patch CBMSEGA8,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,2.0]"}}
+texture CBM_L080,83,32{patch CBMSEGA9,0,0{Translation"96:135=%[0,0,0]:[0.0,2.0,2.0]"}}
+
+texture CBM_L081,83,32{patch CBMSEGA1,0,0{Translation"96:135=%[0,0,0]:[0.0,1.8,2.0]"}}
+texture CBM_L082,83,32{patch CBMSEGA2,0,0{Translation"96:135=%[0,0,0]:[0.0,1.6,2.0]"}}
+texture CBM_L083,83,32{patch CBMSEGA3,0,0{Translation"96:135=%[0,0,0]:[0.0,1.4,2.0]"}}
+texture CBM_L084,83,32{patch CBMSEGA4,0,0{Translation"96:135=%[0,0,0]:[0.0,1.2,2.0]"}}
+texture CBM_L085,83,32{patch CBMSEGA5,0,0{Translation"96:135=%[0,0,0]:[0.0,1.0,2.0]"}}
+texture CBM_L086,83,32{patch CBMSEGA6,0,0{Translation"96:135=%[0,0,0]:[0.0,0.8,2.0]"}}
+texture CBM_L087,83,32{patch CBMSEGA7,0,0{Translation"96:135=%[0,0,0]:[0.0,0.6,2.0]"}}
+texture CBM_L088,83,32{patch CBMSEGA8,0,0{Translation"96:135=%[0,0,0]:[0.0,0.4,2.0]"}}
+texture CBM_L089,83,32{patch CBMSEGA9,0,0{Translation"96:135=%[0,0,0]:[0.0,0.2,2.0]"}}
+
+texture CBM_L090,83,32{patch CBMSEGA1,0,0{Translation"96:135=%[0,0,0]:[0.0,0.0,2.0]"}}//Blue
+texture CBM_L091,83,32{patch CBMSEGA2,0,0{Translation"96:135=%[0,0,0]:[0.0,0.0,2.0]"}}//0.0,1.0,2.0
+texture CBM_L092,83,32{patch CBMSEGA3,0,0{Translation"96:135=%[0,0,0]:[0.0,0.0,2.0]"}}
+texture CBM_L093,83,32{patch CBMSEGA4,0,0{Translation"96:135=%[0,0,0]:[0.0,0.0,2.0]"}}
+texture CBM_L094,83,32{patch CBMSEGA5,0,0{Translation"96:135=%[0,0,0]:[0.0,0.0,2.0]"}}
+texture CBM_L095,83,32{patch CBMSEGA6,0,0{Translation"96:135=%[0,0,0]:[0.0,0.0,2.0]"}}
+texture CBM_L096,83,32{patch CBMSEGA7,0,0{Translation"96:135=%[0,0,0]:[0.0,0.0,2.0]"}}
+texture CBM_L097,83,32{patch CBMSEGA8,0,0{Translation"96:135=%[0,0,0]:[0.0,0.0,2.0]"}}
+texture CBM_L098,83,32{patch CBMSEGA9,0,0{Translation"96:135=%[0,0,0]:[0.0,0.0,2.0]"}}
+
+texture CBM_L099,83,32{patch CBMSEGA1,0,0{Translation"96:135=%[0,0,0]:[0.1,0.0,2.0]"}}
+texture CBM_L100,83,32{patch CBMSEGA2,0,0{Translation"96:135=%[0,0,0]:[0.2,0.0,2.0]"}}
+texture CBM_L101,83,32{patch CBMSEGA3,0,0{Translation"96:135=%[0,0,0]:[0.3,0.0,2.0]"}}
+texture CBM_L102,83,32{patch CBMSEGA4,0,0{Translation"96:135=%[0,0,0]:[0.4,0.0,2.0]"}}
+texture CBM_L103,83,32{patch CBMSEGA5,0,0{Translation"96:135=%[0,0,0]:[0.5,0.0,2.0]"}}
+texture CBM_L104,83,32{patch CBMSEGA6,0,0{Translation"96:135=%[0,0,0]:[0.6,0.0,2.0]"}}
+texture CBM_L105,83,32{patch CBMSEGA7,0,0{Translation"96:135=%[0,0,0]:[0.7,0.0,2.0]"}}
+texture CBM_L106,83,32{patch CBMSEGA8,0,0{Translation"96:135=%[0,0,0]:[0.8,0.0,2.0]"}}
+texture CBM_L107,83,32{patch CBMSEGA9,0,0{Translation"96:135=%[0,0,0]:[0.9,0.0,2.0]"}}
+
+texture CBM_L108,83,32{patch CBMSEGA1,0,0{Translation"96:135=%[0,0,0]:[1.0,0.0,2.0]"}}//Purple
+texture CBM_L109,83,32{patch CBMSEGA2,0,0{Translation"96:135=%[0,0,0]:[1.0,0.0,2.0]"}}
+texture CBM_L110,83,32{patch CBMSEGA3,0,0{Translation"96:135=%[0,0,0]:[1.0,0.0,2.0]"}}
+texture CBM_L111,83,32{patch CBMSEGA4,0,0{Translation"96:135=%[0,0,0]:[1.0,0.0,2.0]"}}
+texture CBM_L112,83,32{patch CBMSEGA5,0,0{Translation"96:135=%[0,0,0]:[1.0,0.0,2.0]"}}
+texture CBM_L113,83,32{patch CBMSEGA6,0,0{Translation"96:135=%[0,0,0]:[1.0,0.0,2.0]"}}
+texture CBM_L114,83,32{patch CBMSEGA7,0,0{Translation"96:135=%[0,0,0]:[1.0,0.0,2.0]"}}
+texture CBM_L115,83,32{patch CBMSEGA8,0,0{Translation"96:135=%[0,0,0]:[1.0,0.0,2.0]"}}
+texture CBM_L116,83,32{patch CBMSEGA9,0,0{Translation"96:135=%[0,0,0]:[1.0,0.0,2.0]"}}
+
+texture CBM_L117,83,32{patch CBMSEGA1,0,0{Translation"96:135=%[0,0,0]:[1.1,0.0,1.8]"}}
+texture CBM_L118,83,32{patch CBMSEGA2,0,0{Translation"96:135=%[0,0,0]:[1.2,0.0,1.6]"}}
+texture CBM_L119,83,32{patch CBMSEGA3,0,0{Translation"96:135=%[0,0,0]:[1.3,0.0,1.4]"}}
+texture CBM_L120,83,32{patch CBMSEGA4,0,0{Translation"96:135=%[0,0,0]:[1.4,0.0,1.2]"}}
+texture CBM_L121,83,32{patch CBMSEGA5,0,0{Translation"96:135=%[0,0,0]:[1.5,0.0,1.0]"}}
+texture CBM_L122,83,32{patch CBMSEGA6,0,0{Translation"96:135=%[0,0,0]:[1.6,0.0,0.8]"}}
+texture CBM_L123,83,32{patch CBMSEGA7,0,0{Translation"96:135=%[0,0,0]:[1.7,0.0,0.6]"}}
+texture CBM_L124,83,32{patch CBMSEGA8,0,0{Translation"96:135=%[0,0,0]:[1.8,0.0,0.4]"}}
+texture CBM_L125,83,32{patch CBMSEGA9,0,0{Translation"96:135=%[0,0,0]:[1.9,0.0,0.2]"}}
+
+
+

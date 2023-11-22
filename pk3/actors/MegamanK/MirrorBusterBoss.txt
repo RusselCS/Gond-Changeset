@@ -1,0 +1,446 @@
+actor MirrorBusterBoss : BaseMM8BDMWep_CBM 
+{
+tag "$TAGC_KA"
+dropitem "MirrorBusterWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 0
+Obituary "$OB_MIRRORREFLECT"
+weapon.ammotype "MirrorChargeAmmo"
+States
+{
+Spawn:
+C_0K A 1
+loop
+Ready:
+ENKA C 0 ACS_ExecuteAlways(998,0,DYE_ENKER)
+goto Ready2
+Ready2:
+ENKA C 4 A_WeaponReady(8)
+ENKA C 14 A_WeaponReady(8)
+ENKA C 2 A_WeaponReady(8)
+Ready3:
+ENKA C 1 A_WeaponReady
+wait
+Deselect:
+ENKA AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+ENKA C 1 A_Lower
+Loop
+Select:
+ENKA AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+ENKA C 1 A_Raise
+Loop
+Fire:
+ENKA C 0 A_JumpIfInventory("IsBot",1,"BotFire")
+ENKA C 0 A_JumpIfInventory("EnkerAltCombo_F",1,"Fire_AltReset")
+ENKA C 2 offset(21,47)
+ENKA C 2 offset(43,50)
+ENKA D 2 offset(41,54)A_GiveInventory("EnkerMainShot_P",1)
+ENKA D 8 offset(55,40)
+ENKA D 2 offset(44,41)
+ENKA C 2 offset(47,21)
+ENKA C 2 offset(29,25)
+ENKA C 2 offset(15,28)
+ENKA C 2 offset(6,30)
+goto Ready3
+
+Fire_AltReset:
+ENKA C 0 A_GiveInventory("Enker_ArmorReset_P")
+ENKA C 0 SetPlayerProperty(0,0,0)
+ENKA C 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
+ENKA C 0 A_GunFlash("NoFlash",GFF_NOEXTCHANGE)
+ENKA C 0
+goto Fire+2
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("VivifyDelay3",1,3)
+TNT1 A 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("StunArmor",1,"Flash")
+stop
+Flash.Hit:
+ENKA G 0 A_TakeInventory("VivifyDelay3",1)
+ENKA G 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("StunArmor",1,1)
+stop
+ENKA G 0 A_JumpIfInventory("VivifyDelay3",1,"Flash.Hit")
+ENKA G 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("StunArmor",1,1)
+stop
+ENKA H 0 A_JumpIfInventory("VivifyDelay3",1,"Flash.Hit")
+ENKA H 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("StunArmor",1,1)
+stop
+ENKA H 0 A_JumpIfInventory("VivifyDelay3",1,"Flash.Hit")
+ENKA H 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("StunArmor",1,"Flash")
+stop
+
+AltFire:
+ENKA C 0 A_JumpIfInventory("EnkerAltCombo_F",1,"Altfire_Swipe")
+ENKA C 0 A_GiveInventory("EnkerAbsorbCount",1)
+ENKA C 0 A_GiveInventory("Enker_BasicArmor_P",1)
+ENKA C 0 A_GiveInventory("SetDynamicArmorDosage_P")
+ENKA C 0 A_GiveInventory("LastArmorCount",CallACS("cbm_Fetch_GetArmorInfo",1))
+ENKA C 0 A_GiveInventory("StunArmor",1)
+ENKA C 0 SetPlayerProperty(0,1,0)
+ENKA C 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
+ENKA C 0 A_PlaySoundEx("weapon/mirrorabsorb","Weapon")
+ENKA C 2 Offset(27,48)
+ENKA D 2 Offset(-10,62)A_GiveInventory("MirrorChargeAmmo",1)
+ENKA F 0 A_GunFlash("Flash",1)
+ENKA F 2 Offset(-13,55)A_JumpIfInventory("EnkerAltCombo_F",1,"AltFireX")
+//6
+//ENKA FFFFFFFFFFFFFFF 2 Offset(-2,27)A_JumpIfInventory("EnkerAltCombo_F",1,22)//Man...
+ENKA F 2 Offset(-2,27)A_JumpIfInventory("EnkerAltCombo_F",1,"AltFireX1")
+ENKA F 2 Offset(-2,27)A_JumpIfInventory("EnkerAltCombo_F",1,"AltFireX2")
+ENKA F 2 Offset(-2,27)A_JumpIfInventory("EnkerAltCombo_F",1,"AltFireX3")
+ENKA F 2 Offset(-2,27)A_JumpIfInventory("EnkerAltCombo_F",1,"AltFireX4")
+ENKA F 2 Offset(-2,27)A_JumpIfInventory("EnkerAltCombo_F",1,"AltFireX5")
+ENKA F 2 Offset(-2,27)A_JumpIfInventory("EnkerAltCombo_F",1,"AltFireX6")
+ENKA F 2 Offset(-2,27)A_JumpIfInventory("EnkerAltCombo_F",1,"AltFireX7")
+ENKA F 2 Offset(-2,27)A_JumpIfInventory("EnkerAltCombo_F",1,"AltFireX8")
+ENKA F 2 Offset(-2,27)A_JumpIfInventory("EnkerAltCombo_F",1,"AltFireX9")
+ENKA F 2 Offset(-2,27)A_JumpIfInventory("EnkerAltCombo_F",1,"AltFireX10")
+ENKA F 2 Offset(-2,27)A_JumpIfInventory("EnkerAltCombo_F",1,"AltFireX11")
+ENKA F 2 Offset(-2,27)A_JumpIfInventory("EnkerAltCombo_F",1,"AltFireX12")
+ENKA F 2 Offset(-2,27)A_JumpIfInventory("EnkerAltCombo_F",1,"AltFireX13")
+ENKA F 2 Offset(-2,27)A_JumpIfInventory("EnkerAltCombo_F",1,"AltFireX14")
+ENKA F 2 Offset(-2,27)A_JumpIfInventory("EnkerAltCombo_F",1,"AltFireX15")
+//30
+ENKA D 0 A_GunFlash("NoFlash",GFF_NOEXTCHANGE)
+ENKA D 0 A_GiveInventory("Enker_ArmorReset_P")
+ENKA D 0 SetPlayerProperty(0,0,0)
+ENKA D 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
+ENKA D 2 Offset(8,32)
+ENKA C 2 Offset(20,23)
+ENKA C 2 Offset(8,28)
+goto Ready2+1
+
+AltFireX1:goto AltFireX+1
+AltFireX2:goto AltFireX+2
+AltFireX3:goto AltFireX+3
+AltFireX4:goto AltFireX+4
+AltFireX5:goto AltFireX+5
+AltFireX6:goto AltFireX+6
+AltFireX7:goto AltFireX+7
+AltFireX8:goto AltFireX+8
+AltFireX9:goto AltFireX+9
+AltFireX10:goto AltFireX+10
+AltFireX11:goto AltFireX+11
+AltFireX12:goto AltFireX+12
+AltFireX13:goto AltFireX+13
+AltFireX14:goto AltFireX+14
+AltFireX15:goto AltFireX+15
+AltFireX:
+ENKA F 2 Offset(-13,55)A_WeaponReady(3)
+ENKA FFFFFFFFFFFFFFF 2 offset(-2,27)A_WeaponReady(3)
+
+ENKA D 0 A_GunFlash("NoFlash",GFF_NOEXTCHANGE)
+ENKA D 0 A_GiveInventory("Enker_ArmorReset_P")
+ENKA D 0 SetPlayerProperty(0,0,0)
+ENKA D 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
+ENKA D 2 Offset(8,32)A_WeaponReady(11)
+ENKA C 2 Offset(20,23)A_WeaponReady(11)
+ENKA C 2 Offset(8,28)A_WeaponReady(11)
+goto Ready2+1
+
+Altfire_Swipe:
+ENKA C 0 A_GiveInventory("Enker_ArmorReset_P")
+ENKA C 0 SetPlayerProperty(0,0,0)
+ENKA C 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
+ENKA C 0 A_GiveInventory("VivifyDelay6",1)
+ENKA C 0 A_GunFlash("NoFlash",GFF_NOEXTCHANGE)
+ENKA C 0 A_Refire(1)
+ENKA C 2 Offset(12,14)
+ENKA C 2 Offset(-36,26)
+ENKA D 0 A_PlaySoundEx("misc/enkerswing","Weapon")
+ENKA D 2 Offset(-53,39)A_FireCustomMissile("EnkerMeleeCust",0,0,0,0)
+ENKA D 2 Offset(15,32)
+ENKA D 6 Offset(66,27)
+ENKA C 2 Offset(85,15)
+ENKA C 2 Offset(41,24)
+ENKA C 2 Offset(13,29)
+goto Ready2+2//Ready3
+
+BotFire:
+ENKA C 0 A_JumpIfInventory("EnkerAltCombo_F",1,"BotFire2")
+ENKA C 0 A_JumpIfInventory("MirrorChargeAmmo",44,3)
+ENKA C 0 //A_JumpIfCloser(256,"AltFire")
+ENKA C 0 A_Jump(64,"AltFire")
+ENKA C 0
+goto Fire+1
+BotFire2:
+ENKA C 0 A_FaceTarget
+ENKA C 0 A_JumpIfCloser(120,"Altfire_Swipe")
+goto Fire+1
+}
+}
+
+actor MirrorChargeAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 55
++INVENTORY.IGNORESKILL
+}
+
+actor EnkerAltCombo_F : Powerup
+{
+powerup.duration 41
+}
+
+actor LastArmorCount : Inventory
+{
+inventory.amount 1
+inventory.maxamount 30000
+}
+
+actor EnkerAbsorbCount : OnceC {}
+
+actor EnkerDashCooldown : Inventory 
+{
+inventory.amount 1
+inventory.maxamount 112
+}
+
+actor EnkerDashSpeedTrail : PowerSpeed
+{
+powerup.duration 10
+speed 1.0
+}
+
+actor EnkerDashItem : BasicClassItem
+{
+inventory.icon "ENK_ITEM"
+inventory.pickupmessage "Castlevania speedruns hate it!"
+Tag "Perform Enker Dash"
+states
+{
+Spawn:
+ENKA Z 1
+wait
+Use:
+TNT1 A 0 A_JumpIfInventory("EnkerDashCooldown",1,"No")
+TNT1 A 0 A_JumpIf(z-floorz==0,"Activate")
+fail
+Activate:
+TNT1 A 0 A_SpawnItemEX("EnkerDashCooldown_H",0,0,0)
+TNT1 A 0 A_GiveInventory("Enker_ItemBoostCheck_P")
+TNT1 A 0 A_GiveInventory("EnkerDashSpeedTrail")
+fail
+}
+}
+
+actor Enker_ArmorReset_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_TakeInventory("EnkerAbsorbCount")
+TNT1 A 0 A_TakeInventory("StunArmor")
+TNT1 A 0 A_TakeInventory("DynamicArmorDosage_F")
+TNT1 A 0 A_TakeInventory("BasicArmor")
+TNT1 A 0 A_TakeInventory("LastArmorCount")
+TNT1 A 0 A_TakeInventory("EnkerAltCombo_F")
+stop
+}
+}
+
+actor EnkerDashCooldown_H : BasicHelper
+{
++SERVERSIDEONLY
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("EnkerDashCooldown",112)
+SpawnL:
+TNT1 A 0 A_JumpIf(CallACS("core_targetexists")==0,"Death")
+TNT1 A 1 A_TakeFromTarget("EnkerDashCooldown",1+CallACS("cbm_CheckForRage",2))
+TNT1 A 0 A_JumpIfInTargetInventory("EnkerDashCooldown",1,"SpawnL")
+stop
+}
+}
+
+actor Enker_ItemBoostCheck_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("BasicSlideDashFX_P")
+TNT1 A 0 A_PlaySoundEx("weapon/fakedash","SoundSlot7")
+
+TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==21,"P_LF")
+TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==19,"P_RF")
+TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==17,"P_F")
+TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==13,"P_LB")
+TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==11,"P_RB")
+TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==9,"P_B")
+TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==5,"P_L")
+TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==3,"P_R")
+TNT1 A 0 A_JumpIf(CallACS("cbm_FetchMovementInput")==1,"P_None")
+stop
+
+
+P_R://Right (2)
+TNT1 A 0 A_ChangeVelocity(0,-40,0,3)
+goto End
+P_L://Left (4)
+TNT1 A 0 A_ChangeVelocity(0,40,0,3)
+goto End
+P_B://Back (8)
+TNT1 A 0 A_ChangeVelocity(-40,0,0,3)
+goto End
+P_F://Forward (16)
+TNT1 A 0 A_ChangeVelocity(40,0,0,3)
+goto End
+
+P_RB:
+TNT1 A 0 A_ChangeVelocity(sin(-45)*40,sin(-45)*40,0,3)
+goto End
+P_LB:
+TNT1 A 0 A_ChangeVelocity(sin(-45)*40,sin(45)*40,0,3)
+goto End
+
+P_RF:
+TNT1 A 0 A_ChangeVelocity(sin(45)*40,sin(-45)*40,0,3)
+goto End
+P_LF:
+TNT1 A 0 A_ChangeVelocity(sin(45)*40,sin(45)*40,0,3)
+goto End
+P_None://No input/conflicting input (left+right=0)
+goto P_F
+}
+}
+
+actor EnkerMainShot_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("MirrorChargeAmmo",11,"Pickup2")
+TNT1 A 0 A_PlaySoundEx("weapon/mirrordeflect","Weapon")
+TNT1 A 0 A_GiveInventory("EnkerMain_CI",1)
+stop
+Pickup2:
+TNT1 A 0 A_PlaySoundEx("weapon/mirrordeflect2","Weapon")
+TNT1 A 0 A_TakeInventory("MirrorChargeAmmo",11,1)
+TNT1 A 0 A_GiveInventory("EnkerMain2_CI",1)
+stop
+}
+}
+
+actor MirrorShotSmallCust
+{
+Translation "192:192=229:229"
+PROJECTILE
+damagetype "Enker_Shot"
+Obituary "$OB_MIRRORREFLECT"
++BRIGHT
+damage (160)
+Radius 10
+Height 8
+speed 50
+scale 2.5
+States
+{
+Spawn:
+X_KA CD 2
+loop
+}
+}
+
+actor MirrorShotSmallCustB : MirrorShotSmallCust{translation "192:192=205:205"}
+actor MirrorShotSmallCustR : MirrorShotSmallCust{translation "192:192=171:171"}
+actor MirrorShotSmallCustO : MirrorShotSmallCust{translation "192:192=104:104"}
+actor MirrorShotSmallCustP : MirrorShotSmallCust{translation "192:192=229:229"}
+
+actor MirrorShotLargeCust : MirrorShotSmallCust
+{
+damagetype "Enker_Shot2"
+Obituary "$OB_MIRRORREFLECT"
+Radius 16
+Height 18
+damage (350)
+States
+{
+Spawn:
+X_KA DE 2
+loop
+}
+}
+
+actor MirrorShotLargeCustB : MirrorShotLargeCust{translation "192:192=205:205"}
+actor MirrorShotLargeCustR : MirrorShotLargeCust{translation "192:192=171:171"}
+actor MirrorShotLargeCustO : MirrorShotLargeCust{translation "192:192=104:104"}
+actor MirrorShotLargeCustP : MirrorShotLargeCust{translation "192:192=229:229"}
+
+actor EnkerMeleeCust
+{
+Translation "192:192=229:229"
+PROJECTILE
+damagetype "Enker_Push"
+Obituary "$OB_MIRRORSPEAR"
++THRUACTORS
++DONTBLAST
++DONTSPLASH
+ReactionTime 1
+damage (0)
+Radius 4
+Height 4
+speed 60
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 1 A_CountDown
+wait
+Death:
+TNT1 A 2 A_Explode(180,100,0,0,20)
+stop
+}
+}
+
+
+actor EnkerMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("MirrorShotSmallCust",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("MirrorShotSmallCustB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("MirrorShotSmallCustR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("MirrorShotSmallCustO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("MirrorShotSmallCustP",0,0,8,0)
+goto Done
+}
+}
+
+actor EnkerMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("MirrorShotLargeCust",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("MirrorShotLargeCustB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("MirrorShotLargeCustR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("MirrorShotLargeCustO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("MirrorShotLargeCustP",0,0,8,0)
+goto Done
+}
+}

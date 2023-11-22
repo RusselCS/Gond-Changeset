@@ -1,0 +1,992 @@
+actor RemoteMineBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_BD"
+dropitem "RemoteMineWepCDropped"
+Weapon.AmmoUse 10
+Weapon.AmmoGive 30
+Inventory.Pickupmessage "$PU_REMOTEMINE"
+Obituary "$OB_REMOTEMINE"
+weapon.ammotype "JollyRogerAmmo"
+weapon.ammotype2 "WetRogerAmmo"
+States
+{
+Spawn:
+C_0B D 1
+loop
+Ready:
+PRMI A 0 ACS_ExecuteAlways(998,0,DYE_PIRATEMAN)
+PRMI A 0 A_GunFlash
+PRMI A 0 A_JumpIfInventory("PBubbleFlag",1,"ReadyBubble")
+PRMI A 1 A_WeaponReady
+PRMI A 0 A_JumpIfInventory("PBubbleFlag",1,"ReadyBubble")
+PRMI A 1 A_WeaponReady
+PRMI A 0 A_JumpIfInventory("PBubbleFlag",1,"ReadyBubble")
+PRMI A 1 A_WeaponReady
+PRMI A 0 A_JumpIfInventory("PBubbleFlag",1,"ReadyBubble")
+PRMI A 1 A_WeaponReady
+PRMI A 0 A_JumpIfInventory("PBubbleFlag",1,"ReadyBubble")
+PRMI A 1 A_WeaponReady
+PRMI A 0 A_GiveInventory("WetRogerAmmo",1)
+Goto Ready+2
+ReadyBubble:
+PRMI A 0 A_JumpIfInventory("WetRogerAmmo",56,"ReadyBubble2")
+PRMI A 7 A_WeaponReady
+PRMI A 0 A_GiveInventory("WetRogerAmmo",2)
+PRMI A 0 A_JumpIfInventory("PBubbleFlag",1,"ReadyBubble")
+goto Ready+2
+ReadyBubble2:
+PRMI A 1 A_WeaponReady
+PRMI A 0 A_JumpIfInventory("PBubbleFlag",1,"ReadyBubble2")
+goto Ready+2
+Deselect:
+PRMI AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+PRMI A 1 A_Lower
+loop
+Select:
+PRMI AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+PRMI A 1 A_Raise
+loop
+
+BotFire:
+PRMI A 0 A_Jump(16,1)
+goto FireH+2
+PRMI A 0
+goto FireEnd+15
+
+Fire:
+PRMI A 0 A_JumpIfNoAmmo("RemoteExplode")
+PRMI A 0 A_PlaySoundEx("weapon/GrenadeShot","Weapon")
+PRMI A 0 A_TakeInventory("PirateMineSticky",9)
+PRMI A 0 A_GiveInventory("PirateMineFlag",1)
+PRMI A 0 A_GiveInventory("CBM_TargetMarker2",1)
+PRMI A 0 A_GiveInventory("PiratemanMain_CI",1)
+PRMI B 1
+PRMI B 0 A_Refire(1)
+goto FireEnd+1
+PRMI B 1
+PRMI B 0 A_Refire(1)
+goto FireEnd+2
+PRMI B 1
+PRMI B 0 A_Refire(1)
+goto FireEnd+3
+PRMI B 1
+PRMI B 0 A_Refire(1)
+goto FireEnd+4
+PRMI B 1
+PRMI B 0 A_Refire(1)
+goto FireEnd+5
+PRMI C 1
+PRMI C 0 A_Refire(1)
+goto FireEnd+5
+PRMI C 1
+PRMI C 0 A_Refire(1)
+goto FireEnd+6
+PRMI C 1
+PRMI C 0 A_Refire(1)
+goto FireEnd+7
+PRMI C 1
+PRMI C 0 A_Refire(1)
+goto FireEnd+8
+PRMI C 1
+PRMI C 0 A_Refire(1)
+goto FireEnd+9
+PRMI A 1
+PRMI A 0 A_Refire(1)
+goto FireEnd+10
+PRMI A 1
+PRMI A 0 A_Refire(1)
+goto FireEnd+11
+PRMI A 1
+PRMI A 0 A_Refire(1)
+goto FireEnd+12
+PRMI A 1
+PRMI A 0 A_Refire(1)
+goto FireEnd+13
+PRMI A 1
+PRMI A 0 A_Refire(1)
+goto FireEnd+14
+FireH:
+PRMI A 1 A_GiveInventory("PirateMineFlag",1)
+PRMI A 0 A_JumpIfInventory("IsBot",1,"BotFire")
+PRMI A 0 A_JumpIfInventory("PirateMineFlag",60,2)
+PRMI A 0 A_Refire("FireH")
+PRMI A 0
+goto FireEnd+15
+
+FireEnd:
+PRMI BBBBBCCCCCAAAAA 1 A_GiveInventory("PirateMineSticky",1)
+PRMI AAAA 2 A_GiveInventory("PirateMineSticky",1)
+PRMI A 0 A_TakeInventory("PirateMineFlag",999)
+PRMI A 0 A_ClearRefire
+Goto Ready+2
+
+
+RemoteExplode:
+PRMI A 0 A_PlaySoundEx("weapon/adapterreturn","Weapon")
+PRMI A 0 //A_GiveInventory("JollyRogerAmmo",30)
+PRMI A 0 A_GiveInventory("PRemoteFlag",1)
+PRMI BA 4
+PRMI C 0 A_GiveInventory("JollyRogerAmmo",10)
+PRMI C 0 A_PlaySoundEx("weapon/rminestick","Weapon")
+PRMI CBA 3
+PRMI C 0 A_GiveInventory("JollyRogerAmmo",10)
+PRMI C 0 A_PlaySoundEx("weapon/rminestick","Weapon")
+PRMI CBA 3
+PRMI C 0 A_GiveInventory("JollyRogerAmmo",10)
+PRMI C 0 A_PlaySoundEx("weapon/rminestick","Weapon")
+PRMI CB 3
+PRMI A 3 A_TakeInventory("PRemoteFlag",1)
+goto Ready+2
+Altfire:
+PRMI A 0 A_JumpIfInventory("BasicArmor",1,"BubbleDash")
+goto Altfire2
+Altfire2:
+PRMI A 2 Offset(-20,62)
+PRMI D 2 Offset(17,80)
+PRMI D 0 A_WeaponReady(14)
+goto AltfireH
+AltfireH:
+PRMI D 0 A_JumpIfInventory("IsUnderWater",1,"AltfireHW")
+PRMI D 0 A_PlaySound("weapon/WaterSpray",1,0.75)
+PRMI D 1 A_GiveInventory("PiratemanAlt_CI",1)
+PRMI D 0 A_Refire("AltfireH1")
+goto AltfireE
+AltfireH1:
+PRMI D 0 A_JumpIfInventory("PowerRage_ST",1,"AltfireH2")
+PRMI D 1 A_JumpIfInventory("IsUnderWater",1,"AltfireH1W")
+PRMI D 0 A_Refire("AltfireH2")
+goto AltfireE
+AltfireH2:
+PRMI E 0 A_JumpIfInventory("IsUnderWater",1,"AltfireH2W")
+PRMI E 1 A_GiveInventory("PiratemanAlt_CI",1)
+PRMI E 0 A_Refire("AltfireH3")
+goto AltfireE
+AltfireH3:
+PRMI E 0 A_JumpIfInventory("PowerRage_ST",1,"AltfireH4")
+PRMI E 0 A_JumpIfInventory("IsUnderWater",1,"AltfireH3W")
+PRMI E 1 A_PlaySound("weapon/WaterSpray",1,0.75)
+PRMI E 0 A_Refire("AltfireH4")
+goto AltfireE
+AltfireH4:
+PRMI F 0 A_JumpIfInventory("IsUnderWater",1,"AltfireH4W")
+PRMI F 1 A_GiveInventory("PiratemanAlt_CI",1)
+PRMI F 0 A_Refire("AltfireH5")
+goto AltfireE
+AltfireH5:
+PRMI F 0 A_JumpIfInventory("PowerRage_ST",1,"AltfireH")
+PRMI F 1 A_JumpIfInventory("IsUnderWater",1,"AltfireH5W")
+PRMI F 0 A_Refire("AltfireH")
+goto AltfireE
+
+AltfireE:
+PRMI D 2 Offset(17,80)
+PRMI A 2 Offset(-20,62)
+goto Ready+2
+
+AltfireHW:
+PRMI D 0 A_PlaySoundEx("weapon/wrapfire","Weapon")
+PRMI D 1 A_GiveInventory("PiratemanAlt2_CI",1)
+PRMI D 0 A_Refire("AltfireH1")
+goto AltfireE
+AltfireH1W:
+PRMI D 0 A_JumpIfInventory("PowerRage_ST",1,"AltfireH2W")
+PRMI D 1 A_GiveInventory("PiratemanAlt3_CI",1)
+PRMI D 0 A_Refire("AltfireH2")
+goto AltfireE
+AltfireH2W:
+PRMI E 1 A_GiveInventory("PiratemanAlt2_CI",1)
+PRMI E 0 A_Refire("AltfireH3")
+goto AltfireE
+AltfireH3W:
+PRMI E 0 A_PlaySoundEx("weapon/wrapfire","Weapon")
+PRMI E 0 A_JumpIfInventory("PowerRage_ST",1,"AltfireH4W")
+PRMI E 1 A_GiveInventory("PiratemanAlt3_CI",1)
+PRMI E 0 A_Refire("AltfireH4")
+goto AltfireE
+AltfireH4W:
+PRMI F 1 A_GiveInventory("PiratemanAlt2_CI",1)
+PRMI F 0 A_Refire("AltfireH5")
+goto AltfireE
+AltfireH5W:
+PRMI F 0 A_JumpIfInventory("PowerRage_ST",1,"AltfireHW")
+PRMI F 1 A_GiveInventory("PiratemanAlt3_CI",1)
+PRMI F 0 A_Refire("AltfireH")
+goto AltfireE
+
+BubbleDash:
+PRMI A 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,"DashRealC")
+goto Altfire2
+DashRealC:
+PRMI A 0 A_JumpIfInventory("WetRogerAmmo",56,"DashReal")
+goto Altfire2
+DashReal:
+PRMI A 0 A_GiveInventory("PirateBDashFlag",1)
+PRMI A 2 Offset(-20,62)
+TNT1 A 1 A_Stop
+TNT1 A 0 A_PlaySoundEx("weapon/topspin","Weapon")
+TNT1 A 0 //A_SetTranslucent(0.0)
+TNT1 A 0 A_GiveInventory("SelfTotallyFrozen",1)
+TNT1 A 0 A_TakeInventory("UnSolid",1)
+TNT1 A 0 A_ChangeFlag("SOLID",0)
+TNT1 A 0 A_ChangeFlag("THRUSPECIES",1)
+TNT1 A 0 A_GiveInventory("PirateBDashFlag",28)
+Dashing:
+TNT1 A 0 A_GiveInventory("PirateBubbleDash_P",1)
+TNT1 A 0 A_SpawnItemEx("BubbleDashExplode",0,0,28,momx,momy,momz,0,8)
+TNT1 A 1 A_SpawnItemEx("BubbleDashChecker",0,0,8,momx,momy,momz,0,8)
+TNT1 A 0 A_JumpIfInventory("PirateBubblePopped",1,"DashEndPop")
+TNT1 A 0 A_TakeInventory("PirateBDashFlag",1)
+TNT1 A 0 A_TakeInventory("WetRogerAmmo",2,1)
+TNT1 A 0 A_JumpIfInventory("PirateBDashFlag",1,1)
+goto DashEnd
+TNT1 A 0 A_GiveInventory("PirateBubbleDash_P",1)
+TNT1 A 1 A_SpawnItemEx("BubbleDashChecker",0,0,8,momx,momy,momz,0,8)
+TNT1 A 0 A_JumpIfInventory("PirateBubblePopped",1,"DashEndPop")
+TNT1 A 0 A_TakeInventory("PirateBDashFlag",1)
+TNT1 A 0 A_TakeInventory("WetRogerAmmo",2,1)
+TNT1 A 0 A_JumpIfInventory("PirateBDashFlag",1,"Dashing")
+goto DashEnd
+DashEnd:
+TNT1 A 0 A_GiveInventory("SelfTotallyUnfrozen",1)
+TNT1 A 0 A_ChangeFlag("THRUSPECIES",0)
+TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
+TNT1 A 0 //A_SetTranslucent(1.0)
+TNT1 A 0 A_TakeInventory("WetRogerAmmo",999,1)
+TNT1 A 0 A_TakeInventory("PirateBDashFlag",999)
+TNT1 A 0 A_TakeInventory("PirateBubblePopped",999)
+PRMI A 2 Offset(-20,62)
+goto Ready+2
+DashEndPop:
+TNT1 A 0 A_SpawnItemEx("PBubbleFXBOP",0,0,-32,0,0,0,0,8,0)
+TNT1 A 0 A_GiveInventory("SelfTotallyUnfrozen",1)
+TNT1 A 0 A_ChangeVelocity(-20,0,10,3)
+TNT1 A 0 A_ChangeFlag("THRUSPECIES",0)
+TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
+TNT1 A 0 //A_SetTranslucent(1.0)
+TNT1 A 0 A_TakeInventory("WetRogerAmmo",999,1)
+TNT1 A 0 A_TakeInventory("PirateBubblePopped",999)
+TNT1 A 0 A_TakeInventory("PirateBDashFlag",999)
+PRMI A 2 Offset(-20,62)
+goto Ready+2
+NoAmmo:
+PRMI A 0
+Goto Ready+2
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1 A_JumpIfInventory("PBubbleFlag",1,"FlashBubble")
+loop
+FlashBubble:
+TNT1 A 1 A_SpawnItemEx("PBubbleFX",0,0,0,momx,momy,momz,0,8,0)
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"FlashEnd")
+TNT1 A 0 A_JumpIfInventory("PBubbleFlag",1,"FlashBubble")
+TNT1 A 0 A_Jump(256,"FlashEnd")
+FlashEnd:
+TNT1 A 1 A_SpawnItemEx("PBubbleFXPOP",0,0,-32,momx,momy,momz,0,8,0)
+goto Flash
+
+}
+}
+
+actor JollyRogerAmmo : Ammo
+{
+Inventory.Amount 1
+Inventory.MaxAmount 30
++INVENTORY.IGNORESKILL
+}
+
+actor WetRogerAmmo : Ammo
+{
+Inventory.Amount 1
+Inventory.MaxAmount 56
++INVENTORY.IGNORESKILL
+}
+
+actor PirateMineFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 60
+}
+
+actor PirateMineSticky :OnceC{}
+actor PBubbleFlag :OnceC{}
+
+actor PRemoteFlag :OnceC{}
+actor PirateBubblePopped :OnceC{}
+
+actor PirateBDashFlag : Inventory
+{
+Inventory.Amount 1
+Inventory.MaxAmount 28
+}
+
+
+actor PirateBubbleItem : BasicClassItem
+{
+inventory.icon "PIRASI"
+inventory.pickupmessage "Luckily you can't pilfer this item."
+Tag "Pirate Bubble Trigger"
+states
+{
+Spawn:
+PRBU U 1
+loop
+Use:
+TNT1 A 0 A_JumpIfInventory("BasicArmor",1,"Deactivate")
+TNT1 A 0 A_JumpIfInventory("WetRogerAmmo",56,"SpawnBubble")
+fail
+SpawnBubble:
+TNT1 A 0 A_PlaySoundEx("weapon/PirateBubble","Body")
+TNT1 A 0 A_GiveInventory("PirateM_BasicArmor_P")
+TNT1 A 0 A_GiveInventory("SetDynamicArmorDosage_P")
+TNT1 A 0 A_GiveInventory("PBubbleFlag")
+TNT1 A 0 A_SpawnItemEx("PBubbleWatcher")
+fail
+Deactivate:
+TNT1 A 0 A_TakeInventory("WetRogerAmmo",1)
+TNT1 A 0 A_TakeInventory("DynamicArmorDosage_F")
+TNT1 A 0 A_TakeInventory("BasicArmor")
+TNT1 A 0 A_TakeInventory("PBubbleFlag",999)
+fail
+}
+}
+
+actor PirateBubbleDash_P : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("IsUnderWater",1,"Dash_W")
+TNT1 A 0 A_JumpIfInventory("IsUnderBubbleWater",1,"Dash_W")
+goto Dash
+Dash_W:
+TNT1 A 0 A_ChangeVelocity(34*cos(pitch),0,34*-sin(pitch),3)
+stop
+Dash:
+TNT1 A 0 A_ChangeVelocity(24*cos(pitch),0,24*-sin(pitch),3)
+stop
+}
+}
+
+
+actor PirateRMine
+{
+Translation "198:198=41:41", "195:195=110:110", "199:199=210:210", "202:202=198:198", "204:204=104:104"
+PROJECTILE
+damagetype "PirateM_Mine"
+Obituary "$OB_REMOTEMINE"
++SKYEXPLODE
++EXPLODEONWATER
++DONTSPLASH
++THRUSPECIES
+Species "DumbPirateMine"
+reactiontime 1//42
+Damage (20)
+Radius 14
+Height 14
+speed 30//36
+scale 2.5
+States
+{
+Spawn:
+RPMI A 0
+RPMI A 0 ACS_ExecuteAlways(259,0,1)
+RPMI A 1
+
+RPMI A 1 A_JumpIfInTargetInventory("PirateMineSticky",1,"Death")
+RPMI A 0 ACS_ExecuteAlways(259,0,1)
+RPMI A 0 A_ChangeVelocity(cos(-pitch)*30,0,sin(-pitch)*30,3)
+RPMI A 1 A_JumpIfInTargetInventory("PirateMineSticky",1,"Death")
+RPMI A 0 ACS_ExecuteAlways(259,0,1)
+RPMI A 0 A_ChangeVelocity(cos(-pitch)*30,0,sin(-pitch)*30,3)
+RPMI A 1 A_JumpIfInTargetInventory("PirateMineSticky",1,"Death")
+RPMI A 0 ACS_ExecuteAlways(259,0,1)
+RPMI A 0 A_ChangeVelocity(cos(-pitch)*30,0,sin(-pitch)*30,3)
+RPMI A 1 A_JumpIfInTargetInventory("PirateMineSticky",1,"Death")
+RPMI A 0 ACS_ExecuteAlways(259,0,1)
+RPMI A 0 A_ChangeVelocity(cos(-pitch)*30,0,sin(-pitch)*30,3)
+RPMI B 1 A_JumpIfInTargetInventory("PirateMineSticky",1,"Death")
+RPMI B 0 ACS_ExecuteAlways(259,0,1)
+RPMI B 0 A_ChangeVelocity(cos(-pitch)*30,0,sin(-pitch)*30,3)
+RPMI B 1 A_JumpIfInTargetInventory("PirateMineSticky",1,"Death")
+RPMI B 0 ACS_ExecuteAlways(259,0,1)
+RPMI B 0 A_ChangeVelocity(cos(-pitch)*30,0,sin(-pitch)*30,3)
+RPMI B 1 A_JumpIfInTargetInventory("PirateMineSticky",1,"Death")
+RPMI B 0 ACS_ExecuteAlways(259,0,1)
+RPMI B 0 A_ChangeVelocity(cos(-pitch)*30,0,sin(-pitch)*30,3)
+RPMI B 1 A_JumpIfInTargetInventory("PirateMineSticky",1,"Death")
+RPMI B 0 ACS_ExecuteAlways(259,0,1)
+RPMI B 0 A_ChangeVelocity(cos(-pitch)*30,0,sin(-pitch)*30,3)
+RPMI A 0 A_GiveInventory("ResyncPickup",1)
+RPMI A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SDeath")
+
+goto Spawn+3
+
+Crash:
+XDeath:
+TNT1 A 0
+TNT1 A 0 A_Stop
+TNT1 A 0 A_GiveInventory("ResyncPickup",1)
+TNT1 A 0 //A_TakeFromTarget("JollyRogerAmmo",10)
+TNT1 A 1 A_SpawnItemEx("PirateRMineExplosionX",0,0,0,0,0,0,0,1)
+stop
+
+SDeath:
+TNT1 A 0
+RPMI A 0 A_GiveInventory("PirateMineSticky",1)
+RPMI A 1 A_CountDown
+wait
+
+Death:
+TNT1 A 0
+REMI A 0 A_JumpIfInventory("PirateMineSticky",1,"XDeath")
+REMI A 0 //A_TakeFromTarget("JollyRogerAmmo",10)
+REMI A 0 A_Stop
+REMI A 0 A_SpawnItemEx("PirateRMinePlace",0,0,0,0,0,0,0,1)
+stop
+
+}
+}
+
+actor PirateRMineB : PirateRMine{translation "199:199=74:74","195:195=74:74","198:198=74:74","202:202=205:205","204:204=205:205"}
+actor PirateRMineR : PirateRMine{translation "199:199=41:41","195:195=41:41","198:198=41:41","202:202=171:171","204:204=171:171"}
+actor PirateRMineO : PirateRMine{translation "199:199=128:128","195:195=128:128", "198:198=128:128","202:202=104:104","204:204=104:104"}
+actor PirateRMineP : PirateRMine{translation "199:199=232:232","195:195=232:232", "198:198=232:232","202:202=229:229","204:204=229:229"}
+
+
+actor PirateRMinePlace 
+{
+PROJECTILE
+damagetype "PirateM_Mine"
+Obituary "$OB_REMOTEMINE"
++SKYEXPLODE
++EXPLODEONWATER
++DONTSPLASH
++DONTREFLECT
+
+//+SHOOTABLE
++NONSHOOTABLE
+//-NOBLOCKMAP
++DONTDRAIN
++NOBLOOD
+//+NOTARGETSWITCH
++CANTSEEK
+//+NOPAIN
++QUICKTORETALIATE
++CANTSEEK
++THRUGHOST
++THRUSPECIES
+Species "DumbPirateMine"
+
+painchance 0
+painchance "Torrent", 256
+
+//(Deal 1 damage about)
+damagefactor "Normal", 0.0
+damagefactor "Torrent", 1.0
+
+damagefactor "PirateM_Boom", 0.0
+
+mass 999999
+Health 600
+
+reactiontime 1
+Damage (20+CallACS("cbm_countinv_snatcher",2))
+Radius 14
+Height 14
+speed 0
+scale 2.5
+States
+{
+Spawn:
+RPMI A 0
+RPMI A 0 A_GiveInventory("OnceC",1)
+RPMI A 0 A_PlaySoundEx("weapon/rminestick","Weapon")
+RPMI A 0 A_RearrangePointers(AAPTR_DEFAULT,AAPTR_TARGET,AAPTR_TARGET)
+RPMI A 0 A_ChangeFlag("SHOOTABLE",1)
+RPMI A 0 A_ChangeFlag("NOBLOCKMAP",0)
+RPMI A 0 A_ChangeFlag("NOPAIN",0)
+RPMI A 0 A_GiveInventory("ResyncPickup",1)
+goto Spawn2
+Spawn2:
+RPMI A 0 A_GiveInventory("PirateMineFlag",1)
+RPMI AAAEEEAAAEEE 1 A_JumpIfInventory("PRemoteFlag",1,"SDeath2",AAPTR_MASTER)
+RPMI A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_MASTER_OOC)==0,"SDeath2")
+RPMI A 0 A_JumpIfInventory("PirateMineFlag",21,"SDeath")//A_CountDown
+loop
+
+Pain.WaveBurner:
+Pain.WaveBurnerUW:
+Pain.Rock_Kick:
+Pain.Roll_Whiff:
+Pain.Roll_Swing:
+Pain.PiratePush:
+Pain.Torrent:
+RPMI C 0 A_ChangeFlag("NOPAIN",1)
+RPMI C 0 A_PlaySoundEx("S3_K/Beep","Voice")
+RPMI C 1 A_GiveInventory("PRemoteFlag",1)
+RPMI C 0 HealThing(50,600)
+RPMI C 1 ACS_ExecuteAlways(259,0,1)
+RPMI C 0 A_RearrangePointers(AAPTR_DEFAULT,AAPTR_DEFAULT,AAPTR_TARGET)
+RPMI C 0 A_ChangeVelocity(Cos(pitch)*52,0,-sin(pitch)*52,3)
+RPMI C 0 A_ChangeFlag("NOPAIN",0)
+RPMI C 0 A_JumpIfInventory("PirateMineFlag",21,"SDeath1")
+goto Spawn2+1
+SDeath1:
+RPMI C 0
+goto SDeath+2
+SDeath:
+RPMI A 0 A_ChangeFlag("DONTBLAST",1)
+RPMI A 0 A_Stop
+RPMI A 0 A_GiveInventory("ResyncPickup",1)
+RPMI AACCAACCAACCAACCAACC 1 A_JumpIfInventory("PRemoteFlag",1,"SDeath2",AAPTR_MASTER)
+goto SDeath2
+SDeath2:
+RPMI A 1 A_CountDown
+wait
+XDeath:
+Crash:
+Death:
+RPMI C 0 A_ChangeFlag("DONTBLAST",1)
+RPMI C 0 A_ChangeFlag("SHOOTABLE",0)
+RPMI C 0 A_ChangeFlag("NOGRAVITY",1)
+RPMI C 0 //A_GiveInventory("JollyRogerAmmo",10,AAPTR_MASTER)
+RPMI C 0 A_JumpIfInventory("OnceC",1,"DeathCheck")
+goto DeathFlung
+DeathCheck:
+RPMI C 0 A_JumpIfInventory("PRemoteFlag",1,"DeathMaster",AAPTR_MASTER)
+RPMI C 0 A_JumpIfInventory("PRemoteFlag",1,"DeathTracer")
+goto DeathMasterW
+DeathTracer:
+RPMI C 0 A_RearrangePointers(AAPTR_TRACER)
+RPMI C 0 A_Stop
+goto DeathFlung
+DeathMaster:
+RPMI C 0 A_RearrangePointers(AAPTR_MASTER)
+RPMI C 0 A_Stop
+goto DeathFlung
+DeathMasterW:
+RPMI C 0 A_RearrangePointers(AAPTR_MASTER)
+goto DeathFlungW
+DeathFlung:
+TNT1 A 0 A_PlaySound("weapon/PirateRBomb")//weapon/rmineexplode
+TNT1 A 1 A_SpawnItemEx("PirateRMineExplosion",0,0,0,0,0,0,0,1)
+stop
+DeathFlungW:
+TNT1 A 1 A_SpawnItemEx("PirateRMineExplosionX",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor PirateRMineExplosion : BasicExplosion
+{
+damagetype "PirateM_Boom"
+Obituary "$OB_REMOTEMINE"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("PirateRMineExplosionFX",0,0,0,0,0,0,0,1)
+TNT1 A 4 A_Explode(160,100,0,0,24)
+TNT1 AAAAAAAAA 4 A_Explode(140,100,0,0,24)
+stop
+}
+}
+
+actor PirateRMineExplosionX : PirateRMineExplosion
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_PlaySoundEx("weapon/PirateRBomb1","Weapon")
+TNT1 A 0 A_SpawnItemEx("PirateRMineExplosionFX2",0,0,0,0,0,0,0,1)
+TNT1 A 2 A_Explode(150,100,0,0,24)
+stop
+}
+}
+
+actor PirateRMineExplosionFX : BasicClientSide
+{
+States
+{
+Spawn:
+PRBU ABACADAEAFAGAHAIAJAKALAMABACADAEAFAGAHANAPOPO 1 bright
+stop
+}
+}
+actor PirateRMineExplosionFX2 : BasicClientSide
+{
++BRIGHT
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4")
+Spawn1:
+PRBU ABACAD 1
+goto SpawnEnd
+Spawn2:
+PRBU AEAFAG 1
+goto SpawnEnd
+Spawn3:
+PRBU AHAIAJ 1
+goto SpawnEnd
+Spawn4:
+PRBU AKALAM 1
+goto SpawnEnd
+
+SpawnEnd:
+PRBU ANAPOPO 1
+stop
+}
+}
+
+actor PirateM_BoomProtect : PowerProtection
+{
+Powerup.Duration 16
+DamageFactor "PirateM_Boom", 0.5
+}
+
+actor WaterGush_Torrent_Pirate1 : WaterGush_Torrent
+{
+Mass 96
+}
+actor WaterGush_Torrent_Pirate2 : WaterGush_Torrent
+{
+Mass 108
+}
+
+actor PiratePushWater
+{
+translation "199:199=198:198", "202:202=198:198"
+PROJECTILE
+Obituary "$OB_PIRATEWATER"
+DamageType "PirateM_Hose"
+//+RIPPER
++BOUNCEONWALLS
+//+BOUNCEONFLOORS
++NOEXPLODEFLOOR
++BOUNCEONCEILINGS
++DONTSPLASH
+BounceFactor 0.0
+WallBounceFactor 0.0
+renderstyle translucent
+alpha 0.75
+//renderstyle none
+damage (20)
+radius 24//32
+height 24//32
+speed 30
+scale 1.5
+States
+{
+Spawn:
+MWSX R 0
+MWSX R 0 A_SpawnItemEx("WaterGush_Torrent_Pirate1")
+MWSX RRR 1 A_SpawnItemEx("PiratePushWaterFX2",0,0,0,0,0,0,0,1)
+MWSX S 0 A_SpawnItemEx("WaterGush_Torrent_Pirate1")
+MWSX SSS 1 A_SpawnItemEx("PiratePushWaterFX2",0,0,0,0,0,0,0,1)
+MWSX T 0 A_SpawnItemEx("WaterGush_Torrent_Pirate1")
+MWSX TT 1 A_SpawnItemEx("PiratePushWaterFX2",0,0,0,0,0,0,0,1)
+MWSX T 1 A_SpawnItemEx("PiratePushWaterFX1",0,0,0,0,0,0,0,1)
+stop
+Death:
+TNT1 A 1 A_SpawnItemEx("WaterGush_Torrent_Pirate1")
+stop
+}
+}
+
+actor PiratePushWaterB : PiratePushWater{translation "199:199=74:74","202:202=205:205"}
+actor PiratePushWaterR : PiratePushWater{translation "199:199=41:41","202:202=171:171"}
+actor PiratePushWaterO : PiratePushWater{translation "199:199=128:128","202:202=104:104"}
+actor PiratePushWaterP : PiratePushWater{translation "199:199=232:232","202:202=229:229"}
+
+actor PiratePushBubbles : PiratePushWater
+{
+speed 32
+States
+{
+Spawn:
+PRBU X 0
+PRBU X 0 A_SpawnItemEx("WaterGush_Torrent_Pirate2")
+PRBU XXYY 1 A_SpawnItemEx("PiratePushBubblesFX2",0,0,0,0,0,0,0,1)
+PRBU Z 0 A_SpawnItemEx("WaterGush_Torrent_Pirate2")
+PRBU ZZXX 1 A_SpawnItemEx("PiratePushBubblesFX2",0,0,0,0,0,0,0,1)
+PRBU T 0 A_SpawnItemEx("WaterGush_Torrent_Pirate2")
+PRBU YYZ 1 A_SpawnItemEx("PiratePushBubblesFX2",0,0,0,0,0,0,0,1)
+PRBU Z 1 A_SpawnItemEx("PiratePushBubblesFX1",0,0,0,0,0,0,0,1)
+stop
+Death:
+TNT1 A 1 A_SpawnItemEx("WaterGush_Torrent_Pirate2")
+stop
+}
+}
+
+actor PiratePushBubblesB : PiratePushBubbles{translation "199:199=74:74"}
+actor PiratePushBubblesR : PiratePushBubbles{translation "199:199=41:41"}
+actor PiratePushBubblesO : PiratePushBubbles{translation "199:199=128:128"}
+actor PiratePushBubblesP : PiratePushBubbles{translation "199:199=232:232"}
+
+actor PiratePushBubbles0 : PiratePushBubbles
+{
+Damage(0)
+States
+{
+Spawn:
+PRBU XXYYZZXXYYZ 1 A_SpawnItemEx("PiratePushBubblesFX2",0,0,0,0,0,0,0,1)
+PRBU Z 1 A_SpawnItemEx("PiratePushBubblesFX1",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor PiratePushBubbles0B : PiratePushBubblesB{Damage(0)}
+actor PiratePushBubbles0R : PiratePushBubblesR{Damage(0)}
+actor PiratePushBubbles0O : PiratePushBubblesO{Damage(0)}
+actor PiratePushBubbles0P : PiratePushBubblesP{Damage(0)}
+
+actor PiratePushWaterFX1 : BasicClientSide
+{
+renderstyle translucent
+alpha 0.8
+scale 1.5
+States
+{
+Spawn:
+MWSX RST 1
+MWSX T 0 A_SpawnItemEx("PiratePushWaterFX2",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor PiratePushWaterFX2 : PiratePushWaterFX1
+{
+alpha 0.4
+scale 1.0
+States
+{
+Spawn:
+MWSX RRSSTT 1
+stop
+}
+}
+
+actor PiratePushBubblesFX1 : PiratePushWaterFX1
+{
+States
+{
+Spawn:
+PRBU XYZ 1
+PRBU Z 0 A_SpawnItemEx("PiratePushBubblesFX2",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor PiratePushBubblesFX2 : PiratePushWaterFX2
+{
+States
+{
+Spawn:
+PRBU XXYYZZ 1
+stop
+}
+}
+
+
+actor PBubbleWatcher : BasicHelper
+{
+states
+{
+Spawn:
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("BasicArmor",1,"Spawn")
+TNT1 A 1
+goto Death
+Death:
+TNT1 A 0 A_TakeFromTarget("WetRogerAmmo",32,1)
+TNT1 A 0 A_TakeFromTarget("BasicArmor")
+TNT1 A 0 A_TakeFromTarget("DynamicArmorDosage_F")
+TNT1 A 0 A_TakeFromTarget("PBubbleFlag",999)
+TNT1 A 1
+stop
+}
+}
+
+actor BubbleDashExplode : BasicExplosion
+{
+Obituary "$OB_PIRATEBUBBLE"
+Damagetype "PirateM_BubbleRam"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 2 A_Explode(100,128,0,0,16)
+stop
+}
+}
+
+actor BubbleDashChecker
+{
+PROJECTILE
+Obituary "$OB_PIRATEBUBBLE"
+Damagetype "PirateM_BubbleRam"
++DONTSPLASH
++DONTBLAST
++NOEXPLODEFLOOR
++THRUGHOST
++DONTREFLECT
++STEPMISSILE
+maxstepheight 16
+Species "DumbPirateMine"
+Damage (0)
+radius 16//18
+height 48//58//50
+Speed 36
+scale 2.5
+translation "192:192=218:218", "198:198=41:41"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0
+TNT1 A 1
+stop
+Crash:
+XDeath:
+TNT1 A 1
+stop
+
+Death:
+TNT1 A 0 A_TakeFromTarget("PirateBDashFlag",99)
+TNT1 A 1 A_GiveToTarget("PirateBubblePopped",1)
+stop
+}
+}
+
+actor PBubbleFX : BasicClientSide
+{
++NOTIMEFREEZE
+States
+{
+Spawn:
+PRBU Q 0
+PRBU Q 1
+stop
+}
+}
+
+actor PBubbleFXPOP : BasicExplosion
+{
+Translation "192:192=4:4"
+scale 5.0
+States
+{
+Spawn:
+BMBU G 0
+BMBU G 1 A_PlaySoundEx("classes/burstpop","Weapon")
+stop
+}
+}
+actor PBubbleFXBOP : BasicExplosion
+{
+Translation "192:192=4:4"
+scale 5.0
+States
+{
+Spawn:
+BMBU G 0
+BMBU G 1 A_PlaySoundEx("weapon/BubbleBounce","Weapon")
+stop
+}
+}
+
+
+
+actor PiratemanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PirateRMine",0,1,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PirateRMineB",0,1,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PirateRMineR",0,1,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PirateRMineO",0,1,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PirateRMineP",0,1,-8,0)
+goto Done
+}
+}
+
+actor PiratemanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PiratePushWater",0,0,10,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PiratePushWaterB",0,0,10,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PiratePushWaterR",0,0,10,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PiratePushWaterO",0,0,10,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PiratePushWaterP",0,0,10,0)
+goto Done
+}
+}
+
+actor PiratemanAlt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PiratePushBubbles",0,0,10,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PiratePushBubblesB",0,0,10,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PiratePushBubblesR",0,0,10,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PiratePushBubblesO",0,0,10,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PiratePushBubblesP",0,0,10,0)
+goto Done
+}
+}
+
+actor PiratemanAlt3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PiratePushBubbles0",random(-5,5),0,10,0,0,random(-3,3))
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PiratePushBubbles0B",random(-5,5),0,10,0,0,random(-3,3))
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PiratePushBubbles0R",random(-5,5),0,10,0,0,random(-3,3))
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PiratePushBubbles0O",random(-5,5),0,10,0,0,random(-3,3))
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PiratePushBubbles0P",random(-5,5),0,10,0,0,random(-3,3))
+goto Done
+}
+}

@@ -1,0 +1,61 @@
+actor Heatman : ClassBase
+{
+Player.ScoreIcon "C_02G0X"
+player.displayname "Heatman"
+player.soundclass "heatmanc"
+
+player.maxhealth 1000
+health 1000
+player.jumpz 10
+player.forwardmove 0.72, 0.72
+player.sidemove 0.70, 0.70
+
+player.startitem "AtomicFireBoss"
+player.startitem "AtomicPillarBoss"
+player.startitem "ZippoAmmo", 100
+
+player.weaponslot 1, "AtomicFireBoss"
+player.weaponslot 2, "AtomicPillarBoss"
+
+player.startitem "BubbleLeadWeakness2", 1
+
+player.startitem "BubbleLeadWeakness", 1
+player.startitem "RainFlushWeakness", 1
+player.startitem "WaterWaveWeakness", 1
+player.startitem "WaterBalloonWeakness", 1
+player.startitem "WaterShieldWeakness", 1
+player.startitem "SaltWaterWeakness", 1
+
+States
+{
+Spawn:
+HEAM A 0
+HEAM B 1
+HEAM A 1
+Goto Spawn+2
+See:
+HEAM BCDE 5
+Goto Spawn
+Missile:
+HEAM F 0 A_JumpIfInventory("HeatmanFlag",1,"MissileT")
+HEAM F 0 A_JumpIfInventory("HeatShieldFrame",1,"Missile2")
+HEAM F 12
+HEAM G 5
+goto Spawn
+Missile2:
+HEAM G 4
+goto Spawn
+MissileT:
+HEAM L 3
+goto Spawn+2
+ClassPainTackle:
+HEAM "#" 0 A_SpawnItemEx("DelayPainFX")
+goto MissileT
+ClassPain:
+HEAM H 0 A_JumpIfInventory("HeatmanFlag",1,"ClassPainTackle")
+goto PainContinue
+ClassDeath:
+HEAM H 0
+goto DeathContinue
+}
+}

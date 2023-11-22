@@ -1,0 +1,49 @@
+actor Napalmman : ClassBase
+{
+Player.ScoreIcon "C_05G0X"
+player.displayname "Napalmman"
+player.soundclass "napalmmanc"
+
+player.maxhealth 1000
+health 1000
+player.jumpz 10
+player.forwardmove 0.89, 0.89
+player.sidemove 0.5, 0.5
+
+player.startitem "NapalmBombBoss"
+player.startitem "MorningSmellAmmo", 42
+
+player.startitem "CrystalEyeWeakness2", 1
+
+player.startitem "TimeSlowWeakness", 1
+player.startitem "TimeStopperWeakness", 1
+player.startitem "GeminiLaserWeakness", 1
+player.startitem "FlashStopperWeakness", 1//PharaohShotWeakness
+player.startitem "CrystalEyeWeakness", 1
+player.startitem "CentaurFlashWeakness", 1
+player.startitem "CopyVisionWeakness", 1
+player.startitem "JewelSatelliteWeakness", 1
+player.startitem "ReboundStrikerWeakness", 1
+
+States
+{
+Spawn:
+NAPM A 0
+NAPM B 1
+NAPM A 1
+Goto Spawn+2
+See:
+NAPM BCDE 5
+Goto Spawn
+Missile:
+NAPM F 5
+NAPM G 4
+goto Spawn
+ClassPain:
+NAPM H 0
+goto PainContinue
+ClassDeath:
+NAPM H 0
+goto DeathContinue
+}
+}

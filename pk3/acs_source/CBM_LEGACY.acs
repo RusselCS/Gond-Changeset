@@ -1,0 +1,205 @@
+#library "CBM_LEGACY"
+#include "zcommon.acs"
+
+//Old script numbers/names
+//For debuging changes
+
+str UpdatedScript = " script happened! You need to update it!@";
+str RemovedScript = " script happened! This no longer exists!@";
+str DeadScript = " script happened! Please tell Celebi!";
+str DeadScriptL = " script happened! Please tell @CelebiCBM!";
+
+script 187 (void)//But what did 187 do???
+{
+Log(i:187,s:DeadScriptL);
+printbold(i:187,s:DeadScript);
+}
+
+script 137 (void)//The original core removal
+{
+Log(i:137,s:DeadScriptL);
+printbold(i:137,s:DeadScript);
+}
+
+script 139 (void)//The original core removal
+{
+Log(i:139,s:DeadScriptL);
+printbold(i:139,s:DeadScript);
+}
+
+script 159 (void)//The original Bass item replacement
+{
+Log(i:159,s:DeadScriptL);
+printbold(i:159,s:DeadScript);
+}
+
+script 207 (int type, int pushee)// Was Push Scripts
+{
+Log(i:207,s:DeadScriptL);
+printbold(i:207,s:DeadScript);
+}
+
+script 208 (int range, int XHeal)// Was Plant party healer
+{
+Log(i:208,s:DeadScriptL);
+printbold(i:208,s:DeadScript);
+}
+
+script 209 (int Which, int Range, int Power)// Was Dust puller
+{
+Log(i:209,s:DeadScriptL);
+printbold(i:209,s:DeadScript);
+}
+
+script 213 (int mode, int O_TID, int H_TID)// If enemy hit me, give item
+{
+Log(i:213,s:UpdatedScript);
+printbold(i:213,s:UpdatedScript);
+}
+
+script 210 (void)//But what did 210 do??? v6d
+{
+Log(i:210,s:DeadScriptL);
+printbold(i:210,s:DeadScript);
+}
+
+script 151 (void)//Old clone stuff
+{
+Log(i:151,s:DeadScriptL);
+printbold(i:151,s:DeadScript);
+}
+
+script 188 (void)//ENTER Clone stuff
+{
+Log(i:188,s:DeadScriptL);
+printbold(i:188,s:DeadScript);
+}
+
+script 140 (void)//Legacy adaptor upgrades
+{
+Log(i:140,s:DeadScriptL);
+printbold(i:140,s:DeadScript);
+}
+
+script 655 (void)//DEATH Legacy JunkBits/Energy Balancer
+{
+Log(i:655,s:DeadScriptL);
+printbold(i:655,s:DeadScript);
+}
+
+Script 790 (void)//copy of ACS_ExecuteAlways(259,0,1)?
+{
+Log(i:790,s:DeadScriptL);
+printbold(i:790,s:DeadScript);
+}
+
+Script 804 (int s)//Music change for Gemini Map
+{
+Log(i:804,s:UpdatedScript);
+printbold(i:804,s:UpdatedScript);
+}
+
+Script 521 (int num, int Which)//Original fetch PullCharge/Quaking//C_CHECK_TARGET_ITEM
+{
+Log(i:521,s:UpdatedScript);
+printbold(i:521,s:UpdatedScript);
+}
+
+script "CBM_GetCVar" (int Which)//Returned ServerCVar
+{
+Log(s:"CBM_GetCVar",s:UpdatedScript);
+printbold(s:"CBM_GetCVar",s:UpdatedScript);
+}
+
+script 160 (int Force, int BonusJump)//Wall jump thruster
+{
+Log(i:160,s:UpdatedScript);
+printbold(i:160,s:UpdatedScript);
+}
+
+script "CBM_FetchJumpZ" (void)//
+{
+Log(s:"CBM_FetchJumpZ",s:UpdatedScript);
+printbold(s:"CBM_FetchJumpZ",s:UpdatedScript);
+}
+
+script 813 (int target, int Dynamo)//C_DYNAMOACS use cbm_DynamoScannerMissile
+{
+Log(i:813,s:UpdatedScript);
+printbold(i:813,s:UpdatedScript);
+}
+
+script 146 (void)//Fetch jumpZ, then multiply by 4.2
+{
+Log(i:146,s:UpdatedScript);
+printbold(i:146,s:UpdatedScript);
+}
+
+
+script 147 (int Swap)
+{
+	Log(s:"WARNING: Script 147 called by actor: \"", s:GetActorClass(0), s:"\", use script \"cbm_GetPointerTID_147\" instead)");
+	Switch(Swap) {
+		Case 3:
+			SetActivator(0,AAPTR_FRIENDPLAYER);
+			break;
+		Case 2:
+			SetActivator(0,AAPTR_MASTER);
+			break;
+		Case 1:
+			SetActivator(0,AAPTR_TRACER);
+			break;
+		Case 0:
+			SetActivatorToTarget(0);
+			break;
+	}
+
+	SetResultValue(ActivatorTID());
+}
+
+Script "cbm_BrightBlindFade" (int Power, int Dur, int Toggle)// CLIENTSIDE
+{
+Log(s:"cbm_BrightBlindFade",s:DeadScriptL);
+printbold(s:"cbm_BrightBlindFade",s:RemovedScript);
+}
+
+script 647 (int p)// DISCONNECT
+{
+	Log(i:647,s:UpdatedScript);
+	printbold(i:647,s:UpdatedScript);
+}
+script 149 (int j)// Gemini Clones Spawner
+{
+	Log(i:149,s:UpdatedScript);
+	printbold(i:149,s:UpdatedScript);
+}
+script 150 (void)// Gemini Clones Reposition sync
+{
+	Log(i:150,s:UpdatedScript);
+	printbold(i:150,s:UpdatedScript);
+}
+
+script 648 (int jump)// Big Player Modifier (Example Darkman Speed)
+{
+	Log(i:648,s:UpdatedScript);
+	printbold(i:648,s:UpdatedScript);
+}
+
+
+script "cbm_CheckForRealMovementInput" (void)// use cbm_FetchMovementInput
+{
+	Log(s:"cbm_CheckForRealMovementInput",s:UpdatedScript);
+	printbold(s:"cbm_CheckForRealMovementInput",s:UpdatedScript);
+}
+
+script 850 (void)// use cbm_FetchMovementInput
+{
+	Log(i:850,s:UpdatedScript);
+	printbold(i:850,s:UpdatedScript);
+}
+
+script "CBM_GetCVar_NoLMSWep" (int Which)// fetched cvar mm8bdm_sv_nolmsweapons, use cbm_FetchServerCVar with value 17
+{
+	Log(s:"CBM_GetCVar_NoLMSWep",s:UpdatedScript);
+	printbold(s:"CBM_GetCVar_NoLMSWep",s:UpdatedScript);
+}

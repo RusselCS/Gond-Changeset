@@ -1,0 +1,139 @@
+#library "CBM_DEBUG"
+#include "zcommon.acs"
+
+
+Script "CBM_DebugLevelInfo" (void) CLIENTSIDE//UNLOADING
+{
+	SetActivator(0,AAPTR_NULL);
+	Log(s:"Map #",i:GetLevelInfo(LEVELINFO_LEVELNUM),s:", ",n:PRINTNAME_LEVEL,s:", >> ",n:PRINTNAME_LEVELNAME,s:" <<");
+}
+
+Script "CBM_DebugInternalFunctions" (int TempVariable) CLIENTSIDE
+{
+	//Log(s:"IsNetworkGame >> ",i:IsNetworkGame());
+	//Log(s:"IsMultiplayer >> ",i:IsMultiplayer());
+	Log(s:"PlayerOnTeam >> ",i:PlayerOnTeam());
+}
+
+Script "CBM_DebugArmorInfo" (void) CLIENTSIDE
+{
+	Log(s:GetArmorInfo(0),s:" = ARMORINFO_CLASSNAME");
+	Log(i:GetArmorInfo(1),s:" = ARMORINFO_SAVEAMOUNT");
+	Log(f:GetArmorInfo(2),s:" = ARMORINFO_SAVEPERCENT");
+	Log(i:GetArmorInfo(3),s:" = ARMORINFO_MAXABSORB");
+	Log(i:GetArmorInfo(4),s:" = ARMORINFO_MAXFULLABSORB");
+	Log(i:GetArmorInfo(5),s:" = ARMORINFO_ACTUALSAVEAMOUNT");
+	Log(i:PlayerArmorpoints(),s:" = PlayerArmorpoints");
+}
+
+Script "CBM_DebugWhatTime" (int Time_Which, int Time_UTC) CLIENTSIDE
+{
+	SetActivator(0,AAPTR_NULL);
+	Log(s:"SystemTime >> ",i:SystemTime());
+	//Time_Which 0 second, 1 minute, 2 hour, 3 day, 4 month, 5 year, 6 weekday (sunday 0)
+	Log(s:"GetTimeProperty >> ",i:GetTimeProperty(SystemTime(),Time_Which,Time_UTC));
+	Log(s:"Strftime >> ",s:Strftime(SystemTime(),"%a %A %b %B %c %c %d %D %e %F %g %G %h %H %I %j %m %M %n %p %r %R %S %T %u %U %V %w %W %x %y %Y %Z %% ",Time_UTC));
+}
+
+Script "CBM_DebugSectorColor" (int RedDye, int GreenDye, int BlueDye, int DesaturateDye)
+{
+	Log(s:"Sector_SetColor 256 [] Red ",i:RedDye,s:" [] Green ",i:GreenDye,s:" [] Blue ",i:BlueDye,s:" [] Desaturate ",i:DesaturateDye);
+	
+	for(int i = 0; i < 256; i++){
+		Sector_SetColor(i, RedDye, GreenDye, BlueDye, DesaturateDye);
+	}
+}
+
+Script "CBM_DebugShowAllChar" (void) CLIENTSIDE
+{
+	SetActivator(0,AAPTR_NULL);
+	for(int i=0; i<256; i+=1)
+	{
+		Log(i:i,s:" >> is character >> ",c:i);
+		Delay(1);
+	}
+}
+
+Script "CBM_DebugCrayonShowcase" (void) CLIENTSIDE
+{
+	SetActivator(0,AAPTR_NULL);
+	for(int i=0; i<256; i+=1)
+	{
+		Log(s:"\c[Crayon",i:i,s:"]Crayon #",i:i);
+		Delay(1);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+Script "EERadarIconHandler" (Void) CLIENTSIDE
+{
+int mid;
+mid = 5030;//MESSAGE_ID_START+i*5+2;
+
+delay(2);
+if(!GetCvar("Game_EvilEscort")){Terminate;}
+    
+while(true) 
+{
+SetHudSize(320,200,0);
+drawCompass(mid, 160.0, 165.0, "CTFRAD2", "CTFRADR");
+delay(1);
+}
+}
+
+Script "EERadarPointer" (void) CLIENTSIDE
+{
+int ownerNumber = PlayerNumber();
+delay(2);
+if(!GetCvar("Game_EvilEscort")){Terminate;}
+if(ownerNumber==ConsolePlayerNumber()) 
+{
+int selfAngle;
+int selfX;
+int selfY;
+int selfZ;
+int angle;
+int i;
+int mid;
+        
+int FlagTID;
+int FlagX;
+int FlagY;
+        //===========
+while(GetActorProperty(0,APROP_HEALTH) > 0) 
+{
+SetHudSize(320,200,0);
+selfAngle = GetActorAngle(0);
+selfX = GetActorX(0);
+selfY = GetActorY(0);
+selfZ = GetActorZ(0);    
+
+FlagX = GetActorX(50);
+FlagY = GetActory(50);
+        
+angle = VectorAngle(FlagX-selfX,FlagY-selfY)-selfAngle;
+mid = 5010;//MESSAGE_ID_START+i*5+2;
+        
+drawCompassArrow(mid,160.0,165.0,angle);
+delay(1);
+}
+}
+}
+
+script "EERadarPointerRespawn" RESPAWN CLIENTSIDE {
+    ACS_NamedExecuteAlways("EERadarPointer",0);
+}
+easy radars that you can call when gas starts, just need to modify the mid TID
+and probably add a check in the EERadarPointerRespawn to make sure gas is actually out before calling those scripts
+drawCompass and drawCompassArrow are in CTFRADAR acs
+
+
+

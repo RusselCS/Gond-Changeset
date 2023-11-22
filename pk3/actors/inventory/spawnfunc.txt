@@ -1,0 +1,56 @@
+// Modders can replace these to allow these actors to execute scripts/functions without mass replicating inventory code
+
+actor MM8BDMWepSpawnFunc : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 //ACS_NamedExecuteAlways("",0)
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_logweaponspot",0)
+stop
+}
+}
+
+actor MM8BDMItemSpawnFunc : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 //ACS_NamedExecuteAlways("",0)
+TNT1 A 0 A_JumpIf(CheckClass("CBM_BigHealth"),"1Check")
+TNT1 A 0 A_JumpIf(CheckClass("CBM_MegaHealth"),"1Check")
+TNT1 A 0 A_JumpIf(CheckClass("CBM_SmallHealth"),"2Check")
+stop
+1Check:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CBM_TestTimerCheck")>3 && ACS_NamedExecuteWithResult("CBM_TestHPRespawnCvarCheck")==false,"Remove")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CBM_TestHPSpawnCvarCheck")<1,"Remove")
+stop
+2Check:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CBM_TestTimerCheck")>3 && ACS_NamedExecuteWithResult("CBM_TestHPRespawnCvarCheck")==false,"Remove")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("CBM_TestHPSpawnCvarCheck")<2,"Remove")
+stop
+Remove:
+TNT1 A 0 Thing_Remove(0)
+stop
+}
+}
+
+actor PartyBallSpawnFunc : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 //ACS_NamedExecuteAlways("",0)
+stop
+}
+}
+
+actor MM8BDMFlagSpawnFunc : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 //ACS_NamedExecuteAlways("",0)
+stop
+}
+}

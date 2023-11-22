@@ -1,0 +1,17 @@
+actor ClassBase2 : ClassBase1
+{
+states
+{
+//Modders, if you want to replace Core or CBM damagetypes, put them here.
+//This will allow the entire weakness checks in 'ClassBase3' to work without issue.
+//[Celebi]
+
+//Pain.TornadoM_Lift:
+//"----" H 0 ThrustThingZ(0,22222,0,1)
+//goto Pain+2
+
+}
+}
+
+
+

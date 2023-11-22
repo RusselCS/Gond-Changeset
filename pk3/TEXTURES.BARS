@@ -1,0 +1,665 @@
+
+//BARHLTRN without black
+texture CBMHLTRN,8,56{patch B_BAR00H,0,0{Translation"192:192=4:4","198:198=4:4","199:199=4:4"}}
+texture CVMHLTRN,56,8{patch CBMHLTRN,0,0{rotate 90}}
+
+//IsInvunFlag Invulnerable bar
+texture 0H_I_BAR,8,56{patch TNT1A0,0,0}
+texture 0H_I_VAR,56,8{patch TNT1A0,0,0}
+texture 0H_J_BAR,8,56{patch B_BAR00H,0,0{Translation"192:192=4:4","198:198=86:86","199:199=93:93"}}
+texture 0H_J_VAR,56,8{patch 0H_J_BAR,0,0{rotate 90}}
+texture 0H_K_BAR,8,56{patch B_BAR00H,0,0{Translation"192:192=86:86","198:198=93:93","199:199=3:3"}}
+texture 0H_K_VAR,56,8{patch 0H_K_BAR,0,0{rotate 90}}
+texture 0H_L_BAR,8,56{patch B_BAR00H,0,0{Translation"192:192=93:93","198:198=3:3","199:199=5:5"}}
+texture 0H_L_VAR,56,8{patch 0H_L_BAR,0,0{rotate 90}}
+
+texture 0H_M_BAR,8,56{patch TNT1A0,0,0}
+texture 0H_M_VAR,56,8{patch TNT1A0,0,0}
+texture 0H_N_BAR,8,56{patch B_BAR02G,0,0{Translation"192:192=4:4","198:198=4:4"}}
+texture 0H_N_VAR,56,8{patch 0H_N_BAR,0,0{rotate 90}}
+texture 0H_O_BAR,8,56{patch B_BAR02G,0,0{Translation"192:192=86:86","198:198=86:86"}}
+texture 0H_O_VAR,56,8{patch 0H_O_BAR,0,0{rotate 90}}
+texture 0H_P_BAR,8,56{patch B_BAR02G,0,0{Translation"192:192=93:93","198:198=93:93"}}
+texture 0H_P_VAR,56,8{patch 0H_P_BAR,0,0{rotate 90}}
+
+//GuardUpFlag Resist Bar
+texture 0H_R_BAR,8,56{patch TNT1A0,0,0}
+texture 0H_R_VAR,56,8{patch TNT1A0,0,0}
+texture 0H_S_BAR,8,56{patch B_BAR02C,0,0{Translation"192:192=195:195","198:198=195:195"}}
+texture 0H_S_VAR,56,8{patch 0H_S_BAR,0,0{rotate 90}}
+texture 0H_T_BAR,8,56{patch B_BAR02C,0,0{Translation"192:192=207:207","198:198=207:207"}}
+texture 0H_T_VAR,56,8{patch 0H_T_BAR,0,0{rotate 90}}
+texture 0H_U_BAR,8,56{patch B_BAR02C,0,0{Translation"192:192=110:110","198:198=110:110"}}
+texture 0H_U_VAR,56,8{patch 0H_U_BAR,0,0{rotate 90}}
+
+//GuardDownFlag Weak Bar
+texture 0H_W_BAR,8,56{patch TNT1A0,0,0}
+texture 0H_W_VAR,56,8{patch TNT1A0,0,0}
+texture 0H_X_BAR,8,56{patch B_BAR02C,0,0{Translation"192:192=227:227","198:198=227:227"}}
+texture 0H_X_VAR,56,8{patch 0H_X_BAR,0,0{rotate 90}}
+texture 0H_Y_BAR,8,56{patch B_BAR02C,0,0{Translation"192:192=226:226","198:198=226:226"}}
+texture 0H_Y_VAR,56,8{patch 0H_Y_BAR,0,0{rotate 90}}
+texture 0H_Z_BAR,8,56{patch B_BAR02C,0,0{Translation"192:192=225:225","198:198=225:225"}}
+texture 0H_Z_VAR,56,8{patch 0H_Z_BAR,0,0{rotate 90}}
+
+//NoAmmo Bar
+//texture NOAMO_BR,8,56{patch B_BAR00H,0,0{Translation"192:192=88:88","198:198=95:95","199:199=3:3"}}
+//texture NOAMO_VR,56,8{patch NOAMO_BR,0,0{rotate 90}}
+
+//Null Slide
+texture 00___BAR,8,56{patch B_5BARSA,0,0{Translation"198:198=3:3","192:192=95:95","199:199=3:3","202:202=95:95","195:195=3:3","204:204=95:95","119:119=3:3","118:118=95:95","95:95=3:3","89:89=95:95"}}
+texture 00___VAR,56,8{patch 00___BAR,0,0{rotate 90}}
+
+//Mega Slide
+texture 00_0_BAR,8,56{patch B_5BARSA,0,0{Translation"198:198=42:42","192:192=87:87","199:199=42:42","202:202=87:87","195:195=42:42","204:204=87:87","119:119=42:42","118:118=87:87","95:95=42:42","89:89=87:87"}}
+texture 00_0_VAR,56,8{patch 00_0_BAR,0,0{rotate 90}}
+//Proto Slide
+texture 00_1_BAR,8,56{patch B_5BARSA,0,0{Translation"198:198=198:198","192:192=192:192","199:199=198:198","202:202=192:192","195:195=198:198","204:204=192:192","119:119=198:198","118:118=192:192","95:95=198:198","89:89=192:192"}}
+texture 00_1_VAR,56,8{patch 00_1_BAR,0,0{rotate 90}}
+//Bass Slide
+texture 00_4_BAR,8,56{patch B_5BARSA,0,0{Translation"198:198=95:95","192:192=217:217","199:199=95:95","202:202=217:217","195:195=95:95","204:204=217:217","119:119=95:95","118:118=217:217","95:95=95:95","89:89=217:217"}}
+texture 00_4_VAR,56,8{patch 00_4_BAR,0,0{rotate 90}}
+//Duo Slide
+texture 08_9_BAR,8,56{patch B_5BARSA,0,0{Translation"198:198=195:195","192:192=220:220","199:199=195:195","202:202=220:220","195:195=195:195","204:204=220:220","119:119=195:195","118:118=220:220","95:95=195:195","89:89=220:220"}}
+texture 08_9_VAR,56,8{patch 08_9_BAR,0,0{rotate 90}}
+//Quint Slide
+texture 0K_4_BAR,8,56{patch B_3BARSB,0,0{Translation"198:198=130:130","192:192=138:138","199:199=130:130","202:202=138:138","195:195=130:130","204:204=138:138"}}
+texture 0K_4_VAR,56,8{patch 0K_4_BAR,0,0{rotate 90}}
+
+
+//Megaman
+texture 00_A_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=176:176"}}
+texture 00_A_VAR,56,8{patch 00_A_BAR,0,0{rotate 90}}
+
+//Rock
+texture 00_B_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=80:80","198:198=80:80"}}
+texture 00_B_VAR,56,8{patch 00_B_BAR,0,0{rotate 90}}
+
+//Roll
+texture 00_2_BAR,8,56{patch BARENERG,0,0{Translation"192:192=104:104","198:198=128:128"}}
+texture 00_2_VAR,56,8{patch 00_2_BAR,0,0{rotate 90}}
+texture 00_C_BAR,8,56{patch B_7BARSC,0,0{Translation"192:192=4:4","198:198=176:176"}}
+texture 00_C_VAR,56,8{patch 00_C_BAR,0,0{rotate 90}}
+
+//Bass
+texture 00_D_BAR,8,56{patch BARENERG,0,0{Translation"192:192=62:62","198:198=251:251"}}
+texture 00_D_VAR,56,8{patch 00_D_BAR,0,0{rotate 90}}//Treble Boost
+
+//Sniper Joe
+texture BARFLSJ,8,56{patch BARAMMO1,0,0}
+texture VARFLSJ,56,8{patch BARAMMO1,0,0{rotate 90}}
+
+//LeafShield Lines
+texture 2H_B_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=101:101","198:198=129:129"}}
+texture 2H_B_VAR,56,8{patch 2H_B_BAR,0,0{rotate 90}}
+texture 2H_C_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=101:101","198:198=129:129"}}
+texture 2H_C_VAR,56,8{patch 2H_C_BAR,0,0{rotate 90}}
+texture 2H_D_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=129:129","198:198=101:101"}}
+texture 2H_D_VAR,56,8{patch 2H_D_BAR,0,0{rotate 90}}
+texture 2H_E_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=129:129","198:198=101:101"}}
+texture 2H_E_VAR,56,8{patch 2H_E_BAR,0,0{rotate 90}}
+texture 2H_A_BAR,8,56{patch TNT1A0,0,0}
+texture 2H_A_VAR,56,8{patch TNT1A0,0,0}
+
+//SkullBarrier Lines
+texture 4H_B_BAR,8,56{patch B_BAR11J,0,0{Translation"192:192=192:192","198:198=197:197"}}
+texture 4H_B_VAR,56,8{patch 4H_B_BAR,0,0{rotate 90}}
+texture 4H_C_BAR,8,56{patch B_BAR11K,0,0{Translation"192:192=192:192","198:198=197:197"}}
+texture 4H_C_VAR,56,8{patch 4H_C_BAR,0,0{rotate 90}}
+texture 4H_D_BAR,8,56{patch B_BAR11L,0,0{Translation"192:192=192:192","198:198=197:197"}}
+texture 4H_D_VAR,56,8{patch 4H_D_BAR,0,0{rotate 90}}
+texture 4H_E_BAR,8,56{patch B_BAR11M,0,0{Translation"192:192=192:192","198:198=197:197"}}
+texture 4H_E_VAR,56,8{patch 4H_E_BAR,0,0{rotate 90}}
+texture 4H_F_BAR,8,56{patch B_BAR11N,0,0{Translation"192:192=192:192","198:198=197:197"}}
+texture 4H_F_VAR,56,8{patch 4H_F_BAR,0,0{rotate 90}}
+texture 4H_G_BAR,8,56{patch B_BAR11J,0,0{FlipX Translation"192:192=197:197","198:198=192:192"}}
+texture 4H_G_VAR,56,8{patch 4H_G_BAR,0,0{rotate 90}}
+texture 4H_H_BAR,8,56{patch B_BAR11K,0,0{FlipX Translation"192:192=197:197","198:198=192:192"}}
+texture 4H_H_VAR,56,8{patch 4H_H_BAR,0,0{rotate 90}}
+texture 4H_I_BAR,8,56{patch B_BAR11L,0,0{FlipX Translation"192:192=197:197","198:198=192:192"}}
+texture 4H_I_VAR,56,8{patch 4H_I_BAR,0,0{rotate 90}}
+texture 4H_J_BAR,8,56{patch B_BAR11M,0,0{FlipX Translation"192:192=197:197","198:198=192:192"}}
+texture 4H_J_VAR,56,8{patch 4H_J_BAR,0,0{rotate 90}}
+texture 4H_K_BAR,8,56{patch B_BAR11N,0,0{FlipX Translation"192:192=197:197","198:198=192:192"}}
+texture 4H_K_VAR,56,8{patch 4H_K_BAR,0,0{rotate 90}}
+
+texture 4H_A_BAR,8,56{patch TNT1A0,0,0}
+texture 4H_A_VAR,56,8{patch TNT1A0,0,0}
+
+//PlantBarrier Lines
+texture 6E_B_BAR,8,56{patch B_BAR02I,0,0{Translation"192:192=4:4","198:198=39:39"}}
+texture 6E_B_VAR,56,8{patch 6E_B_BAR,0,0{rotate 90}}
+texture 6E_C_BAR,8,56{patch B_BAR02J,0,0{Translation"192:192=4:4","198:198=39:39"}}
+texture 6E_C_VAR,56,8{patch 6E_C_BAR,0,0{rotate 90}}
+texture 6E_D_BAR,8,56{patch B_BAR02I,0,0{Translation"192:192=39:39","198:198=4:4"}}
+texture 6E_D_VAR,56,8{patch 6E_D_BAR,0,0{rotate 90}}
+texture 6E_E_BAR,8,56{patch B_BAR02J,0,0{Translation"192:192=39:39","198:198=4:4"}}
+texture 6E_E_VAR,56,8{patch 6E_E_BAR,0,0{rotate 90}}
+
+texture 6E_A_BAR,8,56{patch TNT1A0,0,0}
+texture 6E_A_VAR,56,8{patch TNT1A0,0,0}
+
+//Classes
+
+//Auto
+texture 00_G_BAR,8,56{patch BARENERG,0,0{Translation"192:192=208:208","198:198=128:128"}}
+texture 00_G_VAR,56,8{patch 00_G_BAR,0,0{rotate 90}}
+
+texture 00_GA_BR,8,1{patch TNT1A0,0,0}
+texture 00_GA_VR,1,8{patch TNT1A0,0,0}
+texture 00_GB_BR,8,1{patch B_BAR02J,0,0{Translation"192:192=196:196","198:198=197:197"}}
+texture 00_GB_VR,1,8{patch 00_GB_BR,0,0{rotate 90}}
+
+//LightRyu
+texture 0R_B_VAR,13,6{patch 0R_B_BAR,0,0{rotate 90}}
+texture 0R_C_VAR,13,6{patch 0R_C_BAR,0,0{rotate 90}}
+texture 0R_D_VAR,13,6{patch 0R_D_BAR,0,0{rotate 90}}
+texture 0R_E_VAR,13,6{patch 0R_E_BAR,0,0{rotate 90}}
+texture 0R_F_VAR,13,6{patch 0R_F_BAR,0,0{rotate 90}}
+texture 0R_G_BAR,6,13{patch 0R_E_BAR,0,0{FlipY}}
+texture 0R_G_VAR,13,6{patch 0R_G_BAR,0,0{rotate 90}}
+texture 0R_H_BAR,6,13{patch 0R_D_BAR,0,0{FlipY}}
+texture 0R_H_VAR,13,6{patch 0R_H_BAR,0,0{rotate 90}}
+texture 0R_I_BAR,6,13{patch 0R_C_BAR,0,0{FlipY}}
+texture 0R_I_VAR,13,6{patch 0R_I_BAR,0,0{rotate 90}}
+texture 0R_J_BAR,6,13{patch 0R_B_BAR,0,0{FlipY}}
+texture 0R_J_VAR,13,6{patch 0R_J_BAR,0,0{rotate 90}}
+texture 0R_A_BAR,6,13{patch TNT1A0,0,0}
+texture 0R_A_VAR,13,6{patch TNT1A0,0,0}
+texture 0R_S_VAR,56,8{patch 0R_S_BAR,0,0{rotate 90}}
+texture 0R_T_VAR,56,8{patch 0R_T_BAR,0,0{rotate 90}}
+texture 0R_U_VAR,57,8{patch 0R_U_BAR,0,0{rotate 90}}
+
+//Oilman
+texture 1H_S_BAR,8,56{patch TNT1A0,0,0}
+texture 1H_S_VAR,56,8{patch TNT1A0,0,0}
+texture 1H_T_BAR,8,56{patch B_BAR00H,0,0{Translation"192:192=68:68","198:198=45:45","199:199=47:47"}}
+texture 1H_T_VAR,56,8{patch 1H_T_BAR,0,0{rotate 90}}
+
+texture 1H_R_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=171:171","198:198=171:171"}}
+texture 1H_R_VAR,56,8{patch 1H_R_BAR,0,0{rotate 90}}
+
+texture 01_8_BAR,8,56{patch BARENERG,0,0{Translation"192:192=218:218","198:198=43:43"}}
+texture 01_8_VAR,56,8{patch 01_8_BAR,0,0{rotate 90}}
+
+//Metalman
+
+texture 2A_R_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=171:171","198:198=171:171"}}
+texture 2A_R_VAR,56,8{patch 2A_R_BAR,0,0{rotate 90}}
+
+//Bubbleman
+texture 2C_T_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=4:4","198:198=110:110"}}
+texture 2C_T_VAR,56,8{patch 2C_T_BAR,0,0{rotate 90}}
+texture 2C_U_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=4:4","198:198=110:110"}}
+texture 2C_U_VAR,56,8{patch 2C_U_BAR,0,0{rotate 90}}
+texture 2C_V_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=110:110","198:198=4:4"}}
+texture 2C_V_VAR,56,8{patch 2C_V_BAR,0,0{rotate 90}}
+texture 2C_W_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=110:110","198:198=4:4"}}
+texture 2C_W_VAR,56,8{patch 2C_W_BAR,0,0{rotate 90}}
+texture 2C_S_BAR,8,56{patch TNT1A0,0,0}
+texture 2C_S_VAR,56,8{patch TNT1A0,0,0}
+texture 2C_R_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=110:110","198:198=110:110"}}
+texture 2C_R_VAR,56,8{patch 2C_R_BAR,0,0{rotate 90}}
+
+//Quickman
+texture 2D_B_BAR,8,56{patch B_BAR00H,0,0{Translation"192:192=34:34","198:198=39:39","199:199=41:41"}}
+texture 2D_B_VAR,56,8{patch 2D_B_BAR,0,0{rotate 90}}
+texture 2D_C_BAR,8,56{patch B_BAR00H,0,0{Translation"192:192=39:39","198:198=41:41","199:199=229:229"}}
+texture 2D_C_VAR,56,8{patch 2D_C_BAR,0,0{rotate 90}}
+texture 2D_D_BAR,8,56{patch B_BAR00H,0,0{Translation"192:192=41:41","198:198=229:229","199:199=34:34"}}
+texture 2D_D_VAR,56,8{patch 2D_D_BAR,0,0{rotate 90}}
+texture 2D_E_BAR,8,56{patch B_BAR00H,0,0{Translation"192:192=229:229","198:198=34:34","199:199=39:39"}}
+texture 2D_E_VAR,56,8{patch 2D_E_BAR,0,0{rotate 90}}
+texture 2D_A_BAR,8,56{patch TNT1A0,0,0}
+texture 2D_A_VAR,56,8{patch TNT1A0,0,0}
+
+//Alien
+texture 02_A_BAR,8,56{patch BARENERG,0,0{Translation"192:192=104:104","198:198=110:110"}}
+texture 02_A_VAR,56,8{patch 02_A_BAR,0,0{rotate 90}}
+
+//Geminiman
+texture 3C_H_BAR,8,56{patch B_BAR02C,0,0{Translation"192:192=107:107","198:198=206:206"}}
+texture 3C_H_VAR,56,8{patch 3C_H_BAR,0,0{rotate 90}}
+texture 3C_I_BAR,8,56{patch B_BAR02D,0,0{Translation"192:192=107:107","198:198=206:206"}}
+texture 3C_I_VAR,56,8{patch 3C_I_BAR,0,0{rotate 90}}
+texture 3C_J_BAR,8,56{patch B_BAR02C,0,0{Translation"192:192=206:206","198:198=107:107"}}
+texture 3C_J_VAR,56,8{patch 3C_J_BAR,0,0{rotate 90}}
+texture 3C_K_BAR,8,56{patch B_BAR02D,0,0{Translation"192:192=206:206","198:198=107:107"}}
+texture 3C_K_VAR,56,8{patch 3C_K_BAR,0,0{rotate 90}}
+texture 3C_G_BAR,8,56{patch TNT1A0,0,0}
+texture 3C_G_VAR,56,8{patch TNT1A0,0,0}
+
+//Topman
+texture 03_5_BAR,8,56{patch BARENERG,0,0{Translation"192:192=24:24","198:198=3:3"}}
+texture 03_5_VAR,56,8{patch 03_5_BAR,0,0{rotate 90}}
+
+//Snakeman
+texture 3F_R_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=175:175","198:198=175:175"}}
+texture 3F_R_VAR,56,8{patch 3F_R_BAR,0,0{rotate 90}}
+
+//Sparkman
+texture 03_7_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=218:218"}}
+texture 03_7_VAR,56,8{patch 03_7_BAR,0,0{rotate 90}}
+texture 3G_A_BAR,8,56{patch BARENERG,0,0{Translation"192:192=218:218","198:198=220:220"}}
+texture 3G_A_VAR,56,8{patch 3G_A_BAR,0,0{rotate 90}}
+
+//Doc Robot
+texture 03_9_BAR,8,56{patch BARENERG,0,0{Translation"192:192=217:217","198:198=174:174"}}
+texture 03_9_VAR,56,8{patch 03_9_BAR,0,0{rotate 90}}
+
+texture DOC_NULJ,33,43{XScale 1.35 YScale 1.35 patch DOCSTAT1,0,0{Translation"4:4=89:89","192:192=95:95","198:198=3:3"}}
+texture DOC_100J,33,43{XScale 1.35 YScale 1.35 patch DOCSTAT1,0,0{Translation"4:4=160:160","192:192=229:229","198:198=230:230"}}
+texture DOC_110J,33,43{XScale 1.35 YScale 1.35 patch DOCSTAT1,0,0{Translation"4:4=105:105","192:192=106:106","198:198=111:111"}}
+texture DOC_120J,33,43{XScale 1.35 YScale 1.35 patch DOCSTAT1,0,0{Translation"4:4=102:102","192:192=109:109","198:198=129:129"}}//4=103
+texture DOC_130J,33,43{XScale 1.35 YScale 1.35 patch DOCSTAT1,0,0{Translation"4:4=202:202","192:192=192:192","198:198=197:197"}}
+texture DOC_140J,33,43{XScale 1.35 YScale 1.35 patch DOCSTAT1,0,0{Translation"4:4=196:196","192:192=197:197","198:198=198:198"}}
+texture DOC_150J,33,43{XScale 1.35 YScale 1.35 patch DOCSTAT1,0,0{Translation"4:4=68:68","192:192=198:198","198:198=244:244"}}
+texture DOC_160J,33,43{XScale 1.35 YScale 1.35 patch DOCSTAT1,0,0{Translation"4:4=236:236","192:192=238:238","198:198=252:252"}}
+
+texture DOC_NULS,40,46{XScale 1.35 YScale 1.35 patch DOCSTAT2,0,0{Translation"4:4=89:89","192:192=95:95","198:198=3:3"}}
+texture DOC_080S,40,46{XScale 1.35 YScale 1.35 patch DOCSTAT2,0,0{Translation"4:4=176:176","192:192=181:181","198:198=185:185"}}
+texture DOC_085S,40,46{XScale 1.35 YScale 1.35 patch DOCSTAT2,0,0{Translation"4:4=216:216","192:192=220:220","198:198=223:223"}}
+texture DOC_090S,40,46{XScale 1.35 YScale 1.35 patch DOCSTAT2,0,0{Translation"4:4=248:248","192:192=218:218","198:198=232:232"}}//4=228
+texture DOC_095S,40,46{XScale 1.35 YScale 1.35 patch DOCSTAT2,0,0{Translation"4:4=160:160","192:192=229:229","198:198=230:230"}}
+texture DOC_100S,40,46{XScale 1.35 YScale 1.35 patch DOCSTAT2,0,0{Translation"4:4=105:105","192:192=106:106","198:198=111:111"}}
+texture DOC_110S,40,46{XScale 1.35 YScale 1.35 patch DOCSTAT2,0,0{Translation"4:4=102:102","192:192=109:109","198:198=129:129"}}//4=103
+texture DOC_120S,40,46{XScale 1.35 YScale 1.35 patch DOCSTAT2,0,0{Translation"4:4=202:202","192:192=192:192","198:198=197:197"}}
+texture DOC_130S,40,46{XScale 1.35 YScale 1.35 patch DOCSTAT2,0,0{Translation"4:4=196:196","192:192=197:197","198:198=198:198"}}
+texture DOC_140S,40,46{XScale 1.35 YScale 1.35 patch DOCSTAT2,0,0{Translation"4:4=68:68","192:192=198:198","198:198=244:244"}}
+texture DOC_150S,40,46{XScale 1.35 YScale 1.35 patch DOCSTAT2,0,0{Translation"4:4=236:236","192:192=238:238","198:198=252:252"}}
+
+/*
+texture DOC_NULJ,33,43{XScale 1.35 YScale 1.35 patch DOCSTATJ,0,0{Translation"192:192=95:95","198:198=3:3"}}
+texture DOC_100J,33,43{XScale 1.35 YScale 1.35 patch DOCSTATJ,0,0{Translation"192:192=219:219","198:198=216:216"}}
+texture DOC_110J,33,43{XScale 1.35 YScale 1.35 patch DOCSTATJ,0,0{Translation"192:192=110:110","198:198=108:108"}}
+texture DOC_120J,33,43{XScale 1.35 YScale 1.35 patch DOCSTATJ,0,0{Translation"192:192=118:118","198:198=128:128"}}
+texture DOC_130J,33,43{XScale 1.35 YScale 1.35 patch DOCSTATJ,0,0{Translation"192:192=132:132","198:198=130:130"}}
+texture DOC_160J,33,43{XScale 1.35 YScale 1.35 patch DOCSTATJ,0,0{Translation"192:192=79:79","198:198=63:63"}}
+
+texture DOC_NULS,40,46{XScale 1.35 YScale 1.35 patch DOCSTATS,0,0{Translation"192:192=95:95","198:198=3:3"}}
+texture DOC_090S,40,46{XScale 1.35 YScale 1.35 patch DOCSTATS,0,0{Translation"192:192=179:179","198:198=227:227"}}
+texture DOC_095S,40,46{XScale 1.35 YScale 1.35 patch DOCSTATS,0,0{Translation"192:192=219:219","198:198=216:216"}}
+texture DOC_100S,40,46{XScale 1.35 YScale 1.35 patch DOCSTATS,0,0{Translation"192:192=229:229","198:198=228:228"}}
+texture DOC_105S,40,46{XScale 1.35 YScale 1.35 patch DOCSTATS,0,0{Translation"192:192=105:105","198:198=104:104"}}
+texture DOC_110S,40,46{XScale 1.35 YScale 1.35 patch DOCSTATS,0,0{Translation"192:192=110:110","198:198=108:108"}}
+texture DOC_115S,40,46{XScale 1.35 YScale 1.35 patch DOCSTATS,0,0{Translation"192:192=118:118","198:198=128:128"}}
+texture DOC_120S,40,46{XScale 1.35 YScale 1.35 patch DOCSTATS,0,0{Translation"192:192=132:132","198:198=130:130"}}
+texture DOC_130S,40,46{XScale 1.35 YScale 1.35 patch DOCSTATS,0,0{Translation"192:192=199:199","198:198=75:75"}}
+*/
+//Pharaohman
+texture 04_4_BAR,8,56{patch BARENERG,0,0{Translation"192:192=112:112","198:198=130:130"}}
+texture 04_4_VAR,56,8{patch 04_4_BAR,0,0{rotate 90}}
+
+//Ringman
+texture 4E_B_BAR,16,16{patch 4E_A_BAR,0,0{Translation"4:4=95:95","229:229=3:3"}}
+texture 4E_C_BAR,16,16{patch 4E_A_BAR,0,0{Translation"0:255=0:0"}}
+
+//Diveman
+texture 04_7_BAR,8,56{patch BARENERG,0,0{Translation"192:192=196:196","198:198=197:197"}}
+texture 04_7_VAR,56,8{patch 04_7_BAR,0,0{rotate 90}}
+
+//Skullman
+texture 4H_T_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=180:180","198:198=248:248"}}
+texture 4H_T_VAR,56,8{patch 4H_T_BAR,0,0{rotate 90}}
+texture 4H_U_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=180:180","198:198=248:248"}}
+texture 4H_U_VAR,56,8{patch 4H_U_BAR,0,0{rotate 90}}
+texture 4H_V_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=248:248","198:198=180:180"}}
+texture 4H_V_VAR,56,8{patch 4H_V_BAR,0,0{rotate 90}}
+texture 4H_W_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=248:248","198:198=180:180"}}
+texture 4H_W_VAR,56,8{patch 4H_W_BAR,0,0{rotate 90}}
+texture 4H_S_BAR,8,56{patch TNT1A0,0,0}
+texture 4H_S_VAR,56,8{patch TNT1A0,0,0}
+
+texture BARFLS5X,8,56{patch BARAMMO1,0,0}
+texture VARFLS5X,56,8{patch BARAMMO1,0,0{rotate 90}}
+
+//Gravityman
+texture 05_1_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=198:198"}}
+texture 05_1_VAR,56,8{patch 05_1_BAR,0,0{rotate 90}}
+
+//Waveman
+texture 05_2_BAR,8,56{patch BARENERG,0,0{Translation"192:192=193:193","198:198=216:216"}}
+texture 05_2_VAR,56,8{patch 05_2_BAR,0,0{rotate 90}}
+
+//Darkman3
+texture 05_D3BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=216:216"}}
+texture 05_D3VAR,56,8{patch 05_D3BAR,0,0{rotate 90}}
+texture 5K_B_BAR,8,56{patch TNT1A0,0,0}
+texture 5K_B_VAR,56,8{patch TNT1A0,0,0}
+texture 5K_C_BAR,8,56{patch B_BAR10A,0,0{Translation"198:198=57:57"}}
+texture 5K_C_VAR,56,8{patch 5K_C_BAR,0,0{rotate 90}}
+texture 5K_D_BAR,8,56{patch B_BAR10B,0,0{Translation"198:198=57:57"}}
+texture 5K_D_VAR,56,8{patch 5K_D_BAR,0,0{rotate 90}}
+texture 5K_E_BAR,8,56{patch B_BAR10C,0,0{Translation"198:198=57:57"}}
+texture 5K_E_VAR,56,8{patch 5K_E_BAR,0,0{rotate 90}}
+texture 5K_F_BAR,8,56{patch B_BAR10D,0,0{Translation"198:198=57:57"}}
+texture 5K_F_VAR,56,8{patch 5K_F_BAR,0,0{rotate 90}}
+texture 5K_G_BAR,8,56{patch B_BAR10E,0,0{Translation"198:198=57:57"}}
+texture 5K_G_VAR,56,8{patch 5K_G_BAR,0,0{rotate 90}}
+texture 5K_H_BAR,8,56{patch B_BAR10F,0,0{Translation"198:198=57:57"}}
+texture 5K_H_VAR,56,8{patch 5K_H_BAR,0,0{rotate 90}}
+texture 5K_I_BAR,8,56{patch B_BAR10G,0,0{Translation"198:198=57:57"}}
+texture 5K_I_VAR,56,8{patch 5K_I_BAR,0,0{rotate 90}}
+
+//Flameman
+texture 06_3_BAR,8,56{patch BARENERG,0,0{Translation"192:192=216:216","198:198=227:227"}}
+texture 06_3_VAR,56,8{patch 06_3_BAR,0,0{rotate 90}}
+
+//Plantman
+texture 06_5_BAR,8,56{patch BARENERG,0,0{Translation"192:192=104:104","198:198=60:60"}}
+texture 06_5_VAR,56,8{patch 06_5_BAR,0,0{rotate 90}}
+
+//Windman Flight
+texture 06_7_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=108:108"}}
+texture 06_7_VAR,56,8{patch 06_7_BAR,0,0{rotate 90}}
+
+//Burstman
+texture 07_3_BAR,8,56{patch B_3BARSB,0,0{Translation"192:192=218:218","198:198=73:73","202:202=218:218","199:199=73:73","204:204=218:218","195:195=73:73"}}
+texture 07_3_VAR,56,8{patch 07_3_BAR,0,0{rotate 90}}
+
+//Cloudman
+texture 7D_B_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=109:109","198:198=62:62"}}
+texture 7D_B_VAR,56,8{patch 7D_B_BAR,0,0{rotate 90}}
+texture 7D_C_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=109:109","198:198=62:62"}}
+texture 7D_C_VAR,56,8{patch 7D_C_BAR,0,0{rotate 90}}
+texture 7D_D_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=62:62","198:198=109:109"}}
+texture 7D_D_VAR,56,8{patch 7D_D_BAR,0,0{rotate 90}}
+texture 7D_E_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=62:62","198:198=109:109"}}
+texture 7D_E_VAR,56,8{patch 7D_E_BAR,0,0{rotate 90}}
+texture 7D_A_BAR,8,56{patch TNT1A0,0,0}
+texture 7D_A_VAR,56,8{patch TNT1A0,0,0}
+
+//Turboman
+texture 07_8_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=73:73"}}
+texture 07_8_VAR,56,8{patch 07_8_BAR,0,0{rotate 90}}
+
+texture 7H_B_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=210:210","198:198=42:42"}}
+texture 7H_B_VAR,56,8{patch 7H_B_BAR,0,0{rotate 90}}
+texture 7H_C_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=210:210","198:198=42:42"}}
+texture 7H_C_VAR,56,8{patch 7H_C_BAR,0,0{rotate 90}}
+texture 7H_D_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=42:42","198:198=210:210"}}
+texture 7H_D_VAR,56,8{patch 7H_D_BAR,0,0{rotate 90}}
+texture 7H_E_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=42:42","198:198=210:210"}}
+texture 7H_E_VAR,56,8{patch 7H_E_BAR,0,0{rotate 90}}
+texture 7H_A_BAR,8,56{patch TNT1A0,0,0}
+texture 7H_A_VAR,56,8{patch TNT1A0,0,0}
+
+//Astroman
+
+texture 7A_S_BAR,8,56{patch TNT1A0,0,0}
+texture 7A_S_VAR,56,8{patch TNT1A0,0,0}
+
+texture 7A_O_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=237:237","198:198=237:237"}}
+texture 7A_O_VAR,56,8{patch 7A_O_BAR,0,0{rotate 90}}
+texture 7A_P_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=55:55","198:198=55:55"}}
+texture 7A_P_VAR,56,8{patch 7A_P_BAR,0,0{rotate 90}}
+texture 7A_Q_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=208:208","198:198=208:208"}}
+texture 7A_Q_VAR,56,8{patch 7A_Q_BAR,0,0{rotate 90}}
+texture 7A_R_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=251:251","198:198=251:251"}}
+texture 7A_R_VAR,56,8{patch 7A_R_BAR,0,0{rotate 90}}
+
+
+//Searchman
+texture 08_5_BAR,8,56{patch B_1BARSH,0,0{Translation"192:192=105:105","198:198=230:230"}}
+texture 08_5_VAR,56,8{patch 08_5_BAR,0,0{rotate 90}}
+texture 8E_E_BAR,8,56{patch B_1BARSH,0,0{Translation"192:192=0:0","198:198=0:0"}}
+texture 8E_E_VAR,56,8{patch 8E_E_BAR,0,0{rotate 90}}
+
+//Frostman
+texture 8F_B_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=4:4","198:198=221:221"}}
+texture 8F_B_VAR,56,8{patch 8F_B_BAR,0,0{rotate 90}}
+texture 8F_C_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=4:4","198:198=221:221"}}
+texture 8F_C_VAR,56,8{patch 8F_C_BAR,0,0{rotate 90}}
+texture 8F_D_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=221:221","198:198=160:160"}}
+texture 8F_D_VAR,56,8{patch 8F_D_BAR,0,0{rotate 90}}
+texture 8F_E_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=221:221","198:198=4:4"}}
+texture 8F_E_VAR,56,8{patch 8F_E_BAR,0,0{rotate 90}}
+texture 8F_A_BAR,8,56{patch TNT1A0,0,0}
+texture 8F_A_VAR,56,8{patch TNT1A0,0,0}
+
+//Grenademan
+texture 08_7_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=194:194"}}
+texture 08_7_VAR,56,8{patch 08_7_BAR,0,0{rotate 90}}
+
+texture 8G_B_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=160:160","198:198=41:41"}}
+texture 8G_B_VAR,56,8{patch 8G_B_BAR,0,0{rotate 90}}
+texture 8G_C_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=160:160","198:198=41:41"}}
+texture 8G_C_VAR,56,8{patch 8G_C_BAR,0,0{rotate 90}}
+texture 8G_D_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=41:41","198:198=160:160"}}
+texture 8G_D_VAR,56,8{patch 8G_D_BAR,0,0{rotate 90}}
+texture 8G_E_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=41:41","198:198=160:160"}}
+texture 8G_E_VAR,56,8{patch 8G_E_BAR,0,0{rotate 90}}
+texture 8G_A_BAR,8,56{patch TNT1A0,0,0}
+texture 8G_A_VAR,56,8{patch TNT1A0,0,0}
+
+//Original Duo
+texture 08_O_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=192:192"}}
+texture 08_O_VAR,56,8{patch 08_O_BAR,0,0{rotate 90}}
+
+//Dynamoman
+texture BA_R_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=96:96","198:198=96:96"}}
+texture BA_R_VAR,56,8{patch BA_R_BAR,0,0{rotate 90}}
+
+//Groundman
+texture 0B_C_BAR,8,56{patch BARENERG,0,0{Translation"192:192=71:71","198:198=76:76"}}
+texture 0B_C_VAR,56,8{patch 0B_C_BAR,0,0{rotate 90}}
+
+//Pirateman
+texture 0B_D_BAR,8,56{patch B_3BARSB,0,0{Translation"192:192=41:41","198:198=3:3","202:202=41:41","199:199=3:3","204:204=41:41","195:195=3:3"}}
+texture 0B_D_VAR,56,8{patch 0B_D_BAR,0,0{rotate 90}}
+
+//King
+texture 0B_K_BAR,8,56{patch BARENERG,0,0{Translation"192:192=215:215","198:198=220:220"}}
+texture 0B_K_VAR,56,8{patch 0B_K_BAR,0,0{rotate 90}}
+
+texture BK_B_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=215:215","198:198=220:220"}}
+texture BK_B_VAR,56,8{patch BK_B_BAR,0,0{rotate 90}}
+texture BK_C_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=215:215","198:198=220:220"}}
+texture BK_C_VAR,56,8{patch BK_C_BAR,0,0{rotate 90}}
+texture BK_D_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=220:220","198:198=215:215"}}
+texture BK_D_VAR,56,8{patch BK_D_BAR,0,0{rotate 90}}
+texture BK_E_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=220:220","198:198=215:215"}}
+texture BK_E_VAR,56,8{patch BK_E_BAR,0,0{rotate 90}}
+texture BK_A_BAR,8,56{patch TNT1A0,0,0}
+texture BK_A_VAR,56,8{patch TNT1A0,0,0}
+
+//Splashwoman
+texture 09_3_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=106:106"}}
+texture 09_3_VAR,56,8{patch 09_3_BAR,0,0{rotate 90}}
+
+texture 9C_R_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=161:161","198:198=161:161"}}
+texture 9C_R_VAR,56,8{patch 9C_R_BAR,0,0{rotate 90}}
+texture 9C_S_BAR,8,56{patch TNT1A0,0,0}
+texture 9C_S_VAR,56,8{patch TNT1A0,0,0}
+texture 9C_T_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=199:199","198:198=161:161"}}
+texture 9C_T_VAR,56,8{patch 9C_T_BAR,0,0{rotate 90}}
+texture 9C_U_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=199:199","198:198=161:161"}}
+texture 9C_U_VAR,56,8{patch 9C_U_BAR,0,0{rotate 90}}
+texture 9C_V_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=161:161","198:198=199:199"}}
+texture 9C_V_VAR,56,8{patch 9C_V_BAR,0,0{rotate 90}}
+texture 9C_W_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=161:161","198:198=199:199"}}
+texture 9C_W_VAR,56,8{patch 9C_W_BAR,0,0{rotate 90}}
+
+//Hornetman
+texture 09_6_BAR,8,56{patch BARENERG,0,0{Translation"192:192=160:160","198:198=220:220"}}
+texture 09_6_VAR,56,8{patch 09_6_BAR,0,0{rotate 90}}
+
+//Magmaman
+texture 09_7_BAR,8,56{patch BARENERG,0,0{Translation"192:192=228:228","198:198=180:180"}}
+texture 09_7_VAR,56,8{patch 09_7_BAR,0,0{rotate 90}}
+
+//Commandoman
+texture 10_3_BAR,8,56{patch BARENERG,0,0{Translation"192:192=87:87","198:198=222:222"}}
+texture 10_3_VAR,56,8{patch 10_3_BAR,0,0{rotate 90}}
+
+//Chillman
+texture 10D_H_BR,8,15{patch B_1BARSL,0,0{Translation"192:192=202:202","198:198=204:204"}}
+texture 10D_H_VR,15,8{patch 10D_H_BR,0,0{rotate 90}}
+texture 10D_I_BR,8,15{patch TNT1A0,0,0}
+texture 10D_I_VR,15,8{patch TNT1A0,0,0}
+
+texture 10D_R_BR,8,56{patch B_BAR01C,0,0{Translation"192:192=69:69","198:198=69:69"}}
+texture 10D_R_VR,56,8{patch 10D_R_BR,0,0{rotate 90}}
+texture 10D_S_BR,8,56{patch TNT1A0,0,0}
+texture 10D_S_VR,56,8{patch TNT1A0,0,0}
+texture 10D_T_BR,8,56{patch B_BAR01C,0,0{Translation"192:192=80:80","198:198=93:93"}}
+texture 10D_T_VR,56,8{patch 10D_T_BR,0,0{rotate 90}}
+texture 10D_U_BR,8,56{patch B_BAR01D,0,0{Translation"192:192=80:80","198:198=93:93"}}
+texture 10D_U_VR,56,8{patch 10D_U_BR,0,0{rotate 90}}
+texture 10D_V_BR,8,56{patch B_BAR01C,0,0{Translation"198:198=80:80","192:192=93:93"}}
+texture 10D_V_VR,56,8{patch 10D_V_BR,0,0{rotate 90}}
+texture 10D_W_BR,8,56{patch B_BAR01D,0,0{Translation"198:198=80:80","192:192=93:93"}}
+texture 10D_W_VR,56,8{patch 10D_W_BR,0,0{rotate 90}}
+
+//Solarman
+texture 10_8_BAR,8,56{patch BARENERG,0,0{Translation"192:192=213:213","198:198=217:217"}}
+texture 10_8_VAR,56,8{patch 10_8_BAR,0,0{rotate 90}}
+
+texture 10H_A_BR,8,56{patch B_3BARSB,0,0{Translation"192:192=4:4","198:198=248:248","202:202=4:4","199:199=248:248","204:204=4:4","195:195=248:248"}}
+texture 10H_A_VR,56,8{patch 10H_A_BR,0,0{rotate 90}}//Old Bar?
+texture 10H_B_BR,8,56{patch B_BAR01C,0,0{Translation"192:192=4:4","198:198=4:4"}}
+texture 10H_B_VR,56,8{patch 10H_B_BR,0,0{rotate 90}}
+texture 10H_C_VR,56,8{patch 10H_C_BR,0,0{rotate 90}}//Custom?
+texture 10H_Z_VR,56,8{patch 10H_Z_BR,0,0{rotate 90}}
+
+texture 10H_F_BR,8,56{patch TNT1A0,0,0}
+texture 10H_F_VR,56,8{patch TNT1A0,0,0}
+texture 10H_G_BR,8,56{patch BARENERG,0,0{Translation"192:192=229:229","198:198=41:41"}}
+texture 10H_G_VR,56,8{patch 10H_G_BR,0,0{rotate 90}}
+
+texture 10H_S_BR,8,56{patch TNT1A0,0,0}
+texture 10H_S_VR,56,8{patch TNT1A0,0,0}
+texture 10H_T_BR,8,56{patch B_BAR01C,0,0{Translation"192:192=80:80","198:198=93:93"}}
+texture 10H_T_VR,56,8{patch 10H_T_BR,0,0{rotate 90}}
+texture 10H_U_BR,8,56{patch B_BAR01D,0,0{Translation"192:192=80:80","198:198=93:93"}}
+texture 10H_U_VR,56,8{patch 10H_U_BR,0,0{rotate 90}}
+texture 10H_V_BR,8,56{patch B_BAR01C,0,0{Translation"198:198=80:80","192:192=93:93"}}
+texture 10H_V_VR,56,8{patch 10H_V_BR,0,0{rotate 90}}
+texture 10H_W_BR,8,56{patch B_BAR01D,0,0{Translation"198:198=80:80","192:192=93:93"}}
+texture 10H_W_VR,56,8{patch 10H_W_BR,0,0{rotate 90}}
+
+//Terra
+texture 0V_A_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=117:117"}}
+texture 0V_A_VAR,56,8{patch 0V_A_BAR,0,0{rotate 90}}
+
+texture VA_B_BAR,8,56{patch B_BAR01E,0,0{Translation"192:192=216:216","198:198=221:221"}}
+texture VA_B_VAR,56,8{patch VA_B_BAR,0,0{rotate 90}}
+texture VA_C_BAR,8,56{patch B_BAR01F,0,0{Translation"192:192=216:216","198:198=221:221"}}
+texture VA_C_VAR,56,8{patch VA_C_BAR,0,0{rotate 90}}
+texture VA_D_BAR,8,56{patch B_BAR01E,0,0{Translation"192:192=221:221","198:198=216:216"}}
+texture VA_D_VAR,56,8{patch VA_D_BAR,0,0{rotate 90}}
+texture VA_E_BAR,8,56{patch B_BAR01F,0,0{Translation"192:192=221:221","198:198=216:216"}}
+texture VA_E_VAR,56,8{patch VA_E_BAR,0,0{rotate 90}}
+texture VA_A_BAR,8,56{patch TNT1A0,0,0}
+texture VA_A_VAR,56,8{patch TNT1A0,0,0}
+
+//Mercury
+texture 0V_1_BAR,8,56{patch BARENERG,0,0{Translation"192:192=128:128","198:198=130:130"}}
+texture 0V_1_VAR,56,8{patch 0V_1_BAR,0,0{rotate 90}}
+
+//Mars
+texture 0V_D_BAR,8,56{patch BARENERG,0,0{Translation"192:192=229:229","198:198=199:199"}}
+texture 0V_D_VAR,56,8{patch 0V_D_BAR,0,0{rotate 90}}
+
+texture VD_T_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=160:160","198:198=162:162"}}
+texture VD_T_VAR,56,8{patch VD_T_BAR,0,0{rotate 90}}
+texture VD_U_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=160:160","198:198=162:162"}}
+texture VD_U_VAR,56,8{patch VD_U_BAR,0,0{rotate 90}}
+texture VD_V_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=162:162","198:198=160:160"}}
+texture VD_V_VAR,56,8{patch VD_V_BAR,0,0{rotate 90}}
+texture VD_W_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=162:162","198:198=160:160"}}
+texture VD_W_VAR,56,8{patch VD_W_BAR,0,0{rotate 90}}
+texture VD_S_BAR,8,56{patch TNT1A0,0,0}
+texture VD_S_VAR,56,8{patch TNT1A0,0,0}
+texture VD_R_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=162:162","198:198=162:162"}}
+texture VD_R_VAR,56,8{patch VD_R_BAR,0,0{rotate 90}}
+
+texture 0V_3_BAR,8,56{patch BARENERG,0,0{Translation"192:192=210:210","198:198=42:42"}}
+texture 0V_3_VAR,56,8{patch 0V_3_BAR,0,0{rotate 90}}
+
+//Jupiter
+texture 0V_E_BAR,8,56{patch BARENERG,0,0{Translation"192:192=229:229","198:198=130:130"}}
+texture 0V_E_VAR,56,8{patch 0V_E_BAR,0,0{rotate 90}}
+
+//Uranus
+texture 0V_G_BAR,8,56{patch B_4BARSX,0,0{Translation"192:192=210:210","198:198=220:220","202:202=210:210","199:199=220:220","204:204=229:229","195:195=179:179","118:118=176:176","119:119=184:184"}}
+texture 0V_G_VAR,56,8{patch 0V_G_BAR,0,0{rotate 90}}
+
+texture 0V_6_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=227:227"}}
+texture 0V_6_VAR,56,8{patch 0V_6_BAR,0,0{rotate 90}}
+
+texture 0V_G2VAR,56,8{patch 0V_G2BAR,0,0{rotate 90}}
+
+texture VG_B_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=160:160","198:198=221:221"}}
+texture VG_B_VAR,56,8{patch VG_B_BAR,0,0{rotate 90}}
+texture VG_C_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=160:160","198:198=221:221"}}
+texture VG_C_VAR,56,8{patch VG_C_BAR,0,0{rotate 90}}
+texture VG_D_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=221:221","198:198=160:160"}}
+texture VG_D_VAR,56,8{patch VG_D_BAR,0,0{rotate 90}}
+texture VG_E_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=221:221","198:198=160:160"}}
+texture VG_E_VAR,56,8{patch VG_E_BAR,0,0{rotate 90}}
+texture VG_A_BAR,8,56{patch TNT1A0,0,0}
+texture VG_A_VAR,56,8{patch TNT1A0,0,0}
+
+//Pluto
+texture 0V_7_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=62:62"}}
+texture 0V_7_VAR,56,8{patch 0V_7_BAR,0,0{rotate 90}}
+
+texture 0V_H_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=56:56"}}
+texture 0V_H_VAR,56,8{patch 0V_H_BAR,0,0{rotate 90}}
+
+texture 0V_H2VAR,56,8{patch 0V_H2BAR,0,0{rotate 90}}
+
+texture VH_S_BAR,8,56{patch TNT1A0,0,0}
+texture VH_S_VAR,56,8{patch TNT1A0,0,0}
+texture VH_T_BAR,8,56{patch B_BAR00H,0,0{Translation"192:192=59:59","198:198=61:61","199:199=63:63"}}
+texture VH_T_VAR,56,8{patch VH_T_BAR,0,0{rotate 90}}
+
+//Neptune
+texture 0V_8_BAR,8,56{patch BARENERG,0,0{Translation"192:192=201:201","198:198=75:75"}}
+texture 0V_8_VAR,56,8{patch 0V_8_BAR,0,0{rotate 90}}
+texture 0V_I_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=201:201"}}
+texture 0V_I_VAR,56,8{patch 0V_I_BAR,0,0{rotate 90}}
+
+//BusterRodG
+texture WT_A_BAR,8,56{patch BARENERG,0,0{Translation"192:192=218:218","198:198=221:221"}}
+texture WT_A_VAR,56,8{patch WT_A_BAR,0,0{rotate 90}}
+
+//MegaWaterS
+texture WT_B_BAR,8,56{patch BARENERG,0,0{Translation"192:192=218:218","198:198=116:116"}}
+texture WT_B_VAR,56,8{patch WT_B_BAR,0,0{rotate 90}}
+texture WT_2_BAR,8,56{patch BARENERG,0,0{Translation"192:192=204:204","198:198=205:205"}}
+texture WT_2_VAR,56,8{patch WT_2_BAR,0,0{rotate 90}}
+
+//HyperStormH
+texture WT_C_BAR,8,56{patch BARENERG,0,0{Translation"192:192=229:229","198:198=227:227"}}
+texture WT_C_VAR,56,8{patch WT_C_BAR,0,0{rotate 90}}
+texture WT_3_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=75:75"}}
+texture WT_3_VAR,56,8{patch WT_3_BAR,0,0{rotate 90}}
+
+//Enker
+texture KA_A_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=229:229","198:198=229:229"}}
+texture KA_A_VAR,56,8{patch KA_A_BAR,0,0{rotate 90}}
+
+//Ballade
+texture 0K_3_BAR,8,56{patch B_3BARSB,0,0{Translation"192:192=64:64","198:198=62:62","202:202=64:64","199:199=62:62","204:204=64:64","195:195=62:62"}}
+texture 0K_3_VAR,56,8{patch 0K_3_BAR,0,0{rotate 90}}
+
+texture KC_G2VAR,56,8{patch KC_G2BAR,0,0{rotate 90}}
+
+texture KC_B_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=228:228","198:198=229:229"}}
+texture KC_B_VAR,56,8{patch KC_B_BAR,0,0{rotate 90}}
+texture KC_C_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=228:228","198:198=229:229"}}
+texture KC_C_VAR,56,8{patch KC_C_BAR,0,0{rotate 90}}
+texture KC_D_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=229:229","198:198=228:228"}}
+texture KC_D_VAR,56,8{patch KC_D_BAR,0,0{rotate 90}}
+texture KC_E_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=229:229","198:198=228:228"}}
+texture KC_E_VAR,56,8{patch KC_E_BAR,0,0{rotate 90}}
+texture KC_A_BAR,8,56{patch TNT1A0,0,0}
+texture KC_A_VAR,56,8{patch TNT1A0,0,0}
+
+//RaThor
+texture 0K_E_BAR,8,56{patch BARENERG,0,0{Translation"192:192=248:248","198:198=3:3"}}
+texture 0K_E_VAR,56,8{patch 0K_E_BAR,0,0{rotate 90}}
+texture 0K_5_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=57:57"}}
+texture 0K_5_VAR,56,8{patch 0K_5_BAR,0,0{rotate 90}}

@@ -1,0 +1,104 @@
+actor CreateBotBuddy : CreateBotBuddy0
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("CreateBotBuddyC",1)
+goto "Super::Pickup"
+}
+}
+
+actor CreateBotBuddyC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("BotRetreatFlag",1,"Retreat")
+TNT1 A 0 A_JumpIfInventory("BotHugFlag",1,"Hug")
+TNT1 A 0 A_GiveInventory("BotRevert",1)
+stop
+Retreat:
+TNT1 A 0 A_GiveInventory("BotRetreat",1)
+stop
+Hug:
+TNT1 A 0 A_GiveInventory("BotHug",1)
+stop
+}
+}
+
+actor BotRetreatFlag : Once {}
+
+actor BotHugFlag : Once {}
+
+actor BotRetreat : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfCloser(150,"Reverse")
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_SetActorPropertyMath",0,-1)
+TNT1 A 0 A_GiveInventory("CreateBackBotBuddy",1)
+stop
+Reverse:
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_SetActorPropertyMath",0,-2)
+stop
+}
+}
+
+actor CreateBackBotBuddy : CreateBotBuddy
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("BotBuddy",-32,0,32,0,0,0)
+TNT1 A 0 A_SpawnItemEx("BotBuddy",-32,0,64,0,0,0)
+stop
+}
+}
+
+actor BotBuddyC : BotBuddy replaces BotBuddy
+{
+States
+{
+GiveJump:
+TNT1 A 0 A_GiveToTarget("BotJumpC",1)
+stop
+}
+}
+
+actor BotHug : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfCloser(150,"Reverse")
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_SetActorPropertyMath",0,-2)
+stop
+Reverse:
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_SetActorPropertyMath",0,-1)
+stop
+}
+}
+
+actor BotRevert : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_SetActorPropertyMath",0,-2)
+stop
+}
+}
+
+actor BotJumpC : CustomInventory 
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(floorz-z==0,"GiveJump")
+stop
+GiveJump:
+TNT1 A 0 ThrustThingZ(0,CallACS("cbm_BotBuddyFetchJumpZ"),0,0)
+stop
+}
+}

@@ -1,0 +1,459 @@
+//Change every core damage to be x10
+//Search for "$CBM" for actors with extra changes
+
+actor Beef_BeatSupportProjectile : BeatSupportProjectile replaces BeatSupportProjectile{damage (180)}
+actor Beef_EddieBomberBomb : EddieBomberBomb replaces EddieBomberBomb{damage (10)states{Death:NAPA D 0 A_Explode(170-17,185,0)goto Super::Death}}
+actor Beef_ReggaeCan : ReggaeCan replaces ReggaeCan{damage (250)}
+actor Beef_TangoAttack : TangoAttack replaces TangoAttack{damage (200)}
+actor Beef_TrebleShot : TrebleShot replaces TrebleShot{damage (60)}
+actor Beef_WireAdaptorHook : WireAdaptorHook replaces WireAdaptorHook{damage (20)}
+actor Beef_WireAdaptorHookFX : WireAdaptorHookFX {}
+
+actor Beef_MegaShot : MegaShot replaces MegaShot{damage (100)}
+actor Beef_ProtoShot : ProtoShot replaces ProtoShot{damage (100)}
+actor Beef_ProtoShot2 : ProtoShot2 replaces ProtoShot2{damage (250)}
+actor Beef_ProtoShot3 : ProtoShot3 replaces ProtoShot3{damage (500)}
+actor Beef_BassShot : BassShot replaces BassShot{damage (60)}
+actor Beef_AdaptorFist : AdaptorFist replaces AdaptorFist{damage (360)}
+actor Beef_DuoPunch : DuoPunch replaces DuoPunch{damage (250)}
+actor Beef_MidFist : MidFist replaces MidFist{damage (350)}
+actor Beef_GigaFist : GigaFist replaces GigaFist{damage (700)}
+actor Beef_MegaLaser : MegaLaser replaces MegaLaser{damage (50)}
+actor Beef_MidShot : MidShot replaces MidShot{damage (150)}
+actor Beef_ArrowShot : ArrowShot replaces ArrowShot{damage (200)}
+actor Beef_ArrowFrag1 : ArrowFrag1 replaces ArrowFrag1{damage (70)}
+actor Beef_ArrowFrag2 : ArrowFrag2 replaces ArrowFrag2{damage (70)}
+actor Beef_BoostShot : BoostShot replaces BoostShot{damage (100)}
+actor Beef_MegaArmFist : MegaArmFist replaces MegaArmFist{damage (150)}
+actor Beef_MegaArmDamage : MegaArmDamage replaces MegaArmDamage{damage (50)}
+actor Beef_MegaArmHand : MegaArmHand replaces MegaArmHand{damage (50)}
+
+actor Beef_RollingCutterDamager : RollingCutterDamager replaces RollingCutterDamager{damage (100)}
+actor Beef_Gutrock : Gutrock replaces Gutrock{damage (750)}
+actor Beef_GutrockDebris : GutrockDebris replaces GutrockDebris{damage (180)}
+actor Beef_IceSlasher : IceSlasher replaces IceSlasher{damage (150)}
+actor Beef_HyperBomb : HyperBomb replaces HyperBomb{states{Death:BOMB A 0 A_Explode(2500-250,180,0)goto Super::Death}}
+actor Beef_FireStorm : FireStorm replaces FireStorm{damage (270)}
+actor Beef_FireShieldDamage : FireShieldDamage replaces FireShieldDamage{states{Spawn:TNT1 A 0
+TNT1 A 0 A_Explode(50+CallACS("cbm_CheckForSpread")*100,80,0,0,81)
+stop}}
+actor Beef_ThunderBeam : ThunderBeam replaces ThunderBeam{damage (170)}
+actor Beef_TimeSlow : TimeSlow replaces TimeSlow{states{Spawn:TNT1 A 0 nodelay A_Explode(130-13,768,0)goto Super::Spawn}}
+actor Beef_OilShot : OilShot replaces OilShot{damage (270)}
+actor Beef_OilBlob : OilBlob replaces OilBlob{+DONTDRAIN Health 10000 damage (130)}//$CBM Drain
+actor Beef_OilBlobFlame : OilBlobFlame replaces OilBlobFlame{damage (470)}
+actor Beef_SliderDamager : SliderDamager replaces SliderDamager{states{Spawn:TNT1 A 0
+TNT1 A 0 A_Explode(210+CallACS("cbm_CheckForSpread")*420,80,0)
+stop}}
+
+actor Beef_MetalBlade : MetalBlade replaces MetalBlade{damage (160)}
+actor Beef_IGMetalBlade : IGMetalBlade replaces IGMetalBlade{damage (1000)}
+actor Beef_AtomicFire1 : AtomicFire1 replaces AtomicFire1{damage (160)}
+actor Beef_AtomicFire2 : AtomicFire2 replaces AtomicFire2{damage (670)}
+actor Beef_AtomicFire3 : AtomicFire3 replaces AtomicFire3{damage (1000)}
+actor Beef_BubbleLeadStart : BubbleLeadStart replaces BubbleLeadStart{damage (470)}
+actor Beef_BubbleLead : BubbleLead replaces BubbleLead{damage (470)}
+actor Beef_AirShot : AirShot replaces AirShot{damage (270)}
+actor Beef_LeafShield : CBM_LeafShield replaces CBM_LeafShield{damage (270)}//
+actor Beef_LeafShieldCounterShot : LeafShieldCounterShot replaces LeafShieldCounterShot{damage (110)}
+actor Beef_TimeStopperRadius : TimeStopperRadius replaces TimeStopperRadius{states{Spawn:TNT1 A 0 nodelay A_Explode(70-7,350,0,0,350)goto Super::Spawn}}
+actor Beef_CrashBomb : CrashBomb replaces CrashBomb{states{
+Death:
+CRAS A 0 A_JumpIf(z-floorz<5, "Floor")
+CRAS A 0 A_JumpIf(z-ceilingz==0-6, "Ceiling")
+CRAS B 3 A_PlaySound("weapon/crashland")
+CRAS C 3
+CRAS DCDCDCDCDCDCDC 3
+Goto XDeath
+Floor:
+CRAS E 3 A_PlaySound("weapon/crashland")
+CRAS F 3
+CRAS GFGFGFGFGFGFGF 3
+Goto XDeath
+Ceiling:
+CRAS H 3 A_PlaySound("weapon/crashland")
+CRAS I 3
+CRAS JIJIJIJIJIJIJI 3
+Goto XDeath
+XDeath:
+CRAS A 0 A_PlaySound("weapon/crashexplode")
+CRAS A 0 A_SpawnItemEx("CrashBombExplode")
+TNT1 AAAA 9 A_Explode(240,64,0)
+stop
+}
+}
+actor Beef_QuickBoomerang : QuickBoomerang replaces QuickBoomerang{damage (140)}
+
+
+actor Beef_Needle : Needle replaces Needle{damage (160)}
+actor Beef_MagnetMissile : MagnetMissile replaces MagnetMissile{damage (300)}
+actor Beef_GeminiLaser : GeminiLaser replaces GeminiLaser{damage (400)}
+actor Beef_HardKnuckle : HardKnuckle replaces HardKnuckle{damage (800)}
+actor Beef_TopRadius : TopRadius replaces TopRadius{states{Spawn:TNT1 A 0
+TOPS A 2 A_Explode(150+CallACS("cbm_CheckForSpread")*300,90,0)//350 original damage
+stop}}
+actor Beef_SearchSnakeStart : SearchSnakeStart replaces SearchSnakeStart{damage (320)}
+actor Beef_SearchSnake : SearchSnake replaces SearchSnake{damage (320)}
+actor Beef_UpSnake0 : UpSnake0 replaces UpSnake0{damage (320)}
+actor Beef_UpSnake1 : UpSnake1 replaces UpSnake1{damage (320)}
+actor Beef_UpSnake2 : UpSnake2 replaces UpSnake2{damage (320)}
+actor Beef_UpSnake3 : UpSnake3 replaces UpSnake3{damage (320)}
+actor Beef_UpSnake4 : UpSnake4 replaces UpSnake4{damage (320)}
+actor Beef_DownSnake : DownSnake replaces DownSnake{damage (320)}
+actor Beef_SparkShock : SparkShock replaces SparkShock{damage (160)}
+actor Beef_ShadowBlade : ShadowBlade replaces ShadowBlade{damage (200)}
+
+
+actor Beef_FlashStopper : FlashStopper replaces FlashStopper{states{
+Spawn:
+TNT1 A 0
+TNT1 A 25
+TNT1 A 0 A_SpawnItemEx("FlashStopperFX",0,0,64)
+TNT1 A 0 A_PlaySoundEx("weapon/flashstopper","Weapon")
+TNT1 A 1 A_Explode(220,450,0)
+goto Super::Spawn+5}}
+actor Beef_RainFlush : RainFlush replaces RainFlush{states{Spawn:TNT1 A 0 nodelay A_SpawnItemEx("Beef_RainFlush_H")goto Super::Spawn}}
+actor Beef_RainFlush_H : RainFlush{renderstyle none states{Spawn:TNT1 A 35
+TNT1 A 7 A_Explode(270-27,512,0)
+TNT1 AAA 7 A_Explode(130-13,512,0)stop}}
+actor Beef_DrillBomb : DrillBomb replaces DrillBomb{states{Death:DRIL A 0 A_Explode(670-67,96,0)goto Super::Death}}
+actor Beef_PharaohShot1 : PharaohShot1 replaces PharaohShot1{damage (160)}
+actor Beef_PharaohShot2 : PharaohShot2 replaces PharaohShot2{damage (530)}
+actor Beef_PharaohShot3 : PharaohShot3 replaces PharaohShot3{states{Death:TNT1 A 0 A_Explode(750-75,96,0,0,16)goto Super::Death}}
+actor Beef_PharaohFX10 : PharaohFX10 replaces PharaohFX10{states{Spawn:PHAS K 0
+PHAS K 2 A_Explode(70+CallACS("cbm_CheckForSpread")*140,64,0)
+stop}}
+actor Beef_RingBoomerang : RingBoomerang replaces RingBoomerang{damage (180)}
+actor Beef_ReturningRing : ReturningRing replaces ReturningRing{damage (180)}
+actor Beef_RingBoomerangDamager : RingBoomerangDamager replaces RingBoomerangDamager{damage (150)}
+actor Beef_DustCrusher : DustCrusher replaces DustCrusher{damage (470)}
+actor Beef_DustBit1 : DustBit1 replaces DustBit1{damage (200)}actor Beef_DustBit1C : DustBit1C replaces DustBit1C{damage (200)}
+actor Beef_DustBit2 : DustBit2 replaces DustBit2{damage (200)}actor Beef_DustBit2C : DustBit2C replaces DustBit2C{damage (200)}
+actor Beef_DustBit3 : DustBit3 replaces DustBit3{damage (200)}actor Beef_DustBit3C : DustBit3C replaces DustBit3C{damage (200)}
+actor Beef_DustBit4 : DustBit4 replaces DustBit4{damage (200)}actor Beef_DustBit4C : DustBit4C replaces DustBit4C{damage (200)}
+actor Beef_DiveMissile : DiveMissile replaces DiveMissile{damage (120)}
+//SkullBarrier
+
+
+actor Beef_GravityHold : GravityHold replaces GravityHold{states{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("GravityHoldFX")
+TNT1 A 1 A_Explode(70,1000,0)
+TNT1 A 0 A_SpawnItemEx("GravityHoldFX")
+TNT1 A 1 A_Explode(70,1000,0)
+TNT1 A 0 A_SpawnItemEx("GravityHoldFX2")
+TNT1 A 1 A_Explode(70,768,0)
+TNT1 A 0 A_SpawnItemEx("GravityHoldFX3")
+TNT1 A 1 A_Explode(70,512,0)
+TNT1 A 0 A_SpawnItemEx("GravityHoldFX3")
+TNT1 A 1 A_Explode(70,512,0)
+stop
+}
+}
+actor Beef_WaterWave : WaterWave replaces WaterWave{damage (110)}
+actor Beef_PowerStone : PowerStone replaces PowerStone{damage (600)}
+actor Beef_GyroAttack : GyroAttack replaces GyroAttack{damage (360)}
+actor Beef_GyroAttack2 : GyroAttack2 replaces GyroAttack2{damage (360)}
+actor Beef_StarRadius : StarRadius replaces StarRadius{states{Spawn:TNT1 A 0
+TNT1 A 1 A_Explode(170+CallACS("cbm_CheckForSpread")*340,128,0)
+stop}}
+actor Beef_StarCrash : StarCrash replaces StarCrash{damage (400)}
+actor Beef_ChargeKick : ChargeKick replaces ChargeKick{damage (470)}
+actor Beef_NapalmBomb : NapalmBomb replaces NapalmBomb{damage (10)states{Death:NAPA A 0 A_Explode(800-80,128,0)goto Super::Death}}
+actor Beef_CrystalEye : CrystalEye replaces CrystalEye{damage (670)}
+actor Beef_CrystalEyeBit : CrystalEyeBit replaces CrystalEyeBit{damage (130)}
+
+
+actor Beef_BlizzardAttack : BlizzardAttack replaces BlizzardAttack{damage (170)}
+actor Beef_CentaurFlash : CentaurFlash replaces CentaurFlash{states{Spawn:TNT1 A 0
+TNT1 AA 2 A_Explode(130,256,0)stop}}
+actor Beef_FlameBlast : FlameBlast replaces FlameBlast{damage (400)}
+actor Beef_FlameWallPillar : FlameWallPillar replaces FlameWallPillar{damage (400)}
+actor Beef_FlamePillar : FlamePillar replaces FlamePillar{damage (400)}
+actor Beef_KnightCrushDamager : KnightCrushDamager replaces KnightCrushDamager{damage (90)}
+actor Beef_PlantBarrier : PlantBarrier replaces PlantBarrier{damage (330)}
+actor Beef_SilverTomahawk : SilverTomahawk replaces SilverTomahawk{damage (400)}
+actor Beef_WindStormStart : WindStormStart replaces WindStormStart{damage (110)}
+actor Beef_WindStorm : WindStorm replaces WindStorm{damage (110)}
+actor Beef_WindBlower : WindBlower replaces WindBlower{states{Spawn:TNT1 A 0
+TNT1 AA 2 A_Explode(200,48,0)stop}}
+actor Beef_YamatoSpear : YamatoSpear replaces YamatoSpear{damage (90)}
+
+actor Beef_FreezeCracker : FreezeCracker replaces FreezeCracker{damage (260)}
+actor Beef_FreezeBit : FreezeBit replaces FreezeBit{damage (100)}
+actor Beef_JunkProjectile : JunkProjectile replaces JunkProjectile{health 80 damage (80)}
+actor Beef_JunkProjectile2 : JunkProjectile2 replaces JunkProjectile2{health 80 damage (40)}
+actor Beef_WrapExplosion : WrapExplosion replaces WrapExplosion{states{Spawn:TNT1 A 0 nodelay A_Explode(530-53,128,0)goto Super::Spawn}}
+actor Beef_DangerWrapMine : DangerWrapMine replaces DangerWrapMine{damage (10)}
+actor Beef_ThunderBolt : ThunderBolt replaces ThunderBolt{damage (350)}
+actor Beef_ThunderBoltSplit : ThunderBoltSplit replaces ThunderBoltSplit{damage (200)}
+actor Beef_WildCoil : WildCoil replaces WildCoil{damage (250)}
+actor Beef_WildCoil2 : WildCoil2 replaces WildCoil2{damage (480)}
+actor Beef_SlashClaw : SlashClaw replaces SlashClaw{states{Spawn:SCLA HIJKL 1 A_Explode(250,80,0)stop}}
+actor Beef_NoiseCrush : NoiseCrush replaces NoiseCrush{damage (270)}
+actor Beef_NoiseCrush2 : NoiseCrush2 replaces NoiseCrush2{damage (800)}
+actor Beef_ScorchWheel : ScorchWheel replaces ScorchWheel{states{
+Spawn:FLMB H 0 A_SpawnItemEx("OilPitIgnite",0,0,0)
+SWHE ABCDEF 2 A_Explode(160,96,0)
+loop}}
+actor Beef_ScorchWheel2 : ScorchWheel2 replaces ScorchWheel2{states{
+Spawn:
+SWHE A 0
+SWHE A 0 A_SpawnItemEx("OilPitIgnite",0,0,0)
+SWHE ABCDEF 2 A_Explode(160,96,0)
+loop}}
+
+actor Beef_TornadoHoldPod : TornadoHoldPod replaces TornadoHoldPod{damage (130)}
+actor Beef_HoldingTornado : HoldingTornado replaces HoldingTornado{damage (130)}
+actor Beef_AstroCrush : AstroCrush replaces AstroCrush{states{Death:ASEX A 0 A_Explode(700-70,128,0)goto Super::Death}}
+actor Beef_FlameSwordTrail : FlameSwordTrail replaces FlameSwordTrail{damage (250)}
+actor Beef_FlameSwordTrail2 : FlameSwordTrail2 replaces FlameSwordTrail2{damage (250)}
+actor Beef_FlameSwordSpark : FlameSwordSpark replaces FlameSwordSpark{damage (10)}
+actor Beef_ThunderClawDamager : ThunderClawDamager replaces ThunderClawDamager{damage (300)}
+actor Beef_HomingSniper : HomingSniper replaces HomingSniper{damage (180)}
+actor Beef_IceWaveSpawner : IceWaveSpawner replaces IceWaveSpawner{damage (200)}
+actor Beef_IceWaveIcicle : IceWaveIcicle replaces IceWaveIcicle{damage (220)}
+actor Beef_IceWaveIcicleWall : IceWaveIcicleWall replaces IceWaveIcicleWall{damage (220)}
+actor Beef_IceWaveIcicleFloor : IceWaveIcicleFloor replaces IceWaveIcicleFloor{damage (220)}
+actor Beef_FlashBombExplosion : FlashBombExplosion replaces FlashBombExplosion{states{Spawn:FLEX A 0 nodelay A_SpawnItemEx("Beef_FlashBombExplosion_H")goto Super::Spawn}}
+actor Beef_FlashBombExplosion_H : FlashBombExplosion{renderstyle none states{Spawn:TNT1 AAAA 1
+TNT1 AAAAAA 4 A_Explode(290-29,80,0)
+TNT1 AAAAAAAA 4 A_Explode(200-20,80,0)
+TNT1 AAAAA 4 A_Explode(160-16,80,0)stop}}
+actor Beef_WaterBalloon : WaterBalloon replaces WaterBalloon{damage (50)states{Death:WTRB K 0 A_Explode(80-8,64,0)goto Super::Death}}
+actor Beef_MegaBallStart : MegaBallStart replaces MegaBallStart{damage (70)}
+actor Beef_MegaBallDroppedStart : MegaBallDroppedStart replaces MegaBallDroppedStart{damage (270)}//5
+actor Beef_MegaBall : CBM_MegaBall replaces CBM_MegaBall{damage (270)}//$CBM CoreActorReplace version
+actor Beef_MegaBallDropped : CBM_MegaBallDropped replaces CBM_MegaBallDropped{damage (270)}//$CBM  CoreActorReplace version
+actor Beef_MegaBallKicked : MegaBallKicked replaces MegaBallKicked{damage (270)}
+
+
+actor Beef_TenguDash : TenguDash replaces TenguDash{states{Spawn:TNT1 A 0
+SCLA HI 1 A_Explode(70+CallACS("cbm_CheckForSpread")*140,64,0)
+SCLA J 0 A_Explode(70+CallACS("cbm_CheckForSpread")*140,64,0)
+SCLA J 1 A_ScaleVelocity(0.5)
+SCLA J 1 A_FadeOut(0.5)
+stop}}
+actor Beef_TenguSlash1 : TenguSlash1 replaces TenguSlash1{states{Spawn:TBLA E 0
+TBLA EF 2 A_Explode(110+CallACS("cbm_CheckForSpread")*220,80,0)
+stop}}
+actor Beef_TenguSlash2 : TenguSlash2 replaces TenguSlash2{states{Spawn:TBLA G 0
+TBLA GF 2 A_Explode(110+CallACS("cbm_CheckForSpread")*220,80,0)
+stop}}
+actor Beef_TenguBlade : TenguBlade replaces TenguBlade{damage (350)}
+actor Beef_CopyShot : CopyShot replaces CopyShot{damage (130)}
+actor Beef_LightningBolt : LightningBolt replaces LightningBolt{states{Spawn:LIBO G 0
+LIBO G 1 A_SpawnItemEx("LightningExtend",0,0,355)
+LIBO G 0 A_PlaySoundEx("weapon/lightningbolt","Weapon")
+LIBO G 0 A_Explode(470,128,0)
+goto Super::Spawn+4}}
+actor Beef_IceWallSpawner : IceWallSpawner replaces IceWallSpawner{States{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+TNT1 A 1 A_Stop
+ICWL ABCDE 2
+ICWL F 0 A_ChangeFlag("NOGRAVITY",0)
+ICWL F 0 A_Explode(110,64,0)
+ICWL F 0 A_SpawnItemEx("IceWall")
+stop
+}}
+actor Beef_IceWall : IceWall replaces IceWall{+DONTDRAIN//$CBM Drain and protection
+DamageFactor "ColdM_Wall", 0.0
+DamageFactor "ColdM_WallFloor", 0.0
+DamageFactor "ColdM_WallAir", 0.0
+DamageFactor "ConcreteM_Bash", 0.04
+Health 2000 Stamina 10 damage (110)states{Spawn:ICWL F 0
+ICWL F 1 A_TakeInventory("IceWallFlag",1,0,2)
+SpawnLoop:
+ICWL F 1 A_JumpIfInventory("IceWallFlag",1,"Death",2)
+ICWL F 0 A_JumpIf(momx>1||momy>1||momx<-1||momy<-1,"MoveBegin")
+ICWL F 0 Thing_Damage(0,Stamina)//1
+ICWL F 0 A_Explode(110,64,0)
+loop
+MoveBegin:
+ICWL F 0 ACS_NamedExecuteAlways("core_stickyLifts",0,STICKYMODE_GUTSLIFT)
+ICWL F 0 A_ChangeFlag("PUSHABLE",0)
+ICWL F 0 ACS_ExecuteAlways(994,0,1)
+ICWL F 1 A_JumpIfInventory("IceWallFlag",1,"Death",2)
+Accelerate:
+ICWL F 0 A_Recoil(-3)
+ICWL FFFFF 1 A_JumpIfInventory("IceWallFlag",1,"Death",2)
+ICWL F 0 A_Recoil(-3)
+ICWL FFFFF 1 A_JumpIfInventory("IceWallFlag",1,"Death",2)
+ICWL F 0 A_Recoil(-3)
+ICWL FFFFF 1 A_JumpIfInventory("IceWallFlag",1,"Death",2)
+ICWL F 0 A_Recoil(-2)
+ICWL FFFFF 1 A_JumpIfInventory("IceWallFlag",1,"Death",2)
+ICWL F 0 A_Recoil(-2)
+ICWL FFFFF 1 A_JumpIfInventory("IceWallFlag",1,"Death",2)
+Moving:
+ICWL F 0 A_JumpIfInventory("IceWallFlag",1,"Death",2)
+ICWL F 0 Thing_Damage(0,Stamina)//1
+ICWL F 1 A_JumpIfHealthLower(750,"MovingLow")
+loop
+MovingLow:
+ICWL K 0 A_JumpIfInventory("IceWallFlag",1,"Death",2)
+ICWL K 1 Thing_Damage(0,Stamina)//1
+loop
+}}
+actor Beef_SpreadDrill : SpreadDrill replaces SpreadDrill{damage (300)}
+actor Beef_MediumDrill1 : MediumDrill1 replaces MediumDrill1{damage (130)}
+actor Beef_MediumDrill2 : MediumDrill2 replaces MediumDrill2{damage (130)}
+actor Beef_SmallDrill1 : SmallDrill1 replaces SmallDrill1{damage (110)}
+actor Beef_SmallDrill2 : SmallDrill2 replaces SmallDrill2{damage (110)}
+actor Beef_RemoteMineExplosion : RemoteMineExplosion replaces RemoteMineExplosion{states{Spawn:REME A 0
+REME A 0 A_SpawnItemEx("Beef_RemoteMineExplosion_H")goto Super::Spawn}}
+actor Beef_RemoteMineExplosion_H : RemoteMineExplosion{renderstyle none states{Spawn:TNT1 A 0
+TNT1 AAAAAAAAA 4 A_Explode(150-15,100,0)stop}}
+actor Beef_WaveBurn : WaveBurn replaces WaveBurn{damage (70)}
+actor Beef_WaveBurnUW : WaveBurnUW replaces WaveBurnUW{damage (70)}
+actor Beef_MagicCardDamager : MagicCardDamager replaces MagicCardDamager{damage (150)}
+
+
+actor Beef_ConcreteShot : ConcreteShot replaces ConcreteShot{damage (350)}
+actor Beef_TornadoDamager : TornadoDamager replaces TornadoDamager{states{Spawn:TNT1 A 1 nodelay A_Explode(80,96,0,0,96)stop}}
+actor Beef_LaserTrident : LaserTrident replaces LaserTrident{damage (350)}
+actor Beef_PlugBallStart : PlugBallStart replaces PlugBallStart{damage (270)}
+actor Beef_PlugBall : PlugBall replaces PlugBall{damage (240)}
+actor Beef_JewelShot : JewelShot replaces JewelShot{damage (350)}
+actor Beef_HornetChaser : HornetChaser replaces HornetChaser{damage (200)}
+actor Beef_MagmaBazooka1 : MagmaBazooka1 replaces MagmaBazooka1{damage (150)}
+actor Beef_MagmaBazooka2 : MagmaBazooka2 replaces MagmaBazooka2{damage (330)}
+actor Beef_BlackHoleBombExplosion : BlackHoleBombExplosion replaces BlackHoleBombExplosion{states{Spawn:BLKH F 0
+BLKH F 0 A_GiveToTarget("BlackHoleBombCooldown",1)
+BLKH F 0 A_SpawnItemEx("BlackHoleBombFXSpawner",0,0,0,0,0,0,0,1)
+BLKH F 0 A_PlaySoundEx("weapon/blackholebombdetonate","body",1)
+BLKH F 0 ACS_ExecuteAlways(247,0,7,256)
+BLKH F 0 A_Explode(50,128,0)
+BLKH FFGG 1
+BLKH F 0 ACS_ExecuteAlways(247,0,7,256)
+BLKH F 0 A_Explode(50,128,0)
+BLKH HHII 1
+BLKH F 0 ACS_ExecuteAlways(247,0,7,256)
+BLKH F 0 A_Explode(50,128,0)
+BLKH JJKK 1
+BLKH F 0 ACS_ExecuteAlways(247,0,7,256)
+BLKH F 0 A_Explode(50,128,0)
+BLKH LLMM 1
+BLKH F 0 ACS_ExecuteAlways(247,0,7,256)
+BLKH F 0 A_Explode(50,128,0)
+BLKH NNOO 1
+BLKH F 0 ACS_ExecuteAlways(247,0,7,256)
+BLKH F 0 A_Explode(50,128,0)
+BLKH PPQQ 1
+BLKH Q 0 A_Countdown
+goto Spawn+3}}
+
+
+
+actor Beef_TripleBlade : TripleBlade replaces TripleBlade{damage (50)}
+actor Beef_TripleBladeR : TripleBladeR replaces TripleBladeR{damage (50)}
+actor Beef_WaterShield : WaterShield replaces WaterShield{damage (200)}
+actor Beef_CommandoBomb : CommandoBomb replaces CommandoBomb{damage (150)}
+actor Beef_CommandoBombSecondary : CommandoBombSecondary replaces CommandoBombSecondary{damage (150)}
+actor Beef_CommandoBombDamagerA : CommandoBombDamagerA replaces CommandoBombDamagerA{damage (50)}
+actor Beef_CommandoBombDamagerB : CommandoBombDamagerB replaces CommandoBombDamagerB{damage (50)}
+actor Beef_CommandoBombDamagerC : CommandoBombDamagerC replaces CommandoBombDamagerC{damage (50)}
+actor Beef_CommandoBombDamagerD : CommandoBombDamagerD replaces CommandoBombDamagerD{damage (50)}
+actor Beef_CommandoBombDamagerX : CommandoBombDamagerX replaces CommandoBombDamagerX{damage (20)}
+actor Beef_CommandoBombDamagerY : CommandoBombDamagerY replaces CommandoBombDamagerY{damage (20)}
+actor Beef_CommandoBombDamagerZ : CommandoBombDamagerZ replaces CommandoBombDamagerZ{damage (20)}
+actor Beef_ChillShot : ChillShot replaces ChillShot{damage (200)}
+actor Beef_ChillSpike : ChillSpike replaces ChillSpike{damage (270)}
+actor Beef_WallSpike : WallSpike replaces WallSpike{damage (270)}
+actor Beef_CeilingSpike : CeilingSpike replaces CeilingSpike{damage (270)}
+actor Beef_ThunderWool : ThunderWool replaces ThunderWool{damage (270)}
+actor Beef_ThunderWoolLightninginator : ThunderWoolLightninginator replaces ThunderWoolLightninginator{damage (270)}
+actor Beef_ThunderWoolLightning : ThunderWoolLightning replaces ThunderWoolLightning{damage (100)}
+actor Beef_ThunderWoolRadius : ThunderWoolRadius replaces ThunderWoolRadius{states{Spawn:TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("ThunderWoolImpact")
+TNT1 A 0 A_Explode(130,TWOOL_WOOLRANGE,0,0,TWOOL_WOOLRANGE)goto Super::Spawn+3}}
+actor Beef_ReboundStriker : ReboundStriker replaces ReboundStriker{damage (300+user_bouncenum*10)}
+actor Beef_WheelBounceSpawner : WheelBounceSpawner replaces WheelBounceSpawner{damage (200)}
+actor Beef_WheelCutterSawDamage : WheelCutterSawDamage replaces WheelCutterSawDamage{damage (270)}
+actor Beef_WheelBouncer : WheelBouncer replaces WheelBouncer{damage (270)}
+actor Beef_WheelCutter : WheelCutter replaces WheelCutter{damage (270)}
+actor Beef_SolarBlaze : SolarBlaze replaces SolarBlaze{damage (230)}
+actor Beef_SolarWave : SolarWave replaces SolarWave{damage (170)}
+
+
+actor Beef_SparkChaser : SparkChaser replaces SparkChaser{damage ((user_frames!=0)*80)}
+actor Beef_GrabBuster : GrabBuster replaces GrabBuster{damage (200)}
+actor Beef_BubbleBomb : BubbleBomb replaces BubbleBomb{damage (10)states{Death:BBOM A 0 A_Explode(420-42,96,0,0,48)goto Super::Death}}
+actor Beef_BubbleBomb2 : BubbleBomb2 replaces BubbleBomb2{damage (10)states{Death:BBOM A 0 A_Explode(420-42,96,0,0,48)goto Super::Death}}
+actor Beef_PhotonMissile : PhotonMissile replaces PhotonMissile{damage (10)}
+actor Beef_PhotonMissileExplosion : PhotonMissileExplosion replaces PhotonMissileExplosion{states{Spawn:TNT1 A 0 nodelay A_Explode(600-60,128,0,0,64)goto Super::Spawn}}
+actor Beef_ElectricShockDamager : ElectricShockDamager replaces ElectricShockDamager{damage (90)}
+actor Beef_BlackHoleSpiral : BlackHoleSpiral replaces BlackHoleSpiral{damage (200)}
+actor Beef_DeepDigger : DeepDigger replaces DeepDigger{damage (340)}
+actor Beef_DeepDiggerBit : DeepDiggerBit replaces DeepDiggerBit{damage (100)}
+actor Beef_BreakDashCheck : BreakDashCheck replaces BreakDashCheck{damage (530+1060*CallACS("cbm_CheckForSpread",2))}
+actor Beef_SaltWater : SaltWater replaces SaltWater{damage (330)}
+actor Beef_SaltWaterBit : SaltWaterBit replaces SaltWaterBit{damage (110)}
+
+
+actor Beef_MirrorShotSmall : MirrorShotSmall replaces MirrorShotSmall{-THRUGHOST damage (200)}//$CBM Able to hit MirrorBuster
+actor Beef_MirrorShotMedium : MirrorShotMedium replaces MirrorShotMedium{-THRUGHOST damage (400)}//$CBM But hits ProtoBuster Shield
+actor Beef_MirrorShotLarge : MirrorShotLarge replaces MirrorShotLarge{/*-THRUGHOST*/ damage (600)}//Except this one, its the strongest one
+actor Beef_ScrewCrusher : ScrewCrusher replaces ScrewCrusher{damage (270)}
+actor Beef_BalladeCracker : BalladeCracker replaces BalladeCracker{damage (10)states{Death:BALA A 0 A_Explode(400-40,96,0,0,96)goto Super::Death}}
+actor Beef_SakugarneCrush : SakugarneCrush replaces SakugarneCrush{damage (270)}
+actor Beef_SakugarneDriller : SakugarneDriller replaces SakugarneDriller{states{Spawn:TNT1 A 0 nodelay A_Explode(800-80,144,0,0,96)goto Super::Spawn}}
+
+
+actor Beef_BlastRuneA : BlastRuneA replaces BlastRuneA{damage (50)}
+actor Beef_BlastRuneB : BlastRuneB replaces BlastRuneB{damage (50)}
+actor Beef_BlastRuneD : BlastRuneD replaces BlastRuneD{damage (50)}
+actor Beef_BlastRuneM : BlastRuneM replaces BlastRuneM{damage (50)}
+actor Beef_BlastRuneExplosion : BlastRuneExplosion replaces BlastRuneExplosion{states{Spawn:TNT1 A 0 nodelay A_Explode(250-25,64,0,0,25)goto Super::Spawn}}
+actor Beef_DawnBreakerDive : DawnBreakerDive replaces DawnBreakerDive{states{Spawn:TNT1 A 1 nodelay A_Explode(120,64,0,0,64)stop}}
+actor Beef_DawnBreakerQuake : DawnBreakerQuake replaces DawnBreakerQuake{states{Spawn:TNT1 A 0 nodelay A_Explode(600-60,96,0,0,96)goto Super::Spawn}}
+
+actor Beef_DawnBreakerExplosion : BasicExplosion replaces DawnBreakerExplosion
+{
+damagetype "DawnBreaker"
+Obituary "$OB_DAWNBREAKER2"
++OLDRADIUSDMG
+RenderStyle None
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 2 A_Explode(200,24,0,0,24)//10
+stop
+}//$CBM Rather than a tower of these explosions, a single infinite height one.
+}//$CBM Damage was increased. Old style usually hit with 2 of these.
+
+actor Beef_DawnBreakerEmitter : DawnBreakerEmitter replaces DawnBreakerEmitter{States{
+Spawn:
+DBR1 E 0
+DBR1 E 0 A_SetPitch(30)
+DBR1 E 0 A_SetArg(0,16)
+Drag:
+DBR1 V 0 A_SetScale(0.5,2.0)
+DBR1 V 1 A_SpawnItemEx("DawnBreakerFX1",-momx,-momy,32,momx,momy,0,0,523)//1+2+8+512
+DBR1 U 0 A_SetScale(1.0,2.0)
+DBR1 U 1 A_SpawnItemEx("DawnBreakerFX2",-momx,-momy,32,momx,momy,0,0,523)
+DBR1 V 0 A_SetScale(1.5,2.0)
+DBR1 V 1 A_SpawnItemEx("DawnBreakerFX3",-momx,-momy,32,momx,momy,0,0,523)
+DBR1 U 0 A_SetScale(2.0,2.0)
+DragLoop:
+DBR1 U 0 A_Explode(50,24,0,0,24)
+DBR1 U 0 A_SpawnItemEx("DawnBreakerExplosion",-momx,-momy,32,momx,momy,0,0,523)
+DBR1 U 0 A_SetAngle(angle+12)
+DBR1 U 0 A_ChangeVelocity(8,0,0,3)
+DBR1 U 0 A_SetArg(0,args[0]-1)
+DBR1 U 0 A_JumpIf(args[0]<=0,"End")
+DBR1 UUU 1 A_SpawnItemEx("DawnBreakerFX4",-momx,-momy,32,momx,momy,0,0,523)
+DBR1 V 0  A_Explode(50,24,0,0,24)
+DBR1 V 0 A_SpawnItemEx("DawnBreakerExplosion",-momx,-momy,32,momx,momy,0,0,523)
+DBR1 V 0 A_SetAngle(angle+12)
+DBR1 V 0 A_ChangeVelocity(8,0,0,3)
+DBR1 V 0 A_SetArg(0,args[0]-1)
+DBR1 V 0 A_JumpIf(args[0]<=0,"End")
+DBR1 VVV 1 A_SpawnItemEx("DawnBreakerFX5",-momx,-momy,32,momx,momy,0,0,523)
+loop
+}
+}

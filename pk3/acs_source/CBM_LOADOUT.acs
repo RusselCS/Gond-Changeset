@@ -1,0 +1,202 @@
+#library "CBM_LOADOUT"
+#include "zcommon.acs"
+
+#DEFINE WEAPON_CATEGORIES 5
+#DEFINE RANGE_MAX 25
+#DEFINE RAPID_MAX 17
+#DEFINE CLOSE_MAX 30
+#DEFINE POWER_MAX 21
+#DEFINE GUARD_MAX 21
+
+str WepCategories[WEAPON_CATEGORIES]={
+"lo_range",
+"lo_rapid",
+"lo_close",
+"lo_power",
+"lo_guard"
+};
+
+int WepCategoryMaxes[WEAPON_CATEGORIES]={
+RANGE_MAX,
+RAPID_MAX,
+CLOSE_MAX,
+POWER_MAX,
+GUARD_MAX
+};
+
+#DEFINE ARRAY_COLLUMNS 3
+
+//2nd colum is for icon sprites in case i make an hud or something [Jax]
+str RangeWep[RANGE_MAX][ARRAY_COLLUMNS]={
+{"FireStormWepC","","Fire"},
+{"ThunderBeamWepC","","Elec"},
+{"MagnetMissileWepC","","Magnet"},
+{"GeminiLaserWepC","","Gemini"},
+{"SearchSnakeWepC","","Snake"},
+{"SparkShockWepC","","Spark"},
+{"DustCrusherWepC","","Dust"},
+{"SkullSniperWepC","","Skull7"},
+{"GyroAttackWepC","","Gyro"},
+{"BlizzardAttackWepC","","Blizzard"},
+{"SilverTomahawkWepC","","Tomahawk"},
+{"FreezeCrackerWepC","","Freeze"},
+{"ThunderBoltWepC","","Cloud"},
+{"NoiseCrushWepC","","Shade"},
+{"MegaBallWepC","","Rock"},
+{"HomingSniperWepC","","Search"},
+{"IceWaveWepC","","Frost"},
+{"CopyVisionWepC","","AstroB"},
+{"DynamoTendrilWepC","","Dynamo7"},
+{"LaserTridentWepC","","Splash"},
+{"FakeRepeaterWepC","","Fake"},
+{"ReboundStrikerWepC","","Strike"},
+{"SparkChaserWepC","","Terra"},
+{"GrabBusterWepC","","Mercury"},
+{"DeepDiggerWepC","","Uranus"}
+};
+str RapidWep[RAPID_MAX][ARRAY_COLLUMNS]={
+{"WaveBusterWepC","","Wily"},
+{"IceSlasherWepC","","Ice"},
+{"MetalBladeWepC","","Metal"},
+{"QuickBoomerangWepC","","Quick"},
+{"NeedleCannonWepC","","Needle"},
+{"TopTwistWepC","","Top7"},
+{"WaterWaveWepC","","Wave"},
+{"PlantTrapperWepC","","Plant7"},
+{"YamatoSpearWepC","","Yamato"},
+{"WaterBalloonWepC","","Aqua"},
+{"WaveBurnerWepC","","Burner"},
+{"PlugBallWepC","","Plug"},
+{"RainbowGalaxyWepC","","Galaxy7"},
+{"TripleBladeWepC","","Blade"},
+{"ElectricShockWepC","","Jupiter"},
+{"ScrewCrusherWepC","","Punk"},
+{"BusterRodGWepC","","BusterRodG"}
+};
+str CloseWep[CLOSE_MAX][ARRAY_COLLUMNS]={
+{"RollSweepWepC","","Roll"},
+{"RisingFistWepC","","DrLight"},
+{"RollingCutterWepC","","Cut"},
+{"OilSliderWepC","","Oil"},
+{"AirShooterWepC","","Air"},
+{"BubbleLeadWepC","","Bubble"},
+{"ShadowBladeWepC","","Shadow"},
+{"RingBoomerangWepC","","Ring"},
+{"PowerStoneWepC","","Stone"},
+{"ChargeKickWepC","","Charge"},
+{"FlameBlastWepC","","Flame"},
+{"KnightCrushWepC","","Knight"},
+{"WindStormWepC","","Wind"},
+{"WildCoilWepC","","Spring"},
+{"SlashClawWepC","","Slash"},
+{"TornadoHoldWepC","","Tengu"},
+{"FlameSwordWepC","","Sword"},
+{"ThunderClawWepC","","Clown"},
+{"TenguBladeWepC","","TenguB"},
+{"MagicCardWepC","","Magic"},
+{"ConcreteShotWepC","","Concrete"},
+{"HornetChaserWepC","","Hornet"},
+{"MagmaBazookaWepC","","Magma"},
+{"ChillSpikeWepC","","Chill"},
+{"ThunderWoolWepC","","Sheep"},
+{"WheelCutterWepC","","Nitro"},
+{"BreakDashWepC","","Pluto"},
+{"SaltWaterWepC","","Neptune"},
+{"SakuGarneWepC","","Quint"},
+{"HyperStormHWepC","","HyperStormH"}
+};
+str PowerWep[POWER_MAX][ARRAY_COLLUMNS]={
+{"FragBomberWepC","","Joe"},
+{"SuperArmWepC","","Guts"},
+{"HyperBombWepC","","Bomb"},
+{"CrashBombWepC","","Crash"},
+{"AtomicFireWepC","","Heat"},
+{"HardKnuckleWepC","","Hard"},
+{"DrillBombWepC","","Drill"},
+{"PharaohShotWepC","","Pharaoh"},
+{"GravitySphereWepC","","Gravity7"},
+{"NapalmBombWepC","","Napalm"},
+{"CrystalEyeWepC","","Crystal"},
+{"CentaurArrowWepC","","Centaur7"},
+{"DangerWrapWepC","","Burst"},
+{"FlashBombWepC","","Grenade"},
+{"SpreadDrillWepC","","Ground"},
+{"RemoteMineWepC","","Pirate"},
+{"CommandoBombWepC","","Commando"},
+{"SolarBlazeWepC","","Solar"},
+{"BubbleBombWepC","","Venus"},
+{"PhotonMissileWepC","","Mars"},
+{"BalladeCrackerWepC","","Ballade"}
+};
+str GuardWep[GUARD_MAX][ARRAY_COLLUMNS]={
+{"TimeSlowWepC","","Time"},
+{"TimeBenderWepC","","Flash7"},
+{"BoobeamBarrierWepC","","Alien"},
+{"LeafShieldWepC","","Wood"},
+{"DocScannerWepC","","Doc"},
+{"FlashBulbWepC","","Bright7"},
+{"RainFlushWepC","","Toad"},
+{"DiveSonarWepC","","Dive7"},
+{"SkullbarrierWepC","","Skull"},
+{"StarCrashWepC","","Star"},
+{"DarkShieldWepC","","Dark7"},
+{"CentaurFlashWepC","","Centaur"},
+{"JunkShieldWepC","","Junk"},
+{"ScorchWheelWepC","","Turbo"},
+{"IceWallWepC","","Cold"},
+{"TornadoBlowWepC","","Tornado"},
+{"JewelSatelliteWepC","","Jewel"},
+{"WaterShieldWepC","","Pump"},
+{"BlackHoleWepC","","Saturn"},
+{"MirrorBusterWepC","","Enker"},
+{"MegaWaterSWepC","","MegaWaterS"}
+};
+
+
+function str getFromWepArray(int whichArray, int i, int j) {
+	switch(whichArray) {
+		case 4:
+			return GuardWep[i][j];
+			break;
+		case 3:
+			return PowerWep[i][j];
+			break;
+		case 2:
+			return CloseWep[i][j];
+			break;
+		case 1:
+			return RapidWep[i][j];
+			break;
+		case 0:
+			return RangeWep[i][j];
+			break;
+	}
+	return "";
+}
+
+script "CBM_LoadoutSetup" (void)
+{
+	int uvar;
+	int max;
+	int pnum = PlayerNumber();
+	int bot = PlayerIsBot(pnum);
+	for(int i = 0; i<WEAPON_CATEGORIES; i++){
+		max = WepCategoryMaxes[i];
+		if(bot){//Bot gets random weapons
+			uvar = random(0,max-1);
+		}
+		else{
+			uvar = GetUserCvar(pnum,WepCategories[i]);
+			if(uvar<0||uvar>=max){
+				uvar = random(0,max-1);
+			}
+		}
+		GiveInventory(getFromWepArray(i,uvar,0),1);
+	}
+}
+
+script "CBM_LoadoutLMSCheck" (void)
+{
+	SetResultValue((GetCvar("lastmanstanding")==1||GetCvar("teamlms")==1)&&GetCvar("instagib")==0);
+}
+

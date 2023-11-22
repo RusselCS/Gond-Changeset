@@ -1,0 +1,26 @@
+
+gameinfo
+{
+	f1 = ""
+	infopage = "HELP"
+	drawreadthis = true
+
+	chatsound = "menu/chatCBM"
+	quitsound = "menu/quitCBM"
+
+	//NoRandomPlayerClass = true
+
+	dimcolor = "00 00 00"
+	dimamount = "0.4"
+
+	menufontcolor_title = "Letter"//"RED"
+    menufontcolor_label = "DARKGREEN"//"UNTRANSLATED"
+    menufontcolor_value = "GRAY"
+    menufontcolor_action = "GRAY"
+    menufontcolor_header = "GOLD"
+    menufontcolor_highlight = "YELLOW"
+    menufontcolor_selection = "BRICK"
+
+	AddQuitMessages = "$QUITMSG30","$QUITMSG31","$QUITMSG32"
+
+}

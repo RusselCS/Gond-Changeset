@@ -1,0 +1,158 @@
+
+//Terra
+graphic TERRA_I2,30,30{XScale 2.0 YScale 2.0 Patch T_RRZ0,0,0}
+
+//Mercury
+graphic MercIcon,30,30{XScale 2.0 YScale 2.0 Patch MRCHZ0,0,0}
+graphic MERCLOOT,16,16{XScale 1.6 YScale 1.6 Patch MRCHX0,0,0}
+
+sprite MRCHQ0,138,120{Offset -176,-60 Patch MRCHC0,0,0{Translation"33:33=104:104","39:39=110:110","41:41=130:130","0:0=130:130"}}
+sprite MRCHR0,135,195{Offset -238,-90 Patch MRCHI0,0,0{Translation"33:33=104:104","39:39=110:110","41:41=130:130","0:0=130:130"}}
+sprite MRCHS0,180,174{Offset -223,-112 Patch MRCHL0,0,0{Translation"33:33=104:104","39:39=110:110","41:41=130:130","0:0=130:130"}}
+sprite MRCHT0,168,120{Offset -214,-132 Patch MRCHM0,0,0{Translation"33:33=104:104","39:39=110:110","41:41=130:130","0:0=130:130"}}
+
+//Venus
+sprite VENBD0,128,100{Offset -12,-89 Patch VENBA0,0,0{Translation "229:229=220:220","160:160=229:229","117:117=70:70"}}
+sprite VENBE0,140,112{Offset 5,-92 Patch VENBB0,0,0{Translation "229:229=220:220","160:160=229:229","117:117=70:70"}}
+sprite VENBF0,152,120{Offset 25,-96 Patch VENBC0,0,0{Translation "229:229=220:220","160:160=229:229","117:117=70:70"}}
+
+graphic VENUS_I1,30,30{XScale 2.0 YScale 2.0 Patch VENBY0,0,0}
+graphic VENUS_I2,30,30{XScale 2.0 YScale 2.0 Patch VENBZ0,0,0}
+
+graphic VENJUMP6,26,26{XScale 1.5 YScale 1.5 Patch VENJUMP2,0,0}
+graphic VENJUMP7,26,26{XScale 1.5 YScale 1.5 Patch VENJUMP3,0,0}
+
+//Mars
+graphic MARS_I1,30,30{XScale 2.0 YScale 2.0 Patch VP_DX0,0,0}
+graphic MARS_I2,30,30{XScale 2.0 YScale 2.0 Patch VP_DY0,0,0}
+
+sprite VH_DE0,392,140{Offset 36,-87 Patch VH_DC0,0,0{FlipX}}
+sprite VH_DF0,392,140{Offset 36,-87 Patch VH_DD0,0,0{FlipX}}
+
+//Jupiter
+sprite JUPHE0,292,188{Offset 43,-105 Patch JUPHD0,0,0{Translation "95:95=4:4","3:3=4:4","6:6=0:0","202:202=4:4","193:193=229:229","110:110=4:4","131:131=229:229"}}
+sprite JUPHF0,292,188{Offset 43,-105 Patch JUPHD0,0,0{Translation "95:95=0:0","3:3=0:0","6:6=229:229","202:202=0:0","193:193=4:4","110:110=0:0","131:131=4:4","0:0=229:229"}}
+sprite JUPHG0,292,188{Offset 43,-105 Patch JUPHD0,0,0{Translation "95:95=229:229","3:3=229:229","6:6=4:4","202:202=229:229","193:193=4:4","110:110=229:229","131:131=4:4","0:0=4:4"}}
+
+//Saturn
+
+//Uranus
+
+//Pluto
+sprite PLUHF0,308,212{Offset 232,39 Patch PLUHD0,0,0{FlipX}}
+sprite PLUHG0,320,112{Offset 98,-115 Patch PLUHE0,0,0{FlipX}}
+
+sprite PLUHK1K5,32,16{Offset 16,12 Patch Y_7FK1K5,0,0{FlipX FlipY}}
+sprite PLUHK6K4,32,16{Offset 16,12 Patch Y_7FK6K4,0,0{FlipY}}
+sprite PLUHK7K3,32,16{Offset 16,12 Patch Y_7FK7K3,0,0{FlipY}}
+sprite PLUHK8K2,32,16{Offset 16,12 Patch Y_7FK8K2,0,0{FlipY}}
+sprite PLUHL1L5,32,16{Offset 16,12 Patch Y_7FL1L5,0,0{FlipX FlipY}}
+sprite PLUHL6L4,32,16{Offset 16,12 Patch Y_7FL6L4,0,0{FlipY}}
+sprite PLUHL7L3,32,16{Offset 16,12 Patch Y_7FL7L3,0,0{FlipY}}
+sprite PLUHL8L2,32,16{Offset 16,12 Patch Y_7FL8L2,0,0{FlipY}}
+sprite PLUHM1M5,32,16{Offset 16,12 Patch Y_7FM1M5,0,0{FlipX FlipY}}
+sprite PLUHM6M4,32,16{Offset 16,12 Patch Y_7FM6M4,0,0{FlipY}}
+sprite PLUHM7M3,32,16{Offset 16,12 Patch Y_7FM7M3,0,0{FlipY}}
+sprite PLUHM8M2,32,16{Offset 16,12 Patch Y_7FM8M2,0,0{FlipY}}
+sprite PLUHN1N5,32,16{Offset 16,12 Patch Y_7FN1N5,0,0{FlipX FlipY}}
+sprite PLUHN6N4,32,16{Offset 16,12 Patch Y_7FN6N4,0,0{FlipY}}
+sprite PLUHN7N3,32,16{Offset 16,12 Patch Y_7FN7N3,0,0{FlipY}}
+sprite PLUHN8N2,32,16{Offset 16,12 Patch Y_7FN8N2,0,0{FlipY}}
+sprite PLUHO1O5,32,16{Offset 16,12 Patch Y_7FO1O5,0,0{FlipX FlipY}}
+sprite PLUHO6O4,32,16{Offset 16,12 Patch Y_7FO6O4,0,0{FlipY}}
+sprite PLUHO7O3,32,16{Offset 16,12 Patch Y_7FO7O3,0,0{FlipY}}
+sprite PLUHO8O2,32,16{Offset 16,12 Patch Y_7FO8O2,0,0{FlipY}}
+//Flipped SlashClaw
+sprite PLUHP1P5,32,16{Offset 16,12 Patch Y_7FK1K5,0,0{FlipY}}
+sprite PLUHP6P4,32,16{Offset 16,12 Patch Y_7FK6K4,0,0{FlipY}}
+sprite PLUHP7P3,32,16{Offset 16,12 Patch Y_7FK7K3,0,0{FlipY}}
+sprite PLUHP8P2,32,16{Offset 16,12 Patch Y_7FK8K2,0,0{FlipY}}
+sprite PLUHQ1Q5,32,16{Offset 16,12 Patch Y_7FL1L5,0,0{FlipY}}
+sprite PLUHQ6Q4,32,16{Offset 16,12 Patch Y_7FL6L4,0,0{FlipY}}
+sprite PLUHQ7Q3,32,16{Offset 16,12 Patch Y_7FL7L3,0,0{FlipY}}
+sprite PLUHQ8Q2,32,16{Offset 16,12 Patch Y_7FL8L2,0,0{FlipY}}
+sprite PLUHR1R5,32,16{Offset 16,12 Patch Y_7FM1M5,0,0{FlipY}}
+sprite PLUHR6R4,32,16{Offset 16,12 Patch Y_7FM6M4,0,0{FlipY}}
+sprite PLUHR7R3,32,16{Offset 16,12 Patch Y_7FM7M3,0,0{FlipY}}
+sprite PLUHR8R2,32,16{Offset 16,12 Patch Y_7FM8M2,0,0{FlipY}}
+sprite PLUHS1S5,32,16{Offset 16,12 Patch Y_7FN1N5,0,0{FlipY}}
+sprite PLUHS6S4,32,16{Offset 16,12 Patch Y_7FN6N4,0,0{FlipY}}
+sprite PLUHS7S3,32,16{Offset 16,12 Patch Y_7FN7N3,0,0{FlipY}}
+sprite PLUHS8S2,32,16{Offset 16,12 Patch Y_7FN8N2,0,0{FlipY}}
+sprite PLUHT1T5,32,16{Offset 16,12 Patch Y_7FO1O5,0,0{FlipY}}
+sprite PLUHT6T4,32,16{Offset 16,12 Patch Y_7FO6O4,0,0{FlipY}}
+sprite PLUHT7T3,32,16{Offset 16,12 Patch Y_7FO7O3,0,0{FlipY}}
+sprite PLUHT8T2,32,16{Offset 16,12 Patch Y_7FO8O2,0,0{FlipY}}
+
+//Neptune
+graphic NeptIcon,30,30{XScale 2.0 YScale 2.0 Patch NEPHZ0,0,0}
+
+//Sunstar
+
+
+//Buster Rod G
+graphic BRG_ITEM,30,30{XScale 2.0 YScale 2.0 Patch BROGI0,0,0}
+
+//Mega Water S
+graphic MWSHIELD,30,30{XScale 2.0 YScale 2.0 Patch MWSHI0,0,0}
+
+//Hyper Storm H
+sprite HSHGA0,448,180{Offset 65,-100 Patch HSHHA0,0,0{Translation"192:192=216:216","198:198=176:176"}}
+sprite HSHGB0,448,180{Offset 65,-100 Patch HSHHB0,0,0{Translation"192:192=216:216","198:198=176:176"}}
+sprite HSHGC0,448,180{Offset 65,-100 Patch HSHHC0,0,0{Translation"192:192=216:216","198:198=176:176"}}
+sprite HSHGD0,448,180{Offset 65,-100 Patch HSHHD0,0,0{Translation"192:192=216:216","198:198=176:176"}}
+sprite HSHGE0,448,180{Offset 65,-100 Patch HSHHE0,0,0{Translation"192:192=216:216","198:198=176:176"}}
+sprite HSHGF0,448,180{Offset 65,-100 Patch HSHHF0,0,0{Translation"192:192=216:216","198:198=176:176"}}
+sprite HSHGG0,448,180{Offset 65,-100 Patch HSHHG0,0,0{Translation"192:192=216:216","198:198=176:176"}}
+sprite HSHGH0,448,180{Offset 65,-100 Patch HSHHH0,0,0{Translation"192:192=216:216","198:198=176:176"}}
+sprite HSHGI0,448,180{Offset 65,-100 Patch HSHHI0,0,0{Translation"192:192=216:216","198:198=176:176"}}
+
+graphic HSHISUCK,30,30{XScale 2.0 YScale 2.0 Patch HSHHS0,0,0}
+graphic HSHIBLOW,30,30{XScale 2.0 YScale 2.0 Patch HSHHW0,0,0}
+
+
+//Enker
+graphic ENK_ITEM,30,30{XScale 2.0 YScale 2.0 Patch ENKAZ0,0,0}
+/*
+sprite ENKAG0,159,144{offset 38,-121 patch ENKAB0,0,0}
+sprite ENKAH0,159,144{offset 53,-127 patch ENKAB0,0,0}
+sprite ENKAI0,159,144{offset 68,-135 patch ENKAB0,0,0}
+sprite ENKAJ0,159,144{offset 83,-143 patch ENKAB0,0,0}
+sprite ENKAK0,159,144{offset 93,-151 patch ENKAB0,0,0}
+*/
+//Punk
+graphic PunkIcon,30,30{XScale 2.0 YScale 2.0 Patch PNKAY0,0,0}
+graphic PunkIco2,30,30{XScale 2.0 YScale 2.0 Patch PNKAZ0,0,0}
+
+//Ballade
+
+//Quint
+graphic QBustIcn,30,30{XScale 2.0 YScale 2.0 Patch WEAPX0,0,0}
+
+sprite QBUSB0,448,112{Offset 80,-107 Patch QBUSA0,0,0}
+sprite QBUSC0,448,112{Offset 80,-130 Patch QBUSA0,0,0}
+sprite QBUSD0,116,96{Offset -184,-94 Patch W_HAA0,0,0{Translation"192:192=138:138","198:198=130:130","208:208=4:4","202:202=138:138","199:199=130:130","204:204=214:214","195:195=248:248","89:89=138:138","95:95=130:130","168:168=214:214","216:216=248:248"}}
+sprite QBUSE0,136,108{Offset -184,-98 Patch W_HAB0,0,0{Translation"192:192=138:138","198:198=130:130","208:208=4:4","202:202=138:138","199:199=130:130","204:204=214:214","195:195=248:248","89:89=138:138","95:95=130:130","168:168=214:214","216:216=248:248"}}
+sprite QBUSF0,128,100{Offset -188,-102 Patch W_HAC0,0,0{Translation"192:192=138:138","198:198=130:130","208:208=4:4","202:202=138:138","199:199=130:130","204:204=214:214","195:195=248:248","89:89=138:138","95:95=130:130","168:168=214:214","216:216=248:248"}}
+
+sprite QBUSG0,312,108{Offset 169,-128 Patch W_HBO0,0,0{FlipX Translation"192:192=138:138","198:198=130:130","195:195=248:248","118:118=138:138","119:119=130:130","89:89=138:138","95:95=130:130","8:8=0:0"}}
+
+//RaThor
+graphic RATHRICO,30,30{XScale 2.0 YScale 2.0 Patch "RA_H[0",0,0}
+graphic SOUCOUNT,16,16{XScale 1.6 YScale 1.6 Patch RA_HX0,0,0{Translation"192:192=4:4","198:198=57:57"}}
+
+texture THORSINS,136,46{patch TNT1A0,0,0}
+
+graphic SINTHOR0,51,51{patch TNT1A0,0,0}
+graphic SINTHOR1,59,62{XScale 2.5 YScale 2.5 Patch THORSIN1,0,0}
+graphic SINTHOR2,59,62{XScale 2.5 YScale 2.5 Patch THORSIN2,0,0}
+graphic SINTHOR3,59,62{XScale 2.5 YScale 2.5 Patch THORSIN3,0,0}
+graphic SINTHOR4,59,62{XScale 2.5 YScale 2.5 Patch THORSIN4,0,0}
+graphic SINTHOR5,59,62{XScale 2.5 YScale 2.5 Patch THORSIN5,0,0}
+graphic SINTHOR6,59,62{XScale 2.5 YScale 2.5 Patch THORSIN6,0,0}
+graphic SINTHOR7,51,51{XScale 2.5 YScale 2.5 Patch SINIS0,0,0{Translation"192:192=176:176","198:198=182:182"}}
+graphic SINTHOR8,51,51{XScale 2.5 YScale 2.5 Patch SINIT0,0,0{Translation"192:192=176:176","198:198=182:182"}}
+graphic SINTHOR9,51,51{XScale 2.5 YScale 2.5 Patch SINIU0,0,0{Translation"192:192=176:176","198:198=182:182"}}
+
+
+

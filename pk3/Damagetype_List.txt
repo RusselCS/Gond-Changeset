@@ -1,0 +1,660 @@
+
+//List of every damagetype and changed damagetype
+//This is to help modders adjust their protections
+
+RollSweep
+RisingFist
+WaveBuster
+FragBomber
+TimeBender
+BoobeamBarrier
+TopTwist
+DocScanner
+FlashBulb
+DiveSonar
+SkullSniper
+GravitySphere
+DarkShield
+CentaurArrow
+PlantTrapper
+PlantTrapper2
+DynamoTendril
+DynamoTendrilZap
+RainbowGalaxy
+FakeRepeater
+BusterRodPole
+MegaWaterBarrier
+HyperStormBlaster
+
+/////////////////////////////////
+
+ProtoBuster > ProtoM_Shot
+ProtoBuster2 > ProtoM_Shot2
+ProtoBuster3 > ProtoM_Shot3
+ProtoBuster > ProtoM_Strike
+
+Buster > MegaM_Shot
+ChargeBuster > MegaM_Shot2
+MegaBuster3 > MegaM_Shot3
+Buster > MegaM_PowerFist
+Buster > MegaM_PowerFist2
+Buster > MegaM_PowerFist3
+Buster > MegaM_JetShot
+
+BassBuster > Bass_Shot
+TrebleBoost > Bass_TrebleShot
+
+//Buster > Maestro_...stays as buster due to Core
+
+RockKick > Rock_Kick
+MegaBall > Rock_MegaBall
+WilyFireB2 > MegaFireBallBurn
+MegaCutBall
+MegaGutsBall
+MegaIceBall
+MegaBombBall
+MegaFireBall
+MegaElecBall
+MegaTimeBall
+MegaOilBall
+
+RollWhiff > Roll_Whiff
+RollSwing > Roll_Swing
+RollCleanse > Roll_Cleanse
+RollCleanseShock > Roll_CleanseShock
+
+AutoFirework > Auto_Firework
+
+Joe > Joe_Buster
+JoeGrenade > Joe_Grenade
+JoeApache > Joe_MGun//MGunJoeShot
+JoeCrate > Joe_Crate
+JoeApache > Joe_Apache
+JoeTruck > Joe_Truck
+
+LightRyu4 > LightRyu_Hadoken
+LightRyuFire > LightRyu_Fire
+WilyFireB2 > LightRyu_FireBurn//LightRyuFireBurn
+ClassPainLess2 > LightRyu_ShinkuShot
+LightRyu1 > LightRyu_Kick
+ClassPainLess2 > LightRyu_SpinKick
+LightRyuShoryu > LightRyu_Shoryu
+LightRyuStop > LightRyu_Stop
+LightRyuShinShoryu > LightRyu_ShinShoryu
+
+BBA_Mega > BBA_Punch
+BBA_Mega > BBA_Rocket
+BBA_MegaR > BBA_RocketBoom
+BBA_Mega > BBA_Plasma
+BBA_Mega > BBA_BFG
+BBA_Mega > BBA_BFGSplash//BBA_BFGTracer
+BBA_Mega > BBA_Pistol
+BBA_Mega > BBA_Chaingun
+BBA_Mega > BBA_Shotgun
+BBA_Mega > BBA_SSG
+
+/////////////////////////////////
+
+ClassPainLess2 > CutM_Slice
+RollingCutterB > CutM_Cutter
+
+SuperArm > GutsM_Rock
+SuperArm > GutsM_RockBit
+GutsPunch > GutsM_Punch
+
+IcemanSlasher > IceM_Slasher
+IceSlashSlow > IceM_Slow//CoolestGuy IceBaFLaser
+IceSlashSlow > IceM_Icicle
+IceSlashSlow > IceM_Sculpt//IceBaF_SculptBase
+IceSlashSlow2 > IceM_Slow2
+
+HyperBomb > BombM_Boom
+
+FireStorm > FireM_Storm
+FireSpin > FireM_StormBit//FiremanStormShotBit
+FireSpin > FireM_Spin
+FireSpin > FireM_Wave
+
+ThunderBeamElec > ElecM_Beam
+ThunderBeam > ElecM_Zap
+ThunderBeam > ElecM_TeleZap
+
+ClassPainLess > TimeM_Arrow
+ClassPainLess > TimeM_ArrowSlow
+ClassPainLess > TimeM_ArrowFast
+TimeSlow > TimeM_Slow
+
+OilSlider > OilM_Shot
+OilSlider > OilM_Blob
+OilFlame > OilM_Flame
+OilFlame > OilM_Snap
+OilSlider > OilM_Slider
+OilSlider > OilM_Board
+
+/////////////////////////////////
+
+MetalBlade > MetalM_Blade
+MetalBlade > MetalM_Chain
+
+AirShooter > AirM_Shot
+AirShooterWall > AirM_Wall
+
+Buster > BubbleM_Shot
+BubbleLead > BubbleM_Lead
+
+QuickBoomerang > QuickM_Shot
+QuickBoomerang > QuickM_Rapid//QuickmanBoomerangRapid
+
+Clash > CrashM_Clash
+CrashBomb > CrashM_Mine
+
+Buster > FlashM_Shot
+TimeStop > FlashM_Stopper
+
+AtomicFire1 > HeatM_Toss
+AtomicFireB > HeatM_Pillar
+AtomicFireB > HeatM_Tackle
+AtomicFire1 > HeatM_Shot
+
+LeafShieldB > WoodM_Seed
+LeafTrapStop > WoodM_SeedStun
+LeafTrap > WoodM_SeedTrap
+LeafShield > WoodM_Shield
+LeafShield > WoodM_Leaf//Leaf
+LeafFall > WoodM_LeafRain
+ClassPain > WoodM_Slam
+
+Buster > DrWily_Wave
+ClassPain > DrWily_Pan
+Buster > DrWily_Suit
+WilyFireB1 > DrWily_Fire
+WilyFireB2 > DrWily_FireBurn
+WilyIce > DrWily_Ice
+WilyLightning > DrWily_Elec
+
+Buster > Alien_Shot
+Buster > Alien_Boobeam
+Buster > Alien_BooShot
+
+/////////////////////////////////
+
+NeedleCannonB > NeedleM_Shot
+ClassPain > NeedleM_Stab
+
+MagnetMissile > MagnetM_Shot
+MagPush > MagnetM_Push
+
+Buster > GeminiM_Shot
+Buster > GeminiM_CloneShot
+GeminiLaser > GeminiM_Laser
+
+HardKnuckle > HardM_Knuckle
+Flatten > HardM_Flat
+NeutralShock > HardM_Shock
+
+ClassPainLess > TopM_Toss
+TopSpinB > TopM_Windup//TopManChargeSpin2/3
+TopSpinC > TopM_Spin//TopManRadius11 reduced damage from multi hits
+TopSpinB > TopM_Spin2//TopManRadius after 11, more spawned with charge
+
+SearchSnake > SnakeM_Snake
+SearchSnake > SnakeM_Snake2//Commanded Snakes
+ClassPainSemi > SnakeM_Poke
+
+SparkShock > SparkM_Shock//BigShock
+SparkShockW > SparkM_Zap
+SparkShock > SparkM_Shock2//SmallShock
+SparkM_Lob
+
+ShadowBladeCBM1 > ShadowM_Blade1
+ShadowBladeCBM2 > ShadowM_Blade2
+ShadowBlade > ShadowM_Caltrop
+
+Buster > DocRobot_Shot
+ClassPainLess2 > DocRobot_Scan
+
+/////////////////////////////////
+
+BrightBuster > BrightM_Shot
+FlashBulb > BrightM_Bulb
+FlashStopperB > BrightM_Stopper
+
+RainFlush > ToadM_Rain
+RainFlushWeak > ToadM_Rain2
+ToadLeap > ToadM_Leap
+
+DrillBomb > DrillM_Bomb
+ClassPainLess2 > DrillM_Stab
+ClassPainSemi > DrillM_DigUp
+
+PharaohShot1 > PharaohM_Shot
+PharaohShot2 > PharaohM_Shot
+PharaohShot3 > PharaohM_Shot3
+PharaohHold > PharaohM_Hold
+PharaohShot3 > PharaohM_Wave
+ClassPainLess > PharaohM_Aura
+
+RingBoomerangB1 > RingM_Ring1
+RingBoomerangB2 > RingM_Ring2
+
+DustCrusher > DustM_Crush
+DustCrusherBit > DustM_CrushBit
+DustBuster > DustM_Shot
+
+DiveMissile > DiveM_Torpedo
+DiveMine > DiveM_Mine
+ClassPain > DiveM_Tackle
+
+SkullSniper > SkullM_Shot
+SkullSniperX > SkullM_ShotX
+SkullBarrierBlast > SkullM_Barrier
+
+/////////////////////////////////
+
+Buster > GravityM_Shot
+GravitySmackDown > GravityM_Down
+GravitySmackUp > GravityM_Up
+
+ClassPainSemi > WaveM_Shot
+WaterWave > WaveM_Water
+ClassPainLess2 > WaveM_Hook
+
+PowerStone > StoneM_Rock
+StoneLeap > StoneM_Leap//Dunks on contact
+ClassPainLess2 > StoneM_Dunked
+ClassPainLess2 > StoneM_Head
+ClassPainLess2 > StoneM_Quake
+NeutralShock > StoneM_Shock
+PowerStone > StoneM_Hand
+
+GyroAttack > GyroM_Shot
+
+StarcrashB > StarM_Crash//Hugger
+Starcrash > StarM_Throw//Shield toss direct hits
+StarcrashB > StarM_Throw2//Shield toss explosions
+StarCrashB > StarM_Flurry
+
+ChargeKick > ChargeM_Ram2//ChargeTrainClip (Explosion)
+ChargeKick > ChargeM_Ram//ChargeTrain (Missile)
+Coal > ChargeM_Coal//All damagers of altfire
+
+NapalmBombB > NapalmM_Bomb
+NapalmBomb > NapalmM_Missile
+
+CrystalEye > CrystalM_Eye
+CrystalEyeBitC > CrystalM_EyeBit//split
+CrystalEyeBitB > CrystalM_EyeShot
+
+DarkBuster > DM1_Shot//Main
+DarkBuster > DM1_Shot2//Alt
+ClassPainLess2 > DM1_Boost
+
+ElectroNet > DM2_Shock
+DarkShield > DM2_Shield
+DarkShield > DM2_TossSpin
+DarkShield > DM2_Toss
+
+ClassPainLess > DM3_Rapid
+DarkShot > DM3_Shot
+DarkSniper > DM3_Snipe//Full charge
+NeutralShock> DM3_Shock
+
+DarkShot > DM4_Shot
+DarkShield > DM4_Shield
+DarkShield > DM4_TossSpin
+
+/////////////////////////////////
+
+BlizzardAttack > BlizzardM_Shot//Homing
+BlizzardAttack > BlizzardM_Shot2
+BlizzardBowl > BlizzardM_Bowl
+
+Buster > CentaurM_Shot
+CentaurFlash > CentaurM_Flash
+CentaurShock > CentaurM_Shock
+
+FlameBlast > FlameM_Shot
+FlameBlastB > FlameM_Pillar
+
+KnightCrush > KnightM_Mace
+KnightRush > KnightM_Push
+
+PlantBuster > PlantM_Shot
+PlantDrain > PlantM_Barrier//Explosion
+PlantDrain > PlantM_Toss
+
+SilverTomahawk > TomahawkM_Shot
+ClassPainSemi > TomahawkM_Feather
+
+WindGyro > WindM_Shot
+WindStormPull > WindM_Pull
+Flatten > WindM_Crush
+WindStormPush > WindM_Push
+
+YamatoSpear > YamatoM_Shot
+ClassPainLess2 > YamatoM_Spin
+
+/////////////////////////////////
+
+FreezeCracker > FreezeM_Shot
+FreezeCrackerBit > FreezeM_ShotBit
+FreezeCrackerF > FreezeM_Frozen//MrFreezeSuperCracker
+FreezeCrackerB > FreezeM_Iced//MrFreezeWave
+FreezeCracker > FreezeM_SpikeF
+FreezeCracker > FreezeM_SpikeC
+
+JunkPunch > JunkM_Punch
+JunkM_Cube
+JunkShield > JunkM_Shot
+JunkShock > JunkM_Shock
+JunkShield > JunkM_Shield//Passive explosion
+
+DangerWrap > BurstM_Shot//BurstDangerWrap0
+DangerWrap > BurstM_Boom
+DangerTrap > BurstM_Trap
+
+ThunderBolt > CloudM_Shot
+ThunderBolt > CloudM_Zapper//CloudM_ZapDown
+ThunderBolt > CloudM_Spark
+ThunderBolt > CloudM_Charge
+
+WildCoil > SpringM_Coil
+WildCoil2 > SpringM_Fist
+
+SlashClawB > SlashM_Swipe
+SlashGoop > SlashM_Goop
+
+//ShadeDrain > ShadeM_Drain//Old damager
+ShadeSuck > ShadeM_Drain
+NoiseCrush1 > ShadeM_Shot
+NoiseCrush2 > ShadeM_Shot2
+
+ScorchWheelB > TurboM_Wheel
+ScorchWheelB > TurboM_WheelBit
+ClassPainLess2 > TurboM_Ram
+TurboHonk > TurboM_Honk
+
+/////////////////////////////////
+
+G_TenguSlam > TenguM_Slam
+GravityB2 > TenguM_Dunked
+TenguBladeB > TenguM_Shot
+TornadoHold > TenguM_Pod
+TenguTornadoHeld > TenguM_THold
+
+CopyVision > AstroM_Shot
+CopyVision > AstroM_CloneShot
+AstroCrush > AstroM_Meteor
+
+FlameSwordCBM > SwordM_Swipe
+FlameSwordSpark > SwordM_SwipeBit
+SwordTorsoCBM > SwordM_Torso
+
+ThunderClaw > ClownM_Claw
+ThunderClawT2 > ClownM_ClawChain
+ThunderClawT > ClownM_Peg
+ThunderClawT > ClownM_Aura
+ThunderClawT > ClownM_Aura2//Swing power
+ThunderClawG > ClownM_Ground
+
+HomingSniper > SearchM_Shot
+HomingSniper > SearchM_LockShot
+ClassPain > SearchM_Disc
+
+IceWave > FrostM_Shot//Main to Alt attack
+IceWaveB > FrostM_Iced//Invisible spawner
+IceWaveB > FrostM_Iced2//Icicles
+GutPunch > FrostM_Punch
+
+FlashBombB2 > GrenadeM_Bomb
+FlashBombB1 > GrenadeM_Nade
+GrenadeSD > GrenadeM_Kamikaze
+
+WaterBalloon > AquaM_Shot
+WaterCannon > AquaM_Cannon
+WaterBalloon > AquaM_CannonBit
+WaterTower > AquaM_Tower
+WaterBalloon > AquaM_TowerBit
+
+DuoFist1 > Duo_Fist1
+DuoFist2 > Duo_Fist2
+DuoFist3 > Duo_Fist3
+DuoRam > Duo_Ram
+DuoRam > Duo_Meteor
+
+ClassPainLess2 > ODuo_Shot
+ODuoRam > ODuo_Tackle
+ODuoPunch > ODuo_Punch
+ODuoMeteor > ODuo_Meteor
+ODuoMeteorF > ODuo_MeteorPush
+ClassPainLess2 > ODuo_MeteorBoom
+ClassPainLess2 > ODuo_Crush
+ODuoWave > ODuo_Wave
+
+DuoFist2 > Trio_Shot2
+DuoFist3 > Trio_Shot3
+TrioSpectrum > Trio_Beam
+TrioTornadoHold
+TrioAstroCrush
+TrioFlameSword
+TrioThunderClaw
+NeutralStopShock > TrioHomingSniperShock
+TrioHomingSniper
+TrioIceWave
+FlashBombB > TrioFlashBomb2
+TrioFlashBomb
+TrioWaterBalloon
+
+/////////////////////////////////
+
+DynaTag > DynamoM_Tag
+LightningBolt > DynamoM_Orb
+LightningBolt > DynamoM_Bolt//Random Lightning
+LightningBolt > DynamoM_TaggedBolt
+DynamoTendril > DynamoM_Dish
+LightningBolt > DynamoM_DishZap
+
+IceWallB > ColdM_Wall//idle/spawning explosions
+IceWallC > ColdM_WallFloor
+IceWallC > ColdM_WallAir
+ColdPunch > ColdM_Punch
+ColdSmackDown > ColdM_Down
+ColdField > ColdM_Freeze
+
+SpreadDrillB1 > GroundM_Shot1
+SpreadDrill2 > GroundM_Shot2
+SpreadDrill3 > GroundM_Shot3
+SpreadDrillB > GroundM_Stab
+ClassPainSemi > GroundM_DigUp
+SpreadDrillB > GroundM_GigaDrill
+SpreadDrillB4 > GroundM_ShotCeil
+
+RemoteMine > PirateM_Mine
+RemoteMineB > PirateM_Boom
+PiratePush > PirateM_Hose
+ClassPainLess > PirateM_BubbleRam
+
+WaveBurner > BurnerM_Shot
+WaveBurnerUW > BurnerM_Shot2
+WaveBurner > BurnerM_DiveLand
+WaveBurner > BurnerM_FireLine
+BurnerShockW > BurnerM_HalfShock
+BurnerShock > BurnerM_Shock
+
+MagicCardB > MagicM_Card
+MagicM_Orb
+MagicCard > MagicM_Ball
+ClassPainLess > MagicM_Bird
+
+TheKing > King_Slash
+ClassPainLess2 > King_AxeSpin
+ClassPainLess2 > King_ShieldLaser
+ClassPainLess2 > King_ShieldDrop
+ClassPainLess2 > King_Laser
+NeutralShock > King_XShock
+
+/////////////////////////////////
+
+ConcreteShot > ConcreteM_Shot
+ConcreteShoulder > ConcreteM_Bash
+Flatten > ConcreteM_Flat
+NeutralShockW > ConcreteM_HalfShock
+ConcreteStop > ConcreteM_Toss
+Concrete > ConcreteM_TossBit
+
+TornadoBlowB > TornadoM_Shot
+TornadoBlow > TornadoM_Blow//Alt
+TornadoBlowB > TornadoM_Blow2//Alt weak
+TornadoWall > TornadoM_Wall
+TornadoFloor > TornadoM_Lift
+G_TornadoSlam > TornadoM_Slam
+GravityB2 > TornadoM_Dunked
+TornadoLeap > TornadoM_Leap
+
+LaserTridentS > SplashW_Laser
+LaserTridentSE > SplashW_Laser2
+ClassPainLess2 > SplashW_Sing
+ClassPain > SplashW_Fish1
+ClassPain > SplashW_Fish2
+ClassPain > SplashW_Fish3
+
+PlugBall > PlugM_Ball
+PlugBall > PlugM_Prong
+PlugBall > PlugM_Plugged
+
+JewelSatelliteB > JewelM_Shot
+JewelSatelliteB > JewelM_ShotBit
+JewelSatelliteB > JewelM_ShotBoom
+
+HornetChaserB > HornetM_Shot
+HornetHoney > HornetM_Slow
+
+MagmaBazooka1 > MagmaM_Shot1
+MagmaBazooka2 > MagmaM_Shot2
+
+BlackHoleBomb > GalaxyM_Shot
+BlackHoleBombCBM > GalaxyM_BHB
+BlackHoleBombB > GalaxyM_Ram
+
+RevolverBuster > FakeM_Shot
+FakemanStun > FakeM_Baton
+
+/////////////////////////////////
+
+TripleBladeB > BladeM_Shot
+TripleBladeB > BladeM_Swipe
+
+PumpHandle > PumpM_Handle
+PumpShield > PumpM_Shield
+WaterShield > PumpM_ShieldToss
+
+CommandoBomb > CommandoM_Shot
+CommandoBomb > CommandoM_Mine
+CommandoBomb > CommandoM_WaveBit
+CommandoBombWave > CommandoM_Wave
+Flatten > CommandoM_Crush
+
+ChillmanSlow > ChillM_Shot
+ChillmanSpike > ChillM_Spike
+ChillFreeze > ChillM_Freeze
+
+WheelCutter > NitroM_Shot
+WheelCutter > NitroM_Shot2//Rapid shot
+NitroBike > NitroM_Ram
+
+SolarM_Blaze
+SolarM_BlazeWave
+SolarM_Head
+
+/////////////////////////////////
+
+Terra_SparkChaser
+TerraTimeStop > Terra_Stopper
+
+GrabBusterB > Mercury_Shot
+GrabBusterB > Mercury_Swipe
+GrabBusterB > Mercury_Swipe2//Communism
+ClassPain > Mercury_Blob
+ClassPain > Mercury_Slam
+
+BubbleBombB > Venus_Shot
+BubbleBombB > Venus_Shot2//Mines
+BubbleBomb > Venus_Bomb
+BubbleBomb > Venus_Acid
+BubbleBombJump > Venus_BoomJump
+
+PhotonMissileV > Mars_Shot
+PhotonMissileStart > Mars_Photon
+PhotonMissileStart > Mars_Mortar
+
+ElectricShock > Jupiter_Shot
+ElectricShockBeam > Jupiter_Beam
+JupiterPush > Jupiter_Push
+
+UranusDeepDigger > Uranus_ShotDown
+DeepDigger > Uranus_ShotBit
+UranusCharge > Uranus_Stampede
+ClassPainLess2 > Uranus_Gored
+Flatten > Uranus_Flat//GroundSlam
+UranusLift > Uranus_Lift//GroundSlam launch up
+
+ClassPainSemi > Pluto_Shot
+BreakDashP > Pluto_Dash1
+BreakDashP2 > Pluto_Dash2
+PlutoClaw > Pluto_Swipe
+
+SaltWater > Neptune_Shot
+SaltWater > Neptune_ShotBit
+NeptuneLeap > Neptune_Leap//Checker to do Stomp
+ClassPain > Neptune_Stomp//After Leap, main damage
+ClassPain > Neptune_Stomp2//Salt
+Flatten > Neptune_Crush
+NeutralShock > Neptune_Shock
+NeptuneSaltStomp > Neptune_SaltQuake//Water spread
+
+/////////////////////////////////
+
+BusterRodPole > BRG_Bash
+BusterRodG > BRG_Spin
+
+MegaWaterS > MWS_Shot
+MegaWaterBarrier > MWS_Barrier
+MWSLift > MWS_Lift
+
+HyperStormH > HSH_Shot
+HSHFire > HSH_ShotHot
+HSHSuck > HSH_Drain
+HSHCold > HSH_Wallop
+HSHFire > HSH_Booster
+
+/////////////////////////////////
+
+MirrorBuster1 > Enker_Shot
+MirrorBuster3 > Enker_Shot2
+EnkerPush > Enker_Push
+
+ScrewCrusher > Punk_Shot
+ScrewCrusher > Punk_Rapid
+ScrewCrusherM > Punk_Ram
+
+BalladeCracker > Ballade_Shot
+BalladeCracker > Ballade_Mine
+
+Buster > Quint_Shot
+QuintLeap > Quint_Leap
+Sakugarne > Quint_SakuLand
+SakugarneB > Quint_SakuLand2
+SakugarneWave > Quint_Wave
+SakugarneB > Quint_Spin
+SakugarneWave > Quint_Rock
+
+RaThor > RaThor_Shot1
+RaThor > RaThor_Shot2
+RaThor > RaThor_Shot3
+RaThor > RaThor_Shot4
+RaThor > RaThor_Shot5
+RaThorSpirit > RaThor_Spirit
+RaThorWave > RaThor_Wave
+RaThorThrow > RaThor_Toss
+RaThorSlam > RaThor_BuryFreeze
+

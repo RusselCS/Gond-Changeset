@@ -1,0 +1,239 @@
+
+//Gravityman
+graphic GravIcon,30,30{XScale 2.0 YScale 2.0 Patch 5A_HZ0,0,0}
+
+sprite 5A_HD0,116,96{offset -184,48 patch 5A_HA0,0,0{FlipX FlipY}}
+sprite 5A_HE0,128,104{offset -188,60 patch 5A_HB0,0,0{FlipX FlipY}}
+sprite 5A_HF0,128,100{offset -188,56 patch 5A_HC0,0,0{FlipX FlipY}}
+
+sprite 5A_HG0,136,144{offset -239,-112 patch W_HBC0,0,0{Translation"192:192=42:42","198:198=45:45","195:195=47:47","118:118=208:208","119:119=89:89","89:89=95:95","95:95=3:3","8:8=0:0"}}
+sprite 5A_HH0,136,144{offset -239,-112 patch W_HBE0,0,0{Translation"192:192=42:42","198:198=45:45","195:195=47:47","118:118=208:208","119:119=89:89","89:89=95:95","95:95=3:3","8:8=0:0"}}
+sprite 5A_HI0,136,144{offset 55,122 patch 5A_HG0,0,0{FlipX FlipY}}
+sprite 5A_HJ0,136,144{offset 55,122 patch 5A_HH0,0,0{FlipX FlipY}}
+
+//Waveman
+graphic WAVEHOKB,20,34{XScale 1.4 YScale 1.4 Patch HARPJ0,0,0}
+graphic WAVEHOKV,34,20{XScale 1.4 YScale 1.4 Patch HARPJ0,0,0{rotate 90}}
+
+graphic HARPK,30,30{XScale 2.0 YScale 2.0 Patch HARPK0,0,0}
+
+//Stoneman
+
+//Gyroman
+sprite GYARD0,136,144{offset -177,-48 patch W_HBC0,0,0{Translation"192:192=109:109","198:198=128:128","195:195=95:95","118:118=4:4","119:119=89:89","89:89=3:3","95:95=5:5","8:8=0:0"}}
+
+//Starman
+
+//Chargeman
+graphic CHRGM_R3,26,37{XScale 2.0 YScale 2.0 Patch CHRGM_R1,0,0}
+graphic CHRGM_R4,26,37{XScale 2.0 YScale 2.0 Patch CHRGM_R2,0,0}
+
+sprite CHAAL0,464,200{Offset 72,4 Patch CHAAJ0,0,0{Translation"42:42=169:169","45:45=42:42","0:0=45:45","208:208=4:4","52:52=80:80","229:229=160:160","3:3=89:89","5:5=80:80"}}
+sprite CHAAM0,464,200{Offset 72,4 Patch CHAAK0,0,0{Translation"42:42=169:169","45:45=42:42","0:0=45:45","208:208=4:4","52:52=80:80","229:229=160:160","3:3=89:89","5:5=80:80"}}
+
+//Napalmman
+sprite NPARD0,440,120{offset 60,-94 patch NPARB0,0,0{FlipX}}
+sprite NPARE0,440,120{offset 60,-94 patch NPARC0,0,0{FlipX}}
+
+//Crystalman
+sprite CRYAA0,140,100{offset -184,-100 patch CRYAX0,0,0{Translation"204:204=192:192","194:194=198:198","195:195=199:199"}}
+sprite CRYAB0,140,100{offset -184,-100 patch CRYAY0,0,0{Translation"204:204=192:192","194:194=198:198","195:195=199:199"}}
+
+
+sprite CRYAC0,140,100{offset -184,-100 patch CRYAY0,0,0{Translation"204:204=4:4","194:194=196:196","195:195=197:197"}}
+sprite CRYAD0,140,100{offset -184,-100 patch CRYAY0,0,0{Translation"192:192=4:4","198:198=196:196","199:199=197:197","204:204=192:192","194:194=198:198","195:195=199:199"}}
+sprite CRYAE0,140,100{offset -184,-100 patch CRYAY0,0,0{Translation"4:4=196:196","196:196=197:197","204:204=192:192","194:194=198:198","195:195=199:199"}}
+sprite CRYAF0,140,100{offset -184,-100 patch CRYAY0,0,0{Translation"0:0=197:197","204:204=192:192","194:194=198:198","195:195=199:199"}}
+
+sprite CRYAG0,140,100{offset -184,-100 patch CRYAX0,0,0{Translation"204:204=4:4","194:194=196:196","195:195=197:197"}}
+sprite CRYAH0,140,100{offset -184,-100 patch CRYAX0,0,0{Translation"192:192=4:4","198:198=196:196","199:199=197:197","204:204=192:192","194:194=198:198","195:195=199:199"}}
+sprite CRYAI0,140,100{offset -184,-100 patch CRYAX0,0,0{Translation"4:4=196:196","196:196=197:197","204:204=192:192","194:194=198:198","195:195=199:199"}}
+sprite CRYAJ0,140,100{offset -184,-100 patch CRYAX0,0,0{Translation"0:0=197:197","204:204=192:192","194:194=198:198","195:195=199:199"}}
+
+sprite CRYAK0,140,100{offset -184,-100 patch CRYAY0,0,0{Translation"4:4=101:101","196:196=109:109","192:192=101:101","198:198=109:109","199:199=128:128","204:204=101:101","194:194=109:109","195:195=128:128"}}
+
+//Darkman1
+
+//Darkman2
+sprite DKC2A0,148,80{offset -202,-103 patch W_HBA0,0,0{Translation"192:192=84:84","198:198=94:94","195:195=35:35","118:118=4:4","119:119=89:89","89:89=3:3","95:95=5:5","8:8=0:0"}}
+sprite DKC2B0,568,128{offset 124,-56 patch W_HBG0,0,0{Translation"192:192=84:84","198:198=94:94","195:195=35:35","118:118=4:4","119:119=89:89","89:89=3:3","95:95=5:5"}}
+sprite DKC2C0,568,128{offset 124,-56 patch W_HBH0,0,0{Translation"192:192=84:84","198:198=94:94","195:195=35:35","118:118=4:4","119:119=89:89","89:89=3:3","95:95=5:5"}}
+sprite DKC2D0,568,128{offset 124,-56 patch W_HBI0,0,0{Translation"192:192=84:84","198:198=94:94","195:195=35:35","118:118=4:4","119:119=89:89","89:89=3:3","95:95=5:5"}}
+sprite DKC2E0,568,128{offset 124,-56 patch W_HBJ0,0,0{Translation"192:192=84:84","198:198=94:94","195:195=35:35","118:118=4:4","119:119=89:89","89:89=3:3","95:95=5:5"}}
+sprite DKC2F0,568,128{offset 124,-56 patch W_HBK0,0,0{Translation"192:192=84:84","198:198=94:94","195:195=35:35","118:118=4:4","119:119=89:89","89:89=3:3","95:95=5:5"}}
+sprite DKC2G0,136,144{offset -197,-56 patch W_HBC0,0,0{Translation"192:192=84:84","198:198=94:94","195:195=35:35","118:118=4:4","119:119=89:89","89:89=3:3","95:95=5:5","8:8=0:0"}}
+sprite DKC2H0,136,144{offset -197,-56 patch W_HBE0,0,0{Translation"192:192=84:84","198:198=94:94","195:195=35:35","118:118=4:4","119:119=89:89","89:89=3:3","95:95=5:5","8:8=0:0"}}
+
+//Darkman3
+graphic DarkIco3,30,30{XScale 2.0 YScale 2.0 Patch DKC3Z0,0,0}
+
+//Darkman4
+
+
+//Blizzardman
+sprite BSKIC0,630,156{Offset 155,-53 Patch BSKIB0,0,0{FlipX}}
+sprite BSKIE0,630,156{Offset 155,-53 Patch BSKIA0,0,0{Translation"108:108=220:220","119:119=46:46","96:96=37:37","102:102=23:23"}}
+
+graphic BSKIX,30,30{XScale 2.0 YScale 2.0 Patch BSKIX0,0,0}
+graphic BSKIY,30,30{XScale 2.0 YScale 2.0 Patch BSKIY0,0,0}
+
+//Centaurman
+graphic CentIcon,30,30{XScale 2.0 YScale 2.0 Patch CENBZ0,0,0}
+
+//Flameman
+
+//Knightman
+
+//Plantman
+graphic PlntIcon,30,30{XScale 2.0 YScale 2.0 Patch PBUSZ0,0,0}
+
+//Tomahawkman
+
+//Windman
+graphic WindIcon,30,30{XScale 2.0 YScale 2.0 Patch WINBZ0,0,0}
+
+//Yamatoman
+
+
+//Freezeman
+
+//Junkman
+graphic JunIcon,30,30{XScale 2.0 YScale 2.0 Patch WEA3N0,0,0}
+
+sprite JCLAH0,150,105{Offset -220,-92 Patch JCLAA0,0,0}
+sprite JCLAI0,150,105{Offset -240,-107 Patch JCLAA0,0,0}
+//J
+sprite JCLAL0,150,96{Offset 50,-101 Patch JCLAK0,0,0}
+sprite JCLAM0,150,96{Offset 70,-116 Patch JCLAK0,0,0}
+sprite JCLAN0,150,96{Offset 90,-131 Patch JCLAK0,0,0}
+
+sprite JCLAP0,108,138{Offset -32,-50 Patch JCLAO0,0,0}
+sprite JCLAQ0,108,138{Offset -16,-65 Patch JCLAO0,0,0}
+
+sprite JCLAS0,108,138{Offset -20,-92 Patch JCLAO0,0,0}
+//T
+sprite JCLAU0,117,165{Offset 28,-39 Patch JCLAT0,0,0}
+sprite JCLAV0,117,165{Offset 60,-26 Patch JCLAT0,0,0}
+sprite JCLAW0,117,165{Offset 96,-9 Patch JCLAT0,0,0}
+
+//Burstman
+graphic BursIcon,30,30{XScale 2.0 YScale 2.0 Patch BURXZ0,0,0}
+
+//Cloudman
+graphic ClouIcon,30,30{XScale 2.0 YScale 2.0 Patch CLOHZ0,0,0}
+
+//Springman
+
+//Slashman
+
+//Shademan
+
+//Turboman
+
+
+//Tenguman
+graphic TENJET0,33,17{Patch TNT1A0,0,0}
+graphic TenIcon,30,30{XScale 2.0 YScale 2.0 Patch TGUHX0,0,0}
+
+//Astroman
+graphic AstIcon,30,30{XScale 2.0 YScale 2.0 Patch AHUGZ0,0,0}
+
+//Swordman
+
+//Clownman
+graphic ClowIcon,30,30{XScale 2.0 YScale 2.0 Patch CLWHY0,0,0}
+
+//Searchman
+graphic BushIcon,30,30{XScale 2.0 YScale 2.0 Patch HSN8Z0,0,0}
+
+//Frostman
+
+//Grenademan
+
+//Aquaman
+texture 8H_A_BAR,8,56{}
+texture 8H_A_VAR,56,8{}
+texture 8H_B_BAR,8,56{}
+texture 8H_B_VAR,56,8{}
+
+texture 8H_C_VAR,56,8{patch 8H_C_BAR,0,0{rotate 90}}
+texture 8H_D_VAR,56,8{patch 8H_D_BAR,0,0{rotate 90}}
+
+texture 8H_E_BAR,8,56{patch 8H_C_BAR,0,0{Translation"198:198=229:229"}}
+texture 8H_E_VAR,56,8{patch 8H_E_BAR,0,0{rotate 90}}
+texture 8H_F_BAR,8,56{patch 8H_D_BAR,0,0{Translation"198:198=229:229"}}
+texture 8H_F_VAR,56,8{patch 8H_F_BAR,0,0{rotate 90}}
+
+texture 8H_Z_VAR,56,8{patch 8H_Z_BAR,0,0{rotate 90}}
+
+//OriginalDuo
+graphic ODuoIcon,16,16{XScale 2.0 YScale 2.0 Patch "ODUH[0",0,0}
+graphic ODuoIco2,32,32{XScale 4.0 YScale 4.0 Patch "ODUH]0",0,0}
+//graphic ODuoIco3,16,16{XScale 2.0 YScale 2.0 Patch "ODUH\0",0,0}
+
+sprite ODUHR0,210,240{Offset 36,-26 Patch ODUHA0,0,0{Translation"176:176=4:4","182:182=80:80"}}
+sprite ODUHS0,210,240{Offset 36,-26 Patch ODUHA0,0,0{Translation"176:176=192:192","182:182=197:197"}}
+sprite ODUHT0,210,240{Offset 36,-26 Patch ODUHB0,0,0{Translation"176:176=192:192","182:182=197:197"}}
+sprite ODUHU0,210,240{Offset 36,-26 Patch ODUHI0,0,0{Translation"176:176=192:192","182:182=197:197"}}
+sprite ODUHV0,210,240{Offset 36,-26 Patch ODUHJ0,0,0{Translation"176:176=192:192","182:182=197:197"}}
+sprite ODUHW0,210,240{Offset 36,-26 Patch ODUHL0,0,0{Translation"176:176=192:192","182:182=197:197"}}
+sprite ODUHX0,210,240{Offset 36,-26 Patch ODUHM0,0,0{Translation"176:176=192:192","182:182=197:197"}}
+sprite ODUHY0,210,240{Offset 36,-26 Patch ODUHO0,0,0{Translation"176:176=192:192","182:182=197:197"}}
+sprite ODUHZ0,210,240{Offset 36,-26 Patch ODUHP0,0,0{Translation"176:176=192:192","182:182=197:197"}}
+
+//EvilRobot
+//TornadoHold
+sprite ERO7A0,192,284{Offset -204,68 Patch TGUHH0,0,0{FlipX Translation"98:98=58:58","103:103=61:61","117:117=63:63","4:4=41:41","200:200=43:43","86:86=249:249","93:93=245:245","183:183=162:162","229:229=176:176","230:230=182:182"}}
+sprite ERO7B0,212,236{Offset -54,61 Patch TGUHI0,0,0{FlipX Translation"98:98=58:58","103:103=61:61","117:117=63:63","200:200=43:43","93:93=245:245""230:230=182:182"}}
+sprite ERO7C0,280,76{Offset -10,-100 Patch TGUHJ0,0,0{FlipX Translation"98:98=58:58","103:103=61:61","117:117=63:63","4:4=41:41","200:200=43:43","86:86=249:249","93:93=245:245","229:229=176:176","230:230=182:182"}}
+//AstroCrush
+sprite ERO7D0,428,128{Offset 54,-72 Patch AHUGB0,0,0{Translation"217:217=160:160","226:226=162:162","111:111=249:249","131:131=245:245","206:206=41:41","77:77=43:43","78:78=47:47"}}
+sprite ERO7E0,428,128{Offset 54,-72 Patch AHUGC0,0,0{Translation"217:217=160:160","226:226=162:162","111:111=249:249","131:131=245:245","206:206=41:41","77:77=43:43","78:78=47:47"}}
+sprite ERO7F0,428,128{Offset 54,-72 Patch AHUGD0,0,0{Translation"217:217=160:160","226:226=162:162","111:111=249:249","131:131=245:245","206:206=41:41","77:77=43:43","78:78=47:47"}}
+sprite ERO7G0,428,128{Offset 54,-72 Patch AHUGE0,0,0{Translation"217:217=160:160","226:226=162:162","111:111=249:249","131:131=245:245","206:206=41:41","77:77=43:43","78:78=47:47"}}
+sprite ERO7H0,428,128{Offset 54,-72 Patch AHUGF0,0,0{Translation"217:217=160:160","226:226=162:162","111:111=249:249","131:131=245:245","206:206=41:41","77:77=43:43","78:78=47:47"}}
+//FlameSword
+sprite ERO7I0,220,100{Offset 36,-135 Patch FHUBB0,0,0{Translation"200:200=41:41","216:216=63:63","220:220=176:176","46:46=182:182","77:77=160:160","78:78=162:162","31:31=249:249","167:167=245:245"}}
+sprite ERO7J0,132,136{Offset -98,-80 Patch FHUBC0,0,0{Translation"200:200=41:41","216:216=63:63","220:220=176:176","46:46=182:182","77:77=160:160","78:78=162:162","31:31=249:249","167:167=245:245"}}
+sprite ERO7K0,104,156{Offset -263,-16 Patch FHUBD0,0,0{Translation"200:200=41:41","216:216=63:63","220:220=176:176","46:46=182:182","77:77=160:160","78:78=162:162","31:31=249:249","167:167=245:245"}}
+sprite ERO7L0,160,184{Offset -290,-8 Patch FHUBE0,0,0{Translation"200:200=41:41","216:216=63:63","220:220=176:176","46:46=182:182","77:77=160:160","78:78=162:162","31:31=249:249","167:167=245:245"}}
+sprite ERO7M0,220,144{Offset -196,-72 Patch FHUBF0,0,0{Translation"200:200=41:41","216:216=63:63","220:220=176:176","46:46=182:182","77:77=160:160","78:78=162:162","31:31=249:249","167:167=245:245"}}
+sprite ERO7N0,252,96{Offset 50,-129 Patch FHUBG0,0,0{Translation"200:200=41:41","216:216=63:63","220:220=176:176","46:46=182:182","77:77=160:160","78:78=162:162","31:31=249:249","167:167=245:245"}}
+//ThunderClaw
+sprite ERO7O0,201,198{Offset -190,-57 Patch CLWHC0,0,0{Translation"63:63=182:182","61:61=176:176","56:56=172:172","43:43=162:162","175:175=160:160","163:163=249:249","161:161=60:60","116:116=43:43","101:101=41:41"}}
+sprite ERO7P0,201,198{Offset -190,-57 Patch CLWHD0,0,0{Translation"61:61=63:63","228:228=251:251","4:4=4:4"}}
+sprite ERO7Q0,201,198{Offset -190,-57 Patch CLWHE0,0,0{Translation"4:4=254:254","63:63=182:182","61:61=176:176","56:56=172:172","47:47=164:164","43:43=162:162","175:175=160:160","165:165=79:79","163:163=249:249","161:161=60:60","135:135=46:46","116:116=43:43","101:101=41:41"}}
+sprite ERO7R0,201,198{Offset -190,-57 Patch CLWHF0,0,0{Translation"228:228=251:251","0:0=0:0","4:4=4:4","63:63=182:182","56:56=172:172","47:47=164:164","165:165=79:79","135:135=46:46"}}
+//HomingSniper
+//sprite ERO7]0,160,152{Offset -180,-84 Patch HSN8D0,0,0{Translation"87:87=41:41","93:93=43:43","3:3=249:249"}}
+sprite ERO7S0,129,108{Offset -190,-100 Patch HSN8H0,0,0{Translation"87:87=41:41","93:93=43:43","3:3=249:249"}}
+sprite ERO7T0,150,129{Offset -180,-90 Patch HSN8I0,0,0{Translation"87:87=41:41","93:93=43:43","3:3=249:249","208:208=41:41","210:210=249:249"}}
+sprite ERO7U0,144,123{Offset -184,-94 Patch HSN8J0,0,0{Translation"87:87=41:41","93:93=43:43","3:3=249:249","208:208=41:41","210:210=249:249"}}
+sprite ERO7V0,141,120{Offset -184,-94 Patch HSN8K0,0,0{Translation"87:87=41:41","93:93=43:43","3:3=249:249","208:208=41:41","210:210=249:249"}}
+//IceWave
+sprite ERO7W0,582,204{Offset 131,-81 Patch ICWBD0,0,0{Translation"69:69=41:41","76:76=43:43","79:79=47:47","160:160=251:251","229:229=254:254","227:227=61:61","180:180=63:63","4:4=160:160","68:68=163:163","3:3=249:249","5:5=245:245"}}
+sprite ERO7X0,480,234{Offset 80,-50 Patch ICWBF0,0,0{Translation"69:69=41:41","76:76=43:43","79:79=47:47","4:4=160:160","68:68=163:163","3:3=249:249","5:5=245:245","168:168=251:251","202:202=254:254","198:198=63:63"}}
+sprite ERO7Y0,534,204{Offset 107,-81 Patch ICWBH0,0,0{Translation"69:69=41:41","76:76=43:43","79:79=47:47","4:4=160:160","68:68=163:163","3:3=249:249","5:5=245:245","168:168=251:251","202:202=254:254","198:198=63:63"}}
+//FlashBomb
+sprite ERO8Q0,132,112{Offset -186,-71 Patch GRHUA0,0,0{Translation"4:4=41:41","229:229=43:43","220:220=47:47","43:43=160:160","204:204=60:60","194:194=249:249","195:195=245:245","89:89=160:160","95:95=162:162"}}
+//WaterBalloon
+sprite ERO8R0,236,204{Offset -156,-44 Patch AQAQA0,0,0{Translation"197:197=58:58","198:198=60:60","245:245=245:245","228:228=160:160","220:220=162:162","89:89=41:41","95:95=43:43"}}
+sprite ERO8S0,236,204{Offset -160,-48 Patch AQAQB0,0,0{Translation"197:197=58:58","198:198=60:60","245:245=245:245","228:228=160:160","220:220=162:162","89:89=41:41","95:95=43:43"}}
+sprite ERO8T0,236,204{Offset -160,-48 Patch AQAQC0,0,0{Translation"197:197=58:58","198:198=60:60","245:245=245:245","228:228=160:160","220:220=162:162","89:89=41:41","95:95=43:43"}}
+sprite ERO8U0,236,204{Offset -168,-56 Patch AQAQD0,0,0{Translation"197:197=58:58","198:198=60:60","245:245=245:245","228:228=160:160","220:220=162:162","89:89=41:41","95:95=43:43"}}
+sprite ERO8V0,236,204{Offset -184,-72 Patch AQAQE0,0,0{Translation"197:197=58:58","198:198=60:60","245:245=245:245","228:228=160:160","220:220=162:162","89:89=41:41","95:95=43:43"}}
+sprite ERO8W0,236,204{Offset -188,-76 Patch AQAQF0,0,0{Translation"197:197=58:58","198:198=60:60","245:245=245:245","228:228=160:160","220:220=162:162","89:89=41:41","95:95=43:43"}}
+
+
+//Exodia
+//texture ERO9S0,26,31{patch TNT1A0,0,0}
+texture ERO9T0,26,31{XScale 1.5 YScale 1.5 patch EVFLJ0,0,0{Translation"192:192=41:41","198:198=249:249"}}
+
+graphic EXODIA_1,57,47{XScale 2.0 YScale 2.0 Patch EXODIA1,0,0}
+graphic EXODIA_2,57,47{XScale 2.0 YScale 2.0 Patch EXODIA2,0,0}
+graphic EXODIA_3,57,47{XScale 2.0 YScale 2.0 Patch EXODIA3,0,0}
+graphic EXODIA_4,57,47{XScale 2.0 YScale 2.0 Patch EXODIA4,0,0}
+graphic EXODIA_5,57,47{XScale 2.0 YScale 2.0 Patch EXODIA5,0,0}
+graphic EXODIA_6,57,47{XScale 2.0 YScale 2.0 Patch EXODIA6,0,0}
+graphic EXODIA_7,57,47{XScale 2.0 YScale 2.0 Patch EXODIA7,0,0}
+

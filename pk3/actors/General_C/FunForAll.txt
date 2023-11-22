@@ -1,0 +1,402 @@
+//Fun for all
+
+//Geminiman's map
+
+actor ProtoMachineThing_CBMFun : ProtoMachineThing replaces ProtoMachineThing
+{
+Health 66666
+damagefactor "normal", 4.25
+damagefactor "SearchM_Shot", 60.0
+damagefactor "ProtoBuster", 44.0
+damagefactor "ProtoM_Shot", 30.0
+damagefactor "WireAdaptor", 750.0
+
+states
+{
+Spawn:
+GESP DEFG 4
+loop
+Pain.ProtoBuster:
+GESP D 0
+GESP D 0 A_PlaySoundEx("misc/devilpain","Voice",0,-1)
+GESP DEFG 4
+Goto Spawn
+Death:
+GESP D 0
+GESP D 1 A_Stop
+GESP GGGGGG 8 A_SpawnItemEx("FlashBombFX2",Random(-16, 16),Random(-40, 40), Random(90, 120),0,0,0,0)
+GESP GGGGGGGGGGGG 4 A_SpawnItemEx("FlashBombFX2",Random(-16, 16),Random(-40, 40), Random(90, 120),0,0,0,0)
+GESP GGGGGGGGGGGGGGGGGGGGGGGG 2 A_SpawnItemEx("FlashBombFX2",Random(-16, 16),Random(-40, 40), Random(90, 120),0,0,0,0)
+TNT1 A 0 A_PlaySoundEx("misc/SearchSecret","Voice",0,1)
+TNT1 A 0 ACS_NamedExecuteAlways("CBM_SetMusic",0,-1)
+TNT1 A 58 A_SpawnItemEx("SearchmanisEverywhere",0,0,70,5,5,20)
+TNT1 A 0 ACS_NamedExecuteAlways("CBM_SetMusic",0,1)
+TNT1 A 2
+TNT1 A 1 A_SpawnItemEx("ProtoMachineThing_CBMFunRespawn")
+stop
+}
+}
+
+actor ProtoMachineThing_CBMFun2 : ProtoMachineThing_CBMFun
+{
+Health 3000
+damagefactor "normal", 1.25
+damagefactor "SearchM_Shot", 10.0
+damagefactor "ProtoBuster", 25.0
+damagefactor "ProtoM_Shot", 4.0
+damagefactor "WireAdaptor", 70.0
+states
+{
+Death:
+GESP D 0
+GESP D 1 A_Stop
+GESP GGGGGG 8 A_SpawnItemEx("FlashBombFX2",Random(-16, 16),Random(-40, 40), Random(90, 120),0,0,0,0)
+GESP GGGGGGGGGGGG 4 A_SpawnItemEx("FlashBombFX2",Random(-16, 16),Random(-40, 40), Random(90, 120),0,0,0,0)
+GESP GGGGGGGGGGGGGGGGGGGGGGGG 2 A_SpawnItemEx("FlashBombFX2",Random(-16, 16),Random(-40, 40), Random(90, 120),0,0,0,0)
+GESP D 0 A_PlaySoundEx("misc/mm3explosion","Voice")
+GESP D 0 A_GiveInventory("ProtoMachineBonusDrop_P",1)
+TNT1 A 2
+TNT1 A 1 A_SpawnItemEx("ProtoMachineThing_CBMFunRespawn")
+stop
+}
+}
+
+actor ProtoMachineBonusDrop_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_Jump(256,"P1","P2","P3","P4","P5","P6","P7","P8","P9")
+P1:
+TNT1 A 0 A_SpawnItemEx("TimeStopperWepCDropped",0,0,55,6,random(-5,5),20)
+stop
+P2:
+TNT1 A 0 A_SpawnItemEx("GravityHoldWepCDropped",0,0,55,6,random(-5,5),20)
+stop
+P3:
+TNT1 A 0 A_SpawnItemEx("AstroCrushWepCDropped",0,0,55,6,random(-5,5),20)
+stop
+P4:
+TNT1 A 0 A_SpawnItemEx("LightningBoltWepCDropped",0,0,55,6,random(-5,5),20)
+stop
+P5:
+TNT1 A 0 A_SpawnItemEx("BlackHoleBombWepCDropped",0,0,55,6,random(-5,5),20)
+stop
+P6:
+TNT1 A 0 A_SpawnItemEx("MegaWeaponEnergy",0,0,40,5.25,2,20)
+TNT1 A 0 A_SpawnItemEx("MegaHealth",0,0,40,5.25,-2,20)
+stop
+P7:
+TNT1 A 0 A_SpawnItemEx("WireAdaptor",0,0,40,4.75,7,20)
+TNT1 A 0 A_SpawnItemEx("Item3",0,0,40,5,5,20)
+TNT1 A 0 A_SpawnItemEx("Item2",0,0,40,5.25,3,20)
+TNT1 A 0 A_SpawnItemEx("Carry",0,0,40,5.5,1,20)
+TNT1 A 0 A_SpawnItemEx("Carry",0,0,40,5.5,-1,20)
+TNT1 A 0 A_SpawnItemEx("Item2",0,0,40,5.25,-3,20)
+TNT1 A 0 A_SpawnItemEx("Item3",0,0,40,5,-5,20)
+TNT1 A 0 A_SpawnItemEx("WireAdaptor",0,0,40,4.75,-7,20)
+stop
+P8:
+TNT1 AAAAAA 0 A_SpawnItemEx("TrioRareDeathHelper",0,0,55,frandom(7,8),frandom(-3,3),12)
+stop
+P9:
+TNT1 AAAAAA 0 A_SpawnItemEx("RaThorRareDeathHelper",0,0,55,frandom(7,8),frandom(-3,3),12)
+stop
+}
+}
+
+actor ProtoMachineThing_CBMFunRespawn
+{
+-SOLID
++NOGRAVITY
++NOINTERACTION
+RenderStyle "Translucent"
+Alpha 0.5
+ReactionTime 17
+radius 2
+height 2
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 700
+Spawn2:
+TNT1 A 4 A_CountDown
+GESP G 4 A_FadeIn(0.025)
+loop
+Death:
+TNT1 A 0
+TNT1 A 1 A_SpawnItemEx("ProtoMachineThing_CBMFun2")
+stop
+}
+}
+
+actor SearchmanisEverywhere 
+{
+-SOLID
+height 16
+radius 16
+States
+{
+Spawn:
+CRRM T 90
+CRRM T 0 //A_Stop
+CRRM T 1 A_ChangeFlag("NOINTERACTION",1)
+Spawn2:
+CRRM T 2 ThrustThingZ(0,1,0,1)//A_FadeOut(0.05)
+CRRM T 0 A_GiveInventory("WeaponCharge",1)
+CRRM T 0 A_JumpIfInventory("WeaponCharge",100,"Spawn3")//250
+loop
+Spawn3:
+CRRM T 2 A_SpawnItemEx("SecretObituaryThomas",0,0,17777,0,0,-10)
+CRRM T 20 A_FadeOut(0.05)
+goto Spawn3+1
+}
+}
+
+actor BonerManCreditsX
+{
+height 4
+radius 4
+Scale 4.0
+States
+{
+Spawn:
+CBON Y 1
+wait
+}
+}
+actor RibbonCreditsX : BonerManCreditsX
+{
++NOGRAVITY
++FLOATBOB
+Scale 0.4
+States
+{
+Spawn:
+CBON X 0 A_SetAngle(angle-90)
+CBON X 0 A_ChangeVelocity(-0.5,-0.5,0,3)
+CBON X 760
+loop
+}
+}
+actor PitchCreditsX : BonerManCreditsX
+{
+Scale 2.0
+States
+{
+Spawn:
+CBON W 0
+CBON W 0 A_PlaySound("misc/HonkHonk64",CHAN_BODY)
+//A_PlaySound("classes/HonkHonk64",CHAN_BODY,0.025)
+CBON W 1
+wait
+}
+}
+actor PeggCreditsX : BonerManCreditsX
+{
+Scale 2.5
+States
+{
+Spawn:
+CBON V 0
+CBON V 0 A_PlaySound("PunchOut/MacUpper",CHAN_BODY)
+CBON V 1
+wait
+}
+}
+
+actor SecretObituaryThomas
+{
++NOINTERACTION
+Damagetype "IceBlock"
+Obituary "%o learned Thomas is everywhere!"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1000 A_SpawnItemEx("ThomasisEverywhere",0,0,0,0,0,-25)
+TNT1 A 50
+stop
+}
+}
+
+actor ThomasisEverywhere
+{
+PROJECTILE
+Translation "192:192=69:69", "198:198=74:74"
++RIPPER
++NOINTERACTION
++DONTBLAST
++THRUGHOST
++THRUACTORS
+-NOGRAVITY
+Damagetype "IceBlock"
+Obituary "%o suffered a heart attack from \cnThomas the Tank Engine\c-'s stare."
+damage (10000)
+height 64
+radius 52
+Scale 10//7.5
+//Reactiontime 10
+States
+{
+Spawn:
+CHRT B 0
+CHRT B 0 ThrustThingZ(0,10,1,1)
+CHRT BBBCCCDDDEEE 1 A_JumpIf(ceilingz-z>64, "Spawn2")
+CHRT B 0 A_JumpIf(momz==0,"Death")
+CHRT B 0 A_SetAngle(angle+15)
+Goto Spawn+1
+Spawn2:
+CHRT B 0 //A_ChangeFlag("RIPPER",0)
+CHRT B 0 A_ChangeFlag("NOINTERACTION",0)
+CHRT BBBCCCDDDEEE 1 A_SpawnItemEx("ThomasisEverywhereDamager")
+CHRT B 0 A_JumpIf(momz==0,"Death")
+CHRT B 0 A_SetAngle(angle+15)
+Goto Spawn2+2
+Death:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("SearchManCredits",1800,2856,0,0,0,0,0,2)//Penguin island
+TNT1 A 0 A_SpawnItemEx("BonerManCreditsX",1750,2526,0,0,0,0,0,2)//Penguin island
+TNT1 A 0 A_SpawnItemEx("RibbonCreditsX",-2608,1568,268,0,0,0,0,2)//Skybox
+TNT1 A 0 A_SpawnItemEx("PitchCreditsX",-888,1308,128,0,0,0,0,2)//A small hole above center
+TNT1 A 0 A_SpawnItemEx("PeggCreditsX",-1372,418,288,0,0,0,-45,2)//A small hole above center
+TNT1 A 0 A_SpawnItemEx("TimeStopperWepCDropped",0,0,24,0,0,15)
+TNT1 A 0 A_Explode(250,320,0,0,321)
+TNT1 A 0 A_PlaySoundEx("misc/mm3explosion","Weapon",0,1)
+TNT1 A 0 A_SetScale(4.0)
+ASEX ABCDEF 2
+stop
+}
+}
+
+actor ThomasisEverywhereDamager : ThomasisEverywhere
+{
+-NOINTERACTION
+-THRUACTORS
++NOGRAVITY
+States
+{
+Spawn:
+TNT1 A 1
+stop
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor CBM_DiscoRollFun2
+{
+PROJECTILE
+Damage (777777777777777777)
+Radius 16
+Height 16
+Speed 2
+States
+{
+Spawn:
+ROLL H 1
+wait
+}
+}
+
+actor CBM_DiscoRollFunColor_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_Jump(90,2)
+TNT1 A 0 Thing_SetTranslation(0,random(1,107))
+stop
+TNT1 A 0 Thing_SetTranslation(0,random(170,239))
+stop
+}
+}
+
+actor CBM_DiscoRollFun
+{
++SHOOTABLE
++NOBLOOD
++LOOKALLAROUND
+MaxStepHeight 384
+MaxDropOffHeight 384
+damagefactor "Normal", 0.0
+damagefactor "RollSwing", 77.0
+damagefactor "RollSweep", 77.0
+damagefactor "GravityHold", 0.5
+damagefactor "PlantBarrier", 77.0
+Radius 16
+Height 64
+Speed 10
+Scale 2.5
+States
+{
+Spawn:
+ROLL A 0
+ROLL A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4","Spawn5")
+//goto Spawn0
+Spawn1:
+ROLL A random(4,8) A_GiveInventory("CBM_DiscoRollFunColor_P")
+loop
+Spawn2:
+ROLL BCDE random(1,5) A_GiveInventory("CBM_DiscoRollFunColor_P")
+loop
+Spawn3:
+ROLL F 0 A_SetAngle(angle+5)
+ROLL F 1 A_GiveInventory("CBM_DiscoRollFunColor_P")
+loop
+See:
+Spawn4:
+ROLL A 2 A_GiveInventory("CBM_DiscoRollFunColor_P")
+ROLL A 0 A_LookEx(2+8+32,0,320,1,360,"Spawn4Look")
+ROLL A 0 A_JumpIfTargetInLOS(1,0,0)
+loop
+//ROLL A 0 A_Log("I AM CLOSE")
+ROLL A 0 A_PlaySoundEx("item/rushdetect","voice")
+ROLL A 0 A_SpawnItemEx("CBM_DiscoRollFunFX",0,0,64,0,0,8,0) 
+Spawn4Look:
+ROLL A 1 A_FaceTarget
+ROLL A 0 A_JumpIfTargetInLOS("Spawn4Look",0,0,320)
+ROLL A 0 A_ClearTarget
+goto Spawn4
+Spawn5:
+ROLL B 0 ACS_ExecuteAlways(191,0,1,random(10,30),1)//SPEED
+ROLL B 0 A_Wander
+ROLL B 1 A_GiveInventory("CBM_DiscoRollFunColor_P")
+ROLL C 0 A_Wander
+ROLL C 1 A_GiveInventory("CBM_DiscoRollFunColor_P")
+ROLL D 0 A_Wander
+ROLL D 1 A_GiveInventory("CBM_DiscoRollFunColor_P")
+ROLL E 0 A_Wander
+ROLL E 1 A_GiveInventory("CBM_DiscoRollFunColor_P")
+loop
+Death:
+ROLL H 19
+ROLL H 0 A_SpawnItemEx("CBM_BigHealth",0,0,0,0,0,10)
+stop
+}
+}
+
+actor CBM_DiscoRollFunFX : BasicClientSide
+{
+RenderStyle Translucent
+Alpha 0.4
+ReactionTime 6
+Scale 1.0
+states
+{
+Spawn:
+RUS2 N 0
+RUS2 N 0 A_FadeIn
+RUS2 N 0 A_SetScale(ScaleX+0.25)
+RUS2 N 1 A_ScaleVelocity(0.35)
+RUS2 N 0 A_CountDown
+loop
+Death:
+RUS2 N 35
+RUS2 N 1 A_FadeOut(0.175)
+wait
+}
+}

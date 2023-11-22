@@ -1,0 +1,187 @@
+#library "CBM_TOOLS"
+#include "zcommon.acs"
+
+
+script "cbm_GetPointerTID_147" (int Swap)
+{
+	Switch(Swap) {
+		Default:
+			Log(i:Swap,s:" >> Invalid Pointer for cbm_GetPointerTID_147");
+			break;
+		Case 0://Default
+			break;
+		Case 1://Null
+		Case 2://Target
+		Case 4://Master
+		Case 8://Tracer
+		Case 16://Player_GetTarget
+		Case 32://Player_GetConversation
+		Case 16384://FriendPlayer
+			SetActivator(0,Swap);
+			break;
+	}
+	SetResultValue(ActivatorTID());
+}
+
+script "cbm_Fetch_GetArmorInfo" (int TheInfo, int Swap)
+{
+	Switch(Swap) {
+		Default:
+			Log(i:Swap,s:" >> Invalid Pointer for cbm_Fetch_GetArmorInfo");
+			break;
+		Case 0://Default
+			break;
+		Case 1://Null
+		Case 2://Target
+		Case 4://Master
+		Case 8://Tracer
+		Case 16://Player_GetTarget
+		Case 32://Player_GetConversation
+		Case 16384://FriendPlayer
+			SetActivator(0,Swap);
+			break;
+	}
+	//0 is string (s), 2 is fixed point number (f)
+	//Log(s:"Fetching number >> ",i:TheInfo,s:" from GetArmorInfo >> ",i:GetArmorInfo(TheInfo));
+	SetResultValue(GetArmorInfo(TheInfo));
+}
+
+script "cbm_ResolidifyCheck" (void)//Used by Resolidier
+{
+//	SetResultValue(Func_Return_SAP());
+	SetResultValue(Func_Return_WarpTest());
+}
+function bool Func_Return_SAP(void)
+{
+	return SetActorPosition(0,GetActorX(0),GetActorY(0),GetActorZ(0),false);
+}
+function bool Func_Return_WarpTest(void)
+{
+	return Warp(0,0,0,0,0,WARPF_TESTONLY);
+}
+
+
+
+script "cbm_FetchMovementInput" (void)
+{
+	SetResultValue(Func_CheckForMovement(GetPlayerInput(-1, INPUT_BUTTONS)));
+}
+
+function bool Func_CheckForMovement(int buttons) {
+	int result = 1;
+
+	if (buttons & BT_MOVERIGHT){
+		if (!(buttons & BT_MOVELEFT))
+			result+=2;
+	}
+	if (buttons & BT_MOVELEFT){
+		if (!(buttons & BT_MOVERIGHT))
+			result+=4;
+	}
+	if (buttons & BT_BACK){
+		if (!(buttons & BT_FORWARD))
+			result+=8;
+	}
+	if (buttons & BT_FORWARD){
+		if (!(buttons & BT_BACK))
+			result+=16;
+	}
+	return(result);
+}
+
+
+script "cbm_Set_APROP_Fixed" (int prop, int mult, int div)
+{
+	SetActorProperty(0,prop,((1.0)*mult)/div);
+}
+
+script "cbm_Set_APROP_Int" (int prop, int value)
+{
+	SetActorProperty(0,prop,value);
+}
+
+script "cbm_BotBuddyFetchJumpZ" (void)
+{
+	SetResultValue(round(fixedmul(GetActorProperty(0,APROP_JUMPZ),4.2)));
+}
+
+
+
+
+//  _____ _   _                
+// /  __ \ | | |               
+// | /  \/ | | | __ _ _ __ ___ 
+// | |   | | | |/ _` | '__/ __|
+// | \__/\ \_/ / (_| | |  \__ \
+//  \____/\___/ \__,_|_|  |___/
+
+
+script "cbm_NoGravitySpawnHop" (void)
+{
+	SetResultValue(GetUserCVar(PlayerNumber(),"CBM_NoGravitySpawnHop"));
+}
+script "cbm_AutoAltHud" (void)
+{
+	SetResultValue(GetUserCVar(PlayerNumber(),"CBM_AutoAltHud"));
+}
+script "cbm_OldGalaxyHud" (void)
+{
+	SetResultValue(GetUserCVar(PlayerNumber(),"CBM_OldGalaxyHud"));
+}
+
+//Decorate calls
+//WeaknessBase_P, TempPitProtect_P, RockWeapons, ChargeKickBoss, EvilRobot
+script "cbm_FetchServerCVar" (int Swap)
+{
+	int CBM_Result = -7;
+	Switch(Swap){
+		Case 1:
+			CBM_Result = GetCVar("YD_WeaknessSetting");
+			break;
+		Case 2:
+			CBM_Result = GetCVar("YD_NoCTFMorph");
+			break;
+		Case 3:
+			CBM_Result = GetCVar("YD_LMSLoadouts");
+			break;
+		Case 4:
+			CBM_Result = GetCVar("YD_NoPitProtect");
+			break;
+		Case 5:
+			CBM_Result = GetCVar("YD_NoHealingScale");
+			break;
+		Case 6:
+			CBM_Result = GetCVar("YD_Drops_Exodia");
+			break;
+		Case 17:
+			CBM_Result = GetCVar("YD_NoLMSWeapons");
+			break;
+
+		Case 65:
+			CBM_Result = GetCVar("YD_TestHavocDamageBonus");
+			break;
+		Case 66:
+			CBM_Result = GetCVar("YD_DisableChargeCarry");
+			break;
+		Default:
+			Log(s:"Invalid Switch Choice for cbm_FetchServerCVar");
+			break;
+	}
+	SetResultValue(CBM_Result);
+}
+
+
+
+function int round(int fixedNumber)
+{
+	return (fixedNumber + 0.5) >> 16;
+}
+
+function int max (int a, int b)
+{
+	if (a > b)
+		return a;
+	return b;
+}
+
+

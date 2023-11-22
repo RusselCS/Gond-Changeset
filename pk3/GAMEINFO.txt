@@ -1,0 +1,4 @@
+startuptitle = "MM8BDM Class Based Modification (CBM)"
+startupcolors = "B8F818", "007800"
+
+//startupsong = ""

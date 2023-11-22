@@ -1,0 +1,51 @@
+actor Saturn : ClassBase
+{
+Player.ScoreIcon "C_0VF0X"
+player.displayname "Saturn"
+player.soundclass "saturnc"
+
+player.maxhealth 1900
+health 1900
+player.jumpz 14
+player.forwardmove 0.63, 0.63
+player.sidemove 0.61, 0.61
+
+player.startitem "SuperArmBoss"
+player.startitem "GutsArmAmmo", 28
+player.startitem "CustomBossAmmoBar"
+
+player.startitem "SemiStunArmor"
+
+player.startitem "ElectricShockWeakness2", 1
+
+player.startitem "ThunderBeamWeakness", 1
+player.startitem "SparkShockWeakness", 1
+player.startitem "ThunderBoltWeakness", 1
+player.startitem "ThunderClawWeakness", 1
+player.startitem "LightningBoltWeakness", 1
+player.startitem "PlugBallWeakness", 1
+player.startitem "ThunderWoolWeakness", 1
+player.startitem "ElectricShockWeakness", 1
+
+States
+{
+Spawn:
+GUTS A 0
+GUTS B 1
+GUTS A 1
+Goto Spawn+2
+See:
+GUTS BCDE 5
+Goto Spawn
+Missile:
+GUTS F 5
+GUTS G 4
+goto Spawn
+ClassPain:
+GUTS H 0
+goto PainContinue
+ClassDeath:
+GUTS H 0
+goto DeathContinue
+}
+}

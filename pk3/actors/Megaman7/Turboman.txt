@@ -1,0 +1,67 @@
+actor Turboman : ClassBase
+{
+Player.ScoreIcon "C_07H0X"
+player.displayname "Turboman"
+player.soundclass "turbomanc"
+
+player.maxhealth 1000
+health 1000
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
+player.startitem "ScorchWheelBoss"
+player.startitem "DieselJuiceAmmo", 63
+
+player.startitem "NoiseCrushWeakness2", 1
+
+player.startitem "QuickBoomerangWeakness", 1
+player.startitem "NeedleCannonWeakness", 1
+player.startitem "YamatoSpearWeakness", 1
+player.startitem "NoiseCrushWeakness", 1
+player.startitem "TornadoBlowWeakness", 1
+player.startitem "TripleBladeWeakness", 1
+player.startitem "ScrewCrusherWeakness", 1
+
+States
+{
+Spawn:
+TURB A 0
+TURB I 1
+TURB A 1 A_JumpIfInventory("TurboCarFlag",1,"MissileB")
+Goto Spawn+2
+See:
+TURB IJIJ 5
+Goto Spawn
+Missile:
+TURB F 0 A_JumpIfInventory("TurboCarFlag",1,"MissileB")
+TURB FFFFF 1 A_JumpIfInventory("TurboCarFlag",1,"MissileB")
+TURB G 4
+goto Spawn
+MissileB:
+TURB B 0 A_JumpIfInventory("TurboCarFlag",4,"MissileE")
+TURB B 0 A_JumpIfInventory("TurboCarFlag",3,"MissileD")
+TURB B 0 A_JumpIfInventory("TurboCarFlag",2,"MissileC")
+TURB B 3 A_GiveInventory("TurboCarFlag",1)
+goto SeeCar+4
+MissileC:
+TURB C 3 A_GiveInventory("TurboCarFlag",1)
+goto SeeCar+8
+MissileD:
+TURB D 3 A_GiveInventory("TurboCarFlag",1)
+goto SeeCar+12
+MissileE:
+TURB E 3 A_TakeInventory("TurboCarFlag",3)
+goto SeeCar
+
+SeeCar:
+TURB BBBBCCCCDDDDEEEE 1 A_JumpIfInventory("TurboNoCarFlag",1,"Spawn")
+loop
+ClassPain:
+TURB H 0
+goto PainContinue
+ClassDeath:
+TURB H 0
+goto DeathContinue
+}
+}
